@@ -1,0 +1,12 @@
+{
+    "editor.autoClosingBrackets": "never",
+    "editor.autoClosingQuotes": "never",
+    "editor.autoSurround": "never",
+    "html.autoClosingTags": false,
+    "html.format.enable": false,
+    "launch": {
+    
+        "configurations": [],
+        "compounds": []
+    }
+}

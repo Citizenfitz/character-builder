@@ -1,0 +1,154 @@
+// ********************* PATHS *********************
+$path-font: 'assets/fonts/';
+$path-img: 'assets/images/';
+
+/***************************** FONT IMPORTS ************************************* */
+@font-face {
+    font-family: 'cabin-regular';
+    src: url($path-font + 'Cabin/Cabin-Regular.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'cabin-medium';
+    font-weight: normal;
+    src: url($path-font + 'Cabin/Cabin-Medium.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'cabin-semibold';
+    font-weight: normal;
+    src: url($path-font + 'Cabin/Cabin-SemiBold.ttf') format('truetype');
+  }
+  @font-face {
+    font-family: 'cabin-bold';
+    src: url($path-font + 'Cabin/Cabin-Bold.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'eagle-lake';
+    src: url($path-font + 'Eagle_Lake/EagleLake-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'FontAwesome';
+    src: url($path-font + 'FontAwesome/fontawesome-webfont.ttf')
+      format('truetype');
+  }
+
+// ********************* FONTS *********************
+$text-regular: 'Cabin Regular', Cabin, sans-serif;
+$text-medium: 'Cabin Medium', Cabin, sans-serif;
+$text-semi: 'Cabin Medium', Cabin, sans-serif;
+$text-bold: 'Cabin Bold', Cabin, sans-serif;
+
+$text-header: $text-semi;
+
+
+// *********************** VARIABLES ***********************//
+
+$color-white: #fff;
+$color-black: #000;
+
+$color-gray-1: #333333; // Standard text color & color for all disabled text
+$color-gray-2: #767676; // Lightest allowable text; input placeholder text and helper text.
+$color-gray-3: #c4c4c4; // Form borders
+$color-gray-4: #ebebeb; // Disabled elements backgrounds
+$color-gray-5: #f6f7fb; // Page background.
+
+
+// class colors
+$color-common: #d2691e;
+$color-fighter: #00B53C;
+$color-priest: #4A90E2;
+$color-wizard: #FFA101;
+$color-knave: #FD0000;
+$color-royal: #9900FF;
+$color-input-background: #f5f3ed;
+
+$form-element-height: 24px;
+$form-element-border: 1px solid $color-gray-3;
+$border-radius-standard: 3px;
+
+$mq-phone-max : 480px;
+$mq-tablet-max :768px;
+$mq-desktop-max :1024px;
+
+$margins-desktop: 1.5em;
+$margins-tablet: 1em;
+$margins-phone: .5em;
+
+// ******************** MIXINS ***************************//
+@mixin mq-phone {
+    @media (max-width: $mq-phone-max) { @content; }
+}
+@mixin mq-tablet-down {
+    @media (max-width: $mq-tablet-max) { @content; }
+}
+@mixin mq-tablet {
+    @media (min-width: $mq-phone-max + 1) and (max-width: $mq-tablet-max) { @content; }
+}
+@mixin mq-tablet-up {
+    @media (min-width: $mq-tablet-max + 1) { @content; }
+}
+@mixin mq-desktop {
+    @media (min-width: $mq-tablet-max + 1) and (max-width: $mq-desktop-max) { @content; }
+}
+@mixin mq-desktop-large {
+    @media (min-width: $mq-desktop-max + 1) { @content; }
+}
+
+@mixin placeholder {
+    color: $color-gray-3;
+    font-style: italic;
+}
+
+@mixin header1 {
+   //font-family: 'Eagle Lake', cursive;
+   font-family: $text-header;
+    font-size: 1.8em;
+    @include mq-phone {font-size: 1.25em;}
+    }
+@mixin header2 {
+    //font-family: 'Eagle Lake', cursive;
+    font-family: $text-header;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    @include mq-phone {font-size: 1em;}
+    }
+@mixin header3 {
+    font-size: .875em;
+    font-weight: bold;
+}
+@mixin header4 {}
+@mixin header5 {}
+@mixin header6 {}
+
+@mixin input-basics {
+    height: $form-element-height;
+    border-radius: $border-radius-standard;
+    border: $form-element-border;
+    padding: 0 .25em; 
+    background-color: $color-input-background;
+}
+
+@mixin list-columns ($columns : 3, $gap : 3em){
+    list-style: none;
+    padding: 0;
+    -webkit-column-count: $columns;
+    -moz-column-count: $columns;
+    column-count: $columns;
+    -webkit-column-gap: $gap;
+    -moz-column-gap: $gap;
+    column-gap: $gap;
+    //column-rule: medium solid $color-gray-3;
+}
+
+@mixin hide-item {
+	opacity: 0;
+	height: 0;
+	width: 0;
+	position: absolute;
+	overflow: hidden;
+}
+
+@mixin background-color-transition{
+    transition: background-color 0.5s ease;
+}

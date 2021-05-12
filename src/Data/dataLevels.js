@@ -1,0 +1,123 @@
+const levelsData = [
+  {
+    'level': 1,
+    'suffix': 'st',
+    'hitDice': 1,
+    'hitDiceBonus': null,
+    'saveBonus': 0,
+    'xp': 0,
+    'getsTalent': true
+  },
+  {
+    'level': 2,
+    'suffix': 'nd',
+    'hitDice': 2,
+    'hitDiceBonus': null,
+    'saveBonus': 0,
+    'xp': 2000,
+    'getsTalent': false
+  },
+  {
+    'level': 3,
+    'suffix': 'rd',
+    'hitDice': 3,
+    'hitDiceBonus': null,
+    'saveBonus': 1,
+    'xp': 4000,
+    'getsTalent': true
+  },
+  {
+    'level': 4,
+    'suffix': 'th',
+    'hitDice': 4,
+    'hitDiceBonus': null,
+    'saveBonus': 1,
+    'xp': 8000,
+    'getsTalent': false
+  },
+  {
+    'level': 5,
+    'suffix': 'th',
+    'hitDice': 5,
+    'hitDiceBonus': null,
+    'saveBonus': 1,
+    'xp': 16000,
+    'getsTalent': true
+  },
+  {
+    'level': 6,
+    'suffix': 'th',
+    'hitDice': 6,
+    'hitDiceBonus': null,
+    'saveBonus': 2,
+    'xp': 32000,
+    'getsTalent': false
+  },
+  {
+    'level': 7,
+    'suffix': 'th',
+    'hitDice': 7,
+    'hitDiceBonus': null,
+    'saveBonus': 2,
+    'xp': 640000,
+    'getsTalent': true
+  },
+  {
+    'level': 8,
+    'suffix': 'th',
+    'hitDice': 8,
+    'hitDiceBonus': null,
+    'saveBonus': 2,
+    'xp': 120000,
+    'getsTalent': false
+  },
+  {
+    'level': 9,
+    'suffix': 'th',
+    'hitDice': 9,
+    'hitDiceBonus': null,
+    'saveBonus': 3,
+    'xp': 240000,
+    'getsTalent': true
+  },
+  {
+    'level': 10,
+    'suffix': 'th',
+    'hitDice': 9,
+    'hitDiceBonus': 1,
+    'saveBonus': 3,
+    'xp': 360000,
+    'getsTalent': false
+  },
+  {
+    'level': 11,
+    'suffix': 'th',
+    'hitDice': 9,
+    'hitDiceBonus': 2,
+    'saveBonus': 3,
+    'xp': 480000,
+    'getsTalent': false
+  },
+  {
+    'level': 12,
+    'suffix': 'th',
+    'hitDice': 9,
+    'hitDiceBonus': 3,
+    'saveBonus': 4,
+    'xp': 600000,
+    'getsTalent': false
+  },
+  {
+    'level': 13,
+    'suffix': 'th',
+    'hitDice': 9,
+    'hitDiceBonus': 4,
+    'saveBonus': 4,
+    'xp': 720000,
+    'getsTalent': false
+  }
+]
+
+  export {
+    levelsData
+}
