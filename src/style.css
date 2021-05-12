@@ -402,6 +402,9 @@ dd, .dd {
 .talent-class-indicator--wizard {
   background: #FFA101;
 }
+.talent-class-indicator--royal {
+  background: #9900FF;
+}
 
 table {
   margin: 1em 0;
