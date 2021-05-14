@@ -224,23 +224,23 @@ dl, .dl {
 dt, .dt
 {
 	font-weight: bold;
-
 }
 
 dd, .dd
 {
 	margin-left: 0;
 	margin-bottom: .5em;
-
 }
 
 
-/*******************  Talanet class indicators next to selects  ****************************/
+/*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator{
 	display: inline-block;
 	height: 12px;
 	width: 12px;
 	margin: 0 4px 0 0;
+	display: none;
+	background: $color-gray-3;
 	&--fighter{ background: $color-fighter;}
 	&--knave{ background: $color-knave;}
 	&--priest{ background: $color-priest;}

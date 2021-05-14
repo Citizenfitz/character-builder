@@ -65,7 +65,7 @@ const LevelsTable = (props) => {
         {/*  --------------- 1st Level - Assigned based on class (aspect) -------------- */}
         <tr>
             <td>
-                <div className="talent-class-indicator talent-class-indicator--fighter"></div>
+                <div className="talent-class-indicator"></div>
                 {props.character.talentAssigned2}
             </td>
             <td><b>Full level</b> (core/common)</td>
@@ -136,7 +136,14 @@ const LevelsTable = (props) => {
                     {i.saveBonus > 0 && ( <span>+</span> ) }{i.saveBonus}
                 </td>	
                 <td>
-                    {i.getsTalent ?  <TalentSelector  talentDisabled={props.talentDisabled} handleSetCharTalents={props.handleSetCharTalents} type="all" id={`talentLevel${i.level}` } /> : <span>&nbsp;</span>}
+                    {i.getsTalent ?  
+                    <TalentSelector 
+                        type="all" 
+                        id={`talentLevel${i.level}` } 
+                        talentDisabled={props.talentDisabled} 
+                        handleSetCharTalents={props.handleSetCharTalents} 
+                        character={props.character}
+                    /> : <span>&nbsp;</span>}
                 </td>	
                 <td>
                     {i.getsTalent ?  'details' : <span>&nbsp;</span>}

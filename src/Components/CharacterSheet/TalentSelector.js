@@ -9,28 +9,39 @@ const TalentSelector = (props) => {
             return (
                 <div>
                     <div className="talent-class-indicator talent-class-indicator--knave"></div>
-                    <select onChange={props.handleSetCharTalents} id={props.id} defaultValue={props.character.talentKnave1}>
-                    <option defaultValue="choose" disabled selected >Choose Any Knave Talent</option>
-                    {talentData.filter(talent => (talent.aspect ==='knave')).map((option) => (
-                        <option 
-                            key={option.id} 
-                            value={option.name}
-                            disabled={props.talentDisabled[option.name]} 
-                        >
-                            {option.name}
-                        </option>
-                    ))}
+                    <select 
+                        onChange={props.handleSetCharTalents} 
+                        id={props.id} 
+                        value={props.character.talentKnave1}
+                    >
+                        <option defaultValue="choose" disabled selected >Choose Any Knave Talent</option>
+                        {talentData.filter(talent => (talent.aspect ==='knave')).map((option) => (
+                            <option 
+                                key={option.id} 
+                                value={option.name}
+                                disabled={props.talentDisabled[option.name]} 
+                            >
+                                {option.name}
+                            </option>
+                        ))}
                     </select>
                 </div>
             )
         break;
+       
+       
+        {/*  --------------- All talents excpet Races -------------- */}
         case 'all':
             return (
                 <div>
-                    <div className="talent-class-indicator talent-class-indicator--wizard"></div>
-                    <select onChange={props.handleSetCharTalents}  id={props.id}>
-                        <option defaultValue="choose" disabled selected >Choose Any Talent</option>
-                        <option defaultValue="" disabled>---- Common Talents ----</option>
+                    <div className="talent-class-indicator"></div>
+                    <select 
+                        onChange={props.handleSetCharTalents}  
+                        id={props.id}
+                        value={props.character[props.id]}
+                    >
+                        <option value="choose" disabled selected >Choose Any Talent</option>
+                        <option disabled>---- Common Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='common')).map((option) => (
                             <option 
                                 key={option.id} 
@@ -40,7 +51,7 @@ const TalentSelector = (props) => {
                                 {option.name}
                             </option>
                         ))}
-                        <option defaultValue="" disabled>---- Fighter Talents ----</option>
+                        <option disabled>---- Fighter Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='fighter')).map((option) => (
                             <option 
                                 key={option.id} 
@@ -50,7 +61,7 @@ const TalentSelector = (props) => {
                                 {option.name}
                             </option>
                         ))}
-                        <option defaultValue="" disabled>---- Priest Talents ----</option>
+                        <option disabled>---- Priest Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='priest')).map((option) => (
                             <option 
                                 key={option.id} 
@@ -60,7 +71,7 @@ const TalentSelector = (props) => {
                                 {option.name}
                             </option>
                         ))}
-                        <option defaultValue="" disabled>---- Magic User Talents ----</option>
+                        <option disabled>---- Magic User Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='wizard')).map((option) => (
                             <option 
                                 key={option.id} 
@@ -70,7 +81,7 @@ const TalentSelector = (props) => {
                                 {option.name}
                             </option>
                         ))}
-                        <option defaultValue="" disabled>---- Knave Talents ----</option>
+                        <option disabled>---- Knave Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='knave')).map((option) => (
                             <option 
                                 key={option.id} 
@@ -84,13 +95,20 @@ const TalentSelector = (props) => {
                 </div>
             )
         break;
+
+        {/*  --------------- All talents INCLUDING races -------------- */}
         default:
             return (
                 <span>
                 <label htmlFor={props.id}>-- Choose a Race or a Talent --<br /></label>
-                <select onChange={props.handleSetCharTalents}  id={props.id}>
-                    <option defaultValue="choose" disabled selected hidden>Choose</option>
-                    <option defaultValue="" disabled>---- Races ----</option>
+                <div className="talent-class-indicator"></div>
+                <select 
+                    onChange={props.handleSetCharTalents}  
+                    id={props.id}
+                    value={props.character[props.id]}
+                >
+                    <option value="choose" disabled>Choose</option>
+                    <option disabled>---- Races ----</option>
                     {raceData.map((option) => (
                         <option 
                             key={option.id} 
@@ -99,7 +117,7 @@ const TalentSelector = (props) => {
                             Race: {option.name}
                         </option>
                     ))}
-                    <option defaultValue="" disabled>---- Common Talents ----</option>
+                    <option disabled>---- Common Talents ----</option>
                     {talentData.filter(talent => (talent.aspect ==='common')).map((option) => (
                         <option 
                             key={option.id} 
@@ -109,7 +127,7 @@ const TalentSelector = (props) => {
                             {option.name}
                         </option>
                     ))}
-                    <option defaultValue="" disabled>---- Fighter Talents ----</option>
+                    <option disabled>---- Fighter Talents ----</option>
                     {talentData.filter(talent => (talent.aspect ==='fighter')).map((option) => (
                         <option 
                             key={option.id} 
@@ -119,7 +137,7 @@ const TalentSelector = (props) => {
                             {option.name}
                         </option>
                     ))}
-                    <option defaultValue="" disabled>---- Priest Talents ----</option>
+                    <option disabled>---- Priest Talents ----</option>
                     {talentData.filter(talent => (talent.aspect ==='priest')).map((option) => (
                         <option 
                             key={option.id} 
@@ -129,7 +147,7 @@ const TalentSelector = (props) => {
                             {option.name}
                         </option>
                     ))}
-                    <option defaultValue="" disabled>---- Magic User Talents ----</option>
+                    <option disabled>---- Magic User Talents ----</option>
                     {talentData.filter(talent => (talent.aspect ==='wizard')).map((option) => (
                         <option 
                             key={option.id} 
@@ -139,7 +157,7 @@ const TalentSelector = (props) => {
                             {option.name}
                         </option>
                     ))}
-                    <option defaultValue="" disabled>---- Knave Talents ----</option>
+                    <option disabled>---- Knave Talents ----</option>
                     {talentData.filter(talent => (talent.aspect ==='knave')).map((option) => (
                         <option 
                             key={option.id} 
