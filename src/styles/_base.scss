@@ -20,14 +20,25 @@ body
 	height: 100%;
 }
 
+
+
 header
 {
-	background: darken($color-royal, 10%);
-	color: $color-white;
-	padding: .25em $margins-desktop;
+	background: lighten($color-royal,40%);
+	//@at-root: $color-white;
+	color:darken($color-royal, 10%);
+	padding: 1em $margins-desktop;
 	margin: 0;
+	text-align: center;
+	h1 {font-size: 3rem; margin-top: 0; margin-bottom:0px;}
+	.subheader{
+		display: block;
+		font-size: 1.75rem;
+		margin-bottom:0px;
+	}
 	@include mq-tablet { padding: $margins-tablet;}
 	@include mq-phone { padding: $margins-phone;}
+	
 }
 
 main { 
@@ -51,7 +62,7 @@ footer
 	@include mq-phone { padding: $margins-phone;}
 }
 
-/***** HEADER *****/
+/***** HEADERS *****/
 h1, .h1 {@include header1;}
 h2, .h2 {@include header2;}
 h3, .h3 {@include header3;}
@@ -236,10 +247,13 @@ dd, .dd
 /*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator{
 	display: inline-block;
-	height: 12px;
-	width: 12px;
+	color: white;
+	height: 16px;
+	width: 16px;
+	font-size: .75rem;
 	margin: 0 4px 0 0;
-	display: none;
+	text-align: center;
+	border-radius: 2px;
 	background: $color-gray-3;
 	&--fighter{ background: $color-fighter;}
 	&--knave{ background: $color-knave;}
@@ -247,3 +261,38 @@ dd, .dd
 	&--wizard{ background: $color-wizard;}
 	&--royal{ background: $color-royal;}
 }
+
+
+/*******************  Flexgrid  ****************************/
+
+.flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	&--vert-center {
+	  align-items: center;
+	}
+	&--column {
+	  flex-direction: column;
+	}
+	&--space-around {
+	  justify-content: space-around;
+	}
+	&--flex-end {
+	  justify-content: flex-end;
+	}
+	&--flex-start {
+	  justify-content: flex-start;
+	}
+  
+	&__flex-child {
+	  &--flex-end {
+		justify-content: flex-end;
+	  }
+	  &--fg-1 {
+		flex-grow: 1;
+	  }
+	}
+  
+  }
+  

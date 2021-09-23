@@ -8,13 +8,12 @@ const TalentSelector = (props) => {
         case 'knaveSecond':
             return (
                 <div>
-                    <div className="talent-class-indicator talent-class-indicator--knave"></div>
                     <select 
                         onChange={props.handleSetCharTalents} 
                         id={props.id} 
                         value={props.character.talentKnave1}
                     >
-                        <option defaultValue="choose" disabled selected >Choose Any Knave Talent</option>
+                        <option value="choose" disabled >Choose Any Knave Talent</option>
                         {talentData.filter(talent => (talent.aspect ==='knave')).map((option) => (
                             <option 
                                 key={option.id} 
@@ -34,13 +33,12 @@ const TalentSelector = (props) => {
         case 'all':
             return (
                 <div>
-                    <div className="talent-class-indicator"></div>
                     <select 
                         onChange={props.handleSetCharTalents}  
                         id={props.id}
                         value={props.character[props.id]}
                     >
-                        <option value="choose" disabled selected >Choose Any Talent</option>
+                        <option value="choose" disabled selected >Choose Any Non-Race Talent</option>
                         <option disabled>---- Common Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='common')).map((option) => (
                             <option 
@@ -100,19 +98,18 @@ const TalentSelector = (props) => {
         default:
             return (
                 <span>
-                <label htmlFor={props.id}>-- Choose a Race or a Talent --<br /></label>
-                <div className="talent-class-indicator"></div>
+                <label htmlFor={props.id}>Choose a Race or a Talent<br /></label>
                 <select 
                     onChange={props.handleSetCharTalents}  
                     id={props.id}
-                    value={props.character[props.id]}
+                    value={props.character.talentLevel1}
                 >
-                    <option value="choose" disabled>Choose</option>
+                    <option value="choose" disabled>Choose Race or Talent</option>
                     <option disabled>---- Races ----</option>
                     {raceData.map((option) => (
                         <option 
                             key={option.id} 
-                            value={`r-${option.name}`}
+                            value={option.name}
                         >
                             Race: {option.name}
                         </option>

@@ -23,8 +23,8 @@ $path-img: 'assets/images/';
   }
 
   @font-face {
-    font-family: 'eagle-lake';
-    src: url($path-font + 'Eagle_Lake/EagleLake-Regular.ttf') format('truetype');
+    font-family: 'GreyhawkGothic';
+    src: url($path-font + 'GreyhawkGothic/GreyhawkGothic.ttf') format('truetype');
   }
   
   @font-face {
@@ -39,7 +39,7 @@ $text-medium: 'Cabin Medium', Cabin, sans-serif;
 $text-semi: 'Cabin Medium', Cabin, sans-serif;
 $text-bold: 'Cabin Bold', Cabin, sans-serif;
 
-$text-header: $text-semi;
+$text-header: 'GreyhawkGothic', GreyhawkGothic, sans-serif;
 
 
 // *********************** VARIABLES ***********************//
@@ -99,18 +99,20 @@ $margins-phone: .5em;
     color: $color-gray-3;
     font-style: italic;
 }
-
+@mixin greyhawkfont {
+    font-family: $text-header;
+    font-weight: normal;
+}
 @mixin header1 {
-   //font-family: 'Eagle Lake', cursive;
-   font-family: $text-header;
-    font-size: 1.8em;
+   @include greyhawkfont;
+    font-size: 2.5em;
     @include mq-phone {font-size: 1.25em;}
     }
 @mixin header2 {
-    //font-family: 'Eagle Lake', cursive;
-    font-family: $text-header;
+    @include greyhawkfont;
     font-size: 1.2em;
-    text-transform: uppercase;
+    color:darken($color-royal, 10%);
+    margin-bottom: 0;
     @include mq-phone {font-size: 1em;}
     }
 @mixin header3 {

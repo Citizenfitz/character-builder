@@ -1,9 +1,9 @@
 import React from 'react';
-import {levelsData } from '../../Data';
+import {levelsData, talentData } from '../../Data';
 import TalentSelector from './TalentSelector';
 
 
-{/*  --------------- UTILITIES -------------- */}
+//  --------------- UTILITIES -------------- 
 
 const formatNumberSuffix = (number) => {
     switch(number) {
@@ -22,7 +22,7 @@ const formatNumberSuffix = (number) => {
 }
 
 const formatNumberModifier = (number) =>{
-    const bonusValue = number || 0;
+    let bonusValue = number || 0;
     if (bonusValue > 0) {
         bonusValue = '+'+bonusValue;
     }
@@ -37,11 +37,11 @@ const LevelsTable = (props) => {
     <table className="table table-levels">
         <thead>
             <tr> 
-                <th>Level</th>	
+                <th style={{minWidth: "58px"}}>Level</th>	
                 <th>HD</th>	
                 <th>Save Bonus</th>	
                 <th>Talents</th>	
-                <th>Talent Level</th> 
+                <th>Talent Details</th> 
             </tr>
         </thead>
         <tbody>
@@ -57,18 +57,25 @@ const LevelsTable = (props) => {
                 +0
             </td>
             <td>
-                <div className="talent-class-indicator talent-class-indicator--fighter"></div>
                 {props.character.talentAssigned1}
             </td>
-            <td><b>1/2 level</b> adjacent </td>
+            <td>
+                {talentData.filter(talent => (talent.name === props.character.talentAssigned1)).map((option) => (
+                    <span key={option.aspect}>
+                        {option.aspect}
+                    </span>
+                ))}
+                 - {props.character.talentAssigned1Type}
+            </td>
         </tr>
         {/*  --------------- 1st Level - Assigned based on class (aspect) -------------- */}
         <tr>
             <td>
-                <div className="talent-class-indicator"></div>
                 {props.character.talentAssigned2}
             </td>
-            <td><b>Full level</b> (core/common)</td>
+            <td>
+                <b className="talent-class-indicator talent-class-indicator--knave">K</b>  <i>Adjacent</i>
+            </td>
         </tr>
         {/*  --------------- 1st Level - Choose a race or any talent -------------- */}
         <tr>
@@ -80,7 +87,15 @@ const LevelsTable = (props) => {
                     talentDisabled={props.talentDisabled}
                     character={props.character}
                 /></td>
-            <td>details</td>
+            <td>
+                {talentData.filter(talent => (talent.name === props.character.talentLevel1Type)).map((option) => (
+                    <span key={option.aspect}>
+                        {option.aspect}
+                    </span>
+                ))}
+                 - {props.character.talentLevel1Type}
+            </td>
+
         </tr>
         {/*  --------------- 1st Level - If they're a Knave they get an extra talent -------------- */}
         {props.character.aspect ==='knave' && ( <tr>
@@ -95,32 +110,35 @@ const LevelsTable = (props) => {
             <td>details</td>
         </tr>  )}  
         {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
-        {props.character.disad1 && (<tr>
+        {(props.character.disad1 != 'none') && (<tr>
             <td>Disad 1</td>
             <td></td>
             <td></td>
             <td>
                 <TalentSelector 
                     type="all"  
-                    id="talentDisad2"
-                    handleSetCharTalents={props.handleSetCharTalents}
+                    id="talentDisad1"
+                    talentDisabled={props.talentDisabled} 
+                    handleSetCharTalents={props.handleSetCharTalents} 
                     character={props.character}
-                /></td>
+                />
+            </td>
             <td>details</td>
         </tr> )}
         {/*  --------------- 1st Level - If they have a second disad they get a seconmd extra talent  -------------- */}
-        {props.character.disad2 && ( <tr>
+        {(props.character.disad2 != 'none') && ( <tr>
             <td>Disad 2</td>
             <td></td>
             <td></td>
             <td>
                 <TalentSelector 
-                    type="all" 
+                    type="all"  
                     id="talentDisad2"
-                    handleSetCharTalents={props.handleSetCharTalents}
-                    talentDisabled={props.talentDisabled}
+                    talentDisabled={props.talentDisabled} 
+                    handleSetCharTalents={props.handleSetCharTalents} 
                     character={props.character}
-                /></td>
+                />
+            </td>
             <td>details</td>
         </tr>  )}
         

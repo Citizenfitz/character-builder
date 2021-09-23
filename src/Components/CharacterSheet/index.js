@@ -2,34 +2,13 @@ import React, {useState} from 'react';
 import TalentList from '../TalentList';
 import LevelsTable from './LevelsTable';
 import PresetsSelector from './PresetsSelector';
-import {aspectData, levelsData, presetData, talentData, raceData} from '../../Data';
-import OptionModal from '../OptionModal';
+import DisadSelector from './DisadSelector';
+import {aspectData, dataDisads, levelsData, presetData, talentData, raceData} from '../../Data';
+import {calculateBonus, formatNumberModifier, formatNumberSuffix} from '../Utilities';
 
-{/*  --------------- UTILITIES -------------- */}
+// --------------- UTILITIES -------------- 
 
-const formatNumberSuffix = (number) => {
-    switch(number) {
-        case 1:
-            return number+'st';
-        break;
-        case 2:
-            return number+'nd';
-        break;
-        case 3:
-            return number+'rd';
-        break;
-        default:
-            return number+'th';
-    }
-}
 
-const formatNumberModifier = (number) =>{
-    const bonusValue = number || 0;
-    if (bonusValue > 0) {
-        bonusValue = '+'+bonusValue;
-    }
-    return bonusValue;
-}
 
 const CharacterSheet = () => {
     const [character, setCharacter] = useState({
@@ -45,8 +24,8 @@ const CharacterSheet = () => {
         attribWis : 10,
         attribCon: 10,
         attribCha: 10,
-        disad1 : '',
-        disad2 : '',
+        disad1 : 'none',
+        disad2 : 'none',
         talentAssigned1 : 'Combat',
         talentAssigned2 : 'Multi-attack',
         talentLevel1 : 'choose',
@@ -56,7 +35,17 @@ const CharacterSheet = () => {
         talentLevel3 : 'choose',
         talentLevel5 : 'choose',
         talentLevel7 : 'choose',
-        talentLevel9 : 'choose'
+        talentLevel9 : 'choose',
+        talentAssigned1Type : 'Core',
+        talentAssigned2Type : 'Core',
+        talentLevel1Type : 'Core',
+        talentKnave1Type : 'Core',
+        talentDisad1Type : 'Core',
+        talentDisad2Type : 'Core',
+        talentLevel3Type : 'Core',
+        talentLevel5Type : 'Core',
+        talentLevel7Type : 'Core',
+        talentLevel9Type : 'Core'
     })
 
     const [talentDisabled, setTalentDisabled] = useState({
@@ -105,6 +94,20 @@ const CharacterSheet = () => {
         'Wizardry 3' : true 
     })
 
+    const [disadDisabled, setDisadDisabled] = useState({
+        'none' : false,
+        'Disfigured' : false,
+        'Uneducated' : false,
+        'Lowered Attribute(s)' : false,
+        'Lame' : false,
+        'Missing an Arm or Hand' : false,
+        'Weak Ears' : false,
+        'Weak Eyes' : false,
+        'Vow of Chivalry' : false,
+        'Vow of Modesty' : false,
+        'Vow of Nature' : false
+        
+    })
     const handleCharLevel = e => {
         const {value}  = e.target;
         setCharacter((PrevState) => ({ ...PrevState, level : value }));
@@ -133,7 +136,9 @@ const CharacterSheet = () => {
             talentLevel3 : presetData[value].talentLevel3, 
             talentLevel5 : presetData[value].talentLevel5, 
             talentLevel7 : presetData[value].talentLevel7, 
-            talentLevel9 : presetData[value].talentLevel9, 
+            talentLevel9 : presetData[value].talentLevel9,
+            disad1 : presetData[value].disad1, 
+            disad2 : presetData[value].disad2, 
         }));
 
 
@@ -141,7 +146,7 @@ const CharacterSheet = () => {
 
     const handleSetCharTalents = e => {
         let value = e.target.value;
-        {/*  see if it's seetting a race, reversing race to human, or neither */}
+        //  see if it's seetting a race, reversing race to human, or neither 
         const talentType = value.substring(0,2);
         const talentNoPrefix = value.substring(2);
         const talentBeingReplaced = character[e.target.id];
@@ -229,11 +234,24 @@ const CharacterSheet = () => {
         }
     }
 
+    const handleSetDisad = e => {
+        const oldDisad = character[e.target.id];
+        const newDisad = e.target.value;
+
+        setCharacter((PrevState) => ({ ...PrevState, [e.target.id] : newDisad }))
+
+        // enable old talent that was deleted
+        setDisadDisabled((PrevState) => ({ ...PrevState,  [oldDisad] : false }))
+        // disable new talent that was chosen unless it is "None"
+        if (newDisad !== 'none') {
+            setDisadDisabled((PrevState) => ({ ...PrevState,  [newDisad] : true }))
+        }
+    }
 
     return (
         <div>
     
-            {/*  --------------- OPTIONAL PRESETS - Not working yet -------------- */}
+            {/*  --------------- OPTIONAL PRESETS -------------- */}
             <section>
                 <PresetsSelector
                     presetData={presetData}
@@ -249,65 +267,81 @@ const CharacterSheet = () => {
                         key={i.level} 
                         value={i.level} 
                     >
-                    {formatNumberSuffix(i.level)}
+                    {formatNumberSuffix(i.level)} Level 
                     </option>
                 ))}
-            </select>&nbsp;
-
-            level <span className="ut-captialize">{character.race}</span>
+                </select>&nbsp;
             
-            {aspectData.map((i) => (
-                <span key={i.name} className="checkbox-wrapper">
-                    <input 
-                        type="radio" 
-                        name="class" 
-                        value={i.id} 
-                        id={i.name} 
-                        checked={character.aspect === i.name}
-                        onClick={handleCharAspect}
-                    ></input>
-                    <label htmlFor={i.name} className={i.name}>{i.name}</label>
-                </span>
-                ))}
-                </section>
+                {aspectData.map((i) => (
+                    <span key={i.name} className="checkbox-wrapper">
+                        <input 
+                            type="radio" 
+                            name="class" 
+                            value={i.id} 
+                            id={i.name} 
+                            checked={character.aspect === i.name}
+                            onClick={handleCharAspect}
+                        ></input>
+                        <label htmlFor={i.name} className={i.name}>{i.name}</label>
+                    </span>
+                    ))}        
+            </section>
 
-            {/*  --------------- Disads -------------- */} 
-           <h3>Disadvantages</h3>
-           <p><b>Optionally</b> Select up to two disadvantages at 1st level. Each grants an additional starting talent.</p>
-            <label>Optional Disadvantage 1: </label><br />
-            <label>Optional Disadvantage 2: </label>
-
-            {/*  --------------- Big table with levels stuff -------------- */}
+            {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
+            <h2>Level &amp; Talents</h2>
             <LevelsTable 
                 character={character} 
                 talentDisabled={talentDisabled}
                 handleSetCharTalents={handleSetCharTalents}
             />
 
-            {/*  --------------- Current Talents for debugging -------------- 
-            <section> 
-            <h2>Current Talents</h2>
-                <ol>
-                <li>Assigned 1: {character.talentAssigned1}</li>
-                <li>Assigned 2: {character.talentAssigned2}</li>
-                <li>Race or Talent: {character.talentLevel1}</li>
-                <li>Knave-only talent: {character.talentKnave1}</li>
-                <li>Disad 1: {character.talentDisad1}</li>
-                <li>Disad 2: {character.talentDisad2}</li>
-                <li>3rd: {character.talentLevel3}</li>
-                <li>5th: {character.talentLevel5}</li>
-                <li>7th: {character.talentLevel7}</li>
-                <li>9th: {character.talentLevel9}</li>
-                </ol>
-            </section>  
+            {/*  --------------- DISADS -------------- */} 
+            <section className="card">
+            <h2>Disadvantages</h2>
+                Choose up to 2 optional disadvantages to gain extra talents at 1st level.<br /><br />
+                <div className="flex flex--flex-start">
+                    <div className="flex_child ut-margin-right-2em">
+                        <label>Optional Disadvantage 1: </label>
+                        <DisadSelector  
+                            id='disad1'
+                            dataDisads={dataDisads} 
+                            character={character}
+                            disadDisabled={disadDisabled}
+                            handleSetDisad={handleSetDisad}
+                        />
+                    </div>
+                    <div className="flex_child">
+                        <label>Optional Disadvantage 2: </label>
+                        <DisadSelector  
+                            id='disad2'
+                            dataDisads={dataDisads} 
+                            character={character}
+                            disadDisabled={disadDisabled}
+                            handleSetDisad={handleSetDisad}
+                        />    
+                    </div>
+                </div>
+            </section>
 
-            */}
+             {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */} 
+
+            <section>
+            <h2>Special Abilites &amp; Notes</h2>
+            <ul>
+                <li>Item</li>
+                <li>Item</li>
+                <li>Item</li>
+                <li>Item</li>
+            </ul>
+            
+            </section>
 
 
-            {/*  --------------- Talent definitions - will probably be in a tray or something. -------------- */}
+             {/*  --------------- Talent definitions - will probably be in a tray or something. -------------- 
             <section> 
                 <TalentList />
             </section>      
+            */}
 
         </div>
     )

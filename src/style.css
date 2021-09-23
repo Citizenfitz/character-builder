@@ -18,8 +18,8 @@
   src: url("assets/fonts/Cabin/Cabin-Bold.ttf") format("truetype");
 }
 @font-face {
-  font-family: "eagle-lake";
-  src: url("assets/fonts/Eagle_Lake/EagleLake-Regular.ttf") format("truetype");
+  font-family: "GreyhawkGothic";
+  src: url("assets/fonts/GreyhawkGothic/GreyhawkGothic.ttf") format("truetype");
 }
 @font-face {
   font-family: "FontAwesome";
@@ -49,10 +49,21 @@ body {
 }
 
 header {
-  background: #7a00cc;
-  color: #fff;
-  padding: 0.25em 1.5em;
+  background: #ebccff;
+  color: #7a00cc;
+  padding: 1em 1.5em;
   margin: 0;
+  text-align: center;
+}
+header h1 {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0px;
+}
+header .subheader {
+  display: block;
+  font-size: 1.75rem;
+  margin-bottom: 0px;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   header {
@@ -100,10 +111,11 @@ footer {
   }
 }
 
-/***** HEADER *****/
+/***** HEADERS *****/
 h1, .h1 {
-  font-family: "Cabin Medium", Cabin, sans-serif;
-  font-size: 1.8em;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+  font-size: 2.5em;
 }
 @media (max-width: 480px) {
   h1, .h1 {
@@ -112,9 +124,11 @@ h1, .h1 {
 }
 
 h2, .h2 {
-  font-family: "Cabin Medium", Cabin, sans-serif;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
   font-size: 1.2em;
-  text-transform: uppercase;
+  color: #7a00cc;
+  margin-bottom: 0;
 }
 @media (max-width: 480px) {
   h2, .h2 {
@@ -212,9 +226,11 @@ input:-moz-placeholder {
 }
 
 legend {
-  font-family: "Cabin Medium", Cabin, sans-serif;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
   font-size: 1.2em;
-  text-transform: uppercase;
+  color: #7a00cc;
+  margin-bottom: 0;
 }
 @media (max-width: 480px) {
   legend {
@@ -386,10 +402,13 @@ dd, .dd {
 /*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator {
   display: inline-block;
-  height: 12px;
-  width: 12px;
+  color: white;
+  height: 16px;
+  width: 16px;
+  font-size: 0.75rem;
   margin: 0 4px 0 0;
-  display: none;
+  text-align: center;
+  border-radius: 2px;
   background: #c4c4c4;
 }
 .talent-class-indicator--fighter {
@@ -406,6 +425,34 @@ dd, .dd {
 }
 .talent-class-indicator--royal {
   background: #9900FF;
+}
+
+/*******************  Flexgrid  ****************************/
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.flex--vert-center {
+  align-items: center;
+}
+.flex--column {
+  flex-direction: column;
+}
+.flex--space-around {
+  justify-content: space-around;
+}
+.flex--flex-end {
+  justify-content: flex-end;
+}
+.flex--flex-start {
+  justify-content: flex-start;
+}
+.flex__flex-child--flex-end {
+  justify-content: flex-end;
+}
+.flex__flex-child--fg-1 {
+  flex-grow: 1;
 }
 
 table {
@@ -426,6 +473,9 @@ td, th {
 th {
   text-align: center;
   background: #ebccff;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+  font-size: 0.75rem;
 }
 
 .table-row--highlight > td:first-child {
@@ -642,6 +692,10 @@ th {
 
 .ut-captialize {
   text-transform: capitalize;
+}
+
+.ut-margin-right-2em {
+  margin-right: 2em;
 }
 
 /*# sourceMappingURL=style.css.map */

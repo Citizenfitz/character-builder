@@ -3,7 +3,7 @@ import React from 'react';
 const Header = () => (
   <header role="banner" className="header" id="header">
 
-    <h1>Bottled Lighting RPG Character Generator</h1>
+    <h1>Bottled Lighting <span class="subheader">Character Generator</span></h1>
 
   </header>
 );

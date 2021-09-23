@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {dataAttributes} from '../../Data/';
+import {dataAttributes} from '../../Data';
 
 const Attributes = () => {
     const [talent, setTalent] = useState(1);

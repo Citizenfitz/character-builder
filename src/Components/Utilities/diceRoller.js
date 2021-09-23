@@ -1,4 +1,4 @@
-function diceRoller(diceNumber, diceSides, diceBonus, diceDropLowest, special)
+const  diceRoller = (diceNumber, diceSides, diceBonus, diceDropLowest, special) =>
 		//need to pass it number, number, number, and boolean
 		{
 		var i = 0;
