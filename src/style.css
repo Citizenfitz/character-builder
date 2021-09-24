@@ -25,7 +25,9 @@
   font-family: "FontAwesome";
   src: url("assets/fonts/FontAwesome/fontawesome-webfont.ttf") format("truetype");
 }
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -42,17 +44,13 @@ body {
   color: #000;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
 header {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1em 1.5em;
   background: #ebccff;
   color: #7a00cc;
-  padding: 1em 1.5em;
-  margin: 0;
   text-align: center;
 }
 header h1 {
@@ -77,11 +75,12 @@ header .subheader {
 }
 
 main {
-  padding: 1.5em;
-  display: flex;
-  flex-wrap: wrap;
   width: 100%;
-  justify-content: space-between;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1.5em;
+  border-left: 1px solid #9900ff;
+  border-right: 1px solid #9900ff;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   main {
@@ -95,10 +94,12 @@ main {
 }
 
 footer {
-  padding: 0.25em 1.5em;
-  margin: auto 0 0 0;
-  background: #7a00cc;
-  color: #fff;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 1.5em;
+  background: #ebccff;
+  color: #7a00cc;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   footer {
@@ -112,18 +113,22 @@ footer {
 }
 
 /***** HEADERS *****/
-h1, .h1 {
+h1,
+.h1 {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 2.5em;
+  margin-bottom: 0;
 }
 @media (max-width: 480px) {
-  h1, .h1 {
+  h1,
+.h1 {
     font-size: 1.25em;
   }
 }
 
-h2, .h2 {
+h2,
+.h2 {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 1.2em;
@@ -131,72 +136,68 @@ h2, .h2 {
   margin-bottom: 0;
 }
 @media (max-width: 480px) {
-  h2, .h2 {
+  h2,
+.h2 {
     font-size: 1em;
   }
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-size: 0.875em;
+  margin-bottom: 0;
   font-weight: bold;
 }
 
 /***** SECTIONS  *****/
-section {
-  transition: border-color 0.5s ease;
-  margin-bottom: 1em;
-  padding: 0.5em;
-  background: #fff;
-}
-section.l-basics {
-  width: calc(50% - .5em);
-}
-section.l-level {
-  width: calc(50% - .5em);
-}
-section.l-attributes {
-  width: calc(50% - .5em);
-}
-section.l-aspect {
-  width: calc(50% - .5em);
-}
-section.l-talents {
-  width: 100%;
-}
-section.l-alignment {
-  width: 33%;
-}
-section.l-traits {
-  width: 66%;
-}
-@media (max-width: 480px) {
-  section {
-    padding-left: 0;
-    padding-right: 0;
-    border-left: none;
-    border-right: none;
-  }
+/*******************  LISTS  ****************************/
+dl.dl--columns-4,
+.dl.dl--columns-4 {
+  -moz-column-count: 4;
+  -moz-column-gap: 1em;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 1em;
+  column-count: 4;
+  column-gap: 1em;
 }
 
-.fighter section {
-  border-top: 3px solid #00B53C;
+dt,
+.dt {
+  font-weight: bold;
 }
 
-.priest section {
-  border-top: 3px solid #4A90E2;
+dd,
+.dd {
+  margin-left: 0;
+  margin-bottom: 0.5em;
 }
 
-.wizard section {
-  border-top: 3px solid #FFA101;
+/*******************  Talent class indicators next to selects  ****************************/
+.talent-class-indicator {
+  display: inline-block;
+  color: white;
+  height: 16px;
+  width: 16px;
+  font-size: 0.75rem;
+  margin: 0 4px 0 0;
+  text-align: center;
+  border-radius: 2px;
+  background: #c4c4c4;
 }
-
-.knave section {
-  border-top: 3px solid #FD0000;
+.talent-class-indicator--fighter {
+  background: #00b53c;
 }
-
-section > h2 {
-  margin-top: 0;
-  margin-bottom: 1rem;
+.talent-class-indicator--knave {
+  background: #fd0000;
+}
+.talent-class-indicator--priest {
+  background: #4a90e2;
+}
+.talent-class-indicator--wizard {
+  background: #ffa101;
+}
+.talent-class-indicator--royal {
+  background: #9900ff;
 }
 
 /***** FORM ELEMENTS *****/
@@ -225,6 +226,16 @@ input:-moz-placeholder {
   font-style: italic;
 }
 
+form {
+  margin: 0;
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 legend {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
@@ -238,10 +249,15 @@ legend {
   }
 }
 
-label, .label {
+label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.label {
   font-size: 0.875em;
+  margin-bottom: 0;
   font-weight: bold;
-  height: 24px;
 }
 
 input[type=text] {
@@ -269,28 +285,34 @@ select {
   background-color: #f5f3ed;
 }
 
-button, .button {
-  background-color: #9900FF;
+button,
+.button {
+  background-color: #9900ff;
   color: white;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
   vertical-align: bottom;
 }
-button:hover, .button:hover {
+button:hover,
+.button:hover {
   background-color: #7a00cc;
 }
-button:active, .button:active {
+button:active,
+.button:active {
   background-color: #7a00cc;
 }
-button__reverse, .button__reverse {
+button__reverse,
+.button__reverse {
   background-color: transparent;
-  color: #9900FF;
+  color: #9900ff;
 }
-button__reverse:hover, .button__reverse:hover {
+button__reverse:hover,
+.button__reverse:hover {
   background-color: transparent;
   color: #7a00cc;
 }
-button__reverse:active, .button__reverse:active {
+button__reverse:active,
+.button__reverse:active {
   background-color: transparent;
   color: #7a00cc;
 }
@@ -363,7 +385,7 @@ input[type=radio] + label {
 
 input[type=radio]:checked + label {
   display: inline-block;
-  background: #9900FF;
+  background: #9900ff;
   color: white;
   border-color: black;
 }
@@ -374,85 +396,10 @@ input[type=radio]:checked + label.wizard {
   background: #f19800;
 }
 input[type=radio]:checked + label.priest {
-  background: #4A90E2;
+  background: #4a90e2;
 }
 input[type=radio]:checked + label.knave {
-  background: #FD0000;
-}
-
-/*******************  LISTS  ****************************/
-dl.dl--columns-4, .dl.dl--columns-4 {
-  -moz-column-count: 4;
-  -moz-column-gap: 1em;
-  -webkit-column-count: 4;
-  -webkit-column-gap: 1em;
-  column-count: 4;
-  column-gap: 1em;
-}
-
-dt, .dt {
-  font-weight: bold;
-}
-
-dd, .dd {
-  margin-left: 0;
-  margin-bottom: 0.5em;
-}
-
-/*******************  Talent class indicators next to selects  ****************************/
-.talent-class-indicator {
-  display: inline-block;
-  color: white;
-  height: 16px;
-  width: 16px;
-  font-size: 0.75rem;
-  margin: 0 4px 0 0;
-  text-align: center;
-  border-radius: 2px;
-  background: #c4c4c4;
-}
-.talent-class-indicator--fighter {
-  background: #00B53C;
-}
-.talent-class-indicator--knave {
-  background: #FD0000;
-}
-.talent-class-indicator--priest {
-  background: #4A90E2;
-}
-.talent-class-indicator--wizard {
-  background: #FFA101;
-}
-.talent-class-indicator--royal {
-  background: #9900FF;
-}
-
-/*******************  Flexgrid  ****************************/
-.flex {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.flex--vert-center {
-  align-items: center;
-}
-.flex--column {
-  flex-direction: column;
-}
-.flex--space-around {
-  justify-content: space-around;
-}
-.flex--flex-end {
-  justify-content: flex-end;
-}
-.flex--flex-start {
-  justify-content: flex-start;
-}
-.flex__flex-child--flex-end {
-  justify-content: flex-end;
-}
-.flex__flex-child--fg-1 {
-  flex-grow: 1;
+  background: #fd0000;
 }
 
 table {
@@ -494,6 +441,20 @@ th {
   column-gap: 3em;
 }
 
+.flex-grid {
+  display: flex;
+  justify-content: space-around;
+}
+.flex-grid__child {
+  width: calc(33% - 1rem);
+}
+.flex-grid__child--two {
+  width: calc(67% - 1rem);
+}
+.flex-grid__child--three {
+  width: 100%;
+}
+
 .alignment-radio-set {
   list-style: none;
   padding: 0;
@@ -521,7 +482,7 @@ th {
   transition: background-color 0.5s ease;
 }
 .alignment-radio-set__item > input:checked + .alignment-radio-label {
-  background: #9900FF;
+  background: #9900ff;
   color: #fff;
 }
 
@@ -584,28 +545,28 @@ th {
   transition: background-color 0.5s ease;
 }
 .aspect-radio-label--fighter {
-  background-color: #00B53C;
+  background-color: #00b53c;
   border-radius: 0 0 3px 3px;
 }
 .aspect-radio-label--fighter:hover {
   background-color: #00822b;
 }
 .aspect-radio-label--priest {
-  background-color: #4A90E2;
+  background-color: #4a90e2;
   Border-radius: 3px 0 0 3px;
 }
 .aspect-radio-label--priest:hover {
   background-color: #2275d7;
 }
 .aspect-radio-label--wizard {
-  background-color: #FFA101;
+  background-color: #ffa101;
   border-radius: 3px 3px 0 0;
 }
 .aspect-radio-label--wizard:hover {
   background-color: #cd8100;
 }
 .aspect-radio-label--knave {
-  background-color: #FD0000;
+  background-color: #fd0000;
   border-radius: 0 3px 3px 0;
 }
 .aspect-radio-label--knave:hover {
@@ -631,6 +592,20 @@ th {
 
 .trait-list li button {
   margin-left: 0.25rem;
+}
+
+.explainer-box {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.explainer-box__text {
+  border: 1px solid;
+  height: 150px;
+  width: 100%;
+  padding: 0.5rem;
+}
+.explainer-box > h2 {
+  margin-top: 0;
 }
 
 .ut-hidden {
@@ -675,19 +650,19 @@ th {
   color: #d2691e;
 }
 .ut-color-fighter {
-  color: #00B53C;
+  color: #00b53c;
 }
 .ut-color-priest {
-  color: #4A90E2;
+  color: #4a90e2;
 }
 .ut-color-wizard {
-  color: #FFA101;
+  color: #ffa101;
 }
 .ut-color-knave {
-  color: #FD0000;
+  color: #fd0000;
 }
 .ut-color-royal {
-  color: #9900FF;
+  color: #9900ff;
 }
 
 .ut-captialize {

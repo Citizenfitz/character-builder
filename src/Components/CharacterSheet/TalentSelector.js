@@ -38,7 +38,7 @@ const TalentSelector = (props) => {
                         id={props.id}
                         value={props.character[props.id]}
                     >
-                        <option value="choose" disabled selected >Choose Any Non-Race Talent</option>
+                        <option value="choose" disabled selected >Choose Talent</option>
                         <option disabled>---- Common Talents ----</option>
                         {talentData.filter(talent => (talent.aspect ==='common')).map((option) => (
                             <option 
@@ -104,7 +104,7 @@ const TalentSelector = (props) => {
                     id={props.id}
                     value={props.character.talentLevel1}
                 >
-                    <option value="choose" disabled>Choose Race or Talent</option>
+                    <option value="choose" disabled>Choose Any Talent (Including a Race)</option>
                     <option disabled>---- Races ----</option>
                     {raceData.map((option) => (
                         <option 

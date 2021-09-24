@@ -1,0 +1,149 @@
+/***** FORM ELEMENTS *****/
+::-webkit-input-placeholder {
+  @include placeholder;
+}
+::-moz-placeholder {
+  @include placeholder;
+}
+:-ms-input-placeholder {
+  @include placeholder;
+}
+input:-moz-placeholder {
+  @include placeholder;
+}
+::placeholder {
+  @include placeholder;
+}
+
+form {
+  margin: 0;
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+legend {
+  @include header2;
+}
+
+label {
+  display: block;
+  margin-bottom: $margins-form-element-bottom;
+}
+.label {
+  @include header3;
+}
+input[type="text"] {
+  @include input-basics;
+}
+input[type="number"] {
+  @include input-basics;
+  text-align: center;
+}
+select {
+  @include input-basics;
+}
+
+button,
+.button {
+  background-color: $color-royal;
+  color: white;
+  border-radius: $border-radius-standard;
+  border: $form-element-border;
+  vertical-align: bottom;
+  &:hover {
+    background-color: darken($color-royal, 10%);
+  }
+  &:active {
+    background-color: darken($color-royal, 10%);
+  }
+  &__reverse {
+    background-color: transparent;
+    color: $color-royal;
+    &:hover {
+      background-color: transparent;
+      color: darken($color-royal, 10%);
+    }
+    &:active {
+      background-color: transparent;
+      color: darken($color-royal, 10%);
+    }
+  }
+}
+
+input.input--attached-button {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-right: 0;
+  border-right: none;
+}
+.input--attached-button + button {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  margin-left: 0px;
+  height: $form-element-height;
+}
+
+.fieldset {
+  position: relative;
+  border: 1px solid;
+  padding: 1.5em 0.75em 0.75em 0.75em;
+  margin-top: 1em;
+  &--hidden {
+    border: none;
+    padding: 0;
+    margin: 0;
+    position: static;
+  }
+  @include mq-phone {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: none;
+    border-right: none;
+    border-bottom: 0;
+  }
+}
+
+.fieldset__header {
+  position: absolute;
+  top: 0;
+  line-height: 1;
+  margin: -11px 0 0; /* half of font-size */
+  background: #fff;
+  padding: 0 3px;
+}
+
+input[type="radio"] {
+  visibility: hidden;
+  position: absolute;
+}
+input[type="radio"] + label {
+  display: inline-block;
+  @include input-basics;
+  text-transform: capitalize;
+  vertical-align: bottom;
+  line-height: 20px;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  margin-left: 0.5em;
+}
+
+input[type="radio"]:checked + label {
+  display: inline-block;
+  background: $color-royal;
+  color: white;
+  border-color: black;
+  &.fighter {
+    background: darken($color-fighter, 3%);
+  }
+  &.wizard {
+    background: darken($color-wizard, 3%);
+  }
+  &.priest {
+    background: $color-priest;
+  }
+  &.knave {
+    background: $color-knave;
+  }
+}

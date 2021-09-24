@@ -2,14 +2,9 @@ import React, {useState} from 'react';
 import {dataAttributes} from '../../Data';
 
 const Attributes = () => {
-    const [talent, setTalent] = useState(1);
-    const showIt = true;
-
     return (
         <div>
-            <section className="card">
-            <h2>Attributes</h2>
-            <table border="1">
+            <table border="1" className="table table--attributes">
                 <thead>
                     <tr>
                         <th>Attribute</th>
@@ -27,7 +22,6 @@ const Attributes = () => {
                     ))}
                 </tbody>
             </table>
-            </section>
         </div>
     )
 };

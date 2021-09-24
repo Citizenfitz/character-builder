@@ -41,7 +41,8 @@ const LevelsTable = (props) => {
                 <th>HD</th>	
                 <th>Save Bonus</th>	
                 <th>Talents</th>	
-                <th>Talent Details</th> 
+                <th>Talent Modifier</th> 
+                <th>Class/Adj/Opp</th> 
             </tr>
         </thead>
         <tbody>
@@ -67,6 +68,7 @@ const LevelsTable = (props) => {
                 ))}
                  - {props.character.talentAssigned1Type}
             </td>
+            <td>type goes here</td>
         </tr>
         {/*  --------------- 1st Level - Assigned based on class (aspect) -------------- */}
         <tr>
@@ -76,6 +78,7 @@ const LevelsTable = (props) => {
             <td>
                 <b className="talent-class-indicator talent-class-indicator--knave">K</b>  <i>Adjacent</i>
             </td>
+            <td>type goes here</td>
         </tr>
         {/*  --------------- 1st Level - Choose a race or any talent -------------- */}
         <tr>
@@ -95,6 +98,7 @@ const LevelsTable = (props) => {
                 ))}
                  - {props.character.talentLevel1Type}
             </td>
+            <td>type goes here</td>
 
         </tr>
         {/*  --------------- 1st Level - If they're a Knave they get an extra talent -------------- */}
@@ -108,6 +112,7 @@ const LevelsTable = (props) => {
                     character={props.character}
                 /></td>
             <td>details</td>
+            <td>type goes here</td>
         </tr>  )}  
         {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
         {(props.character.disad1 != 'none') && (<tr>
@@ -124,6 +129,7 @@ const LevelsTable = (props) => {
                 />
             </td>
             <td>details</td>
+            <td>type goes here</td>
         </tr> )}
         {/*  --------------- 1st Level - If they have a second disad they get a seconmd extra talent  -------------- */}
         {(props.character.disad2 != 'none') && ( <tr>
@@ -140,6 +146,7 @@ const LevelsTable = (props) => {
                 />
             </td>
             <td>details</td>
+            <td>type goes here</td>
         </tr>  )}
         
         {/*  --------------- All the other levels   -------------- */}
@@ -166,6 +173,7 @@ const LevelsTable = (props) => {
                 <td>
                     {i.getsTalent ?  'details' : <span>&nbsp;</span>}
                 </td>	
+                <td>type goes here</td>
             </tr>
         ))}
         </tbody>

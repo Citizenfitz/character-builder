@@ -1,27 +1,22 @@
-import React from 'react';
+import React from "react";
 
 const PresetsSelector = (props) => {
-    return(
-        <div>
-            <label htmlFor="presetSelector">Optional Preset: </label> 
-            <select 
-                id="presetSelector"
-                onChange={props.handlePreset}
-            >
-                <option defaultValue="" disabled selected >Choose</option>
-                {props.presetData.map((i) => (
-                    <option  
-                        key={i.id} 
-                        value={i.id}  
-                    >
-                        {i.subclass &&  ('---')}{i.name}
-                    </option>
-                ))}
-            </select>
-        </div>
-    )
-}
+  return (
+    <label className="preset-chooser">
+      <span className="label">Optional Preset: </span>
+      <select id="presetSelector" onChange={props.handlePreset}>
+        <option defaultValue="" disabled selected>
+          Choose
+        </option>
+        {props.presetData.map((i) => (
+          <option key={i.id} value={i.id}>
+            {i.subclass && "---"}
+            {i.name}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+};
 
 export default PresetsSelector;
-
-

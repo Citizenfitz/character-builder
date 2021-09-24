@@ -1,5 +1,9 @@
 // *********************** BASE ELEMENTS ***********************//
-*, *:before, *:after { box-sizing: border-box; }
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
 html,
 body {
@@ -7,292 +11,203 @@ body {
   margin: 0;
 }
 
-body
-{
-	padding: 0;
-	margin: 0;
-	font-family: $text-regular;
-	color: $color-black;
+body {
+  padding: 0;
+  margin: 0;
+  font-family: $text-regular;
+  color: $color-black;
 }
-#root {	
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+#root {
 }
 
-
-
-header
-{
-	background: lighten($color-royal,40%);
-	//@at-root: $color-white;
-	color:darken($color-royal, 10%);
-	padding: 1em $margins-desktop;
-	margin: 0;
-	text-align: center;
-	h1 {font-size: 3rem; margin-top: 0; margin-bottom:0px;}
-	.subheader{
-		display: block;
-		font-size: 1.75rem;
-		margin-bottom:0px;
-	}
-	@include mq-tablet { padding: $margins-tablet;}
-	@include mq-phone { padding: $margins-phone;}
-	
+@mixin site-layout {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
-main { 
-    padding: $margins-desktop;
-    display:flex; 
-    flex-wrap: wrap;
-    width: 100%;
-    justify-content: space-between;
-	@include mq-tablet { padding: $margins-tablet;}
-	@include mq-phone { padding: $margins-phone;}
+header {
+  @include site-layout;
+  padding: 1em $margins-desktop;
+  background: lighten($color-royal, 40%);
+  color: darken($color-royal, 10%);
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  .subheader {
+    display: block;
+    font-size: 1.75rem;
+    margin-bottom: 0px;
+  }
+  @include mq-tablet {
+    padding: $margins-tablet;
+  }
+  @include mq-phone {
+    padding: $margins-phone;
+  }
 }
 
+main {
+  @include site-layout;
+  padding: $margins-desktop;
+  border-left: 1px solid $color-royal;
+  border-right: 1px solid $color-royal;
+  @include mq-tablet {
+    padding: $margins-tablet;
+  }
+  @include mq-phone {
+    padding: $margins-phone;
+  }
+}
 
-footer
-{
-	padding: .25em $margins-desktop;
-	margin: auto 0 0 0;
-	background: darken($color-royal, 10%);
-	color: $color-white;
-	@include mq-tablet { padding: $margins-tablet;}
-	@include mq-phone { padding: $margins-phone;}
+footer {
+  @include site-layout;
+
+  padding: $margins-desktop;
+  background: lighten($color-royal, 40%);
+  color: darken($color-royal, 10%);
+  @include mq-tablet {
+    padding: $margins-tablet;
+  }
+  @include mq-phone {
+    padding: $margins-phone;
+  }
 }
 
 /***** HEADERS *****/
-h1, .h1 {@include header1;}
-h2, .h2 {@include header2;}
-h3, .h3 {@include header3;}
-h4, .h4 {@include header4;}
-h5, .h5 {@include header5;}
-h6, .h6 {@include header6;}
+h1,
+.h1 {
+  @include header1;
+}
+h2,
+.h2 {
+  @include header2;
+}
+h3,
+.h3 {
+  @include header3;
+}
+h4,
+.h4 {
+  @include header4;
+}
+h5,
+.h5 {
+  @include header5;
+}
+h6,
+.h6 {
+  @include header6;
+}
 
 /***** SECTIONS  *****/
-section
-{
-	// border: 1px solid;
-	// border-color: #dcdcdc;
-	transition: border-color 0.5s ease;
-	margin-bottom: 1em;
-	padding: .5em;
-	background: $color-white;
-	
-	&.l-basics{ width: calc(50% - .5em); }
-	&.l-level{ width: calc(50% - .5em); }
-	&.l-attributes{ width: calc(50% - .5em); }
-	&.l-aspect{ width: calc(50% - .5em); }
-	&.l-talents{width: 100%;}
-	&.l-alignment{width: 33%;}
-    &.l-traits{width: 66%;}
-    @include mq-phone {
-        padding-left: 0;
-        padding-right: 0;
-        border-left: none;
-        border-right: none;
-    }
-}
+// section {
+//   // border: 1px solid;
+//   // border-color: #dcdcdc;
+//   transition: border-color 0.5s ease;
+//   margin-bottom: 1em;
+//   padding: 0.5em;
+//   background: $color-white;
 
-.fighter section {border-top: 3px solid $color-fighter;}
-.priest section {border-top: 3px solid $color-priest;}
-.wizard section {border-top: 3px solid $color-wizard;}
-.knave section {border-top: 3px solid $color-knave;}
+//   &.l-basics {
+//     width: calc(50% - 0.5em);
+//   }
+//   &.l-level {
+//     width: calc(50% - 0.5em);
+//   }
+//   &.l-attributes {
+//     width: calc(50% - 0.5em);
+//   }
+//   &.l-aspect {
+//     width: calc(50% - 0.5em);
+//   }
+//   &.l-talents {
+//     width: 100%;
+//   }
+//   &.l-alignment {
+//     width: 33%;
+//   }
+//   &.l-traits {
+//     width: 66%;
+//   }
+//   @include mq-phone {
+//     padding-left: 0;
+//     padding-right: 0;
+//     border-left: none;
+//     border-right: none;
+//   }
+// }
 
-section > h2
-{
-	margin-top: 0;
-	margin-bottom: 1rem;
-}
+// .fighter section {
+//   border-top: 3px solid $color-fighter;
+// }
+// .priest section {
+//   border-top: 3px solid $color-priest;
+// }
+// .wizard section {
+//   border-top: 3px solid $color-wizard;
+// }
+// .knave section {
+//   border-top: 3px solid $color-knave;
+// }
 
-
-
-/***** FORM ELEMENTS *****/
-::-webkit-input-placeholder { @include placeholder;}
-::-moz-placeholder  { @include placeholder;}
-:-ms-input-placeholder { @include placeholder;}
-input:-moz-placeholder  { @include placeholder;}
-::placeholder  { @include placeholder;}
-
-form{}
-fieldset{}
-legend{ @include header2; }
-label, .label{ @include header3;height: $form-element-height; }
-input[type="text"]{  @include input-basics; }
-input[type="number"] {  
-    @include input-basics;
-    text-align: center;  
-}
-select {  @include input-basics; }
-
-button, .button {
-	background-color: $color-royal;
-	color: white;
-	border-radius: $border-radius-standard;
-	border: $form-element-border;
-	vertical-align: bottom;
-	&:hover{ background-color: darken($color-royal, 10%);}
-	&:active{ background-color: darken($color-royal, 10%);}
-	&__reverse{
-		background-color: transparent;
-	    color: $color-royal;
-		&:hover{ 
-		    background-color: transparent;
-		    color: darken($color-royal, 10%);
-		}
-	    &:active{ 
-	        background-color: transparent;
-	        color: darken($color-royal, 10%);
-	    }
-	}
-}
-
-input.input--attached-button {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-right: 0;
-    border-right: none;
-}
-.input--attached-button + button {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    margin-left: 0px;
-    height: $form-element-height;
-}
-
-.fieldset {
-  position: relative;
-  border: 1px solid;
-  padding: 1.5em .75em .75em .75em;
-  margin-top: 1em;
-  &--hidden{
-    border: none;
-    padding: 0;
-    margin: 0;
-    position: static;
-  }
-      @include mq-phone {
-        padding-left: 0;
-        padding-right: 0;
-        border-left: none;
-        border-right: none;
-        border-bottom: 0;
-    }
-}
-
-.fieldset__header {
-  position: absolute;
-  top: 0;
-  line-height: 1;
-  margin: -11px 0 0; /* half of font-size */
-  background: #fff;
-  padding: 0 3px;
-}
-
-input[type='radio']{
-		visibility: hidden;
-		position: absolute;
-	}
-input[type='radio'] + label {
-	display: inline-block;
-	@include input-basics; 
-	text-transform: capitalize;
-	vertical-align: bottom;
-	line-height: 20px;
-	padding-left: .75em;
-	padding-right: .75em;
-	margin-left: .5em;
-}
-
-input[type='radio']:checked + label {
-	display: inline-block;
-	background: $color-royal;
-	color: white;
-	border-color: black;
-	&.fighter{background: darken($color-fighter, 3%);}
-	&.wizard{background: darken($color-wizard, 3%);}
-	&.priest{background: $color-priest;}
-	&.knave{background: $color-knave;}
-}
-
-
-
+// section > h2 {
+//   margin-top: 0;
+//   margin-bottom: 1rem;
+// }
 
 /*******************  LISTS  ****************************/
-dl, .dl { 
-    &.dl--columns-4
-    {
-    	-moz-column-count: 4;
-    	-moz-column-gap: 1em;
-    	-webkit-column-count: 4;
-    	-webkit-column-gap: 1em;
-    	column-count: 4;
-    	column-gap: 1em;
-    }
+dl,
+.dl {
+  &.dl--columns-4 {
+    -moz-column-count: 4;
+    -moz-column-gap: 1em;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 1em;
+    column-count: 4;
+    column-gap: 1em;
+  }
 }
 
-dt, .dt
-{
-	font-weight: bold;
+dt,
+.dt {
+  font-weight: bold;
 }
 
-dd, .dd
-{
-	margin-left: 0;
-	margin-bottom: .5em;
+dd,
+.dd {
+  margin-left: 0;
+  margin-bottom: 0.5em;
 }
-
 
 /*******************  Talent class indicators next to selects  ****************************/
-.talent-class-indicator{
-	display: inline-block;
-	color: white;
-	height: 16px;
-	width: 16px;
-	font-size: .75rem;
-	margin: 0 4px 0 0;
-	text-align: center;
-	border-radius: 2px;
-	background: $color-gray-3;
-	&--fighter{ background: $color-fighter;}
-	&--knave{ background: $color-knave;}
-	&--priest{ background: $color-priest;}
-	&--wizard{ background: $color-wizard;}
-	&--royal{ background: $color-royal;}
-}
-
-
-/*******************  Flexgrid  ****************************/
-
-.flex {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	&--vert-center {
-	  align-items: center;
-	}
-	&--column {
-	  flex-direction: column;
-	}
-	&--space-around {
-	  justify-content: space-around;
-	}
-	&--flex-end {
-	  justify-content: flex-end;
-	}
-	&--flex-start {
-	  justify-content: flex-start;
-	}
-  
-	&__flex-child {
-	  &--flex-end {
-		justify-content: flex-end;
-	  }
-	  &--fg-1 {
-		flex-grow: 1;
-	  }
-	}
-  
+.talent-class-indicator {
+  display: inline-block;
+  color: white;
+  height: 16px;
+  width: 16px;
+  font-size: 0.75rem;
+  margin: 0 4px 0 0;
+  text-align: center;
+  border-radius: 2px;
+  background: $color-gray-3;
+  &--fighter {
+    background: $color-fighter;
   }
-  
+  &--knave {
+    background: $color-knave;
+  }
+  &--priest {
+    background: $color-priest;
+  }
+  &--wizard {
+    background: $color-wizard;
+  }
+  &--royal {
+    background: $color-royal;
+  }
+}
