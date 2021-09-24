@@ -1,49 +1,73 @@
-
 //* *************** UTILITES ***************** */
-.ut-hidden
-{
-	height: 0px;
-	width: 0px;
-	overflow: hidden;
-	opacity: 0;
+.ut-hidden {
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+  opacity: 0;
 }
 
-.ut-ellipsis-overflow
-{
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+.ut-ellipsis-overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
-.ut-align-center
-{
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
+.ut-align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.ut-all-caps {text-transform: uppercase;}
+.ut-all-caps {
+  text-transform: uppercase;
+}
 
 .ut-only-sr {
-  position: absolute; 
-  overflow: hidden; 
-  clip: rect(0 0 0 0); 
-  height: 1px; width: 1px; 
-  margin: -1px; padding: 0; border: 0; 
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
-.ut-zebra-gray {background: $color-gray-5;}
-
-.ut-color-{
-	&knave{ color: $color-common;}
-	&fighter{ color: $color-fighter;}
-	&priest{ color: $color-priest;}
-	&wizard{ color: $color-wizard;}
-	&knave{ color: $color-knave;}
-	&royal{ color: $color-royal;}
+.ut-zebra-gray {
+  background: $color-gray-5;
 }
 
+.ut-color- {
+  &knave {
+    color: $color-common;
+  }
+  &fighter {
+    color: $color-fighter;
+  }
+  &priest {
+    color: $color-priest;
+  }
+  &wizard {
+    color: $color-wizard;
+  }
+  &knave {
+    color: $color-knave;
+  }
+  &royal {
+    color: $color-royal;
+  }
+}
 
-.ut-captialize {text-transform: capitalize;}
+.ut-captialize {
+  text-transform: capitalize;
+}
 
-.ut-margin-right-2em {margin-right: 2em;}
+.ut-margin-right-2em {
+  margin-right: 2em;
+}
+
+.ut-text-explain {
+  color: $color-gray-2;
+  font-family: $text-regular;
+  font-style: italic;
+}

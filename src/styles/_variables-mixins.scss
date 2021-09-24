@@ -126,7 +126,7 @@ $margins-form-element-bottom: 1rem;
 }
 @mixin header2 {
   @include greyhawkfont;
-  font-size: 1.2em;
+  font-size: 1rem;
   color: darken($color-royal, 10%);
   margin-bottom: 0;
   @include mq-phone {

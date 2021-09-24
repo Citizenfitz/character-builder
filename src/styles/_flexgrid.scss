@@ -1,9 +1,16 @@
-
 .flex-grid {
-    display: flex;
-    justify-content: space-around;
-    &__child {width: calc(33% - 1rem);  }
-    &__child--two {width: calc(67% - 1rem);}
-    &__child--three {width: 100%;} 
-
+  display: flex;
+  justify-content: space-between;
+  &__child {
+    width: calc(33% - 1rem);
+  }
+  &__child--two {
+    width: calc(67% - 1rem);
+  }
+  &__child--three {
+    width: 100%;
+  }
+  &--wrap {
+    flex-wrap: wrap;
+  }
 }

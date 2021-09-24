@@ -291,14 +291,12 @@ const CharacterSheet = () => {
 
   return (
     <div>
-      {/*  --------------- OPTIONAL PRESETS -------------- */}
-
+      {/*  ------ OPTIONAL PRESETS ---- */}
       <PresetsSelector presetData={presetData} handlePreset={handlePreset} />
 
       <div className="flex-grid">
         <div className="flex-grid__child">
-          {/*  --------------- TOP CHAR STUFF -------------- */}
-
+          {/*  ------- NAMEs ------ */}
           <label>
             <input type="text" />
             <br />
@@ -310,6 +308,7 @@ const CharacterSheet = () => {
             <span className="label">Character Name</span>
           </label>
 
+          {/*  ------- CLASS ------ */}
           {aspectData.map((i) => (
             <span key={i.name} className="checkbox-wrapper">
               <input
@@ -326,6 +325,7 @@ const CharacterSheet = () => {
             </span>
           ))}
 
+          {/*  ------- LEVEL ------ */}
           <label>
             <select onChange={handleCharLevel}>
               {levelsData.map((i) => (
@@ -340,12 +340,39 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <h2>Attributes</h2>
             <Attributes />
           </section>
         </div>
 
         <div className="flex-grid__child">
+          {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
+          <div className="flex-grid flex-grid--wrap">
+            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+              <div className="data-display-box__text"></div>
+              <h2 className="data-display-box__header">AC</h2>
+            </div>
+            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+              <div className="data-display-box__text"></div>
+              <h2 className="data-display-box__header">HP</h2>
+            </div>
+            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+              <div className="data-display-box__text"></div>
+              <h2 className="data-display-box__header">Move</h2>
+            </div>
+            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+              <div className="data-display-box__text"></div>
+              <h2 className="data-display-box__header">Perc.</h2>
+            </div>
+          </div>
+          {/*  ------- SAVING THROW MODS ------ */}
+          <div className="data-display-box data-display-box--save-mods">
+            <div className="data-display-box__text"></div>
+          </div>
+          <span className="label">Saving Throw Mods</span>
+          <br />
+          <br />
+
+          {/*  ------- ARMOR ------ */}
           <label>
             <select>
               <option value="Lawful Good">Options</option>
@@ -354,6 +381,7 @@ const CharacterSheet = () => {
             <span className="label">Armor</span>
           </label>
 
+          {/*  ------- MELEE WEAPON ------ */}
           <label>
             <select>
               <option value="Lawful Good">Options</option>
@@ -362,6 +390,7 @@ const CharacterSheet = () => {
             <span className="label">Melee Weapon</span>
           </label>
 
+          {/*  ------- RANGED WEAPON ------ */}
           <label>
             <select>
               <option value="Lawful Good">Options</option>
@@ -372,13 +401,15 @@ const CharacterSheet = () => {
         </div>
 
         <div className="flex-grid__child">
-          <div className="explainer-box">
-            <div className="explainer-box__text">
+          {/*  ------- EXPLAINER BOX ------ */}
+          <div className="data-display-box  data-display-box--explanations">
+            <div className="data-display-box__text">
               hover-over or other explaination text will go here
             </div>
-            <h2>Explanations</h2>
+            <h2 className="data-display-box__header">Explanations</h2>
           </div>
 
+          {/*  ------- ALIGNMENT ------ */}
           <label>
             <select>
               <option value="Lawful Good">Lawful Good </option>
@@ -397,6 +428,7 @@ const CharacterSheet = () => {
             <span className="label">Alignment</span>
           </label>
 
+          {/*  ------- DISADS ------ */}
           <label>
             <DisadSelector
               id="disad1"
@@ -406,7 +438,7 @@ const CharacterSheet = () => {
               handleSetDisad={handleSetDisad}
             />
             <span className="label">
-              Disad 1 <span className="text-explain">(optional)</span>
+              Disad 1 <span className="ut-text-explain">(optional)</span>
             </span>
           </label>
 
@@ -419,10 +451,11 @@ const CharacterSheet = () => {
               handleSetDisad={handleSetDisad}
             />
             <span className="label">
-              Disad 2 <span className="text-explain">(optional)</span>
+              Disad 2 <span className="ut-text-explain">(optional)</span>
             </span>
           </label>
 
+          {/*  ------- XP ------ */}
           <label>
             <input type="text" disabled />
             <br />
@@ -451,12 +484,6 @@ const CharacterSheet = () => {
           <li>Item</li>
         </ul>
       </section>
-
-      {/*  --------------- Talent definitions - will probably be in a tray or something. -------------- 
-            <section> 
-                <TalentList />
-            </section>      
-            */}
     </div>
   );
 };

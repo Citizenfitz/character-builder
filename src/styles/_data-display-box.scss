@@ -1,0 +1,31 @@
+.data-display-box {
+  position: relative;
+  border: 1px solid black;
+  text-align: center;
+  margin-bottom: $margins-form-element-bottom;
+  &__text {
+    padding: 1rem;
+  }
+  &__header {
+    position: absolute;
+    bottom: 0.25rem;
+    left: 0;
+    width: 100%;
+    text-align: center;
+  }
+  &--save-mods {
+    margin-bottom: 0;
+    height: 66px;
+  }
+  &--explanations {
+    margin-bottom: $margins-form-element-bottom * 2;
+    height: 149px;
+    width: 100%;
+  }
+  &--quick-values {
+    height: 66px;
+  }
+  &--quick-values.flex-grid__child {
+    width: calc(50% - 1rem);
+  }
+}

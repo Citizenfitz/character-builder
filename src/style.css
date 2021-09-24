@@ -131,7 +131,7 @@ h2,
 .h2 {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: 1rem;
   color: #7a00cc;
   margin-bottom: 0;
 }
@@ -239,7 +239,7 @@ fieldset {
 legend {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
-  font-size: 1.2em;
+  font-size: 1rem;
   color: #7a00cc;
   margin-bottom: 0;
 }
@@ -443,7 +443,7 @@ th {
 
 .flex-grid {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 .flex-grid__child {
   width: calc(33% - 1rem);
@@ -453,6 +453,9 @@ th {
 }
 .flex-grid__child--three {
   width: 100%;
+}
+.flex-grid--wrap {
+  flex-wrap: wrap;
 }
 
 .alignment-radio-set {
@@ -594,18 +597,36 @@ th {
   margin-left: 0.25rem;
 }
 
-.explainer-box {
+.data-display-box {
+  position: relative;
+  border: 1px solid black;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1rem;
 }
-.explainer-box__text {
-  border: 1px solid;
-  height: 150px;
+.data-display-box__text {
+  padding: 1rem;
+}
+.data-display-box__header {
+  position: absolute;
+  bottom: 0.25rem;
+  left: 0;
   width: 100%;
-  padding: 0.5rem;
+  text-align: center;
 }
-.explainer-box > h2 {
-  margin-top: 0;
+.data-display-box--save-mods {
+  margin-bottom: 0;
+  height: 66px;
+}
+.data-display-box--explanations {
+  margin-bottom: 2rem;
+  height: 149px;
+  width: 100%;
+}
+.data-display-box--quick-values {
+  height: 66px;
+}
+.data-display-box--quick-values.flex-grid__child {
+  width: calc(50% - 1rem);
 }
 
 .ut-hidden {
@@ -671,6 +692,12 @@ th {
 
 .ut-margin-right-2em {
   margin-right: 2em;
+}
+
+.ut-text-explain {
+  color: #767676;
+  font-family: "Cabin Regular", Cabin, sans-serif;
+  font-style: italic;
 }
 
 /*# sourceMappingURL=style.css.map */
