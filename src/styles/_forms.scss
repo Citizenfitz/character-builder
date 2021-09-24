@@ -1,4 +1,4 @@
-/***** FORM ELEMENTS *****/
+/***** PLACEHOLDERS *****/
 ::-webkit-input-placeholder {
   @include placeholder;
 }
@@ -27,6 +27,7 @@ legend {
   @include header2;
 }
 
+/***** LABELS *****/
 label {
   display: block;
   margin-bottom: $margins-form-element-bottom;
@@ -34,6 +35,8 @@ label {
 .label {
   @include header3;
 }
+
+/***** INPUTS *****/
 input[type="text"] {
   @include input-basics;
 }
@@ -41,10 +44,13 @@ input[type="number"] {
   @include input-basics;
   text-align: center;
 }
+
+/***** SELECTS *****/
 select {
   @include input-basics;
 }
 
+/***** Buttons *****/
 button,
 .button {
   background-color: $color-royal;

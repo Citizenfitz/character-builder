@@ -348,19 +348,19 @@ const CharacterSheet = () => {
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
           <div className="flex-grid flex-grid--wrap">
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text"></div>
+              <div className="data-display-box__text">10</div>
               <h2 className="data-display-box__header">AC</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text"></div>
+              <div className="data-display-box__text">0</div>
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text"></div>
+              <div className="data-display-box__text">30'</div>
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text"></div>
+              <div className="data-display-box__text">10</div>
               <h2 className="data-display-box__header">Perc.</h2>
             </div>
           </div>

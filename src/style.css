@@ -46,7 +46,7 @@ body {
 
 header {
   width: 100%;
-  max-width: 1024px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 1em 1.5em;
   background: #ebccff;
@@ -76,11 +76,9 @@ header .subheader {
 
 main {
   width: 100%;
-  max-width: 1024px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 1.5em;
-  border-left: 1px solid #9900ff;
-  border-right: 1px solid #9900ff;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   main {
@@ -95,7 +93,7 @@ main {
 
 footer {
   width: 100%;
-  max-width: 1024px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 1.5em;
   background: #ebccff;
@@ -200,7 +198,7 @@ dd,
   background: #9900ff;
 }
 
-/***** FORM ELEMENTS *****/
+/***** PLACEHOLDERS *****/
 ::-webkit-input-placeholder {
   color: #c4c4c4;
   font-style: italic;
@@ -249,6 +247,7 @@ legend {
   }
 }
 
+/***** LABELS *****/
 label {
   display: block;
   margin-bottom: 1rem;
@@ -260,6 +259,7 @@ label {
   font-weight: bold;
 }
 
+/***** INPUTS *****/
 input[type=text] {
   height: 24px;
   border-radius: 3px;
@@ -277,6 +277,7 @@ input[type=number] {
   text-align: center;
 }
 
+/***** SELECTS *****/
 select {
   height: 24px;
   border-radius: 3px;
@@ -285,6 +286,7 @@ select {
   background-color: #f5f3ed;
 }
 
+/***** Buttons *****/
 button,
 .button {
   background-color: #9900ff;

@@ -22,7 +22,7 @@ body {
 
 @mixin site-layout {
   width: 100%;
-  max-width: 1024px;
+  max-width: $mq-desktop-max;
   margin: 0 auto;
 }
 
@@ -54,8 +54,8 @@ header {
 main {
   @include site-layout;
   padding: $margins-desktop;
-  border-left: 1px solid $color-royal;
-  border-right: 1px solid $color-royal;
+  // border-left: 1px solid $color-royal;
+  // border-right: 1px solid $color-royal;
   @include mq-tablet {
     padding: $margins-tablet;
   }
