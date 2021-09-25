@@ -43,7 +43,6 @@ const Attributes = () => {
 				</thead>
 				<tbody>
 				{Object.entries(attributes).map(([key, values]) => {
-					console.log('key', values)
 					return (
 					<tr key={key}>
 						<td>{values.name}</td>
