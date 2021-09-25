@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@3d-dice/dice-box": "^0.3.3",
+    "@3d-dice/fui": "^0.2.1",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -17,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass":"sass --watch src/styles/:src"
+    "sass": "sass --watch src/styles/:src"
   },
   "eslintConfig": {
     "extends": [
