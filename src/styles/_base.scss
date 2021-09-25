@@ -29,14 +29,15 @@ body {
 header {
   @include site-layout;
   padding: 1em $margins-desktop;
-  background: lighten($color-royal, 40%);
-  color: darken($color-royal, 10%);
+  // background: lighten($color-royal, 50%);
+  color: $color-royal;
   text-align: center;
 
   h1 {
     font-size: 3rem;
     margin-top: 0;
     margin-bottom: 0px;
+    letter-spacing: 0.125rem;
   }
   .subheader {
     display: block;

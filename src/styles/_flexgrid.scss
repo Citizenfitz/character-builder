@@ -13,4 +13,10 @@
   &--wrap {
     flex-wrap: wrap;
   }
+  &--space-evenly {
+    justify-content: space-evenly;
+  }
+  &--align-items-end {
+    align-items: flex-end;
+  }
 }

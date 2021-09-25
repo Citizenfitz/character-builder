@@ -54,11 +54,12 @@ $color-gray-5: #f6f7fb; // Page background.
 
 // class colors
 $color-common: #d2691e;
-$color-fighter: #00b53c;
-$color-priest: #4a90e2;
-$color-wizard: #ffa101;
-$color-knave: #fd0000;
-$color-royal: #9900ff;
+$color-fighter: #04a54f;
+$color-priest: #2375b9;
+$color-wizard: #e1a525;
+$color-knave: #eb2026;
+//$color-royal: #9900ff;
+$color-royal: #883c8d;
 $color-input-background: #f5f3ed;
 
 // *********************** LAYOUT VARIABLES ***********************//
@@ -127,7 +128,7 @@ $margins-form-element-bottom: 1rem;
 @mixin header2 {
   @include greyhawkfont;
   font-size: 1rem;
-  color: darken($color-royal, 10%);
+  color: $color-royal;
   margin-bottom: 0;
   @include mq-phone {
     font-size: 1em;

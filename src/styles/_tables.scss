@@ -1,48 +1,39 @@
 //* *************** TABLES  ***************** */
-table { 
-    margin: 1em 0;
-    border-collapse: collapse;
-	font-size: .875rem;
+table {
+  margin: 1em 0;
+  border-collapse: collapse;
+  font-size: 0.875rem;
 }
 
-td, th
-{
-	padding: .25em .5em;
-	border: none;
-	min-width: 30px;
-	text-align: left;
-    vertical-align: top;
-	border: 1px solid;
+td,
+th {
+  padding: 0.25em 0.5em;
+  border: none;
+  min-width: 30px;
+  text-align: left;
+  vertical-align: top;
+  border: 1px solid;
 }
 
 th {
-	text-align: center;
-	background: lighten($color-royal, 40%);
-	@include greyhawkfont;
-	font-size: .75rem;
+  text-align: center;
+  background: lighten($color-royal, 40%);
+  @include greyhawkfont;
+  font-size: 0.75rem;
 }
 
-.table-row--highlight > td:first-child {
-	font-weight: bold;
-	box-shadow: -8px 0px 0px 0px lighten($color-royal, 35%);
+// .table-row--highlight > td:first-child {
+//   font-weight: bold;
+//   box-shadow: -8px 0px 0px 0px lighten($color-royal, 35%);
+// }
+
+.list-columns {
+  @include list-columns();
 }
 
-.list-columns {@include list-columns();}
-
-// .table{
-
-//     margin: 1em 0;
-//     text-align: center;
-//     border-collapse: collapse;
-//     border: none;
-//     table-layout: auto;
-//     padding: 1em;
-//   }
-//   .table td,
-//   .table th {
-//       padding: .25em;
-//       border: 1px solid;
-      
-//   }
-  
- 
+.table-levels {
+  width: 100%;
+  //   tr td:first-child {
+  //     font-family: $text-header;
+  //   }
+}

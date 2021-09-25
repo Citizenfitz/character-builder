@@ -1,10 +1,18 @@
-import React from 'react';
+import React from "react";
 
 const Header = () => (
-  <header role="banner" className="header" id="header">
-
-    <h1>Bottled Lighting <span class="subheader">Character Generator</span></h1>
-
+  <header
+    role="banner"
+    className="header flex-grid flex-grid--space-evenly  flex-grid--align-items-end"
+    id="header"
+  >
+    <div className="aspect-icon  aspect-icon--large aspect-icon--fighter"></div>
+    <div className="aspect-icon  aspect-icon--large aspect-icon--priest"></div>
+    <h1>
+      Bottled Lighting <span class="subheader">Character Generator</span>
+    </h1>
+    <div className="aspect-icon  aspect-icon--large aspect-icon--wizard"></div>
+    <div className="aspect-icon  aspect-icon--large aspect-icon--knave"></div>
   </header>
 );
 

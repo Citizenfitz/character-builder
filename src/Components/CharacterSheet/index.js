@@ -35,7 +35,7 @@ const CharacterSheet = () => {
     disad1: "none",
     disad2: "none",
     talentAssigned1: "Combat",
-    talentAssigned2: "Multi-attack",
+    talentAssigned2: "Multi-Attack",
     talentLevel1: "choose",
     talentKnave1: "choose",
     talentDisad1: "choose",

@@ -49,14 +49,14 @@ header {
   max-width: 960px;
   margin: 0 auto;
   padding: 1em 1.5em;
-  background: #ebccff;
-  color: #7a00cc;
+  color: #883c8d;
   text-align: center;
 }
 header h1 {
   font-size: 3rem;
   margin-top: 0;
   margin-bottom: 0px;
+  letter-spacing: 0.125rem;
 }
 header .subheader {
   display: block;
@@ -96,8 +96,8 @@ footer {
   max-width: 960px;
   margin: 0 auto;
   padding: 1.5em;
-  background: #ebccff;
-  color: #7a00cc;
+  background: #ddb5e0;
+  color: #652d69;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   footer {
@@ -130,7 +130,7 @@ h2,
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 1rem;
-  color: #7a00cc;
+  color: #883c8d;
   margin-bottom: 0;
 }
 @media (max-width: 480px) {
@@ -183,19 +183,19 @@ dd,
   background: #c4c4c4;
 }
 .talent-class-indicator--fighter {
-  background: #00b53c;
+  background: #04a54f;
 }
 .talent-class-indicator--knave {
-  background: #fd0000;
+  background: #eb2026;
 }
 .talent-class-indicator--priest {
-  background: #4a90e2;
+  background: #2375b9;
 }
 .talent-class-indicator--wizard {
-  background: #ffa101;
+  background: #e1a525;
 }
 .talent-class-indicator--royal {
-  background: #9900ff;
+  background: #883c8d;
 }
 
 /***** PLACEHOLDERS *****/
@@ -238,7 +238,7 @@ legend {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 1rem;
-  color: #7a00cc;
+  color: #883c8d;
   margin-bottom: 0;
 }
 @media (max-width: 480px) {
@@ -289,7 +289,7 @@ select {
 /***** Buttons *****/
 button,
 .button {
-  background-color: #9900ff;
+  background-color: #883c8d;
   color: white;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
@@ -297,26 +297,26 @@ button,
 }
 button:hover,
 .button:hover {
-  background-color: #7a00cc;
+  background-color: #652d69;
 }
 button:active,
 .button:active {
-  background-color: #7a00cc;
+  background-color: #652d69;
 }
 button__reverse,
 .button__reverse {
   background-color: transparent;
-  color: #9900ff;
+  color: #883c8d;
 }
 button__reverse:hover,
 .button__reverse:hover {
   background-color: transparent;
-  color: #7a00cc;
+  color: #652d69;
 }
 button__reverse:active,
 .button__reverse:active {
   background-color: transparent;
-  color: #7a00cc;
+  color: #652d69;
 }
 
 input.input--attached-button {
@@ -387,21 +387,21 @@ input[type=radio] + label {
 
 input[type=radio]:checked + label {
   display: inline-block;
-  background: #9900ff;
+  background: #883c8d;
   color: white;
   border-color: black;
 }
 input[type=radio]:checked + label.fighter {
-  background: #00a637;
+  background: #049648;
 }
 input[type=radio]:checked + label.wizard {
-  background: #f19800;
+  background: #d99d1e;
 }
 input[type=radio]:checked + label.priest {
-  background: #4a90e2;
+  background: #2375b9;
 }
 input[type=radio]:checked + label.knave {
-  background: #fd0000;
+  background: #eb2026;
 }
 
 table {
@@ -410,7 +410,8 @@ table {
   font-size: 0.875rem;
 }
 
-td, th {
+td,
+th {
   padding: 0.25em 0.5em;
   border: none;
   min-width: 30px;
@@ -421,15 +422,10 @@ td, th {
 
 th {
   text-align: center;
-  background: #ebccff;
+  background: #ddb5e0;
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 0.75rem;
-}
-
-.table-row--highlight > td:first-child {
-  font-weight: bold;
-  box-shadow: -8px 0px 0px 0px #e0b3ff;
 }
 
 .list-columns {
@@ -441,6 +437,10 @@ th {
   -webkit-column-gap: 3em;
   -moz-column-gap: 3em;
   column-gap: 3em;
+}
+
+.table-levels {
+  width: 100%;
 }
 
 .flex-grid {
@@ -458,6 +458,12 @@ th {
 }
 .flex-grid--wrap {
   flex-wrap: wrap;
+}
+.flex-grid--space-evenly {
+  justify-content: space-evenly;
+}
+.flex-grid--align-items-end {
+  align-items: flex-end;
 }
 
 .alignment-radio-set {
@@ -487,7 +493,7 @@ th {
   transition: background-color 0.5s ease;
 }
 .alignment-radio-set__item > input:checked + .alignment-radio-label {
-  background: #9900ff;
+  background: #883c8d;
   color: #fff;
 }
 
@@ -550,32 +556,32 @@ th {
   transition: background-color 0.5s ease;
 }
 .aspect-radio-label--fighter {
-  background-color: #00b53c;
+  background-color: #04a54f;
   border-radius: 0 0 3px 3px;
 }
 .aspect-radio-label--fighter:hover {
-  background-color: #00822b;
+  background-color: #037337;
 }
 .aspect-radio-label--priest {
-  background-color: #4a90e2;
-  Border-radius: 3px 0 0 3px;
+  background-color: #2375b9;
+  border-radius: 3px 0 0 3px;
 }
 .aspect-radio-label--priest:hover {
-  background-color: #2275d7;
+  background-color: #1b5a8e;
 }
 .aspect-radio-label--wizard {
-  background-color: #ffa101;
+  background-color: #e1a525;
   border-radius: 3px 3px 0 0;
 }
 .aspect-radio-label--wizard:hover {
-  background-color: #cd8100;
+  background-color: #b9861a;
 }
 .aspect-radio-label--knave {
-  background-color: #fd0000;
+  background-color: #eb2026;
   border-radius: 0 3px 3px 0;
 }
 .aspect-radio-label--knave:hover {
-  background-color: #ca0000;
+  background-color: #c61217;
 }
 .aspect-radio-label__type {
   font-size: 0.625rem;
@@ -597,6 +603,47 @@ th {
 
 .trait-list li button {
   margin-left: 0.25rem;
+}
+
+.aspect-icon {
+  display: inline-block;
+  position: relative;
+  height: 24px;
+  width: 24px;
+  margin-right: 0.5rem;
+  vertical-align: bottom;
+}
+.aspect-icon:after {
+  content: "";
+  position: absolute;
+  background-image: none;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-position: center center;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  bottom: 0px;
+}
+.aspect-icon--large {
+  height: 36px;
+  width: 36px;
+  margin: 0;
+}
+.aspect-icon--large:after {
+  background-size: 90%;
+}
+.aspect-icon--fighter:after {
+  background-image: url("assets/images/spade.svg");
+}
+.aspect-icon--priest:after {
+  background-image: url("assets/images/diamond.svg");
+}
+.aspect-icon--wizard:after {
+  background-image: url("assets/images/club.svg");
+}
+.aspect-icon--knave:after {
+  background-image: url("assets/images/heart.svg");
 }
 
 .data-display-box {
@@ -673,19 +720,19 @@ th {
   color: #d2691e;
 }
 .ut-color-fighter {
-  color: #00b53c;
+  color: #04a54f;
 }
 .ut-color-priest {
-  color: #4a90e2;
+  color: #2375b9;
 }
 .ut-color-wizard {
-  color: #ffa101;
+  color: #e1a525;
 }
 .ut-color-knave {
-  color: #fd0000;
+  color: #eb2026;
 }
 .ut-color-royal {
-  color: #9900ff;
+  color: #883c8d;
 }
 
 .ut-captialize {
@@ -700,6 +747,10 @@ th {
   color: #767676;
   font-family: "Cabin Regular", Cabin, sans-serif;
   font-style: italic;
+}
+
+.ut-text-greyhawk {
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
 }
 
 /*# sourceMappingURL=style.css.map */
