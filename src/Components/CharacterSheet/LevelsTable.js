@@ -157,10 +157,15 @@ const LevelsTable = (props) => {
           {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
           {props.character.disad1 !== "none" && (
             <tr>
-              <td>Disad 1</td>
+              <td className="ut-align-center">Disad 1</td>
               <td></td>
               <td></td>
               <td>
+                <div
+                  className={`aspect-icon aspect-icon--${getTalentAspect(
+                    props.character.talentDisad1
+                  )}`}
+                ></div>
                 <TalentSelector
                   type="all"
                   id="talentDisad1"
@@ -176,10 +181,15 @@ const LevelsTable = (props) => {
           {/*  --------------- 1st Level - If they have a second disad they get a seconmd extra talent  -------------- */}
           {props.character.disad2 !== "none" && (
             <tr>
-              <td>Disad 2</td>
+              <td className="ut-align-center">Disad 2</td>
               <td></td>
               <td></td>
               <td>
+                <div
+                  className={`aspect-icon aspect-icon--${getTalentAspect(
+                    props.character.talentDisad2
+                  )}`}
+                ></div>
                 <TalentSelector
                   type="all"
                   id="talentDisad2"
