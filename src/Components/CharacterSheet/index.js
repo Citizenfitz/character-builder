@@ -291,9 +291,6 @@ const CharacterSheet = () => {
 
   return (
     <div>
-      {/*  ------ OPTIONAL PRESETS ---- */}
-      <PresetsSelector presetData={presetData} handlePreset={handlePreset} />
-
       <div className="flex-grid">
         <div className="flex-grid__child">
           {/*  ------- NAMEs ------ */}
@@ -307,6 +304,36 @@ const CharacterSheet = () => {
             <br />
             <span className="label">Character Name</span>
           </label>
+
+          <div className="flex-grid flex-grid--flex-start">
+            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+              {/*  ------- LEVEL ------ */}
+              <label>
+                <select onChange={handleCharLevel}>
+                  {levelsData.map((i) => (
+                    <option key={i.level} value={i.level}>
+                      {formatNumberSuffix(i.level)}
+                    </option>
+                  ))}
+                </select>
+                <br />
+                <span className="label">Level</span>
+              </label>
+            </div>
+            <div className="flex-grid__child flex-grid__child--auto">
+              {/*  ------- RACE ------ */}
+              <label>
+                <input type="text" value={character.race} disabled size="8" />
+                <br />
+                <span className="label">
+                  Race{" "}
+                  <span className="ut-text-explain">
+                    (Change in Talents Below)
+                  </span>
+                </span>
+              </label>
+            </div>
+          </div>
 
           {/*  ------- CLASS ------ */}
           {aspectData.map((i) => (
@@ -324,19 +351,6 @@ const CharacterSheet = () => {
               </label>
             </span>
           ))}
-
-          {/*  ------- LEVEL ------ */}
-          <label>
-            <select onChange={handleCharLevel}>
-              {levelsData.map((i) => (
-                <option key={i.level} value={i.level}>
-                  {formatNumberSuffix(i.level)} Level
-                </option>
-              ))}
-            </select>
-            <br />
-            <span className="label">Level</span>
-          </label>
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
@@ -401,6 +415,11 @@ const CharacterSheet = () => {
         </div>
 
         <div className="flex-grid__child">
+          {/*  ------ OPTIONAL PRESETS ---- */}
+          <PresetsSelector
+            presetData={presetData}
+            handlePreset={handlePreset}
+          />
           {/*  ------- EXPLAINER BOX ------ */}
           <div className="data-display-box  data-display-box--explanations">
             <div className="data-display-box__text">

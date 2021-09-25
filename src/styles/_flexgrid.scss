@@ -10,11 +10,17 @@
   &__child--three {
     width: 100%;
   }
+  &__child--auto {
+    width: auto;
+  }
   &--wrap {
     flex-wrap: wrap;
   }
   &--space-evenly {
     justify-content: space-evenly;
+  }
+  &--flex-start {
+    justify-content: flex-start;
   }
   &--align-items-end {
     align-items: flex-end;

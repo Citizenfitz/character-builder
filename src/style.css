@@ -456,11 +456,17 @@ th {
 .flex-grid__child--three {
   width: 100%;
 }
+.flex-grid__child--auto {
+  width: auto;
+}
 .flex-grid--wrap {
   flex-wrap: wrap;
 }
 .flex-grid--space-evenly {
   justify-content: space-evenly;
+}
+.flex-grid--flex-start {
+  justify-content: flex-start;
 }
 .flex-grid--align-items-end {
   align-items: flex-end;
@@ -741,6 +747,10 @@ th {
 
 .ut-margin-right-2em {
   margin-right: 2em;
+}
+
+.ut-margin-right-1em {
+  margin-right: 1em;
 }
 
 .ut-text-explain {
