@@ -232,7 +232,7 @@ const talentData = [
   {
     id: "p4",
     aspect: "priest",
-    name: "Incorruptibility",
+    name: "Divine Shapeshift",
     desc: "copy",
     mod: "none",
     isleveling: false,
@@ -242,6 +242,26 @@ const talentData = [
   {
     id: "p5",
     aspect: "priest",
+    name: "Holy Aura",
+    desc: "copy",
+    mod: "none",
+    isleveling: false,
+    isstacking: false,
+    isoption: true,
+  },
+  {
+    id: "p6",
+    aspect: "priest",
+    name: "Incorruptibility",
+    desc: "copy",
+    mod: "none",
+    isleveling: false,
+    isstacking: false,
+    isoption: true,
+  },
+  {
+    id: "p7",
+    aspect: "priest",
     name: "Psychic Sensitivity",
     desc: "copy",
     mod: "WIS",
@@ -250,7 +270,7 @@ const talentData = [
     isoption: true,
   },
   {
-    id: "p6",
+    id: "p8",
     aspect: "priest",
     name: "Scholarly Knowledge",
     desc: "copy",
@@ -260,7 +280,7 @@ const talentData = [
     isoption: true,
   },
   {
-    id: "p7",
+    id: "p9",
     aspect: "priest",
     name: "Sermonize",
     desc: "copy",
@@ -270,7 +290,7 @@ const talentData = [
     isoption: true,
   },
   {
-    id: "p8",
+    id: "p10",
     aspect: "priest",
     name: "Turn Undead",
     desc: "copy",
