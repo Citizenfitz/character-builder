@@ -753,38 +753,4 @@ th {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
 }
 
-/* Components */
-.attributes button {
-  cursor: pointer;
-  padding: 3px 3px 0 3px;
-  background-color: transparent;
-}
-.attributes button:hover {
-  background-color: #ddb5e0;
-}
-.attributes .attribInput {
-  width: 40px;
-  height: 32px;
-  text-align: center;
-}
-
-.attribBonus {
-  display: inline-block;
-  width: 16px;
-  overflow: hidden;
-  vertical-align: middle;
-}
-
-body {
-  position: relative;
-}
-
-#dice-box, #dice-box canvas {
-  position: fixed;
-  pointer-events: none;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
-}
-
 /*# sourceMappingURL=style.css.map */
