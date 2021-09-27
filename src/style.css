@@ -772,13 +772,57 @@ th {
 .attributes button:hover {
   background-color: #ddb5e0;
 }
-.attributes .attribInput {
+.attributes .attrib-input {
   width: 40px;
   height: 32px;
   text-align: center;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
 }
 
-.attribBonus {
+.attrib-val {
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.attrib-group {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.attrib-name {
+  padding-left: 10px;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-size: 1.2rem;
+}
+.attrib-name a {
+  color: #883c8d;
+  text-decoration: none;
+}
+
+.attrib-mod {
+  padding-left: 20px;
+  font-style: italic;
+  font-size: 0.8rem;
+}
+.attrib-mod span {
+  border-bottom: 1px solid black;
+}
+.attrib-mod input {
+  width: 30px;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+}
+
+.attrib-bonus {
   display: inline-block;
   width: 16px;
   overflow: hidden;
