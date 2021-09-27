@@ -97,6 +97,11 @@
     width: 100%;
     left: 0px;
     bottom: 0px;
+    color: $color-royal;
+    font-family: $text-header;
+    font-size: 14px;
+    line-height: 24px;
+    text-align: center;
   }
   &--large {
     height: 36px;
@@ -108,7 +113,10 @@
   }
 
   &--common:after {
-    //background-image: url($path-img + "spade.svg");
+    content: "C";
+  }
+  &--race:after {
+    content: "R";
   }
   &--fighter:after {
     background-image: url($path-img + "spade.svg");
