@@ -59,6 +59,7 @@ const Attributes = () => {
 
 	// roll dice on button click
 	const rollDice = (e) => {
+		e.preventDefault()
 		const attr = e.currentTarget.id.replace("roll-","")
 		// store which attribute we're rolling for
 		setPendingRoll(attr)
@@ -68,30 +69,17 @@ const Attributes = () => {
 
 	return (
 		<div className="attributes">
-			<table border="1" className="table table--attributes">
-				<thead>
-					<tr>
-						<th>Attribute</th>
-						<th>Roll</th>
-						<th>Mod</th>
-					</tr>
-				</thead>
-				<tbody>
-				{Object.entries(attributes).map(([key, values]) => {
-					return (
-					<tr key={key}>
-						<td>{values.name}</td>
-						<td>
-							<input id={`attrib-${key}`} className="attribInput" type="number" value={values.roll} onChange={updateAttribute} />
-							<button id={`roll-${key}`} onClick={rollDice}>
-								<img src="/assets/images/rolling-dices.svg" width="24" height="24" />
-							</button>
-						</td>
-						<td>{values.mod}</td>
-					</tr>
-				)})}
-				</tbody>
-			</table>
+			{Object.entries(attributes).map(([key, values]) => {
+				return (
+					<div className="attrib-group" key={key}>
+						<div className="attrib-val">
+							<input id={`attrib-${key}`} className="attrib-input" type="text" value={values.roll} onChange={updateAttribute} />
+						</div>
+						<div className="attrib-name"><a id={`roll-${key}`} href="#" onClick={rollDice}>{values.name}</a></div>
+						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>
+					</div>
+				)}
+			)}
 		</div>
 	)}
 	
