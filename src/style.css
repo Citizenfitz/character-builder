@@ -764,6 +764,10 @@ th {
 }
 
 /* Components */
+.attributes {
+  /* For Firefox */
+  /* Webkit browsers like Safari and Chrome */
+}
 .attributes button {
   cursor: pointer;
   padding: 3px 3px 0 3px;
@@ -779,6 +783,14 @@ th {
   background-color: transparent;
   border: none;
   font-size: 24px;
+}
+.attributes input[type=number] {
+  -moz-appearance: textfield;
+}
+.attributes input[type=number]::-webkit-inner-spin-button,
+.attributes input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .attrib-val {

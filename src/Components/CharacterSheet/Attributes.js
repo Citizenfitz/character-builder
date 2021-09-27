@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
-import {dataAttributes} from '../../Data';
+import {dataAttributes, dataAttributesMods} from '../../Data';
 
 // create new DiceBox class
 const Box = new DiceBox("#dice-box", {
@@ -39,11 +39,15 @@ const Attributes = () => {
 	// update attribute from numerical input
 	const updateAttribute = (e) => {
 		e.preventDefault()
+		let val = e.target.value
+		if(val) {
+			val = parseInt(val)
+		}
 		const attr = e.target.id.replace("attrib-","")
-
 		setAttributes(PrevState => {
 			const newState = {...PrevState}
-			newState[attr].roll = parseInt(e.target.value)
+			newState[attr].roll = val
+			newState[attr].mod = dataAttributesMods[val]
 			return newState
 		})
 	}
@@ -52,6 +56,7 @@ const Attributes = () => {
 	const setAttributeFromRoll = (result) => {
 		const newState = {...attributes}
 		newState[pendingRoll].roll = result
+		newState[pendingRoll].mod = dataAttributesMods[result]
 		setAttributes(() => {
 			return newState
 		})
@@ -73,7 +78,7 @@ const Attributes = () => {
 				return (
 					<div className="attrib-group" key={key}>
 						<div className="attrib-val">
-							<input id={`attrib-${key}`} className="attrib-input" type="text" value={values.roll} onChange={updateAttribute} />
+							<input id={`attrib-${key}`} className="attrib-input" type="number" inputmode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
 						</div>
 						<div className="attrib-name"><a id={`roll-${key}`} href="#" onClick={rollDice}>{values.name}</a></div>
 						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>
