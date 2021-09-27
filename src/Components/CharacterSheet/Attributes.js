@@ -9,8 +9,15 @@ const Box = new DiceBox("#dice-box", {
 })
 
 // initalize DiceBox onDomReady so canvas can be properly measured
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
 	Box.init()
+})
+
+document.addEventListener("mousedown", () => {
+	const diceBoxCanvas = document.getElementById("dice-canvas")
+	if(window.getComputedStyle(diceBoxCanvas).display !== "none") {
+		Box.hide()
+	}
 })
 
 const Attributes = () => {
@@ -56,7 +63,7 @@ const Attributes = () => {
 		// store which attribute we're rolling for
 		setPendingRoll(attr)
 		// roll 3d dice
-		Box.roll('3d6')
+		Box.show().roll('3d6')
 	}
 
 	return (
