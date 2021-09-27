@@ -9,7 +9,7 @@ const Header = () => (
     <div className="aspect-icon  aspect-icon--large aspect-icon--fighter"></div>
     <div className="aspect-icon  aspect-icon--large aspect-icon--priest"></div>
     <h1>
-      Bottled Lighting <span class="subheader">Character Generator</span>
+      Bottled Lighting <span className="subheader">Character Generator</span>
     </h1>
     <div className="aspect-icon  aspect-icon--large aspect-icon--wizard"></div>
     <div className="aspect-icon  aspect-icon--large aspect-icon--knave"></div>
