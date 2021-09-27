@@ -3,7 +3,7 @@ import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
-import Attributes from "./attributes/Attributes";
+import Attributes from "./Attributes";
 import {
   aspectData,
   dataDisads,
