@@ -1,10 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
 import {dataAttributes} from '../../Data';
 import {
   calculateBonus,
   formatNumberModifier
 } from "../Utilities";
+import { CharacterContext } from './AddParticipant.context'
 
 
 // create new DiceBox class
@@ -26,6 +27,7 @@ document.addEventListener("mousedown", () => {
 })
 
 const Attributes = () => {
+	const [characterData, dispatch] = useContext(CharacterContext)
 	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
 	const [rollResult, setRollResult] = useState(10)
