@@ -456,17 +456,11 @@ th {
 .flex-grid__child--three {
   width: 100%;
 }
-.flex-grid__child--auto {
-  width: auto;
-}
 .flex-grid--wrap {
   flex-wrap: wrap;
 }
 .flex-grid--space-evenly {
   justify-content: space-evenly;
-}
-.flex-grid--flex-start {
-  justify-content: flex-start;
 }
 .flex-grid--align-items-end {
   align-items: flex-end;
@@ -749,10 +743,6 @@ th {
   margin-right: 2em;
 }
 
-.ut-margin-right-1em {
-  margin-right: 1em;
-}
-
 .ut-text-explain {
   color: #767676;
   font-family: "Cabin Regular", Cabin, sans-serif;
@@ -761,40 +751,6 @@ th {
 
 .ut-text-greyhawk {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
-}
-
-/* Components */
-.attributes button {
-  cursor: pointer;
-  padding: 3px 3px 0 3px;
-  background-color: transparent;
-}
-.attributes button:hover {
-  background-color: #ddb5e0;
-}
-.attributes .attribInput {
-  width: 40px;
-  height: 32px;
-  text-align: center;
-}
-
-.attribBonus {
-  display: inline-block;
-  width: 16px;
-  overflow: hidden;
-  vertical-align: middle;
-}
-
-body {
-  position: relative;
-}
-
-#dice-box, #dice-box canvas {
-  position: fixed;
-  pointer-events: none;
-  z-index: 100;
-  width: 100%;
-  height: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
