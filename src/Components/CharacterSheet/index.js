@@ -11,6 +11,7 @@ import {
   presetData,
   talentData,
   raceData,
+  armorData,
 } from "../../Data";
 import {
   calculateBonus,
@@ -416,8 +417,12 @@ const CharacterSheet = () => {
 
           {/*  ------- ARMOR ------ */}
           <label>
-            <select>
-              <option value="Lawful Good">Options</option>
+            <select onChange={handleCharLevel}>
+              {armorData.map((i) => (
+                <option key={i.armor} value={i.armor}>
+                  {i.armor} (+{i.ac})
+                </option>
+              ))}
             </select>
             <br />
             <span className="label">Armor</span>
