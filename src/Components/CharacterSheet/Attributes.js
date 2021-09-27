@@ -1,6 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
-import {dataAttributes, dataAttributesMods} from '../../Data';
+import {dataAttributes} from '../../Data';
+import {
+  calculateBonus,
+  formatNumberModifier
+} from "../Utilities";
+
 
 // create new DiceBox class
 const Box = new DiceBox("#dice-box", {
@@ -47,7 +52,7 @@ const Attributes = () => {
 		setAttributes(PrevState => {
 			const newState = {...PrevState}
 			newState[attr].roll = val
-			newState[attr].mod = dataAttributesMods[val]
+			newState[attr].mod = formatNumberModifier(calculateBonus(val))
 			return newState
 		})
 	}
@@ -56,7 +61,7 @@ const Attributes = () => {
 	const setAttributeFromRoll = (result) => {
 		const newState = {...attributes}
 		newState[pendingRoll].roll = result
-		newState[pendingRoll].mod = dataAttributesMods[result]
+		newState[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
 		setAttributes(() => {
 			return newState
 		})

@@ -55,34 +55,6 @@ const dataAttributes = {
 	}
 };
 
-// mod values from 0 to 22
-const dataAttributesMods = [
-	-4,
-	-4,
-	-4,
-	-3,
-	-3,
-	-2,
-	-2,
-	-1,
-	-1,
-	0,
-	0,
-	0,
-	0,
-	1,
-	1,
-	2,
-	2,
-	3,
-	3,
-	4,
-	4,
-	5,
-	5
-]
-
-
 export {
-	dataAttributes, dataAttributesMods
+	dataAttributes
 }
