@@ -16,12 +16,18 @@ document.addEventListener("DOMContentLoaded", function() {
 const Attributes = () => {
 	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
+	const [rollResult, setRollResult] = useState(10)
 
+	// set the onRollComplete function onMount
 	useEffect(() => {
 		Box.onRollComplete = (results) => {
-			setAttributeFromRoll(results[0].value)
+			setRollResult(results[0].value)
 		}
-	},[])
+	},[Box])
+
+	useEffect(() => {
+		setAttributeFromRoll(rollResult)
+	},[rollResult])
 
 	// update attribute from numerical input
 	const updateAttribute = (e) => {
@@ -37,9 +43,9 @@ const Attributes = () => {
 
 	// update attribute from dice roll
 	const setAttributeFromRoll = (result) => {
-		setAttributes(PrevState => {
-			const newState = {...PrevState}
-			newState[pendingRoll].roll = result
+		const newState = {...attributes}
+		newState[pendingRoll].roll = result
+		setAttributes(() => {
 			return newState
 		})
 	}
@@ -48,7 +54,7 @@ const Attributes = () => {
 	const rollDice = (e) => {
 		const attr = e.currentTarget.id.replace("roll-","")
 		// store which attribute we're rolling for
-		setPendingRoll((prev) => attr)
+		setPendingRoll(attr)
 		// roll 3d dice
 		Box.roll('3d6')
 	}
