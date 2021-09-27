@@ -54,6 +54,8 @@ const CharacterSheet = () => {
     talentLevel5Type: "Core",
     talentLevel7Type: "Core",
     talentLevel9Type: "Core",
+    saveModsClass: "",
+    saveModsRace: "",
   });
 
   const [talentDisabled, setTalentDisabled] = useState({
@@ -122,21 +124,18 @@ const CharacterSheet = () => {
 
   const handleCharAspect = (e) => {
     const newAspectId = e.target.value;
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      aspect: aspectData[newAspectId].name,
-    }));
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      hitDiceType: aspectData[newAspectId].hitDiceType,
-    }));
+    // set the talent states for validation purposes
     const oldTalent = character.assignedTalent2;
     const newTalent = aspectData[newAspectId].assignedTalent2;
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      talentAssigned2: aspectData[newAspectId].assignedTalent2,
-    }));
     setTalentStates(oldTalent, newTalent);
+
+    // then adjust the character data
+    let tempObject = character;
+    tempObject.aspect = aspectData[newAspectId].name;
+    tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
+    tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
+    tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+    setCharacter(tempObject);
   };
 
   const handlePreset = (e) => {
@@ -380,7 +379,11 @@ const CharacterSheet = () => {
           </div>
           {/*  ------- SAVING THROW MODS ------ */}
           <div className="data-display-box data-display-box--save-mods">
-            <div className="data-display-box__text"></div>
+            <div className="data-display-box__text">
+              {character.saveModsClass}
+              <br />
+              {character.saveModsRace}
+            </div>
           </div>
           <span className="label">Saving Throw Mods</span>
           <br />

@@ -32,6 +32,8 @@ const aspectData = [
       "Swordsman",
       "Warrior",
     ],
+    saveModsClass:
+      "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
   },
   {
     id: 1,
@@ -72,6 +74,8 @@ const aspectData = [
       "Votary",
       "Yogi",
     ],
+    saveModsClass:
+      "+2 vs poison, paralyzation, death magic, and any mental attacks",
   },
   {
     id: 2,
@@ -114,6 +118,7 @@ const aspectData = [
       "Wise man/woman",
       "Wizard",
     ],
+    saveModsClass: "+2 vs spells, illusions, rods, staves, and wands",
   },
   {
     id: 3,
@@ -159,6 +164,7 @@ const aspectData = [
       "Racaraide",
       "Skald",
     ],
+    saveModsClass: "+2 vs breath weapons and any save requiring dexterity",
   },
 ];
 
