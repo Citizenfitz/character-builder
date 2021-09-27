@@ -1,6 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
 import {dataAttributes} from '../../Data';
+import {
+  calculateBonus,
+  formatNumberModifier
+} from "../Utilities";
+
 
 // create new DiceBox class
 const Box = new DiceBox("#dice-box", {
@@ -39,11 +44,15 @@ const Attributes = () => {
 	// update attribute from numerical input
 	const updateAttribute = (e) => {
 		e.preventDefault()
+		let val = e.target.value
+		if(val) {
+			val = parseInt(val)
+		}
 		const attr = e.target.id.replace("attrib-","")
-
 		setAttributes(PrevState => {
 			const newState = {...PrevState}
-			newState[attr].roll = parseInt(e.target.value)
+			newState[attr].roll = val
+			newState[attr].mod = formatNumberModifier(calculateBonus(val))
 			return newState
 		})
 	}
@@ -52,6 +61,7 @@ const Attributes = () => {
 	const setAttributeFromRoll = (result) => {
 		const newState = {...attributes}
 		newState[pendingRoll].roll = result
+		newState[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
 		setAttributes(() => {
 			return newState
 		})
@@ -59,6 +69,7 @@ const Attributes = () => {
 
 	// roll dice on button click
 	const rollDice = (e) => {
+		e.preventDefault()
 		const attr = e.currentTarget.id.replace("roll-","")
 		// store which attribute we're rolling for
 		setPendingRoll(attr)
@@ -68,30 +79,17 @@ const Attributes = () => {
 
 	return (
 		<div className="attributes">
-			<table border="1" className="table table--attributes">
-				<thead>
-					<tr>
-						<th>Attribute</th>
-						<th>Roll</th>
-						<th>Mod</th>
-					</tr>
-				</thead>
-				<tbody>
-				{Object.entries(attributes).map(([key, values]) => {
-					return (
-					<tr key={key}>
-						<td>{values.name}</td>
-						<td>
-							<input id={`attrib-${key}`} className="attribInput" type="number" value={values.roll} onChange={updateAttribute} />
-							<button id={`roll-${key}`} onClick={rollDice}>
-								<img src="/assets/images/rolling-dices.svg" width="24" height="24" />
-							</button>
-						</td>
-						<td>{values.mod}</td>
-					</tr>
-				)})}
-				</tbody>
-			</table>
+			{Object.entries(attributes).map(([key, values]) => {
+				return (
+					<div className="attrib-group" key={key}>
+						<div className="attrib-val">
+							<input id={`attrib-${key}`} className="attrib-input" type="number" inputmode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
+						</div>
+						<div className="attrib-name"><a id={`roll-${key}`} href="#" onClick={rollDice}>{values.name}</a></div>
+						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>
+					</div>
+				)}
+			)}
 		</div>
 	)}
 	

@@ -1,6 +1,6 @@
 const dataAttributes = {
 	strength:   { 
-		'name' : 'strength',
+		'name' : 'STR',
 		'roll'  : 10,
 		'min' : 3,
 		'max' : 18,
@@ -9,7 +9,7 @@ const dataAttributes = {
 		'bonus': 0,
 	},
 	dexterity:  { 
-		'name' : 'dexterity',
+		'name' : 'DEX',
 		'roll'  : 10,
 		'min' : 3,
 		'max' : 18,
@@ -18,7 +18,7 @@ const dataAttributes = {
 		'bonus': 0,
 	},
 	constitution:   { 
-		'name' : 'constitution',
+		'name' : 'CON',
 		'roll'  : 10,
 		'min' : 3,
 		'max' : 18,
@@ -27,7 +27,7 @@ const dataAttributes = {
 		'bonus': 0,
 	},
 	intelligence:  { 
-		'name' : 'intelligence',
+		'name' : 'INT',
 		'roll'  : 10,
 		'min' : 3,
 		'max' : 18,
@@ -36,7 +36,7 @@ const dataAttributes = {
 		'bonus': 0,
 	},
 	wisdom: { 
-		'name' : 'wisdom',
+		'name' : 'WIS',
 		'roll'  : 10,
 		'min' : 3,
 		'max' : 18,
@@ -45,7 +45,7 @@ const dataAttributes = {
 		'bonus': 0,
 	},
 	charisma: { 
-		'name' : 'charisma',
+		'name' : 'CHA',
 		'roll'  : 10,
 		'min' : 3,
 		'max' : 18,
@@ -54,7 +54,6 @@ const dataAttributes = {
 		'bonus': 0,
 	}
 };
-
 
 export {
 	dataAttributes
