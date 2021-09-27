@@ -15,7 +15,9 @@
   }
   &--save-mods {
     margin-bottom: 0;
-    height: 66px;
+    min-height: 66px;
+    height: auto;
+    text-align: left;
   }
   &--explanations {
     margin-bottom: $margins-form-element-bottom * 2;

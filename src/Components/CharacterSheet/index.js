@@ -20,11 +20,13 @@ import {
 
 const CharacterSheet = () => {
   const [character, setCharacter] = useState({
-    name: "",
+    namePlayer: "",
+    nameCharacter: "",
     level: 1,
     race: "Human",
     gender: "Male",
     aspect: aspectData[0].name,
+    alignment: "Neutral",
     hitDiceType: aspectData[0].hitDiceType,
     attribStr: 10,
     attribDex: 10,
@@ -54,7 +56,8 @@ const CharacterSheet = () => {
     talentLevel5Type: "Core",
     talentLevel7Type: "Core",
     talentLevel9Type: "Core",
-    saveModsClass: "",
+    saveModsClass:
+      "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
   });
 
@@ -117,6 +120,18 @@ const CharacterSheet = () => {
     "Vow of Modesty": false,
     "Vow of Nature": false,
   });
+
+  const handleInputChange = (e, name) => {
+    let value;
+    if (e.target) {
+      value = e.target.value;
+    }
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      [name]: value,
+    }));
+  };
+
   const handleCharLevel = (e) => {
     const { value } = e.target;
     setCharacter((PrevState) => ({ ...PrevState, level: value }));
@@ -294,12 +309,22 @@ const CharacterSheet = () => {
         <div className="flex-grid__child">
           {/*  ------- NAMEs ------ */}
           <label>
-            <input type="text" />
+            <input
+              type="text"
+              value={character.namePlayer}
+              name="namePlayer"
+              onChange={(e) => handleInputChange(e, "namePlayer")}
+            />
             <br />
             <span className="label">Player Name</span>
           </label>
           <label>
-            <input type="text" />
+            <input
+              type="text"
+              value={character.nameCharacter}
+              name="namePlayer"
+              onChange={(e) => handleInputChange(e, "nameCharacter")}
+            />
             <br />
             <span className="label">Character Name</span>
           </label>
@@ -433,13 +458,17 @@ const CharacterSheet = () => {
 
           {/*  ------- ALIGNMENT ------ */}
           <label>
-            <select>
+            <select
+              name="alignment"
+              onChange={(e) => handleInputChange(e, "alignment")}
+              value={character.alignment}
+            >
               <option value="Lawful Good">Lawful Good </option>
               <option value="Neutral Good">Neutral Good </option>
               <option value="Chaotic Good">Chaotic Good </option>
               <option value="Lawful Neutral">Lawful Neutral </option>
               <option value="Neutral" selected>
-                Neutral{" "}
+                Neutral
               </option>
               <option value="Chaotic Neutral">Chaotic Neutral </option>
               <option value="Lawful Evil">Lawful Evil </option>

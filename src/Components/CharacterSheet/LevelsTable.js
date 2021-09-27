@@ -122,13 +122,15 @@ const LevelsTable = (props) => {
                   props.character.talentLevel1
                 )}`}
               ></div>
-              <TalentSelector
-                type="race"
-                id="talentLevel1"
-                handleSetCharTalents={props.handleSetCharTalents}
-                talentDisabled={props.talentDisabled}
-                character={props.character}
-              />
+              <div className="ut-display-inine-block ">
+                <TalentSelector
+                  type="race"
+                  id="talentLevel1"
+                  handleSetCharTalents={props.handleSetCharTalents}
+                  talentDisabled={props.talentDisabled}
+                  character={props.character}
+                />
+              </div>
             </td>
             <td>{getTalentMod(props.character.talentLevel1)}</td>
             <td>{calcTalentLevel(props.character.talentLevel1)}</td>
