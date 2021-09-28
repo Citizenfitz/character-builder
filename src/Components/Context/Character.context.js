@@ -26,7 +26,11 @@ const initialState = {
 		name: "",
 		desc: ""
 	},
-	armor: null,
+	armor: {
+		armor: "none",
+    ac: 0,
+    penalty: 0,
+	},
 	meleeWeapon: null,
 	rangeWeapon: null,
 	disads: [],
@@ -36,6 +40,9 @@ const initialState = {
 
 export const CharacterContext = createContext()
 
+// calculated value placeholders
+let ac
+
 const userReducer = (state, action) => {
   switch (action.type) {
     case 'update': 
@@ -43,10 +50,23 @@ const userReducer = (state, action) => {
 				...state,
 				...action.data
 			})
-		case 'updateAttr': 
+		case 'updateAttr':
+			// thing that need recalculates when attributes change
+			// ac
+			ac = state.armor.ac + action.data.dexterity.mod
+
 			return({
 				...state,
+				ac,
 				attributes: { ...action.data }
+			})
+		case 'updateArmor':
+			// calc new ac and armor disadvantage
+			ac = state.attributes.dexterity.mod + action.data.ac
+			return ({
+				...state,
+				ac,
+				armor: action.data
 			})
     case 'reset': 
 			return ({

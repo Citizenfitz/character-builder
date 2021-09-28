@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -18,8 +18,10 @@ import {
   formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
+import { CharacterContext } from '../Context/Character.context'
 
 const CharacterSheet = () => {
+	const [characterData, dispatch] = useContext(CharacterContext)
   const [character, setCharacter] = useState({
     namePlayer: "",
     nameCharacter: "",
@@ -137,6 +139,16 @@ const CharacterSheet = () => {
     const { value } = e.target;
     setCharacter((PrevState) => ({ ...PrevState, level: value }));
   };
+
+	const handleArmor = (e) => {
+		if(typeof e.target.selectedIndex === 'number') {
+			const armor = armorData[e.target.selectedIndex]
+			dispatch({
+				type: 'updateArmor',
+				data: armor
+			})
+		}
+	}
 
   const handleCharAspect = (e) => {
     const newAspectId = e.target.value;
@@ -387,7 +399,7 @@ const CharacterSheet = () => {
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
           <div className="flex-grid flex-grid--wrap">
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">10</div>
+              <div className="data-display-box__text">{characterData.ac}</div>
               <h2 className="data-display-box__header">AC</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -417,7 +429,7 @@ const CharacterSheet = () => {
 
           {/*  ------- ARMOR ------ */}
           <label>
-            <select onChange={handleCharLevel}>
+            <select onChange={handleArmor}>
               {armorData.map((i) => (
                 <option key={i.armor} value={i.armor}>
                   {i.armor} (+{i.ac})
