@@ -38,6 +38,7 @@ const CharacterSheet = () => {
 			charisma: 10,
 		},
 		ac: 0,
+		perception: 10,
     disad1: "none",
     disad2: "none",
     talentAssigned1: "Combat",
@@ -323,10 +324,12 @@ const CharacterSheet = () => {
 	const updateAttributes = (attributes) => {
 		setCharacter(prev => {
 			const ac = calculateBonus(attributes.dexterity) + prev.armor.ac
+			const perception = calculateBonus(attributes.wisdom) + 10
 			return ({
 				...prev,
 				ac,
-				attributes
+				attributes,
+				perception
 			})
 		})
 	}
@@ -426,7 +429,7 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">10</div>
+              <div className="data-display-box__text">{character.perception}</div>
               <h2 className="data-display-box__header">Perc.</h2>
             </div>
           </div>
