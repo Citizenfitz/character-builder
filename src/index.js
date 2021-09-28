@@ -14,4 +14,5 @@ ReactDOM.render(
 		</main>
 		<Footer />
   </React.StrictMode>,
+	document.getElementById('root')
 );
