@@ -2,17 +2,17 @@ const armorData = [
   {
     armor: "none",
     ac: 0,
-    penalty: "-",
+    penalty: 0,
   },
   {
     armor: "Leather",
     ac: 2,
-    penalty: "-",
+    penalty: 0,
   },
   {
     armor: "Padded",
     ac: 2,
-    penalty: "-",
+    penalty: 0,
   },
   {
     armor: "Ring mail",
