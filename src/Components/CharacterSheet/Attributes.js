@@ -37,7 +37,7 @@ const Attributes = () => {
 		Box.onRollComplete = (results) => {
 			setRollResult(results[0].value)
 		}
-	},[Box])
+	},[])
 
 	useEffect(() => {
 		setAttributeFromRoll(rollResult)
@@ -87,7 +87,7 @@ const Attributes = () => {
 				return (
 					<div className="attrib-group" key={key}>
 						<div className="attrib-val">
-							<input id={`attrib-${key}`} className="attrib-input" type="number" inputmode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
+							<input id={`attrib-${key}`} className="attrib-input" type="number" inputMode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
 						</div>
 						<div className="attrib-name"><a id={`roll-${key}`} href="#" onClick={rollDice}>{values.name}</a></div>
 						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={formatNumberModifier(values.mod)} /></span></div>

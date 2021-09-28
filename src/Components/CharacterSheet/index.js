@@ -196,7 +196,6 @@ const CharacterSheet = () => {
             [e.target.id]: talentNoPrefix,
           }))
         );
-        break;
       // if it's choosing a talent and defaulting back to human
       case "h-":
         return (
@@ -206,7 +205,6 @@ const CharacterSheet = () => {
             [e.target.id]: talentNoPrefix,
           }))
         );
-        break;
       // if it's nothing to do with race and just choosing a talent
       default:
         return (
@@ -375,7 +373,7 @@ const CharacterSheet = () => {
                 value={i.id}
                 id={i.name}
                 checked={character.aspect === i.name}
-                onClick={handleCharAspect}
+                onChange={handleCharAspect}
               ></input>
               <label htmlFor={i.name} className={i.name}>
                 {i.name}
@@ -401,11 +399,11 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">30'</div>
+              <div className="data-display-box__text">{characterData.movement}'</div>
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">10</div>
+              <div className="data-display-box__text">{characterData.perception}</div>
               <h2 className="data-display-box__header">Perc.</h2>
             </div>
           </div>
@@ -478,7 +476,7 @@ const CharacterSheet = () => {
               <option value="Neutral Good">Neutral Good </option>
               <option value="Chaotic Good">Chaotic Good </option>
               <option value="Lawful Neutral">Lawful Neutral </option>
-              <option value="Neutral" selected>
+              <option value="Neutral">
                 Neutral
               </option>
               <option value="Chaotic Neutral">Chaotic Neutral </option>
