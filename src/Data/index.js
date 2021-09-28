@@ -6,6 +6,7 @@ import { aspectData } from "./dataAspects";
 import { presetData } from "./dataPresets";
 import { dataDisads } from "./dataDisads";
 import { armorData } from "./dataArmor";
+import { meleeWeaponData, rangedWeaponData } from "./dataWeapons";
 export {
   aspectData,
   dataAttributes,
@@ -15,4 +16,6 @@ export {
   talentData,
   raceData,
   armorData,
+	meleeWeaponData,
+	rangedWeaponData,
 };
