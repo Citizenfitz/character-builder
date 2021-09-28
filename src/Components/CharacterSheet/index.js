@@ -462,17 +462,18 @@ const CharacterSheet = () => {
                 <span className="label">Level</span>
               </label>
             </div>
-            <div className="flex-grid__child flex-grid__child--auto">
+            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- RACE ------ */}
               <label>
                 <input type="text" value={character.race} disabled size="8" />
                 <br />
-                <span className="label">
-                  Race{" "}
-                  <span className="ut-text-explain">
-                    (Change in Talents Below)
-                  </span>
-                </span>
+                <span className="label">Race</span>
+              </label>
+            </div>
+            <div className="flex-grid__child flex-grid__child--auto">
+              <label>
+                <button className="button">{character.aspect}</button> <br />
+                <span className="label">Class</span>
               </label>
             </div>
           </div>
@@ -486,7 +487,7 @@ const CharacterSheet = () => {
                 value={i.id}
                 id={i.name}
                 checked={character.aspect === i.name}
-                onChange={handleCharAspect}
+                onClick={handleCharAspect}
               ></input>
               <label htmlFor={i.name} className={i.name}>
                 {i.name}
