@@ -53,7 +53,7 @@ const Attributes = () => {
 		const attr = e.target.id.replace("attrib-","")
 		const newAttr = {...attributes}
 		newAttr[attr].roll = val
-		newAttr[attr].mod = formatNumberModifier(calculateBonus(val))
+		newAttr[attr].mod = calculateBonus(val)
 		dispatch({
 			type: "updateAttr",
 			data: newAttr
@@ -64,7 +64,7 @@ const Attributes = () => {
 	const setAttributeFromRoll = (result) => {
 		const newAttr = {...attributes}
 		newAttr[pendingRoll].roll = result
-		newAttr[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
+		newAttr[pendingRoll].mod = calculateBonus(result)
 		dispatch({
 			type: "updateAttr",
 			data: newAttr
@@ -90,7 +90,7 @@ const Attributes = () => {
 							<input id={`attrib-${key}`} className="attrib-input" type="number" inputmode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
 						</div>
 						<div className="attrib-name"><a id={`roll-${key}`} href="#" onClick={rollDice}>{values.name}</a></div>
-						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>
+						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={formatNumberModifier(values.mod)} /></span></div>
 					</div>
 				)}
 			)}
