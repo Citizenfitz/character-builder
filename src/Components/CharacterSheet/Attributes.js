@@ -1,12 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
-import {dataAttributes} from '../../Data';
 import {
   calculateBonus,
   formatNumberModifier
 } from "../Utilities";
-import { CharacterContext } from './AddParticipant.context'
-
+import { CharacterContext } from '../Context/Character.context'
 
 // create new DiceBox class
 const Box = new DiceBox("#dice-box", {
@@ -28,9 +26,11 @@ document.addEventListener("mousedown", () => {
 
 const Attributes = () => {
 	const [characterData, dispatch] = useContext(CharacterContext)
-	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
 	const [rollResult, setRollResult] = useState(10)
+
+	// pulling out just what we need from Character context
+	const {attributes} = characterData
 
 	// set the onRollComplete function onMount
 	useEffect(() => {
@@ -51,21 +51,23 @@ const Attributes = () => {
 			val = parseInt(val)
 		}
 		const attr = e.target.id.replace("attrib-","")
-		setAttributes(PrevState => {
-			const newState = {...PrevState}
-			newState[attr].roll = val
-			newState[attr].mod = formatNumberModifier(calculateBonus(val))
-			return newState
+		const newAttr = {...attributes}
+		newAttr[attr].roll = val
+		newAttr[attr].mod = formatNumberModifier(calculateBonus(val))
+		dispatch({
+			type: "updateAttr",
+			data: newAttr
 		})
 	}
 
 	// update attribute from dice roll
 	const setAttributeFromRoll = (result) => {
-		const newState = {...attributes}
-		newState[pendingRoll].roll = result
-		newState[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
-		setAttributes(() => {
-			return newState
+		const newAttr = {...attributes}
+		newAttr[pendingRoll].roll = result
+		newAttr[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
+		dispatch({
+			type: "updateAttr",
+			data: newAttr
 		})
 	}
 
