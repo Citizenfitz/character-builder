@@ -14,7 +14,7 @@ import {
   armorData,
 } from "../../Data";
 import {
-  // calculateBonus,
+  calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
@@ -29,12 +29,15 @@ const CharacterSheet = () => {
     aspect: aspectData[0].name,
     alignment: "Neutral",
     hitDiceType: aspectData[0].hitDiceType,
-    attribStr: 10,
-    attribDex: 10,
-    attribInt: 10,
-    attribWis: 10,
-    attribCon: 10,
-    attribCha: 10,
+		attributes: {
+			strength: 10,
+			dexterity: 10,
+			constitution: 10,
+			intelligence: 10,
+			wisdom: 10,
+			charisma: 10,
+		},
+		ac: 0,
     disad1: "none",
     disad2: "none",
     talentAssigned1: "Combat",
@@ -60,7 +63,8 @@ const CharacterSheet = () => {
     saveModsClass:
       "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
-    armor: "none",
+		armorIndex: 0,
+    armor: armorData[0],
   });
 
   const [talentDisabled, setTalentDisabled] = useState({
@@ -303,6 +307,30 @@ const CharacterSheet = () => {
     }
   };
 
+	const handleArmorChange = (e) => {
+		setCharacter(prev => {
+			const armor = armorData[e.target.value]
+			const ac = calculateBonus(prev.attributes.dexterity) + armor.ac
+			return ({
+				...prev,
+				ac,
+				armorIndex: e.target.value,
+				armor
+			})
+		})
+	}
+
+	const updateAttributes = (attributes) => {
+		setCharacter(prev => {
+			const ac = calculateBonus(attributes.dexterity) + prev.armor.ac
+			return ({
+				...prev,
+				ac,
+				attributes
+			})
+		})
+	}
+
   return (
     <div>
       <div className="flex-grid">
@@ -378,7 +406,7 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <Attributes />
+            <Attributes onChange={updateAttributes} />
           </section>
         </div>
 
@@ -386,7 +414,7 @@ const CharacterSheet = () => {
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
           <div className="flex-grid flex-grid--wrap">
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">10</div>
+              <div className="data-display-box__text">{character.ac}</div>
               <h2 className="data-display-box__header">AC</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -418,12 +446,12 @@ const CharacterSheet = () => {
           <label>
             <select
               name="armor"
-              value={character.armor}
-              onChange={(e) => handleInputChange(e, "armor")}
+              value={character.armorIndex}
+              onChange={handleArmorChange}
             >
-              {armorData.map((i) => (
-                <option key={i.armor} value={i.armor}>
-                  {i.armor} (+{i.ac})
+              {armorData.map((armor,i) => (
+                <option key={armor.armor} value={i}>
+                  {armor.armor} (+{armor.ac})
                 </option>
               ))}
             </select>
