@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
 import {dataAttributes} from '../../Data';
 import {
@@ -28,18 +28,11 @@ document.addEventListener("mousedown", () => {
 const Attributes = () => {
 	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
-	const [rollResult, setRollResult] = useState(10)
 
 	// set the onRollComplete function onMount
-	useEffect(() => {
-		Box.onRollComplete = (results) => {
-			setRollResult(results[0].value)
-		}
-	},[Box])
-
-	useEffect(() => {
-		setAttributeFromRoll(rollResult)
-	},[rollResult])
+	Box.onRollComplete = (results) => {
+		setAttributeFromRoll(results[0].value)
+	}
 
 	// update attribute from numerical input
 	const updateAttribute = (e) => {
@@ -83,9 +76,9 @@ const Attributes = () => {
 				return (
 					<div className="attrib-group" key={key}>
 						<div className="attrib-val">
-							<input id={`attrib-${key}`} className="attrib-input" type="number" inputmode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
+							<input id={`attrib-${key}`} className="attrib-input" type="number" inputMode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
 						</div>
-						<div className="attrib-name"><a id={`roll-${key}`} href="#" onClick={rollDice}>{values.name}</a></div>
+						<div className="attrib-name"><button id={`roll-${key}`} onClick={rollDice}>{values.name}</button></div>
 						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>
 					</div>
 				)}

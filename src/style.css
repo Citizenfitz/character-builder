@@ -828,12 +828,17 @@ th {
 
 .attrib-name {
   padding-left: 10px;
+}
+.attrib-name button {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-size: 1.2rem;
-}
-.attrib-name a {
   color: #883c8d;
-  text-decoration: none;
+  background-color: transparent;
+  border: none;
+}
+.attrib-name button:hover {
+  background-color: transparent;
+  text-decoration: underline;
 }
 
 .attrib-mod {

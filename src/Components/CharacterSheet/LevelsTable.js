@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import { levelsData, talentData } from "../../Data";
 import TalentSelector from "./TalentSelector";
 import {
-  calculateBonus,
-  formatNumberModifier,
+  // calculateBonus,
+  // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
 

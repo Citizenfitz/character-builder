@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TalentList from "../TalentList";
+// import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
@@ -9,13 +9,13 @@ import {
   dataDisads,
   levelsData,
   presetData,
-  talentData,
-  raceData,
+  // talentData,
+  // raceData,
   armorData,
 } from "../../Data";
 import {
-  calculateBonus,
-  formatNumberModifier,
+  // calculateBonus,
+  // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
 
@@ -191,7 +191,6 @@ const CharacterSheet = () => {
             [e.target.id]: talentNoPrefix,
           }))
         );
-        break;
       // if it's choosing a talent and defaulting back to human
       case "h-":
         return (
@@ -201,7 +200,6 @@ const CharacterSheet = () => {
             [e.target.id]: talentNoPrefix,
           }))
         );
-        break;
       // if it's nothing to do with race and just choosing a talent
       default:
         return (
@@ -370,7 +368,7 @@ const CharacterSheet = () => {
                 value={i.id}
                 id={i.name}
                 checked={character.aspect === i.name}
-                onClick={handleCharAspect}
+                onChange={handleCharAspect}
               ></input>
               <label htmlFor={i.name} className={i.name}>
                 {i.name}
@@ -477,7 +475,7 @@ const CharacterSheet = () => {
               <option value="Neutral Good">Neutral Good </option>
               <option value="Chaotic Good">Chaotic Good </option>
               <option value="Lawful Neutral">Lawful Neutral </option>
-              <option value="Neutral" selected>
+              <option value="Neutral">
                 Neutral
               </option>
               <option value="Chaotic Neutral">Chaotic Neutral </option>

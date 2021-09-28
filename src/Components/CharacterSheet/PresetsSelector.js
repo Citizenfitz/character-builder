@@ -4,8 +4,8 @@ const PresetsSelector = (props) => {
   return (
     <label className="preset-chooser">
       <span className="label">Optional Preset: </span>
-      <select id="presetSelector" onChange={props.handlePreset}>
-        <option defaultValue="" disabled selected>
+      <select id="presetSelector" onChange={props.handlePreset} defaultValue="choose">
+        <option disabled value="choose">
           Choose
         </option>
         {props.presetData.map((i) => (

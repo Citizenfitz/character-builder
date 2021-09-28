@@ -28,11 +28,9 @@ const TalentSelector = (props) => {
           </select>
         </Fragment>
       );
-      break;
 
-      {
-        /*  --------------- All talents except Races -------------- */
-      }
+    /*  --------------- All talents except Races -------------- */
+
     case "all":
       return (
         <Fragment>
@@ -41,7 +39,7 @@ const TalentSelector = (props) => {
             id={props.id}
             value={props.character[props.id]}
           >
-            <option value="choose" disabled selected>
+            <option value="choose" disabled>
               Choose Talent
             </option>
             <option disabled>---- Common Talents ----</option>
@@ -107,11 +105,8 @@ const TalentSelector = (props) => {
           </select>
         </Fragment>
       );
-      break;
 
-      {
-        /*  --------------- All talents INCLUDING races -------------- */
-      }
+    /*  --------------- All talents INCLUDING races -------------- */
     default:
       return (
         <Fragment>
