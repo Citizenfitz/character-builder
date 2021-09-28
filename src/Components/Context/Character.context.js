@@ -61,7 +61,7 @@ const userReducer = (state, action) => {
 				attributes: { ...action.data }
 			})
 		case 'updateArmor':
-			// calc new ac and armor disadvantage
+			// calc new ac
 			ac = state.attributes.dexterity.mod + action.data.ac
 			return ({
 				...state,
