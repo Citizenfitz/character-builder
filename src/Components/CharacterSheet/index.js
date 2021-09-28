@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -321,7 +321,7 @@ const CharacterSheet = () => {
 		})
 	}
 
-	const updateAttributes = (attributes) => {
+	const updateAttributes = useCallback((attributes) => {
 		setCharacter(prev => {
 			const ac = calculateBonus(attributes.dexterity) + prev.armor.ac
 			const perception = calculateBonus(attributes.wisdom) + 10
@@ -332,7 +332,7 @@ const CharacterSheet = () => {
 				perception
 			})
 		})
-	}
+	},[])
 
   return (
     <div>

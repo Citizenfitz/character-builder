@@ -26,14 +26,15 @@ document.addEventListener("mousedown", () => {
 })
 
 const Attributes = (props) => {
+	const {onChange} = props
 	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
 
 	useEffect(() => {
 		const attribTotals = {}
 		Object.entries(attributes).map(([key,value]) => attribTotals[key] = value.total)
-		props.onChange(attribTotals)
-	}, [attributes])
+		onChange(attribTotals)
+	}, [attributes, onChange])
 
 	// set the onRollComplete function onMount
 	Box.onRollComplete = (results) => {
