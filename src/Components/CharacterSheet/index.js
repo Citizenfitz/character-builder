@@ -60,6 +60,7 @@ const CharacterSheet = () => {
     saveModsClass:
       "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
+    armor: "none",
   });
 
   const [talentDisabled, setTalentDisabled] = useState({
@@ -417,7 +418,11 @@ const CharacterSheet = () => {
 
           {/*  ------- ARMOR ------ */}
           <label>
-            <select onChange={handleCharLevel}>
+            <select
+              name="armor"
+              value={character.armor}
+              onChange={(e) => handleInputChange(e, "armor")}
+            >
               {armorData.map((i) => (
                 <option key={i.armor} value={i.armor}>
                   {i.armor} (+{i.ac})
