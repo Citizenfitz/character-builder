@@ -12,6 +12,8 @@ import {
   // talentData,
   // raceData,
   armorData,
+	meleeWeaponData,
+	rangedWeaponData,
 } from "../../Data";
 import {
   // calculateBonus,
@@ -61,6 +63,10 @@ const CharacterSheet = () => {
       "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
     armor: "none",
+		meleeWeapon: meleeWeaponData[0],
+		meleeWeaponIndex: 0,
+		rangedWeapon: rangedWeaponData[0],
+		rangedWeaponIndex: 0,
   });
 
   const [talentDisabled, setTalentDisabled] = useState({
@@ -303,6 +309,25 @@ const CharacterSheet = () => {
     }
   };
 
+	const handleMeleeWeaponChange = (e) => {
+		const index = e.target.value
+		const meleeWeapon = meleeWeaponData[index]
+		setCharacter(prev => ({
+			...prev,
+			meleeWeapon,
+			meleeWeaponIndex: index
+		}))
+	}
+	const handleRangedWeaponChange = (e) => {
+		const index = e.target.value
+		const rangedWeapon = rangedWeaponData[index]
+		setCharacter(prev => ({
+			...prev,
+			rangedWeapon,
+			rangedWeaponIndex: index
+		}))
+	}
+
   return (
     <div>
       <div className="flex-grid">
@@ -433,8 +458,16 @@ const CharacterSheet = () => {
 
           {/*  ------- MELEE WEAPON ------ */}
           <label>
-            <select>
-              <option value="Lawful Good">Options</option>
+						<select
+              name="meleeWeapon"
+              value={character.meleeWeaponIndex}
+              onChange={handleMeleeWeaponChange}
+            >
+              {meleeWeaponData.map((weapon, i) => (
+                <option key={weapon.name} value={i}>
+                  {weapon.name} ({weapon.damage})
+                </option>
+              ))}
             </select>
             <br />
             <span className="label">Melee Weapon</span>
@@ -442,8 +475,16 @@ const CharacterSheet = () => {
 
           {/*  ------- RANGED WEAPON ------ */}
           <label>
-            <select>
-              <option value="Lawful Good">Options</option>
+						<select
+              name="rangedWeapon"
+              value={character.rangedWeaponIndex}
+              onChange={handleRangedWeaponChange}
+            >
+              {rangedWeaponData.map((weapon, i) => (
+                <option key={weapon.name} value={i}>
+                  {weapon.name} ({weapon.damage})
+                </option>
+              ))}
             </select>
             <br />
             <span className="label">Ranged Weapon</span>
