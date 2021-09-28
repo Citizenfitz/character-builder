@@ -33,7 +33,7 @@ const initialState = {
 	},
 	meleeWeapon: null,
 	rangeWeapon: null,
-	disads: [],
+	disads: ["none","none"],
 	talents: [],
 	specAbilities: []
 }
