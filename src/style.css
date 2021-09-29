@@ -49,7 +49,7 @@ header {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 1em 1.5em;
+  padding: 1em 1.5rem;
   color: #883c8d;
   text-align: center;
 }
@@ -66,12 +66,12 @@ header .subheader {
 }
 @media (min-width: 481px) and (max-width: 768px) {
   header {
-    padding: 1em;
+    padding: 1rem;
   }
 }
 @media (max-width: 480px) {
   header {
-    padding: 0.5em;
+    padding: 0.5rem;
   }
 }
 
@@ -79,16 +79,16 @@ main {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 1.5em;
+  padding: 1.5rem;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   main {
-    padding: 1em;
+    padding: 1rem;
   }
 }
 @media (max-width: 480px) {
   main {
-    padding: 0.5em;
+    padding: 0.5rem;
   }
 }
 
@@ -96,18 +96,18 @@ footer {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: 1.5em;
+  padding: 1.5rem;
   background: #ddb5e0;
   color: #652d69;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   footer {
-    padding: 1em;
+    padding: 1rem;
   }
 }
 @media (max-width: 480px) {
   footer {
-    padding: 0.5em;
+    padding: 0.5rem;
   }
 }
 
@@ -490,19 +490,26 @@ th {
 
 .modal {
   position: absolute;
-  width: 500px;
+  width: 640px;
   left: 50%;
   margin-left: -250px;
   top: 40px;
   background: #fff;
-  overflow: auto;
+  overflow: hidden;
   outline: none;
   padding: 0;
 }
 .modal__header {
   background: #883c8d;
   height: 40px;
-  text-align: right;
+  position: relative;
+}
+.modal__h2 {
+  margin: 0 0 0 1.5rem;
+  font-size: 1.25rem;
+  height: 40px;
+  line-height: 40px;
+  color: #fff;
 }
 .modal__header-button {
   height: 40px;
@@ -512,18 +519,22 @@ th {
   border-radius: 0;
   border: none;
   font-size: 1.25em;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  border: 1px solid #883c8d;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
-.modal__h2 {
-  margin: 0;
-  padding: 1.5em;
+.modal__header-button:hover {
   color: #fff;
+  background: #883c8d;
 }
 .modal__body {
-  padding: 1.5em;
+  padding: 1.5rem;
   line-height: 1.25em;
 }
-.modal__buttons {
-  padding: 1.5em;
+.modal__footer {
+  padding: 1.5rem;
 }
 
 .alignment-radio-set {
@@ -810,6 +821,10 @@ th {
 
 .ut-captialize {
   text-transform: capitalize;
+}
+
+.ut-margin-top-0 {
+  margin-top: 0;
 }
 
 .ut-margin-right-2em {

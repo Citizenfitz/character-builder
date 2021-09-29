@@ -8,19 +8,26 @@
 }
 .modal {
   position: absolute;
-  width: 500px;
+  width: 640px;
   left: 50%;
   margin-left: -250px;
   top: 40px;
   background: $color-white;
-  overflow: auto;
+  overflow: hidden;
   // border-radius: 0 0 $border-radius $border-radius;
   outline: none;
   padding: 0;
   &__header {
     background: $color-royal;
     height: 40px;
-    text-align: right;
+    position: relative;
+  }
+  &__h2 {
+    margin: 0 0 0 $margins-desktop;
+    font-size: 1.25rem;
+    height: 40px;
+    line-height: 40px;
+    color: $color-white;
   }
   &__header-button {
     height: 40px;
@@ -30,21 +37,22 @@
     border-radius: 0;
     border: none;
     font-size: 1.25em;
-    //   &:hover {
-    //     color: $color-black;
-    //     background: $color-yellow-1;
-    //   }
+    font-family: $text-header;
+    border: 1px solid $color-royal;
+    position: absolute;
+    right: 0;
+    top: 0;
+    &:hover {
+      color: $color-white;
+      background: $color-royal;
+    }
   }
-  &__h2 {
-    margin: 0;
-    padding: $margins-desktop;
-    color: $color-white;
-  }
+
   &__body {
     padding: $margins-desktop;
     line-height: 1.25em;
   }
-  &__buttons {
+  &__footer {
     padding: $margins-desktop;
   }
 }
