@@ -5,6 +5,7 @@ import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
 import Attributes from "./Attributes";
+import Aspects from "./Aspects";
 import {
   aspectData,
   dataDisads,
@@ -463,29 +464,13 @@ const CharacterSheet = () => {
               </label>
             </div>
             <div className="flex-grid__child flex-grid__child--auto">
-              <label>
-                <button className="button">{character.aspect}</button> <br />
-                <span className="label">Class</span>
-              </label>
+              {/*  ------- CLASS / "Aspects" ------ */}
+              <Aspects
+                character={character}
+                handleCharAspect={handleCharAspect}
+              ></Aspects>
             </div>
           </div>
-
-          {/*  ------- CLASS ------ */}
-          {aspectData.map((i) => (
-            <span key={i.name} className="checkbox-wrapper">
-              <input
-                type="radio"
-                name="class"
-                value={i.id}
-                id={i.name}
-                checked={character.aspect === i.name}
-                onClick={handleCharAspect}
-              ></input>
-              <label htmlFor={i.name} className={i.name}>
-                {i.name}
-              </label>
-            </span>
-          ))}
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
