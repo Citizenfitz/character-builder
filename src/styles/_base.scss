@@ -105,6 +105,13 @@ h6,
   @include header6;
 }
 
+button,
+input[type=submit],
+input[type=button]
+{
+	cursor: pointer;
+}
+
 /***** SECTIONS  *****/
 // section {
 //   // border: 1px solid;
