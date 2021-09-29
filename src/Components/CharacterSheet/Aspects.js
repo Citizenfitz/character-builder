@@ -12,8 +12,16 @@ const Aspects = (props) => {
     <div className="attributes">
       {/*  ------- CLASS ------ */}
       <label>
-        <button className="button" onClick={toggleAspectModal}>
-          Class
+        <button
+          className="button aspect__modal-open-button "
+          onClick={toggleAspectModal}
+        >
+          <span
+            className={`aspect-icon aspect-icon--in-button aspect-icon--${props.character.aspect}`}
+          ></span>
+          <span className="ut-display-inine-block">
+            {props.character.aspect}&nbsp;&nbsp;
+          </span>
         </button>
         <br />
         <span className="label">Class</span>
@@ -44,7 +52,7 @@ const Aspects = (props) => {
             A character's class is their main "mode" or approach to challenges.
             There are four arranged such that each has two adjacent classes
             <i> (those to the left and right)</i> and one opposing class
-            <i>(the one directly across)</i>. A character's talents are
+            <i> (the one directly across)</i>. A character's talents are
             strongest within their class, middling in adjacent classes (1/2
             their level), and poor in opposing ones (1/4 their level). Each
             class has one or more starting talents gains additional talents as
@@ -67,7 +75,10 @@ const Aspects = (props) => {
           ))}
         </div>
         <div className="modal__footer">
-          <button className="button" onClick={toggleAspectModal}>
+          <button
+            className="button button--secondary button--large"
+            onClick={toggleAspectModal}
+          >
             close
           </button>
         </div>
