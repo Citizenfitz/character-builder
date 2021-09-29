@@ -5,7 +5,7 @@ const dataAttributes = {
 		'min' : 3,
 		'max' : 18,
 		'mod' : 0,
-		'total' : 0,
+		'total' : 10,
 		'bonus': 0,
 	},
 	dexterity:  { 
@@ -14,7 +14,7 @@ const dataAttributes = {
 		'min' : 3,
 		'max' : 18,
 		'mod' : 0,
-		'total' : 0,
+		'total' : 10,
 		'bonus': 0,
 	},
 	constitution:   { 
@@ -23,7 +23,7 @@ const dataAttributes = {
 		'min' : 3,
 		'max' : 18,
 		'mod' : 0,
-		'total' : 0,
+		'total' : 10,
 		'bonus': 0,
 	},
 	intelligence:  { 
@@ -32,7 +32,7 @@ const dataAttributes = {
 		'min' : 3,
 		'max' : 18,
 		'mod' : 0,
-		'total' : 0,
+		'total' : 10,
 		'bonus': 0,
 	},
 	wisdom: { 
@@ -41,7 +41,7 @@ const dataAttributes = {
 		'min' : 3,
 		'max' : 18,
 		'mod' : 0,
-		'total' : 0,
+		'total' : 10,
 		'bonus': 0,
 	},
 	charisma: { 
@@ -50,7 +50,7 @@ const dataAttributes = {
 		'min' : 3,
 		'max' : 18,
 		'mod' : 0,
-		'total' : 0,
+		'total' : 10,
 		'bonus': 0,
 	}
 };
