@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Modal from 'react-modal';
+import React, { useState, useCallback } from "react";
+import Modal from "react-modal";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -13,8 +13,8 @@ import {
   // talentData,
   // raceData,
   armorData,
-	meleeWeaponData,
-	rangedWeaponData,
+  meleeWeaponData,
+  rangedWeaponData,
 } from "../../Data";
 import {
   calculateBonus,
@@ -22,16 +22,16 @@ import {
   formatNumberSuffix,
 } from "../Utilities";
 
-Modal.setAppElement('#root');
+Modal.setAppElement("#root");
 const customModalStyles = {
-	content: {
-		top: '50%',
-		left: '50%',
-		right: 'auto',
-		bottom: 'auto',
-		marginRight: '-50%',
-		transform: 'translate(-50%, -50%)',
-	},
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
 };
 
 const CharacterSheet = () => {
@@ -44,16 +44,16 @@ const CharacterSheet = () => {
     aspect: aspectData[0].name,
     alignment: "Neutral",
     hitDiceType: aspectData[0].hitDiceType,
-		attributes: {
-			strength: 10,
-			dexterity: 10,
-			constitution: 10,
-			intelligence: 10,
-			wisdom: 10,
-			charisma: 10,
-		},
-		ac: 0,
-		perception: 10,
+    attributes: {
+      strength: 10,
+      dexterity: 10,
+      constitution: 10,
+      intelligence: 10,
+      wisdom: 10,
+      charisma: 10,
+    },
+    ac: 0,
+    perception: 10,
     disad1: "none",
     disad2: "none",
     talentAssigned1: "Combat",
@@ -80,11 +80,11 @@ const CharacterSheet = () => {
       "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
     armor: armorData[0],
-		armorIndex: 0,
-		meleeWeapon: meleeWeaponData[0],
-		meleeWeaponIndex: 0,
-		rangedWeapon: rangedWeaponData[0],
-		rangedWeaponIndex: 0,
+    armorIndex: 0,
+    meleeWeapon: meleeWeaponData[0],
+    meleeWeaponIndex: 0,
+    rangedWeapon: rangedWeaponData[0],
+    rangedWeaponIndex: 0,
   });
 
   const [talentDisabled, setTalentDisabled] = useState({
@@ -147,48 +147,45 @@ const CharacterSheet = () => {
     "Vow of Nature": false,
   });
 
-	const [notes, setNotes] = useState([])
-	const [notesIndex, setNotesIndex] = useState(false)
-	const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [notes, setNotes] = useState([]);
+  const [notesIndex, setNotesIndex] = useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
-	const openModal = () => {
+  const openModal = () => {
     setIsOpen(true);
-  }
+  };
 
   const closeModal = () => {
-		setNotesIndex(false);
+    setNotesIndex(false);
     setIsOpen(false);
-  }
+  };
 
-	const handleSaveNote = (e) => {
-		e.preventDefault()
-		const noteText = e.target.noteText.value
-		if(typeof notesIndex === 'number') {
-			// replace the indexed item
-			const tempNotes = notes;
-			tempNotes[notesIndex] = noteText
-			setNotes(tempNotes)
-			setNotesIndex(false)
-		} else {
-			// adding a new note
-			setNotes(prev => ([
-				...prev,
-				noteText
-			]))
-		}
-		closeModal()
-	}
+  const handleSaveNote = (e) => {
+    e.preventDefault();
+    const noteText = e.target.noteText.value;
+    if (typeof notesIndex === "number") {
+      // replace the indexed item
+      const tempNotes = notes;
+      tempNotes[notesIndex] = noteText;
+      setNotes(tempNotes);
+      setNotesIndex(false);
+    } else {
+      // adding a new note
+      setNotes((prev) => [...prev, noteText]);
+    }
+    closeModal();
+  };
 
-	const editNote = (index) => {
-		setNotesIndex(index)
-		setIsOpen(true)
-	}
+  const editNote = (index) => {
+    setNotesIndex(index);
+    setIsOpen(true);
+  };
 
-	const deleteNote = (index) => {
-		const newNoteList = [...notes]
-		newNoteList.splice(index,1)
-		setNotes(newNoteList)
-	}
+  const deleteNote = (index) => {
+    const newNoteList = [...notes];
+    newNoteList.splice(index, 1);
+    setNotes(newNoteList);
+  };
 
   const handleInputChange = (e, name) => {
     let value;
@@ -370,51 +367,51 @@ const CharacterSheet = () => {
     }
   };
 
-	const updateAttributes = useCallback((attributes) => {
-		setCharacter(prev => {
-			const ac = calculateBonus(attributes.dexterity) + prev.armor.ac
-			const perception = calculateBonus(attributes.wisdom) + 10
-			return ({
-				...prev,
-				ac,
-				attributes,
-				perception
-			})
-		})
-	},[])
-  
-  const handleArmorChange = (e) => {
-    const armor = armorData[e.target.value]
-		setCharacter(prev => {
-			const ac = calculateBonus(prev.attributes.dexterity) + armor.ac
-			return ({
-				...prev,
-				ac,
-				armorIndex: e.target.value,
-				armor
-			})
-		})
-	}
+  const updateAttributes = useCallback((attributes) => {
+    setCharacter((prev) => {
+      const ac = calculateBonus(attributes.dexterity) + prev.armor.ac;
+      const perception = calculateBonus(attributes.wisdom) + 10;
+      return {
+        ...prev,
+        ac,
+        attributes,
+        perception,
+      };
+    });
+  }, []);
 
-	const handleMeleeWeaponChange = (e) => {
-		const index = e.target.value
-		const meleeWeapon = meleeWeaponData[index]
-		setCharacter(prev => ({
-			...prev,
-			meleeWeapon,
-			meleeWeaponIndex: index
-		}))
-	}
-  
-	const handleRangedWeaponChange = (e) => {
-		const index = e.target.value
-		const rangedWeapon = rangedWeaponData[index]
-		setCharacter(prev => ({
-			...prev,
-			rangedWeapon,
-			rangedWeaponIndex: index
-		}))
-	}
+  const handleArmorChange = (e) => {
+    const armor = armorData[e.target.value];
+    setCharacter((prev) => {
+      const ac = calculateBonus(prev.attributes.dexterity) + armor.ac;
+      return {
+        ...prev,
+        ac,
+        armorIndex: e.target.value,
+        armor,
+      };
+    });
+  };
+
+  const handleMeleeWeaponChange = (e) => {
+    const index = e.target.value;
+    const meleeWeapon = meleeWeaponData[index];
+    setCharacter((prev) => ({
+      ...prev,
+      meleeWeapon,
+      meleeWeaponIndex: index,
+    }));
+  };
+
+  const handleRangedWeaponChange = (e) => {
+    const index = e.target.value;
+    const rangedWeapon = rangedWeaponData[index];
+    setCharacter((prev) => ({
+      ...prev,
+      rangedWeapon,
+      rangedWeaponIndex: index,
+    }));
+  };
 
   return (
     <div>
@@ -512,7 +509,9 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">{character.perception}</div>
+              <div className="data-display-box__text">
+                {character.perception}
+              </div>
               <h2 className="data-display-box__header">Perc.</h2>
             </div>
           </div>
@@ -535,7 +534,7 @@ const CharacterSheet = () => {
               value={character.armorIndex}
               onChange={handleArmorChange}
             >
-              {armorData.map((armor,i) => (
+              {armorData.map((armor, i) => (
                 <option key={armor.armor} value={i}>
                   {armor.armor} (+{armor.ac})
                 </option>
@@ -547,7 +546,7 @@ const CharacterSheet = () => {
 
           {/*  ------- MELEE WEAPON ------ */}
           <label>
-						<select
+            <select
               name="meleeWeapon"
               value={character.meleeWeaponIndex}
               onChange={handleMeleeWeaponChange}
@@ -564,7 +563,7 @@ const CharacterSheet = () => {
 
           {/*  ------- RANGED WEAPON ------ */}
           <label>
-						<select
+            <select
               name="rangedWeapon"
               value={character.rangedWeaponIndex}
               onChange={handleRangedWeaponChange}
@@ -663,31 +662,51 @@ const CharacterSheet = () => {
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
 
       <section>
-        <h2>Special Abilites &amp; Notes <button className="button-addNote" onClick={openModal}>Add Note</button></h2>
-				<div className="notes">
-					{notes.map((note,i) => (
-						<div className="note--content" key={i}>
-							<button className="fas fa-edit" onClick={() => editNote(i)}></button>
-							<div className="note--text">{note}</div>
-							<button className="fas fa-trash" onClick={() => deleteNote(i)}></button>
-						</div>
-					))}
-				</div>
+        <h2>
+          Special Abilites &amp; Notes{" "}
+          <button className="button-addNote" onClick={openModal}>
+            Add Note
+          </button>
+        </h2>
+        <div className="notes">
+          {notes.map((note, i) => (
+            <div className="note--content" key={i}>
+              <button
+                className="fas fa-edit"
+                onClick={() => editNote(i)}
+              ></button>
+              <div className="note--text">{note}</div>
+              <button
+                className="fas fa-trash"
+                onClick={() => deleteNote(i)}
+              ></button>
+            </div>
+          ))}
+        </div>
       </section>
-			<Modal
-				id="note--modal"
+      <Modal
+        id="note--modal"
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customModalStyles}
         contentLabel="Add a note"
       >
-				<h2>{typeof notesIndex === 'number' ? 'Edit' : 'Add'} Note</h2>
-        <button className="note--button-close" onClick={closeModal}>x</button>
+        <h2>{typeof notesIndex === "number" ? "Edit" : "Add"} Note</h2>
+        <button className="note--button-close" onClick={closeModal}>
+          x
+        </button>
         <form onSubmit={handleSaveNote}>
-          <textarea id="noteText" className="note--textarea" placeholder="add your note" defaultValue={typeof notesIndex === 'number' ? notes[notesIndex] : ''}></textarea>
+          <textarea
+            id="noteText"
+            className="note--textarea"
+            placeholder="add your note"
+            defaultValue={
+              typeof notesIndex === "number" ? notes[notesIndex] : ""
+            }
+          ></textarea>
           <input className="note--button-save" type="submit" value="Save" />
         </form>
-			</Modal>
+      </Modal>
     </div>
   );
 };
