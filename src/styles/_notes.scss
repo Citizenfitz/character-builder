@@ -1,0 +1,65 @@
+.button-addNote {
+	margin-left: 20px;
+}
+#note--modal {
+	width: 70%;
+	position: relative;
+	h2 {
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+}
+.note--button-close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+.note--textarea {
+	font-family: $text-regular;
+	width: 100%;
+	min-height: 120px;
+	padding: 10px;
+}
+.note--button-save {
+	float: right;
+}
+
+.notes {
+	margin-top: 10px;
+}
+
+.note--content {
+	display: flex;
+	padding: 5px 10px;
+	.note--text {
+		flex-grow: 2;
+		margin-left: 10px;
+	}
+	.fas {
+		visibility: hidden;
+		background-color: transparent;
+		border: none;
+		color: $color-black;
+		font-size: 18px;
+		padding: 0;
+		margin: 0;	
+	}
+	.fas::before {
+		font-family: "FontAwesome";
+    display: inline-block;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+	}
+	.fa-edit::before {
+		content: "\f044";
+	}
+	.fa-trash::before {
+		content: "\f1f8";
+	}
+	&:hover {
+		background-color: $color-gray-5;
+		.fas {
+			visibility: visible;
+		}
+	}
+}

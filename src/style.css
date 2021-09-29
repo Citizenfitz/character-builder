@@ -147,6 +147,12 @@ h3,
   font-weight: bold;
 }
 
+button,
+input[type=submit],
+input[type=button] {
+  cursor: pointer;
+}
+
 /***** SECTIONS  *****/
 /*******************  LISTS  ****************************/
 dl.dl--columns-4,
@@ -873,6 +879,76 @@ body {
   z-index: 100;
   width: 100%;
   height: 100%;
+}
+
+.button-addNote {
+  margin-left: 20px;
+}
+
+#note--modal {
+  width: 70%;
+  position: relative;
+}
+#note--modal h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.note--button-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.note--textarea {
+  font-family: "Cabin Regular", Cabin, sans-serif;
+  width: 100%;
+  min-height: 120px;
+  padding: 10px;
+}
+
+.note--button-save {
+  float: right;
+}
+
+.notes {
+  margin-top: 10px;
+}
+
+.note--content {
+  display: flex;
+  padding: 5px 10px;
+}
+.note--content .note--text {
+  flex-grow: 2;
+  margin-left: 10px;
+}
+.note--content .fas {
+  visibility: hidden;
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+.note--content .fas::before {
+  font-family: "FontAwesome";
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+.note--content .fa-edit::before {
+  content: "\f044";
+}
+.note--content .fa-trash::before {
+  content: "\f1f8";
+}
+.note--content:hover {
+  background-color: #f6f7fb;
+}
+.note--content:hover .fas {
+  visibility: visible;
 }
 
 /*# sourceMappingURL=style.css.map */
