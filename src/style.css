@@ -631,11 +631,11 @@ th {
   justify-content: center;
 }
 
-.aspect-radio-label {
+input[type=radio] + label.aspect-radio-label {
   height: 64px;
   width: 80px;
   border: 1px solid;
-  background-color: #dcdcdc;
+  background-color: #f5f3ed;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -644,35 +644,35 @@ th {
   opacity: 0.5;
   transition: background-color 0.5s ease;
 }
-.aspect-radio-label--fighter {
+input[type=radio] + label.aspect-radio-label--fighter {
   background-color: #04a54f;
   border-radius: 0 0 3px 3px;
 }
-.aspect-radio-label--fighter:hover {
+input[type=radio] + label.aspect-radio-label--fighter:hover {
   background-color: #037337;
 }
-.aspect-radio-label--priest {
+input[type=radio] + label.aspect-radio-label--priest {
   background-color: #2375b9;
   border-radius: 3px 0 0 3px;
 }
-.aspect-radio-label--priest:hover {
+input[type=radio] + label.aspect-radio-label--priest:hover {
   background-color: #1b5a8e;
 }
-.aspect-radio-label--wizard {
+input[type=radio] + label.aspect-radio-label--wizard {
   background-color: #e1a525;
   border-radius: 3px 3px 0 0;
 }
-.aspect-radio-label--wizard:hover {
+input[type=radio] + label.aspect-radio-label--wizard:hover {
   background-color: #b9861a;
 }
-.aspect-radio-label--knave {
+input[type=radio] + label.aspect-radio-label--knave {
   background-color: #eb2026;
   border-radius: 0 3px 3px 0;
 }
-.aspect-radio-label--knave:hover {
+input[type=radio] + label.aspect-radio-label--knave:hover {
   background-color: #c61217;
 }
-.aspect-radio-label__type {
+input[type=radio] + label.aspect-radio-label__type {
   font-size: 0.625rem;
   margin-top: 0.5em;
 }
