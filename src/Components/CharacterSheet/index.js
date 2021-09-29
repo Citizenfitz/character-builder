@@ -12,6 +12,8 @@ import {
   // talentData,
   // raceData,
   armorData,
+	meleeWeaponData,
+	rangedWeaponData,
 } from "../../Data";
 import {
   calculateBonus,
@@ -64,8 +66,12 @@ const CharacterSheet = () => {
     saveModsClass:
       "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
-		armorIndex: 0,
     armor: armorData[0],
+		armorIndex: 0,
+		meleeWeapon: meleeWeaponData[0],
+		meleeWeaponIndex: 0,
+		rangedWeapon: rangedWeaponData[0],
+		rangedWeaponIndex: 0,
   });
 
   const [talentDisabled, setTalentDisabled] = useState({
@@ -308,19 +314,6 @@ const CharacterSheet = () => {
     }
   };
 
-	const handleArmorChange = (e) => {
-		setCharacter(prev => {
-			const armor = armorData[e.target.value]
-			const ac = calculateBonus(prev.attributes.dexterity) + armor.ac
-			return ({
-				...prev,
-				ac,
-				armorIndex: e.target.value,
-				armor
-			})
-		})
-	}
-
 	const updateAttributes = useCallback((attributes) => {
 		setCharacter(prev => {
 			const ac = calculateBonus(attributes.dexterity) + prev.armor.ac
@@ -333,6 +326,39 @@ const CharacterSheet = () => {
 			})
 		})
 	},[])
+  
+  const handleArmorChange = (e) => {
+    const armor = armorData[e.target.value]
+		setCharacter(prev => {
+			const ac = calculateBonus(prev.attributes.dexterity) + armor.ac
+			return ({
+				...prev,
+				ac,
+				armorIndex: e.target.value,
+				armor
+			})
+		})
+	}
+
+	const handleMeleeWeaponChange = (e) => {
+		const index = e.target.value
+		const meleeWeapon = meleeWeaponData[index]
+		setCharacter(prev => ({
+			...prev,
+			meleeWeapon,
+			meleeWeaponIndex: index
+		}))
+	}
+  
+	const handleRangedWeaponChange = (e) => {
+		const index = e.target.value
+		const rangedWeapon = rangedWeaponData[index]
+		setCharacter(prev => ({
+			...prev,
+			rangedWeapon,
+			rangedWeaponIndex: index
+		}))
+	}
 
   return (
     <div>
@@ -464,8 +490,16 @@ const CharacterSheet = () => {
 
           {/*  ------- MELEE WEAPON ------ */}
           <label>
-            <select>
-              <option value="Lawful Good">Options</option>
+						<select
+              name="meleeWeapon"
+              value={character.meleeWeaponIndex}
+              onChange={handleMeleeWeaponChange}
+            >
+              {meleeWeaponData.map((weapon, i) => (
+                <option key={weapon.name} value={i}>
+                  {weapon.name} ({weapon.damage})
+                </option>
+              ))}
             </select>
             <br />
             <span className="label">Melee Weapon</span>
@@ -473,8 +507,16 @@ const CharacterSheet = () => {
 
           {/*  ------- RANGED WEAPON ------ */}
           <label>
-            <select>
-              <option value="Lawful Good">Options</option>
+						<select
+              name="rangedWeapon"
+              value={character.rangedWeaponIndex}
+              onChange={handleRangedWeaponChange}
+            >
+              {rangedWeaponData.map((weapon, i) => (
+                <option key={weapon.name} value={i}>
+                  {weapon.name} ({weapon.damage})
+                </option>
+              ))}
             </select>
             <br />
             <span className="label">Ranged Weapon</span>
