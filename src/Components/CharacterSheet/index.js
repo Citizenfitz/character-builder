@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from 'react-modal';
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -20,6 +21,18 @@ import {
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
+
+Modal.setAppElement('#root');
+const customModalStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+	},
+};
 
 const CharacterSheet = () => {
   const [character, setCharacter] = useState({
@@ -128,6 +141,49 @@ const CharacterSheet = () => {
     "Vow of Modesty": false,
     "Vow of Nature": false,
   });
+
+	const [notes, setNotes] = useState([])
+	const [notesIndex, setNotesIndex] = useState(false)
+	const [modalIsOpen, setIsOpen] = React.useState(false);
+
+	const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+		setNotesIndex(false);
+    setIsOpen(false);
+  }
+
+	const handleSaveNote = (e) => {
+		e.preventDefault()
+		const noteText = e.target.noteText.value
+		if(typeof notesIndex === 'number') {
+			// replace the indexed item
+			const tempNotes = notes;
+			tempNotes[notesIndex] = noteText
+			setNotes(tempNotes)
+			setNotesIndex(false)
+		} else {
+			// adding a new note
+			setNotes(prev => ([
+				...prev,
+				noteText
+			]))
+		}
+		closeModal()
+	}
+
+	const editNote = (index) => {
+		setNotesIndex(index)
+		setIsOpen(true)
+	}
+
+	const deleteNote = (index) => {
+		const newNoteList = [...notes]
+		newNoteList.splice(index,1)
+		setNotes(newNoteList)
+	}
 
   const handleInputChange = (e, name) => {
     let value;
@@ -576,14 +632,31 @@ const CharacterSheet = () => {
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
 
       <section>
-        <h2>Special Abilites &amp; Notes</h2>
-        <ul>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-        </ul>
+        <h2>Special Abilites &amp; Notes <button className="button-addNote" onClick={openModal}>Add Note</button></h2>
+				<div className="notes">
+					{notes.map((note,i) => (
+						<div className="note--content" key={i}>
+							<button className="fas fa-edit" onClick={() => editNote(i)}></button>
+							<div className="note--text">{note}</div>
+							<button className="fas fa-trash" onClick={() => deleteNote(i)}></button>
+						</div>
+					))}
+				</div>
       </section>
+			<Modal
+				id="note--modal"
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customModalStyles}
+        contentLabel="Add a note"
+      >
+				<h2>{typeof notesIndex === 'number' ? 'Edit' : 'Add'} Note</h2>
+        <button className="note--button-close" onClick={closeModal}>x</button>
+        <form onSubmit={handleSaveNote}>
+          <textarea id="noteText" className="note--textarea" placeholder="add your note" defaultValue={typeof notesIndex === 'number' ? notes[notesIndex] : ''}></textarea>
+          <input className="note--button-save" type="submit" value="Save" />
+        </form>
+			</Modal>
     </div>
   );
 };
