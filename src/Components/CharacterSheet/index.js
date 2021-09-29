@@ -15,6 +15,7 @@ import {
   armorData,
   meleeWeaponData,
   rangedWeaponData,
+	dataAttributes,
 } from "../../Data";
 import {
   calculateBonus,
@@ -43,15 +44,8 @@ const characterDefaults = {
 	aspect: aspectData[0].name,
 	alignment: "Neutral",
 	hitDiceType: aspectData[0].hitDiceType,
-	attributes: {
-		strength: 10,
-		dexterity: 10,
-		constitution: 10,
-		intelligence: 10,
-		wisdom: 10,
-		charisma: 10,
-	},
-	ac: 0,
+	attributes: dataAttributes,
+	ac: 10,
 	perception: 10,
 	disad1: "none",
 	disad2: "none",
@@ -90,9 +84,8 @@ const characterData = JSON.parse(localStorage.getItem('character'))
 const notesData = JSON.parse(localStorage.getItem('notes'))
 
 const CharacterSheet = () => {
-	console.log(`Load attributes`, characterData.attributes)
-  const [character, setCharacter] = useState(characterData);
-  const [notes, setNotes] = useState(notesData);
+  const [character, setCharacter] = useState(characterData || characterDefaults);
+  const [notes, setNotes] = useState(notesData || undefined);
   const [notesIndex, setNotesIndex] = useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -381,10 +374,9 @@ const CharacterSheet = () => {
   };
 
   const updateAttributes = useCallback((attributes) => {
-		console.log(`attributes update:`, attributes)
     setCharacter((prev) => {
-      const ac = calculateBonus(attributes.dexterity) + prev.armor.ac;
-      const perception = calculateBonus(attributes.wisdom) + 10;
+      const ac = 10 + attributes.dexterity.mod + prev.armor.ac
+      const perception = 10 + attributes.wisdom.mod
       return {
         ...prev,
         ac,
@@ -397,7 +389,7 @@ const CharacterSheet = () => {
   const handleArmorChange = (e) => {
     const armor = armorData[e.target.value];
     setCharacter((prev) => {
-      const ac = calculateBonus(prev.attributes.dexterity) + armor.ac;
+      const ac = 10 + prev.attributes.dexterity.mod + armor.ac;
       return {
         ...prev,
         ac,
@@ -502,7 +494,7 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <Attributes onChange={updateAttributes} attribs={character.attributes} />
+            <Attributes onChange={updateAttributes} attributes={character.attributes} />
           </section>
         </div>
 

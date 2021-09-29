@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
-import {dataAttributes} from '../../Data';
 import {
   calculateBonus,
   formatNumberModifier
@@ -26,32 +25,8 @@ document.addEventListener("mousedown", () => {
 })
 
 const Attributes = (props) => {
-	const {onChange, attribs} = props
-	console.log(`attribs`, attribs)
-	Object.entries(attribs).forEach(([key,val]) => {
-		console.log('key',key,'val',val)
-		dataAttributes[key].roll = val
-		dataAttributes[key].total = val + dataAttributes[key].bonus
-		dataAttributes[key].mod = formatNumberModifier(calculateBonus(val))
-	})
-	console.log(`attribs merged with dataAttributes`, dataAttributes)
-	const [attributes, setAttributes] = useState(dataAttributes)
+	const {onChange, attributes} = props
 	const [pendingRoll, setPendingRoll] = useState('strength')
-
-	useEffect(() => {
-		const attribTotals = {}
-		Object.entries(attributes).map(([key,value]) => attribTotals[key] = value.total)
-		console.log(`attribTotals`, attribTotals)
-		onChange(attribTotals)
-	}, [attributes, onChange])
-
-	// useEffect(() => {
-	// 	setAttributes(prev => {
-	// 		const newState = {...prev}
-	// 		Object.entries(attribs).forEach(([key,val]) => newState[key].roll = val)
-	// 		return (newState)
-	// 	})
-	// },[attribs])
 
 	// set the onRollComplete function onMount
 	Box.onRollComplete = (results) => {
@@ -62,18 +37,17 @@ const Attributes = (props) => {
 	const updateAttribute = (e) => {
 		e.preventDefault()
 		let val = e.target.value
-		console.log(`val`, val)
 		if(val) {
 			val = parseInt(val)
 		}
 		const attr = e.target.id.replace("attrib-","")
-		setAttributes(PrevState => {
-			const newState = {...PrevState}
-			newState[attr].roll = val
-			newState[attr].total = val + newState[attr].bonus
-			newState[attr].mod = formatNumberModifier(calculateBonus(val))
-			return newState
-		})
+
+		const newState = {...attributes}
+		newState[attr].roll = val
+		newState[attr].total = val + newState[attr].bonus
+		newState[attr].mod = calculateBonus(val)
+
+		onChange(newState)
 	}
 
 	// update attribute from dice roll
@@ -81,10 +55,8 @@ const Attributes = (props) => {
 		const newState = {...attributes}
 		newState[pendingRoll].roll = result
 		newState[pendingRoll].total = result + newState[pendingRoll].bonus
-		newState[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
-		setAttributes(() => {
-			return newState
-		})
+		newState[pendingRoll].mod = calculateBonus(result)
+		onChange(newState)
 	}
 
 	// roll dice on button click
@@ -106,7 +78,7 @@ const Attributes = (props) => {
 							<input id={`attrib-${key}`} className="attrib-input" type="number" inputMode="numeric" min={values.min} max={values.max} value={values.total} onChange={updateAttribute} />
 						</div>
 						<div className="attrib-name"><button id={`roll-${key}`} onClick={rollDice}>{values.name}</button></div>
-						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>
+						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={formatNumberModifier(values.mod)} /></span></div>
 					</div>
 				)}
 			)}
