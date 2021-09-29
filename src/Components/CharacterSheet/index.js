@@ -151,6 +151,7 @@ const CharacterSheet = () => {
   }
 
   const closeModal = () => {
+		setNotesIndex(false);
     setIsOpen(false);
   }
 
@@ -649,10 +650,10 @@ const CharacterSheet = () => {
         style={customModalStyles}
         contentLabel="Add a note"
       >
-				<h2>Add Note</h2>
+				<h2>{typeof notesIndex === 'number' ? 'Edit' : 'Add'} Note</h2>
         <button className="note--button-close" onClick={closeModal}>x</button>
         <form onSubmit={handleSaveNote}>
-          <textarea id="noteText" className="note--textarea" placeholder="add your note" defaultValue={notes.length > 0 ? notes[notesIndex] : ''}></textarea>
+          <textarea id="noteText" className="note--textarea" placeholder="add your note" defaultValue={typeof notesIndex === 'number' ? notes[notesIndex] : ''}></textarea>
           <input className="note--button-save" type="submit" value="Save" />
         </form>
 			</Modal>
