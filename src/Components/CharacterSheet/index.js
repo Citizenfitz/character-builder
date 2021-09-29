@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Modal from "react-modal";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
@@ -34,58 +34,75 @@ const customModalStyles = {
   },
 };
 
+const characterDefaults = {
+	namePlayer: "",
+	nameCharacter: "",
+	level: 1,
+	race: "Human",
+	gender: "Male",
+	aspect: aspectData[0].name,
+	alignment: "Neutral",
+	hitDiceType: aspectData[0].hitDiceType,
+	attributes: {
+		strength: 10,
+		dexterity: 10,
+		constitution: 10,
+		intelligence: 10,
+		wisdom: 10,
+		charisma: 10,
+	},
+	ac: 0,
+	perception: 10,
+	disad1: "none",
+	disad2: "none",
+	talentAssigned1: "Combat",
+	talentAssigned2: "Multi-Attack",
+	talentLevel1: "choose",
+	talentKnave1: "choose",
+	talentDisad1: "choose",
+	talentDisad2: "choose",
+	talentLevel3: "choose",
+	talentLevel5: "choose",
+	talentLevel7: "choose",
+	talentLevel9: "choose",
+	talentAssigned1Type: "Core",
+	talentAssigned2Type: "Core",
+	talentLevel1Type: "Core",
+	talentKnave1Type: "Core",
+	talentDisad1Type: "Core",
+	talentDisad2Type: "Core",
+	talentLevel3Type: "Core",
+	talentLevel5Type: "Core",
+	talentLevel7Type: "Core",
+	talentLevel9Type: "Core",
+	saveModsClass:
+		"+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
+	saveModsRace: "",
+	armor: armorData[0],
+	armorIndex: 0,
+	meleeWeapon: meleeWeaponData[0],
+	meleeWeaponIndex: 0,
+	rangedWeapon: rangedWeaponData[0],
+	rangedWeaponIndex: 0,
+}
+
+const characterData = JSON.parse(localStorage.getItem('character'))
+const notesData = JSON.parse(localStorage.getItem('notes'))
+
 const CharacterSheet = () => {
-  const [character, setCharacter] = useState({
-    namePlayer: "",
-    nameCharacter: "",
-    level: 1,
-    race: "Human",
-    gender: "Male",
-    aspect: aspectData[0].name,
-    alignment: "Neutral",
-    hitDiceType: aspectData[0].hitDiceType,
-    attributes: {
-      strength: 10,
-      dexterity: 10,
-      constitution: 10,
-      intelligence: 10,
-      wisdom: 10,
-      charisma: 10,
-    },
-    ac: 0,
-    perception: 10,
-    disad1: "none",
-    disad2: "none",
-    talentAssigned1: "Combat",
-    talentAssigned2: "Multi-Attack",
-    talentLevel1: "choose",
-    talentKnave1: "choose",
-    talentDisad1: "choose",
-    talentDisad2: "choose",
-    talentLevel3: "choose",
-    talentLevel5: "choose",
-    talentLevel7: "choose",
-    talentLevel9: "choose",
-    talentAssigned1Type: "Core",
-    talentAssigned2Type: "Core",
-    talentLevel1Type: "Core",
-    talentKnave1Type: "Core",
-    talentDisad1Type: "Core",
-    talentDisad2Type: "Core",
-    talentLevel3Type: "Core",
-    talentLevel5Type: "Core",
-    talentLevel7Type: "Core",
-    talentLevel9Type: "Core",
-    saveModsClass:
-      "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
-    saveModsRace: "",
-    armor: armorData[0],
-    armorIndex: 0,
-    meleeWeapon: meleeWeaponData[0],
-    meleeWeaponIndex: 0,
-    rangedWeapon: rangedWeaponData[0],
-    rangedWeaponIndex: 0,
-  });
+	console.log(`Load attributes`, characterData.attributes)
+  const [character, setCharacter] = useState(characterData);
+  const [notes, setNotes] = useState(notesData);
+  const [notesIndex, setNotesIndex] = useState(false);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+
+	useEffect(()=>{
+		localStorage.setItem('character', JSON.stringify(character));
+	},[character])
+
+	useEffect(()=>{
+		localStorage.setItem('notes', JSON.stringify(notes));
+	},[notes])
 
   const [talentDisabled, setTalentDisabled] = useState({
     Alertness: false,
@@ -146,10 +163,6 @@ const CharacterSheet = () => {
     "Vow of Modesty": false,
     "Vow of Nature": false,
   });
-
-  const [notes, setNotes] = useState([]);
-  const [notesIndex, setNotesIndex] = useState(false);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
 
   const openModal = () => {
     setIsOpen(true);
@@ -368,6 +381,7 @@ const CharacterSheet = () => {
   };
 
   const updateAttributes = useCallback((attributes) => {
+		console.log(`attributes update:`, attributes)
     setCharacter((prev) => {
       const ac = calculateBonus(attributes.dexterity) + prev.armor.ac;
       const perception = calculateBonus(attributes.wisdom) + 10;
@@ -488,7 +502,7 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <Attributes onChange={updateAttributes} />
+            <Attributes onChange={updateAttributes} attribs={character.attributes} />
           </section>
         </div>
 
@@ -710,4 +724,4 @@ const CharacterSheet = () => {
   );
 };
 
-export default CharacterSheet;
+export default React.memo(CharacterSheet);

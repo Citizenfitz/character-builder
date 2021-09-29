@@ -26,15 +26,32 @@ document.addEventListener("mousedown", () => {
 })
 
 const Attributes = (props) => {
-	const {onChange} = props
+	const {onChange, attribs} = props
+	console.log(`attribs`, attribs)
+	Object.entries(attribs).forEach(([key,val]) => {
+		console.log('key',key,'val',val)
+		dataAttributes[key].roll = val
+		dataAttributes[key].total = val + dataAttributes[key].bonus
+		dataAttributes[key].mod = formatNumberModifier(calculateBonus(val))
+	})
+	console.log(`attribs merged with dataAttributes`, dataAttributes)
 	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
 
 	useEffect(() => {
 		const attribTotals = {}
 		Object.entries(attributes).map(([key,value]) => attribTotals[key] = value.total)
+		console.log(`attribTotals`, attribTotals)
 		onChange(attribTotals)
 	}, [attributes, onChange])
+
+	// useEffect(() => {
+	// 	setAttributes(prev => {
+	// 		const newState = {...prev}
+	// 		Object.entries(attribs).forEach(([key,val]) => newState[key].roll = val)
+	// 		return (newState)
+	// 	})
+	// },[attribs])
 
 	// set the onRollComplete function onMount
 	Box.onRollComplete = (results) => {
@@ -45,6 +62,7 @@ const Attributes = (props) => {
 	const updateAttribute = (e) => {
 		e.preventDefault()
 		let val = e.target.value
+		console.log(`val`, val)
 		if(val) {
 			val = parseInt(val)
 		}
@@ -95,4 +113,4 @@ const Attributes = (props) => {
 		</div>
 	)}
 	
-export default Attributes;
+export default React.memo(Attributes);
