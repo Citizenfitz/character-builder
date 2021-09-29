@@ -1,0 +1,50 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.modal {
+  position: absolute;
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
+  top: 40px;
+  background: $color-white;
+  overflow: auto;
+  // border-radius: 0 0 $border-radius $border-radius;
+  outline: none;
+  padding: 0;
+  &__header {
+    background: $color-royal;
+    height: 40px;
+    text-align: right;
+  }
+  &__header-button {
+    height: 40px;
+    width: 40px;
+    color: $color-royal;
+    background: $color-white;
+    border-radius: 0;
+    border: none;
+    font-size: 1.25em;
+    //   &:hover {
+    //     color: $color-black;
+    //     background: $color-yellow-1;
+    //   }
+  }
+  &__h2 {
+    margin: 0;
+    padding: $margins-desktop;
+    color: $color-white;
+  }
+  &__body {
+    padding: $margins-desktop;
+    line-height: 1.25em;
+  }
+  &__buttons {
+    padding: $margins-desktop;
+  }
+}
