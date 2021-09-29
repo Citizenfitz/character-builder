@@ -50,21 +50,24 @@ select {
   @include input-basics;
 }
 
-/***** Buttons *****/
+// ***** Buttons *****/
 button,
 .button {
-  background-color: $color-royal;
-  color: white;
-  border-radius: $border-radius-standard;
-  border: $form-element-border;
-  vertical-align: bottom;
-  &:hover {
-    background-color: darken($color-royal, 10%);
+  @include input-basics;
+  &--primary {
+    background-color: $color-royal;
+    color: white;
+    border-radius: $border-radius-standard;
+    border: $form-element-border;
+    vertical-align: bottom;
+    &:hover {
+      background-color: darken($color-royal, 10%);
+    }
+    &:active {
+      background-color: darken($color-royal, 10%);
+    }
   }
-  &:active {
-    background-color: darken($color-royal, 10%);
-  }
-  &__reverse {
+  &--secondary {
     background-color: transparent;
     color: $color-royal;
     &:hover {
@@ -75,6 +78,12 @@ button,
       background-color: transparent;
       color: darken($color-royal, 10%);
     }
+  }
+  &--large {
+    min-width: 140px;
+    padding: 0.75rem;
+    height: auto;
+    font-size: 1rem;
   }
 }
 
@@ -138,7 +147,7 @@ input[type="radio"] + label {
 input[type="radio"]:checked + label {
   display: inline-block;
   background: $color-royal;
-  color: white;
+  color: $color-white;
   border-color: black;
   &.fighter {
     background: darken($color-fighter, 3%);

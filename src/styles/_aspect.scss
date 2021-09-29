@@ -1,4 +1,10 @@
 //* *************** ASPECT / CLASS SET ***************** */
+
+// button that opens the modal
+.aspect__modal-open-button {
+  text-transform: capitalize;
+}
+
 .aspect-radio-set {
   list-style: none;
   padding: 0;
@@ -109,6 +115,16 @@
     margin: 0;
     &:after {
       background-size: 90%;
+    }
+  }
+
+  &--in-button {
+    height: 12px;
+    width: 12px;
+    margin: 0 0.25rem 0 0;
+    &:after {
+      background-size: 90%;
+      bottom: 2px;
     }
   }
 

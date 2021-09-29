@@ -293,37 +293,51 @@ select {
   background-color: #f5f3ed;
 }
 
-/***** Buttons *****/
 button,
 .button {
+  height: 24px;
+  border-radius: 3px;
+  border: 1px solid #c4c4c4;
+  padding: 0 0.25em;
+  background-color: #f5f3ed;
+}
+button--primary,
+.button--primary {
   background-color: #883c8d;
   color: white;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
   vertical-align: bottom;
 }
-button:hover,
-.button:hover {
+button--primary:hover,
+.button--primary:hover {
   background-color: #652d69;
 }
-button:active,
-.button:active {
+button--primary:active,
+.button--primary:active {
   background-color: #652d69;
 }
-button__reverse,
-.button__reverse {
+button--secondary,
+.button--secondary {
   background-color: transparent;
   color: #883c8d;
 }
-button__reverse:hover,
-.button__reverse:hover {
+button--secondary:hover,
+.button--secondary:hover {
   background-color: transparent;
   color: #652d69;
 }
-button__reverse:active,
-.button__reverse:active {
+button--secondary:active,
+.button--secondary:active {
   background-color: transparent;
   color: #652d69;
+}
+button--large,
+.button--large {
+  min-width: 140px;
+  padding: 0.75rem;
+  height: auto;
+  font-size: 1rem;
 }
 
 input.input--attached-button {
@@ -395,7 +409,7 @@ input[type=radio] + label {
 input[type=radio]:checked + label {
   display: inline-block;
   background: #883c8d;
-  color: white;
+  color: #fff;
   border-color: black;
 }
 input[type=radio]:checked + label.fighter {
@@ -594,6 +608,10 @@ th {
   border: 1px solid #dcdcdc;
 }
 
+.aspect__modal-open-button {
+  text-transform: capitalize;
+}
+
 .aspect-radio-set {
   list-style: none;
   padding: 0;
@@ -708,6 +726,15 @@ th {
 }
 .aspect-icon--large:after {
   background-size: 90%;
+}
+.aspect-icon--in-button {
+  height: 12px;
+  width: 12px;
+  margin: 0 0.25rem 0 0;
+}
+.aspect-icon--in-button:after {
+  background-size: 90%;
+  bottom: 2px;
 }
 .aspect-icon--common:after {
   content: "C";
@@ -849,7 +876,6 @@ th {
   display: inline-block;
 }
 
-/* Components */
 .attributes {
   /* For Firefox */
   /* Webkit browsers like Safari and Chrome */
@@ -857,10 +883,6 @@ th {
 .attributes button {
   cursor: pointer;
   padding: 3px 3px 0 3px;
-  background-color: transparent;
-}
-.attributes button:hover {
-  background-color: #ddb5e0;
 }
 .attributes .attrib-input {
   width: 40px;
