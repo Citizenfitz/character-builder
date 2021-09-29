@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
 import {dataAttributes} from '../../Data';
 import {
@@ -25,9 +25,16 @@ document.addEventListener("mousedown", () => {
 	}
 })
 
-const Attributes = () => {
+const Attributes = (props) => {
+	const {onChange} = props
 	const [attributes, setAttributes] = useState(dataAttributes)
 	const [pendingRoll, setPendingRoll] = useState('strength')
+
+	useEffect(() => {
+		const attribTotals = {}
+		Object.entries(attributes).map(([key,value]) => attribTotals[key] = value.total)
+		onChange(attribTotals)
+	}, [attributes, onChange])
 
 	// set the onRollComplete function onMount
 	Box.onRollComplete = (results) => {
@@ -45,6 +52,7 @@ const Attributes = () => {
 		setAttributes(PrevState => {
 			const newState = {...PrevState}
 			newState[attr].roll = val
+			newState[attr].total = val + newState[attr].bonus
 			newState[attr].mod = formatNumberModifier(calculateBonus(val))
 			return newState
 		})
@@ -54,6 +62,7 @@ const Attributes = () => {
 	const setAttributeFromRoll = (result) => {
 		const newState = {...attributes}
 		newState[pendingRoll].roll = result
+		newState[pendingRoll].total = result + newState[pendingRoll].bonus
 		newState[pendingRoll].mod = formatNumberModifier(calculateBonus(result))
 		setAttributes(() => {
 			return newState
@@ -76,7 +85,7 @@ const Attributes = () => {
 				return (
 					<div className="attrib-group" key={key}>
 						<div className="attrib-val">
-							<input id={`attrib-${key}`} className="attrib-input" type="number" inputMode="numeric" min={values.min} max={values.max} value={values.roll} onChange={updateAttribute} />
+							<input id={`attrib-${key}`} className="attrib-input" type="number" inputMode="numeric" min={values.min} max={values.max} value={values.total} onChange={updateAttribute} />
 						</div>
 						<div className="attrib-name"><button id={`roll-${key}`} onClick={rollDice}>{values.name}</button></div>
 						<div className="attrib-mod">Mod: <span><input type="text" readOnly value={values.mod} /></span></div>

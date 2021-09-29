@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Modal from 'react-modal';
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -16,10 +17,22 @@ import {
 	rangedWeaponData,
 } from "../../Data";
 import {
-  // calculateBonus,
+  calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
+
+Modal.setAppElement('#root');
+const customModalStyles = {
+	content: {
+		top: '50%',
+		left: '50%',
+		right: 'auto',
+		bottom: 'auto',
+		marginRight: '-50%',
+		transform: 'translate(-50%, -50%)',
+	},
+};
 
 const CharacterSheet = () => {
   const [character, setCharacter] = useState({
@@ -31,12 +44,16 @@ const CharacterSheet = () => {
     aspect: aspectData[0].name,
     alignment: "Neutral",
     hitDiceType: aspectData[0].hitDiceType,
-    attribStr: 10,
-    attribDex: 10,
-    attribInt: 10,
-    attribWis: 10,
-    attribCon: 10,
-    attribCha: 10,
+		attributes: {
+			strength: 10,
+			dexterity: 10,
+			constitution: 10,
+			intelligence: 10,
+			wisdom: 10,
+			charisma: 10,
+		},
+		ac: 0,
+		perception: 10,
     disad1: "none",
     disad2: "none",
     talentAssigned1: "Combat",
@@ -62,7 +79,8 @@ const CharacterSheet = () => {
     saveModsClass:
       "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
     saveModsRace: "",
-    armor: "none",
+    armor: armorData[0],
+		armorIndex: 0,
 		meleeWeapon: meleeWeaponData[0],
 		meleeWeaponIndex: 0,
 		rangedWeapon: rangedWeaponData[0],
@@ -128,6 +146,49 @@ const CharacterSheet = () => {
     "Vow of Modesty": false,
     "Vow of Nature": false,
   });
+
+	const [notes, setNotes] = useState([])
+	const [notesIndex, setNotesIndex] = useState(false)
+	const [modalIsOpen, setIsOpen] = React.useState(false);
+
+	const openModal = () => {
+    setIsOpen(true);
+  }
+
+  const closeModal = () => {
+		setNotesIndex(false);
+    setIsOpen(false);
+  }
+
+	const handleSaveNote = (e) => {
+		e.preventDefault()
+		const noteText = e.target.noteText.value
+		if(typeof notesIndex === 'number') {
+			// replace the indexed item
+			const tempNotes = notes;
+			tempNotes[notesIndex] = noteText
+			setNotes(tempNotes)
+			setNotesIndex(false)
+		} else {
+			// adding a new note
+			setNotes(prev => ([
+				...prev,
+				noteText
+			]))
+		}
+		closeModal()
+	}
+
+	const editNote = (index) => {
+		setNotesIndex(index)
+		setIsOpen(true)
+	}
+
+	const deleteNote = (index) => {
+		const newNoteList = [...notes]
+		newNoteList.splice(index,1)
+		setNotes(newNoteList)
+	}
 
   const handleInputChange = (e, name) => {
     let value;
@@ -309,6 +370,32 @@ const CharacterSheet = () => {
     }
   };
 
+	const updateAttributes = useCallback((attributes) => {
+		setCharacter(prev => {
+			const ac = calculateBonus(attributes.dexterity) + prev.armor.ac
+			const perception = calculateBonus(attributes.wisdom) + 10
+			return ({
+				...prev,
+				ac,
+				attributes,
+				perception
+			})
+		})
+	},[])
+  
+  const handleArmorChange = (e) => {
+    const armor = armorData[e.target.value]
+		setCharacter(prev => {
+			const ac = calculateBonus(prev.attributes.dexterity) + armor.ac
+			return ({
+				...prev,
+				ac,
+				armorIndex: e.target.value,
+				armor
+			})
+		})
+	}
+
 	const handleMeleeWeaponChange = (e) => {
 		const index = e.target.value
 		const meleeWeapon = meleeWeaponData[index]
@@ -318,6 +405,7 @@ const CharacterSheet = () => {
 			meleeWeaponIndex: index
 		}))
 	}
+  
 	const handleRangedWeaponChange = (e) => {
 		const index = e.target.value
 		const rangedWeapon = rangedWeaponData[index]
@@ -404,7 +492,7 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <Attributes />
+            <Attributes onChange={updateAttributes} />
           </section>
         </div>
 
@@ -412,7 +500,7 @@ const CharacterSheet = () => {
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
           <div className="flex-grid flex-grid--wrap">
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">10</div>
+              <div className="data-display-box__text">{character.ac}</div>
               <h2 className="data-display-box__header">AC</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -424,7 +512,7 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">10</div>
+              <div className="data-display-box__text">{character.perception}</div>
               <h2 className="data-display-box__header">Perc.</h2>
             </div>
           </div>
@@ -444,12 +532,12 @@ const CharacterSheet = () => {
           <label>
             <select
               name="armor"
-              value={character.armor}
-              onChange={(e) => handleInputChange(e, "armor")}
+              value={character.armorIndex}
+              onChange={handleArmorChange}
             >
-              {armorData.map((i) => (
-                <option key={i.armor} value={i.armor}>
-                  {i.armor} (+{i.ac})
+              {armorData.map((armor,i) => (
+                <option key={armor.armor} value={i}>
+                  {armor.armor} (+{armor.ac})
                 </option>
               ))}
             </select>
@@ -575,14 +663,31 @@ const CharacterSheet = () => {
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
 
       <section>
-        <h2>Special Abilites &amp; Notes</h2>
-        <ul>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-          <li>Item</li>
-        </ul>
+        <h2>Special Abilites &amp; Notes <button className="button-addNote" onClick={openModal}>Add Note</button></h2>
+				<div className="notes">
+					{notes.map((note,i) => (
+						<div className="note--content" key={i}>
+							<button className="fas fa-edit" onClick={() => editNote(i)}></button>
+							<div className="note--text">{note}</div>
+							<button className="fas fa-trash" onClick={() => deleteNote(i)}></button>
+						</div>
+					))}
+				</div>
       </section>
+			<Modal
+				id="note--modal"
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customModalStyles}
+        contentLabel="Add a note"
+      >
+				<h2>{typeof notesIndex === 'number' ? 'Edit' : 'Add'} Note</h2>
+        <button className="note--button-close" onClick={closeModal}>x</button>
+        <form onSubmit={handleSaveNote}>
+          <textarea id="noteText" className="note--textarea" placeholder="add your note" defaultValue={typeof notesIndex === 'number' ? notes[notesIndex] : ''}></textarea>
+          <input className="note--button-save" type="submit" value="Save" />
+        </form>
+			</Modal>
     </div>
   );
 };
