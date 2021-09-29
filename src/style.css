@@ -524,6 +524,7 @@ th {
   height: 40px;
   line-height: 40px;
   color: #fff;
+  letter-spacing: 2px;
 }
 .modal__header-button {
   height: 40px;
