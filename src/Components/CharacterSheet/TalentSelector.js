@@ -9,7 +9,7 @@ const TalentSelector = (props) => {
           <select
             onChange={props.handleSetCharTalents}
             id={props.id}
-            value={props.character.talentKnave1}
+            value={props.character.talentKnave1 ? props.character.talentKnave1 : ""}
           >
             <option value="choose" disabled>
               Choose Any Knave Talent
@@ -37,7 +37,7 @@ const TalentSelector = (props) => {
           <select
             onChange={props.handleSetCharTalents}
             id={props.id}
-            value={props.character[props.id]}
+            value={props.character[props.id] ? props.character[props.id] : ""}
           >
             <option value="choose" disabled>
               Choose Talent
@@ -115,7 +115,7 @@ const TalentSelector = (props) => {
           <select
             onChange={props.handleSetCharTalents}
             id={props.id}
-            value={props.character.talentLevel1}
+            value={props.character.talentLevel1 ? props.character.talentLevel1 : ""}
           >
             <option value="choose" disabled>
               Choose Any Talent (Including a Race)
