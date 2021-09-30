@@ -43,6 +43,7 @@ body {
   margin: 0;
   font-family: "Cabin Regular", Cabin, sans-serif;
   color: #000;
+  background: #fdfff5;
 }
 
 header {
@@ -180,7 +181,7 @@ dd,
 /*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator {
   display: inline-block;
-  color: white;
+  color: #fdfff5;
   height: 16px;
   width: 16px;
   font-size: 0.75rem;
@@ -304,7 +305,7 @@ button,
 button--primary,
 .button--primary {
   background-color: #883c8d;
-  color: white;
+  color: #fdfff5;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
   vertical-align: bottom;
@@ -409,7 +410,7 @@ input[type=radio] + label {
 input[type=radio]:checked + label {
   display: inline-block;
   background: #883c8d;
-  color: #fff;
+  color: #fdfff5;
   border-color: black;
 }
 input[type=radio]:checked + label.fighter {
@@ -508,7 +509,7 @@ th {
   left: 50%;
   margin-left: -250px;
   top: 40px;
-  background: #fff;
+  background: #fdfff5;
   overflow: hidden;
   outline: none;
   padding: 0;
@@ -523,14 +524,14 @@ th {
   font-size: 1.25rem;
   height: 40px;
   line-height: 40px;
-  color: #fff;
+  color: #fdfff5;
   letter-spacing: 2px;
 }
 .modal__header-button {
   height: 40px;
   width: 40px;
   color: #883c8d;
-  background: #fff;
+  background: #fdfff5;
   border-radius: 0;
   border: none;
   font-size: 1.25em;
@@ -541,7 +542,7 @@ th {
   top: 0;
 }
 .modal__header-button:hover {
-  color: #fff;
+  color: #fdfff5;
   background: #883c8d;
 }
 .modal__body {
@@ -580,7 +581,7 @@ th {
 }
 .alignment-radio-set__item > input:checked + .alignment-radio-label {
   background: #883c8d;
-  color: #fff;
+  color: #fdfff5;
 }
 
 .fx-grid {
