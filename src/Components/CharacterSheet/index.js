@@ -11,14 +11,14 @@ import {
   levelsData,
   presetData,
   // talentData,
-  // raceData,
+  raceData,
   armorData,
   meleeWeaponData,
   rangedWeaponData,
 	dataAttributes,
 } from "../../Data";
 import {
-  calculateBonus,
+  // calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
@@ -80,8 +80,8 @@ const characterDefaults = {
 	rangedWeaponIndex: 0,
 }
 
-const characterData = JSON.parse(localStorage.getItem('character'))
-const notesData = JSON.parse(localStorage.getItem('notes'))
+// const characterData = JSON.parse(localStorage.getItem('character'))
+// const notesData = JSON.parse(localStorage.getItem('notes'))
 
 const CharacterSheet = () => {
   const defaultCharacterData = characterData || characterDefaults
@@ -248,34 +248,64 @@ const CharacterSheet = () => {
 
   const handleSetCharTalents = (e) => {
     let value = e.target.value;
-    //  see if it's seetting a race, reversing race to human, or neither
-    const talentType = value.substring(0, 2);
-    const talentNoPrefix = value.substring(2);
     const talentBeingReplaced = character[e.target.id];
+    let newState = {...character}
 
-    switch (talentType) {
+    function adjustRaceAttributes(race, add = true) {
+      const data = raceData.filter((el) => el.name === race)[0]
+      if(Object.keys(data.attributes).length > 0) {
+        Object.entries(data.attributes).forEach(([key,val]) => {
+          if(add){
+            newState.attributes[key].bonus += val.bonus
+          } else {
+            newState.attributes[key].bonus -= val.bonus
+          }
+        })
+      }
+    }
+
+    // alias to adjustRaceAttributes
+    function removeRaceAttributes(race){
+      adjustRaceAttributes(race,false)
+    }
+
+    // alias to adjustRaceAttributes
+    function addRaceAttributes(race){
+      adjustRaceAttributes(race)
+    }
+    
+    switch (value) {
       // if it's setting a race
-      case "r-":
-        return (
-          setCharacter((PrevState) => ({ ...PrevState, race: talentNoPrefix })),
-          setCharacter((PrevState) => ({
-            ...PrevState,
-            [e.target.id]: talentNoPrefix,
-          }))
-        );
-      // if it's choosing a talent and defaulting back to human
-      case "h-":
-        return (
-          setCharacter((PrevState) => ({ ...PrevState, race: "Human" })),
-          setCharacter((PrevState) => ({
-            ...PrevState,
-            [e.target.id]: talentNoPrefix,
-          }))
-        );
+      case "Dwarf":
+      case "Elf":
+      case "Gnome":
+      case "Half-Elf":
+      case "Half-Orc":
+      case "Halfling":
+
+        if(character.race !== "Human") {
+          // remove attribute bonus from previous race
+          removeRaceAttributes(character.race)
+        }
+
+        // add attribute bonus from currently selected race
+        addRaceAttributes(value)
+
+        newState.race = value
+        newState[e.target.id] = value
+
+        return (setCharacter(() => newState))
       // if it's nothing to do with race and just choosing a talent
       default:
+        // race can only be selected in talentLevel1 - if none is picked then you're human
+        newState[e.target.id] = value
+        if(e.target.id === "talentLevel1" && character.race !== "Human"){
+          removeRaceAttributes(character.race)
+          newState.race = "Human"
+        }
+        // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
-          setCharacter((PrevState) => ({ ...PrevState, [e.target.id]: value })),
+          setCharacter(() => newState),
           setTalentStates(talentBeingReplaced, value)
         );
     }
@@ -468,10 +498,7 @@ const CharacterSheet = () => {
                 <input type="text" value={character.race} disabled size="8" />
                 <br />
                 <span className="label">
-                  Race{" "}
-                  <span className="ut-text-explain">
-                    (Change in Talents Below)
-                  </span>
+                  Race <span className="ut-text-explain">(Change in Talents Below)</span>
                 </span>
               </label>
             </div>
