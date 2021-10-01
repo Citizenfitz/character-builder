@@ -84,8 +84,10 @@ const characterData = JSON.parse(localStorage.getItem('character'))
 const notesData = JSON.parse(localStorage.getItem('notes'))
 
 const CharacterSheet = () => {
-  const [character, setCharacter] = useState(characterData || characterDefaults);
-  const [notes, setNotes] = useState(notesData || undefined);
+  const defaultCharacterData = characterData || characterDefaults
+  const [character, setCharacter] = useState(defaultCharacterData);
+  const defaultNotesData = notesData || [];
+  const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
