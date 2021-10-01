@@ -45,6 +45,7 @@ const characterDefaults = {
 	alignment: "Neutral",
 	hitDiceType: aspectData[0].hitDiceType,
 	attributes: dataAttributes,
+  attributesUpdates: false, // need a shallow state prop to trigger component update
 	ac: 10,
 	perception: 10,
 	disad1: "none",
@@ -260,6 +261,8 @@ const CharacterSheet = () => {
           } else {
             newState.attributes[key].bonus -= val.bonus
           }
+          newState.attributes[key].total = newState.attributes[key].roll + newState.attributes[key].bonus
+          newState.attributesUpdates = Date.now()
         })
       }
     }
@@ -523,7 +526,7 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <Attributes onChange={updateAttributes} attributes={character.attributes} />
+            <Attributes onChange={updateAttributes} attributes={character.attributes} updated={character.attributesUpdates} />
           </section>
         </div>
 
