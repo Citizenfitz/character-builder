@@ -72,13 +72,14 @@ const characterDefaults = {
 	talentLevel9Type: "Core",
 	saveModsClass:
 		"+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
-	saveModsRace: "",
+	saveModsRace: [],
 	armor: armorData[0],
 	armorIndex: 0,
 	meleeWeapon: meleeWeaponData[0],
 	meleeWeaponIndex: 0,
 	rangedWeapon: rangedWeaponData[0],
 	rangedWeaponIndex: 0,
+  characteristicsRace: [],
 }
 
 // const characterData = JSON.parse(localStorage.getItem('character'))
@@ -252,7 +253,7 @@ const CharacterSheet = () => {
     const talentBeingReplaced = character[e.target.id];
     let newState = {...character}
 
-    function adjustRaceAttributes(race, add = true) {
+    function adjustRaceBonus(race, add = true) {
       const data = raceData.filter((el) => el.name === race)[0]
       if(Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key,val]) => {
@@ -266,16 +267,18 @@ const CharacterSheet = () => {
           newState.attributesUpdates = Date.now()
         })
       }
+      newState.saveModsRace = data.saveModsRace
+      newState.characteristicsRace = data.characteristics
     }
 
-    // alias to adjustRaceAttributes
-    function removeRaceAttributes(race){
-      adjustRaceAttributes(race,false)
+    // alias to adjustRaceBonus
+    function removeRaceBonus(race){
+      adjustRaceBonus(race,false)
     }
 
-    // alias to adjustRaceAttributes
-    function addRaceAttributes(race){
-      adjustRaceAttributes(race)
+    // alias to adjustRaceBonus
+    function addRaceBonus(race){
+      adjustRaceBonus(race)
     }
     
     switch (value) {
@@ -289,11 +292,11 @@ const CharacterSheet = () => {
 
         if(character.race !== "Human") {
           // remove attribute bonus from previous race
-          removeRaceAttributes(character.race)
+          removeRaceBonus(character.race)
         }
 
         // add attribute bonus from currently selected race
-        addRaceAttributes(value)
+        addRaceBonus(value)
 
         newState.race = value
         newState[e.target.id] = value
@@ -304,8 +307,10 @@ const CharacterSheet = () => {
         // race can only be selected in talentLevel1 - if none is picked then you're human
         newState[e.target.id] = value
         if(e.target.id === "talentLevel1" && character.race !== "Human"){
-          removeRaceAttributes(character.race)
+          removeRaceBonus(character.race)
           newState.race = "Human"
+          newState.saveModsRace = []
+          newState.characteristicsRace = []
         }
         // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
@@ -556,9 +561,8 @@ const CharacterSheet = () => {
           {/*  ------- SAVING THROW MODS ------ */}
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
-              {character.saveModsClass}
-              <br />
-              {character.saveModsRace}
+              <div>{character.saveModsClass}</div>
+              {character.saveModsRace.map((note,i) => <div key={i}>{note}</div>)}
             </div>
           </div>
           <span className="label">Saving Throw Mods</span>
@@ -707,6 +711,11 @@ const CharacterSheet = () => {
           </button>
         </h2>
         <div className="notes">
+          {character.characteristicsRace.map((note,i) => (
+            <div className="note--content note--race" key={i}>
+              <div className="note--text">Racial ({character.race}): {note}</div>
+            </div>
+          ))}
           {notes.map((note, i) => (
             <div className="note--content" key={i}>
               <button
