@@ -736,7 +736,7 @@ export const spellData = {
     cast: "1 action",
     range: "240'",
     target: "36' radius, '6 high cloud",
-    duration: "10/level",
+    duration: "10 min./level",
     school: ["green"],
     components: "V,S,M",
     save: "special"
@@ -772,7 +772,7 @@ export const spellData = {
     cast: "1 action",
     range: "60'",
     target: "1 creature no larger than a horse",
-    duration: "10/level",
+    duration: "10 min./level",
     school: ["red"],
     components: "V,S,M",
     save: "negate"
@@ -781,7 +781,7 @@ export const spellData = {
     cast: "1 action",
     range: "90'",
     target: "special",
-    duration: "1 hour +10/level",
+    duration: "1 hour +10 min./level",
     school: ["white","black","red"],
     components: "V,S",
     save: "negate"
@@ -808,7 +808,7 @@ export const spellData = {
     cast: "1 ",
     range: "60' + 12'/level",
     target: "special",
-    duration: "5/level",
+    duration: "5 min./level",
     school: ["white"],
     components: "V,S",
     save: "none"
