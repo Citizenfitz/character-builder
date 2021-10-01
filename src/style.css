@@ -481,6 +481,9 @@ th {
 .flex-grid__child--auto {
   width: auto;
 }
+.flex-grid__child--half {
+  width: calc(50% - 0.5rem);
+}
 .flex-grid--wrap {
   flex-wrap: wrap;
 }
@@ -622,10 +625,9 @@ th {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  border: 1px solid;
   border-radius: 3px;
-  background: #f5f3ed;
-  margin: 1em auto 0 auto;
+  background-color: transparent;
+  margin: 0 auto 1rem auto;
 }
 .aspect-radio-set__item:nth-child(1), .aspect-radio-set__item:nth-child(4) {
   flex-basis: 100%;
@@ -634,53 +636,53 @@ th {
 }
 
 input[type=radio] + label.aspect-radio-label {
-  height: 64px;
-  width: 80px;
-  border: 1px solid;
-  background-color: #f5f3ed;
+  height: 66px;
+  width: 81px;
+  border: 2px solid;
+  filter: grayscale(1);
+  opacity: 0.5;
+  background-color: transparent;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: 0.5;
-  transition: background-color 0.5s ease;
+  border-radius: 3px;
+  margin: 0;
+  color: black;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
 }
 input[type=radio] + label.aspect-radio-label--fighter {
-  background-color: #04a54f;
-  border-radius: 0 0 3px 3px;
+  border-color: #04a54f;
 }
 input[type=radio] + label.aspect-radio-label--fighter:hover {
-  background-color: #037337;
+  filter: none;
 }
 input[type=radio] + label.aspect-radio-label--priest {
-  background-color: #2375b9;
-  border-radius: 3px 0 0 3px;
+  border-color: #2375b9;
 }
 input[type=radio] + label.aspect-radio-label--priest:hover {
-  background-color: #1b5a8e;
+  filter: none;
 }
 input[type=radio] + label.aspect-radio-label--wizard {
-  background-color: #e1a525;
-  border-radius: 3px 3px 0 0;
+  border-color: #e1a525;
 }
 input[type=radio] + label.aspect-radio-label--wizard:hover {
-  background-color: #b9861a;
+  filter: none;
 }
 input[type=radio] + label.aspect-radio-label--knave {
-  background-color: #eb2026;
-  border-radius: 0 3px 3px 0;
+  border-color: #eb2026;
 }
 input[type=radio] + label.aspect-radio-label--knave:hover {
-  background-color: #c61217;
+  filter: none;
 }
 input[type=radio] + label.aspect-radio-label__type {
-  font-size: 0.625rem;
-  margin-top: 0.5em;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
 }
 
 .aspect-radio-set__item > input:checked + .aspect-radio-label {
-  font-weight: bold;
+  filter: none;
   opacity: 1;
 }
 
@@ -729,6 +731,14 @@ input[type=radio] + label.aspect-radio-label__type {
 .aspect-icon--large:after {
   background-size: 90%;
 }
+.aspect-icon--medium {
+  height: 20px;
+  width: 20px;
+  margin: 0;
+}
+.aspect-icon--medium:after {
+  background-size: 90%;
+}
 .aspect-icon--in-button {
   height: 12px;
   width: 12px;
@@ -755,6 +765,19 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .aspect-icon--knave:after {
   background-image: url("assets/images/heart.svg");
+}
+
+.aspect-picker-desc__header {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+.aspect-picker-desc__header > span {
+  margin-right: 0.25rem;
+}
+.aspect-picker-desc__list {
+  margin: 0;
 }
 
 .data-display-box {

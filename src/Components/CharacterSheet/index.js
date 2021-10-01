@@ -71,7 +71,7 @@ const characterDefaults = {
   talentLevel7Type: "Core",
   talentLevel9Type: "Core",
   saveModsClass:
-    "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
+    "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks.",
   saveModsRace: "",
   armor: armorData[0],
   armorIndex: 0,
@@ -85,7 +85,7 @@ const characterData = JSON.parse(localStorage.getItem("character"));
 const notesData = JSON.parse(localStorage.getItem("notes"));
 
 const CharacterSheet = () => {
-  const defaultCharacterData = characterData || characterDefaults
+  const defaultCharacterData = characterData || characterDefaults;
   const [character, setCharacter] = useState(defaultCharacterData);
   const defaultNotesData = notesData || [];
   const [notes, setNotes] = useState(defaultNotesData);
