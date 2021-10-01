@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
 import {
   calculateBonus,
@@ -44,7 +44,7 @@ const Attributes = (props) => {
 
 		const newState = {...attributes}
 		newState[attr].roll = val
-		newState[attr].total = val + newState[attr].bonus
+		newState[attr].total = val + newState[attr].bonus //TODO: implement min and max
 		newState[attr].mod = calculateBonus(val)
 
 		onChange(newState)
@@ -54,7 +54,7 @@ const Attributes = (props) => {
 	const setAttributeFromRoll = (result) => {
 		const newState = {...attributes}
 		newState[pendingRoll].roll = result
-		newState[pendingRoll].total = result + newState[pendingRoll].bonus
+		newState[pendingRoll].total = result + newState[pendingRoll].bonus //TODO: implement min and max
 		newState[pendingRoll].mod = calculateBonus(result)
 		onChange(newState)
 	}

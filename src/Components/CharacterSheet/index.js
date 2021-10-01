@@ -256,6 +256,7 @@ const CharacterSheet = () => {
       const data = raceData.filter((el) => el.name === race)[0]
       if(Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key,val]) => {
+          // TODO: adjust max - need to add or revert max - perhaps just put it in the data
           if(add){
             newState.attributes[key].bonus += val.bonus
           } else {
