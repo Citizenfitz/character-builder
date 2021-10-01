@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DiceBox from '@3d-dice/dice-box'
 import {
   calculateBonus,
@@ -43,18 +43,17 @@ const Attributes = (props) => {
 		const attr = e.target.id.replace("attrib-","")
 
 		const newState = {...attributes}
-		newState[attr].roll = val
-		newState[attr].total = val + newState[attr].bonus
+		newState[attr].roll = val - newState[attr].bonus
+		newState[attr].total = val
 		newState[attr].mod = calculateBonus(val)
-
 		onChange(newState)
 	}
 
 	// update attribute from dice roll
 	const setAttributeFromRoll = (result) => {
 		const newState = {...attributes}
-		newState[pendingRoll].roll = result
-		newState[pendingRoll].total = result + newState[pendingRoll].bonus
+		newState[pendingRoll].roll = result - newState[pendingRoll].bonus
+		newState[pendingRoll].total = result
 		newState[pendingRoll].mod = calculateBonus(result)
 		onChange(newState)
 	}

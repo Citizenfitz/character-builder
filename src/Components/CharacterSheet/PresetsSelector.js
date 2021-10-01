@@ -3,8 +3,11 @@ import React from "react";
 const PresetsSelector = (props) => {
   return (
     <label className="preset-chooser">
-      <span className="label">Optional Preset: </span>
-      <select id="presetSelector" onChange={props.handlePreset} defaultValue="choose">
+      <select
+        id="presetSelector"
+        onChange={props.handlePreset}
+        defaultValue="choose"
+      >
         <option disabled value="choose">
           Choose
         </option>
@@ -15,6 +18,8 @@ const PresetsSelector = (props) => {
           </option>
         ))}
       </select>
+      <br />
+      <span className="label">Optional Preset </span>
     </label>
   );
 };
