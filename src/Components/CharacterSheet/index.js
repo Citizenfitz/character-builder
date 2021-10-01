@@ -5,6 +5,7 @@ import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
 import Attributes from "./Attributes";
+import ProfilePic from "./Profile";
 import {
   aspectData,
   dataDisads,
@@ -47,6 +48,7 @@ const characterDefaults = {
 	attributes: dataAttributes,
 	ac: 10,
 	perception: 10,
+  profilePic: "empty-profile",
 	disad1: "none",
 	disad2: "none",
 	talentAssigned1: "Combat",
@@ -421,6 +423,13 @@ const CharacterSheet = () => {
     }));
   };
 
+  const handleChangePic = (profilePic) => {
+    setCharacter(prev => ({
+      ...prev,
+      profilePic
+    }))
+  }
+
   return (
     <div>
       <div className="flex-grid">
@@ -584,6 +593,14 @@ const CharacterSheet = () => {
             <br />
             <span className="label">Ranged Weapon</span>
           </label>
+          
+          {/*  ------- EXPLAINER BOX ------ */}
+          <div className="data-display-box  data-display-box--explanations">
+            <div className="data-display-box__text">
+              hover-over or other explaination text will go here
+            </div>
+            <h2 className="data-display-box__header">Explanations</h2>
+          </div>
         </div>
 
         <div className="flex-grid__child">
@@ -592,13 +609,8 @@ const CharacterSheet = () => {
             presetData={presetData}
             handlePreset={handlePreset}
           />
-          {/*  ------- EXPLAINER BOX ------ */}
-          <div className="data-display-box  data-display-box--explanations">
-            <div className="data-display-box__text">
-              hover-over or other explaination text will go here
-            </div>
-            <h2 className="data-display-box__header">Explanations</h2>
-          </div>
+          {/*  ------- PROFILE PIC ------ */}
+          <ProfilePic profilePic={character.profilePic} onChangePic={handleChangePic} />
 
           {/*  ------- ALIGNMENT ------ */}
           <label>

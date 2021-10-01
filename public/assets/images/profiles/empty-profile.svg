@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="box-border">
+      <path d="M0 0h512v512H0z"/>
+    </clipPath>
+  </defs>
+  <path d="M0 0h512v512H0z"/>
+  <circle cx="255.782" cy="190.552" r="138.608" style="fill: rgb(255, 255, 255);"/>
+  <circle cx="255.782" cy="576.245" r="247.085" clip-path="url(#box-border)" style="fill: rgb(255, 255, 255);"/>
+</svg>

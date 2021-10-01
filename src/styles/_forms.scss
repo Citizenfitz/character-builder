@@ -78,6 +78,18 @@ button,
   }
 }
 
+button.noStyle {
+  display: inherit;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  &:hover,
+  &:selected {
+    background-color: transparent;
+  }
+}
+
 input.input--attached-button {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
