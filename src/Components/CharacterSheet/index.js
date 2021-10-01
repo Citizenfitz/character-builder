@@ -48,6 +48,7 @@ const characterDefaults = {
   attributesUpdates: false, // need a shallow state prop to trigger component update
 	ac: 10,
 	perception: 10,
+  movement: 30,
 	disad1: "none",
 	disad2: "none",
 	talentAssigned1: "Combat",
@@ -257,16 +258,20 @@ const CharacterSheet = () => {
       const data = raceData.filter((el) => el.name === race)[0]
       if(Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key,val]) => {
-          // TODO: adjust max - need to add or revert max - perhaps just put it in the data
-          if(add){
+          if(add){  
             newState.attributes[key].bonus += val.bonus
           } else {
             newState.attributes[key].bonus -= val.bonus
           }
-          newState.attributes[key].total = newState.attributes[key].roll + newState.attributes[key].bonus
+          // set the racial max - min is always 3
+          newState.attributes[key].max = val.max
+          const newTotal = newState.attributes[key].roll + newState.attributes[key].bonus
+          // get the min/max value for the total
+          newState.attributes[key].total = Math.max(Math.min(newTotal, newState.attributes[key].max), newState.attributes[key].min)
           newState.attributesUpdates = Date.now()
         })
       }
+      newState.movement = data.movement
       newState.saveModsRace = data.saveModsRace
       newState.characteristicsRace = data.characteristics
     }
@@ -309,6 +314,7 @@ const CharacterSheet = () => {
         if(e.target.id === "talentLevel1" && character.race !== "Human"){
           removeRaceBonus(character.race)
           newState.race = "Human"
+          newState.movement = 30
           newState.saveModsRace = []
           newState.characteristicsRace = []
         }
@@ -548,7 +554,7 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">30'</div>
+              <div className="data-display-box__text">{character.movement}'</div>
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -713,7 +719,7 @@ const CharacterSheet = () => {
         <div className="notes">
           {character.characteristicsRace.map((note,i) => (
             <div className="note--content note--race" key={i}>
-              <div className="note--text">Racial ({character.race}): {note}</div>
+              <div className="note--text">{character.race}: {note}</div>
             </div>
           ))}
           {notes.map((note, i) => (
