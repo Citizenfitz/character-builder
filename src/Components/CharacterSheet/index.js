@@ -11,14 +11,14 @@ import {
   levelsData,
   presetData,
   // talentData,
-  // raceData,
+  raceData,
   armorData,
   meleeWeaponData,
   rangedWeaponData,
 	dataAttributes,
 } from "../../Data";
 import {
-  calculateBonus,
+  // calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
@@ -45,8 +45,10 @@ const characterDefaults = {
 	alignment: "Neutral",
 	hitDiceType: aspectData[0].hitDiceType,
 	attributes: dataAttributes,
+  attributesUpdates: false, // need a shallow state prop to trigger component update
 	ac: 10,
 	perception: 10,
+  movement: 30,
 	disad1: "none",
 	disad2: "none",
 	talentAssigned1: "Combat",
@@ -71,13 +73,14 @@ const characterDefaults = {
 	talentLevel9Type: "Core",
 	saveModsClass:
 		"+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
-	saveModsRace: "",
+	saveModsRace: [],
 	armor: armorData[0],
 	armorIndex: 0,
 	meleeWeapon: meleeWeaponData[0],
 	meleeWeaponIndex: 0,
 	rangedWeapon: rangedWeaponData[0],
 	rangedWeaponIndex: 0,
+  characteristicsRace: [],
 }
 
 const characterData = JSON.parse(localStorage.getItem('character'))
@@ -248,34 +251,76 @@ const CharacterSheet = () => {
 
   const handleSetCharTalents = (e) => {
     let value = e.target.value;
-    //  see if it's seetting a race, reversing race to human, or neither
-    const talentType = value.substring(0, 2);
-    const talentNoPrefix = value.substring(2);
     const talentBeingReplaced = character[e.target.id];
+    let newState = {...character}
 
-    switch (talentType) {
+    function adjustRaceBonus(race, add = true) {
+      const data = raceData.filter((el) => el.name === race)[0]
+      if(Object.keys(data.attributes).length > 0) {
+        Object.entries(data.attributes).forEach(([key,val]) => {
+          if(add){  
+            newState.attributes[key].bonus += val.bonus
+          } else {
+            newState.attributes[key].bonus -= val.bonus
+          }
+          // set the racial max - min is always 3
+          newState.attributes[key].max = val.max
+          const newTotal = newState.attributes[key].roll + newState.attributes[key].bonus
+          // get the min/max value for the total
+          newState.attributes[key].total = Math.max(Math.min(newTotal, newState.attributes[key].max), newState.attributes[key].min)
+          newState.attributesUpdates = Date.now()
+        })
+      }
+      newState.movement = data.movement
+      newState.saveModsRace = data.saveModsRace
+      newState.characteristicsRace = data.characteristics
+    }
+
+    // alias to adjustRaceBonus
+    function removeRaceBonus(race){
+      adjustRaceBonus(race,false)
+    }
+
+    // alias to adjustRaceBonus
+    function addRaceBonus(race){
+      adjustRaceBonus(race)
+    }
+    
+    switch (value) {
       // if it's setting a race
-      case "r-":
-        return (
-          setCharacter((PrevState) => ({ ...PrevState, race: talentNoPrefix })),
-          setCharacter((PrevState) => ({
-            ...PrevState,
-            [e.target.id]: talentNoPrefix,
-          }))
-        );
-      // if it's choosing a talent and defaulting back to human
-      case "h-":
-        return (
-          setCharacter((PrevState) => ({ ...PrevState, race: "Human" })),
-          setCharacter((PrevState) => ({
-            ...PrevState,
-            [e.target.id]: talentNoPrefix,
-          }))
-        );
+      case "Dwarf":
+      case "Elf":
+      case "Gnome":
+      case "Half-Elf":
+      case "Half-Orc":
+      case "Halfling":
+
+        if(character.race !== "Human") {
+          // remove attribute bonus from previous race
+          removeRaceBonus(character.race)
+        }
+
+        // add attribute bonus from currently selected race
+        addRaceBonus(value)
+
+        newState.race = value
+        newState[e.target.id] = value
+
+        return (setCharacter(() => newState))
       // if it's nothing to do with race and just choosing a talent
       default:
+        // race can only be selected in talentLevel1 - if none is picked then you're human
+        newState[e.target.id] = value
+        if(e.target.id === "talentLevel1" && character.race !== "Human"){
+          removeRaceBonus(character.race)
+          newState.race = "Human"
+          newState.movement = 30
+          newState.saveModsRace = []
+          newState.characteristicsRace = []
+        }
+        // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
-          setCharacter((PrevState) => ({ ...PrevState, [e.target.id]: value })),
+          setCharacter(() => newState),
           setTalentStates(talentBeingReplaced, value)
         );
     }
@@ -468,10 +513,7 @@ const CharacterSheet = () => {
                 <input type="text" value={character.race} disabled size="8" />
                 <br />
                 <span className="label">
-                  Race{" "}
-                  <span className="ut-text-explain">
-                    (Change in Talents Below)
-                  </span>
+                  Race <span className="ut-text-explain">(Change in Talents Below)</span>
                 </span>
               </label>
             </div>
@@ -496,7 +538,7 @@ const CharacterSheet = () => {
 
           {/*  --------------- ATTRIBUTES -------------- */}
           <section>
-            <Attributes onChange={updateAttributes} attributes={character.attributes} />
+            <Attributes onChange={updateAttributes} attributes={character.attributes} updated={character.attributesUpdates} />
           </section>
         </div>
 
@@ -512,7 +554,7 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">30'</div>
+              <div className="data-display-box__text">{character.movement}'</div>
               <h2 className="data-display-box__header">Move</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -525,9 +567,8 @@ const CharacterSheet = () => {
           {/*  ------- SAVING THROW MODS ------ */}
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
-              {character.saveModsClass}
-              <br />
-              {character.saveModsRace}
+              <div>{character.saveModsClass}</div>
+              {character.saveModsRace.map((note,i) => <div key={i}>{note}</div>)}
             </div>
           </div>
           <span className="label">Saving Throw Mods</span>
@@ -676,6 +717,11 @@ const CharacterSheet = () => {
           </button>
         </h2>
         <div className="notes">
+          {character.characteristicsRace.map((note,i) => (
+            <div className="note--content note--race" key={i}>
+              <div className="note--text">{character.race}: {note}</div>
+            </div>
+          ))}
           {notes.map((note, i) => (
             <div className="note--content" key={i}>
               <button

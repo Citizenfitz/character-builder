@@ -951,4 +951,8 @@ body {
   visibility: visible;
 }
 
+.note--race {
+  padding-left: 28px;
+}
+
 /*# sourceMappingURL=style.css.map */
