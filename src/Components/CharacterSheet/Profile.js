@@ -19,7 +19,7 @@ const customGalleryStyles = {
 const ProfilePic = (props) => {
   const {profilePic, onChangePic} = props
   const [isGalleryOpen, setGalleryOpen] = useState(false)
-  const [images, setImages] = useState(ImageData)
+
   // const [selectedPic, setSelectedPic] = useState(props.profilePic)
   const openGallery = (e) => {
     setGalleryOpen(true)
@@ -30,12 +30,12 @@ const ProfilePic = (props) => {
   const handleSelectImage = (e) => {
     const index = e.currentTarget.value
     setGalleryOpen(false)
-    onChangePic(images[index])
+    onChangePic(ImageData[index])
   }
   return (
     <div className="profile">
       <button className="btn--openGallery noStyle" onClick={openGallery}>
-        <img className="selected-profile-pic" src={`/assets/images/profiles/${profilePic}.svg`} />
+        <img className="selected-profile-pic" src={`/assets/images/profiles/${profilePic}.svg`} alt={profilePic} />
       </button>
       <Modal
         id="gallery--modal"
@@ -49,9 +49,9 @@ const ProfilePic = (props) => {
           x
         </button>
         <div className="gallery">
-          {images.map((img,i) => (
+          {ImageData.map((img,i) => (
             <button key={img} className={`noStyle gallery-item ${profilePic === img ? 'gallery-item--selected' : ''}`} value={i} onClick={handleSelectImage}>
-              <img className="gallery-item--img" src={`/assets/images/profiles/${img}.svg`} />
+              <img className="gallery-item--img" src={`/assets/images/profiles/${img}.svg`} alt={img.name} />
               <div className="gallery-item--caption">{img.replace(/-/," ")}</div>
             </button>
           ))}
