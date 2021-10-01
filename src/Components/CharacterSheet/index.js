@@ -83,8 +83,8 @@ const characterDefaults = {
   characteristicsRace: [],
 }
 
-// const characterData = JSON.parse(localStorage.getItem('character'))
-// const notesData = JSON.parse(localStorage.getItem('notes'))
+const characterData = JSON.parse(localStorage.getItem('character'))
+const notesData = JSON.parse(localStorage.getItem('notes'))
 
 const CharacterSheet = () => {
   const defaultCharacterData = characterData || characterDefaults
