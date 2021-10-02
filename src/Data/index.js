@@ -7,7 +7,7 @@ import { presetData } from "./dataPresets";
 import { dataDisads } from "./dataDisads";
 import { armorData } from "./dataArmor";
 import { meleeWeaponData, rangedWeaponData } from "./dataWeapons";
-import { thaumaturgyList, wizardryList, spellData} from "./dataSpells";
+import { thaumaturgyList, wizardryList, spellData, spellSlots} from "./dataSpells";
 export {
   aspectData,
   dataAttributes,
@@ -22,4 +22,5 @@ export {
   thaumaturgyList,
   wizardryList,
   spellData,
+  spellSlots
 };
