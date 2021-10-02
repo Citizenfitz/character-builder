@@ -84,8 +84,14 @@ const characterDefaults = {
   characteristicsRace: [],
 };
 
-const characterData = JSON.parse(localStorage.getItem("character"));
-const notesData = JSON.parse(localStorage.getItem("notes"));
+const useLocalStorage = false
+let characterData
+let notesData
+
+if(useLocalStorage){
+  characterData = JSON.parse(localStorage.getItem("character"));
+  notesData = JSON.parse(localStorage.getItem("notes"));
+}
 
 const CharacterSheet = () => {
   const defaultCharacterData = characterData || characterDefaults;
@@ -96,11 +102,15 @@ const CharacterSheet = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   useEffect(() => {
-    localStorage.setItem("character", JSON.stringify(character));
+    if(useLocalStorage){
+      localStorage.setItem("character", JSON.stringify(character));
+    }
   }, [character]);
 
   useEffect(() => {
-    localStorage.setItem("notes", JSON.stringify(notes));
+    if(useLocalStorage){
+      localStorage.setItem("notes", JSON.stringify(notes));
+    }
   }, [notes]);
 
   const [talentDisabled, setTalentDisabled] = useState({
