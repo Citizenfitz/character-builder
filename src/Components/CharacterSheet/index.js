@@ -533,6 +533,7 @@ const CharacterSheet = () => {
             <Attributes
               onChange={updateAttributes}
               attributes={character.attributes}
+              updated={character.attributesUpdates} 
             />
           </section>
         </div>

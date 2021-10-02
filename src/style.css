@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /***************************** FONT IMPORTS ************************************* */
 @font-face {
   font-family: "cabin-regular";
@@ -1049,10 +1048,10 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 .note--content .fa-edit::before {
-  content: "";
+  content: "\f044";
 }
 .note--content .fa-trash::before {
-  content: "";
+  content: "\f1f8";
 }
 .note--content:hover {
   background-color: #f6f7fb;
