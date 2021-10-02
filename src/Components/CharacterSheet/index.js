@@ -219,6 +219,14 @@ const CharacterSheet = () => {
   const handleCharLevel = (e) => {
     const { value } = e.target;
     setCharacter((PrevState) => ({ ...PrevState, level: value }));
+
+    // then update spell casting levels if they have it
+    if (character.wizardryLevel !== 0) {
+      calculateWizardryLevel();
+    }
+    if (character.thaurmaturgyLevel !== 0) {
+      calculateThaumaturgyLevel();
+    }
   };
 
   const handleCharAspect = (e) => {
@@ -336,6 +344,30 @@ const CharacterSheet = () => {
     }
   };
 
+  const calculateThaumaturgyLevel = () => {
+    const thauLevel = calcTalentLevelNumber(
+      character.aspect,
+      "Thaumaturgy",
+      character.level
+    );
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      thaurmaturgyLevel: thauLevel,
+    }));
+  };
+
+  const calculateWizardryLevel = () => {
+    const wizLevel = calcTalentLevelNumber(
+      character.aspect,
+      "Wizardry 1",
+      character.level
+    );
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      wizardryLevel: wizLevel,
+    }));
+  };
+
   const setTalentStates = (oldTalent, newTalent) => {
     // enable old talent that was delected
     setTalentDisabled((PrevState) => ({ ...PrevState, [oldTalent]: false }));
@@ -361,10 +393,7 @@ const CharacterSheet = () => {
         "Stealth Casting": false,
       }));
       // and finally, set the wizardry level to what it should be
-      setCharacter((PrevState) => ({
-        ...PrevState,
-        wizardryLevel: 10,
-      }));
+      calculateWizardryLevel();
     }
     // if Wizardry 1 is deslected disable all other sub-talents
     // also check to see if user has already chosen other sub-talents and if so, remove them
@@ -404,11 +433,9 @@ const CharacterSheet = () => {
     }
 
     // if Thaumaturgy taken, set level for spell slots
+
     if (newTalent === "Thaumaturgy") {
-      setCharacter((PrevState) => ({
-        ...PrevState,
-        thaurmaturgyLevel: 10,
-      }));
+      calculateThaumaturgyLevel();
     }
     // if Thaumaturgy removed, set level for spell slots
     if (oldTalent === "Thaumaturgy") {

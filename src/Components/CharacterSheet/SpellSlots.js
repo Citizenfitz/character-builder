@@ -27,7 +27,7 @@ const SpellSlots = (props) => {
               <tr>
                 {props.spellSlotsData[props.character.wizardryLevel].slots.map(
                   (i) => (
-                    <td key={i}>{i}</td>
+                    <td key={`wss${i}`}>{i}</td>
                   )
                 )}
               </tr>
@@ -62,7 +62,7 @@ const SpellSlots = (props) => {
                 {props.spellSlotsData[
                   props.character.thaurmaturgyLevel
                 ].slots.map((i) => (
-                  <td key={i}>{i}</td>
+                  <td key={`tss${i}`}>{i}</td>
                 ))}
               </tr>
             </tbody>
