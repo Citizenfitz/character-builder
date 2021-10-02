@@ -24,6 +24,8 @@ import {
   // calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
+  calcTalentLevel,
+  calcTalentLevelNumber,
 } from "../Utilities";
 
 Modal.setAppElement("#root");

@@ -67,14 +67,14 @@ const calcTalentLevel = (characterAspect, talentName) => {
 
 // returns numeric value of talent level for a character
 const calcTalentLevelNumber = (characterAspect, talentName, characterLevel) => {
-  let talentLevel = 1;
+  let talentLevel = characterLevel;
   const talentRef = calcTalentLevel(characterAspect, talentName);
   switch (talentRef) {
     case "Opposing (1/4 level)":
-      talentLevel = talentLevel / 4;
+      talentLevel = Math.floor(talentLevel / 4);
       break;
     case "Adjacent (1/2 level)":
-      talentLevel = talentLevel / 2;
+      talentLevel = Math.floor(talentLevel / 2);
       break;
     default:
     // code block
