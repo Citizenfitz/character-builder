@@ -358,6 +358,11 @@ const CharacterSheet = () => {
         ...PrevState,
         "Stealth Casting": false,
       }));
+      // and finally, set the wizardry level to what it should be
+      setCharacter((PrevState) => ({
+        ...PrevState,
+        wizardryLevel: 10,
+      }));
     }
     // if Wizardry 1 is deslected disable all other sub-talents
     // also check to see if user has already chosen other sub-talents and if so, remove them
@@ -379,6 +384,11 @@ const CharacterSheet = () => {
       clearTalentSlots("Encumbered Casting");
       clearTalentSlots("Spell Refashionment");
       clearTalentSlots("Stealth Casting");
+      // and finally, set the wizardry level to what it should be
+      setCharacter((PrevState) => ({
+        ...PrevState,
+        wizardryLevel: 0,
+      }));
     }
     // if Wizardry 2 is chosen, enable Wizardry 3
     if (newTalent === "Wizardry 2") {
@@ -389,6 +399,21 @@ const CharacterSheet = () => {
     if (oldTalent === "Wizardry 2") {
       setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 3": true }));
       clearTalentSlots("Wizardry 3");
+    }
+
+    // if Thaumaturgy taken, set level for spell slots
+    if (newTalent === "Thaumaturgy") {
+      setCharacter((PrevState) => ({
+        ...PrevState,
+        thaurmaturgyLevel: 10,
+      }));
+    }
+    // if Thaumaturgy removed, set level for spell slots
+    if (oldTalent === "Thaumaturgy") {
+      setCharacter((PrevState) => ({
+        ...PrevState,
+        thaurmaturgyLevel: 0,
+      }));
     }
   };
 

@@ -5,7 +5,7 @@ const SpellSlots = (props) => {
   return (
     <div className="flex-grid flex-grid--flex-start">
       {/*  --------------- MAGIC-USER SPELL SLOTS -------------- */}
-      {props.character.wizardryLevel > 0 && (
+      {props.character.wizardryLevel !== 0 && (
         <div className="flex-grid__child">
           <table className="table table--spell-slots">
             <caption className="ut-color-wizard">
@@ -37,7 +37,7 @@ const SpellSlots = (props) => {
       )}
 
       {/*  --------------- PRIEST SPELL SLOTS -------------- */}
-      {props.character.thaurmaturgyLevel > 0 && (
+      {props.character.thaurmaturgyLevel !== 0 && (
         <div className="flex-grid__child">
           <table className="table table--spell-slots">
             <caption className="ut-color-priest">
