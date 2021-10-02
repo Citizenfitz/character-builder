@@ -444,7 +444,7 @@ th {
 
 th {
   text-align: center;
-  background: #ddb5e0;
+  background: #eed9ef;
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 0.75rem;
@@ -463,6 +463,23 @@ th {
 
 .table-levels {
   width: 100%;
+}
+
+.table--spell-slots caption {
+  padding: 0.25rem;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+}
+.table--spell-slots .table__caption-text {
+  display: inline-block;
+  padding-bottom: 3px;
+  margin-left: -8px;
+}
+.table--spell-slots td,
+.table--spell-slots th {
+  padding: 0.33em 0.75em;
+  min-width: 30px;
+  text-align: center;
 }
 
 .flex-grid {
@@ -772,6 +789,7 @@ input[type=radio] + label.aspect-radio-label__type {
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
   margin-top: 0;
+  letter-spacing: 2px;
 }
 .aspect-picker-desc__header > span {
   margin-right: 0.25rem;

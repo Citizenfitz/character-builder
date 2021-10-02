@@ -6,6 +6,7 @@ import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
 import Attributes from "./Attributes";
 import Aspects from "./Aspects";
+import SpellSlots from "./SpellSlots";
 import {
   aspectData,
   dataDisads,
@@ -17,6 +18,7 @@ import {
   meleeWeaponData,
   rangedWeaponData,
   dataAttributes,
+  spellSlotsData,
 } from "../../Data";
 import {
   // calculateBonus,
@@ -82,6 +84,8 @@ const characterDefaults = {
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
+  wizardryLevel: 0,
+  thaurmaturgyLevel: 0,
 };
 
 const characterData = JSON.parse(localStorage.getItem("character"));
@@ -738,6 +742,13 @@ const CharacterSheet = () => {
           ))}
         </div>
       </section>
+
+      {/*  --------------- SPELL SLOTS -------------- */}
+      <section>
+        <SpellSlots character={character} spellSlotsData={spellSlotsData} />
+      </section>
+
+      {/*  --------------- PAGE MODALS -------------- */}
       <Modal
         id="note--modal"
         isOpen={modalIsOpen}

@@ -17,15 +17,10 @@ th {
 
 th {
   text-align: center;
-  background: lighten($color-royal, 40%);
+  background: lighten($color-royal, 50%);
   @include greyhawkfont;
   font-size: 0.75rem;
 }
-
-// .table-row--highlight > td:first-child {
-//   font-weight: bold;
-//   box-shadow: -8px 0px 0px 0px lighten($color-royal, 35%);
-// }
 
 .list-columns {
   @include list-columns();
@@ -33,7 +28,22 @@ th {
 
 .table-levels {
   width: 100%;
-  //   tr td:first-child {
-  //     font-family: $text-header;
-  //   }
+}
+
+.table--spell-slots {
+  caption {
+    padding: 0.25rem;
+    @include greyhawkfont;
+  }
+  .table__caption-text {
+    display: inline-block;
+    padding-bottom: 3px;
+    margin-left: -8px;
+  }
+  td,
+  th {
+    padding: 0.33em 0.75em;
+    min-width: 30px;
+    text-align: center;
+  }
 }
