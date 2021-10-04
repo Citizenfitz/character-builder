@@ -81,8 +81,8 @@ export const thaumaturgyList = [
   ]
 ]
 
-export const wizardryList = {
-  1: [
+export const wizardryList = [
+  [
     "Aura of Protection",
     "Burning Hands",
     "Charm Person",
@@ -90,7 +90,7 @@ export const wizardryList = {
     "Detect Magic",
     "Entangle",
     "Feather Fall",
-    "Light(Darkness)",
+    "Light (Darkness)",
     "Magic Missile",
     "Pass Without Trace",
     "Phantom Image",
@@ -101,7 +101,7 @@ export const wizardryList = {
     "Spider Climb",
     "Visage",
   ],
-  2: [
+  [
     "Alter Self",
     "Barkskin",
     "Continual Light (Continual Darkness)",
@@ -124,7 +124,7 @@ export const wizardryList = {
     "Web",
     "Wizard Lock (Wizard Knock)",
   ],
-  3: [
+  [
     "Animal Summoning",
     "Aura of Protection, 10' radius",
     "Clairvoyance",
@@ -145,7 +145,7 @@ export const wizardryList = {
     "Suggestion",
     "Water Breathing",
   ],
-  4: [
+  [
     "Amnesia",
     "Charm Monster",
     "Confusion",
@@ -165,7 +165,7 @@ export const wizardryList = {
     "Wall of Ice",
     "Wizard Eye",
   ],
-  5: [
+  [
     "Animate Dead",
     "Cloudkill",
     "Demi-Shadow Monsters",
@@ -183,7 +183,7 @@ export const wizardryList = {
     "Wall of Force",
     "Wall of Thorns",
   ],
-  6: [
+  [
     "Anti-Magic Shell",
     "Banishment",
     "Creeping Doom",
@@ -196,7 +196,7 @@ export const wizardryList = {
     "Spell Fork",
     "True Seeing",
   ],
-  7: [
+  [
     "Earthquake",
     "Gate",
     "Limited Wish",
@@ -204,7 +204,7 @@ export const wizardryList = {
     "Simulacrum",
     "Vision",
   ]
-}
+]
 
 export const spellData = {
   "Alter Self": {
@@ -1369,7 +1369,7 @@ export const spellData = {
     components: "V,S",
     save: "none"
   },
-  "Wall Of Force": {
+  "Wall of Force": {
     cast: "1 action",
     range: "30'",
     target: "special",

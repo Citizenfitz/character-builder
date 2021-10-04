@@ -3,12 +3,11 @@
 }
 .spells--table {
   width: 100%;
+
   tbody tr:nth-child(even) {
     background-color: $color-gray-5;
   }
   th {
-    background-color: $color-priest;
-    color: $color-white;
     border-color: $color-black;
   }
   th, td {
@@ -17,6 +16,25 @@
   }
   td:nth-child(2) {
     text-align: left;
+  }
+
+}
+.spells--wizardry {
+  th {
+    background-color: $color-wizard;
+    color: $color-white;
+    border-color: $color-black;
+  }
+  tr:hover, .active {
+    background-color: lighten($color-wizard, 40%) !important;
+  }
+}
+
+.spells--thaumaturgy {
+  th {
+    background-color: $color-priest;
+    color: $color-white;
+    border-color: $color-black;
   }
   tr:hover, .active {
     background-color: lighten($color-priest, 50%) !important;
@@ -27,9 +45,19 @@
   cursor: pointer;
 }
 
+.table-wrapper {
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 1em 0;
+}
+
 #modal--spellSlots {
   width: fit-content;
   .active, .active th {
     background-color: lighten($color-wizard, 30%);
   }
+}
+
+#modal--wizardrySpells {
+  width: 85%
 }

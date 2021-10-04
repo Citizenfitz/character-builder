@@ -578,6 +578,9 @@ th {
   height: 20px;
   line-height: 0;
 }
+.modal--react table {
+  margin: 0;
+}
 
 .alignment-radio-set {
   list-style: none;
@@ -1106,8 +1109,6 @@ body {
   background-color: #f6f7fb;
 }
 .spells--table th {
-  background-color: #2375b9;
-  color: #fdfff5;
   border-color: #000;
 }
 .spells--table th, .spells--table td {
@@ -1117,7 +1118,22 @@ body {
 .spells--table td:nth-child(2) {
   text-align: left;
 }
-.spells--table tr:hover, .spells--table .active {
+
+.spells--wizardry th {
+  background-color: #e1a525;
+  color: #fdfff5;
+  border-color: #000;
+}
+.spells--wizardry tr:hover, .spells--wizardry .active {
+  background-color: #faefd8 !important;
+}
+
+.spells--thaumaturgy th {
+  background-color: #2375b9;
+  color: #fdfff5;
+  border-color: #000;
+}
+.spells--thaumaturgy tr:hover, .spells--thaumaturgy .active {
   background-color: #e2eff9 !important;
 }
 
@@ -1125,11 +1141,21 @@ body {
   cursor: pointer;
 }
 
+.table-wrapper {
+  max-height: 80vh;
+  overflow-y: auto;
+  margin: 1em 0;
+}
+
 #modal--spellSlots {
   width: fit-content;
 }
 #modal--spellSlots .active, #modal--spellSlots .active th {
   background-color: #f4ddab;
+}
+
+#modal--wizardrySpells {
+  width: 85%;
 }
 
 /*# sourceMappingURL=style.css.map */

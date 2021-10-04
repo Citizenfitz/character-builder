@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import Modal from "react-modal"
-import {spellData, spellSlots, thaumaturgyList} from "../../Data";
+import {spellData, spellSlots, wizardryList} from "../../Data";
 import SpellSlotsModal from './SpellSlotsModal';
 
 const defaultSpellList = [
   [],[],[],[],[],[],[]
 ]
 
-export default function ThaumaturgySpells(props) {
-  const { level, wisStat, useLocalStorage } = props
+export default function WizardrySpells(props) {
+  const { level, intStat, useLocalStorage } = props
   const spellCount = spellSlots[level - 1]
   const [spellList, setSpellList] = useState(defaultSpellList)
   const [isOpen, setOpen] = useState(false)
@@ -17,12 +17,12 @@ export default function ThaumaturgySpells(props) {
 
   useEffect(() => {
     if(useLocalStorage){
-      setSpellList(JSON.parse(localStorage.getItem("thaumaturgySpells")))
+      setSpellList(JSON.parse(localStorage.getItem("wizardrySpells")))
     }
   }, []);
   useEffect(() => {
     if(useLocalStorage){
-      localStorage.setItem("thaumaturgySpells", JSON.stringify(spellList));
+      localStorage.setItem("wizardrySpells", JSON.stringify(spellList));
     }
   }, [spellList]);
 
@@ -47,9 +47,9 @@ export default function ThaumaturgySpells(props) {
   }
 
   return (
-    <div className="spell spells--thaumaturgy">
+    <div className="spell spells--wizardry">
       <h2>
-        Thaumaturgy Spells
+        Wizardry Spells
         <SpellSlotsModal level={level} />
       </h2>
       <table className="table spells--table">
@@ -76,6 +76,7 @@ export default function ThaumaturgySpells(props) {
               // TODO: one bonus level one spell if wis is greater than 13
               if(spellList[i].length > 0) {
                 if(spellList[i][j]) {
+                  console.log(`spellList[i][j]`, spellList[i][j])
                   return (
                     <tr key={j}>
                       <td>{i + 1}</td>
@@ -129,8 +130,8 @@ export default function ThaumaturgySpells(props) {
         </tbody>
       </table>
       <Modal
-        id="modal--thaumaturgySpells"
-        className="modal--react spells--thaumaturgy"
+        id="modal--wizardrySpells"
+        className="modal--react spells--wizardry"
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Spell Slots"
@@ -156,7 +157,7 @@ export default function ThaumaturgySpells(props) {
             </thead>
             <tbody>
             {
-              spellLevel && thaumaturgyList[spellLevel - 1].map((spellName,i) => {
+              spellLevel && wizardryList[spellLevel - 1].map((spellName,i) => {
                 return <tr key={i} className="clickable" onClick={() => handleAssignSpell(spellName)}>
                   <td>{spellLevel}</td>
                   <td>{spellName}</td>

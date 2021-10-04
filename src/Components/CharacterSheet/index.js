@@ -17,10 +17,6 @@ import {
   meleeWeaponData,
   rangedWeaponData,
   dataAttributes,
-  spellSlots,
-  thaumaturgyList,
-  wizardryList,
-  spellData
 } from "../../Data";
 import {
   // calculateBonus,
@@ -28,6 +24,7 @@ import {
   formatNumberSuffix,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells"
+import WizardrySpells from "./WizardrySpells"
 
 Modal.setAppElement("#root");
 
@@ -77,7 +74,7 @@ const characterDefaults = {
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
-  hasWizardry: false,
+  hasWizardry: true,
   hasThaumaturgy: true
 };
 
@@ -786,11 +783,7 @@ const CharacterSheet = () => {
       {/*  --------------- SPELLS -------------- */}
 
       {character.hasWizardry && (
-      <section>
-        <div className="spells spells--wizard">
-
-        </div>
-      </section>
+        <WizardrySpells level={character.level} intStat={character.attributes.intelligence.total} useLocalStorage={useLocalStorage} />
       )}
       {character.hasThaumaturgy && (
         <ThaumaturgySpells level={character.level} wisStat={character.attributes.wisdom.total} useLocalStorage={useLocalStorage} />
