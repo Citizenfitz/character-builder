@@ -1,26 +1,27 @@
-.button-addNote {
+.button--addNote {
 	margin-left: 20px;
 }
-#note--modal {
-	width: 70%;
-	position: relative;
+#modal--note {
 	h2 {
 		margin-top: 0;
 		margin-bottom: 10px;
 	}
 }
-.note--button-close {
+.button--modalClose {
 	position: absolute;
 	top: 5px;
 	right: 5px;
+	width: 20px;
+	height: 20px;
+	line-height: 0;
 }
-.note--textarea {
+.textarea--note {
 	font-family: $text-regular;
 	width: 100%;
 	min-height: 120px;
 	padding: 10px;
 }
-.note--button-save {
+.button--noteSave {
 	float: right;
 }
 

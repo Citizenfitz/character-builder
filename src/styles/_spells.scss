@@ -1,0 +1,35 @@
+.button-showSpellSlots {
+  margin-left: 20px;
+}
+.spells--table {
+  width: 100%;
+  tbody tr:nth-child(even) {
+    background-color: $color-gray-5;
+  }
+  th {
+    background-color: $color-priest;
+    color: $color-white;
+    border-color: $color-black;
+  }
+  th, td {
+    padding: 5px;
+    text-align: center;
+  }
+  td:nth-child(2) {
+    text-align: left;
+  }
+  tr:hover, .active {
+    background-color: lighten($color-priest, 50%) !important;
+  }
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+#modal--spellSlots {
+  width: fit-content;
+  .active, .active th {
+    background-color: lighten($color-wizard, 30%);
+  }
+}

@@ -1,20 +1,20 @@
 export const spellSlots = [
-  [1],
-  [2],
-  [2,1],
-  [3,2],
-  [3,2,1],
-  [4,3,1],
-  [4,3,2,1],
-  [4,3,3,2],
-  [4,3,3,2,1],
-  [4,4,3,3,2],
-  [4,4,3,3,2,1],
-  [4,4,4,3,2,2],
+  [1,"-","-","-","-","-","-"],
+  [2,"-","-","-","-","-","-"],
+  [2,1,"-","-","-","-","-"],
+  [3,2,"-","-","-","-","-"],
+  [3,2,1,"-","-","-","-"],
+  [4,3,1,"-","-","-","-"],
+  [4,3,2,1,"-","-","-"],
+  [4,3,3,2,"-","-","-"],
+  [4,3,3,2,1,"-","-"],
+  [4,4,3,3,2,"-","-"],
+  [4,4,3,3,2,1,"-"],
+  [4,4,4,3,2,2,"-"],
   [4,4,4,3,2,2,1]
 ]
-export const thaumaturgyList = {
-  1: [
+export const thaumaturgyList = [
+  [
     "Aura of Protection",
     "Comprehend Languages (Incomprehensible Languages)",
     "Cure Light Wounds (Cause Light Wounds)",
@@ -24,17 +24,17 @@ export const thaumaturgyList = {
     "Remove Fear (Cause Fear)",
     "Resist Cold",
   ],
-  2: [
+  [
     "Augury",
     "Bless (Curse)",
-    "Create food & Water",
+    "Create Food & Water",
     "Detect Traps",
     "Hold Person",
     "Resist Fire",
     "Silence 15' Radius",
-    "Speak With Animals",
+    "Speak with Animals",
   ],
-  3: [
+  [
     "Animate Dead",
     "Bless Weapon",
     "Cure Disease (Cause Disease)",
@@ -44,16 +44,16 @@ export const thaumaturgyList = {
     "Locate Object",
     "Remove Curse (Curse)",
   ],
-  4: [
+  [
     "Aura of Protection, 10' radius",
     "Cure Serious Wounds (Cause Serious Wounds)",
-    "Detect Lie",
+    "Detect Lie (Undetectable Lie)",
     "Neutralize Poison (Poison)",
     "Speak with Plants",
     "Sticks to Snakes",
     "Tongues (Gibberish)",
   ],
-  5: [
+  [
     "Banishment",
     "Commune",
     "Cure Critical Wounds (Cause Critical Wounds)",
@@ -64,14 +64,14 @@ export const thaumaturgyList = {
     "Suspend Life",
     "True Seeing",
   ],
-  6: [
+  [
     "Find the Path (Lose the Path)",
     "Heal (Harm)",
     "Hurricane",
     "Part Water",
     "Word of Recall",
   ],
-  7: [
+  [
     "Earthquake",
     "Gate",
     "Holy Word (Unholy Word)",
@@ -79,7 +79,7 @@ export const thaumaturgyList = {
     "Resurrection",
     "Symbol",
   ]
-}
+]
 
 export const wizardryList = {
   1: [

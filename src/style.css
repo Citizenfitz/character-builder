@@ -555,6 +555,30 @@ th {
   padding: 1.5rem;
 }
 
+.modal--react {
+  position: relative;
+  width: 75%;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #767676;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
+}
+.modal--react .button--modalClose {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+}
+
 .alignment-radio-set {
   list-style: none;
   padding: 0;
@@ -900,6 +924,14 @@ input[type=radio] + label.aspect-radio-label__type {
   display: inline-block;
 }
 
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 .attributes {
   /* For Firefox */
   /* Webkit browsers like Safari and Chrome */
@@ -990,33 +1022,32 @@ body {
   height: 100%;
 }
 
-.button-addNote {
+.button--addNote {
   margin-left: 20px;
 }
 
-#note--modal {
-  width: 70%;
-  position: relative;
-}
-#note--modal h2 {
+#modal--note h2 {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-.note--button-close {
+.button--modalClose {
   position: absolute;
   top: 5px;
   right: 5px;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
 }
 
-.note--textarea {
+.textarea--note {
   font-family: "Cabin Regular", Cabin, sans-serif;
   width: 100%;
   min-height: 120px;
   padding: 10px;
 }
 
-.note--button-save {
+.button--noteSave {
   float: right;
 }
 
@@ -1062,6 +1093,43 @@ body {
 
 .note--race {
   padding-left: 28px;
+}
+
+.button-showSpellSlots {
+  margin-left: 20px;
+}
+
+.spells--table {
+  width: 100%;
+}
+.spells--table tbody tr:nth-child(even) {
+  background-color: #f6f7fb;
+}
+.spells--table th {
+  background-color: #2375b9;
+  color: #fdfff5;
+  border-color: #000;
+}
+.spells--table th, .spells--table td {
+  padding: 5px;
+  text-align: center;
+}
+.spells--table td:nth-child(2) {
+  text-align: left;
+}
+.spells--table tr:hover, .spells--table .active {
+  background-color: #e2eff9 !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+#modal--spellSlots {
+  width: fit-content;
+}
+#modal--spellSlots .active, #modal--spellSlots .active th {
+  background-color: #f4ddab;
 }
 
 /*# sourceMappingURL=style.css.map */

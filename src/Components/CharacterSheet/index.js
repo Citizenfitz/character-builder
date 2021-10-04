@@ -17,24 +17,19 @@ import {
   meleeWeaponData,
   rangedWeaponData,
   dataAttributes,
+  spellSlots,
+  thaumaturgyList,
+  wizardryList,
+  spellData
 } from "../../Data";
 import {
   // calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
+import ThaumaturgySpells from "./ThaumaturgySpells"
 
 Modal.setAppElement("#root");
-const customModalStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
 
 const characterDefaults = {
   namePlayer: "",
@@ -82,15 +77,19 @@ const characterDefaults = {
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
+  hasWizardry: false,
+  hasThaumaturgy: true
 };
 
 const useLocalStorage = false
 let characterData
 let notesData
+let spellsData
 
 if(useLocalStorage){
   characterData = JSON.parse(localStorage.getItem("character"));
   notesData = JSON.parse(localStorage.getItem("notes"));
+  spellsData = JSON.parse(localStorage.getItem("spells"));
 }
 
 const CharacterSheet = () => {
@@ -98,8 +97,11 @@ const CharacterSheet = () => {
   const [character, setCharacter] = useState(defaultCharacterData);
   const defaultNotesData = notesData || [];
   const [notes, setNotes] = useState(defaultNotesData);
+  const defaultSpellsData = spellsData || []
+  const [spells, setSpells] = useState(spellsData)
   const [notesIndex, setNotesIndex] = useState(false);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen_Notes, setIsOpen_Notes] = useState(false);
+  const [modalIsOpen_SpellSlots, setIsOpen_SpellSlots] = useState(false);
 
   useEffect(() => {
     if(useLocalStorage){
@@ -173,16 +175,16 @@ const CharacterSheet = () => {
     "Vow of Nature": false,
   });
 
-  const openModal = () => {
-    setIsOpen(true);
+  const openModal_Notes = () => {
+    setIsOpen_Notes(true);
   };
 
-  const closeModal = () => {
+  const closeModal_Notes = () => {
     setNotesIndex(false);
-    setIsOpen(false);
+    setIsOpen_Notes(false);
   };
 
-  const handleSaveNote = (e) => {
+  const handleSave_Note = (e) => {
     e.preventDefault();
     const noteText = e.target.noteText.value;
     if (typeof notesIndex === "number") {
@@ -195,18 +197,26 @@ const CharacterSheet = () => {
       // adding a new note
       setNotes((prev) => [...prev, noteText]);
     }
-    closeModal();
+    closeModal_Notes();
   };
 
   const editNote = (index) => {
     setNotesIndex(index);
-    setIsOpen(true);
+    setIsOpen_Notes(true);
   };
 
   const deleteNote = (index) => {
     const newNoteList = [...notes];
     newNoteList.splice(index, 1);
     setNotes(newNoteList);
+  };
+
+  const openModal_SpellSlots = () => {
+    setIsOpen_SpellSlots(true);
+  };
+
+  const closeModal_SpellSlots = () => {
+    setIsOpen_SpellSlots(false);
   };
 
   const handleInputChange = (e, name) => {
@@ -722,7 +732,7 @@ const CharacterSheet = () => {
       <section>
         <h2>
           Special Abilites &amp; Notes{" "}
-          <button className="button-addNote" onClick={openModal}>
+          <button className="button--addNote" onClick={openModal_Notes}>
             Add Note
           </button>
         </h2>
@@ -750,28 +760,41 @@ const CharacterSheet = () => {
         </div>
       </section>
       <Modal
-        id="note--modal"
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customModalStyles}
+        id="modal--note"
+        className="modal--react"
+        isOpen={modalIsOpen_Notes}
+        onRequestClose={closeModal_Notes}
         contentLabel="Add a note"
       >
         <h2>{typeof notesIndex === "number" ? "Edit" : "Add"} Note</h2>
-        <button className="note--button-close" onClick={closeModal}>
+        <button className="button--modalClose" onClick={closeModal_Notes}>
           x
         </button>
-        <form onSubmit={handleSaveNote}>
+        <form className="clearfix" onSubmit={handleSave_Note}>
           <textarea
             id="noteText"
-            className="note--textarea"
+            className="textarea--note"
             placeholder="add your note"
             defaultValue={
               typeof notesIndex === "number" ? notes[notesIndex] : ""
             }
           ></textarea>
-          <input className="note--button-save" type="submit" value="Save" />
+          <input className="button--noteSave" type="submit" value="Save" />
         </form>
       </Modal>
+
+      {/*  --------------- SPELLS -------------- */}
+
+      {character.hasWizardry && (
+      <section>
+        <div className="spells spells--wizard">
+
+        </div>
+      </section>
+      )}
+      {character.hasThaumaturgy && (
+        <ThaumaturgySpells level={character.level} wisStat={character.attributes.wisdom.total} useLocalStorage={useLocalStorage} />
+      )}
     </div>
   );
 };
