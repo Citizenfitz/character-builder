@@ -181,16 +181,20 @@ export default function WizardrySpells(props) {
             <tbody>
             {
               spellLevel && wizardryList[spellLevel - 1].map((spellName,i) => {
-                return <tr key={i} className="clickable" onClick={() => handleAssignSpell(spellName)}>
-                  <td>{spellLevel}</td>
-                  <td>{spellName}</td>
-                  <td>{spellData[spellName].cast}</td>
-                  <td>{spellData[spellName].duration}</td>
-                  <td>{spellData[spellName].range}</td>
-                  <td>{spellData[spellName].target}</td>
-                  <td>{spellData[spellName].components}</td>
-                  <td>{spellData[spellName].save}</td>
-                </tr>
+                const intersection = schools.filter(element => spellData[spellName].school.includes(element));
+                // console.log(`intersection`, intersection, 'on', spellName)
+                if(intersection.length > 0){
+                  return <tr key={i} className="clickable" onClick={() => handleAssignSpell(spellName)}>
+                    <td>{spellLevel}</td>
+                    <td>{spellName}</td>
+                    <td>{spellData[spellName].cast}</td>
+                    <td>{spellData[spellName].duration}</td>
+                    <td>{spellData[spellName].range}</td>
+                    <td>{spellData[spellName].target}</td>
+                    <td>{spellData[spellName].components}</td>
+                    <td>{spellData[spellName].save}</td>
+                  </tr>
+                }
               })
             }
             </tbody>
