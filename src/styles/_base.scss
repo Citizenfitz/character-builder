@@ -16,6 +16,7 @@ body {
   margin: 0;
   font-family: $text-regular;
   color: $color-black;
+  background: $color-white;
 }
 #root {
 }
@@ -106,10 +107,9 @@ h6,
 }
 
 button,
-input[type=submit],
-input[type=button]
-{
-	cursor: pointer;
+input[type="submit"],
+input[type="button"] {
+  cursor: pointer;
 }
 
 /***** SECTIONS  *****/
@@ -195,7 +195,7 @@ dd,
 /*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator {
   display: inline-block;
-  color: white;
+  color: $color-white;
   height: 16px;
   width: 16px;
   font-size: 0.75rem;

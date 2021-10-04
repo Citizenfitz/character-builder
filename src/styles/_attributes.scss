@@ -1,81 +1,81 @@
 //* *************** ATTRUIBUTES ***************** */
 .attributes {
-	button {
-		cursor: pointer;
-		padding: 3px 3px 0 3px;
-		background-color: transparent;
-		&:hover {
-			background-color: #ddb5e0;
-		}
-	}
-	// nested here for some needed specificity 
-	.attrib-input {
-		width: 40px;
-		height: 32px;
-		text-align: center;
-		background-color: transparent;
-		border: none;
-		font-size: 24px;
-	}
-	// hide the number stepper
-	/* For Firefox */
-	input[type='number'] {
-    -moz-appearance:textfield;
-	}
+  button {
+    cursor: pointer;
+    padding: 3px 3px 0 3px;
+    // background-color: transparent;
+    // &:hover {
+    //   background-color: #ddb5e0;
+    // }
+  }
+  // nested here for some needed specificity
+  .attrib-input {
+    width: 40px;
+    height: 32px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+  }
+  // hide the number stepper
+  /* For Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 
-	/* Webkit browsers like Safari and Chrome */
-	input[type=number]::-webkit-inner-spin-button,
-	input[type=number]::-webkit-outer-spin-button {
-			-webkit-appearance: none;
-			margin: 0;
-	}
+  /* Webkit browsers like Safari and Chrome */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 }
 .attrib-val {
-	width: 50px;
-	height: 50px;
-	border: 1px solid black;
-	border-radius: 50%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  width: 50px;
+  height: 50px;
+  border: 1px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .attrib-group {
-	display: flex;
-	margin-bottom: 10px;
-	align-items: center;
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
 }
 .attrib-name {
-	padding-left: 10px;
-	button {
-		font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
-		font-size: 1.2rem;
-		color: #883c8d;
-		background-color: transparent;
-		border: none;
-		&:hover {
-			background-color: transparent;
-			text-decoration: underline;
-		}
-	}
+  padding-left: 10px;
+  button {
+    font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+    font-size: 1.2rem;
+    color: #883c8d;
+    background-color: transparent;
+    border: none;
+    &:hover {
+      background-color: transparent;
+      text-decoration: underline;
+    }
+  }
 }
 .attrib-mod {
-	padding-left: 20px;
-	font-style: italic;
-	font-size: .8rem;
-	span {
-		border-bottom: 1px solid black;
-	}
-	input {
-		width: 30px;
-		text-align: center;
-		background-color: transparent;
-		border: none;
-	}
+  padding-left: 20px;
+  font-style: italic;
+  font-size: 0.8rem;
+  span {
+    border-bottom: 1px solid black;
+  }
+  input {
+    width: 30px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+  }
 }
-.attrib-bonus { 
-	display: inline-block;
-	width: 16px;
-	overflow: hidden;
-	vertical-align: middle;
+.attrib-bonus {
+  display: inline-block;
+  width: 16px;
+  overflow: hidden;
+  vertical-align: middle;
 }

@@ -13,7 +13,9 @@ const LevelsTable = (props) => {
       return "-";
     }
     const whichTalentId = talentData.findIndex((x) => x.name === talentName);
-    return talentData[whichTalentId].mod;
+		if(whichTalentId >= 0) {
+    	return talentData[whichTalentId].mod;
+		}
   };
 
   const getTalentAspect = (talentName) => {
@@ -21,7 +23,9 @@ const LevelsTable = (props) => {
       return "-";
     }
     const whichTalentId = talentData.findIndex((x) => x.name === talentName);
-    return talentData[whichTalentId].aspect;
+		if(whichTalentId >= 0) {
+			return talentData[whichTalentId].aspect;
+		}
   };
 
   const calcTalentLevel = (talentName) => {
@@ -29,7 +33,10 @@ const LevelsTable = (props) => {
       return "-";
     }
     const whichTalentId = talentData.findIndex((x) => x.name === talentName);
-    const talentAspect = talentData[whichTalentId].aspect;
+		let talentAspect
+		if(whichTalentId >= 0){
+    	talentAspect = talentData[whichTalentId].aspect;
+		}
     if (talentAspect === "race") {
       return "-";
     }

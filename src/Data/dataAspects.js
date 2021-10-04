@@ -4,6 +4,7 @@ const aspectData = [
   {
     id: 0,
     name: "fighter",
+    displayName: "Fighter",
     hitDiceType: 8,
     assignedTalent2: "Multi-Attack",
     description:
@@ -38,6 +39,7 @@ const aspectData = [
   {
     id: 1,
     name: "priest",
+    displayName: "Priest",
     hitDiceType: 6,
     assignedTalent2: "Thaumaturgy",
     description:
@@ -80,6 +82,7 @@ const aspectData = [
   {
     id: 2,
     name: "wizard",
+    displayName: "Magic-User",
     hitDiceType: 4,
     assignedTalent2: "Wizardry 1",
     description:
@@ -123,6 +126,7 @@ const aspectData = [
   {
     id: 3,
     name: "knave",
+    displayName: "Knave",
     hitDiceType: 6,
     assignedTalent2: "Stealth",
     description:
