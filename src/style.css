@@ -578,6 +578,9 @@ th {
   height: 20px;
   line-height: 0;
 }
+.modal--react .button--modalSave {
+  float: right;
+}
 .modal--react table {
   margin: 0;
 }
@@ -1050,10 +1053,6 @@ body {
   padding: 10px;
 }
 
-.button--noteSave {
-  float: right;
-}
-
 .notes {
   margin-top: 10px;
 }
@@ -1127,6 +1126,28 @@ body {
 .spells--wizardry tr:hover, .spells--wizardry .active {
   background-color: #faefd8 !important;
 }
+.spells--wizardry [class^=school] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+.spells--wizardry .school-white {
+  background-color: #9e9e9e;
+}
+.spells--wizardry .school-black {
+  background-color: #000;
+}
+.spells--wizardry .school-green {
+  background-color: #04a54f;
+}
+.spells--wizardry .school-blue {
+  background-color: #2375b9;
+}
+.spells--wizardry .school-red {
+  background-color: #eb2026;
+}
 
 .spells--thaumaturgy th {
   background-color: #2375b9;
@@ -1159,6 +1180,60 @@ body {
 
 #modal--wizardrySpells {
   width: 85%;
+}
+
+#modal--schools {
+  width: fit-content;
+}
+#modal--schools h2 {
+  margin: 0 0 1em;
+}
+#modal--schools fieldset {
+  margin: 15px 0;
+}
+#modal--schools div {
+  display: inline-block;
+  margin: 5px 0 5px 20px;
+}
+#modal--schools div:first-child {
+  margin-left: 0;
+}
+#modal--schools div:last-child {
+  margin-right: 0;
+}
+#modal--schools label {
+  cursor: pointer;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+  display: inline-block;
+  padding: 0 0 0 8px;
+  margin: 0;
+}
+#modal--schools input {
+  cursor: pointer;
+  display: inline-block;
+  padding: 3px;
+  margin: 0;
+}
+#modal--schools .school-white {
+  color: #9e9e9e;
+}
+#modal--schools .school-black {
+  color: #000;
+}
+#modal--schools .school-green {
+  color: #04a54f;
+}
+#modal--schools .school-blue {
+  color: #2375b9;
+}
+#modal--schools .school-red {
+  color: #eb2026;
+}
+#modal--schools .validation--error {
+  margin: 0;
+  color: #eb2026;
 }
 
 /*# sourceMappingURL=style.css.map */

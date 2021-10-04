@@ -8,25 +8,32 @@ const defaultSpellList = [
 ]
 
 export default function WizardrySpells(props) {
-  const { level, intStat, useLocalStorage } = props
+  const { level, intStat, schools, schoolLimit, onPickSchool, useLocalStorage } = props
   const spellCount = spellSlots[level - 1]
   const [spellList, setSpellList] = useState(defaultSpellList)
   const [isOpen, setOpen] = useState(false)
   const [spellLevel, setSpellLevel] = useState(0)
   const [spellSlot, setSpellSlot] = useState(0)
+  const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
+  const [schoolValidation, setSchoolValidation] = useState(null);
 
   useEffect(() => {
     if(useLocalStorage){
       setSpellList(JSON.parse(localStorage.getItem("wizardrySpells")))
     }
   }, []);
+
   useEffect(() => {
     if(useLocalStorage){
       localStorage.setItem("wizardrySpells", JSON.stringify(spellList));
     }
   }, [spellList]);
 
-  const openModal = () => setOpen(true)
+  useEffect(() => {
+    setIsOpen_Schools(true)
+  },[schoolLimit])
+
+  // const openModal = () => setOpen(true)
   const closeModal = () => setOpen(false)
 
   const selectSpell = (level,slot) => {
@@ -36,7 +43,6 @@ export default function WizardrySpells(props) {
   }
 
   const handleAssignSpell = (spellName) => {
-    console.log(`spellName`, spellName)
     const newSpellList = {...spellList}
     newSpellList[spellLevel - 1][spellSlot] = {
       name: spellName,
@@ -46,10 +52,27 @@ export default function WizardrySpells(props) {
     setOpen(false)
   }
 
+  const handleSave_Schools = (e) => {
+    e.preventDefault()
+    const checked = Array.from(e.currentTarget.schools).filter(check => {
+      return check.checked
+    }).map(check => check.value)
+
+    if(schoolLimit === checked.length) {
+      setIsOpen_Schools(false)
+      setSchoolValidation(null)
+      onPickSchool(checked)
+    } else {
+      const plural = schoolLimit === 1 ? "" : "s"
+      setSchoolValidation(`You must select only ${schoolLimit} school${plural}`)
+    }
+  }
+
   return (
     <div className="spell spells--wizardry">
       <h2>
         Wizardry Spells
+        {schools.map(color => <div key={color} className={`school-${color}`} />)}
         <SpellSlotsModal level={level} />
       </h2>
       <table className="table spells--table">
@@ -174,6 +197,44 @@ export default function WizardrySpells(props) {
           </table>
         </div>
 
+      </Modal>
+
+      <Modal
+        id="modal--schools"
+        className="modal--react"
+        isOpen={modalIsOpen_Schools}
+        contentLabel="Wizard Schools"
+      >
+        <h2>Schools of Magic</h2>
+        <span>You are proficient in {schoolLimit} school{schoolLimit === 1 ? "" : "s"} of magic. Choose wisely.</span>
+        <form className="clearfix" onSubmit={handleSave_Schools}>
+          <fieldset>
+            <div className="school-white">
+              <input id="chk-white" type="checkbox" name="schools" value="white" defaultChecked={schools.includes("white")} />
+              <label htmlFor="chk-white">White</label>
+            </div>
+            <div className="school-black">
+              <input id="chk-black" type="checkbox" name="schools" value="black" defaultChecked={schools.includes("black")} />
+              <label htmlFor="chk-black">Black</label>
+            </div>
+            <div className="school-green">
+              <input id="chk-green" type="checkbox" name="schools" value="green" defaultChecked={schools.includes("green")} />
+              <label htmlFor="chk-green">Green</label>
+            </div>
+            <div className="school-blue">
+              <input id="chk-blue" type="checkbox" name="schools" value="blue" defaultChecked={schools.includes("blue")} />
+              <label htmlFor="chk-blue">Blue</label>
+            </div>
+            <div className="school-red">
+              <input id="chk-red" type="checkbox" name="schools" value="red" defaultChecked={schools.includes("red")} />
+              <label htmlFor="chk-red">Red</label>
+            </div>
+          </fieldset>
+          {schoolValidation &&
+            <div className="validation--error">{schoolValidation}</div>
+          }
+          <input className="button--modalSave" type="submit" value="Save" />
+        </form>
       </Modal>
     </div>
   )

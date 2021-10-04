@@ -76,18 +76,16 @@ const characterDefaults = {
   characteristicsRace: [],
   hasWizardry: false,
   hasThaumaturgy: false,
-  wizardrySchools: [],
+  wizardrySchools: []
 };
 
 const useLocalStorage = false
 let characterData
 let notesData
-let spellsData
 
 if(useLocalStorage){
   characterData = JSON.parse(localStorage.getItem("character"));
   notesData = JSON.parse(localStorage.getItem("notes"));
-  spellsData = JSON.parse(localStorage.getItem("spells"));
 }
 
 const CharacterSheet = () => {
@@ -95,12 +93,9 @@ const CharacterSheet = () => {
   const [character, setCharacter] = useState(defaultCharacterData);
   const defaultNotesData = notesData || [];
   const [notes, setNotes] = useState(defaultNotesData);
-  const defaultSpellsData = spellsData || []
-  const [spells, setSpells] = useState(spellsData)
   const [notesIndex, setNotesIndex] = useState(false);
   const [modalIsOpen_Notes, setIsOpen_Notes] = useState(false);
-  const [modalIsOpen_SpellSlots, setIsOpen_SpellSlots] = useState(false);
-  const [checkWizSchools, setCheckWizSchools] = useState(false)
+  const [schoolLimit, setSchoolLimit] = useState()
 
   useEffect(() => {
     if(useLocalStorage){
@@ -113,16 +108,6 @@ const CharacterSheet = () => {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
   }, [notes]);
-
-  useEffect(() => {
-    // check if wizardrySchools length matches talents
-    // Wiz 1 = 1, Wiz 2 = 2, Wiz 3 = 5
-    // update character state
-    // set checkWizSchool to false
-    if(checkWizSchools) {
-
-    }
-  }, [checkWizSchools]);
 
   const [talentDisabled, setTalentDisabled] = useState({
     Alertness: false,
@@ -220,14 +205,6 @@ const CharacterSheet = () => {
     setNotes(newNoteList);
   };
 
-  const openModal_SpellSlots = () => {
-    setIsOpen_SpellSlots(true);
-  };
-
-  const closeModal_SpellSlots = () => {
-    setIsOpen_SpellSlots(false);
-  };
-
   const handleInputChange = (e, name) => {
     let value;
     if (e.target) {
@@ -257,6 +234,8 @@ const CharacterSheet = () => {
     tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
     tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
     tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+
+    // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject)
     setCharacter(tempObject);
   };
@@ -278,11 +257,22 @@ const CharacterSheet = () => {
       disad1: presetData[value].disad1,
       disad2: presetData[value].disad2,
     }
+
+    // check if any of the talents are spell casting talents
     presetValues = validateSpellCaster(presetValues)
 
     setCharacter(presetValues);
   };
 
+  // save schools that were picked in the WizardySpells component to the character data
+  const handlePickSchool = (schools) => {
+    setCharacter(prev => ({
+      ...prev,
+      wizardrySchools: schools
+    }))
+  }
+
+  // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
     const talents = [
       state.talentAssigned2,
@@ -294,25 +284,22 @@ const CharacterSheet = () => {
       state.talentLevel9,
     ]
 
-    // check all talents for Wizardry and Thaurmaturgy
+    // check all talent values for 'Wizardry' and 'Thaurmaturgy'
     const wizardryRegEx = /Wizardry/g;
     state.hasWizardry = talents.some(e => wizardryRegEx.test(e))
     state.hasThaumaturgy = talents.includes('Thaumaturgy')
 
     // check that Wiz school has been selected
-    // if(state.hasWizardry) {
-    //   let schoolCount = [1,2,5]
-    //   let level = 0
-    //   level += talents.includes('Wizardry 2') ? 1 : 0
-    //   level += talents.includes('Wizardry 3') ? 1 : 0
-    //   console.log(`level`, level)
-    //   if(schoolCount[level] < character.wizardrySchools.length) {
-    //     addSchoolModal(schoolCount[level])
-    //   } else {
-    //     removeSchoolModal(schoolCount[level])
-    //   }
-    // }
-
+    if(state.hasWizardry) {
+      let schoolCount = [1,2,5]
+      let level = 0
+      level += talents.includes('Wizardry 2') ? 1 : 0
+      level += talents.includes('Wizardry 3') ? 1 : 0
+      // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
+      if(schoolCount[level] !== character.wizardrySchools.length) {
+        setSchoolLimit(schoolCount[level])
+      }
+    }
     return state
   }
 
@@ -375,6 +362,8 @@ const CharacterSheet = () => {
 
         newState.race = value;
         newState[e.target.id] = value;
+
+        // check if any of the talents are spell casting talents
         newState = validateSpellCaster(newState)
 
         return setCharacter(() => newState);
@@ -389,6 +378,8 @@ const CharacterSheet = () => {
           newState.saveModsRace = [];
           newState.characteristicsRace = [];
         }
+
+        // check if any of the talents are spell casting talents
         newState = validateSpellCaster(newState)
         // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
@@ -827,17 +818,28 @@ const CharacterSheet = () => {
               typeof notesIndex === "number" ? notes[notesIndex] : ""
             }
           ></textarea>
-          <input className="button--noteSave" type="submit" value="Save" />
+          <input className="button--modalSave" type="submit" value="Save" />
         </form>
       </Modal>
 
       {/*  --------------- SPELLS -------------- */}
 
       {character.hasWizardry && (
-        <WizardrySpells level={character.level} intStat={character.attributes.intelligence.total} useLocalStorage={useLocalStorage} />
+        <WizardrySpells 
+          level={character.level} 
+          intStat={character.attributes.intelligence.total} 
+          schools={character.wizardrySchools}
+          schoolLimit={schoolLimit}
+          onPickSchool={handlePickSchool}
+          useLocalStorage={useLocalStorage}
+        />
       )}
       {character.hasThaumaturgy && (
-        <ThaumaturgySpells level={character.level} wisStat={character.attributes.wisdom.total} useLocalStorage={useLocalStorage} />
+        <ThaumaturgySpells 
+          level={character.level} 
+          wisStat={character.attributes.wisdom.total} 
+          useLocalStorage={useLocalStorage} 
+        />
       )}
     </div>
   );
