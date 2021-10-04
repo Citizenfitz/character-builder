@@ -211,7 +211,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "caster",
-    duration: "10 min.",
+    duration: "10 min",
     school: ["blue"],
     components: "V,S",
     save: "none",
@@ -247,7 +247,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "caster",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["white","black","green","blue","red"],
     components: "V,S",
     save: "none",
@@ -271,7 +271,7 @@ export const spellData = {
     save: "none",
   },
   "Aura of Protection, 10' radius": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "0'",
     target: "10' radius",
     duration: "1 hour",
@@ -310,7 +310,7 @@ export const spellData = {
     cast: "1 action",
     range: "30'",
     target: "1 weapon",
-    duration: "10 min.",
+    duration: "10 min",
     school: ["black","white"],
     components: "V,S,M",
     save: "none",
@@ -343,7 +343,7 @@ export const spellData = {
     save: "negate",
   },
   "Clairvoyance": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "480'",
     target: "special",
     duration: "1 round/level",
@@ -364,7 +364,7 @@ export const spellData = {
     cast: "1 hour",
     range: "0'",
     target: "caster",
-    duration: "1 min.",
+    duration: "1 min",
     school: ["black","white"],
     components: "V,S,M",
     save: "none",
@@ -373,7 +373,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "1 creature or written document",
-    duration: "20 min.",
+    duration: "20 min",
     school: ["black","white"],
     components: "V,S",
     save: "negate",
@@ -382,7 +382,7 @@ export const spellData = {
     cast: "1 action",
     range: "120'",
     target: "1d6 creatures / 3 levels within 40ft radius",
-    duration: "1 min./level",
+    duration: "1 min/level",
     school: ["black","blue"],
     components: "V,S,M",
     save: "Wis to negate",
@@ -463,7 +463,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
-    duration: "1 hour + 10 min./level",
+    duration: "1 hour + 10 min/level",
     school: ["black","white"],
     components: "V,S,",
     save: "none",
@@ -499,7 +499,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "60' radius",
-    duration: "20 min.",
+    duration: "20 min",
     school: ["black","white","red","blue","green"],
     components: "V,S",
     save: "none",
@@ -508,7 +508,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "30' radius",
-    duration: "20 min.",
+    duration: "20 min",
     school: null,
     components: "V,S",
     save: "none",
@@ -553,7 +553,7 @@ export const spellData = {
     cast: "1 action",
     range: "90'",
     target: "50' diameter",
-    duration: "10 min.",
+    duration: "10 min",
     school: ["green"],
     components: "V,S,M",
     save: "half",
@@ -580,7 +580,7 @@ export const spellData = {
     cast: "instant",
     range: "90'",
     target: "3 creatures +1 creature per 2 levels",
-    duration: "1 min.",
+    duration: "1 min",
     school: ["green"],
     components: "V,M",
     save: "negate",
@@ -607,7 +607,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: null,
     components: "V,S,M",
     save: "none"
@@ -616,7 +616,7 @@ export const spellData = {
     cast: "1 action",
     range: "120'",
     target: "30' diameter around 1 fire",
-    duration: "1 min./level",
+    duration: "1 min/level",
     school: ["red"],
     components: "V,S,M",
     save: "none"
@@ -631,7 +631,7 @@ export const spellData = {
     save: "none"
   },
   "Fire Trap": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "0'",
     target: "1 object",
     duration: "until discharged",
@@ -652,7 +652,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
-    duration: "10 min./level + 10-60 min.",
+    duration: "10 min/level + 10-60 min",
     school: ["green","red"],
     components: "V,S",
     save: "none"
@@ -676,7 +676,7 @@ export const spellData = {
     save: "none"
   },
   "Hallucinatory Terrain": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "0'",
     target: "240' radius",
     duration: "special",
@@ -751,7 +751,7 @@ export const spellData = {
     cast: "1 action",
     range: "240'",
     target: "36' radius, '6 high cloud",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["green"],
     components: "V,S,M",
     save: "special"
@@ -787,7 +787,7 @@ export const spellData = {
     cast: "1 action",
     range: "60'",
     target: "1 creature no larger than a horse",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["red"],
     components: "V,S,M",
     save: "negate"
@@ -796,7 +796,7 @@ export const spellData = {
     cast: "1 action",
     range: "90'",
     target: "special",
-    duration: "1 hour +10 min./level",
+    duration: "1 hour +10 min/level",
     school: ["white","black","red"],
     components: "V,S",
     save: "negate"
@@ -823,7 +823,7 @@ export const spellData = {
     cast: "1 ",
     range: "60' + 12'/level",
     target: "special",
-    duration: "5 min./level",
+    duration: "5 min/level",
     school: ["white"],
     components: "V,S",
     save: "none"
@@ -940,7 +940,7 @@ export const spellData = {
     cast: "1 action",
     range: "60'",
     target: "30' cube",
-    duration: "10 min.",
+    duration: "10 min",
     school: ["blue"],
     components: "V,S,M",
     save: "special"
@@ -967,7 +967,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "caster",
-    duration: "1 hour + 10 min./level",
+    duration: "1 hour + 10 min/level",
     school: ["green","blue"],
     components: "V",
     save: "none"
@@ -1066,7 +1066,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
-    duration: "permanent or 1 min./level",
+    duration: "permanent or 1 min/level",
     school: ["white","black"],
     components: "V,S,M",
     save: "none/neg."
@@ -1117,7 +1117,7 @@ export const spellData = {
     save: "negate"
   },
   "Scrying": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "0'",
     target: "special",
     duration: "special",
@@ -1147,7 +1147,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "caster",
-    duration: "30 min.",
+    duration: "30 min",
     school: ["white"],
     components: "V,S",
     save: "none"
@@ -1174,7 +1174,7 @@ export const spellData = {
     cast: "1 action",
     range: "90'",
     target: "special",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["black"],
     components: "V,S,M",
     save: "none"
@@ -1192,7 +1192,7 @@ export const spellData = {
     cast: "1 action",
     range: "60'",
     target: "caster",
-    duration: "10 min.",
+    duration: "10 min",
     school: ["green"],
     components: "V,S",
     save: "none"
@@ -1201,7 +1201,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "caster",
-    duration: "10 min.",
+    duration: "10 min",
     school: ["green"],
     components: "V,S",
     save: "none"
@@ -1264,7 +1264,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "special",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["white","black"],
     components: "V,S,M",
     save: "none"
@@ -1296,7 +1296,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "60' radius",
-    duration: "10 min.",
+    duration: "10 min",
     school: [],
     white: "TRUE",
     black: "TRUE",
@@ -1310,7 +1310,7 @@ export const spellData = {
     cast: "1 action",
     range: "0'",
     target: "caster",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["white"],
     components: "V,S,M",
     save: "none"
@@ -1325,7 +1325,7 @@ export const spellData = {
     save: "none"
   },
   "Vampiric Transfusion": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "0'",
     target: "2 living creatures",
     duration: "permanent",
@@ -1337,7 +1337,7 @@ export const spellData = {
     cast: "1 action",
     range: "120'",
     target: "20' x 20'/level",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["blue"],
     components: "V,S",
     save: "none"
@@ -1355,7 +1355,7 @@ export const spellData = {
     cast: "1 hour",
     range: "0'",
     target: "caster",
-    duration: "1 min.",
+    duration: "1 min",
     school: ["white"],
     components: "V,S,M",
     save: "none"
@@ -1373,7 +1373,7 @@ export const spellData = {
     cast: "1 action",
     range: "30'",
     target: "special",
-    duration: "10 min. + 1 min./level",
+    duration: "10 min + 1 min/level",
     school: ["white","red"],
     components: "V,S,M",
     save: "none"
@@ -1382,7 +1382,7 @@ export const spellData = {
     cast: "1 action",
     range: "120'",
     target: "special",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["green"],
     components: "V,S,M",
     save: "none"
@@ -1391,7 +1391,7 @@ export const spellData = {
     cast: "1 action",
     range: "120'",
     target: "special",
-    duration: "10 min./level",
+    duration: "10 min/level",
     school: ["green"],
     components: "V,S,M",
     save: "none"
@@ -1415,7 +1415,7 @@ export const spellData = {
     save: "negate"
   },
   "Wizard Eye": {
-    cast: "1 min.",
+    cast: "1 min",
     range: "240'",
     target: "special",
     duration: "1 hour",
