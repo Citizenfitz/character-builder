@@ -56,6 +56,9 @@
   .active, .active th {
     background-color: lighten($color-wizard, 30%);
   }
+  h2 {
+    margin: 0 0 20px 0;
+  }
 }
 
 #modal--wizardrySpells {
