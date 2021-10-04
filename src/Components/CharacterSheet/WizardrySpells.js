@@ -76,7 +76,7 @@ export default function WizardrySpells(props) {
               // TODO: one bonus level one spell if wis is greater than 13
               if(spellList[i].length > 0) {
                 if(spellList[i][j]) {
-                  console.log(`spellList[i][j]`, spellList[i][j])
+                  // console.log(`spellList[i][j]`, spellList[i][j])
                   return (
                     <tr key={j}>
                       <td>{i + 1}</td>

@@ -36,7 +36,7 @@ export default function ThaumaturgySpells(props) {
   }
 
   const handleAssignSpell = (spellName) => {
-    console.log(`spellName`, spellName)
+    // console.log(`spellName`, spellName)
     const newSpellList = {...spellList}
     newSpellList[spellLevel - 1][spellSlot] = {
       name: spellName,
