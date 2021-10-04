@@ -74,8 +74,9 @@ const characterDefaults = {
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
-  hasWizardry: true,
-  hasThaumaturgy: true
+  hasWizardry: false,
+  hasThaumaturgy: false,
+  wizardrySchools: [],
 };
 
 const useLocalStorage = false
@@ -99,6 +100,7 @@ const CharacterSheet = () => {
   const [notesIndex, setNotesIndex] = useState(false);
   const [modalIsOpen_Notes, setIsOpen_Notes] = useState(false);
   const [modalIsOpen_SpellSlots, setIsOpen_SpellSlots] = useState(false);
+  const [checkWizSchools, setCheckWizSchools] = useState(false)
 
   useEffect(() => {
     if(useLocalStorage){
@@ -111,6 +113,16 @@ const CharacterSheet = () => {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
   }, [notes]);
+
+  useEffect(() => {
+    // check if wizardrySchools length matches talents
+    // Wiz 1 = 1, Wiz 2 = 2, Wiz 3 = 5
+    // update character state
+    // set checkWizSchool to false
+    if(checkWizSchools) {
+
+    }
+  }, [checkWizSchools]);
 
   const [talentDisabled, setTalentDisabled] = useState({
     Alertness: false,
@@ -245,13 +257,14 @@ const CharacterSheet = () => {
     tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
     tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
     tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+    tempObject = validateSpellCaster(tempObject)
     setCharacter(tempObject);
   };
 
   const handlePreset = (e) => {
     const { value } = e.target;
-    setCharacter((PrevState) => ({
-      ...PrevState,
+    let presetValues = {
+      ...character,
       aspect: presetData[value].aspect,
       talentAssigned2: presetData[value].talentAssigned2,
       talentLevel1: presetData[value].talentLevel1,
@@ -264,8 +277,44 @@ const CharacterSheet = () => {
       talentLevel9: presetData[value].talentLevel9,
       disad1: presetData[value].disad1,
       disad2: presetData[value].disad2,
-    }));
+    }
+    presetValues = validateSpellCaster(presetValues)
+
+    setCharacter(presetValues);
   };
+
+  const validateSpellCaster = (state) => {
+    const talents = [
+      state.talentAssigned2,
+      state.talentLevel1,
+      state.talentKnave1,
+      state.talentLevel3,
+      state.talentLevel5,
+      state.talentLevel7,
+      state.talentLevel9,
+    ]
+
+    // check all talents for Wizardry and Thaurmaturgy
+    const wizardryRegEx = /Wizardry/g;
+    state.hasWizardry = talents.some(e => wizardryRegEx.test(e))
+    state.hasThaumaturgy = talents.includes('Thaumaturgy')
+
+    // check that Wiz school has been selected
+    // if(state.hasWizardry) {
+    //   let schoolCount = [1,2,5]
+    //   let level = 0
+    //   level += talents.includes('Wizardry 2') ? 1 : 0
+    //   level += talents.includes('Wizardry 3') ? 1 : 0
+    //   console.log(`level`, level)
+    //   if(schoolCount[level] < character.wizardrySchools.length) {
+    //     addSchoolModal(schoolCount[level])
+    //   } else {
+    //     removeSchoolModal(schoolCount[level])
+    //   }
+    // }
+
+    return state
+  }
 
   const handleSetCharTalents = (e) => {
     let value = e.target.value;
@@ -326,6 +375,7 @@ const CharacterSheet = () => {
 
         newState.race = value;
         newState[e.target.id] = value;
+        newState = validateSpellCaster(newState)
 
         return setCharacter(() => newState);
       // if it's nothing to do with race and just choosing a talent
@@ -339,6 +389,7 @@ const CharacterSheet = () => {
           newState.saveModsRace = [];
           newState.characteristicsRace = [];
         }
+        newState = validateSpellCaster(newState)
         // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
           setCharacter(() => newState),
