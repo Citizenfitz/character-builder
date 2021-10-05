@@ -7,6 +7,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -17,6 +18,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -27,6 +29,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -37,6 +40,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -47,6 +51,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -57,6 +62,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -67,6 +73,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -77,6 +84,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: true,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -87,6 +95,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -97,6 +106,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -107,6 +117,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: false,
   },
   {
@@ -117,6 +128,7 @@ const talentData = [
     mod: "none",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -127,6 +139,7 @@ const talentData = [
     mod: "none",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -137,6 +150,7 @@ const talentData = [
     mod: "WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -147,6 +161,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -157,6 +172,7 @@ const talentData = [
     mod: "STR/DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -167,6 +183,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -177,6 +194,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -187,6 +205,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -197,6 +216,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -207,6 +227,7 @@ const talentData = [
     mod: "WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -217,6 +238,7 @@ const talentData = [
     mod: "WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -227,6 +249,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -237,6 +260,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -247,6 +271,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -257,6 +282,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: true,
   },
   {
@@ -267,6 +293,7 @@ const talentData = [
     mod: "WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -277,6 +304,7 @@ const talentData = [
     mod: "INT/WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -287,6 +315,7 @@ const talentData = [
     mod: "CHA",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -297,6 +326,7 @@ const talentData = [
     mod: "WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -307,6 +337,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -317,6 +348,7 @@ const talentData = [
     mod: "WIS",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -327,6 +359,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: true,
     isoption: false,
   },
   {
@@ -337,6 +370,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: false,
   },
   {
@@ -347,6 +381,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: false,
   },
   {
@@ -357,6 +392,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -367,6 +403,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: false,
   },
   {
@@ -377,6 +414,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: false,
     isoption: false,
   },
   {
@@ -387,6 +425,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -397,6 +436,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -407,6 +447,7 @@ const talentData = [
     mod: "none",
     isleveling: false,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -417,6 +458,7 @@ const talentData = [
     mod: "CHA",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -427,6 +469,7 @@ const talentData = [
     mod: "CHA",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -437,6 +480,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -447,6 +491,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -457,6 +502,7 @@ const talentData = [
     mod: "CHA",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -467,6 +513,7 @@ const talentData = [
     mod: "DEX/INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -477,6 +524,7 @@ const talentData = [
     mod: "INT/CHA",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -487,6 +535,7 @@ const talentData = [
     mod: "INT",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -497,6 +546,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
   {
@@ -507,6 +557,7 @@ const talentData = [
     mod: "DEX",
     isleveling: true,
     isstacking: false,
+    isRollable: true,
     isoption: true,
   },
 ];

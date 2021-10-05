@@ -5,17 +5,44 @@ import {
   // calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
+  calcTalentLevel,
+  calcTalentLevelNumber,
 } from "../Utilities";
 
+const formatedTalentMods = () => {};
+
 const LevelsTable = (props) => {
+  // returns formated data for Roll Mod column
   const getTalentMod = (talentName) => {
+    let levelMod = calcTalentLevelNumber(
+      props.character.aspect,
+      talentName,
+      props.character.level
+    );
+    let talentMod = "";
+    // if it's unchosen return dash
     if (talentName === "choose") {
       return "-";
     }
+    // get the talent's index in the data of talents. if that fails return nothing
     const whichTalentId = talentData.findIndex((x) => x.name === talentName);
-		if(whichTalentId >= 0) {
-    	return talentData[whichTalentId].mod;
-		}
+    if (whichTalentId < 0) {
+      return "-";
+    }
+
+    // if it has no roll (e.g. race talent), also return dash
+    if (whichTalentId >= 0 && talentData[whichTalentId].isRollable === false) {
+      return "-";
+    }
+
+    // else calc what it shoud be and send back
+
+    if (talentData[whichTalentId].mod === "none") {
+      talentMod = "";
+    } else {
+      talentMod = " and " + talentData[whichTalentId].mod;
+    }
+    return "+ " + levelMod + talentMod;
   };
 
   const getTalentAspect = (talentName) => {
@@ -23,56 +50,23 @@ const LevelsTable = (props) => {
       return "-";
     }
     const whichTalentId = talentData.findIndex((x) => x.name === talentName);
-		if(whichTalentId >= 0) {
-			return talentData[whichTalentId].aspect;
-		}
-  };
-
-  const calcTalentLevel = (talentName) => {
-    if (talentName === "choose") {
-      return "-";
+    if (whichTalentId >= 0) {
+      return talentData[whichTalentId].aspect;
     }
-    const whichTalentId = talentData.findIndex((x) => x.name === talentName);
-		let talentAspect
-		if(whichTalentId >= 0){
-    	talentAspect = talentData[whichTalentId].aspect;
-		}
-    if (talentAspect === "race") {
-      return "-";
-    }
-    if (talentAspect === "common") {
-      return "Class (Full level)";
-    }
-    // if this is their class it's full level
-    if (talentAspect === props.character.aspect) {
-      return "Class (Full level)";
-    }
-    // if it's opposing it's quarter level
-    if (talentAspect === "fighter" && props.character.aspect === "wizard") {
-      return "Opposing (1/4 level)";
-    }
-    if (talentAspect === "wizard" && props.character.aspect === "fighter") {
-      return "Opposing (1/4 level)";
-    }
-    if (talentAspect === "priest" && props.character.aspect === "knave") {
-      return "Opposing (1/4 level)";
-    }
-    if (talentAspect === "knave" && props.character.aspect === "priest") {
-      return "Opposing (1/4 level)";
-    }
-    return "Adjacent (1/2 level)";
   };
 
   return (
     <div>
-      <table className="table table-levels">
+      <table
+        className={`table table-levels table-levels--${props.character.level}`}
+      >
         <thead>
           <tr>
             <th style={{ minWidth: "58px" }}>Level</th>
             <th>HD</th>
             <th>Save Bonus</th>
-            <th>Talents</th>
-            <th>Attrib. Mod</th>
+            <th>Talent</th>
+            <th>Talent Roll Mod</th>
             <th>Class/Adj/Opp</th>
           </tr>
         </thead>
@@ -80,7 +74,9 @@ const LevelsTable = (props) => {
           {/*  --------------- 1st Level - always Combat talent -------------- */}
           <tr
             className={
-              props.character.level === 1 ? "table-row--highlight" : ""
+              props.character.level === 1
+                ? "table-levels--lvl1 table-row--highlight"
+                : "table-levels--lvl1"
             }
           >
             <td
@@ -105,11 +101,18 @@ const LevelsTable = (props) => {
               <div className="aspect-icon aspect-icon--fighter"></div>
               {props.character.talentAssigned1}
             </td>
-            <td>{getTalentMod(props.character.talentAssigned1)}</td>
-            <td>{calcTalentLevel(props.character.talentAssigned1)}</td>
+            <td className="ut-align-center">
+              {getTalentMod(props.character.talentAssigned1)}
+            </td>
+            <td>
+              {calcTalentLevel(
+                props.character.aspect,
+                props.character.talentAssigned1
+              )}
+            </td>
           </tr>
           {/*  --------------- 1st Level - Assigned based on class (aspect) -------------- */}
-          <tr>
+          <tr className="table-levels--lvl1">
             <td>
               <div
                 className={`aspect-icon aspect-icon--${getTalentAspect(
@@ -118,11 +121,18 @@ const LevelsTable = (props) => {
               ></div>
               {props.character.talentAssigned2}
             </td>
-            <td>{getTalentMod(props.character.talentAssigned2)}</td>
-            <td>{calcTalentLevel(props.character.talentAssigned2)}</td>
+            <td className="ut-align-center">
+              {getTalentMod(props.character.talentAssigned2)}
+            </td>
+            <td>
+              {calcTalentLevel(
+                props.character.aspect,
+                props.character.talentAssigned2
+              )}
+            </td>
           </tr>
           {/*  --------------- 1st Level - Choose a race or any talent -------------- */}
-          <tr>
+          <tr className="table-levels--lvl1">
             <td>
               <div
                 className={`aspect-icon aspect-icon--${getTalentAspect(
@@ -139,12 +149,19 @@ const LevelsTable = (props) => {
                 />
               </div>
             </td>
-            <td>{getTalentMod(props.character.talentLevel1)}</td>
-            <td>{calcTalentLevel(props.character.talentLevel1)}</td>
+            <td className="ut-align-center">
+              {getTalentMod(props.character.talentLevel1)}
+            </td>
+            <td>
+              {calcTalentLevel(
+                props.character.aspect,
+                props.character.talentLevel1
+              )}
+            </td>
           </tr>
           {/*  --------------- 1st Level - If they're a Knave they get an extra talent -------------- */}
           {props.character.aspect === "knave" && (
-            <tr>
+            <tr className="table-levels--lvl1">
               <td>
                 <div
                   className={`aspect-icon aspect-icon--${getTalentAspect(
@@ -159,13 +176,15 @@ const LevelsTable = (props) => {
                   character={props.character}
                 />
               </td>
-              <td>{getTalentMod(props.character.talentKnave1)}</td>
+              <td className="ut-align-center">
+                {getTalentMod(props.character.talentKnave1)}
+              </td>
               <td>{calcTalentLevel(props.character.talentKnave1)}</td>
             </tr>
           )}
           {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
           {props.character.disad1 !== "none" && (
-            <tr>
+            <tr className="table-levels--lvl1">
               <td className="ut-align-center">Disad 1</td>
               <td></td>
               <td></td>
@@ -183,13 +202,20 @@ const LevelsTable = (props) => {
                   character={props.character}
                 />
               </td>
-              <td>{getTalentMod(props.character.talentDisad1)}</td>
-              <td>{calcTalentLevel(props.character.talentDisad1)}</td>
+              <td className="ut-align-center">
+                {getTalentMod(props.character.talentDisad1)}
+              </td>
+              <td>
+                {calcTalentLevel(
+                  props.character.aspect,
+                  props.character.talentDisad1
+                )}
+              </td>
             </tr>
           )}
           {/*  --------------- 1st Level - If they have a second disad they get a seconmd extra talent  -------------- */}
           {props.character.disad2 !== "none" && (
-            <tr>
+            <tr className="table-levels--lvl1">
               <td className="ut-align-center">Disad 2</td>
               <td></td>
               <td></td>
@@ -207,8 +233,15 @@ const LevelsTable = (props) => {
                   character={props.character}
                 />
               </td>
-              <td>{getTalentMod(props.character.talentDisad2)}</td>
-              <td>{calcTalentLevel(props.character.talentDisad2)}</td>
+              <td className="ut-align-center">
+                {getTalentMod(props.character.talentDisad2)}
+              </td>
+              <td>
+                {calcTalentLevel(
+                  props.character.aspect,
+                  props.character.talentDisad2
+                )}
+              </td>
             </tr>
           )}
 
@@ -219,7 +252,9 @@ const LevelsTable = (props) => {
               <tr
                 key={i.level}
                 className={
-                  i.level % 2 === 0 ? "ut-zebra-gray" : "ut-zebra-white"
+                  i.level % 2 === 0
+                    ? `ut-zebra-gray  table-levels--lvl${i.level}`
+                    : `ut-zebra-white  table-levels--lvl${i.level}`
                 }
               >
                 <td className="ut-align-center ut-text-greyhawk">
@@ -250,11 +285,12 @@ const LevelsTable = (props) => {
                         character={props.character}
                       />
                     </td>
-                    <td>
+                    <td className="ut-align-center">
                       {getTalentMod(props.character[`talentLevel${i.level}`])}
                     </td>
                     <td>
                       {calcTalentLevel(
+                        props.character.aspect,
                         props.character[`talentLevel${i.level}`]
                       )}
                     </td>

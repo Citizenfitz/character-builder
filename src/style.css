@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /***************************** FONT IMPORTS ************************************* */
 @font-face {
   font-family: "cabin-regular";
@@ -464,6 +465,383 @@ th {
   width: 100%;
 }
 
+.table-levels--1 .table-levels--lvl2 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl3 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl4 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--2 .table-levels--lvl3 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl4 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--3 .table-levels--lvl4 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--4 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--5 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--6 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--7 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--8 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--9 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--10 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--10 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--10 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--10 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--11 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--11 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--11 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--12 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--12 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--13 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
 .flex-grid {
   display: flex;
   justify-content: space-between;
@@ -569,11 +947,11 @@ th {
 }
 
 .fa-edit::before {
-  content: "\f044";
+  content: "";
 }
 
 .fa-trash::before {
-  content: "\f1f8";
+  content: "";
 }
 
 .alignment-radio-set {
