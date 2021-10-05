@@ -555,6 +555,10 @@ th {
   padding: 1.5rem;
 }
 
+.ReactModal__Overlay {
+  background-color: rgba(253, 255, 245, 0.75) !important;
+}
+
 .modal--react {
   position: relative;
   width: 75%;
@@ -564,7 +568,7 @@ th {
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: #fdfff5;
   padding: 20px;
   border: 1px solid #767676;
   border-radius: 5px;

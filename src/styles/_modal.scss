@@ -57,7 +57,9 @@
     padding: $margins-desktop;
   }
 }
-
+.ReactModal__Overlay {
+  background-color: rgba($color-white,.75) !important;
+}
 .modal--react {
   position: relative;
   width: 75%;
@@ -67,7 +69,7 @@
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background-color: $color-white;
   padding: 20px;
   border:1px solid $color-gray-2;
   border-radius: 5px;
