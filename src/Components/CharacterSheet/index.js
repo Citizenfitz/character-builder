@@ -74,7 +74,7 @@ const characterDefaults = {
   talentLevel7Type: "Core",
   talentLevel9Type: "Core",
   saveModsClass:
-    "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
+    "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   saveModsRace: [],
   armor: armorData[0],
   armorIndex: 0,
@@ -576,9 +576,18 @@ const CharacterSheet = () => {
           {/*  ------- SAVING THROW MODS ------ */}
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
-              <div>{character.saveModsClass}</div>
+              <div>
+                <div
+                  className={`aspect-icon aspect-icon--${character.aspect}`}
+                ></div>
+                {character.saveModsClass}
+              </div>
               {character.saveModsRace.map((note, i) => (
-                <div key={i}>{note}</div>
+                <div key={i}>
+                  {" "}
+                  <div className="aspect-icon aspect-icon--race"></div>
+                  {note}
+                </div>
               ))}
             </div>
           </div>

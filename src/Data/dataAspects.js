@@ -77,7 +77,7 @@ const aspectData = [
       "Yogi",
     ],
     saveModsClass:
-      "+2 vs poison, paralyzation, death magic, and any mental attacks",
+      "+2 vs poison, paralyzation, death magic, and mental attacks",
   },
   {
     id: 2,
