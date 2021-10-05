@@ -17,9 +17,13 @@ export default function ThaumaturgySpells(props) {
 
   useEffect(() => {
     if(useLocalStorage){
-      setSpellList(JSON.parse(localStorage.getItem("thaumaturgySpells")))
+      const localData = JSON.parse(localStorage.getItem("thaumaturgySpells"))
+      if(localData){
+        setSpellList(localData)
+      }
     }
   }, []);
+
   useEffect(() => {
     if(useLocalStorage){
       localStorage.setItem("thaumaturgySpells", JSON.stringify(spellList));
@@ -116,7 +120,7 @@ export default function ThaumaturgySpells(props) {
             const index = Array.from(Array(count))
             return index.map((empty,j) => {
               // TODO: one bonus level one spell if wis is greater than 13
-              if(spellList[i].length > 0) {
+              if(spellList && spellList[i].length > 0) {
                 if(spellList[i][j]) {
                   return renderSpellRow(i,j)
                 } else {
