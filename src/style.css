@@ -1223,21 +1223,21 @@ body {
 #modal--schools fieldset {
   margin: 15px 0;
 }
-#modal--schools div {
+#modal--schools fieldset div {
   display: inline-block;
   margin: 5px 0 5px 20px;
 }
-#modal--schools div:first-child {
+#modal--schools fieldset div:first-child {
   margin-left: 0;
 }
-#modal--schools div:last-child {
+#modal--schools fieldset div:last-child {
   margin-right: 0;
 }
 #modal--schools label {
   cursor: pointer;
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: inline-block;
   padding: 0 0 0 8px;
   margin: 0;
@@ -1247,6 +1247,19 @@ body {
   display: inline-block;
   padding: 3px;
   margin: 0;
+}
+#modal--schools .schoolDescriptions span {
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+}
+#modal--schools .schoolDescriptions ul {
+  margin-left: 0;
+  padding: 0;
+}
+#modal--schools .schoolDescriptions li {
+  list-style: none;
+  line-height: 1.4em;
 }
 #modal--schools .school-white {
   color: #9e9e9e;

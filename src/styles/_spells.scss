@@ -116,21 +116,21 @@
   }
   fieldset {
     margin: 15px 0;
-  }
-  div {
-    display: inline-block;
-    margin: 5px 0 5px 20px;
-    &:first-child {
-      margin-left: 0
-    }
-    &:last-child {
-      margin-right: 0
+    div {
+      display: inline-block;
+      margin: 5px 0 5px 20px;
+      &:first-child {
+        margin-left: 0
+      }
+      &:last-child {
+        margin-right: 0
+      }
     }
   }
   label {
     cursor: pointer;
     @include greyhawkfont;
-    font-size: 1rem;
+    font-size: 1.2rem;
     display: inline-block;
     padding: 0 0 0 8px;
     margin: 0;
@@ -140,6 +140,20 @@
     display: inline-block;
     padding: 3px;
     margin: 0;
+  }
+  .schoolDescriptions {
+    span {
+      @include greyhawkfont;
+      font-size: 1rem;
+    }
+    ul {
+      margin-left: 0;
+      padding: 0;
+    }
+    li {
+      list-style: none;
+      line-height: 1.4em;
+    }
   }
   .school-white {
     color: $school-white;

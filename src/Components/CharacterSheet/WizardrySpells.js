@@ -228,7 +228,16 @@ export default function WizardrySpells(props) {
         contentLabel="Wizard Schools"
       >
         <h2>Schools of Magic</h2>
-        <span>You are proficient in {schoolLimit} school{schoolLimit === 1 ? "" : "s"} of magic. Choose wisely.</span>
+        <div className="schoolDescriptions">
+          <ul>
+            <li className="li-white"><span className="school-white">WHITE</span> - Life, light, healing, revelation, protection</li>
+            <li className="li-black"><span className="school-black">BLACK</span> - Death, darkness, slumber, insanity, disease, demonology</li>
+            <li className="li-green"><span className="school-green">GREEN</span> - Nature, weather, fecundity, water, air, ice</li>
+            <li className="li-blue"><span className="school-blue">BLUE</span> - Illusion, transformation, charms, trickery</li>
+            <li className="li-red"><span className="school-red">RED</span> - Fire, earth, destruction, raw power</li>
+          </ul>
+        </div>
+        <span>You are proficient in <b>{schoolLimit}</b> school{schoolLimit === 1 ? "" : "s"} of magic. Choose wisely.</span>
         <form className="clearfix" onSubmit={handleSave_Schools}>
           <fieldset>
             <div className="school-white">
