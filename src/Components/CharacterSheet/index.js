@@ -735,9 +735,8 @@ const CharacterSheet = () => {
                 </ul>
               </div>
             )}
-          <button className="button button--secondary" onClick={openModal}>
-            + Add Note
-          </button>
+          <b className="label">Notes: </b>
+
           {notes.map((note, i) => (
             <div className="note--content" key={i}>
               <button
@@ -751,6 +750,9 @@ const CharacterSheet = () => {
               ></button>
             </div>
           ))}
+          <button className="button button--secondary" onClick={openModal}>
+            + Add Note
+          </button>
         </div>
       </section>
       <ReactModal

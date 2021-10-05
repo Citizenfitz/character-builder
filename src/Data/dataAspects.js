@@ -34,7 +34,7 @@ const aspectData = [
       "Warrior",
     ],
     saveModsClass:
-      "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
+      "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   },
   {
     id: 1,
