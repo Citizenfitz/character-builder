@@ -585,7 +585,6 @@ const CharacterSheet = () => {
                 </li>
                 {character.saveModsRace.map((note, i) => (
                   <li className="data-display-box__save-mods-list-item" key={i}>
-                    {" "}
                     <div className="aspect-icon aspect-icon--race"></div>
                     {note}
                   </li>
@@ -730,6 +729,7 @@ const CharacterSheet = () => {
       </section>
 
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
+      {/*  ------- Race nates -------- */}
       <section>
         <h2>Special Abilites &amp; Notes</h2>
         <div className="notes">
@@ -746,24 +746,36 @@ const CharacterSheet = () => {
                 </ul>
               </div>
             )}
-          <b className="label">Notes: </b>
 
-          {notes.map((note, i) => (
-            <div className="note--content" key={i}>
-              <button
-                className="fas fa-edit"
-                onClick={() => editNote(i)}
-              ></button>
-              <div className="note--text">{note}</div>
-              <button
-                className="fas fa-trash"
-                onClick={() => deleteNote(i)}
-              ></button>
-            </div>
-          ))}
-          <button className="button button--secondary" onClick={openModal}>
-            + Add Note
-          </button>
+          {/*  ------- User nates -------- */}
+          <div className="ut-margin-bottom-half-em">
+            <button className="button button--secondary" onClick={openModal}>
+              + Add Note
+            </button>
+          </div>
+          <ul className="notes__list">
+            {notes.map((note, i) => (
+              <li className="notes__list-item" key={i}>
+                <div className="note--text">{note}</div>
+                <div className="notes__buttons">
+                  <button
+                    className="button button--secondary"
+                    onClick={() => editNote(i)}
+                    aria-label="edit note"
+                  >
+                    <span className="fas fa-edit"></span>
+                  </button>
+                  <button
+                    className="button button--secondary"
+                    aria-label="delete note"
+                    onClick={() => deleteNote(i)}
+                  >
+                    <span className="fas fa-trash"></span>
+                  </button>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
       <ReactModal
@@ -790,7 +802,7 @@ const CharacterSheet = () => {
           <div className="modal__body">
             <textarea
               id="noteText"
-              className="note--textarea"
+              className="notes__textarea"
               placeholder="add your note"
               defaultValue={
                 typeof notesIndex === "number" ? notes[notesIndex] : ""
