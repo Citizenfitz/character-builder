@@ -3,19 +3,16 @@
   button {
     cursor: pointer;
     padding: 3px 3px 0 3px;
-    // background-color: transparent;
-    // &:hover {
-    //   background-color: #ddb5e0;
-    // }
   }
   // nested here for some needed specificity
   .attrib-input {
-    width: 40px;
+    width: 32px;
     height: 32px;
     text-align: center;
     background-color: transparent;
     border: none;
-    font-size: 24px;
+    font-size: 1.2rem;
+    font-family: $text-regular;
   }
   // hide the number stepper
   /* For Firefox */
@@ -31,13 +28,14 @@
   }
 }
 .attrib-val {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
+  width: 44px;
+  height: 44px;
+  border: 1px solid $color-gray-3;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: $color-input-background;
 }
 
 .attrib-group {
@@ -48,9 +46,9 @@
 .attrib-name {
   padding-left: 10px;
   button {
-    font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+    font-family: $text-header;
     font-size: 1.2rem;
-    color: #883c8d;
+    color: $color-royal;
     background-color: transparent;
     border: none;
     &:hover {
@@ -60,9 +58,10 @@
   }
 }
 .attrib-mod {
-  padding-left: 20px;
+  padding-left: 1rem;
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-family: $text-medium;
   span {
     border-bottom: 1px solid black;
   }

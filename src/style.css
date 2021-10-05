@@ -1341,12 +1341,13 @@ input[type=radio] + label.aspect-radio-label__type {
   padding: 3px 3px 0 3px;
 }
 .attributes .attrib-input {
-  width: 40px;
+  width: 32px;
   height: 32px;
   text-align: center;
   background-color: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 1.2rem;
+  font-family: "Cabin Regular", Cabin, sans-serif;
 }
 .attributes input[type=number] {
   -moz-appearance: textfield;
@@ -1358,13 +1359,14 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .attrib-val {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #c4c4c4;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f5f3ed;
 }
 
 .attrib-group {
@@ -1389,9 +1391,10 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .attrib-mod {
-  padding-left: 20px;
+  padding-left: 1rem;
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-family: "Cabin Medium", Cabin, sans-serif;
 }
 .attrib-mod span {
   border-bottom: 1px solid black;
