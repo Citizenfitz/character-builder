@@ -3,8 +3,7 @@
 }
 .spells--table {
   width: 100%;
-
-  tbody tr:nth-child(even) {
+  tr:nth-child(even) {
     background-color: $color-gray-5;
   }
   th {
@@ -17,7 +16,6 @@
   td:nth-child(2) {
     text-align: left;
   }
-
 }
 .knownSchools {
   display: inline-block;

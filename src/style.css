@@ -1115,7 +1115,7 @@ body {
 .spells--table {
   width: 100%;
 }
-.spells--table tbody tr:nth-child(even) {
+.spells--table tr:nth-child(even) {
   background-color: #f6f7fb;
 }
 .spells--table th {
