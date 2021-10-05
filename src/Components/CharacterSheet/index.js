@@ -83,7 +83,7 @@ const characterDefaults = {
   wizardrySchools: []
 };
 
-const useLocalStorage = false
+const useLocalStorage = true
 let characterData
 let notesData
 
@@ -338,6 +338,8 @@ const CharacterSheet = () => {
       level += talents.includes('Wizardry 2') ? 1 : 0
       level += talents.includes('Wizardry 3') ? 1 : 0
       // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
+      console.log(`schoolCount[level]`, schoolCount[level])
+      console.log(`character.wizardrySchools.length`, character.wizardrySchools.length)
       if(schoolCount[level] !== character.wizardrySchools.length) {
         setSchoolLimit(schoolCount[level])
       }

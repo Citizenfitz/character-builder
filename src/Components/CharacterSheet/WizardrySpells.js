@@ -20,7 +20,10 @@ export default function WizardrySpells(props) {
 
   useEffect(() => {
     if(useLocalStorage){
-      setSpellList(JSON.parse(localStorage.getItem("wizardrySpells")))
+      const localData = JSON.parse(localStorage.getItem("wizardrySpells"))
+      if(localData){
+        setSpellList(localData)
+      }
     }
   }, []);
 
@@ -31,7 +34,9 @@ export default function WizardrySpells(props) {
   }, [spellList]);
 
   useEffect(() => {
-    setIsOpen_Schools(true)
+    if(schoolLimit){
+      setIsOpen_Schools(true)
+    }
   },[schoolLimit])
 
   // const openModal = () => setOpen(true)
@@ -150,7 +155,7 @@ export default function WizardrySpells(props) {
             const index = Array.from(Array(count))
             return index.map((empty,j) => {
               // TODO: one bonus level one spell if wis is greater than 13
-              if(spellList[i].length > 0) {
+              if(spellList && spellList[i].length > 0) {
                 if(spellList[i][j]) {
                   return renderSpellRow(i,j)
                 } else {
