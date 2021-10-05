@@ -30,4 +30,21 @@
   &--quick-values.flex-grid__child {
     width: calc(50% - 1rem);
   }
+  &__save-mods-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 24px;
+  }
+  &__save-mods-list-item {
+    position: relative;
+    margin-bottom: 0.75em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    > .aspect-icon {
+      position: absolute;
+      left: -24px;
+      top: -3px;
+    }
+  }
 }

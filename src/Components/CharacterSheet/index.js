@@ -576,19 +576,21 @@ const CharacterSheet = () => {
           {/*  ------- SAVING THROW MODS ------ */}
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
-              <div>
-                <div
-                  className={`aspect-icon aspect-icon--${character.aspect}`}
-                ></div>
-                {character.saveModsClass}
-              </div>
-              {character.saveModsRace.map((note, i) => (
-                <div key={i}>
-                  {" "}
-                  <div className="aspect-icon aspect-icon--race"></div>
-                  {note}
-                </div>
-              ))}
+              <ul className="data-display-box__save-mods-list">
+                <li className="data-display-box__save-mods-list-item">
+                  <div
+                    className={`aspect-icon aspect-icon--${character.aspect}`}
+                  ></div>
+                  {character.saveModsClass}
+                </li>
+                {character.saveModsRace.map((note, i) => (
+                  <li className="data-display-box__save-mods-list-item" key={i}>
+                    {" "}
+                    <div className="aspect-icon aspect-icon--race"></div>
+                    {note}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <span className="label">Saving Throw Mods</span>
