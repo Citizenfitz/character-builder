@@ -32,6 +32,10 @@ const characterDefaults = {
   namePlayer: "",
   nameCharacter: "",
   level: 1,
+  fighterLevel: 1,
+  priestLevel: 1,
+  wizardLevel: 1,
+  knaveLevel: 1,
   race: "Human",
   gender: "Male",
   aspect: aspectData[0].name,
@@ -218,7 +222,45 @@ const CharacterSheet = () => {
 
   const handleCharLevel = (e) => {
     const { value } = e.target;
-    setCharacter((PrevState) => ({ ...PrevState, level: value }));
+    let fighterLevel, priestLevel, wizardLevel, knaveLevel
+    switch (character.aspect) {
+      case "fighter":
+        fighterLevel = value
+        priestLevel = Math.max(1,Math.floor(value/2))
+        wizardLevel = Math.max(1,Math.floor(value/2))
+        knaveLevel = Math.max(1,Math.floor(value/4))
+        break;
+      case "priest":
+        priestLevel = value
+        fighterLevel = Math.max(1,Math.floor(value/2))
+        knaveLevel = Math.max(1,Math.floor(value/2))
+        wizardLevel = Math.max(1,Math.floor(value/4))
+        break;
+      case "wizard":
+        wizardLevel = value
+        fighterLevel = Math.max(1,Math.floor(value/2))
+        knaveLevel = Math.max(1,Math.floor(value/2))
+        priestLevel = Math.max(1,Math.floor(value/4))
+        break;
+      case "knave":
+        knaveLevel = value
+        priestLevel = Math.max(1,Math.floor(value/2))
+        wizardLevel = Math.max(1,Math.floor(value/2))
+        fighterLevel = Math.max(1,Math.floor(value/4))
+        break;
+    
+      default:
+        console.error("could not find aspect name")
+        break;
+    }
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      level: value,
+      fighterLevel,
+      priestLevel,
+      wizardLevel,
+      knaveLevel
+    }));
   };
 
   const handleCharAspect = (e) => {
@@ -826,7 +868,7 @@ const CharacterSheet = () => {
 
       {character.hasWizardry && (
         <WizardrySpells 
-          level={character.level} 
+          level={character.wizardLevel} 
           intStat={character.attributes.intelligence.total} 
           schools={character.wizardrySchools}
           schoolLimit={schoolLimit}
@@ -836,7 +878,7 @@ const CharacterSheet = () => {
       )}
       {character.hasThaumaturgy && (
         <ThaumaturgySpells 
-          level={character.level} 
+          level={character.priestLevel} 
           wisStat={character.attributes.wisdom.total} 
           useLocalStorage={useLocalStorage} 
         />
