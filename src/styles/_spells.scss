@@ -19,21 +19,27 @@
   }
 
 }
+.knownSchools {
+  display: inline-block;
+  position: relative;
+  margin-left:10px;
+  top: 2px;
+}
 .spells--wizardry {
   th {
     background-color: $color-wizard;
     color: $color-white;
     border-color: $color-black;
   }
-  tr:hover, .active {
-    background-color: lighten($color-wizard, 40%) !important;
+  tr:hover, tr:active {
+    background-color: lighten($color-wizard, 40%);
   }
   [class^='school'] {
     display: inline-block;
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    margin-left: 8px
+    margin-left: 4px
   }
   .school-white {
     background-color: $school-white;
@@ -85,7 +91,22 @@
 }
 
 #modal--wizardrySpells {
-  width: 85%
+  width: fit-content;
+  max-width: 85vw;
+  position: relative;
+
+  .showAll {
+    margin-left: 20px;
+  }
+  .unavailable {
+    background-color: $color-gray-4;
+    color: rgba($color-gray-1,.8);
+    cursor: not-allowed;
+    pointer-events: none;
+    &:hover, &:active {
+      background-color: $color-gray-4;
+    }
+  }
 }
 
 #modal--schools {

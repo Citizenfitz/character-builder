@@ -16,6 +16,7 @@ export default function WizardrySpells(props) {
   const [spellSlot, setSpellSlot] = useState(0)
   const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
   const [schoolValidation, setSchoolValidation] = useState(null);
+  const [showAll, setShowAll] = useState(false)
 
   useEffect(() => {
     if(useLocalStorage){
@@ -68,11 +69,17 @@ export default function WizardrySpells(props) {
     }
   }
 
+  const toggleShowAll = () => {
+    setShowAll(prev => !prev)
+  }
+
   return (
     <div className="spell spells--wizardry">
       <h2>
         Wizardry Spells
-        {schools.map(color => <div key={color} className={`school-${color}`} />)}
+        <div className="knownSchools">
+          {schools.map(color => <div key={color} className={`school-${color}`} />)}
+        </div>
         <SpellSlotsModal level={level} />
       </h2>
       <table className="table spells--table">
@@ -87,6 +94,7 @@ export default function WizardrySpells(props) {
             <th>Target</th>
             <th>Components</th>
             <th>Save</th>
+            <th>School</th>
             <th>Available</th>
           </tr>
         </thead>
@@ -110,6 +118,7 @@ export default function WizardrySpells(props) {
                       <td>{spellList[i][j].target}</td>
                       <td>{spellList[i][j].components}</td>
                       <td>{spellList[i][j].save}</td>
+                      <td>{spellList[i][j].school.map(color => <div key={color} className={`school-${color}`} />)}</td>
                       <td><input type="checkbox" id={`${i}_${j}`} defaultChecked /></td>
                     </tr>
                   )
@@ -120,6 +129,7 @@ export default function WizardrySpells(props) {
                       <td>
                         <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
                       </td>
+                      <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -144,6 +154,7 @@ export default function WizardrySpells(props) {
                     <td></td>
                     <td></td>
                     <td></td>
+                    <td></td>
                   </tr>
                 )
               }
@@ -159,10 +170,11 @@ export default function WizardrySpells(props) {
         onRequestClose={closeModal}
         contentLabel="Spell Slots"
       >
-        <h2>Pick a spell</h2>
-        <button className="button--modalClose" onClick={closeModal}>
-          x
-        </button>
+        <header>
+          <h2>Pick a spell</h2>
+          <button className="showAll" onClick={toggleShowAll}>{showAll ? "Show Available Spells" : "Show All Spells"}</button>
+        </header>
+        <button className="button--modalClose" onClick={closeModal}>x</button>
         <div className="table-wrapper">
           <table className="table table--spells">
             <thead>
@@ -176,15 +188,17 @@ export default function WizardrySpells(props) {
                 <th>Target</th>
                 <th>Components</th>
                 <th>Save</th>
+                <th>School</th>
               </tr>
             </thead>
             <tbody>
             {
               spellLevel && wizardryList[spellLevel - 1].map((spellName,i) => {
                 const intersection = schools.filter(element => spellData[spellName].school.includes(element));
-                // console.log(`intersection`, intersection, 'on', spellName)
-                if(intersection.length > 0){
-                  return <tr key={i} className="clickable" onClick={() => handleAssignSpell(spellName)}>
+                console.log(`intersection`, intersection, 'on', spellName)
+                const hasSchool = intersection.length > 0
+                if(showAll || hasSchool){
+                  return <tr key={i} className={`clickable ${hasSchool ? "available" : "unavailable"}`} onClick={() => handleAssignSpell(spellName)}>
                     <td>{spellLevel}</td>
                     <td>{spellName}</td>
                     <td>{spellData[spellName].cast}</td>
@@ -193,6 +207,7 @@ export default function WizardrySpells(props) {
                     <td>{spellData[spellName].target}</td>
                     <td>{spellData[spellName].components}</td>
                     <td>{spellData[spellName].save}</td>
+                    <td>{spellData[spellName].school.map(color => <div key={color} className={`school-${color}`} />)}</td>
                   </tr>
                 }
               })
