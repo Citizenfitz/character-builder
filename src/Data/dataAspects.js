@@ -34,7 +34,7 @@ const aspectData = [
       "Warrior",
     ],
     saveModsClass:
-      "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
+      "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   },
   {
     id: 1,
@@ -77,7 +77,7 @@ const aspectData = [
       "Yogi",
     ],
     saveModsClass:
-      "+2 vs poison, paralyzation, death magic, and any mental attacks",
+      "+2 vs poison, paralyzation, death magic, and mental attacks",
   },
   {
     id: 2,

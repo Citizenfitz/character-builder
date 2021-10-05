@@ -62,14 +62,20 @@
   text-transform: capitalize;
 }
 
-.ut-margin-top-0 {
-  margin-top: 0;
-}
-.ut-margin-right-2em {
-  margin-right: 2em;
-}
-.ut-margin-right-1em {
-  margin-right: 1em;
+//  ------- Margins --------
+.ut-margin {
+  &-top-0 {
+    margin-top: 0;
+  }
+  &-right-2em {
+    margin-right: 2em;
+  }
+  &-right-1em {
+    margin-right: 1em;
+  }
+  &-bottom-half-em {
+    margin-bottom: 0.5em;
+  }
 }
 
 .ut-text-explain {

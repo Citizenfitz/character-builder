@@ -19,6 +19,26 @@
     height: auto;
     text-align: left;
   }
+  &__save-mods-list {
+    list-style: none;
+    margin: 0;
+    padding-left: 26px;
+  }
+  &__save-mods-list-item {
+    position: relative;
+    margin-bottom: 0.75em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    > .aspect-icon {
+      position: absolute;
+      left: -24px;
+      top: -1px;
+    }
+    > .aspect-icon--race {
+      top: -3px;
+    }
+  }
   &--explanations {
     margin-bottom: $margins-form-element-bottom * 2;
     height: 149px;

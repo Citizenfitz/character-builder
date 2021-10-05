@@ -42,7 +42,7 @@ body {
   margin: 0;
   font-family: "Cabin Regular", Cabin, sans-serif;
   color: #000;
-  background: #fdfff5;
+  background: #fff;
 }
 
 header {
@@ -180,7 +180,7 @@ dd,
 /*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator {
   display: inline-block;
-  color: #fdfff5;
+  color: #fff;
   height: 16px;
   width: 16px;
   font-size: 0.75rem;
@@ -304,7 +304,7 @@ button,
 button--primary,
 .button--primary {
   background-color: #883c8d;
-  color: #fdfff5;
+  color: #fff;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
   vertical-align: bottom;
@@ -409,7 +409,7 @@ input[type=radio] + label {
 input[type=radio]:checked + label {
   display: inline-block;
   background: #883c8d;
-  color: #fdfff5;
+  color: #fff;
   border-color: black;
 }
 input[type=radio]:checked + label.fighter {
@@ -511,7 +511,7 @@ th {
   left: 50%;
   margin-left: -250px;
   top: 40px;
-  background: #fdfff5;
+  background: #fff;
   overflow: hidden;
   outline: none;
   padding: 0;
@@ -526,14 +526,14 @@ th {
   font-size: 1.25rem;
   height: 40px;
   line-height: 40px;
-  color: #fdfff5;
+  color: #fff;
   letter-spacing: 2px;
 }
 .modal__header-button {
   height: 40px;
   width: 40px;
   color: #883c8d;
-  background: #fdfff5;
+  background: #fff;
   border-radius: 0;
   border: none;
   font-size: 1.25em;
@@ -544,7 +544,7 @@ th {
   top: 0;
 }
 .modal__header-button:hover {
-  color: #fdfff5;
+  color: #fff;
   background: #883c8d;
 }
 .modal__body {
@@ -556,7 +556,7 @@ th {
 }
 
 .ReactModal__Overlay {
-  background-color: rgba(253, 255, 245, 0.75) !important;
+  background-color: rgba(255, 255, 255, 0.75) !important;
 }
 
 .modal--react {
@@ -568,7 +568,7 @@ th {
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  background-color: #fdfff5;
+  background-color: #fff;
   padding: 20px;
   border: 1px solid #767676;
   border-radius: 5px;
@@ -600,6 +600,27 @@ th {
   margin: 0;
 }
 
+.fas {
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+
+.fas::before {
+  font-family: "FontAwesome";
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fa-edit::before {
+  content: "\f044";
+}
+
+.fa-trash::before {
+  content: "\f1f8";
+}
+
 .alignment-radio-set {
   list-style: none;
   padding: 0;
@@ -628,7 +649,7 @@ th {
 }
 .alignment-radio-set__item > input:checked + .alignment-radio-label {
   background: #883c8d;
-  color: #fdfff5;
+  color: #fff;
 }
 
 .fx-grid {
@@ -846,6 +867,26 @@ input[type=radio] + label.aspect-radio-label__type {
   height: auto;
   text-align: left;
 }
+.data-display-box__save-mods-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 26px;
+}
+.data-display-box__save-mods-list-item {
+  position: relative;
+  margin-bottom: 0.75em;
+}
+.data-display-box__save-mods-list-item:last-child {
+  margin-bottom: 0;
+}
+.data-display-box__save-mods-list-item > .aspect-icon {
+  position: absolute;
+  left: -24px;
+  top: -1px;
+}
+.data-display-box__save-mods-list-item > .aspect-icon--race {
+  top: -3px;
+}
 .data-display-box--explanations {
   margin-bottom: 2rem;
   height: 149px;
@@ -922,13 +963,14 @@ input[type=radio] + label.aspect-radio-label__type {
 .ut-margin-top-0 {
   margin-top: 0;
 }
-
 .ut-margin-right-2em {
   margin-right: 2em;
 }
-
 .ut-margin-right-1em {
   margin-right: 1em;
+}
+.ut-margin-bottom-half-em {
+  margin-bottom: 0.5em;
 }
 
 .ut-text-explain {
@@ -1043,15 +1085,6 @@ body {
   height: 100%;
 }
 
-.button--addNote {
-  margin-left: 20px;
-}
-
-#modal--note h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
-}
-
 .button--modalClose {
   position: absolute;
   top: 5px;
@@ -1061,55 +1094,23 @@ body {
   line-height: 0;
 }
 
-.textarea--note {
+.notes {
+  margin-top: 0.75em;
+}
+.notes__textarea {
   font-family: "Cabin Regular", Cabin, sans-serif;
   width: 100%;
   min-height: 120px;
   padding: 10px;
 }
-
-.notes {
-  margin-top: 10px;
+.notes__list {
+  margin-top: 0;
 }
-
-.note--content {
-  display: flex;
-  padding: 5px 10px;
+.notes__buttons {
+  margin: 0.25em 0 1em 0;
 }
-.note--content .note--text {
-  flex-grow: 2;
-  margin-left: 10px;
-}
-.note--content .fas {
-  visibility: hidden;
-  background-color: transparent;
-  border: none;
-  color: #000;
-  font-size: 18px;
-  padding: 0;
-  margin: 0;
-}
-.note--content .fas::before {
-  font-family: "FontAwesome";
-  display: inline-block;
-  text-rendering: auto;
-  -webkit-font-smoothing: antialiased;
-}
-.note--content .fa-edit::before {
-  content: "\f044";
-}
-.note--content .fa-trash::before {
-  content: "\f1f8";
-}
-.note--content:hover {
-  background-color: #f6f7fb;
-}
-.note--content:hover .fas {
-  visibility: visible;
-}
-
-.note--race {
-  padding-left: 28px;
+.notes__buttons > button {
+  margin-right: 0.5em;
 }
 
 .button-showSpellSlots {
@@ -1142,7 +1143,7 @@ body {
 
 .spells--wizardry th {
   background-color: #e1a525;
-  color: #fdfff5;
+  color: #fff;
   border-color: #000;
 }
 .spells--wizardry tr:hover, .spells--wizardry tr:active {
@@ -1173,7 +1174,7 @@ body {
 
 .spells--thaumaturgy th {
   background-color: #2375b9;
-  color: #fdfff5;
+  color: #fff;
   border-color: #000;
 }
 .spells--thaumaturgy tr:hover, .spells--thaumaturgy .active {

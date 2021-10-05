@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Modal from "react-modal";
+// import Modal from "react-modal";
+import ReactModal from "react-modal";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
 import Attributes from "./Attributes";
 import Aspects from "./Aspects";
+import Notes from "./Notes";
 import {
   aspectData,
   dataDisads,
@@ -69,7 +71,7 @@ const characterDefaults = {
   talentLevel7Type: "Core",
   talentLevel9Type: "Core",
   saveModsClass:
-    "+2 vs petrification, polymorph, breath weapons, any entangling and grappling attacks. ",
+    "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   saveModsRace: [],
   armor: armorData[0],
   armorIndex: 0,
@@ -83,11 +85,11 @@ const characterDefaults = {
   wizardrySchools: []
 };
 
-const useLocalStorage = true
-let characterData
-let notesData
+const useLocalStorage = false;
+let characterData;
+let notesData;
 
-if(useLocalStorage){
+if (useLocalStorage) {
   characterData = JSON.parse(localStorage.getItem("character"));
   notesData = JSON.parse(localStorage.getItem("notes"));
 }
@@ -102,13 +104,13 @@ const CharacterSheet = () => {
   const [schoolLimit, setSchoolLimit] = useState()
 
   useEffect(() => {
-    if(useLocalStorage){
+    if (useLocalStorage) {
       localStorage.setItem("character", JSON.stringify(character));
     }
   }, [character]);
 
   useEffect(() => {
-    if(useLocalStorage){
+    if (useLocalStorage) {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
   }, [notes]);
@@ -172,42 +174,6 @@ const CharacterSheet = () => {
     "Vow of Modesty": false,
     "Vow of Nature": false,
   });
-
-  const openModal_Notes = () => {
-    setIsOpen_Notes(true);
-  };
-
-  const closeModal_Notes = () => {
-    setNotesIndex(false);
-    setIsOpen_Notes(false);
-  };
-
-  const handleSave_Note = (e) => {
-    e.preventDefault();
-    const noteText = e.target.noteText.value;
-    if (typeof notesIndex === "number") {
-      // replace the indexed item
-      const tempNotes = notes;
-      tempNotes[notesIndex] = noteText;
-      setNotes(tempNotes);
-      setNotesIndex(false);
-    } else {
-      // adding a new note
-      setNotes((prev) => [...prev, noteText]);
-    }
-    closeModal_Notes();
-  };
-
-  const editNote = (index) => {
-    setNotesIndex(index);
-    setIsOpen_Notes(true);
-  };
-
-  const deleteNote = (index) => {
-    const newNoteList = [...notes];
-    newNoteList.splice(index, 1);
-    setNotes(newNoteList);
-  };
 
   const handleInputChange = (e, name) => {
     let value;
@@ -636,7 +602,7 @@ const CharacterSheet = () => {
             <Attributes
               onChange={updateAttributes}
               attributes={character.attributes}
-              updated={character.attributesUpdates} 
+              updated={character.attributesUpdates}
             />
           </section>
         </div>
@@ -668,10 +634,20 @@ const CharacterSheet = () => {
           {/*  ------- SAVING THROW MODS ------ */}
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
-              <div>{character.saveModsClass}</div>
-              {character.saveModsRace.map((note, i) => (
-                <div key={i}>{note}</div>
-              ))}
+              <ul className="data-display-box__save-mods-list">
+                <li className="data-display-box__save-mods-list-item">
+                  <div
+                    className={`aspect-icon aspect-icon--${character.aspect}`}
+                  ></div>
+                  {character.saveModsClass}
+                </li>
+                {character.saveModsRace.map((note, i) => (
+                  <li className="data-display-box__save-mods-list-item" key={i}>
+                    <div className="aspect-icon aspect-icon--race"></div>
+                    {note}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
           <span className="label">Saving Throw Mods</span>
@@ -811,80 +787,16 @@ const CharacterSheet = () => {
       </section>
 
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
-
       <section>
-        <h2>
-          Special Abilites &amp; Notes{" "}
-          <button className="button--addNote" onClick={openModal_Notes}>
-            Add Note
-          </button>
-        </h2>
-        <div className="notes">
-          {character.characteristicsRace.map((note, i) => (
-            <div className="note--content note--race" key={i}>
-              <div className="note--text">
-                {character.race}: {note}
-              </div>
-            </div>
-          ))}
-          {notes.map((note, i) => (
-            <div className="note--content" key={i}>
-              <button
-                className="fas fa-edit"
-                onClick={() => editNote(i)}
-              ></button>
-              <div className="note--text">{note}</div>
-              <button
-                className="fas fa-trash"
-                onClick={() => deleteNote(i)}
-              ></button>
-            </div>
-          ))}
-        </div>
+        <h2>Special Abilites &amp; Notes</h2>
+        <Notes
+          notes={notes}
+          setNotes={setNotes}
+          notesIndex={notesIndex}
+          setNotesIndex={setNotesIndex}
+          character={character}
+        />
       </section>
-      <Modal
-        id="modal--note"
-        className="modal--react"
-        isOpen={modalIsOpen_Notes}
-        onRequestClose={closeModal_Notes}
-        contentLabel="Add a note"
-      >
-        <h2>{typeof notesIndex === "number" ? "Edit" : "Add"} Note</h2>
-        <button className="button--modalClose" onClick={closeModal_Notes}>
-          x
-        </button>
-        <form className="clearfix" onSubmit={handleSave_Note}>
-          <textarea
-            id="noteText"
-            className="textarea--note"
-            placeholder="add your note"
-            defaultValue={
-              typeof notesIndex === "number" ? notes[notesIndex] : ""
-            }
-          ></textarea>
-          <input className="button--modalSave" type="submit" value="Save" />
-        </form>
-      </Modal>
-
-      {/*  --------------- SPELLS -------------- */}
-
-      {character.hasWizardry && (
-        <WizardrySpells 
-          level={character.wizardLevel} 
-          intStat={character.attributes.intelligence.total} 
-          schools={character.wizardrySchools}
-          schoolLimit={schoolLimit}
-          onPickSchool={handlePickSchool}
-          useLocalStorage={useLocalStorage}
-        />
-      )}
-      {character.hasThaumaturgy && (
-        <ThaumaturgySpells 
-          level={character.priestLevel} 
-          wisStat={character.attributes.wisdom.total} 
-          useLocalStorage={useLocalStorage} 
-        />
-      )}
     </div>
   );
 };
