@@ -65,12 +65,56 @@ export default function WizardrySpells(props) {
       onPickSchool(checked)
     } else {
       const plural = schoolLimit === 1 ? "" : "s"
-      setSchoolValidation(`You must select only ${schoolLimit} school${plural}`)
+      setSchoolValidation(`You must select ${schoolLimit} school${plural}`)
     }
   }
 
   const toggleShowAll = () => {
     setShowAll(prev => !prev)
+  }
+
+  const renderEmptyRow = (i,j) => {
+    return (
+      <tr key={j}>
+        <td>{i+1}</td>
+        <td>
+          <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    )
+  }
+
+  const renderSpellRow = (i,j) => {
+    return (
+      <tr key={j}>
+        <td>{i + 1}</td>
+        <td className="clickable" onClick={() => selectSpell(i,j)}>{spellList[i][j].name}</td>
+        <td>{spellList[i][j].cast}</td>
+        <td>{spellList[i][j].duration}</td>
+        <td>{spellList[i][j].range}</td>
+        <td>{spellList[i][j].target}</td>
+        <td>{spellList[i][j].components}</td>
+        <td>{spellList[i][j].save}</td>
+        <td>{spellList[i][j].school.map(color => <div key={color} className={`school-${color}`} />)}</td>
+        <td><input type="checkbox" id={`${i}_${j}`} defaultChecked /></td>
+      </tr>
+    )
+  }
+
+  const addBonusSpell = () => {
+    if(spellList[0][spellCount[0]]) {
+      return renderSpellRow(0,spellCount[0])
+    } else {
+      return renderEmptyRow(0,spellCount[0])
+    }
   }
 
   return (
@@ -99,6 +143,7 @@ export default function WizardrySpells(props) {
           </tr>
         </thead>
         <tbody>
+          {intStat >= 13 && addBonusSpell()}
           {spellCount.map((count,i) => {
             if(count === "-") return
             // create empty array to map over - for loops doen't work here
@@ -107,62 +152,20 @@ export default function WizardrySpells(props) {
               // TODO: one bonus level one spell if wis is greater than 13
               if(spellList[i].length > 0) {
                 if(spellList[i][j]) {
-                  // console.log(`spellList[i][j]`, spellList[i][j])
-                  return (
-                    <tr key={j}>
-                      <td>{i + 1}</td>
-                      <td className="clickable" onClick={() => selectSpell(i,j)}>{spellList[i][j].name}</td>
-                      <td>{spellList[i][j].cast}</td>
-                      <td>{spellList[i][j].duration}</td>
-                      <td>{spellList[i][j].range}</td>
-                      <td>{spellList[i][j].target}</td>
-                      <td>{spellList[i][j].components}</td>
-                      <td>{spellList[i][j].save}</td>
-                      <td>{spellList[i][j].school.map(color => <div key={color} className={`school-${color}`} />)}</td>
-                      <td><input type="checkbox" id={`${i}_${j}`} defaultChecked /></td>
-                    </tr>
-                  )
+                  return renderSpellRow(i,j)
                 } else {
-                  return (
-                    <tr key={j}>
-                      <td>{i+1}</td>
-                      <td>
-                        <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
-                      </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  )
+                  return renderEmptyRow(i,j)
                 }
               } else {
-                return (
-                  <tr key={j}>
-                    <td>{i+1}</td>
-                    <td>
-                      <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                )
+                return renderEmptyRow(i,j)
               }
             })
           })
         }
         </tbody>
       </table>
+
+
       <Modal
         id="modal--wizardrySpells"
         className="modal--react spells--wizardry"
@@ -195,7 +198,7 @@ export default function WizardrySpells(props) {
             {
               spellLevel && wizardryList[spellLevel - 1].map((spellName,i) => {
                 const intersection = schools.filter(element => spellData[spellName].school.includes(element));
-                console.log(`intersection`, intersection, 'on', spellName)
+                // console.log(`intersection`, intersection, 'on', spellName)
                 const hasSchool = intersection.length > 0
                 if(showAll || hasSchool){
                   return <tr key={i} className={`clickable ${hasSchool ? "available" : "unavailable"}`} onClick={() => handleAssignSpell(spellName)}>
