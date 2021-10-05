@@ -36,7 +36,6 @@ export default function ThaumaturgySpells(props) {
   }
 
   const handleAssignSpell = (spellName) => {
-    // console.log(`spellName`, spellName)
     const newSpellList = {...spellList}
     newSpellList[spellLevel - 1][spellSlot] = {
       name: spellName,
@@ -44,6 +43,48 @@ export default function ThaumaturgySpells(props) {
     }
     setSpellList(newSpellList)
     setOpen(false)
+  }
+
+  const renderEmptyRow = (i,j) => {
+    return (
+      <tr key={j}>
+        <td>{i+1}</td>
+        <td>
+          <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+    )
+  }
+
+  const renderSpellRow = (i,j) => {
+    return (
+      <tr key={j}>
+        <td>{i + 1}</td>
+        <td className="clickable" onClick={() => selectSpell(i,j)}>{spellList[i][j].name}</td>
+        <td>{spellList[i][j].cast}</td>
+        <td>{spellList[i][j].duration}</td>
+        <td>{spellList[i][j].range}</td>
+        <td>{spellList[i][j].target}</td>
+        <td>{spellList[i][j].components}</td>
+        <td>{spellList[i][j].save}</td>
+        <td><input type="checkbox" id={`${i}_${j}`} defaultChecked /></td>
+      </tr>
+    )
+  }
+
+  const addBonusSpell = (i,j) => {
+    if(spellList[0][spellCount[0]]) {
+      return renderSpellRow(0,spellCount[0])
+    } else {
+      return renderEmptyRow(0,spellCount[0])
+    }
   }
 
   return (
@@ -68,6 +109,7 @@ export default function ThaumaturgySpells(props) {
           </tr>
         </thead>
         <tbody>
+          {wisStat >= 13 && addBonusSpell()}
           {spellCount.map((count,i) => {
             if(count === "-") return
             // create empty array to map over - for loops doen't work here
@@ -76,52 +118,12 @@ export default function ThaumaturgySpells(props) {
               // TODO: one bonus level one spell if wis is greater than 13
               if(spellList[i].length > 0) {
                 if(spellList[i][j]) {
-                  return (
-                    <tr key={j}>
-                      <td>{i + 1}</td>
-                      <td className="clickable" onClick={() => selectSpell(i,j)}>{spellList[i][j].name}</td>
-                      <td>{spellList[i][j].cast}</td>
-                      <td>{spellList[i][j].duration}</td>
-                      <td>{spellList[i][j].range}</td>
-                      <td>{spellList[i][j].target}</td>
-                      <td>{spellList[i][j].components}</td>
-                      <td>{spellList[i][j].save}</td>
-                      <td><input type="checkbox" id={`${i}_${j}`} defaultChecked /></td>
-                    </tr>
-                  )
+                  return renderSpellRow(i,j)
                 } else {
-                  return (
-                    <tr key={j}>
-                      <td>{i+1}</td>
-                      <td>
-                        <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
-                      </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  )
+                  return renderEmptyRow(i,j)
                 }
               } else {
-                return (
-                  <tr key={j}>
-                    <td>{i+1}</td>
-                    <td>
-                      <button onClick={() => selectSpell(i,j)}>Pick a spell</button>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                )
+                return renderEmptyRow(i,j)
               }
             })
           })
