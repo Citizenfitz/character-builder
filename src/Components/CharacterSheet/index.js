@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 // import Modal from "react-modal";
-import ReactModal from "react-modal";
+// import ReactModal from "react-modal";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -27,8 +27,6 @@ import {
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells"
 import WizardrySpells from "./WizardrySpells"
-
-Modal.setAppElement("#root");
 
 const characterDefaults = {
   namePlayer: "",
@@ -797,6 +795,25 @@ const CharacterSheet = () => {
           character={character}
         />
       </section>
+
+      {/*  --------------- SPELLS -------------- */}
+      {character.hasWizardry && (
+        <WizardrySpells 
+          level={character.wizardLevel} 
+          intStat={character.attributes.intelligence.total} 
+          schools={character.wizardrySchools}
+          schoolLimit={schoolLimit}
+          onPickSchool={handlePickSchool}
+          useLocalStorage={useLocalStorage}
+        />
+      )}
+      {character.hasThaumaturgy && (
+        <ThaumaturgySpells 
+          level={character.priestLevel} 
+          wisStat={character.attributes.wisdom.total} 
+          useLocalStorage={useLocalStorage} 
+        />
+      )}
     </div>
   );
 };

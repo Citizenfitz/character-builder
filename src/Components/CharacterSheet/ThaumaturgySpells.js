@@ -7,6 +7,8 @@ const defaultSpellList = [
   [],[],[],[],[],[],[]
 ]
 
+Modal.setAppElement("#root");
+
 export default function ThaumaturgySpells(props) {
   const { level, wisStat, useLocalStorage } = props
   const spellCount = spellSlots[level - 1]

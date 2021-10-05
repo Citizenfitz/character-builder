@@ -7,6 +7,8 @@ const defaultSpellList = [
   [],[],[],[],[],[],[]
 ]
 
+Modal.setAppElement("#root");
+
 export default function WizardrySpells(props) {
   const { level, intStat, schools, schoolLimit, onPickSchool, useLocalStorage } = props
   const spellCount = spellSlots[level - 1]
