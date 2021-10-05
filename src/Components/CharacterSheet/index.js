@@ -7,6 +7,7 @@ import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
 import Attributes from "./Attributes";
 import Aspects from "./Aspects";
+import Notes from "./Notes";
 import {
   aspectData,
   dataDisads,
@@ -173,42 +174,6 @@ const CharacterSheet = () => {
     "Vow of Modesty": false,
     "Vow of Nature": false,
   });
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-
-  const closeModal = () => {
-    setNotesIndex(false);
-    setIsOpen(false);
-  };
-
-  const handleSaveNote = (e) => {
-    e.preventDefault();
-    const noteText = e.target.noteText.value;
-    if (typeof notesIndex === "number") {
-      // replace the indexed item
-      const tempNotes = notes;
-      tempNotes[notesIndex] = noteText;
-      setNotes(tempNotes);
-      setNotesIndex(false);
-    } else {
-      // adding a new note
-      setNotes((prev) => [...prev, noteText]);
-    }
-    closeModal();
-  };
-
-  const editNote = (index) => {
-    setNotesIndex(index);
-    setIsOpen(true);
-  };
-
-  const deleteNote = (index) => {
-    const newNoteList = [...notes];
-    newNoteList.splice(index, 1);
-    setNotes(newNoteList);
-  };
 
   const handleInputChange = (e, name) => {
     let value;
@@ -729,97 +694,16 @@ const CharacterSheet = () => {
       </section>
 
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
-      {/*  ------- Race nates -------- */}
       <section>
         <h2>Special Abilites &amp; Notes</h2>
-        <div className="notes">
-          {character.characteristicsRace &&
-            character.characteristicsRace.length > 0 && (
-              <div>
-                <b className="label">Racial Abilities ({character.race}): </b>
-                <ul className="notes__list">
-                  {character.characteristicsRace.map((note, i) => (
-                    <li className="notes__list-item" key={i}>
-                      {note}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-          {/*  ------- User nates -------- */}
-          <div className="ut-margin-bottom-half-em">
-            <button className="button button--secondary" onClick={openModal}>
-              + Add Note
-            </button>
-          </div>
-          <ul className="notes__list">
-            {notes.map((note, i) => (
-              <li className="notes__list-item" key={i}>
-                <div className="note--text">{note}</div>
-                <div className="notes__buttons">
-                  <button
-                    className="button button--secondary"
-                    onClick={() => editNote(i)}
-                    aria-label="edit note"
-                  >
-                    <span className="fas fa-edit"></span>
-                  </button>
-                  <button
-                    className="button button--secondary"
-                    aria-label="delete note"
-                    onClick={() => deleteNote(i)}
-                  >
-                    <span className="fas fa-trash"></span>
-                  </button>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Notes
+          notes={notes}
+          setNotes={setNotes}
+          notesIndex={notesIndex}
+          setNotesIndex={setNotesIndex}
+          character={character}
+        />
       </section>
-      <ReactModal
-        id="note--modal"
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        className="modal"
-        overlayClassName="modal-overlay"
-        contentLabel="Add a note"
-      >
-        <div className="modal__header">
-          <h2 className="modal__h2">
-            {typeof notesIndex === "number" ? "Edit" : "Add"} Note
-          </h2>
-          <button
-            className="button modal__header-button"
-            aria-label="Close modal"
-            onClick={closeModal}
-          >
-            X
-          </button>
-        </div>
-        <form onSubmit={handleSaveNote}>
-          <div className="modal__body">
-            <textarea
-              id="noteText"
-              className="notes__textarea"
-              placeholder="add your note"
-              defaultValue={
-                typeof notesIndex === "number" ? notes[notesIndex] : ""
-              }
-            ></textarea>
-          </div>
-          <div className="modal__footer">
-            <button
-              className="button button--primary button--large"
-              type="submit"
-              value="Save"
-            >
-              Save
-            </button>
-          </div>
-        </form>
-      </ReactModal>
     </div>
   );
 };
