@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
-import Modal from "react-modal";
+// import Modal from "react-modal";
+import ReactModal from "react-modal";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -24,17 +25,17 @@ import {
   formatNumberSuffix,
 } from "../Utilities";
 
-Modal.setAppElement("#root");
-const customModalStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+// Modal.setAppElement("#root");
+// const customModalStyles = {
+//   content: {
+//     top: "50%",
+//     left: "50%",
+//     right: "auto",
+//     bottom: "auto",
+//     marginRight: "-50%",
+//     transform: "translate(-50%, -50%)",
+//   },
+// };
 
 const characterDefaults = {
   namePlayer: "",
@@ -84,11 +85,11 @@ const characterDefaults = {
   characteristicsRace: [],
 };
 
-const useLocalStorage = false
-let characterData
-let notesData
+const useLocalStorage = false;
+let characterData;
+let notesData;
 
-if(useLocalStorage){
+if (useLocalStorage) {
   characterData = JSON.parse(localStorage.getItem("character"));
   notesData = JSON.parse(localStorage.getItem("notes"));
 }
@@ -102,13 +103,13 @@ const CharacterSheet = () => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
   useEffect(() => {
-    if(useLocalStorage){
+    if (useLocalStorage) {
       localStorage.setItem("character", JSON.stringify(character));
     }
   }, [character]);
 
   useEffect(() => {
-    if(useLocalStorage){
+    if (useLocalStorage) {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
   }, [notes]);
@@ -543,7 +544,7 @@ const CharacterSheet = () => {
             <Attributes
               onChange={updateAttributes}
               attributes={character.attributes}
-              updated={character.attributesUpdates} 
+              updated={character.attributesUpdates}
             />
           </section>
         </div>
@@ -718,22 +719,25 @@ const CharacterSheet = () => {
       </section>
 
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
-
       <section>
-        <h2>
-          Special Abilites &amp; Notes{" "}
-          <button className="button-addNote" onClick={openModal}>
-            Add Note
-          </button>
-        </h2>
+        <h2>Special Abilites &amp; Notes</h2>
         <div className="notes">
-          {character.characteristicsRace.map((note, i) => (
-            <div className="note--content note--race" key={i}>
-              <div className="note--text">
-                {character.race}: {note}
+          {character.characteristicsRace &&
+            character.characteristicsRace.length > 0 && (
+              <div>
+                <b className="label">Racial Abilities ({character.race}): </b>
+                <ul className="notes__list">
+                  {character.characteristicsRace.map((note, i) => (
+                    <li className="notes__list-item" key={i}>
+                      {note}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-          ))}
+            )}
+          <button className="button button--secondary" onClick={openModal}>
+            + Add Note
+          </button>
           {notes.map((note, i) => (
             <div className="note--content" key={i}>
               <button
@@ -749,29 +753,48 @@ const CharacterSheet = () => {
           ))}
         </div>
       </section>
-      <Modal
+      <ReactModal
         id="note--modal"
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        style={customModalStyles}
+        className="modal"
+        overlayClassName="modal-overlay"
         contentLabel="Add a note"
       >
-        <h2>{typeof notesIndex === "number" ? "Edit" : "Add"} Note</h2>
-        <button className="note--button-close" onClick={closeModal}>
-          x
-        </button>
+        <div className="modal__header">
+          <h2 className="modal__h2">
+            {typeof notesIndex === "number" ? "Edit" : "Add"} Note
+          </h2>
+          <button
+            className="button modal__header-button"
+            aria-label="Close modal"
+            onClick={closeModal}
+          >
+            X
+          </button>
+        </div>
         <form onSubmit={handleSaveNote}>
-          <textarea
-            id="noteText"
-            className="note--textarea"
-            placeholder="add your note"
-            defaultValue={
-              typeof notesIndex === "number" ? notes[notesIndex] : ""
-            }
-          ></textarea>
-          <input className="note--button-save" type="submit" value="Save" />
+          <div className="modal__body">
+            <textarea
+              id="noteText"
+              className="note--textarea"
+              placeholder="add your note"
+              defaultValue={
+                typeof notesIndex === "number" ? notes[notesIndex] : ""
+              }
+            ></textarea>
+          </div>
+          <div className="modal__footer">
+            <button
+              className="button button--primary button--large"
+              type="submit"
+              value="Save"
+            >
+              Save
+            </button>
+          </div>
         </form>
-      </Modal>
+      </ReactModal>
     </div>
   );
 };
