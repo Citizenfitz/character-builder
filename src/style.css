@@ -325,7 +325,8 @@ button--secondary,
 button--secondary:hover,
 .button--secondary:hover {
   background-color: transparent;
-  color: #652d69;
+  color: #b9861a;
+  border-color: #b9861a;
 }
 button--secondary:active,
 .button--secondary:active {
@@ -462,6 +463,383 @@ th {
 
 .table-levels {
   width: 100%;
+}
+
+.table-levels--1 .table-levels--lvl2 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl3 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl4 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--1 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--2 .table-levels--lvl3 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl4 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--2 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--3 .table-levels--lvl4 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--3 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--4 .table-levels--lvl5 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--4 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--5 .table-levels--lvl6 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--5 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--6 .table-levels--lvl7 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--6 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--7 .table-levels--lvl8 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--7 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--8 .table-levels--lvl9 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--8 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--9 .table-levels--lvl10 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--9 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--10 .table-levels--lvl11 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--10 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--10 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--10 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--11 .table-levels--lvl12 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--11 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--11 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--12 .table-levels--lvl13 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+.table-levels--12 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
+}
+
+.table-levels--13 .table-levels--lvl14 td {
+  opacity: 0.5;
+  border-color: #dcdcdc;
 }
 
 .flex-grid {
@@ -619,6 +997,10 @@ th {
 
 .fa-trash::before {
   content: "\f1f8";
+}
+
+.fa-die::before {
+  content: "\f0e7";
 }
 
 .alignment-radio-set {
@@ -910,6 +1292,11 @@ input[type=radio] + label.aspect-radio-label__type {
 .data-display-box--quick-values.flex-grid__child {
   width: calc(50% - 1rem);
 }
+.data-display-box__button {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
 
 .ut-hidden {
   height: 0px;
@@ -1008,20 +1395,27 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .attributes {
+  position: relative;
   /* For Firefox */
   /* Webkit browsers like Safari and Chrome */
 }
-.attributes button {
+.attributes__button {
   cursor: pointer;
   padding: 3px 3px 0 3px;
 }
+.attributes__die-button {
+  position: absolute;
+  top: 1rem;
+  left: -3rem;
+}
 .attributes .attrib-input {
-  width: 40px;
+  width: 32px;
   height: 32px;
   text-align: center;
   background-color: transparent;
   border: none;
-  font-size: 24px;
+  font-size: 1.2rem;
+  font-family: "Cabin Regular", Cabin, sans-serif;
 }
 .attributes input[type=number] {
   -moz-appearance: textfield;
@@ -1033,13 +1427,14 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .attrib-val {
-  width: 50px;
-  height: 50px;
-  border: 1px solid black;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #c4c4c4;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: #f5f3ed;
 }
 
 .attrib-group {
@@ -1064,9 +1459,10 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .attrib-mod {
-  padding-left: 20px;
+  padding-left: 1rem;
   font-style: italic;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
+  font-family: "Cabin Medium", Cabin, sans-serif;
 }
 .attrib-mod span {
   border-bottom: 1px solid black;

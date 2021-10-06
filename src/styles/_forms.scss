@@ -72,7 +72,8 @@ button,
     color: $color-royal;
     &:hover {
       background-color: transparent;
-      color: darken($color-royal, 10%);
+      color: darken($color-wizard, 10%);
+      border-color: darken($color-wizard, 10%);
     }
     &:active {
       background-color: transparent;
