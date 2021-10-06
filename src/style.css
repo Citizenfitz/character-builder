@@ -326,7 +326,8 @@ button--secondary,
 button--secondary:hover,
 .button--secondary:hover {
   background-color: transparent;
-  color: #652d69;
+  color: #b9861a;
+  border-color: #b9861a;
 }
 button--secondary:active,
 .button--secondary:active {
@@ -954,6 +955,10 @@ th {
   content: "";
 }
 
+.fa-die::before {
+  content: "";
+}
+
 .alignment-radio-set {
   list-style: none;
   padding: 0;
@@ -1243,6 +1248,11 @@ input[type=radio] + label.aspect-radio-label__type {
 .data-display-box--quick-values.flex-grid__child {
   width: calc(50% - 1rem);
 }
+.data-display-box__button {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+}
 
 .ut-hidden {
   height: 0px;
@@ -1333,12 +1343,18 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .attributes {
+  position: relative;
   /* For Firefox */
   /* Webkit browsers like Safari and Chrome */
 }
-.attributes button {
+.attributes__button {
   cursor: pointer;
   padding: 3px 3px 0 3px;
+}
+.attributes__die-button {
+  position: absolute;
+  top: 1rem;
+  left: -3rem;
 }
 .attributes .attrib-input {
   width: 32px;

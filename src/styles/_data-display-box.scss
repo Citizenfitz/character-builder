@@ -50,4 +50,9 @@
   &--quick-values.flex-grid__child {
     width: calc(50% - 1rem);
   }
+  &__button {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+  }
 }

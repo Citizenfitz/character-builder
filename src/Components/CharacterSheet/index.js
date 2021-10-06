@@ -522,6 +522,12 @@ const CharacterSheet = () => {
               <h2 className="data-display-box__header">AC</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
+              <button
+                className="button button--secondary data-display-box__button"
+                aria-label="Roll Hit Points"
+              >
+                <span className="fas fa-die"></span>
+              </button>
               <div className="data-display-box__text">0</div>
               <h2 className="data-display-box__header">HP</h2>
             </div>

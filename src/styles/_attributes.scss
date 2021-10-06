@@ -1,9 +1,17 @@
 //* *************** ATTRUIBUTES ***************** */
 .attributes {
-  button {
+  position: relative;
+
+  &__button {
     cursor: pointer;
     padding: 3px 3px 0 3px;
   }
+  &__die-button {
+    position: absolute;
+    top: 1rem;
+    left: -3rem;
+  }
+
   // nested here for some needed specificity
   .attrib-input {
     width: 32px;
