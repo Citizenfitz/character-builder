@@ -97,7 +97,7 @@ export default function ThaumaturgySpells(props) {
     <div className="spell spells--thaumaturgy">
       <h2>
         Thaumaturgy Spells
-        <SpellSlotsModal level={level} />
+        <SpellSlotsModal level={level} header="Thaumaturgy Spell Slots" />
       </h2>
       <table className="table spells--table">
         <thead>
@@ -138,17 +138,26 @@ export default function ThaumaturgySpells(props) {
       </table>
       <Modal
         id="modal--thaumaturgySpells"
-        className="modal--react spells--thaumaturgy"
+        className="modal"
+        overlayClassName="modal-overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Spell Slots"
       >
-        <h2>Pick a spell</h2>
-        <button className="button--modalClose" onClick={closeModal}>
-          x
-        </button>
-        <div className="table-wrapper">
-          <table className="table table--spells">
+        <header className="modal__header">
+          <h2 className="modal__h2">
+            Pick Your Spells
+          </h2>
+          <button
+            className="button modal__header-button"
+            aria-label="Close modal"
+            onClick={closeModal}
+          >
+            X
+          </button>
+        </header>
+        <div className="modal__body">
+          <table className="table spells--thaumaturgy">
             <thead>
               <tr>
                 <th>Level</th>
@@ -180,7 +189,6 @@ export default function ThaumaturgySpells(props) {
             </tbody>
           </table>
         </div>
-
       </Modal>
     </div>
   )

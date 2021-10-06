@@ -71,30 +71,28 @@
   cursor: pointer;
 }
 
-
-.table-wrapper {
-  max-height: 80vh;
-  overflow-y: auto;
-  margin: 1em 0;
-}
-
 #modal--spellSlots {
-  width: fit-content;
+  .modal__body {
+    display: flex;
+    justify-content: center;
+  }
+  td {
+    text-align: center;
+  }
   .active, .active th {
     background-color: lighten($color-wizard, 30%);
   }
-  h2 {
-    margin: 0 0 20px 0;
-  }
+}
+
+#modal--thaumaturgySpells {
+  width: 80vw;
 }
 
 #modal--wizardrySpells {
-  width: fit-content;
-  max-width: 85vw;
-  position: relative;
+  width: 80vw;
 
   .showAll {
-    margin-left: 20px;
+    margin-bottom: 10px;
   }
   .unavailable {
     background-color: $color-gray-4;
@@ -109,10 +107,9 @@
 
 #modal--schools {
   width: fit-content;
-  h2 {
-    margin: 0 0 1em;
-  }
   fieldset {
+    display: flex;
+    justify-content: space-between;
     margin: 15px 0;
     div {
       display: inline-block;
@@ -140,12 +137,15 @@
     margin: 0;
   }
   .schoolDescriptions {
+    border: 1px solid $color-royal;
+    padding: 1em;
+    margin-bottom: 1em;
     span {
       @include greyhawkfont;
       font-size: 1rem;
     }
     ul {
-      margin-left: 0;
+      margin: 0;
       padding: 0;
     }
     li {

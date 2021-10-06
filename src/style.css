@@ -884,11 +884,15 @@ th {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   width: 640px;
-  left: 50%;
-  margin-left: -250px;
+  max-width: 960px;
+  max-height: calc(100vh - 80px);
   top: 40px;
+  left: 50%;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, 0);
   background: #fff;
   overflow: hidden;
   outline: none;
@@ -898,6 +902,8 @@ th {
   background: #883c8d;
   height: 40px;
   position: relative;
+  padding: 0;
+  text-align: left;
 }
 .modal__h2 {
   margin: 0 0 0 1.5rem;
@@ -928,54 +934,15 @@ th {
 .modal__body {
   padding: 1.5rem;
   line-height: 1.25em;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+.modal__body table {
+  width: 100%;
+  margin: 0;
 }
 .modal__footer {
   padding: 1.5rem;
-}
-
-.ReactModal__Overlay {
-  background-color: rgba(255, 255, 255, 0.75) !important;
-}
-
-.modal--react {
-  position: relative;
-  width: 75%;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  border: 1px solid #767676;
-  border-radius: 5px;
-  box-shadow: rgba(100, 100, 111, 0.4) 0px 7px 29px 0px;
-}
-.modal--react header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0;
-  text-align: left;
-  margin-bottom: 1em;
-}
-.modal--react header h2 {
-  margin: 0;
-}
-.modal--react .button--modalClose {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 20px;
-  height: 20px;
-  line-height: 0;
-}
-.modal--react .button--modalSave {
-  float: right;
-}
-.modal--react table {
-  margin: 0;
 }
 
 .fas {
@@ -1593,29 +1560,26 @@ body {
   cursor: pointer;
 }
 
-.table-wrapper {
-  max-height: 80vh;
-  overflow-y: auto;
-  margin: 1em 0;
+#modal--spellSlots .modal__body {
+  display: flex;
+  justify-content: center;
 }
-
-#modal--spellSlots {
-  width: fit-content;
+#modal--spellSlots td {
+  text-align: center;
 }
 #modal--spellSlots .active, #modal--spellSlots .active th {
   background-color: #f4ddab;
 }
-#modal--spellSlots h2 {
-  margin: 0 0 20px 0;
+
+#modal--thaumaturgySpells {
+  width: 80vw;
 }
 
 #modal--wizardrySpells {
-  width: fit-content;
-  max-width: 85vw;
-  position: relative;
+  width: 80vw;
 }
 #modal--wizardrySpells .showAll {
-  margin-left: 20px;
+  margin-bottom: 10px;
 }
 #modal--wizardrySpells .unavailable {
   background-color: #ebebeb;
@@ -1630,10 +1594,9 @@ body {
 #modal--schools {
   width: fit-content;
 }
-#modal--schools h2 {
-  margin: 0 0 1em;
-}
 #modal--schools fieldset {
+  display: flex;
+  justify-content: space-between;
   margin: 15px 0;
 }
 #modal--schools fieldset div {
@@ -1661,13 +1624,18 @@ body {
   padding: 3px;
   margin: 0;
 }
+#modal--schools .schoolDescriptions {
+  border: 1px solid #883c8d;
+  padding: 1em;
+  margin-bottom: 1em;
+}
 #modal--schools .schoolDescriptions span {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
   font-weight: normal;
   font-size: 1rem;
 }
 #modal--schools .schoolDescriptions ul {
-  margin-left: 0;
+  margin: 0;
   padding: 0;
 }
 #modal--schools .schoolDescriptions li {
