@@ -146,7 +146,7 @@ export default function ThaumaturgySpells(props) {
       >
         <header className="modal__header">
           <h2 className="modal__h2">
-            Pick Your Spells
+            Pick Your Spell
           </h2>
           <button
             className="button modal__header-button"
