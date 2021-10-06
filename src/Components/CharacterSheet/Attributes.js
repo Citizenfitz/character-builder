@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("mousedown", () => {
   const diceBoxCanvas = document.getElementById("dice-canvas");
   if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
-    Box.hide();
+    Box.hide().clear();
   }
 });
 
