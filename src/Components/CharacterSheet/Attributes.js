@@ -26,7 +26,7 @@ const Attributes = (props) => {
 
   // set the onRollComplete function onMount
   Box.onRollComplete = (results) => {
-    setAttributeFromRoll(results[0].value);
+    setAttributeFromRoll(results);
   };
 
   // update attribute from numerical input
@@ -48,9 +48,21 @@ const Attributes = (props) => {
   // update attribute from dice roll
   const setAttributeFromRoll = (result) => {
     const newState = { ...attributes };
-    newState[pendingRoll].roll = result - newState[pendingRoll].bonus;
-    newState[pendingRoll].total = result;
-    newState[pendingRoll].mod = calculateBonus(result);
+    if(pendingRoll === 'all') {
+      let counter = 0
+      Object.keys(newState).forEach(attr => {
+        const resultTotal = result[0].rolls[counter].result + result[0].rolls[counter+1].result + result[0].rolls[counter+2].result
+        newState[attr].roll = resultTotal - newState[attr].bonus;
+        newState[attr].total = resultTotal
+        newState[attr].mod = calculateBonus(resultTotal);
+        counter += 3;
+      })
+    } else {
+      const resultTotal = result[0].value
+      newState[pendingRoll].roll = resultTotal - newState[pendingRoll].bonus;
+      newState[pendingRoll].total = resultTotal;
+      newState[pendingRoll].mod = calculateBonus(resultTotal);
+    }
     onChange(newState);
   };
 
@@ -64,11 +76,19 @@ const Attributes = (props) => {
     Box.show().roll("3d6");
   };
 
+  const rollAll = (e) => {
+    // store which attribute we're rolling for
+    setPendingRoll('all');
+    // roll 3d dice
+    Box.show().roll("18d6")
+  }
+
   return (
     <div className="attributes">
       <button
         className="button button--secondary attributes__die-button"
         aria-label="Roll Attributes Points"
+        onClick={rollAll}
       >
         <span className="fas fa-die"></span>
       </button>
