@@ -1,3 +1,12 @@
+.button--modalClose {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 20px;
+	height: 20px;
+	line-height: 0;
+}
+
 .notes {
   margin-top: 0.75em;
   &__textarea {

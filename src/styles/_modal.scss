@@ -7,11 +7,15 @@
   background-color: rgba(0, 0, 0, 0.75);
 }
 .modal {
-  position: absolute;
+  position: fixed;
   width: 640px;
-  left: 50%;
-  margin-left: -250px;
+  max-width: 960px;
+  max-height: calc(100vh - 80px);
   top: 40px;
+  left: 50%;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, 0);
   background: $color-white;
   overflow: hidden;
   // border-radius: 0 0 $border-radius $border-radius;
@@ -21,6 +25,8 @@
     background: $color-royal;
     height: 40px;
     position: relative;
+    padding: 0;
+    text-align: left;
   }
   &__h2 {
     margin: 0 0 0 $margins-desktop;
@@ -52,6 +58,12 @@
   &__body {
     padding: $margins-desktop;
     line-height: 1.25em;
+    overflow-y: auto;
+    max-height: calc(100vh - 120px);
+    table {
+      width: 100%;
+      margin: 0;
+    }
   }
   &__footer {
     padding: $margins-desktop;

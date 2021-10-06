@@ -884,11 +884,15 @@ th {
 }
 
 .modal {
-  position: absolute;
+  position: fixed;
   width: 640px;
-  left: 50%;
-  margin-left: -250px;
+  max-width: 960px;
+  max-height: calc(100vh - 80px);
   top: 40px;
+  left: 50%;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, 0);
   background: #fff;
   overflow: hidden;
   outline: none;
@@ -898,6 +902,8 @@ th {
   background: #883c8d;
   height: 40px;
   position: relative;
+  padding: 0;
+  text-align: left;
 }
 .modal__h2 {
   margin: 0 0 0 1.5rem;
@@ -928,6 +934,12 @@ th {
 .modal__body {
   padding: 1.5rem;
   line-height: 1.25em;
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+.modal__body table {
+  width: 100%;
+  margin: 0;
 }
 .modal__footer {
   padding: 1.5rem;
@@ -1341,6 +1353,14 @@ input[type=radio] + label.aspect-radio-label__type {
   display: inline-block;
 }
 
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 .attributes {
   position: relative;
   /* For Firefox */
@@ -1440,6 +1460,15 @@ body {
   height: 100%;
 }
 
+.button--modalClose {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  line-height: 0;
+}
+
 .notes {
   margin-top: 0.75em;
 }
@@ -1457,6 +1486,180 @@ body {
 }
 .notes__buttons > button {
   margin-right: 0.5em;
+}
+
+.button-showSpellSlots {
+  margin-left: 20px;
+}
+
+.spells--table {
+  width: 100%;
+}
+.spells--table tr:nth-child(even) {
+  background-color: #f6f7fb;
+}
+.spells--table th {
+  border-color: #000;
+}
+.spells--table th, .spells--table td {
+  padding: 5px;
+  text-align: center;
+}
+.spells--table td:nth-child(2) {
+  text-align: left;
+}
+
+.knownSchools {
+  display: inline-block;
+  position: relative;
+  margin-left: 10px;
+  top: 2px;
+}
+
+.spells--wizardry th {
+  background-color: #e1a525;
+  color: #fff;
+  border-color: #000;
+}
+.spells--wizardry tr:hover, .spells--wizardry tr:active {
+  background-color: #faefd8;
+}
+.spells--wizardry [class^=school] {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: 4px;
+}
+.spells--wizardry .school-white {
+  background-color: #9e9e9e;
+}
+.spells--wizardry .school-black {
+  background-color: #000;
+}
+.spells--wizardry .school-green {
+  background-color: #04a54f;
+}
+.spells--wizardry .school-blue {
+  background-color: #2375b9;
+}
+.spells--wizardry .school-red {
+  background-color: #eb2026;
+}
+
+.spells--thaumaturgy th {
+  background-color: #2375b9;
+  color: #fff;
+  border-color: #000;
+}
+.spells--thaumaturgy tr:hover, .spells--thaumaturgy .active {
+  background-color: #e2eff9 !important;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+#modal--spellSlots .modal__body {
+  display: flex;
+  justify-content: center;
+}
+#modal--spellSlots td {
+  text-align: center;
+}
+#modal--spellSlots .active, #modal--spellSlots .active th {
+  background-color: #f4ddab;
+}
+
+#modal--thaumaturgySpells {
+  width: 80vw;
+}
+
+#modal--wizardrySpells {
+  width: 80vw;
+}
+#modal--wizardrySpells .showAll {
+  margin-bottom: 10px;
+}
+#modal--wizardrySpells .unavailable {
+  background-color: #ebebeb;
+  color: rgba(51, 51, 51, 0.8);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+#modal--wizardrySpells .unavailable:hover, #modal--wizardrySpells .unavailable:active {
+  background-color: #ebebeb;
+}
+
+#modal--schools {
+  width: fit-content;
+}
+#modal--schools fieldset {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+#modal--schools fieldset div {
+  display: inline-block;
+  margin: 5px 0 5px 20px;
+}
+#modal--schools fieldset div:first-child {
+  margin-left: 0;
+}
+#modal--schools fieldset div:last-child {
+  margin-right: 0;
+}
+#modal--schools label {
+  cursor: pointer;
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+  font-size: 1.2rem;
+  display: inline-block;
+  padding: 0 0 0 8px;
+  margin: 0;
+}
+#modal--schools input {
+  cursor: pointer;
+  display: inline-block;
+  padding: 3px;
+  margin: 0;
+}
+#modal--schools .schoolDescriptions {
+  border: 1px solid #883c8d;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+#modal--schools .schoolDescriptions span {
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-weight: normal;
+  font-size: 1rem;
+}
+#modal--schools .schoolDescriptions ul {
+  margin: 0;
+  padding: 0;
+}
+#modal--schools .schoolDescriptions li {
+  list-style: none;
+  line-height: 1.4em;
+}
+#modal--schools .school-white {
+  color: #9e9e9e;
+}
+#modal--schools .school-black {
+  color: #000;
+}
+#modal--schools .school-green {
+  color: #04a54f;
+}
+#modal--schools .school-blue {
+  color: #2375b9;
+}
+#modal--schools .school-red {
+  color: #eb2026;
+}
+#modal--schools .validation--error {
+  margin: 0;
+  color: #eb2026;
 }
 
 /*# sourceMappingURL=style.css.map */

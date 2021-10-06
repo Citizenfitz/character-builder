@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from "react";
 // import Modal from "react-modal";
-import ReactModal from "react-modal";
+// import ReactModal from "react-modal";
 // import TalentList from "../TalentList";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -25,23 +25,17 @@ import {
   // formatNumberModifier,
   formatNumberSuffix,
 } from "../Utilities";
-
-// Modal.setAppElement("#root");
-// const customModalStyles = {
-//   content: {
-//     top: "50%",
-//     left: "50%",
-//     right: "auto",
-//     bottom: "auto",
-//     marginRight: "-50%",
-//     transform: "translate(-50%, -50%)",
-//   },
-// };
+import ThaumaturgySpells from "./ThaumaturgySpells"
+import WizardrySpells from "./WizardrySpells"
 
 const characterDefaults = {
   namePlayer: "",
   nameCharacter: "",
   level: 1,
+  fighterLevel: 1,
+  priestLevel: 1,
+  wizardLevel: 1,
+  knaveLevel: 1,
   race: "Human",
   gender: "Male",
   aspect: aspectData[0].name,
@@ -84,6 +78,9 @@ const characterDefaults = {
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
+  hasWizardry: false,
+  hasThaumaturgy: false,
+  wizardrySchools: []
 };
 
 const useLocalStorage = false;
@@ -101,7 +98,8 @@ const CharacterSheet = () => {
   const defaultNotesData = notesData || [];
   const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalIsOpen_Notes, setIsOpen_Notes] = useState(false);
+  const [schoolLimit, setSchoolLimit] = useState()
 
   useEffect(() => {
     if (useLocalStorage) {
@@ -188,7 +186,45 @@ const CharacterSheet = () => {
 
   const handleCharLevel = (e) => {
     const { value } = e.target;
-    setCharacter((PrevState) => ({ ...PrevState, level: value }));
+    let fighterLevel, priestLevel, wizardLevel, knaveLevel
+    switch (character.aspect) {
+      case "fighter":
+        fighterLevel = value
+        priestLevel = Math.max(1,Math.floor(value/2))
+        wizardLevel = Math.max(1,Math.floor(value/2))
+        knaveLevel = Math.max(1,Math.floor(value/4))
+        break;
+      case "priest":
+        priestLevel = value
+        fighterLevel = Math.max(1,Math.floor(value/2))
+        knaveLevel = Math.max(1,Math.floor(value/2))
+        wizardLevel = Math.max(1,Math.floor(value/4))
+        break;
+      case "wizard":
+        wizardLevel = value
+        fighterLevel = Math.max(1,Math.floor(value/2))
+        knaveLevel = Math.max(1,Math.floor(value/2))
+        priestLevel = Math.max(1,Math.floor(value/4))
+        break;
+      case "knave":
+        knaveLevel = value
+        priestLevel = Math.max(1,Math.floor(value/2))
+        wizardLevel = Math.max(1,Math.floor(value/2))
+        fighterLevel = Math.max(1,Math.floor(value/4))
+        break;
+    
+      default:
+        console.error("could not find aspect name")
+        break;
+    }
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      level: value,
+      fighterLevel,
+      priestLevel,
+      wizardLevel,
+      knaveLevel
+    }));
   };
 
   const handleCharAspect = (e) => {
@@ -204,13 +240,16 @@ const CharacterSheet = () => {
     tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
     tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
     tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+
+    // check if any of the talents are spell casting talents
+    tempObject = validateSpellCaster(tempObject)
     setCharacter(tempObject);
   };
 
   const handlePreset = (e) => {
     const { value } = e.target;
-    setCharacter((PrevState) => ({
-      ...PrevState,
+    let presetValues = {
+      ...character,
       aspect: presetData[value].aspect,
       talentAssigned2: presetData[value].talentAssigned2,
       talentLevel1: presetData[value].talentLevel1,
@@ -223,8 +262,54 @@ const CharacterSheet = () => {
       talentLevel9: presetData[value].talentLevel9,
       disad1: presetData[value].disad1,
       disad2: presetData[value].disad2,
-    }));
+    }
+
+    // check if any of the talents are spell casting talents
+    presetValues = validateSpellCaster(presetValues)
+
+    setCharacter(presetValues);
   };
+
+  // save schools that were picked in the WizardySpells component to the character data
+  const handlePickSchool = (schools) => {
+    setCharacter(prev => ({
+      ...prev,
+      wizardrySchools: schools
+    }))
+  }
+
+  // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
+  const validateSpellCaster = (state) => {
+    const talents = [
+      state.talentAssigned2,
+      state.talentLevel1,
+      state.talentKnave1,
+      state.talentLevel3,
+      state.talentLevel5,
+      state.talentLevel7,
+      state.talentLevel9,
+    ]
+
+    // check all talent values for 'Wizardry' and 'Thaurmaturgy'
+    const wizardryRegEx = /Wizardry/g;
+    state.hasWizardry = talents.some(e => wizardryRegEx.test(e))
+    state.hasThaumaturgy = talents.includes('Thaumaturgy')
+
+    // check that Wiz school has been selected
+    if(state.hasWizardry) {
+      let schoolCount = [1,2,5]
+      let level = 0
+      level += talents.includes('Wizardry 2') ? 1 : 0
+      level += talents.includes('Wizardry 3') ? 1 : 0
+      // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
+      console.log(`schoolCount[level]`, schoolCount[level])
+      console.log(`character.wizardrySchools.length`, character.wizardrySchools.length)
+      if(schoolCount[level] !== character.wizardrySchools.length) {
+        setSchoolLimit(schoolCount[level])
+      }
+    }
+    return state
+  }
 
   const handleSetCharTalents = (e) => {
     let value = e.target.value;
@@ -286,6 +371,9 @@ const CharacterSheet = () => {
         newState.race = value;
         newState[e.target.id] = value;
 
+        // check if any of the talents are spell casting talents
+        newState = validateSpellCaster(newState)
+
         return setCharacter(() => newState);
       // if it's nothing to do with race and just choosing a talent
       default:
@@ -298,6 +386,9 @@ const CharacterSheet = () => {
           newState.saveModsRace = [];
           newState.characteristicsRace = [];
         }
+
+        // check if any of the talents are spell casting talents
+        newState = validateSpellCaster(newState)
         // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
           setCharacter(() => newState),
@@ -710,6 +801,25 @@ const CharacterSheet = () => {
           character={character}
         />
       </section>
+
+      {/*  --------------- SPELLS -------------- */}
+      {character.hasWizardry && (
+        <WizardrySpells 
+          level={character.wizardLevel} 
+          intStat={character.attributes.intelligence.total} 
+          schools={character.wizardrySchools}
+          schoolLimit={schoolLimit}
+          onPickSchool={handlePickSchool}
+          useLocalStorage={useLocalStorage}
+        />
+      )}
+      {character.hasThaumaturgy && (
+        <ThaumaturgySpells 
+          level={character.priestLevel} 
+          wisStat={character.attributes.wisdom.total} 
+          useLocalStorage={useLocalStorage} 
+        />
+      )}
     </div>
   );
 };
