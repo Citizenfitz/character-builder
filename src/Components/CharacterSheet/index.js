@@ -24,9 +24,11 @@ import {
   // calculateBonus,
   // formatNumberModifier,
   formatNumberSuffix,
+  whichTalentId,
+  whichAspectId,
 } from "../Utilities";
-import ThaumaturgySpells from "./ThaumaturgySpells"
-import WizardrySpells from "./WizardrySpells"
+import ThaumaturgySpells from "./ThaumaturgySpells";
+import WizardrySpells from "./WizardrySpells";
 
 const characterDefaults = {
   namePlayer: "",
@@ -80,7 +82,7 @@ const characterDefaults = {
   characteristicsRace: [],
   hasWizardry: false,
   hasThaumaturgy: false,
-  wizardrySchools: []
+  wizardrySchools: [],
 };
 
 const useLocalStorage = false;
@@ -99,7 +101,7 @@ const CharacterSheet = () => {
   const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
   const [modalIsOpen_Notes, setIsOpen_Notes] = useState(false);
-  const [schoolLimit, setSchoolLimit] = useState()
+  const [schoolLimit, setSchoolLimit] = useState();
 
   useEffect(() => {
     if (useLocalStorage) {
@@ -118,7 +120,7 @@ const CharacterSheet = () => {
     "Attribute Increase": false,
     Medical: false,
     Riding: false,
-    Stronghold: false,
+    Stronghold: true,
     "Survival & Tracking": false,
     Berserk: false,
     "Blind Fighting": false,
@@ -173,6 +175,7 @@ const CharacterSheet = () => {
     "Vow of Nature": false,
   });
 
+  // ----------------------- EVENT HANDLERS -------------------
   const handleInputChange = (e, name) => {
     let value;
     if (e.target) {
@@ -186,72 +189,81 @@ const CharacterSheet = () => {
 
   const handleCharLevel = (e) => {
     const { value } = e.target;
-    let fighterLevel, priestLevel, wizardLevel, knaveLevel
-    switch (character.aspect) {
-      case "fighter":
-        fighterLevel = value
-        priestLevel = Math.max(1,Math.floor(value/2))
-        wizardLevel = Math.max(1,Math.floor(value/2))
-        knaveLevel = Math.max(1,Math.floor(value/4))
-        break;
-      case "priest":
-        priestLevel = value
-        fighterLevel = Math.max(1,Math.floor(value/2))
-        knaveLevel = Math.max(1,Math.floor(value/2))
-        wizardLevel = Math.max(1,Math.floor(value/4))
-        break;
-      case "wizard":
-        wizardLevel = value
-        fighterLevel = Math.max(1,Math.floor(value/2))
-        knaveLevel = Math.max(1,Math.floor(value/2))
-        priestLevel = Math.max(1,Math.floor(value/4))
-        break;
-      case "knave":
-        knaveLevel = value
-        priestLevel = Math.max(1,Math.floor(value/2))
-        wizardLevel = Math.max(1,Math.floor(value/2))
-        fighterLevel = Math.max(1,Math.floor(value/4))
-        break;
-    
-      default:
-        console.error("could not find aspect name")
-        break;
-    }
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      level: value,
-      fighterLevel,
-      priestLevel,
-      wizardLevel,
-      knaveLevel
-    }));
+    VASLevel(value);
+  };
+
+  const handleSetDisad = (e) => {
+    const whichDisad = e.target.id;
+    const oldDisad = character[e.target.id];
+    const newDisad = e.target.value;
+    VASDisad(whichDisad, oldDisad, newDisad);
   };
 
   const handleCharAspect = (e) => {
     const newAspectId = e.target.value;
-    // set the talent states for validation purposes
-    const oldTalent = character.assignedTalent2;
-    const newTalent = aspectData[newAspectId].assignedTalent2;
-    setTalentStates(oldTalent, newTalent);
+    VASCharAspect(newAspectId);
+  };
 
-    // then adjust the character data
-    let tempObject = character;
-    tempObject.aspect = aspectData[newAspectId].name;
-    tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
-    tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
-    tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+  const handleArmorChange = (e) => {
+    const armor = armorData[e.target.value];
+    setCharacter((prev) => {
+      const ac = 10 + prev.attributes.dexterity.mod + armor.ac;
+      return {
+        ...prev,
+        ac,
+        armorIndex: e.target.value,
+        armor,
+      };
+    });
+  };
 
-    // check if any of the talents are spell casting talents
-    tempObject = validateSpellCaster(tempObject)
-    setCharacter(tempObject);
+  const handleMeleeWeaponChange = (e) => {
+    const index = e.target.value;
+    const meleeWeapon = meleeWeaponData[index];
+    setCharacter((prev) => ({
+      ...prev,
+      meleeWeapon,
+      meleeWeaponIndex: index,
+    }));
+  };
+
+  const handleRangedWeaponChange = (e) => {
+    const index = e.target.value;
+    const rangedWeapon = rangedWeaponData[index];
+    setCharacter((prev) => ({
+      ...prev,
+      rangedWeapon,
+      rangedWeaponIndex: index,
+    }));
+  };
+
+  // save schools that were picked in the WizardySpells component to the character data
+  const handlePickSchool = (schools) => {
+    setCharacter((prev) => ({
+      ...prev,
+      wizardrySchools: schools,
+    }));
   };
 
   const handlePreset = (e) => {
     const { value } = e.target;
+    // find out what aspect it is and set it
+    const newAspectId = whichAspectId(presetData[value].aspect);
+    VASCharAspect(newAspectId);
+
+    // then set disads
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      disad1: presetData[value].disad1,
+      disad2: presetData[value].disad2,
+    }));
+
+    // then set talents senquentially via the validation-laden setTalents function
+
     let presetValues = {
       ...character,
-      aspect: presetData[value].aspect,
-      talentAssigned2: presetData[value].talentAssigned2,
+      //   aspect: presetData[value].aspect,
+      //   talentAssigned2: presetData[value].talentAssigned2,
       talentLevel1: presetData[value].talentLevel1,
       talentKnave1: presetData[value].talentKnave1,
       talentDisad1: presetData[value].talentDisad1,
@@ -260,54 +272,11 @@ const CharacterSheet = () => {
       talentLevel5: presetData[value].talentLevel5,
       talentLevel7: presetData[value].talentLevel7,
       talentLevel9: presetData[value].talentLevel9,
-      disad1: presetData[value].disad1,
-      disad2: presetData[value].disad2,
-    }
-
+    };
     // check if any of the talents are spell casting talents
-    presetValues = validateSpellCaster(presetValues)
-
-    setCharacter(presetValues);
+    presetValues = validateSpellCaster(presetValues);
+    // setCharacter(presetValues);
   };
-
-  // save schools that were picked in the WizardySpells component to the character data
-  const handlePickSchool = (schools) => {
-    setCharacter(prev => ({
-      ...prev,
-      wizardrySchools: schools
-    }))
-  }
-
-  // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
-  const validateSpellCaster = (state) => {
-    const talents = [
-      state.talentAssigned2,
-      state.talentLevel1,
-      state.talentKnave1,
-      state.talentLevel3,
-      state.talentLevel5,
-      state.talentLevel7,
-      state.talentLevel9,
-    ]
-
-    // check all talent values for 'Wizardry' and 'Thaurmaturgy'
-    const wizardryRegEx = /Wizardry/g;
-    state.hasWizardry = talents.some(e => wizardryRegEx.test(e))
-    state.hasThaumaturgy = talents.includes('Thaumaturgy')
-
-    // check that Wiz school has been selected
-    if(state.hasWizardry) {
-      let schoolCount = [1,2,5]
-      let level = 0
-      level += talents.includes('Wizardry 2') ? 1 : 0
-      level += talents.includes('Wizardry 3') ? 1 : 0
-      // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
-      if(schoolCount[level] !== character.wizardrySchools.length) {
-        setSchoolLimit(schoolCount[level])
-      }
-    }
-    return state
-  }
 
   const handleSetCharTalents = (e) => {
     let value = e.target.value;
@@ -370,7 +339,7 @@ const CharacterSheet = () => {
         newState[e.target.id] = value;
 
         // check if any of the talents are spell casting talents
-        newState = validateSpellCaster(newState)
+        newState = validateSpellCaster(newState);
 
         return setCharacter(() => newState);
       // if it's nothing to do with race and just choosing a talent
@@ -386,16 +355,140 @@ const CharacterSheet = () => {
         }
 
         // check if any of the talents are spell casting talents
-        newState = validateSpellCaster(newState)
+        newState = validateSpellCaster(newState);
         // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
         return (
           setCharacter(() => newState),
-          setTalentStates(talentBeingReplaced, value)
+          VASTalentStates(talentBeingReplaced, value)
         );
     }
   };
 
-  const setTalentStates = (oldTalent, newTalent) => {
+  const clearTalentSlots = (talentToRemove) => {
+    const talentSlotName = [
+      "talentAssigned1",
+      "talentAssigned2",
+      "talentLevel1",
+      "talentKnave1",
+      "talentDisad1",
+      "talentDisad2",
+      "talentLevel3",
+      "talentLevel5",
+      "talentLevel7",
+      "talentLevel9",
+    ];
+
+    for (let i = 0; i < talentSlotName.length; i++) {
+      let talentSlot = talentSlotName[i];
+      if (character[talentSlot] === talentToRemove) {
+        setCharacter((PrevState) => ({ ...PrevState, [talentSlot]: "" }));
+      }
+    }
+  };
+
+  const updateAttributes = useCallback((attributes) => {
+    setCharacter((prev) => {
+      const ac = 10 + attributes.dexterity.mod + prev.armor.ac;
+      const perception = 10 + attributes.wisdom.mod;
+      return {
+        ...prev,
+        ac,
+        attributes,
+        perception,
+      };
+    });
+  }, []);
+
+  // ----------------------- VAS - Validate and Save Functions for all character data -------------------
+
+  // set character level and performs validation for Stronghold talent
+  const VASLevel = (value) => {
+    let fighterLevel, priestLevel, wizardLevel, knaveLevel;
+    switch (character.aspect) {
+      case "fighter":
+        fighterLevel = value;
+        priestLevel = Math.max(1, Math.floor(value / 2));
+        wizardLevel = Math.max(1, Math.floor(value / 2));
+        knaveLevel = Math.max(1, Math.floor(value / 4));
+        break;
+      case "priest":
+        priestLevel = value;
+        fighterLevel = Math.max(1, Math.floor(value / 2));
+        knaveLevel = Math.max(1, Math.floor(value / 2));
+        wizardLevel = Math.max(1, Math.floor(value / 4));
+        break;
+      case "wizard":
+        wizardLevel = value;
+        fighterLevel = Math.max(1, Math.floor(value / 2));
+        knaveLevel = Math.max(1, Math.floor(value / 2));
+        priestLevel = Math.max(1, Math.floor(value / 4));
+        break;
+      case "knave":
+        knaveLevel = value;
+        priestLevel = Math.max(1, Math.floor(value / 2));
+        wizardLevel = Math.max(1, Math.floor(value / 2));
+        fighterLevel = Math.max(1, Math.floor(value / 4));
+        break;
+
+      default:
+        console.error("could not find aspect name");
+        break;
+    }
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      level: value,
+      fighterLevel,
+      priestLevel,
+      wizardLevel,
+      knaveLevel,
+    }));
+
+    // stronghold validation
+    if (value >= 9 && character.talentLevel9Type !== "Stronghold") {
+      setTalentDisabled((PrevState) => ({
+        ...PrevState,
+        Stronghold: false,
+      }));
+    } else {
+      setTalentDisabled((PrevState) => ({
+        ...PrevState,
+        Stronghold: true,
+      }));
+    }
+  };
+
+  // set char disads and enable/disable them from selector
+  const VASDisad = (whichDisad, oldDisad, newDisad) => {
+    // actually set the disad on the character
+    setCharacter((PrevState) => ({ ...PrevState, [whichDisad]: newDisad }));
+    // enable old talent that was deleted
+    setDisadDisabled((PrevState) => ({ ...PrevState, [oldDisad]: false }));
+    // disable new talent that was chosen unless it is "None"
+    if (newDisad !== "none") {
+      setDisadDisabled((PrevState) => ({ ...PrevState, [newDisad]: true }));
+    }
+  };
+
+  // set the new char aspect/class and all that entails.
+  const VASCharAspect = (newAspectId) => {
+    // set the talent states for validation purposes
+    const oldTalent = character.assignedTalent2;
+    const newTalent = aspectData[newAspectId].assignedTalent2;
+    VASTalentStates(oldTalent, newTalent);
+
+    // then adjust the character data
+    let tempObject = character;
+    tempObject.aspect = aspectData[newAspectId].name;
+    tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
+    tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
+    tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+
+    // check if any of the talents are spell casting talents
+    tempObject = validateSpellCaster(tempObject);
+    setCharacter(tempObject);
+  };
+
+  const VASTalentStates = (oldTalent, newTalent) => {
     // enable old talent that was delected
     setTalentDisabled((PrevState) => ({ ...PrevState, [oldTalent]: false }));
     // disable new talent that was chosen
@@ -453,86 +546,35 @@ const CharacterSheet = () => {
     }
   };
 
-  const clearTalentSlots = (talentToRemove) => {
-    const talentSlotName = [
-      "talentAssigned1",
-      "talentAssigned2",
-      "talentLevel1",
-      "talentKnave1",
-      "talentDisad1",
-      "talentDisad2",
-      "talentLevel3",
-      "talentLevel5",
-      "talentLevel7",
-      "talentLevel9",
+  // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
+  const validateSpellCaster = (state) => {
+    const talents = [
+      state.talentAssigned2,
+      state.talentLevel1,
+      state.talentKnave1,
+      state.talentLevel3,
+      state.talentLevel5,
+      state.talentLevel7,
+      state.talentLevel9,
     ];
 
-    for (let i = 0; i < talentSlotName.length; i++) {
-      let talentSlot = talentSlotName[i];
-      if (character[talentSlot] === talentToRemove) {
-        setCharacter((PrevState) => ({ ...PrevState, [talentSlot]: "" }));
+    // check all talent values for 'Wizardry' and 'Thaurmaturgy'
+    const wizardryRegEx = /Wizardry/g;
+    state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
+    state.hasThaumaturgy = talents.includes("Thaumaturgy");
+
+    // check that Wiz school has been selected
+    if (state.hasWizardry) {
+      let schoolCount = [1, 2, 5];
+      let level = 0;
+      level += talents.includes("Wizardry 2") ? 1 : 0;
+      level += talents.includes("Wizardry 3") ? 1 : 0;
+      // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
+      if (schoolCount[level] !== character.wizardrySchools.length) {
+        setSchoolLimit(schoolCount[level]);
       }
     }
-  };
-
-  const handleSetDisad = (e) => {
-    const oldDisad = character[e.target.id];
-    const newDisad = e.target.value;
-
-    setCharacter((PrevState) => ({ ...PrevState, [e.target.id]: newDisad }));
-
-    // enable old talent that was deleted
-    setDisadDisabled((PrevState) => ({ ...PrevState, [oldDisad]: false }));
-    // disable new talent that was chosen unless it is "None"
-    if (newDisad !== "none") {
-      setDisadDisabled((PrevState) => ({ ...PrevState, [newDisad]: true }));
-    }
-  };
-
-  const updateAttributes = useCallback((attributes) => {
-    setCharacter((prev) => {
-      const ac = 10 + attributes.dexterity.mod + prev.armor.ac;
-      const perception = 10 + attributes.wisdom.mod;
-      return {
-        ...prev,
-        ac,
-        attributes,
-        perception,
-      };
-    });
-  }, []);
-
-  const handleArmorChange = (e) => {
-    const armor = armorData[e.target.value];
-    setCharacter((prev) => {
-      const ac = 10 + prev.attributes.dexterity.mod + armor.ac;
-      return {
-        ...prev,
-        ac,
-        armorIndex: e.target.value,
-        armor,
-      };
-    });
-  };
-
-  const handleMeleeWeaponChange = (e) => {
-    const index = e.target.value;
-    const meleeWeapon = meleeWeaponData[index];
-    setCharacter((prev) => ({
-      ...prev,
-      meleeWeapon,
-      meleeWeaponIndex: index,
-    }));
-  };
-
-  const handleRangedWeaponChange = (e) => {
-    const index = e.target.value;
-    const rangedWeapon = rangedWeaponData[index];
-    setCharacter((prev) => ({
-      ...prev,
-      rangedWeapon,
-      rangedWeaponIndex: index,
-    }));
+    return state;
   };
 
   return (
@@ -802,9 +844,9 @@ const CharacterSheet = () => {
 
       {/*  --------------- SPELLS -------------- */}
       {character.hasWizardry && (
-        <WizardrySpells 
-          level={character.wizardLevel} 
-          intStat={character.attributes.intelligence.total} 
+        <WizardrySpells
+          level={character.wizardLevel}
+          intStat={character.attributes.intelligence.total}
           schools={character.wizardrySchools}
           schoolLimit={schoolLimit}
           onPickSchool={handlePickSchool}
@@ -812,10 +854,10 @@ const CharacterSheet = () => {
         />
       )}
       {character.hasThaumaturgy && (
-        <ThaumaturgySpells 
-          level={character.priestLevel} 
-          wisStat={character.attributes.wisdom.total} 
-          useLocalStorage={useLocalStorage} 
+        <ThaumaturgySpells
+          level={character.priestLevel}
+          wisStat={character.attributes.wisdom.total}
+          useLocalStorage={useLocalStorage}
         />
       )}
     </div>
