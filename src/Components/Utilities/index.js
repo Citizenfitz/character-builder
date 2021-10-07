@@ -1,4 +1,4 @@
-import { talentData } from "../../Data";
+import { talentData, aspectData } from "../../Data";
 
 const calculateBonus = (attributeValue = 0) => {
   const bonusRange = [
@@ -85,10 +85,27 @@ const calcTalentLevelNumber = (characterAspect, talentName, characterLevel) => {
   return talentLevel;
 };
 
+// these functions return a property of a named talent or aspect
+const whichTalentId = (talentName) => {
+  return talentData.findIndex((x) => x.name === talentName);
+};
+
+const whichAspectId = (talentName) => {
+  return aspectData.findIndex((x) => x.name === talentName);
+};
+
+const whichAspectDisplayName = (aspectName) => {
+  const aspectId = aspectData.findIndex((x) => x.name === aspectName);
+  return aspectData[aspectId].displayName;
+};
+
 export {
   calculateBonus,
   formatNumberModifier,
   formatNumberSuffix,
   calcTalentLevel,
   calcTalentLevelNumber,
+  whichTalentId,
+  whichAspectId,
+  whichAspectDisplayName,
 };

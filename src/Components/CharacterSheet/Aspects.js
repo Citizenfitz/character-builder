@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactModal from "react-modal";
 import { aspectData } from "../../Data";
+import { whichAspectDisplayName } from "../Utilities";
 
 const Aspects = (props) => {
   const [aspectModalOpen, setAspectModalOpen] = useState(false);
@@ -24,7 +25,7 @@ const Aspects = (props) => {
             className={`aspect-icon aspect-icon--in-button aspect-icon--${props.character.aspect}`}
           ></span>
           <span className="ut-display-inine-block">
-            {props.character.aspect}
+            {whichAspectDisplayName(props.character.aspect)}
             &nbsp;&nbsp;
           </span>
         </button>
@@ -83,7 +84,7 @@ const Aspects = (props) => {
                       <span
                         className={`aspect-icon aspect-icon--in-button aspect-icon--${i.name}`}
                       ></span>
-                      {i.name}
+                      {whichAspectDisplayName(i.name)}
                     </label>
                   </li>
                 ))}
@@ -96,7 +97,7 @@ const Aspects = (props) => {
                 <span
                   className={`aspect-icon aspect-icon--medium aspect-icon--${props.character.aspect}`}
                 ></span>
-                {props.character.aspect}
+                {whichAspectDisplayName(props.character.aspect)}
               </h2>
               <ul className="aspect-picker-desc__list">
                 <li>
