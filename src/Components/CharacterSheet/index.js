@@ -252,13 +252,14 @@ const CharacterSheet = () => {
     VASCharAspect(newAspectId);
 
     // then set disads
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      disad1: presetData[value].disad1,
-      disad2: presetData[value].disad2,
-    }));
+    VASDisad("disad1", character.disad1, presetData[value].disad1);
+    VASDisad("disad2", character.disad2, presetData[value].disad2);
 
     // then set talents senquentially via the validation-laden setTalents function
+
+    // VASCharTalent
+    //  - if talent level 1 check for race and then run race validator
+    //  - then enable/disable talent
 
     let presetValues = {
       ...character,
@@ -543,6 +544,95 @@ const CharacterSheet = () => {
     if (oldTalent === "Wizardry 2") {
       setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 3": true }));
       clearTalentSlots("Wizardry 3");
+    }
+  };
+
+  const VASCharTalent = (talentSLot, oldTalent, newTalent) => {
+    // run VASTalentStates
+    VASTalentStates(oldTalent, newTalent);
+
+    // set new talent state
+    // is it race talent? if so then run VASCharRace
+    // is is spellcaster? if so run validateSpellCaster
+  };
+
+  const VASCharRace = (oldRace, newRace) => {
+    //  let value = e.target.value;
+    //  const talentBeingReplaced = character[e.target.id];
+    let newState = { ...character };
+
+    function adjustRaceBonus(race, add = true) {
+      const data = raceData.filter((el) => el.name === race)[0];
+      if (Object.keys(data.attributes).length > 0) {
+        Object.entries(data.attributes).forEach(([key, val]) => {
+          if (add) {
+            newState.attributes[key].bonus += val.bonus;
+          } else {
+            newState.attributes[key].bonus -= val.bonus;
+          }
+          // set the racial max - min is always 3
+          newState.attributes[key].max = val.max;
+          const newTotal =
+            newState.attributes[key].roll + newState.attributes[key].bonus;
+          // get the min/max value for the total
+          newState.attributes[key].total = Math.max(
+            Math.min(newTotal, newState.attributes[key].max),
+            newState.attributes[key].min
+          );
+          newState.attributesUpdates = Date.now();
+        });
+      }
+      newState.movement = data.movement;
+      newState.saveModsRace = data.saveModsRace;
+      newState.characteristicsRace = data.characteristics;
+    }
+
+    // alias to adjustRaceBonus
+    function removeRaceBonus(race) {
+      adjustRaceBonus(race, false);
+    }
+
+    // alias to adjustRaceBonus
+    function addRaceBonus(race) {
+      adjustRaceBonus(race);
+    }
+
+    switch (newRace) {
+      // if it's setting a race
+      case "Dwarf":
+      case "Elf":
+      case "Gnome":
+      case "Half-Elf":
+      case "Half-Orc":
+      case "Halfling":
+        if (character.race !== "Human") {
+          // remove attribute bonus from previous race
+          removeRaceBonus(character.race);
+        }
+
+        // add attribute bonus from currently selected race
+        addRaceBonus(newRace);
+
+        newState.race = newRace;
+        // newState[e.target.id] = newRace;
+
+        return setCharacter(() => newState);
+      // if it's nothing to do with race and just choosing a talent
+      default:
+        // race can only be selected in talentLevel1 - if none is picked then you're human
+        // newState[e.target.id] = newRace;
+        // if (e.target.id === "talentLevel1" && character.race !== "Human") {
+        //   removeRaceBonus(character.race);
+        //   newState.race = "Human";
+        //   newState.movement = 30;
+        //   newState.saveModsRace = [];
+        //   newState.characteristicsRace = [];
+        // }
+
+        // check if any of the talents are spell casting talents
+        newState = validateSpellCaster(newState);
+        // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
+        return setCharacter(() => newState), VASTalentStates(oldRace, newRace);
     }
   };
 
