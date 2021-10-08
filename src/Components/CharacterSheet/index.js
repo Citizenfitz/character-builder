@@ -26,6 +26,7 @@ import {
   formatNumberSuffix,
   whichTalentId,
   whichAspectId,
+  whichTalentAspect,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
@@ -547,12 +548,29 @@ const CharacterSheet = () => {
     }
   };
 
-  const VASCharTalent = (talentSLot, oldTalent, newTalent) => {
+  // sets a SINGLE talent for a character
+  const VASCharTalent = (talentSlot, oldTalent, newTalent) => {
     // run VASTalentStates
     VASTalentStates(oldTalent, newTalent);
 
     // set new talent state
-    // is it race talent? if so then run VASCharRace
+    setCharacter((prev) => ({
+      ...prev,
+      [talentSlot]: newTalent,
+    }));
+
+    // if swaping from non-human to human do this:
+    if (
+      whichTalentAspect(oldTalent) === "race" &&
+      whichTalentAspect(newTalent) !== "race"
+    ) {
+      // VASCharRace('human');
+    }
+    // if swaping to new race, do this:
+    if (whichTalentAspect(newTalent) === "race") {
+      // VASCharRace('newTalent');
+    }
+
     // is is spellcaster? if so run validateSpellCaster
   };
 

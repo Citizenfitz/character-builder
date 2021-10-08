@@ -94,6 +94,10 @@ const whichAspectId = (talentName) => {
   return aspectData.findIndex((x) => x.name === talentName);
 };
 
+const whichTalentAspect = (talentName) => {
+  return aspectData.findIndex((x) => x.aspect === talentName);
+};
+
 const whichAspectDisplayName = (aspectName) => {
   const aspectId = aspectData.findIndex((x) => x.name === aspectName);
   return aspectData[aspectId].displayName;
@@ -108,4 +112,5 @@ export {
   whichTalentId,
   whichAspectId,
   whichAspectDisplayName,
+  whichTalentAspect,
 };
