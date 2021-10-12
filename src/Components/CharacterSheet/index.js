@@ -257,26 +257,49 @@ const CharacterSheet = () => {
     VASDisad("disad2", character.disad2, presetData[value].disad2);
 
     // then set talents senquentially via the validation-laden setTalents function
+    VASCharTalent(
+      "talentLevel1",
+      character.talentLevel1,
+      presetData[value].talentLevel1
+    );
+    VASCharTalent(
+      "talentKnave1",
+      character.talentKnave1,
+      presetData[value].talentKnave1
+    );
+    VASCharTalent(
+      "talentDisad1",
+      character.talentDisad1,
+      presetData[value].talentDisad1
+    );
+    VASCharTalent(
+      "talentDisad2",
+      character.talentDisad2,
+      presetData[value].talentDisad2
+    );
+    VASCharTalent(
+      "talentLevel3",
+      character.talentLevel3,
+      presetData[value].talentLevel3
+    );
+    VASCharTalent(
+      "talentLevel5",
+      character.talentLevel5,
+      presetData[value].talentLevel5
+    );
+    VASCharTalent(
+      "talentLevel7",
+      character.talentLevel7,
+      presetData[value].talentLevel7
+    );
+    VASCharTalent(
+      "talentLevel9",
+      character.talentLevel9,
+      presetData[value].talentLevel9
+    );
 
-    // VASCharTalent
-    //  - if talent level 1 check for race and then run race validator
-    //  - then enable/disable talent
-
-    let presetValues = {
-      ...character,
-      //   aspect: presetData[value].aspect,
-      //   talentAssigned2: presetData[value].talentAssigned2,
-      talentLevel1: presetData[value].talentLevel1,
-      talentKnave1: presetData[value].talentKnave1,
-      talentDisad1: presetData[value].talentDisad1,
-      talentDisad2: presetData[value].talentDisad2,
-      talentLevel3: presetData[value].talentLevel3,
-      talentLevel5: presetData[value].talentLevel5,
-      talentLevel7: presetData[value].talentLevel7,
-      talentLevel9: presetData[value].talentLevel9,
-    };
     // check if any of the talents are spell casting talents
-    presetValues = validateSpellCaster(presetValues);
+    // presetValues = validateSpellCaster(presetValues);
     // setCharacter(presetValues);
   };
 
@@ -286,7 +309,9 @@ const CharacterSheet = () => {
     let newState = { ...character };
 
     function adjustRaceBonus(race, add = true) {
+      console.log("race = " + race);
       const data = raceData.filter((el) => el.name === race)[0];
+      console.log("data = " + JSON.stringify(data));
       if (Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key, val]) => {
           if (add) {
@@ -476,8 +501,7 @@ const CharacterSheet = () => {
     // set the talent states for validation purposes
     const oldTalent = character.assignedTalent2;
     const newTalent = aspectData[newAspectId].assignedTalent2;
-    // TODO: run this thru the new VASCharTalent when it's done.
-    VASTalentStates(oldTalent, newTalent);
+    VASCharTalent(character.assignedTalent2, oldTalent, newTalent);
 
     // then adjust the character data
     let tempObject = character;
@@ -560,39 +584,29 @@ const CharacterSheet = () => {
       [talentSlot]: newTalent,
     }));
 
-    // set hasThaurmaturgy & hasWizadry
-    const wizardryRegEx = /Wizardry/g;
-    setCharacter((prev) => ({
-      ...prev,
-      hasThaumaturgy: character.talents.includes("Thaumaturgy"),
-      hasWizardry: character.talents.some((e) => wizardryRegEx.test(e)),
-    }));
-
-    if (character.hasWizardry) {
-      //run wizadry color check
-    }
+    // set hasThaurmaturgy & hasWizadry & spell colors
+    //TODO -> Frank's code
 
     // if swaping from non-human to human do this:
+    console.log("race fired" + newTalent + whichTalentAspect(newTalent));
     if (
       whichTalentAspect(oldTalent) === "race" &&
       whichTalentAspect(newTalent) !== "race"
     ) {
-      // VASCharRace('human');
+      VASCharRace("human");
     }
     // if swaping to new race, do this:
     if (whichTalentAspect(newTalent) === "race") {
-      // VASCharRace('newTalent');
+      VASCharRace(newTalent);
     }
   };
 
-  // this function should only adjust the racial bonuses & abilities. Don't change any talent slots.
+  // this function should only adjust the racial bonuses & abilities. Don't change any talent slots or set the actual race.
   const VASCharRace = (newRace) => {
-    //  let value = e.target.value;
-    //  const talentBeingReplaced = character[e.target.id];
-    let newState = { ...character };
-
     function adjustRaceBonus(race, add = true) {
+      // console.log("race = " + race);
       const data = raceData.filter((el) => el.name === race)[0];
+      //console.log("data2 = " + JSON.stringify(data));
       if (Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key, val]) => {
           if (add) {
@@ -627,38 +641,23 @@ const CharacterSheet = () => {
       adjustRaceBonus(race);
     }
 
-    switch (newRace) {
-      // if it's setting a race
-      case "Dwarf":
-      case "Elf":
-      case "Gnome":
-      case "Half-Elf":
-      case "Half-Orc":
-      case "Halfling":
-        if (character.race !== "Human") {
-          // remove attribute bonus from previous race
-          removeRaceBonus(character.race);
-        }
+    let newState = { ...character };
 
-        // add attribute bonus from currently selected race
-        addRaceBonus(newRace);
-
-        newState.race = newRace;
-        // newState[e.target.id] = newRace;
-
-        return setCharacter(() => newState);
-      // if it's nothing to do with race and just choosing a talent
-      default:
-      // race can only be selected in talentLevel1 - if none is picked then you're human
-      // newState[e.target.id] = newRace;
-      // if (e.target.id === "talentLevel1" && character.race !== "Human") {
-      //   removeRaceBonus(character.race);
-      //   newState.race = "Human";
-      //   newState.movement = 30;
-      //   newState.saveModsRace = [];
-      //   newState.characteristicsRace = [];
-      // }
+    if (newRace === "Human") {
+      // reset racial abilities to defaults
+      removeRaceBonus(character.race);
+      newState.race = "Human";
+      newState.movement = 30;
+      newState.saveModsRace = [];
+      newState.characteristicsRace = [];
+    } else {
+      // set racial abilities to new
+      removeRaceBonus(character.race);
+      // add attribute bonus from currently selected race
+      addRaceBonus(newRace);
     }
+
+    setCharacter(newState);
   };
 
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
