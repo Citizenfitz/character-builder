@@ -121,7 +121,7 @@ const raceData = [
         max: 19
       }
     },
-    movement: 30,
+    movement: 25,
     characteristics: [
       "Languages: Common, Halfling",
       "Size: Too small to use standard human armor or clothing, and they may not use any weapon larger than a short sword.",
