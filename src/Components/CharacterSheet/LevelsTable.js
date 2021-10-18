@@ -99,15 +99,15 @@ const LevelsTable = (props) => {
             </td>
             <td>
               <div className="aspect-icon aspect-icon--fighter"></div>
-              {props.character.talentAssigned1}
+              {props.character.talents.talentAssigned1}
             </td>
             <td className="ut-align-center">
-              {getTalentMod(props.character.talentAssigned1)}
+              {getTalentMod(props.character.talents.talentAssigned1)}
             </td>
             <td>
               {calcTalentLevel(
                 props.character.aspect,
-                props.character.talentAssigned1
+                props.character.talents.talentAssigned1
               )}
             </td>
           </tr>
@@ -116,18 +116,18 @@ const LevelsTable = (props) => {
             <td>
               <div
                 className={`aspect-icon aspect-icon--${getTalentAspect(
-                  props.character.talentAssigned2
+                  props.character.talents.talentAssigned2
                 )}`}
               ></div>
-              {props.character.talentAssigned2}
+              {props.character.talents.talentAssigned2}
             </td>
             <td className="ut-align-center">
-              {getTalentMod(props.character.talentAssigned2)}
+              {getTalentMod(props.character.talents.talentAssigned2)}
             </td>
             <td>
               {calcTalentLevel(
                 props.character.aspect,
-                props.character.talentAssigned2
+                props.character.talents.talentAssigned2
               )}
             </td>
           </tr>
@@ -136,7 +136,7 @@ const LevelsTable = (props) => {
             <td>
               <div
                 className={`aspect-icon aspect-icon--${getTalentAspect(
-                  props.character.talentLevel1
+                  props.character.talents.talentLevel1
                 )}`}
               ></div>
               <div className="ut-display-inine-block ">
@@ -144,18 +144,18 @@ const LevelsTable = (props) => {
                   type="race"
                   id="talentLevel1"
                   handleSetCharTalents={props.handleSetCharTalents}
-                  talentDisabled={props.talentDisabled}
-                  character={props.character}
+                  talents={props.character.talents}
+                  value={props.character.talents.talentLevel1}
                 />
               </div>
             </td>
             <td className="ut-align-center">
-              {getTalentMod(props.character.talentLevel1)}
+              {getTalentMod(props.character.talents.talentLevel1)}
             </td>
             <td>
               {calcTalentLevel(
                 props.character.aspect,
-                props.character.talentLevel1
+                props.character.talents.talentLevel1
               )}
             </td>
           </tr>
@@ -165,21 +165,21 @@ const LevelsTable = (props) => {
               <td>
                 <div
                   className={`aspect-icon aspect-icon--${getTalentAspect(
-                    props.character.talentKnave1
+                    props.character.talents.talentKnave1
                   )}`}
                 ></div>
                 <TalentSelector
                   type="knaveSecond"
                   id="talentKnave1"
                   handleSetCharTalents={props.handleSetCharTalents}
-                  talentDisabled={props.talentDisabled}
-                  character={props.character}
+                  talents={props.character.talents}
+                  value={props.character.talents.talentKnave1}
                 />
               </td>
               <td className="ut-align-center">
-                {getTalentMod(props.character.talentKnave1)}
+                {getTalentMod(props.character.talents.talentKnave1)}
               </td>
-              <td>{calcTalentLevel(props.character.talentKnave1)}</td>
+              <td>{calcTalentLevel(props.character.talents.talentKnave1)}</td>
             </tr>
           )}
           {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
@@ -191,24 +191,24 @@ const LevelsTable = (props) => {
               <td>
                 <div
                   className={`aspect-icon aspect-icon--${getTalentAspect(
-                    props.character.talentDisad1
+                    props.character.talents.talentDisad1
                   )}`}
                 ></div>
                 <TalentSelector
                   type="all"
                   id="talentDisad1"
-                  talentDisabled={props.talentDisabled}
+                  talents={props.character.talents}
                   handleSetCharTalents={props.handleSetCharTalents}
-                  character={props.character}
+                  value={props.character.talents.talentDisad1}
                 />
               </td>
               <td className="ut-align-center">
-                {getTalentMod(props.character.talentDisad1)}
+                {getTalentMod(props.character.talents.talentDisad1)}
               </td>
               <td>
                 {calcTalentLevel(
                   props.character.aspect,
-                  props.character.talentDisad1
+                  props.character.talents.talentDisad1
                 )}
               </td>
             </tr>
@@ -222,24 +222,24 @@ const LevelsTable = (props) => {
               <td>
                 <div
                   className={`aspect-icon aspect-icon--${getTalentAspect(
-                    props.character.talentDisad2
+                    props.character.talents.talentDisad2
                   )}`}
                 ></div>
                 <TalentSelector
                   type="all"
                   id="talentDisad2"
-                  talentDisabled={props.talentDisabled}
+                  talents={props.character.talents}
                   handleSetCharTalents={props.handleSetCharTalents}
-                  character={props.character}
+                  value={props.character.talents.talentDisad2}
                 />
               </td>
               <td className="ut-align-center">
-                {getTalentMod(props.character.talentDisad2)}
+                {getTalentMod(props.character.talents.talentDisad2)}
               </td>
               <td>
                 {calcTalentLevel(
                   props.character.aspect,
-                  props.character.talentDisad2
+                  props.character.talents.talentDisad2
                 )}
               </td>
             </tr>
@@ -274,24 +274,24 @@ const LevelsTable = (props) => {
                     <td>
                       <div
                         className={`aspect-icon aspect-icon--${getTalentAspect(
-                          props.character[`talentLevel${i.level}`]
+                          props.character.talents[`talentLevel${i.level}`]
                         )}`}
                       ></div>
                       <TalentSelector
                         type="all"
                         id={`talentLevel${i.level}`}
-                        talentDisabled={props.talentDisabled}
+                        talents={props.character.talents}
                         handleSetCharTalents={props.handleSetCharTalents}
-                        character={props.character}
+                        value={props.character.talents[`talentLevel${i.level}`]}
                       />
                     </td>
                     <td className="ut-align-center">
-                      {getTalentMod(props.character[`talentLevel${i.level}`])}
+                      {getTalentMod(props.character.talents[`talentLevel${i.level}`])}
                     </td>
                     <td>
                       {calcTalentLevel(
                         props.character.aspect,
-                        props.character[`talentLevel${i.level}`]
+                        props.character.talents[`talentLevel${i.level}`]
                       )}
                     </td>
                   </Fragment>
