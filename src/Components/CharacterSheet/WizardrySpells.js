@@ -16,6 +16,7 @@ export default function WizardrySpells(props) {
   const [isOpen, setOpen] = useState(false)
   const [spellLevel, setSpellLevel] = useState(0)
   const [spellSlot, setSpellSlot] = useState(0)
+  const [manageSchool, setManageSchool] = useState(false)
   const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
   const [schoolValidation, setSchoolValidation] = useState(null);
   const [showAll, setShowAll] = useState(false)
@@ -37,7 +38,8 @@ export default function WizardrySpells(props) {
 
   useEffect(() => {
     if(schoolLimit){
-      setIsOpen_Schools(true)
+      // setIsOpen_Schools(true)
+      setManageSchool(true)
     }
   },[schoolLimit])
 
@@ -60,6 +62,10 @@ export default function WizardrySpells(props) {
     setOpen(false)
   }
 
+  const manageSchools = (e) => {
+    setIsOpen_Schools(true)
+  }
+
   const handleSave_Schools = (e) => {
     e.preventDefault()
     const checked = Array.from(e.currentTarget.schools).filter(check => {
@@ -69,6 +75,7 @@ export default function WizardrySpells(props) {
     if(schoolLimit === checked.length) {
       setIsOpen_Schools(false)
       setSchoolValidation(null)
+      setManageSchool(false)
       onPickSchool(checked)
     } else {
       const plural = schoolLimit === 1 ? "" : "s"
@@ -133,44 +140,51 @@ export default function WizardrySpells(props) {
         </div>
         <SpellSlotsModal level={level} header="Wizardry Spell Slots" />
       </h2>
-      <table className="table spells--table">
-        <thead>
-          <tr>
-            <th style={{ minWidth: "58px" }}>Level</th>
-            {/* <th>School</th> */}
-            <th>Name</th>
-            <th>Cast</th>
-            <th>Duration</th>
-            <th>Range</th>
-            <th>Target</th>
-            <th>Components</th>
-            <th>Save</th>
-            <th>School</th>
-            <th>Available</th>
-          </tr>
-        </thead>
-        <tbody>
-          {intStat >= 13 && addBonusSpell()}
-          {spellCount.map((count,i) => {
-            if(count === "-") return
-            // create empty array to map over - for loops doen't work here
-            const index = Array.from(Array(count))
-            return index.map((empty,j) => {
-              // TODO: one bonus level one spell if wis is greater than 13
-              if(spellList && spellList[i].length > 0) {
-                if(spellList[i][j]) {
-                  return renderSpellRow(i,j)
+      <div className="table-wrapper">
+        {manageSchool &&
+        <div id="cta-schools">
+          <button onClick={manageSchools}>Select Your Wizardry Schools</button>
+        </div>
+        }
+        <table className="table spells--table">
+          <thead>
+            <tr>
+              <th style={{ minWidth: "58px" }}>Level</th>
+              {/* <th>School</th> */}
+              <th>Name</th>
+              <th>Cast</th>
+              <th>Duration</th>
+              <th>Range</th>
+              <th>Target</th>
+              <th>Components</th>
+              <th>Save</th>
+              <th>School</th>
+              <th>Available</th>
+            </tr>
+          </thead>
+          <tbody>
+            {intStat >= 13 && addBonusSpell()}
+            {spellCount.map((count,i) => {
+              if(count === "-") return
+              // create empty array to map over - for loops doen't work here
+              const index = Array.from(Array(count))
+              return index.map((empty,j) => {
+                // TODO: one bonus level one spell if wis is greater than 13
+                if(spellList && spellList[i].length > 0) {
+                  if(spellList[i][j]) {
+                    return renderSpellRow(i,j)
+                  } else {
+                    return renderEmptyRow(i,j)
+                  }
                 } else {
                   return renderEmptyRow(i,j)
                 }
-              } else {
-                return renderEmptyRow(i,j)
-              }
+              })
             })
-          })
-        }
-        </tbody>
-      </table>
+          }
+          </tbody>
+        </table>
+      </div>
 
 
       <Modal
