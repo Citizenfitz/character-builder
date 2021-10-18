@@ -10,7 +10,7 @@ import Aspects from "./Aspects";
 import Notes from "./Notes";
 import {
   aspectData,
-  dataDisads,
+  // dataDisads,
   levelsData,
   presetData,
   // talentData,
@@ -48,26 +48,19 @@ const characterDefaults = {
   movement: 30,
   disad1: "none",
   disad2: "none",
-  talentAssigned1: "Combat",
-  talentAssigned2: "Multi-Attack",
-  talentLevel1: "choose",
-  talentKnave1: "choose",
-  talentDisad1: "choose",
-  talentDisad2: "choose",
-  talentLevel3: "choose",
-  talentLevel5: "choose",
-  talentLevel7: "choose",
-  talentLevel9: "choose",
-  talentAssigned1Type: "Core",
-  talentAssigned2Type: "Core",
-  talentLevel1Type: "Core",
-  talentKnave1Type: "Core",
-  talentDisad1Type: "Core",
-  talentDisad2Type: "Core",
-  talentLevel3Type: "Core",
-  talentLevel5Type: "Core",
-  talentLevel7Type: "Core",
-  talentLevel9Type: "Core",
+  talents: {
+    talentAssigned1: "Combat",
+    talentAssigned2: "Multi-Attack",
+    talentLevel1: "choose",
+    talentKnave1: "choose",
+    talentDisad1: "choose",
+    talentDisad2: "choose",
+    talentLevel3: "choose",
+    talentLevel5: "choose",
+    talentLevel7: "choose",
+    talentLevel9: "choose",
+  },
+  talentsUpdated: false, // need a shallow state prop to trigger component update
   saveModsClass:
     "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   saveModsRace: [],
@@ -113,65 +106,65 @@ const CharacterSheet = () => {
     }
   }, [notes]);
 
-  const [talentDisabled, setTalentDisabled] = useState({
-    Alertness: false,
-    "Attribute Increase": false,
-    Medical: false,
-    Riding: false,
-    Stronghold: false,
-    "Survival & Tracking": false,
-    Berserk: false,
-    "Blind Fighting": false,
-    Bravery: false,
-    Combat: true,
-    "Combat Specialization": false,
-    Durability: false,
-    "Multi-Attack": true,
-    "Missle Deflection": false,
-    Abjuration: false,
-    "Bestow Blessing": false,
-    Thaurmaturgy: false,
-    "Divine Attunement": false,
-    Incorruptibility: false,
-    "Psychic Sensitivity": false,
-    "Scholarly Knowledge": false,
-    Sermonize: false,
-    Acrobatics: false,
-    Assassination: false,
-    Backstabbing: false,
-    Beguilement: false,
-    Inspiration: false,
-    Burglary: false,
-    Climbing: false,
-    Disguise: false,
-    Escapology: false,
-    Fraud: false,
-    "Lore & Read Magic": false,
-    "Sleight of hand": false,
-    Stealth: false,
-    "Arcane Knowledge": false,
-    "Arcane Sensitivity": false,
-    "Encumbered Casting": true,
-    "Spell Refashionment": true,
-    "Stealth Casting": true,
-    "Wizardry 1": false,
-    "Wizardry 2": true,
-    "Wizardry 3": true,
-  });
+  // const [talentDisabled, setTalentDisabled] = useState({
+  //   Alertness: false,
+  //   "Attribute Increase": false,
+  //   Medical: false,
+  //   Riding: false,
+  //   Stronghold: false,
+  //   "Survival & Tracking": false,
+  //   Berserk: false,
+  //   "Blind Fighting": false,
+  //   Bravery: false,
+  //   Combat: true,
+  //   "Combat Specialization": false,
+  //   Durability: false,
+  //   "Multi-Attack": true,
+  //   "Missle Deflection": false,
+  //   Abjuration: false,
+  //   "Bestow Blessing": false,
+  //   Thaurmaturgy: false,
+  //   "Divine Attunement": false,
+  //   Incorruptibility: false,
+  //   "Psychic Sensitivity": false,
+  //   "Scholarly Knowledge": false,
+  //   Sermonize: false,
+  //   Acrobatics: false,
+  //   Assassination: false,
+  //   Backstabbing: false,
+  //   Beguilement: false,
+  //   Inspiration: false,
+  //   Burglary: false,
+  //   Climbing: false,
+  //   Disguise: false,
+  //   Escapology: false,
+  //   Fraud: false,
+  //   "Lore & Read Magic": false,
+  //   "Sleight of hand": false,
+  //   Stealth: false,
+  //   "Arcane Knowledge": false,
+  //   "Arcane Sensitivity": false,
+  //   "Encumbered Casting": true,
+  //   "Spell Refashionment": true,
+  //   "Stealth Casting": true,
+  //   "Wizardry 1": false,
+  //   "Wizardry 2": true,
+  //   "Wizardry 3": true,
+  // });
 
-  const [disadDisabled, setDisadDisabled] = useState({
-    none: false,
-    Disfigured: false,
-    Uneducated: false,
-    "Lowered Attribute(s)": false,
-    Lame: false,
-    "Missing an Arm or Hand": false,
-    "Weak Ears": false,
-    "Weak Eyes": false,
-    "Vow of Chivalry": false,
-    "Vow of Modesty": false,
-    "Vow of Nature": false,
-  });
+  // const [disadDisabled, setDisadDisabled] = useState({
+  //   none: false,
+  //   Disfigured: false,
+  //   Uneducated: false,
+  //   "Lowered Attribute(s)": false,
+  //   Lame: false,
+  //   "Missing an Arm or Hand": false,
+  //   "Weak Ears": false,
+  //   "Weak Eyes": false,
+  //   "Vow of Chivalry": false,
+  //   "Vow of Modesty": false,
+  //   "Vow of Nature": false,
+  // });
 
   const handleInputChange = (e, name) => {
     let value;
@@ -230,16 +223,16 @@ const CharacterSheet = () => {
   const handleCharAspect = (e) => {
     const newAspectId = e.target.value;
     // set the talent states for validation purposes
-    const oldTalent = character.assignedTalent2;
-    const newTalent = aspectData[newAspectId].assignedTalent2;
-    setTalentStates(oldTalent, newTalent);
+    // const oldTalent = character.assignedTalent2;
+    // const newTalent = aspectData[newAspectId].assignedTalent2;
+    // setTalentStates(oldTalent, newTalent);
 
     // then adjust the character data
     let tempObject = character;
     tempObject.aspect = aspectData[newAspectId].name;
     tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
     tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
-    tempObject.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+    tempObject.talents.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
 
     // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject)
@@ -251,15 +244,17 @@ const CharacterSheet = () => {
     let presetValues = {
       ...character,
       aspect: presetData[value].aspect,
-      talentAssigned2: presetData[value].talentAssigned2,
-      talentLevel1: presetData[value].talentLevel1,
-      talentKnave1: presetData[value].talentKnave1,
-      talentDisad1: presetData[value].talentDisad1,
-      talentDisad2: presetData[value].talentDisad2,
-      talentLevel3: presetData[value].talentLevel3,
-      talentLevel5: presetData[value].talentLevel5,
-      talentLevel7: presetData[value].talentLevel7,
-      talentLevel9: presetData[value].talentLevel9,
+      talents: {
+        talentAssigned2: presetData[value].talentAssigned2,
+        talentLevel1: presetData[value].talentLevel1,
+        talentKnave1: presetData[value].talentKnave1,
+        talentDisad1: presetData[value].talentDisad1,
+        talentDisad2: presetData[value].talentDisad2,
+        talentLevel3: presetData[value].talentLevel3,
+        talentLevel5: presetData[value].talentLevel5,
+        talentLevel7: presetData[value].talentLevel7,
+        talentLevel9: presetData[value].talentLevel9,
+      },
       disad1: presetData[value].disad1,
       disad2: presetData[value].disad2,
     }
@@ -280,38 +275,64 @@ const CharacterSheet = () => {
 
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
-    const talents = [
-      state.talentAssigned2,
-      state.talentLevel1,
-      state.talentKnave1,
-      state.talentLevel3,
-      state.talentLevel5,
-      state.talentLevel7,
-      state.talentLevel9,
-    ]
+    const talents = Object.values(state.talents)
 
     // check all talent values for 'Wizardry' and 'Thaurmaturgy'
     const wizardryRegEx = /Wizardry/g;
     state.hasWizardry = talents.some(e => wizardryRegEx.test(e))
     state.hasThaumaturgy = talents.includes('Thaumaturgy')
 
+    let hasWizardry1 = talents.includes('Wizardry 1')
+    let hasWizardry2 = talents.includes('Wizardry 2')
+    let hasWizardry3 = talents.includes('Wizardry 3')
+
+    if (!hasWizardry2) {
+      Object.entries(state.talents).map(([key,val]) => {
+        if(val === "Wizardry 3") {
+          state.talents[key] = "choose"
+          hasWizardry3 = false
+        }
+      })
+    }
+
+    if (!hasWizardry1) {
+      state.hasWizardry = false
+      Object.entries(state.talents).map(([key,val]) => {
+        if(
+          val === "Encumbered Casting" || 
+          val === "Spell Refashionment" || 
+          val === "Stealth Casting" || 
+          val === "Wizardry 2" || 
+          val === "Wizardry 3"
+        ) {
+          state.talents[key] = "choose"
+        }
+      })
+      hasWizardry2 = false
+      hasWizardry3 = false
+    }
+
+
+
     // check that Wiz school has been selected
     if(state.hasWizardry) {
       let schoolCount = [1,2,5]
       let level = 0
-      level += talents.includes('Wizardry 2') ? 1 : 0
-      level += talents.includes('Wizardry 3') ? 1 : 0
+      level += hasWizardry2 ? 1 : 0
+      level += hasWizardry3 ? 1 : 0
       // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
       if(schoolCount[level] !== character.wizardrySchools.length) {
         setSchoolLimit(schoolCount[level])
       }
     }
+
     return state
   }
 
   const handleSetCharTalents = (e) => {
-    let value = e.target.value;
-    const talentBeingReplaced = character[e.target.id];
+    const value = e.target.value;
+    const talentSlot = e.target.id
+
     let newState = { ...character };
 
     function adjustRaceBonus(race, add = true) {
@@ -367,17 +388,18 @@ const CharacterSheet = () => {
         addRaceBonus(value);
 
         newState.race = value;
-        newState[e.target.id] = value;
+        newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
         newState = validateSpellCaster(newState)
 
         return setCharacter(() => newState);
       // if it's nothing to do with race and just choosing a talent
+
       default:
         // race can only be selected in talentLevel1 - if none is picked then you're human
-        newState[e.target.id] = value;
-        if (e.target.id === "talentLevel1" && character.race !== "Human") {
+        newState.talents[talentSlot] = value;
+        if (talentSlot === "talentLevel1" && character.race !== "Human") {
           removeRaceBonus(character.race);
           newState.race = "Human";
           newState.movement = 30;
@@ -387,106 +409,108 @@ const CharacterSheet = () => {
 
         // check if any of the talents are spell casting talents
         newState = validateSpellCaster(newState)
+        newState.talentsUpdated = Date.now()
         // const race = e.target.id === "talentLevel1" ? "Human" : character.race;
-        return (
-          setCharacter(() => newState),
-          setTalentStates(talentBeingReplaced, value)
-        );
+        // return (
+        //   setCharacter(() => newState),
+        //   setTalentStates(talentBeingReplaced, value)
+        // );
+        return setCharacter(() => newState);
     }
   };
 
-  const setTalentStates = (oldTalent, newTalent) => {
-    // enable old talent that was delected
-    setTalentDisabled((PrevState) => ({ ...PrevState, [oldTalent]: false }));
-    // disable new talent that was chosen
-    setTalentDisabled((PrevState) => ({ ...PrevState, [newTalent]: true }));
-    // if new talent was Attribute Increase then re-enable it
-    if (newTalent === "Attribute Increase") {
-      setTalentDisabled((PrevState) => ({ ...PrevState, [newTalent]: false }));
-    }
-    // if Wizardry 1 is chosen enable all other wizard talents except Wizardry 3
-    if (newTalent === "Wizardry 1") {
-      setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 2": false }));
-      setTalentDisabled((PrevState) => ({
-        ...PrevState,
-        "Encumbered Casting": false,
-      }));
-      setTalentDisabled((PrevState) => ({
-        ...PrevState,
-        "Spell Refashionment": false,
-      }));
-      setTalentDisabled((PrevState) => ({
-        ...PrevState,
-        "Stealth Casting": false,
-      }));
-    }
-    // if Wizardry 1 is deslected disable all other sub-talents
-    // also check to see if user has already chosen other sub-talents and if so, remove them
-    if (oldTalent === "Wizardry 1") {
-      setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 2": true }));
-      setTalentDisabled((PrevState) => ({
-        ...PrevState,
-        "Encumbered Casting": true,
-      }));
-      setTalentDisabled((PrevState) => ({
-        ...PrevState,
-        "Spell Refashionment": true,
-      }));
-      setTalentDisabled((PrevState) => ({
-        ...PrevState,
-        "Stealth Casting": true,
-      }));
-      clearTalentSlots("Wizardry 2");
-      clearTalentSlots("Encumbered Casting");
-      clearTalentSlots("Spell Refashionment");
-      clearTalentSlots("Stealth Casting");
-    }
-    // if Wizardry 2 is chosen, enable Wizardry 3
-    if (newTalent === "Wizardry 2") {
-      setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 3": false }));
-    }
-    // if Wizardry 2 is deslected, disable Wizardry 3
-    // also check to see if user has already chosen Wizardry 3 and if so, remove it
-    if (oldTalent === "Wizardry 2") {
-      setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 3": true }));
-      clearTalentSlots("Wizardry 3");
-    }
-  };
+  // const setTalentStates = (oldTalent, newTalent) => {
+  //   // enable old talent that was delected
+  //   setTalentDisabled((PrevState) => ({ ...PrevState, [oldTalent]: false }));
+  //   // disable new talent that was chosen
+  //   setTalentDisabled((PrevState) => ({ ...PrevState, [newTalent]: true }));
+  //   // if new talent was Attribute Increase then re-enable it
+  //   if (newTalent === "Attribute Increase") {
+  //     setTalentDisabled((PrevState) => ({ ...PrevState, [newTalent]: false }));
+  //   }
+  //   // if Wizardry 1 is chosen enable all other wizard talents except Wizardry 3
+  //   if (newTalent === "Wizardry 1") {
+  //     setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 2": false }));
+  //     setTalentDisabled((PrevState) => ({
+  //       ...PrevState,
+  //       "Encumbered Casting": false,
+  //     }));
+  //     setTalentDisabled((PrevState) => ({
+  //       ...PrevState,
+  //       "Spell Refashionment": false,
+  //     }));
+  //     setTalentDisabled((PrevState) => ({
+  //       ...PrevState,
+  //       "Stealth Casting": false,
+  //     }));
+  //   }
+  //   // if Wizardry 1 is deslected disable all other sub-talents
+  //   // also check to see if user has already chosen other sub-talents and if so, remove them
+  //   if (oldTalent === "Wizardry 1") {
+  //     setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 2": true }));
+  //     setTalentDisabled((PrevState) => ({
+  //       ...PrevState,
+  //       "Encumbered Casting": true,
+  //     }));
+  //     setTalentDisabled((PrevState) => ({
+  //       ...PrevState,
+  //       "Spell Refashionment": true,
+  //     }));
+  //     setTalentDisabled((PrevState) => ({
+  //       ...PrevState,
+  //       "Stealth Casting": true,
+  //     }));
+  //     clearTalentSlots("Wizardry 2");
+  //     clearTalentSlots("Encumbered Casting");
+  //     clearTalentSlots("Spell Refashionment");
+  //     clearTalentSlots("Stealth Casting");
+  //   }
+  //   // if Wizardry 2 is chosen, enable Wizardry 3
+  //   if (newTalent === "Wizardry 2") {
+  //     setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 3": false }));
+  //   }
+  //   // if Wizardry 2 is deslected, disable Wizardry 3
+  //   // also check to see if user has already chosen Wizardry 3 and if so, remove it
+  //   if (oldTalent === "Wizardry 2") {
+  //     setTalentDisabled((PrevState) => ({ ...PrevState, "Wizardry 3": true }));
+  //     clearTalentSlots("Wizardry 3");
+  //   }
+  // };
 
-  const clearTalentSlots = (talentToRemove) => {
-    const talentSlotName = [
-      "talentAssigned1",
-      "talentAssigned2",
-      "talentLevel1",
-      "talentKnave1",
-      "talentDisad1",
-      "talentDisad2",
-      "talentLevel3",
-      "talentLevel5",
-      "talentLevel7",
-      "talentLevel9",
-    ];
+  // const clearTalentSlots = (talentToRemove) => {
+  //   const talentSlotName = [
+  //     "talentAssigned1",
+  //     "talentAssigned2",
+  //     "talentLevel1",
+  //     "talentKnave1",
+  //     "talentDisad1",
+  //     "talentDisad2",
+  //     "talentLevel3",
+  //     "talentLevel5",
+  //     "talentLevel7",
+  //     "talentLevel9",
+  //   ];
 
-    for (let i = 0; i < talentSlotName.length; i++) {
-      let talentSlot = talentSlotName[i];
-      if (character[talentSlot] === talentToRemove) {
-        setCharacter((PrevState) => ({ ...PrevState, [talentSlot]: "" }));
-      }
-    }
-  };
+  //   for (let i = 0; i < talentSlotName.length; i++) {
+  //     let talentSlot = talentSlotName[i];
+  //     if (character[talentSlot] === talentToRemove) {
+  //       setCharacter((PrevState) => ({ ...PrevState, [talentSlot]: "" }));
+  //     }
+  //   }
+  // };
 
   const handleSetDisad = (e) => {
     const oldDisad = character[e.target.id];
     const newDisad = e.target.value;
 
-    setCharacter((PrevState) => ({ ...PrevState, [e.target.id]: newDisad }));
+    setCharacter((PrevState) => ({ ...PrevState, [e.target.id]: e.target.value }));
 
-    // enable old talent that was deleted
-    setDisadDisabled((PrevState) => ({ ...PrevState, [oldDisad]: false }));
-    // disable new talent that was chosen unless it is "None"
-    if (newDisad !== "none") {
-      setDisadDisabled((PrevState) => ({ ...PrevState, [newDisad]: true }));
-    }
+    // // enable old talent that was deleted
+    // setDisadDisabled((PrevState) => ({ ...PrevState, [oldDisad]: false }));
+    // // disable new talent that was chosen unless it is "None"
+    // if (newDisad !== "none") {
+    //   setDisadDisabled((PrevState) => ({ ...PrevState, [newDisad]: true }));
+    // }
   };
 
   const updateAttributes = useCallback((attributes) => {
@@ -747,9 +771,7 @@ const CharacterSheet = () => {
           <label>
             <DisadSelector
               id="disad1"
-              dataDisads={dataDisads}
               character={character}
-              disadDisabled={disadDisabled}
               handleSetDisad={handleSetDisad}
             />
             <span className="label">
@@ -760,9 +782,7 @@ const CharacterSheet = () => {
           <label>
             <DisadSelector
               id="disad2"
-              dataDisads={dataDisads}
               character={character}
-              disadDisabled={disadDisabled}
               handleSetDisad={handleSetDisad}
             />
             <span className="label">
@@ -783,7 +803,7 @@ const CharacterSheet = () => {
       <section>
         <LevelsTable
           character={character}
-          talentDisabled={talentDisabled}
+          // talentDisabled={talentDisabled}
           handleSetCharTalents={handleSetCharTalents}
         />
       </section>
