@@ -309,9 +309,9 @@ const CharacterSheet = () => {
     let newState = { ...character };
 
     function adjustRaceBonus(race, add = true) {
-      console.log("race = " + race);
+      // console.log("race = " + race);
       const data = raceData.filter((el) => el.name === race)[0];
-      console.log("data = " + JSON.stringify(data));
+      // console.log("data = " + JSON.stringify(data));
       if (Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key, val]) => {
           if (add) {
@@ -578,35 +578,38 @@ const CharacterSheet = () => {
     // run VASTalentStates
     VASTalentStates(oldTalent, newTalent);
 
-    // set new talent state
-    setCharacter((prev) => ({
-      ...prev,
-      [talentSlot]: newTalent,
-    }));
-
     // set hasThaurmaturgy & hasWizadry & spell colors
     //TODO -> Frank's code
+    // validateSpellCaster(newTalent)
 
     // if swaping from non-human to human do this:
-    console.log("race fired" + newTalent + whichTalentAspect(newTalent));
+    // console.log("race fired?", newTalent, whichTalentAspect(newTalent));
+    // console.log(`oldTalent`, oldTalent, "is race?", whichTalentAspect(oldTalent) === "race")
     if (
       whichTalentAspect(oldTalent) === "race" &&
       whichTalentAspect(newTalent) !== "race"
     ) {
       VASCharRace("human");
-    }
+    } 
     // if swaping to new race, do this:
-    if (whichTalentAspect(newTalent) === "race") {
+    else if (whichTalentAspect(newTalent) === "race") {
       VASCharRace(newTalent);
+    } else {
+      // set new talent state
+      setCharacter((prev) => ({
+        ...prev,
+        [talentSlot]: newTalent,
+      }));
     }
   };
 
   // this function should only adjust the racial bonuses & abilities. Don't change any talent slots or set the actual race.
   const VASCharRace = (newRace) => {
     function adjustRaceBonus(race, add = true) {
+      if(race.toLowerCase() === "human") return
       // console.log("race = " + race);
       const data = raceData.filter((el) => el.name === race)[0];
-      //console.log("data2 = " + JSON.stringify(data));
+      //console.log("data:", data);
       if (Object.keys(data.attributes).length > 0) {
         Object.entries(data.attributes).forEach(([key, val]) => {
           if (add) {
@@ -626,6 +629,7 @@ const CharacterSheet = () => {
           newState.attributesUpdates = Date.now();
         });
       }
+      newState.race = race
       newState.movement = data.movement;
       newState.saveModsRace = data.saveModsRace;
       newState.characteristicsRace = data.characteristics;
@@ -633,11 +637,13 @@ const CharacterSheet = () => {
 
     // alias to adjustRaceBonus
     function removeRaceBonus(race) {
+      // console.log(`removing bonus for`, race)
       adjustRaceBonus(race, false);
     }
 
     // alias to adjustRaceBonus
     function addRaceBonus(race) {
+      // console.log(`adding bonus for`, race)
       adjustRaceBonus(race);
     }
 
@@ -656,8 +662,10 @@ const CharacterSheet = () => {
       // add attribute bonus from currently selected race
       addRaceBonus(newRace);
     }
+    // race can only be set on talentLevel1
+    newState.talentLevel1 = newRace
 
-    setCharacter(newState);
+    setCharacter(() => newState);
   };
 
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
