@@ -89,6 +89,9 @@ if (useLocalStorage) {
  * 4. add spear
  * 5. Lowered Attributes / Attribute Increase modal to add to bonus
  * 6. clear spells (of specific color) when schools change
+ * 7. armor and weapons for presets
+ * 8. spells for presets
+ * 9. add disability description to notes
  */ 
 
 const CharacterSheet = () => {
