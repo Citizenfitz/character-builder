@@ -4,6 +4,7 @@ import { talentData, raceData } from "../../Data/";
 const TalentSelector = (props) => {
   const hasWizardry1 = Object.values(props.talents).includes("Wizardry 1")
   const hasWizardry2 = Object.values(props.talents).includes("Wizardry 2")
+
   const isDisabled = (talentName, talentId) => {
     // if talent is "Attribute Increase" then it should remain selectable
     if(talentName === "Attribute Increase") {
@@ -39,6 +40,7 @@ const TalentSelector = (props) => {
     let isTalentSelected = !!Object.values(props.talents).filter(val => val === talentName).length
     return isTalentSelected
   }
+
   switch (props.type) {
     case "knaveSecond":
       return (

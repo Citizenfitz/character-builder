@@ -9,8 +9,6 @@ import {
   calcTalentLevelNumber,
 } from "../Utilities";
 
-const formatedTalentMods = () => {};
-
 const LevelsTable = (props) => {
   // returns formated data for Roll Mod column
   const getTalentMod = (talentName) => {

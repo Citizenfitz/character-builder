@@ -9,9 +9,9 @@ const Aspects = (props) => {
     setAspectModalOpen(!aspectModalOpen);
   };
 
-  const getAspectIndex = (aspectName) => {
-    return 1;
-  };
+  // const getAspectIndex = (aspectName) => {
+  //   return 1;
+  // };
 
   return (
     <div className="attributes">

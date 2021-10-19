@@ -24,15 +24,15 @@ export default function ThaumaturgySpells(props) {
         setSpellList(localData)
       }
     }
-  }, []);
+  }, [useLocalStorage]);
 
   useEffect(() => {
     if(useLocalStorage){
       localStorage.setItem("thaumaturgySpells", JSON.stringify(spellList));
     }
-  }, [spellList]);
+  }, [spellList, useLocalStorage]);
 
-  const openModal = () => setOpen(true)
+  // const openModal = () => setOpen(true)
   const closeModal = () => setOpen(false)
 
   const selectSpell = (level,slot) => {
@@ -117,20 +117,22 @@ export default function ThaumaturgySpells(props) {
         <tbody>
           {wisStat >= 13 && addBonusSpell()}
           {spellCount.map((count,i) => {
-            if(count === "-") return
+            if(count === "-") return false
             // create empty array to map over - for loops doen't work here
             const index = Array.from(Array(count))
             return index.map((empty,j) => {
-              // TODO: one bonus level one spell if wis is greater than 13
+              // one bonus level one spell if wis is greater than 13
+              let row
               if(spellList && spellList[i].length > 0) {
                 if(spellList[i][j]) {
-                  return renderSpellRow(i,j)
+                  row = renderSpellRow(i,j)
                 } else {
-                  return renderEmptyRow(i,j)
+                  row = renderEmptyRow(i,j)
                 }
               } else {
-                return renderEmptyRow(i,j)
+                row = renderEmptyRow(i,j)
               }
+              return row
             })
           })
         }

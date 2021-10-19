@@ -56,7 +56,7 @@ export default function SpellSlotsModal(props) {
             </thead>
             <tbody>
               {spellSlots.map((level,i) => (
-                <tr key={level} className={props.level == i + 1 ? 'active' : ''}>
+                <tr key={level} className={parseInt(props.level) === i + 1 ? 'active' : ''}>
                   <th>{i+1}</th>
                   <td>{level[0]}</td>
                   <td>{level[1]}</td>
