@@ -299,8 +299,8 @@ const presetData = [
     aspect: "wizard",
     subclass: true,
     desc: "Copy",
-    disad1: "none",
-    disad2: "Disfigured",
+    disad1: "Disfigured",
+    disad2: "none",
     talents: {
       talentAssigned1: "Combat",
       talentAssigned2: "Wizardry 1",

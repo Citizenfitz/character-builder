@@ -81,6 +81,15 @@ if (useLocalStorage) {
   notesData = JSON.parse(localStorage.getItem("notes"));
 }
 
+/**
+ * TODO:
+ * 1. only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
+ * 2. print css - remove disabled talents, presets, footer, page breaks, roll icons, header space
+ * 3. fix roller for HP
+ * 4. add spear
+ * 5. Lowered Attributes / Attribute Increase modal to add to bonus
+ */ 
+
 const CharacterSheet = () => {
   const defaultCharacterData = characterData || characterDefaults;
   const [character, setCharacter] = useState(defaultCharacterData);
@@ -176,6 +185,7 @@ const CharacterSheet = () => {
       ...character,
       aspect: presetData[value].aspect,
       talents: {
+        talentAssigned1: presetData[value].talents.talentAssigned1,
         talentAssigned2: presetData[value].talents.talentAssigned2,
         talentLevel1: presetData[value].talents.talentLevel1,
         talentKnave1: presetData[value].talents.talentKnave1,
