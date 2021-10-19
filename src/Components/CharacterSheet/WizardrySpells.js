@@ -226,7 +226,7 @@ export default function WizardrySpells(props) {
             </thead>
             <tbody>
             {
-              spellLevel && wizardryList[spellLevel - 1].forEach((spellName,i) => {
+              spellLevel && wizardryList[spellLevel - 1].map((spellName,i) => {
                 const intersection = schools.filter(element => spellData[spellName].school.includes(element));
                 // console.log(`intersection`, intersection, 'on', spellName)
                 const hasSchool = intersection.length > 0
@@ -243,6 +243,7 @@ export default function WizardrySpells(props) {
                     <td>{spellData[spellName].school.map(color => <div key={color} className={`school-${color}`} />)}</td>
                   </tr>
                 }
+                return false
               })
             }
             </tbody>
