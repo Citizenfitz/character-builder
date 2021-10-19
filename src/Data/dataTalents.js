@@ -354,7 +354,7 @@ const talentData = [
   {
     id: "w3",
     aspect: "wizard",
-    name: "Battle Casting",
+    name: "Encumbered Casting",
     desc: "copy",
     mod: "none",
     isleveling: false,
