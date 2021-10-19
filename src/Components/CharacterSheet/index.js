@@ -84,10 +84,11 @@ if (useLocalStorage) {
 /**
  * TODO:
  * 1. only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
- * 2. print css - remove disabled talents, presets, footer, page breaks, roll icons, header space
+ * 2. print css - remove disabled talents, presets, footer, page breaks, roll icons, header space, move spell slots table
  * 3. fix roller for HP
  * 4. add spear
  * 5. Lowered Attributes / Attribute Increase modal to add to bonus
+ * 6. clear spells (of specific color) when schools change
  */ 
 
 const CharacterSheet = () => {
@@ -121,46 +122,55 @@ const CharacterSheet = () => {
     }));
   };
 
-  const handleCharLevel = (e) => {
-    const { value } = e.target;
+  const calcAspectLevel = (level,aspect) => {
+    if(typeof level === "string") {
+      level = parseInt(level)
+    }
     let fighterLevel, priestLevel, wizardLevel, knaveLevel
-    switch (character.aspect) {
+    switch (aspect) {
       case "fighter":
-        fighterLevel = value
-        priestLevel = Math.max(1,Math.floor(value/2))
-        wizardLevel = Math.max(1,Math.floor(value/2))
-        knaveLevel = Math.max(1,Math.floor(value/4))
+        fighterLevel = level
+        priestLevel = Math.max(1,Math.floor(level/2))
+        knaveLevel = Math.max(1,Math.floor(level/2))
+        wizardLevel = Math.max(1,Math.floor(level/4))
         break;
       case "priest":
-        priestLevel = value
-        fighterLevel = Math.max(1,Math.floor(value/2))
-        knaveLevel = Math.max(1,Math.floor(value/2))
-        wizardLevel = Math.max(1,Math.floor(value/4))
+        priestLevel = level
+        fighterLevel = Math.max(1,Math.floor(level/2))
+        wizardLevel = Math.max(1,Math.floor(level/2))
+        knaveLevel = Math.max(1,Math.floor(level/4))
         break;
       case "wizard":
-        wizardLevel = value
-        fighterLevel = Math.max(1,Math.floor(value/2))
-        knaveLevel = Math.max(1,Math.floor(value/2))
-        priestLevel = Math.max(1,Math.floor(value/4))
+        wizardLevel = level
+        knaveLevel = Math.max(1,Math.floor(level/2))
+        priestLevel = Math.max(1,Math.floor(level/2))
+        fighterLevel = Math.max(1,Math.floor(level/4))
         break;
       case "knave":
-        knaveLevel = value
-        priestLevel = Math.max(1,Math.floor(value/2))
-        wizardLevel = Math.max(1,Math.floor(value/2))
-        fighterLevel = Math.max(1,Math.floor(value/4))
+        knaveLevel = level
+        wizardLevel = Math.max(1,Math.floor(level/2))
+        fighterLevel = Math.max(1,Math.floor(level/2))
+        priestLevel = Math.max(1,Math.floor(level/4))
         break;
     
       default:
         console.error("could not find aspect name")
         break;
     }
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      level: value,
+    return {
+      level,
       fighterLevel,
       priestLevel,
       wizardLevel,
       knaveLevel
+    }
+  }
+
+  const handleCharLevel = (e) => {
+    const aspectLevels = calcAspectLevel(e.target.value, character.aspect)
+    setCharacter((PrevState) => ({
+      ...PrevState,
+      ...aspectLevels
     }));
   };
 
@@ -176,7 +186,11 @@ const CharacterSheet = () => {
 
     // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject)
-    setCharacter(tempObject);
+    const aspectLevels = calcAspectLevel(tempObject.level, tempObject.aspect)
+    setCharacter({
+      ...tempObject,
+      ...aspectLevels
+    });
   };
 
   const handlePreset = (e) => {
