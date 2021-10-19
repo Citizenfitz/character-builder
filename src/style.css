@@ -1078,6 +1078,7 @@ input[type=radio] + label.aspect-radio-label {
   margin: 0;
   color: black;
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  cursor: pointer;
 }
 input[type=radio] + label.aspect-radio-label--fighter {
   border-color: #04a54f;

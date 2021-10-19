@@ -74,7 +74,7 @@ const Aspects = (props) => {
                       value={i.id}
                       id={i.name}
                       checked={props.character.aspect === i.name}
-                      onClick={props.handleCharAspect}
+                      onChange={props.handleCharAspect}
                       className="aspect-radio-button"
                     ></input>
                     <label

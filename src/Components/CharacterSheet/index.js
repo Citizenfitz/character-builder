@@ -159,7 +159,7 @@ const CharacterSheet = () => {
     const newAspectId = e.target.value;
 
     // adjust the character data
-    let tempObject = character;
+    let tempObject = {...character};
     tempObject.aspect = aspectData[newAspectId].name;
     tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
     tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
