@@ -200,6 +200,7 @@ const CharacterSheet = () => {
     if(hadRaceTalent) {
       // remove attribute bonus from previous race
       presetValues = removeRaceBonus(presetValues, character.race);
+      presetValues.race = "Human"
     }
     if(hasRaceTalent) {
       // add attribute bonus from currently selected race
@@ -272,7 +273,7 @@ const CharacterSheet = () => {
     return state
   }
 
-  const adjustRaceBonus = (state, race, add = true) => {
+  const adjustRaceBonus = (state, race = "human", add = true) => {
     const data = raceData.filter((el) => el.name === race)[0];
     if (Object.keys(data.attributes).length > 0) {
       Object.entries(data.attributes).forEach(([key, val]) => {
