@@ -471,7 +471,7 @@ const CharacterSheet = () => {
             <span className="label">Character Name</span>
           </label>
 
-          <div className="flex-grid flex-grid--flex-start">
+          <div className="flex-grid flex-grid--flex-start character-lrc">
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- LEVEL ------ */}
               <label>
@@ -527,7 +527,9 @@ const CharacterSheet = () => {
               >
                 <span className="fas fa-die"></span>
               </button>
-              <div className="data-display-box__text"><input className="hp" type="number" min={0} max={999} value={character.hp} onChange={updateHP} /></div>
+              <div className="data-display-box__text">
+                <input className="hp" type="number" inputMode="numeric" min={0} max={999} value={character.hp} onChange={updateHP} />
+                </div>
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -695,7 +697,7 @@ const CharacterSheet = () => {
       </section>
 
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
-      <section>
+      <section className="section--notes">
         <h2>Special Abilites &amp; Notes</h2>
         <Notes
           notes={notes}
