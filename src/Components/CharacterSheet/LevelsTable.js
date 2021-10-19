@@ -36,7 +36,6 @@ const LevelsTable = (props) => {
     }
 
     // else calc what it shoud be and send back
-
     if (talentData[whichTalentId].mod === "none") {
       talentMod = "";
     } else {
@@ -179,7 +178,7 @@ const LevelsTable = (props) => {
               <td className="ut-align-center">
                 {getTalentMod(props.character.talents.talentKnave1)}
               </td>
-              <td>{calcTalentLevel(props.character.talents.talentKnave1)}</td>
+              <td>{calcTalentLevel(props.character.aspect,props.character.talents.talentKnave1)}</td>
             </tr>
           )}
           {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
