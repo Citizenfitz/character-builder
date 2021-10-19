@@ -138,6 +138,12 @@ const meleeWeaponData = [
 		cost: "7gp"
 	},
 	{
+		name: "Spear",
+		damage: "1d6",
+		notes: "1d8 damage if used two-handed",
+		cost: "1gp"
+	},
+	{
 		name: "Two-handed Sword",
 		damage: "1d10",
 		notes: "two-handed",
@@ -251,6 +257,14 @@ const rangedWeaponData = [
 	{
 		name: "Knife",
 		damage: "1d3",
+		range: "short",
+		rate: "1",
+		notes: "",
+		cost: "1gp"
+	},
+	{
+		name: "Spear",
+		damage: "1d6",
 		range: "short",
 		rate: "1",
 		notes: "",
