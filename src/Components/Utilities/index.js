@@ -94,6 +94,17 @@ const whichAspectId = (talentName) => {
   return aspectData.findIndex((x) => x.name === talentName);
 };
 
+//return a talent's aspect.
+const whichTalentAspect = (talentName) => {
+  // what is the id of this talent?
+  const talentId = whichTalentId(talentName);
+  let aspect = "choose";
+  if (talentId !== -1) {
+    aspect = talentData[talentId].aspect;
+  }
+  return aspect;
+};
+
 const whichAspectDisplayName = (aspectName) => {
   const aspectId = aspectData.findIndex((x) => x.name === aspectName);
   return aspectData[aspectId].displayName;
@@ -107,5 +118,6 @@ export {
   calcTalentLevelNumber,
   whichTalentId,
   whichAspectId,
+  whichTalentAspect,
   whichAspectDisplayName,
 };

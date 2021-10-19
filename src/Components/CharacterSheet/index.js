@@ -18,6 +18,7 @@ import {
 import {
   // calculateBonus,
   // formatNumberModifier,
+  whichTalentAspect,
   formatNumberSuffix,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells"
@@ -175,24 +176,38 @@ const CharacterSheet = () => {
       ...character,
       aspect: presetData[value].aspect,
       talents: {
-        talentAssigned2: presetData[value].talentAssigned2,
-        talentLevel1: presetData[value].talentLevel1,
-        talentKnave1: presetData[value].talentKnave1,
-        talentDisad1: presetData[value].talentDisad1,
-        talentDisad2: presetData[value].talentDisad2,
-        talentLevel3: presetData[value].talentLevel3,
-        talentLevel5: presetData[value].talentLevel5,
-        talentLevel7: presetData[value].talentLevel7,
-        talentLevel9: presetData[value].talentLevel9,
+        talentAssigned2: presetData[value].talents.talentAssigned2,
+        talentLevel1: presetData[value].talents.talentLevel1,
+        talentKnave1: presetData[value].talents.talentKnave1,
+        talentDisad1: presetData[value].talents.talentDisad1,
+        talentDisad2: presetData[value].talents.talentDisad2,
+        talentLevel3: presetData[value].talents.talentLevel3,
+        talentLevel5: presetData[value].talents.talentLevel5,
+        talentLevel7: presetData[value].talents.talentLevel7,
+        talentLevel9: presetData[value].talents.talentLevel9,
       },
       disad1: presetData[value].disad1,
       disad2: presetData[value].disad2,
+      talentsUpdated: Date.now()
     }
 
     // check if any of the talents are spell casting talents
     presetValues = validateSpellCaster(presetValues)
 
+    const hadRaceTalent = whichTalentAspect(character.talents.talentLevel1) === "race"
+    const hasRaceTalent = whichTalentAspect(presetValues.talents.talentLevel1) === "race"
+
+    if(hadRaceTalent) {
+      // remove attribute bonus from previous race
+      presetValues = removeRaceBonus(presetValues, character.race);
+    }
+    if(hasRaceTalent) {
+      // add attribute bonus from currently selected race
+      presetValues = addRaceBonus(presetValues, presetValues.talents.talentLevel1);
+    }
+
     setCharacter(presetValues);
+
   };
 
   // save schools that were picked in the WizardySpells component to the character data
@@ -217,7 +232,7 @@ const CharacterSheet = () => {
     let hasWizardry3 = talents.includes('Wizardry 3')
 
     if (!hasWizardry2) {
-      Object.entries(state.talents).map(([key,val]) => {
+      Object.entries(state.talents).forEach(([key,val]) => {
         if(val === "Wizardry 3") {
           state.talents[key] = "choose"
           hasWizardry3 = false
@@ -227,7 +242,7 @@ const CharacterSheet = () => {
 
     if (!hasWizardry1) {
       state.hasWizardry = false
-      Object.entries(state.talents).map(([key,val]) => {
+      Object.entries(state.talents).forEach(([key,val]) => {
         if(
           val === "Encumbered Casting" || 
           val === "Spell Refashionment" || 
@@ -257,48 +272,50 @@ const CharacterSheet = () => {
     return state
   }
 
+  const adjustRaceBonus = (state, race, add = true) => {
+    const data = raceData.filter((el) => el.name === race)[0];
+    if (Object.keys(data.attributes).length > 0) {
+      Object.entries(data.attributes).forEach(([key, val]) => {
+        if (add) {
+          state.attributes[key].bonus += val.bonus;
+        } else {
+          state.attributes[key].bonus -= val.bonus;
+        }
+        // set the racial max - min is always 3
+        state.attributes[key].max = val.max;
+        const newTotal =
+          state.attributes[key].roll + state.attributes[key].bonus;
+        // get the min/max value for the total
+        state.attributes[key].total = Math.max(
+          Math.min(newTotal, state.attributes[key].max),
+          state.attributes[key].min
+        );
+        state.attributesUpdates = Date.now();
+      });
+    }
+    state.race = race;
+    state.movement = data.movement;
+    state.saveModsRace = data.saveModsRace;
+    state.characteristicsRace = data.characteristics;
+    return state
+  }
+
+  // alias to adjustRaceBonus
+  const removeRaceBonus = (state, race) => {
+    return adjustRaceBonus(state, race, false);
+  }
+
+  // alias to adjustRaceBonus
+  const addRaceBonus = (state, race) => {
+    console.log(`race`, race)
+    return adjustRaceBonus(state, race);
+  }
+
   const handleSetCharTalents = (e) => {
     const value = e.target.value;
     const talentSlot = e.target.id
 
     let newState = { ...character };
-
-    function adjustRaceBonus(race, add = true) {
-      const data = raceData.filter((el) => el.name === race)[0];
-      if (Object.keys(data.attributes).length > 0) {
-        Object.entries(data.attributes).forEach(([key, val]) => {
-          if (add) {
-            newState.attributes[key].bonus += val.bonus;
-          } else {
-            newState.attributes[key].bonus -= val.bonus;
-          }
-          // set the racial max - min is always 3
-          newState.attributes[key].max = val.max;
-          const newTotal =
-            newState.attributes[key].roll + newState.attributes[key].bonus;
-          // get the min/max value for the total
-          newState.attributes[key].total = Math.max(
-            Math.min(newTotal, newState.attributes[key].max),
-            newState.attributes[key].min
-          );
-          newState.attributesUpdates = Date.now();
-        });
-      }
-      newState.movement = data.movement;
-      newState.saveModsRace = data.saveModsRace;
-      newState.characteristicsRace = data.characteristics;
-    }
-
-    // alias to adjustRaceBonus
-    function removeRaceBonus(race) {
-      adjustRaceBonus(race, false);
-    }
-
-    // alias to adjustRaceBonus
-    function addRaceBonus(race) {
-      console.log(`race`, race)
-      adjustRaceBonus(race);
-    }
 
     switch (value) {
       // if it's setting a race
@@ -310,13 +327,11 @@ const CharacterSheet = () => {
       case "Halfling":
         if (character.race !== "Human") {
           // remove attribute bonus from previous race
-          removeRaceBonus(character.race);
+          newState = removeRaceBonus(newState, character.race);
         }
 
         // add attribute bonus from currently selected race
-        addRaceBonus(value);
-
-        newState.race = value;
+        newState = addRaceBonus(newState, value);
         newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
@@ -327,14 +342,14 @@ const CharacterSheet = () => {
 
       default:
         // race can only be selected in talentLevel1 - if none is picked then you're human
-        newState.talents[talentSlot] = value;
         if (talentSlot === "talentLevel1" && character.race !== "Human") {
-          removeRaceBonus(character.race);
+          newState = removeRaceBonus(newState, character.race);
           newState.race = "Human";
           newState.movement = 30;
           newState.saveModsRace = [];
           newState.characteristicsRace = [];
         }
+        newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
         newState = validateSpellCaster(newState)
