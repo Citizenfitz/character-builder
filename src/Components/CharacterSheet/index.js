@@ -308,7 +308,6 @@ const CharacterSheet = () => {
 
   // alias to adjustRaceBonus
   const addRaceBonus = (state, race) => {
-    console.log(`race`, race)
     return adjustRaceBonus(state, race);
   }
 
