@@ -21,7 +21,7 @@ const DisadSelector = (props) => (
                 </option>
             ))}
         </select>
-</div>
+    </div>
 );
 
 export default DisadSelector;

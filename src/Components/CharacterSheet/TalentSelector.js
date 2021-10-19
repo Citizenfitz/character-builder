@@ -34,7 +34,7 @@ const TalentSelector = (props) => {
         return true
       }
     }
-    
+
     // check if this talent is in the character's talents
     let isTalentSelected = !!Object.values(props.talents).filter(val => val === talentName).length
     return isTalentSelected
@@ -57,7 +57,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -87,7 +86,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name, props.id)}
                 >
                   {option.name}
@@ -100,7 +98,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -113,7 +110,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -126,7 +122,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -139,7 +134,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -176,7 +170,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name, props.id)}
                 >
                   {option.name}
@@ -189,7 +182,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -202,7 +194,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -215,7 +206,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
@@ -228,7 +218,6 @@ const TalentSelector = (props) => {
                 <option
                   key={option.id}
                   value={option.name}
-                  // disabled={props.talentDisabled[option.name]}
                   disabled={isDisabled(option.name)}
                 >
                   {option.name}
