@@ -28,6 +28,10 @@ th {
 
 .table-levels {
   width: 100%;
+  .talentAssigned {
+    display: inline-block;
+    margin-bottom: .25rem;
+  }
 }
 
 // this sets up the styles that grey out levels the character hasn't reached yet.

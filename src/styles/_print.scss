@@ -14,80 +14,86 @@
   {
     display: none;
   }
-} 
 
-// hide the number stepper
-/* For Firefox */
-input[type=number] {
-  background-color: transparent;
-  border: none;
-  -moz-appearance: textfield;
-}
-
-/* Webkit browsers like Safari and Chrome */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-select {
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
-}
-
-#header {
-  padding: 0;
-  h1 {
-    font-size: 2rem;
+  // hide the number stepper
+  /* For Firefox */
+  input[type=number] {
+    background-color: transparent;
+    border: none;
+    -moz-appearance: textfield;
   }
-  .subheader {
-    font-size: 1.25rem;
-  }
-}
-.aspect-icon--large:after {
-  background-size: 80%;
-  bottom: 10px;
-}
 
-.character-lrc {
-  justify-content: space-between;
-  .ut-margin-right-1em {
+  /* Webkit browsers like Safari and Chrome */
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
     margin: 0;
   }
-}
 
-.hp {
-  font-family: $text-regular;
-  font-size: 16px;
-}
-
-.data-display-box--save-mods {
-  .data-display-box__text {
-    padding: .4rem .4rem .4rem 0;
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
   }
-}
 
-.data-display-box--explanations {
-  height: 230px;
-}
+  #header {
+    padding: 0;
+    h1 {
+      font-size: 2rem;
+    }
+    .subheader {
+      font-size: 1.25rem;
+    }
+  }
+  .aspect-icon--large:after {
+    background-size: 80%;
+    bottom: 10px;
+  }
 
-.table-levels td select {
-  background-color: transparent;
-  border: none;
-}
+  .character-lrc {
+    justify-content: space-between;
+    .ut-margin-right-1em {
+      margin: 0;
+    }
+  }
 
-@for $i from 1 through 13 {
-  .table-levels--#{$i} {
-    @for $i2 from $i through 13 {
-      .table-levels--lvl#{$i2 + 1} {
-        display: none;
+  .hp {
+    font-family: $text-regular;
+    font-size: 16px;
+  }
+
+  .data-display-box--save-mods {
+    .data-display-box__text {
+      padding: .4rem .4rem .4rem 0;
+    }
+  }
+
+  .data-display-box--explanations {
+    height: 230px;
+  }
+
+  .table-levels td select {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+  }
+
+  .table-levels--lvl1 select {
+    max-width: 157px;
+  }
+
+  @for $i from 1 through 13 {
+    .table-levels--#{$i} {
+      @for $i2 from $i through 13 {
+        .table-levels--lvl#{$i2 + 1} {
+          display: none;
+        }
       }
     }
   }
-}
 
-.section--notes {
-  position: relative;
-  page-break-before: always;
+  .section--notes {
+    position: relative;
+    page-break-before: always;
+  }
 }

@@ -96,7 +96,7 @@ const LevelsTable = (props) => {
             </td>
             <td>
               <div className="aspect-icon aspect-icon--fighter"></div>
-              {props.character.talents.talentAssigned1}
+              <span className="talentAssigned">{props.character.talents.talentAssigned1}</span>
             </td>
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentAssigned1)}
@@ -116,7 +116,7 @@ const LevelsTable = (props) => {
                   props.character.talents.talentAssigned2
                 )}`}
               ></div>
-              {props.character.talents.talentAssigned2}
+              <span className="talentAssigned">{props.character.talents.talentAssigned2}</span>
             </td>
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentAssigned2)}
