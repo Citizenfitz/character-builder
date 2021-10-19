@@ -40,6 +40,7 @@ const characterDefaults = {
   attributes: dataAttributes,
   attributesUpdates: false, // need a shallow state prop to trigger component update
   ac: 10,
+  hp: 0,
   perception: 10,
   movement: 30,
   disad1: "none",
@@ -86,12 +87,11 @@ if (useLocalStorage) {
  * 1. only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
  * 2. print css - remove disabled talents, presets, footer, page breaks, roll icons, header space, move spell slots table
  * 3. fix roller for HP
- * 4. add spear
- * 5. Lowered Attributes / Attribute Increase modal to add to bonus
- * 6. clear spells (of specific color) when schools change
- * 7. armor and weapons for presets
- * 8. spells for presets
- * 9. add disability description to notes
+ * 4. Lowered Attributes / Attribute Increase modal to add to bonus
+ * 5. clear spells (of specific color) when schools change
+ * 6. armor and weapons for presets
+ * 7. spells for presets
+ * 8. add disability description to notes
  */ 
 
 const CharacterSheet = () => {
@@ -438,6 +438,13 @@ const CharacterSheet = () => {
     }));
   };
 
+  const updateHP = (e) => {
+    setCharacter(prev => ({
+      ...prev,
+      hp: e.target.value
+    }))
+  }
+
   return (
     <div>
       <div className="flex-grid">
@@ -520,7 +527,7 @@ const CharacterSheet = () => {
               >
                 <span className="fas fa-die"></span>
               </button>
-              <div className="data-display-box__text">0</div>
+              <div className="data-display-box__text"><input className="hp" type="number" min={0} max={999} value={character.hp} onChange={updateHP} /></div>
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">

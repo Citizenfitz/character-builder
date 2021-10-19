@@ -1363,6 +1363,13 @@ input[type=radio] + label.aspect-radio-label__type {
   clear: both;
 }
 
+.hp {
+  position: relative;
+  top: -4px;
+  display: inline-block;
+  width: 50px;
+}
+
 .attributes {
   position: relative;
   /* For Firefox */
