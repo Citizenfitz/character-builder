@@ -658,7 +658,7 @@ const CharacterSheet = () => {
                     className="list-downloads__link"
                     target="_blank"
                   >
-                    Character Character PDF
+                    Character Sheet PDF
                   </a>
                 </li>
                 <li className="list-downloads__item">
