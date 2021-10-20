@@ -21,8 +21,8 @@ import {
   whichTalentAspect,
   formatNumberSuffix,
 } from "../Utilities";
-import ThaumaturgySpells from "./ThaumaturgySpells"
-import WizardrySpells from "./WizardrySpells"
+import ThaumaturgySpells from "./ThaumaturgySpells";
+import WizardrySpells from "./WizardrySpells";
 
 const characterDefaults = {
   namePlayer: "",
@@ -70,7 +70,7 @@ const characterDefaults = {
   characteristicsRace: [],
   hasWizardry: false,
   hasThaumaturgy: false,
-  wizardrySchools: []
+  wizardrySchools: [],
 };
 
 const useLocalStorage = false;
@@ -92,7 +92,7 @@ if (useLocalStorage) {
  * 6. armor and weapons for presets
  * 7. spells for presets
  * 8. add disability description to notes
- */ 
+ */
 
 const CharacterSheet = () => {
   const defaultCharacterData = characterData || characterDefaults;
@@ -100,7 +100,7 @@ const CharacterSheet = () => {
   const defaultNotesData = notesData || [];
   const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
-  const [schoolLimit, setSchoolLimit] = useState()
+  const [schoolLimit, setSchoolLimit] = useState();
 
   useEffect(() => {
     if (useLocalStorage) {
@@ -125,39 +125,39 @@ const CharacterSheet = () => {
     }));
   };
 
-  const calcAspectLevel = (level,aspect) => {
-    if(typeof level === "string") {
-      level = parseInt(level)
+  const calcAspectLevel = (level, aspect) => {
+    if (typeof level === "string") {
+      level = parseInt(level);
     }
-    let fighterLevel, priestLevel, wizardLevel, knaveLevel
+    let fighterLevel, priestLevel, wizardLevel, knaveLevel;
     switch (aspect) {
       case "fighter":
-        fighterLevel = level
-        priestLevel = Math.max(1,Math.floor(level/2))
-        knaveLevel = Math.max(1,Math.floor(level/2))
-        wizardLevel = Math.max(1,Math.floor(level/4))
+        fighterLevel = level;
+        priestLevel = Math.max(1, Math.floor(level / 2));
+        knaveLevel = Math.max(1, Math.floor(level / 2));
+        wizardLevel = Math.max(1, Math.floor(level / 4));
         break;
       case "priest":
-        priestLevel = level
-        fighterLevel = Math.max(1,Math.floor(level/2))
-        wizardLevel = Math.max(1,Math.floor(level/2))
-        knaveLevel = Math.max(1,Math.floor(level/4))
+        priestLevel = level;
+        fighterLevel = Math.max(1, Math.floor(level / 2));
+        wizardLevel = Math.max(1, Math.floor(level / 2));
+        knaveLevel = Math.max(1, Math.floor(level / 4));
         break;
       case "wizard":
-        wizardLevel = level
-        knaveLevel = Math.max(1,Math.floor(level/2))
-        priestLevel = Math.max(1,Math.floor(level/2))
-        fighterLevel = Math.max(1,Math.floor(level/4))
+        wizardLevel = level;
+        knaveLevel = Math.max(1, Math.floor(level / 2));
+        priestLevel = Math.max(1, Math.floor(level / 2));
+        fighterLevel = Math.max(1, Math.floor(level / 4));
         break;
       case "knave":
-        knaveLevel = level
-        wizardLevel = Math.max(1,Math.floor(level/2))
-        fighterLevel = Math.max(1,Math.floor(level/2))
-        priestLevel = Math.max(1,Math.floor(level/4))
+        knaveLevel = level;
+        wizardLevel = Math.max(1, Math.floor(level / 2));
+        fighterLevel = Math.max(1, Math.floor(level / 2));
+        priestLevel = Math.max(1, Math.floor(level / 4));
         break;
-    
+
       default:
-        console.error("could not find aspect name")
+        console.error("could not find aspect name");
         break;
     }
     return {
@@ -165,15 +165,15 @@ const CharacterSheet = () => {
       fighterLevel,
       priestLevel,
       wizardLevel,
-      knaveLevel
-    }
-  }
+      knaveLevel,
+    };
+  };
 
   const handleCharLevel = (e) => {
-    const aspectLevels = calcAspectLevel(e.target.value, character.aspect)
+    const aspectLevels = calcAspectLevel(e.target.value, character.aspect);
     setCharacter((PrevState) => ({
       ...PrevState,
-      ...aspectLevels
+      ...aspectLevels,
     }));
   };
 
@@ -181,18 +181,19 @@ const CharacterSheet = () => {
     const newAspectId = e.target.value;
 
     // adjust the character data
-    let tempObject = {...character};
+    let tempObject = { ...character };
     tempObject.aspect = aspectData[newAspectId].name;
     tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
     tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
-    tempObject.talents.talentAssigned2 = aspectData[newAspectId].assignedTalent2;
+    tempObject.talents.talentAssigned2 =
+      aspectData[newAspectId].assignedTalent2;
 
     // check if any of the talents are spell casting talents
-    tempObject = validateSpellCaster(tempObject)
-    const aspectLevels = calcAspectLevel(tempObject.level, tempObject.aspect)
+    tempObject = validateSpellCaster(tempObject);
+    const aspectLevels = calcAspectLevel(tempObject.level, tempObject.aspect);
     setCharacter({
       ...tempObject,
-      ...aspectLevels
+      ...aspectLevels,
     });
   };
 
@@ -215,90 +216,94 @@ const CharacterSheet = () => {
       },
       disad1: presetData[value].disad1,
       disad2: presetData[value].disad2,
-      talentsUpdated: Date.now()
-    }
+      talentsUpdated: Date.now(),
+    };
 
     // check if any of the talents are spell casting talents
-    presetValues = validateSpellCaster(presetValues)
+    presetValues = validateSpellCaster(presetValues);
 
-    const hadRaceTalent = whichTalentAspect(character.talents.talentLevel1) === "race"
-    const hasRaceTalent = whichTalentAspect(presetValues.talents.talentLevel1) === "race"
+    const hadRaceTalent =
+      whichTalentAspect(character.talents.talentLevel1) === "race";
+    const hasRaceTalent =
+      whichTalentAspect(presetValues.talents.talentLevel1) === "race";
 
-    if(hadRaceTalent) {
+    if (hadRaceTalent) {
       // remove attribute bonus from previous race
       presetValues = removeRaceBonus(presetValues, character.race);
-      presetValues.race = "Human"
+      presetValues.race = "Human";
     }
-    if(hasRaceTalent) {
+    if (hasRaceTalent) {
       // add attribute bonus from currently selected race
-      presetValues = addRaceBonus(presetValues, presetValues.talents.talentLevel1);
+      presetValues = addRaceBonus(
+        presetValues,
+        presetValues.talents.talentLevel1
+      );
     }
 
     setCharacter(presetValues);
-
   };
 
   // save schools that were picked in the WizardySpells component to the character data
   const handlePickSchool = (schools) => {
-    setCharacter(prev => ({
+    setCharacter((prev) => ({
       ...prev,
-      wizardrySchools: schools
-    }))
-  }
+      wizardrySchools: schools,
+    }));
+  };
 
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
-    const talents = Object.values(state.talents)
+    const talents = Object.values(state.talents);
 
     // check all talent values for 'Wizardry' and 'Thaurmaturgy'
     const wizardryRegEx = /Wizardry/g;
-    state.hasWizardry = talents.some(e => wizardryRegEx.test(e))
-    state.hasThaumaturgy = talents.includes('Thaumaturgy')
+    state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
+    state.hasThaumaturgy = talents.includes("Thaumaturgy");
 
-    let hasWizardry1 = talents.includes('Wizardry 1')
-    let hasWizardry2 = talents.includes('Wizardry 2')
-    let hasWizardry3 = talents.includes('Wizardry 3')
+    let hasWizardry1 = talents.includes("Wizardry 1");
+    let hasWizardry2 = talents.includes("Wizardry 2");
+    let hasWizardry3 = talents.includes("Wizardry 3");
 
     if (!hasWizardry2) {
-      Object.entries(state.talents).forEach(([key,val]) => {
-        if(val === "Wizardry 3") {
-          state.talents[key] = "choose"
-          hasWizardry3 = false
+      Object.entries(state.talents).forEach(([key, val]) => {
+        if (val === "Wizardry 3") {
+          state.talents[key] = "choose";
+          hasWizardry3 = false;
         }
-      })
+      });
     }
 
     if (!hasWizardry1) {
-      state.hasWizardry = false
-      Object.entries(state.talents).forEach(([key,val]) => {
-        if(
-          val === "Encumbered Casting" || 
-          val === "Spell Refashionment" || 
-          val === "Stealth Casting" || 
-          val === "Wizardry 2" || 
+      state.hasWizardry = false;
+      Object.entries(state.talents).forEach(([key, val]) => {
+        if (
+          val === "Encumbered Casting" ||
+          val === "Spell Refashionment" ||
+          val === "Stealth Casting" ||
+          val === "Wizardry 2" ||
           val === "Wizardry 3"
         ) {
-          state.talents[key] = "choose"
+          state.talents[key] = "choose";
         }
-      })
-      hasWizardry2 = false
-      hasWizardry3 = false
+      });
+      hasWizardry2 = false;
+      hasWizardry3 = false;
     }
 
     // check that Wiz school has been selected
-    if(state.hasWizardry) {
-      let schoolCount = [1,2,5]
-      let level = 0
-      level += hasWizardry2 ? 1 : 0
-      level += hasWizardry3 ? 1 : 0
+    if (state.hasWizardry) {
+      let schoolCount = [1, 2, 5];
+      let level = 0;
+      level += hasWizardry2 ? 1 : 0;
+      level += hasWizardry3 ? 1 : 0;
       // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
-      if(schoolCount[level] !== character.wizardrySchools.length) {
-        setSchoolLimit(schoolCount[level])
+      if (schoolCount[level] !== character.wizardrySchools.length) {
+        setSchoolLimit(schoolCount[level]);
       }
     }
 
-    return state
-  }
+    return state;
+  };
 
   const adjustRaceBonus = (state, race = "human", add = true) => {
     const data = raceData.filter((el) => el.name === race)[0];
@@ -325,22 +330,22 @@ const CharacterSheet = () => {
     state.movement = data.movement;
     state.saveModsRace = data.saveModsRace;
     state.characteristicsRace = data.characteristics;
-    return state
-  }
+    return state;
+  };
 
   // alias to adjustRaceBonus
   const removeRaceBonus = (state, race) => {
     return adjustRaceBonus(state, race, false);
-  }
+  };
 
   // alias to adjustRaceBonus
   const addRaceBonus = (state, race) => {
     return adjustRaceBonus(state, race);
-  }
+  };
 
   const handleSetCharTalents = (e) => {
     const value = e.target.value;
-    const talentSlot = e.target.id
+    const talentSlot = e.target.id;
 
     let newState = { ...character };
 
@@ -362,7 +367,7 @@ const CharacterSheet = () => {
         newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
-        newState = validateSpellCaster(newState)
+        newState = validateSpellCaster(newState);
 
         return setCharacter(() => newState);
       // if it's nothing to do with race and just choosing a talent
@@ -379,16 +384,16 @@ const CharacterSheet = () => {
         newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
-        newState = validateSpellCaster(newState)
-        newState.talentsUpdated = Date.now()
+        newState = validateSpellCaster(newState);
+        newState.talentsUpdated = Date.now();
         return setCharacter(() => newState);
     }
   };
 
   const handleSetDisad = (e) => {
-    setCharacter(prev => ({
+    setCharacter((prev) => ({
       ...prev,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     }));
   };
 
@@ -439,11 +444,11 @@ const CharacterSheet = () => {
   };
 
   const updateHP = (e) => {
-    setCharacter(prev => ({
+    setCharacter((prev) => ({
       ...prev,
-      hp: e.target.value
-    }))
-  }
+      hp: e.target.value,
+    }));
+  };
 
   return (
     <div>
@@ -528,8 +533,16 @@ const CharacterSheet = () => {
                 <span className="fas fa-die"></span>
               </button>
               <div className="data-display-box__text">
-                <input className="hp" type="number" inputMode="numeric" min={0} max={999} value={character.hp} onChange={updateHP} />
-                </div>
+                <input
+                  className="hp"
+                  type="number"
+                  inputMode="numeric"
+                  min={0}
+                  max={999}
+                  value={character.hp}
+                  onChange={updateHP}
+                />
+              </div>
               <h2 className="data-display-box__header">HP</h2>
             </div>
             <div className="flex-grid__child data-display-box data-display-box--quick-values">
@@ -629,9 +642,37 @@ const CharacterSheet = () => {
           {/*  ------- EXPLAINER BOX ------ */}
           <div className="data-display-box  data-display-box--explanations">
             <div className="data-display-box__text">
-              hover-over or other explaination text will go here
+              <ul className="list-downloads">
+                <li className="list-downloads__item">
+                  <a
+                    href="assets/pdfs/BLRPG - no art - web.pdf"
+                    className="list-downloads__link"
+                    target="_blank"
+                  >
+                    Game Rules - beta, no art PDF
+                  </a>
+                </li>
+                <li className="list-downloads__item" target="_blank">
+                  <a
+                    href="assets/pdfs/BLRPG  - Character Sheets.pdf"
+                    className="list-downloads__link"
+                    target="_blank"
+                  >
+                    Character Character PDF
+                  </a>
+                </li>
+                <li className="list-downloads__item">
+                  <a
+                    href="assets/pdfs/BLRGP - Refence Sheets.pdf"
+                    className="list-downloads__link"
+                    target="_blank"
+                  >
+                    Quick Reference Rules PDF
+                  </a>
+                </li>
+              </ul>
             </div>
-            <h2 className="data-display-box__header">Explanations</h2>
+            <h2 className="data-display-box__header">Downloads</h2>
           </div>
 
           {/*  ------- ALIGNMENT ------ */}
@@ -710,9 +751,9 @@ const CharacterSheet = () => {
 
       {/*  --------------- SPELLS -------------- */}
       {character.hasWizardry && (
-        <WizardrySpells 
-          level={character.wizardLevel} 
-          intStat={character.attributes.intelligence.total} 
+        <WizardrySpells
+          level={character.wizardLevel}
+          intStat={character.attributes.intelligence.total}
           schools={character.wizardrySchools}
           schoolLimit={schoolLimit}
           onPickSchool={handlePickSchool}
@@ -720,10 +761,10 @@ const CharacterSheet = () => {
         />
       )}
       {character.hasThaumaturgy && (
-        <ThaumaturgySpells 
-          level={character.priestLevel} 
-          wisStat={character.attributes.wisdom.total} 
-          useLocalStorage={useLocalStorage} 
+        <ThaumaturgySpells
+          level={character.priestLevel}
+          wisStat={character.attributes.wisdom.total}
+          useLocalStorage={useLocalStorage}
         />
       )}
     </div>

@@ -192,6 +192,36 @@ dd,
   margin-bottom: 0.5em;
 }
 
+.list-downloads {
+  list-style: none;
+  padding: 0.5rem 0 0 2rem;
+  margin: 0;
+  text-align: left;
+  &__item {
+    margin-bottom: 0.75rem;
+  }
+  &__link {
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    color: $color-royal;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:before {
+      font-family: "FontAwesome";
+      color: $color-royal;
+      font-size: 18px;
+      display: inline-block;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      content: "\f045";
+      position: absolute;
+      left: -1.5rem;
+      top: 2px;
+    }
+  }
+}
 /*******************  Talent class indicators next to selects  ****************************/
 .talent-class-indicator {
   display: inline-block;
