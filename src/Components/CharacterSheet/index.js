@@ -603,7 +603,7 @@ const CharacterSheet = () => {
               {/*  ------- SHIELD ------ */}
               <label>
                 <select name="shield">
-                  <option value="0">none</option>
+                  <option value="0">none (+0)</option>
                   <option value="1">Small (+1)</option>
                   <option value="2">Large (+2)</option>
                 </select>
