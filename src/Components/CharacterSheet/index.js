@@ -580,24 +580,38 @@ const CharacterSheet = () => {
           <span className="label">Saving Throw Mods</span>
           <br />
           <br />
-
-          {/*  ------- ARMOR ------ */}
-          <label>
-            <select
-              name="armor"
-              value={character.armorIndex}
-              onChange={handleArmorChange}
-            >
-              {armorData.map((armor, i) => (
-                <option key={armor.armor} value={i}>
-                  {armor.armor} (+{armor.ac})
-                </option>
-              ))}
-            </select>
-            <br />
-            <span className="label">Armor</span>
-          </label>
-
+          <div className="flex-grid  flex-grid--flex-start">
+            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+              {/*  ------- ARMOR ------ */}
+              <label>
+                <select
+                  name="armor"
+                  value={character.armorIndex}
+                  onChange={handleArmorChange}
+                >
+                  {armorData.map((armor, i) => (
+                    <option key={armor.armor} value={i}>
+                      {armor.armor} (+{armor.ac})
+                    </option>
+                  ))}
+                </select>
+                <br />
+                <span className="label">Armor</span>
+              </label>
+            </div>
+            <div className="flex-grid__child flex-grid__child--auto">
+              {/*  ------- SHIELD ------ */}
+              <label>
+                <select name="shield">
+                  <option value="0">none</option>
+                  <option value="1">Small (+1)</option>
+                  <option value="2">Large (+2)</option>
+                </select>
+                <br />
+                <span className="label">Shield</span>
+              </label>
+            </div>
+          </div>
           {/*  ------- MELEE WEAPON ------ */}
           <label>
             <select
