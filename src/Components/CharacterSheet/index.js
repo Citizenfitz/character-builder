@@ -400,7 +400,7 @@ const CharacterSheet = () => {
 
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
-      const ac = 10 + attributes.dexterity.mod + prev.armor.ac;
+      const ac = 10 + attributes.dexterity.mod + prev.armor.ac + prev.shield;
       const perception = 10 + attributes.wisdom.mod;
       return {
         ...prev,
