@@ -191,33 +191,64 @@ const CharacterSheet = () => {
     // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject);
     const aspectLevels = calcAspectLevel(tempObject.level, tempObject.aspect);
+    const preset = document.getElementById("presetSelector")
+
+
     setCharacter({
       ...tempObject,
       ...aspectLevels,
     });
+
+    // reset the optional presets picker
+    if(preset.value !== "choose") {
+      preset.value = "choose"
+      handlePreset({target:{value:"choose"}})
+    }
   };
 
   const handlePreset = (e) => {
     const { value } = e.target;
-    let presetValues = {
-      ...character,
-      aspect: presetData[value].aspect,
-      talents: {
-        talentAssigned1: presetData[value].talents.talentAssigned1,
-        talentAssigned2: presetData[value].talents.talentAssigned2,
-        talentLevel1: presetData[value].talents.talentLevel1,
-        talentKnave1: presetData[value].talents.talentKnave1,
-        talentDisad1: presetData[value].talents.talentDisad1,
-        talentDisad2: presetData[value].talents.talentDisad2,
-        talentLevel3: presetData[value].talents.talentLevel3,
-        talentLevel5: presetData[value].talents.talentLevel5,
-        talentLevel7: presetData[value].talents.talentLevel7,
-        talentLevel9: presetData[value].talents.talentLevel9,
-      },
-      disad1: presetData[value].disad1,
-      disad2: presetData[value].disad2,
-      talentsUpdated: Date.now(),
-    };
+    let presetValues = {}
+    if(value === "choose"){
+      presetValues = {
+        ...character,
+        talents: {
+          talentAssigned1: characterDefaults.talents.talentAssigned1,
+          talentAssigned2: characterDefaults.talents.talentAssigned2,
+          talentLevel1: characterDefaults.talents.talentLevel1,
+          talentKnave1: characterDefaults.talents.talentKnave1,
+          talentDisad1: characterDefaults.talents.talentDisad1,
+          talentDisad2: characterDefaults.talents.talentDisad2,
+          talentLevel3: characterDefaults.talents.talentLevel3,
+          talentLevel5: characterDefaults.talents.talentLevel5,
+          talentLevel7: characterDefaults.talents.talentLevel7,
+          talentLevel9: characterDefaults.talents.talentLevel9,
+        },
+        disad1: characterDefaults.disad1,
+        disad2: characterDefaults.disad2,
+        talentsUpdated: Date.now(),
+      }
+    } else {
+      presetValues = {
+        ...character,
+        aspect: presetData[value].aspect,
+        talents: {
+          talentAssigned1: presetData[value].talents.talentAssigned1,
+          talentAssigned2: presetData[value].talents.talentAssigned2,
+          talentLevel1: presetData[value].talents.talentLevel1,
+          talentKnave1: presetData[value].talents.talentKnave1,
+          talentDisad1: presetData[value].talents.talentDisad1,
+          talentDisad2: presetData[value].talents.talentDisad2,
+          talentLevel3: presetData[value].talents.talentLevel3,
+          talentLevel5: presetData[value].talents.talentLevel5,
+          talentLevel7: presetData[value].talents.talentLevel7,
+          talentLevel9: presetData[value].talents.talentLevel9,
+        },
+        disad1: presetData[value].disad1,
+        disad2: presetData[value].disad2,
+        talentsUpdated: Date.now(),
+      }
+    }
 
     // check if any of the talents are spell casting talents
     presetValues = validateSpellCaster(presetValues);
