@@ -1,33 +1,9 @@
-import React, { useState } from "react";
-import DiceBox from "@3d-dice/dice-box";
+import React, { useEffect, useState } from "react";
 import { calculateBonus, formatNumberModifier } from "../Utilities";
 
-// create new DiceBox class
-const Box = new DiceBox("#dice-box", {
-  theme: "purpleRock",
-  assetPath: "/assets/dice-box/",
-});
-
-// initalize DiceBox onDomReady so canvas can be properly measured
-document.addEventListener("DOMContentLoaded", () => {
-  Box.init();
-});
-
-document.addEventListener("mousedown", () => {
-  const diceBoxCanvas = document.getElementById("dice-canvas");
-  if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
-    Box.hide().clear();
-  }
-});
-
 const Attributes = (props) => {
-  const { onChange, attributes } = props;
+  const { onChange, attributes, onRoll, onRollResults } = props;
   const [pendingRoll, setPendingRoll] = useState("strength");
-
-  // set the onRollComplete function onMount
-  Box.onRollComplete = (results) => {
-    setAttributeFromRoll(results);
-  };
 
   // update attribute from numerical input
   const updateAttribute = (e) => {
@@ -66,6 +42,12 @@ const Attributes = (props) => {
     onChange(newState);
   };
 
+  useEffect(()=>{
+    if(onRollResults){
+      setAttributeFromRoll(onRollResults)
+    }
+  },[onRollResults])
+
   // roll dice on button click
   const rollDice = (e) => {
     e.preventDefault();
@@ -73,14 +55,14 @@ const Attributes = (props) => {
     // store which attribute we're rolling for
     setPendingRoll(attr);
     // roll 3d dice
-    Box.show().roll("3d6");
+    onRoll("3d6","attribute")
   };
 
   const rollAll = (e) => {
     // store which attribute we're rolling for
     setPendingRoll('all');
     // roll 3d dice
-    Box.show().roll("18d6")
+    onRoll("18d6","all-attributes")
   }
 
   return (

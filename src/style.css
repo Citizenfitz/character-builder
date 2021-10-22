@@ -203,7 +203,7 @@ dd,
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  content: "";
+  content: "\f045";
   position: absolute;
   left: -1.5rem;
   top: 2px;
@@ -995,15 +995,15 @@ th {
 }
 
 .fa-edit::before {
-  content: "";
+  content: "\f044";
 }
 
 .fa-trash::before {
-  content: "";
+  content: "\f1f8";
 }
 
 .fa-die::before {
-  content: "";
+  content: "\f0e7";
 }
 
 .alignment-radio-set {
@@ -1404,6 +1404,11 @@ input[type=radio] + label.aspect-radio-label__type {
   top: -4px;
   display: inline-block;
   width: 50px;
+}
+
+.invalid, .invalid h2, .invalid button {
+  border-color: #eb2026;
+  color: #eb2026;
 }
 
 .attributes {
