@@ -8,7 +8,7 @@ const PresetsSelector = (props) => {
         onChange={props.handlePreset}
         defaultValue="choose"
       >
-        <option disabled value="choose">
+        <option value="choose">
           Choose
         </option>
         {props.presetData.map((i) => (

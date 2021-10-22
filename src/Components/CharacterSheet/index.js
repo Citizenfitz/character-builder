@@ -93,6 +93,7 @@ const characterDefaults = {
     "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   saveModsRace: [],
   armor: armorData[0],
+  shield: 0,
   armorIndex: 0,
   meleeWeapon: meleeWeaponData[0],
   meleeWeaponIndex: 0,
@@ -251,41 +252,63 @@ const CharacterSheet = () => {
       manual: 0,
       total: 0
     }
+
     setCharacter({
       ...tempObject,
       ...aspectLevels,
     });
+
+    // reset the optional presets picker
+    const preset = document.getElementById("presetSelector")
+    if(preset.value !== "choose") {
+      preset.value = "choose"
+      handlePreset({target:{value:"choose"}})
+    }
   };
 
   const handlePreset = (e) => {
     const { value } = e.target;
-    let presetValues = {
-      ...character,
-      aspect: presetData[value].aspect,
-      hitDiceType: aspectData[whichAspectId(presetData[value].aspect)].hitDiceType,
-      hp: {
-        durabilityBonus: character.fighterLevel,
-        rolls: [],
-        bonus: [],
-        manual: 0,
-        total: 0
-      },
-      talents: {
-        talentAssigned1: presetData[value].talents.talentAssigned1,
-        talentAssigned2: presetData[value].talents.talentAssigned2,
-        talentLevel1: presetData[value].talents.talentLevel1,
-        talentKnave1: presetData[value].talents.talentKnave1,
-        talentDisad1: presetData[value].talents.talentDisad1,
-        talentDisad2: presetData[value].talents.talentDisad2,
-        talentLevel3: presetData[value].talents.talentLevel3,
-        talentLevel5: presetData[value].talents.talentLevel5,
-        talentLevel7: presetData[value].talents.talentLevel7,
-        talentLevel9: presetData[value].talents.talentLevel9,
-      },
-      disad1: presetData[value].disad1,
-      disad2: presetData[value].disad2,
-      talentsUpdated: Date.now(),
-    };
+    let presetValues = {}
+    if(value === "choose"){
+      presetValues = {
+        ...character,
+        talents: {
+          talentAssigned1: characterDefaults.talents.talentAssigned1,
+          talentAssigned2: characterDefaults.talents.talentAssigned2,
+          talentLevel1: characterDefaults.talents.talentLevel1,
+          talentKnave1: characterDefaults.talents.talentKnave1,
+          talentDisad1: characterDefaults.talents.talentDisad1,
+          talentDisad2: characterDefaults.talents.talentDisad2,
+          talentLevel3: characterDefaults.talents.talentLevel3,
+          talentLevel5: characterDefaults.talents.talentLevel5,
+          talentLevel7: characterDefaults.talents.talentLevel7,
+          talentLevel9: characterDefaults.talents.talentLevel9,
+        },
+        disad1: characterDefaults.disad1,
+        disad2: characterDefaults.disad2,
+        talentsUpdated: Date.now(),
+      }
+    } else {
+      presetValues = {
+        ...character,
+        aspect: presetData[value].aspect,
+        talents: {
+          talentAssigned1: presetData[value].talents.talentAssigned1,
+          talentAssigned2: presetData[value].talents.talentAssigned2,
+          talentLevel1: presetData[value].talents.talentLevel1,
+          talentKnave1: presetData[value].talents.talentKnave1,
+          talentDisad1: presetData[value].talents.talentDisad1,
+          talentDisad2: presetData[value].talents.talentDisad2,
+          talentLevel3: presetData[value].talents.talentLevel3,
+          talentLevel5: presetData[value].talents.talentLevel5,
+          talentLevel7: presetData[value].talents.talentLevel7,
+          talentLevel9: presetData[value].talents.talentLevel9,
+        },
+        disad1: presetData[value].disad1,
+        disad2: presetData[value].disad2,
+        talentsUpdated: Date.now(),
+      }
+    }
 
     // check if any of the talents are spell casting talents
     presetValues = validateSpellCaster(presetValues);
@@ -496,7 +519,7 @@ const CharacterSheet = () => {
 
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
-      const ac = 10 + attributes.dexterity.mod + prev.armor.ac;
+      const ac = 10 + attributes.dexterity.mod + prev.armor.ac + prev.shield;
       const perception = 10 + attributes.wisdom.mod;
       return {
         ...prev,
@@ -510,7 +533,8 @@ const CharacterSheet = () => {
   const handleArmorChange = (e) => {
     const armor = armorData[e.target.value];
     setCharacter((prev) => {
-      const ac = 10 + prev.attributes.dexterity.mod + armor.ac;
+      const ac =
+        10 + prev.attributes.dexterity.mod + armor.ac + character.shield;
       return {
         ...prev,
         ac,
@@ -518,6 +542,18 @@ const CharacterSheet = () => {
         armor,
       };
     });
+  };
+
+  const handleShieldChange = (e) => {
+    const shieldBonus = parseInt(e.target.value);
+    const ArmorBonus = armorData[character.armorIndex].ac;
+    const newAc =
+      10 + character.attributes.dexterity.mod + ArmorBonus + shieldBonus;
+    setCharacter((prev) => ({
+      ...prev,
+      ac: newAc,
+      shield: shieldBonus,
+    }));
   };
 
   const handleMeleeWeaponChange = (e) => {
@@ -752,24 +788,42 @@ const CharacterSheet = () => {
           <span className="label">Saving Throw Mods</span>
           <br />
           <br />
-
-          {/*  ------- ARMOR ------ */}
-          <label>
-            <select
-              name="armor"
-              value={character.armorIndex}
-              onChange={handleArmorChange}
-            >
-              {armorData.map((armor, i) => (
-                <option key={armor.armor} value={i}>
-                  {armor.armor} (+{armor.ac})
-                </option>
-              ))}
-            </select>
-            <br />
-            <span className="label">Armor</span>
-          </label>
-
+          <div className="flex-grid  flex-grid--flex-start">
+            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+              {/*  ------- ARMOR ------ */}
+              <label>
+                <select
+                  name="armor"
+                  value={character.armorIndex}
+                  onChange={handleArmorChange}
+                >
+                  {armorData.map((armor, i) => (
+                    <option key={armor.armor} value={i}>
+                      {armor.armor} (+{armor.ac})
+                    </option>
+                  ))}
+                </select>
+                <br />
+                <span className="label">Armor</span>
+              </label>
+            </div>
+            <div className="flex-grid__child flex-grid__child--auto">
+              {/*  ------- SHIELD ------ */}
+              <label>
+                <select
+                  name="shield"
+                  value={character.shield}
+                  onChange={(e) => handleShieldChange(e)}
+                >
+                  <option value="0">none (+0)</option>
+                  <option value="1">Small (+1)</option>
+                  <option value="2">Large (+2)</option>
+                </select>
+                <br />
+                <span className="label">Shield</span>
+              </label>
+            </div>
+          </div>
           {/*  ------- MELEE WEAPON ------ */}
           <label>
             <select
