@@ -20,6 +20,7 @@ import {
   calculateBonus,
   // formatNumberModifier,
   whichTalentAspect,
+  whichAspectId,
   formatNumberSuffix,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
@@ -241,6 +242,15 @@ const CharacterSheet = () => {
     // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject);
     const aspectLevels = calcAspectLevel(tempObject.level, tempObject.aspect);
+
+    //clear HP rolls
+    tempObject.hp = {
+      ...tempObject.hp,
+      rolls: [],
+      bonus: [],
+      manual: 0,
+      total: 0
+    }
     setCharacter({
       ...tempObject,
       ...aspectLevels,
@@ -252,6 +262,14 @@ const CharacterSheet = () => {
     let presetValues = {
       ...character,
       aspect: presetData[value].aspect,
+      hitDiceType: aspectData[whichAspectId(presetData[value].aspect)].hitDiceType,
+      hp: {
+        durabilityBonus: character.fighterLevel,
+        rolls: [],
+        bonus: [],
+        manual: 0,
+        total: 0
+      },
       talents: {
         talentAssigned1: presetData[value].talents.talentAssigned1,
         talentAssigned2: presetData[value].talents.talentAssigned2,
@@ -288,6 +306,16 @@ const CharacterSheet = () => {
         presetValues,
         presetValues.talents.talentLevel1
       );
+    }
+
+    const hasDurabilityTalent = Object.entries(presetData[value].talents).filter(([key,val]) => val === "Durability")[0]
+
+    if(hasDurabilityTalent){
+      let level = 1
+      if(hasDurabilityTalent[0].match('talentLevel')){
+        level = parseInt(hasDurabilityTalent[0].replace('talentLevel',''))
+      }
+      presetValues.hp.hasDurability = level
     }
 
     setCharacter(presetValues);
