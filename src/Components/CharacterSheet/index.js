@@ -62,6 +62,7 @@ const characterDefaults = {
     "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
   saveModsRace: [],
   armor: armorData[0],
+  shield: 0,
   armorIndex: 0,
   meleeWeapon: meleeWeaponData[0],
   meleeWeaponIndex: 0,
@@ -413,7 +414,8 @@ const CharacterSheet = () => {
   const handleArmorChange = (e) => {
     const armor = armorData[e.target.value];
     setCharacter((prev) => {
-      const ac = 10 + prev.attributes.dexterity.mod + armor.ac;
+      const ac =
+        10 + prev.attributes.dexterity.mod + armor.ac + character.shield;
       return {
         ...prev,
         ac,
@@ -421,6 +423,18 @@ const CharacterSheet = () => {
         armor,
       };
     });
+  };
+
+  const handleShieldChange = (e) => {
+    const shieldBonus = parseInt(e.target.value);
+    const ArmorBonus = armorData[character.armorIndex].ac;
+    const newAc =
+      10 + character.attributes.dexterity.mod + ArmorBonus + shieldBonus;
+    setCharacter((prev) => ({
+      ...prev,
+      ac: newAc,
+      shield: shieldBonus,
+    }));
   };
 
   const handleMeleeWeaponChange = (e) => {
@@ -602,7 +616,11 @@ const CharacterSheet = () => {
             <div className="flex-grid__child flex-grid__child--auto">
               {/*  ------- SHIELD ------ */}
               <label>
-                <select name="shield">
+                <select
+                  name="shield"
+                  value={character.shield}
+                  onChange={(e) => handleShieldChange(e)}
+                >
                   <option value="0">none (+0)</option>
                   <option value="1">Small (+1)</option>
                   <option value="2">Large (+2)</option>
