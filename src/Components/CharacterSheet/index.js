@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import DiceBox from "@3d-dice/dice-box";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
 import DisadSelector from "./DisadSelector";
@@ -16,14 +17,37 @@ import {
   dataAttributes,
 } from "../../Data";
 import {
-  // calculateBonus,
+  calculateBonus,
   // formatNumberModifier,
   whichTalentAspect,
+  whichAspectId,
   formatNumberSuffix,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
 
+/*  --------------- DICE BOX -------------- */
+// create new DiceBox class
+const Box = new DiceBox("#dice-box", {
+  theme: "purpleRock",
+  assetPath: "/assets/dice-box/",
+});
+
+// initalize DiceBox onDomReady so canvas can be properly measured
+document.addEventListener("DOMContentLoaded", () => {
+  // set the onRollComplete function
+  Box.init();
+});
+
+// clear dice on click anywhere on the screen
+document.addEventListener("mousedown", () => {
+  const diceBoxCanvas = document.getElementById("dice-canvas");
+  if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
+    Box.hide().clear();
+  }
+});
+
+/*  --------------- DEFAULTS -------------- */
 const characterDefaults = {
   namePlayer: "",
   nameCharacter: "",
@@ -40,7 +64,14 @@ const characterDefaults = {
   attributes: dataAttributes,
   attributesUpdates: false, // need a shallow state prop to trigger component update
   ac: 10,
-  hp: 0,
+  hp: {
+    rolls: [], // hit dice rolls per level
+    bonus: [], // attribute bonus per level, may change if CON attribute increases
+    hasDurability: false, // talent bonus, if not false then set the level durability was obtained
+    durabilityBonus: 0, // equal to fighter level
+    manual: 0, // manual bonus from input
+    total: 0 // total value
+  },
   perception: 10,
   movement: 30,
   disad1: "none",
@@ -85,14 +116,12 @@ if (useLocalStorage) {
 
 /**
  * TODO:
- * 1. only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
- * 2. print css - remove disabled talents, presets, footer, page breaks, roll icons, header space, move spell slots table
- * 3. fix roller for HP
- * 4. Lowered Attributes / Attribute Increase modal to add to bonus
- * 5. clear spells (of specific color) when schools change
- * 6. armor and weapons for presets
- * 7. spells for presets
- * 8. add disability description to notes
+ * - only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
+ * - Lowered Attributes / Attribute Increase modal to add to bonus
+ * - clear spells (of specific color) when schools change
+ * - armor and weapons for presets
+ * - spells for presets
+ * - add disability description to notes
  */
 
 const CharacterSheet = () => {
@@ -102,6 +131,16 @@ const CharacterSheet = () => {
   const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
   const [schoolLimit, setSchoolLimit] = useState();
+  const [diceGroup, setDiceGroup] = useState()
+  const [attributeDice, setAttributeDice] = useState();
+
+  Box.onRollComplete = (results) => {
+    if(diceGroup === "attribute" || diceGroup === "all-attributes") {
+      setAttributeDice(results)
+    } else if(diceGroup === "hp") {
+      setHpFromDice(results)
+    }
+  };
 
   useEffect(() => {
     if (useLocalStorage) {
@@ -172,6 +211,18 @@ const CharacterSheet = () => {
 
   const handleCharLevel = (e) => {
     const aspectLevels = calcAspectLevel(e.target.value, character.aspect);
+
+    // adjust hp when down leveling
+    if(aspectLevels.level < character.level) {
+      const rolls = [...character.hp.rolls]
+      const bonus = [...character.hp.bonus]
+      for (let index = character.level; index > aspectLevels.level; index--) {
+        rolls.splice(index,1)
+        bonus.splice(index,1)
+      }
+      calcHpTotal({rolls,bonus})
+    }
+
     setCharacter((PrevState) => ({
       ...PrevState,
       ...aspectLevels,
@@ -192,8 +243,15 @@ const CharacterSheet = () => {
     // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject);
     const aspectLevels = calcAspectLevel(tempObject.level, tempObject.aspect);
-    const preset = document.getElementById("presetSelector")
 
+    //clear HP rolls
+    tempObject.hp = {
+      ...tempObject.hp,
+      rolls: [],
+      bonus: [],
+      manual: 0,
+      total: 0
+    }
 
     setCharacter({
       ...tempObject,
@@ -201,6 +259,7 @@ const CharacterSheet = () => {
     });
 
     // reset the optional presets picker
+    const preset = document.getElementById("presetSelector")
     if(preset.value !== "choose") {
       preset.value = "choose"
       handlePreset({target:{value:"choose"}})
@@ -270,6 +329,16 @@ const CharacterSheet = () => {
         presetValues,
         presetValues.talents.talentLevel1
       );
+    }
+
+    const hasDurabilityTalent = Object.entries(presetData[value].talents).filter(([key,val]) => val === "Durability")[0]
+
+    if(hasDurabilityTalent){
+      let level = 1
+      if(hasDurabilityTalent[0].match('talentLevel')){
+        level = parseInt(hasDurabilityTalent[0].replace('talentLevel',''))
+      }
+      presetValues.hp.hasDurability = level
     }
 
     setCharacter(presetValues);
@@ -413,6 +482,20 @@ const CharacterSheet = () => {
           newState.saveModsRace = [];
           newState.characteristicsRace = [];
         }
+        // save the level "Durability" was obtained for HP calculation
+        if(value === 'Durability'){
+          let level = 1
+          if(talentSlot.match('talentLevel')){
+            level = parseInt(talentSlot.replace('talentLevel',''))
+          }
+          newState.hp.hasDurability = level
+        }
+        // mark durability as being unselected
+        if(character.talents[talentSlot] === 'Durability') {
+          newState.hp.hasDurability = false
+        }
+
+        // save this talent to state
         newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
@@ -428,6 +511,11 @@ const CharacterSheet = () => {
       [e.target.id]: e.target.value,
     }));
   };
+
+  const rollDice = (notation, group) => {
+    setDiceGroup(group)
+    Box.show().roll(notation)
+  }
 
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
@@ -488,12 +576,84 @@ const CharacterSheet = () => {
     }));
   };
 
-  const updateHP = (e) => {
+  const setHpFromDice = (results) => {
+    const rolls = []
+    const bonus = []
+    // for each character level
+    let resultIndex = 0
+    for (let index = 0; index < character.level; index++) {
+      // does the character have durability for this level
+      if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
+        // pick the highest of the two dice roll results
+        rolls.push(Math.max(results[resultIndex].rolls[0].result,results[resultIndex].rolls[1].result))
+      } else {
+        // store the roll result
+        rolls.push(results[resultIndex].rolls[0].result)
+      }
+      resultIndex++
+      bonus.push(calculateBonus(character.attributes.constitution.total))
+    }
+
+    calcHpTotal({
+      rolls,
+      bonus
+    })
+  }
+
+  // expects hp object
+  const calcHpTotal = (hp = {}) => {
+
+    // create new state for HP
+    const newHp = {...character.hp}
+
+    // add new rolls
+    if(hp.rolls){
+      newHp.rolls = [...hp.rolls]
+    }
+    // add new bonuses
+    if(hp.bonus){
+      newHp.bonus = [...hp.bonus]
+    }
+    // add manual adjustments
+    if(hp.manual){
+      newHp.manual += hp.manual
+    }
+    // add durability talent level
+    if(character.hp.hasDurability && character.level >= character.hp.hasDurability) {
+      newHp.durabilityBonus = character.fighterLevel
+    }
+
+    console.log(`newHp`, newHp)
+
+    // sum rolls
+    const rollsSum = newHp.rolls.reduce((a, b) => a + b, 0)
+    // sum bonus
+    const bonusSum = newHp.bonus.reduce((a, b) => a + b, 0)
+
+    newHp.total = rollsSum + bonusSum + newHp.manual + newHp.durabilityBonus
+
     setCharacter((prev) => ({
       ...prev,
-      hp: e.target.value,
+      hp: {...newHp}
     }));
+    
+  }
+
+  const manuallyUpdateHP = (e) => {
+    calcHpTotal({manual: e.target.value - character.hp.total})
   };
+
+  const rollHP = () => {
+    setDiceGroup("hp")
+    for (let index = 0; index < character.level; index++) {
+      let dice = 1
+      // advantage die for durability
+      if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
+        dice = 2
+      }
+      Box.show().add(`${dice}d${character.hitDiceType}`)
+    }
+  }
 
   return (
     <div>
@@ -559,6 +719,8 @@ const CharacterSheet = () => {
               onChange={updateAttributes}
               attributes={character.attributes}
               updated={character.attributesUpdates}
+              onRollResults={attributeDice}
+              onRoll={rollDice}
             />
           </section>
         </div>
@@ -574,6 +736,7 @@ const CharacterSheet = () => {
               <button
                 className="button button--secondary data-display-box__button"
                 aria-label="Roll Hit Points"
+                onClick={rollHP}
               >
                 <span className="fas fa-die"></span>
               </button>
@@ -584,8 +747,8 @@ const CharacterSheet = () => {
                   inputMode="numeric"
                   min={0}
                   max={999}
-                  value={character.hp}
-                  onChange={updateHP}
+                  value={character.hp.total}
+                  onChange={manuallyUpdateHP}
                 />
               </div>
               <h2 className="data-display-box__header">HP</h2>
