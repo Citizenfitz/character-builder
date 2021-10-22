@@ -623,7 +623,7 @@ const CharacterSheet = () => {
       newHp.durabilityBonus = character.fighterLevel
     }
 
-    console.log(`newHp`, newHp)
+    // console.log(`newHp`, newHp)
 
     // sum rolls
     const rollsSum = newHp.rolls.reduce((a, b) => a + b, 0)
