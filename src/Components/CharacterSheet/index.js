@@ -216,8 +216,8 @@ const CharacterSheet = () => {
       const rolls = [...character.hp.rolls]
       const bonus = [...character.hp.bonus]
       for (let index = character.level; index > aspectLevels.level; index--) {
-        rolls.pop()
-        bonus.pop()
+        rolls.splice(index,1)
+        bonus.splice(index,1)
       }
       calcHpTotal({rolls,bonus})
     }
@@ -591,7 +591,7 @@ const CharacterSheet = () => {
       newHp.durabilityBonus = character.fighterLevel
     }
 
-    // console.log(`newHp`, newHp)
+    console.log(`newHp`, newHp)
 
     // sum rolls
     const rollsSum = newHp.rolls.reduce((a, b) => a + b, 0)
