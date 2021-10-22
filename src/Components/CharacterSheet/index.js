@@ -541,25 +541,21 @@ const CharacterSheet = () => {
   };
 
   const setHpFromDice = (results) => {
-    const rolls = [...character.hp.rolls]
-    const bonus = [...character.hp.bonus]
+    const rolls = []
+    const bonus = []
     // for each character level
     let resultIndex = 0
     for (let index = 0; index < character.level; index++) {
-
-      // if there's no roll for this level
-      if(!character.hp.rolls[index]){
-        // does the character have durability for this level
-        if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
-          // pick the highest of the two dice roll results
-          rolls.push(Math.max(results[resultIndex].rolls[0].result,results[resultIndex].rolls[1].result))
-        } else {
-          // store the roll result
-          rolls.push(results[resultIndex].rolls[0].result)
-        }
-        resultIndex++
-        bonus.push(calculateBonus(character.attributes.constitution.total))
+      // does the character have durability for this level
+      if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
+        // pick the highest of the two dice roll results
+        rolls.push(Math.max(results[resultIndex].rolls[0].result,results[resultIndex].rolls[1].result))
+      } else {
+        // store the roll result
+        rolls.push(results[resultIndex].rolls[0].result)
       }
+      resultIndex++
+      bonus.push(calculateBonus(character.attributes.constitution.total))
     }
 
     calcHpTotal({
@@ -612,23 +608,14 @@ const CharacterSheet = () => {
   };
 
   const rollHP = () => {
-    // only able to roll HP if character level is greater than dice rolls
-    const hasRoll = character.level > character.hp.rolls.length
-    if(hasRoll) {
-      setDiceGroup("hp")
-      for (let index = 0; index < character.level; index++) {
-        // if there's no roll for this level
-        if(!character.hp.rolls[index]){
-          let dice = 1
-          // advantage die for durability
-          if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
-            dice = 2
-          }
-          Box.show().add(`${dice}d${character.hitDiceType}`)
-        }
+    setDiceGroup("hp")
+    for (let index = 0; index < character.level; index++) {
+      let dice = 1
+      // advantage die for durability
+      if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
+        dice = 2
       }
-
-      // TODO: disable button while roll is happening - reenable in callback
+      Box.show().add(`${dice}d${character.hitDiceType}`)
     }
   }
 
@@ -709,7 +696,7 @@ const CharacterSheet = () => {
               <div className="data-display-box__text">{character.ac}</div>
               <h2 className="data-display-box__header">AC</h2>
             </div>
-            <div className={`flex-grid__child data-display-box data-display-box--quick-values ${character.level > character.hp.rolls.length ? 'invalid' : 'valid'}`}>
+            <div className="flex-grid__child data-display-box data-display-box--quick-values">
               <button
                 className="button button--secondary data-display-box__button"
                 aria-label="Roll Hit Points"
