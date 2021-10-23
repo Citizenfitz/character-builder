@@ -346,7 +346,12 @@ const CharacterSheet = () => {
       presetValues.hp.hasDurability = level
     }
 
-    setCharacter(presetValues);
+    const aspectLevels = calcAspectLevel(character.level, presetData[value].aspect);
+
+    setCharacter({
+      ...presetValues,
+      ...aspectLevels
+    });
   };
 
   // save schools that were picked in the WizardySpells component to the character data
