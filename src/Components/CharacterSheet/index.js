@@ -105,7 +105,7 @@ const characterDefaults = {
   wizardrySchools: [],
 };
 
-const useLocalStorage = false;
+const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));;
 let characterData;
 let notesData;
 
@@ -133,6 +133,7 @@ const CharacterSheet = () => {
   const [schoolLimit, setSchoolLimit] = useState();
   const [diceGroup, setDiceGroup] = useState()
   const [attributeDice, setAttributeDice] = useState();
+  const [autoSave, setAutoSave] = useState(useLocalStorage)
 
   Box.onRollComplete = (results) => {
     if(diceGroup === "attribute" || diceGroup === "all-attributes") {
@@ -143,16 +144,20 @@ const CharacterSheet = () => {
   };
 
   useEffect(() => {
-    if (useLocalStorage) {
-      localStorage.setItem("character", JSON.stringify(character));
-    }
-  }, [character]);
+    localStorage.setItem("autosave", JSON.stringify(autoSave));
+  }, [autoSave]);
 
   useEffect(() => {
-    if (useLocalStorage) {
+    if (autoSave) {
+      localStorage.setItem("character", JSON.stringify(character));
+    }
+  }, [character, autoSave]);
+
+  useEffect(() => {
+    if (autoSave) {
       localStorage.setItem("notes", JSON.stringify(notes));
     }
-  }, [notes]);
+  }, [notes, autoSave]);
 
   const handleInputChange = (e, name) => {
     let value;
@@ -685,7 +690,7 @@ const CharacterSheet = () => {
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- LEVEL ------ */}
               <label>
-                <select onChange={handleCharLevel}>
+                <select onChange={handleCharLevel} value={character.level}>
                   {levelsData.map((i) => (
                     <option key={i.level} value={i.level}>
                       {formatNumberSuffix(i.level)}
@@ -993,6 +998,12 @@ const CharacterSheet = () => {
           useLocalStorage={useLocalStorage}
         />
       )}
+      <div className="autosave">
+        <label>
+          <input type="checkbox" checked={autoSave} value="autosave" onChange={()=>setAutoSave(!autoSave)} />
+          <span>Auto save</span>
+        </label>
+      </div>
     </div>
   );
 };
