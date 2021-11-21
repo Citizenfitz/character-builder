@@ -32,11 +32,16 @@
     }
     > .aspect-icon {
       position: absolute;
-      left: -24px;
+      left: -28px;
       top: -1px;
     }
     > .aspect-icon--race {
       top: -3px;
+    }
+    > .fas {
+      position: absolute;
+      left: -24px;
+      top: -1px;
     }
   }
   &--explanations {

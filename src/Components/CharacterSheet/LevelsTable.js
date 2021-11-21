@@ -61,7 +61,6 @@ const LevelsTable = (props) => {
           <tr>
             <th style={{ minWidth: "58px" }}>Level</th>
             <th>HD</th>
-            <th>Save Bonus</th>
             <th>Talent</th>
             <th>Talent Roll Mod</th>
             <th>Class/Adj/Opp</th>
@@ -88,15 +87,11 @@ const LevelsTable = (props) => {
             >
               1d{props.character.hitDiceType}
             </td>
-            <td
-              rowSpan={props.character.aspect === "knave" ? 4 : 3}
-              className="ut-align-center"
-            >
-              +0
-            </td>
             <td>
               <div className="aspect-icon aspect-icon--fighter"></div>
-              <span className="talentAssigned">{props.character.talents.talentAssigned1}</span>
+              <span className="talentAssigned">
+                {props.character.talents.talentAssigned1}
+              </span>
             </td>
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentAssigned1)}
@@ -116,7 +111,9 @@ const LevelsTable = (props) => {
                   props.character.talents.talentAssigned2
                 )}`}
               ></div>
-              <span className="talentAssigned">{props.character.talents.talentAssigned2}</span>
+              <span className="talentAssigned">
+                {props.character.talents.talentAssigned2}
+              </span>
             </td>
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentAssigned2)}
@@ -176,14 +173,18 @@ const LevelsTable = (props) => {
               <td className="ut-align-center">
                 {getTalentMod(props.character.talents.talentKnave1)}
               </td>
-              <td>{calcTalentLevel(props.character.aspect,props.character.talents.talentKnave1)}</td>
+              <td>
+                {calcTalentLevel(
+                  props.character.aspect,
+                  props.character.talents.talentKnave1
+                )}
+              </td>
             </tr>
           )}
           {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
           {props.character.disad1 !== "none" && (
             <tr className="table-levels--lvl1">
               <td className="ut-align-center">Disad 1</td>
-              <td></td>
               <td></td>
               <td>
                 <div
@@ -214,7 +215,6 @@ const LevelsTable = (props) => {
           {props.character.disad2 !== "none" && (
             <tr className="table-levels--lvl1">
               <td className="ut-align-center">Disad 2</td>
-              <td></td>
               <td></td>
               <td>
                 <div
@@ -261,10 +261,6 @@ const LevelsTable = (props) => {
                   {i.hitDice}d{props.character.hitDiceType}
                   {i.hitDiceBonus && <span>+{i.hitDiceBonus}</span>}
                 </td>
-                <td className="ut-align-center">
-                  {i.saveBonus > 0 && <span>+</span>}
-                  {i.saveBonus}
-                </td>
 
                 {i.getsTalent ? (
                   <Fragment>
@@ -283,7 +279,9 @@ const LevelsTable = (props) => {
                       />
                     </td>
                     <td className="ut-align-center">
-                      {getTalentMod(props.character.talents[`talentLevel${i.level}`])}
+                      {getTalentMod(
+                        props.character.talents[`talentLevel${i.level}`]
+                      )}
                     </td>
                     <td>
                       {calcTalentLevel(

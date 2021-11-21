@@ -25,6 +25,7 @@ import {
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
+import ReactTooltip from "react-tooltip";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -70,7 +71,7 @@ const characterDefaults = {
     hasDurability: false, // talent bonus, if not false then set the level durability was obtained
     durabilityBonus: 0, // equal to fighter level
     manual: 0, // manual bonus from input
-    total: 0 // total value
+    total: 0, // total value
   },
   perception: 10,
   movement: 30,
@@ -105,7 +106,7 @@ const characterDefaults = {
   wizardrySchools: [],
 };
 
-const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));;
+const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));
 let characterData;
 let notesData;
 
@@ -131,15 +132,15 @@ const CharacterSheet = () => {
   const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
   const [schoolLimit, setSchoolLimit] = useState();
-  const [diceGroup, setDiceGroup] = useState()
+  const [diceGroup, setDiceGroup] = useState();
   const [attributeDice, setAttributeDice] = useState();
-  const [autoSave, setAutoSave] = useState(useLocalStorage)
+  const [autoSave, setAutoSave] = useState(useLocalStorage);
 
   Box.onRollComplete = (results) => {
-    if(diceGroup === "attribute" || diceGroup === "all-attributes") {
-      setAttributeDice(results)
-    } else if(diceGroup === "hp") {
-      setHpFromDice(results)
+    if (diceGroup === "attribute" || diceGroup === "all-attributes") {
+      setAttributeDice(results);
+    } else if (diceGroup === "hp") {
+      setHpFromDice(results);
     }
   };
 
@@ -218,14 +219,14 @@ const CharacterSheet = () => {
     const aspectLevels = calcAspectLevel(e.target.value, character.aspect);
 
     // adjust hp when down leveling
-    if(aspectLevels.level < character.level) {
-      const rolls = [...character.hp.rolls]
-      const bonus = [...character.hp.bonus]
+    if (aspectLevels.level < character.level) {
+      const rolls = [...character.hp.rolls];
+      const bonus = [...character.hp.bonus];
       for (let index = character.level; index > aspectLevels.level; index--) {
-        rolls.splice(index,1)
-        bonus.splice(index,1)
+        rolls.splice(index, 1);
+        bonus.splice(index, 1);
       }
-      calcHpTotal({rolls,bonus})
+      calcHpTotal({ rolls, bonus });
     }
 
     setCharacter((PrevState) => ({
@@ -255,8 +256,8 @@ const CharacterSheet = () => {
       rolls: [],
       bonus: [],
       manual: 0,
-      total: 0
-    }
+      total: 0,
+    };
 
     setCharacter({
       ...tempObject,
@@ -264,17 +265,17 @@ const CharacterSheet = () => {
     });
 
     // reset the optional presets picker
-    const preset = document.getElementById("presetSelector")
-    if(preset.value !== "choose") {
-      preset.value = "choose"
-      handlePreset({target:{value:"choose"}})
+    const preset = document.getElementById("presetSelector");
+    if (preset.value !== "choose") {
+      preset.value = "choose";
+      handlePreset({ target: { value: "choose" } });
     }
   };
 
   const handlePreset = (e) => {
     const { value } = e.target;
-    let presetValues = {}
-    if(value === "choose"){
+    let presetValues = {};
+    if (value === "choose") {
       presetValues = {
         ...character,
         talents: {
@@ -292,7 +293,7 @@ const CharacterSheet = () => {
         disad1: characterDefaults.disad1,
         disad2: characterDefaults.disad2,
         talentsUpdated: Date.now(),
-      }
+      };
     } else {
       presetValues = {
         ...character,
@@ -312,7 +313,7 @@ const CharacterSheet = () => {
         disad1: presetData[value].disad1,
         disad2: presetData[value].disad2,
         talentsUpdated: Date.now(),
-      }
+      };
     }
 
     // check if any of the talents are spell casting talents
@@ -336,21 +337,26 @@ const CharacterSheet = () => {
       );
     }
 
-    const hasDurabilityTalent = Object.entries(presetData[value].talents).filter(([key,val]) => val === "Durability")[0]
+    const hasDurabilityTalent = Object.entries(
+      presetData[value].talents
+    ).filter(([key, val]) => val === "Durability")[0];
 
-    if(hasDurabilityTalent){
-      let level = 1
-      if(hasDurabilityTalent[0].match('talentLevel')){
-        level = parseInt(hasDurabilityTalent[0].replace('talentLevel',''))
+    if (hasDurabilityTalent) {
+      let level = 1;
+      if (hasDurabilityTalent[0].match("talentLevel")) {
+        level = parseInt(hasDurabilityTalent[0].replace("talentLevel", ""));
       }
-      presetValues.hp.hasDurability = level
+      presetValues.hp.hasDurability = level;
     }
 
-    const aspectLevels = calcAspectLevel(character.level, presetData[value].aspect);
+    const aspectLevels = calcAspectLevel(
+      character.level,
+      presetData[value].aspect
+    );
 
     setCharacter({
       ...presetValues,
-      ...aspectLevels
+      ...aspectLevels,
     });
   };
 
@@ -493,16 +499,16 @@ const CharacterSheet = () => {
           newState.characteristicsRace = [];
         }
         // save the level "Durability" was obtained for HP calculation
-        if(value === 'Durability'){
-          let level = 1
-          if(talentSlot.match('talentLevel')){
-            level = parseInt(talentSlot.replace('talentLevel',''))
+        if (value === "Durability") {
+          let level = 1;
+          if (talentSlot.match("talentLevel")) {
+            level = parseInt(talentSlot.replace("talentLevel", ""));
           }
-          newState.hp.hasDurability = level
+          newState.hp.hasDurability = level;
         }
         // mark durability as being unselected
-        if(character.talents[talentSlot] === 'Durability') {
-          newState.hp.hasDurability = false
+        if (character.talents[talentSlot] === "Durability") {
+          newState.hp.hasDurability = false;
         }
 
         // save this talent to state
@@ -523,9 +529,9 @@ const CharacterSheet = () => {
   };
 
   const rollDice = (notation, group) => {
-    setDiceGroup(group)
-    Box.show().roll(notation)
-  }
+    setDiceGroup(group);
+    Box.show().roll(notation);
+  };
 
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
@@ -587,83 +593,95 @@ const CharacterSheet = () => {
   };
 
   const setHpFromDice = (results) => {
-    const rolls = []
-    const bonus = []
+    const rolls = [];
+    const bonus = [];
     // for each character level
-    let resultIndex = 0
+    let resultIndex = 0;
     for (let index = 0; index < character.level; index++) {
       // does the character have durability for this level
-      if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
+      if (
+        character.hp.hasDurability &&
+        index + 1 >= character.hp.hasDurability
+      ) {
         // pick the highest of the two dice roll results
-        rolls.push(Math.max(results[resultIndex].rolls[0].result,results[resultIndex].rolls[1].result))
+        rolls.push(
+          Math.max(
+            results[resultIndex].rolls[0].result,
+            results[resultIndex].rolls[1].result
+          )
+        );
       } else {
         // store the roll result
-        rolls.push(results[resultIndex].rolls[0].result)
+        rolls.push(results[resultIndex].rolls[0].result);
       }
-      resultIndex++
-      bonus.push(calculateBonus(character.attributes.constitution.total))
+      resultIndex++;
+      bonus.push(calculateBonus(character.attributes.constitution.total));
     }
 
     calcHpTotal({
       rolls,
-      bonus
-    })
-  }
+      bonus,
+    });
+  };
 
   // expects hp object
   const calcHpTotal = (hp = {}) => {
-
     // create new state for HP
-    const newHp = {...character.hp}
+    const newHp = { ...character.hp };
 
     // add new rolls
-    if(hp.rolls){
-      newHp.rolls = [...hp.rolls]
+    if (hp.rolls) {
+      newHp.rolls = [...hp.rolls];
     }
     // add new bonuses
-    if(hp.bonus){
-      newHp.bonus = [...hp.bonus]
+    if (hp.bonus) {
+      newHp.bonus = [...hp.bonus];
     }
     // add manual adjustments
-    if(hp.manual){
-      newHp.manual += hp.manual
+    if (hp.manual) {
+      newHp.manual += hp.manual;
     }
     // add durability talent level
-    if(character.hp.hasDurability && character.level >= character.hp.hasDurability) {
-      newHp.durabilityBonus = character.fighterLevel
+    if (
+      character.hp.hasDurability &&
+      character.level >= character.hp.hasDurability
+    ) {
+      newHp.durabilityBonus = character.fighterLevel;
     }
 
     // console.log(`newHp`, newHp)
 
     // sum rolls
-    const rollsSum = newHp.rolls.reduce((a, b) => a + b, 0)
+    const rollsSum = newHp.rolls.reduce((a, b) => a + b, 0);
     // sum bonus
-    const bonusSum = newHp.bonus.reduce((a, b) => a + b, 0)
+    const bonusSum = newHp.bonus.reduce((a, b) => a + b, 0);
 
-    newHp.total = rollsSum + bonusSum + newHp.manual + newHp.durabilityBonus
+    newHp.total = rollsSum + bonusSum + newHp.manual + newHp.durabilityBonus;
 
     setCharacter((prev) => ({
       ...prev,
-      hp: {...newHp}
+      hp: { ...newHp },
     }));
-    
-  }
+  };
 
   const manuallyUpdateHP = (e) => {
-    calcHpTotal({manual: e.target.value - character.hp.total})
+    calcHpTotal({ manual: e.target.value - character.hp.total });
   };
 
   const rollHP = () => {
-    setDiceGroup("hp")
+    setDiceGroup("hp");
     for (let index = 0; index < character.level; index++) {
-      let dice = 1
+      let dice = 1;
       // advantage die for durability
-      if(character.hp.hasDurability && index+1 >= character.hp.hasDurability) {
-        dice = 2
+      if (
+        character.hp.hasDurability &&
+        index + 1 >= character.hp.hasDurability
+      ) {
+        dice = 2;
       }
-      Box.show().add(`${dice}d${character.hitDiceType}`)
+      Box.show().add(`${dice}d${character.hitDiceType}`);
     }
-  }
+  };
 
   return (
     <div>
@@ -777,13 +795,19 @@ const CharacterSheet = () => {
             </div>
           </div>
           {/*  ------- SAVING THROW MODS ------ */}
+          <h2 className="ut-align-center ut-margin-top-0">Saving Throw Mods</h2>
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
               <ul className="data-display-box__save-mods-list">
                 <li className="data-display-box__save-mods-list-item">
+                  <span className="fas fa-pointer ut-color-royal"></span>+
+                  {levelsData[character.level].saveBonus} to all{" "}
+                  <span className="ut-text-explain"> (for level)</span>
+                </li>
+                <li className="data-display-box__save-mods-list-item">
                   <div
                     className={`aspect-icon aspect-icon--${character.aspect}`}
-                  ></div>
+                  ></div>{" "}
                   {character.saveModsClass}
                 </li>
                 {character.saveModsRace.map((note, i) => (
@@ -795,7 +819,7 @@ const CharacterSheet = () => {
               </ul>
             </div>
           </div>
-          <span className="label">Saving Throw Mods</span>
+
           <br />
           <br />
           <div className="flex-grid  flex-grid--flex-start">
@@ -1005,7 +1029,12 @@ const CharacterSheet = () => {
       )}
       <div className="autosave">
         <label>
-          <input type="checkbox" checked={autoSave} value="autosave" onChange={()=>setAutoSave(!autoSave)} />
+          <input
+            type="checkbox"
+            checked={autoSave}
+            value="autosave"
+            onChange={() => setAutoSave(!autoSave)}
+          />
           <span>Auto save</span>
         </label>
       </div>

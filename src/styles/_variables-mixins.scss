@@ -33,6 +33,12 @@ $path-img: "assets/images/";
     format("truetype");
 }
 
+@font-face {
+  font-family: "Kaushan Script";
+  src: url($path-font + "Kaushan_Script/KaushanScript-Regular.ttf")
+    format("truetype");
+}
+
 // ********************* FONTS *********************
 $text-regular: "Cabin Regular", Cabin, sans-serif;
 $text-medium: "Cabin Medium", Cabin, sans-serif;
@@ -40,6 +46,8 @@ $text-semi: "Cabin Medium", Cabin, sans-serif;
 $text-bold: "Cabin Bold", Cabin, sans-serif;
 
 $text-header: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+
+$text-cursive: "Kaushan Script", cursive;
 
 // *********************** COLOR VARIABLES ***********************//
 
@@ -53,6 +61,8 @@ $color-gray-3: #c4c4c4; // Form borders
 $color-gray-4: #ebebeb; // Disabled elements backgrounds
 $color-gray-5: #f6f7fb; // Page background.
 
+$color-yellow-1: #f1be42;
+
 // class colors
 $color-common: #d2691e;
 $color-fighter: #04a54f;
@@ -62,7 +72,7 @@ $color-knave: #eb2026;
 //$color-royal: #9900ff;
 $color-royal: #883c8d;
 $color-input-background: #f5f3ed;
-$school-white: rgb(158,158,158);
+$school-white: rgb(158, 158, 158);
 $school-black: $color-black;
 $school-green: $color-fighter;
 $school-blue: $color-priest;

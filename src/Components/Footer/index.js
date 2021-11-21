@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => (
   <footer className="footer" id="footer">
-
-  FOOTER
-
+    <div className="footer__top-border"></div>
+    FOOTER
   </footer>
 );
 

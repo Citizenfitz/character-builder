@@ -16,7 +16,15 @@ body {
   margin: 0;
   font-family: $text-regular;
   color: $color-black;
+  background: $color-gray-5;
+}
+
+// bg base color for main elements
+main,
+header {
   background: $color-white;
+  border-left: 1px solid $color-royal;
+  border-right: 1px solid $color-royal;
 }
 #root {
 }
@@ -25,32 +33,6 @@ body {
   width: 100%;
   max-width: $mq-desktop-max;
   margin: 0 auto;
-}
-
-header {
-  @include site-layout;
-  padding: 1em $margins-desktop;
-  // background: lighten($color-royal, 50%);
-  color: $color-royal;
-  text-align: center;
-
-  h1 {
-    font-size: 3rem;
-    margin-top: 0;
-    margin-bottom: 0px;
-    letter-spacing: 0.125rem;
-  }
-  .subheader {
-    display: block;
-    font-size: 1.75rem;
-    margin-bottom: 0px;
-  }
-  @include mq-tablet {
-    padding: $margins-tablet;
-  }
-  @include mq-phone {
-    padding: $margins-phone;
-  }
 }
 
 main {
@@ -82,10 +64,13 @@ main {
   }
 }
 
-footer {
+footer,
+.footer {
   @include site-layout;
+  position: relative;
 
   padding: $margins-desktop;
+  margin-bottom: 2rem;
   background: lighten($color-royal, 40%);
   color: darken($color-royal, 10%);
   @include mq-tablet {
@@ -93,6 +78,17 @@ footer {
   }
   @include mq-phone {
     padding: $margins-phone;
+  }
+  &__top-border {
+    background-image: url($path-img + "border-triangles-down-no-bottom.svg");
+    background-repeat: repeat-x;
+    background-size: 60% auto;
+    width: 100%;
+    height: 20px;
+    position: absolute;
+    top: -20px;
+    left: 0;
+    transform: rotate(180deg);
   }
 }
 

@@ -1,4 +1,8 @@
 //* *************** UTILITES ***************** */
+
+.cursive {
+  font-family: $text-cursive;
+}
 .ut-hidden {
   height: 0px;
   width: 0px;
@@ -92,10 +96,23 @@
   display: inline-block;
 }
 
-.clearfix:after { 
-  content: "."; 
-  visibility: hidden; 
-  display: block; 
-  height: 0; 
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
   clear: both;
+}
+
+//  ------- PRINT VS SCREEN --------
+@media print {
+  .ut-no-print {
+    display: none !important;
+  }
+}
+
+@media screen {
+  .ut-no-screen {
+    display: none !important;
+  }
 }

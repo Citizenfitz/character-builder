@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /***************************** FONT IMPORTS ************************************* */
 @font-face {
   font-family: "cabin-regular";
@@ -25,6 +26,10 @@
   font-family: "FontAwesome";
   src: url("assets/fonts/FontAwesome/fontawesome-webfont.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Kaushan Script";
+  src: url("assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf") format("truetype");
+}
 *,
 *:before,
 *:after {
@@ -42,37 +47,14 @@ body {
   margin: 0;
   font-family: "Cabin Regular", Cabin, sans-serif;
   color: #000;
-  background: #fff;
+  background: #f6f7fb;
 }
 
+main,
 header {
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1em 1.5rem;
-  color: #883c8d;
-  text-align: center;
-}
-header h1 {
-  font-size: 3rem;
-  margin-top: 0;
-  margin-bottom: 0px;
-  letter-spacing: 0.125rem;
-}
-header .subheader {
-  display: block;
-  font-size: 1.75rem;
-  margin-bottom: 0px;
-}
-@media (min-width: 481px) and (max-width: 768px) {
-  header {
-    padding: 1rem;
-  }
-}
-@media (max-width: 480px) {
-  header {
-    padding: 0.5rem;
-  }
+  background: #fff;
+  border-left: 1px solid #883c8d;
+  border-right: 1px solid #883c8d;
 }
 
 main {
@@ -108,23 +90,40 @@ main {
   cursor: pointer;
 }
 
-footer {
+footer,
+.footer {
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
+  position: relative;
   padding: 1.5rem;
+  margin-bottom: 2rem;
   background: #ddb5e0;
   color: #652d69;
 }
 @media (min-width: 481px) and (max-width: 768px) {
-  footer {
+  footer,
+.footer {
     padding: 1rem;
   }
 }
 @media (max-width: 480px) {
-  footer {
+  footer,
+.footer {
     padding: 0.5rem;
   }
+}
+footer__top-border,
+.footer__top-border {
+  background-image: url("assets/images/border-triangles-down-no-bottom.svg");
+  background-repeat: repeat-x;
+  background-size: 60% auto;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: -20px;
+  left: 0;
+  transform: rotate(180deg);
 }
 
 /***** HEADERS *****/
@@ -218,7 +217,7 @@ dd,
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
-  content: "\f045";
+  content: "";
   position: absolute;
   left: -1.5rem;
   top: 2px;
@@ -250,6 +249,68 @@ dd,
 }
 .talent-class-indicator--royal {
   background: #883c8d;
+}
+
+.header {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1em 1.5rem;
+  color: #883c8d;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header h1 {
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0px;
+  letter-spacing: 0.25rem;
+  text-align: left;
+}
+.header__dropcap {
+  font-size: 4.9rem;
+  margin-top: 0;
+}
+.header .subheader {
+  display: block;
+  font-size: 1.25rem;
+  margin-bottom: 0px;
+  color: #000;
+  letter-spacing: 0;
+  margin-top: -4px;
+}
+.header__system-banner {
+  font-family: "Kaushan Script", cursive;
+  color: #000;
+  background: #f1be42;
+  padding: 0.25em;
+  position: absolute;
+  width: 300px;
+  text-align: center;
+  top: 24px;
+  right: -84px;
+  transform: rotate(35deg);
+}
+.header__bottom-border {
+  background-image: url("assets/images/border-triangles-down-no-bottom.svg");
+  background-repeat: repeat-x;
+  background-size: 60% auto;
+  width: 100%;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem;
+  }
 }
 
 /***** PLACEHOLDERS *****/
@@ -1010,15 +1071,19 @@ th {
 }
 
 .fa-edit::before {
-  content: "\f044";
+  content: "";
 }
 
 .fa-trash::before {
-  content: "\f1f8";
+  content: "";
 }
 
 .fa-die::before {
-  content: "\f0e7";
+  content: "";
+}
+
+.fa-pointer::before {
+  content: "";
 }
 
 .alignment-radio-set {
@@ -1295,11 +1360,16 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .data-display-box__save-mods-list-item > .aspect-icon {
   position: absolute;
-  left: -24px;
+  left: -28px;
   top: -1px;
 }
 .data-display-box__save-mods-list-item > .aspect-icon--race {
   top: -3px;
+}
+.data-display-box__save-mods-list-item > .fas {
+  position: absolute;
+  left: -24px;
+  top: -1px;
 }
 .data-display-box--explanations {
   margin-bottom: 2rem;
@@ -1316,102 +1386,6 @@ input[type=radio] + label.aspect-radio-label__type {
   position: absolute;
   right: 6px;
   top: 6px;
-}
-
-.ut-hidden {
-  height: 0px;
-  width: 0px;
-  overflow: hidden;
-  opacity: 0;
-}
-
-.ut-ellipsis-overflow {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.ut-align-center {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.ut-all-caps {
-  text-transform: uppercase;
-}
-
-.ut-only-sr {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
-.ut-zebra-gray {
-  background: #f6f7fb;
-}
-
-.ut-color-knave {
-  color: #d2691e;
-}
-.ut-color-fighter {
-  color: #04a54f;
-}
-.ut-color-priest {
-  color: #2375b9;
-}
-.ut-color-wizard {
-  color: #e1a525;
-}
-.ut-color-knave {
-  color: #eb2026;
-}
-.ut-color-royal {
-  color: #883c8d;
-}
-
-.ut-captialize {
-  text-transform: capitalize;
-}
-
-.ut-margin-top-0 {
-  margin-top: 0;
-}
-.ut-margin-right-2em {
-  margin-right: 2em;
-}
-.ut-margin-right-1em {
-  margin-right: 1em;
-}
-.ut-margin-bottom-half-em {
-  margin-bottom: 0.5em;
-}
-
-.ut-text-explain {
-  color: #767676;
-  font-family: "Cabin Regular", Cabin, sans-serif;
-  font-style: italic;
-}
-
-.ut-text-greyhawk {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
-}
-
-.ut-display-inine-block {
-  display: inline-block;
-}
-
-.clearfix:after {
-  content: ".";
-  visibility: hidden;
-  display: block;
-  height: 0;
-  clear: both;
 }
 
 .hp {
@@ -2107,6 +2081,116 @@ input[type=number]::-webkit-outer-spin-button {
   .section--notes {
     position: relative;
     page-break-before: always;
+  }
+}
+.cursive {
+  font-family: "Kaushan Script", cursive;
+}
+
+.ut-hidden {
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.ut-ellipsis-overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ut-align-center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ut-all-caps {
+  text-transform: uppercase;
+}
+
+.ut-only-sr {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.ut-zebra-gray {
+  background: #f6f7fb;
+}
+
+.ut-color-knave {
+  color: #d2691e;
+}
+.ut-color-fighter {
+  color: #04a54f;
+}
+.ut-color-priest {
+  color: #2375b9;
+}
+.ut-color-wizard {
+  color: #e1a525;
+}
+.ut-color-knave {
+  color: #eb2026;
+}
+.ut-color-royal {
+  color: #883c8d;
+}
+
+.ut-captialize {
+  text-transform: capitalize;
+}
+
+.ut-margin-top-0 {
+  margin-top: 0;
+}
+.ut-margin-right-2em {
+  margin-right: 2em;
+}
+.ut-margin-right-1em {
+  margin-right: 1em;
+}
+.ut-margin-bottom-half-em {
+  margin-bottom: 0.5em;
+}
+
+.ut-text-explain {
+  color: #767676;
+  font-family: "Cabin Regular", Cabin, sans-serif;
+  font-style: italic;
+}
+
+.ut-text-greyhawk {
+  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+}
+
+.ut-display-inine-block {
+  display: inline-block;
+}
+
+.clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+@media print {
+  .ut-no-print {
+    display: none !important;
+  }
+}
+@media screen {
+  .ut-no-screen {
+    display: none !important;
   }
 }
 
