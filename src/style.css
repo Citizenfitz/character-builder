@@ -256,10 +256,16 @@ dd,
   max-width: 960px;
   margin: 0 auto;
   padding: 1em 1.5rem;
+  padding-bottom: 0.5rem;
+  padding-top: 2rem;
   color: #883c8d;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+.header > .flex-grid {
+  width: 70%;
+  margin: 0 auto;
 }
 .header h1 {
   font-size: 3rem;
@@ -271,6 +277,7 @@ dd,
 .header__dropcap {
   font-size: 4.9rem;
   margin-top: 0;
+  letter-spacing: 0;
 }
 .header .subheader {
   display: block;
@@ -279,6 +286,7 @@ dd,
   color: #000;
   letter-spacing: 0;
   margin-top: -4px;
+  margin-left: 4px;
 }
 .header__system-banner {
   font-family: "Kaushan Script", cursive;
@@ -381,6 +389,7 @@ input[type=text] {
   border: 1px solid #c4c4c4;
   padding: 0 0.25em;
   background-color: #f5f3ed;
+  font-family: "Cabin Regular", Cabin, sans-serif;
 }
 
 input[type=number] {
@@ -389,6 +398,7 @@ input[type=number] {
   border: 1px solid #c4c4c4;
   padding: 0 0.25em;
   background-color: #f5f3ed;
+  font-family: "Cabin Regular", Cabin, sans-serif;
   text-align: center;
 }
 
@@ -399,6 +409,7 @@ select {
   border: 1px solid #c4c4c4;
   padding: 0 0.25em;
   background-color: #f5f3ed;
+  font-family: "Cabin Regular", Cabin, sans-serif;
 }
 
 button,
@@ -408,6 +419,7 @@ button,
   border: 1px solid #c4c4c4;
   padding: 0 0.25em;
   background-color: #f5f3ed;
+  font-family: "Cabin Regular", Cabin, sans-serif;
 }
 button--primary,
 .button--primary {
@@ -507,6 +519,7 @@ input[type=radio] + label {
   border: 1px solid #c4c4c4;
   padding: 0 0.25em;
   background-color: #f5f3ed;
+  font-family: "Cabin Regular", Cabin, sans-serif;
   text-transform: capitalize;
   vertical-align: bottom;
   line-height: 20px;
@@ -984,6 +997,9 @@ th {
 }
 .flex-grid--align-items-end {
   align-items: flex-end;
+}
+.flex-grid--align-items-center {
+  align-items: center;
 }
 
 .modal-overlay {
@@ -2083,6 +2099,15 @@ input[type=number]::-webkit-outer-spin-button {
     page-break-before: always;
   }
 }
+.print-text-input {
+  height: 24px;
+  padding: 0 0.25em;
+  font-family: "Cabin Regular", Cabin, sans-serif;
+  display: inline-block;
+  width: 100%;
+  border-bottom: 1px solid #767676;
+}
+
 .cursive {
   font-family: "Kaushan Script", cursive;
 }
@@ -2161,10 +2186,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: 0.5em;
 }
 
-.ut-text-explain {
+.ut-text-explain,
+.ut-text-helper {
   color: #767676;
-  font-family: "Cabin Regular", Cabin, sans-serif;
-  font-style: italic;
+  font-family: "Kaushan Script", cursive;
+  font-size: 0.9375em;
 }
 
 .ut-text-greyhawk {

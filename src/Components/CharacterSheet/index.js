@@ -694,17 +694,26 @@ const CharacterSheet = () => {
               value={character.namePlayer}
               name="namePlayer"
               onChange={(e) => handleInputChange(e, "namePlayer")}
+              className="ut-no-print"
             />
+            <div className="ut-no-screen print-text-input">
+              {character.namePlayer}&nbsp;
+            </div>
             <br />
             <span className="label">Player Name</span>
           </label>
+
           <label>
             <input
               type="text"
               value={character.nameCharacter}
               name="namePlayer"
+              className="ut-no-print"
               onChange={(e) => handleInputChange(e, "nameCharacter")}
             />
+            <div className="ut-no-screen print-text-input">
+              {character.nameCharacter}
+            </div>
             <br />
             <span className="label">Character Name</span>
           </label>
@@ -713,13 +722,20 @@ const CharacterSheet = () => {
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- LEVEL ------ */}
               <label>
-                <select onChange={handleCharLevel} value={character.level}>
+                <select
+                  onChange={handleCharLevel}
+                  value={character.level}
+                  className="ut-no-print"
+                >
                   {levelsData.map((i) => (
                     <option key={i.level} value={i.level}>
                       {formatNumberSuffix(i.level)}
                     </option>
                   ))}
                 </select>
+                <div className="ut-no-screen print-text-input">
+                  {formatNumberSuffix(character.level)}
+                </div>
                 <br />
                 <span className="label">Level</span>
               </label>
@@ -727,7 +743,16 @@ const CharacterSheet = () => {
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- RACE ------ */}
               <label>
-                <input type="text" value={character.race} disabled size="8" />
+                <input
+                  type="text"
+                  value={character.race}
+                  disabled
+                  size="8"
+                  className="ut-no-print"
+                />
+                <div className="ut-no-screen print-text-input">
+                  {character.race}
+                </div>
                 <br />
                 <span className="label">Race</span>
               </label>
@@ -801,7 +826,7 @@ const CharacterSheet = () => {
               <ul className="data-display-box__save-mods-list">
                 <li className="data-display-box__save-mods-list-item">
                   <span className="fas fa-pointer ut-color-royal"></span>+
-                  {levelsData[character.level].saveBonus} to all{" "}
+                  {levelsData[character.level - 1].saveBonus} to all{" "}
                   <span className="ut-text-explain"> (for level)</span>
                 </li>
                 <li className="data-display-box__save-mods-list-item">
@@ -830,6 +855,7 @@ const CharacterSheet = () => {
                   name="armor"
                   value={character.armorIndex}
                   onChange={handleArmorChange}
+                  className="ut-no-print"
                 >
                   {armorData.map((armor, i) => (
                     <option key={armor.armor} value={i}>
@@ -837,22 +863,33 @@ const CharacterSheet = () => {
                     </option>
                   ))}
                 </select>
+                <div className="ut-no-screen print-text-input">
+                  {armorData[character.armorIndex].armor}{" "}
+                  {character.armorIndex > 0 && (
+                    <span>(+{armorData[character.armorIndex].ac})</span>
+                  )}
+                </div>
                 <br />
                 <span className="label">Armor</span>
               </label>
             </div>
             <div className="flex-grid__child flex-grid__child--auto">
               {/*  ------- SHIELD ------ */}
+              {/*  TODO: create data for shield as opposed to putting directly into form element */}
               <label>
                 <select
                   name="shield"
                   value={character.shield}
                   onChange={(e) => handleShieldChange(e)}
+                  className="ut-no-print"
                 >
                   <option value="0">none (+0)</option>
                   <option value="1">Small (+1)</option>
                   <option value="2">Large (+2)</option>
                 </select>
+                <div className="ut-no-screen print-text-input">
+                  {character.shield}
+                </div>
                 <br />
                 <span className="label">Shield</span>
               </label>
@@ -864,6 +901,7 @@ const CharacterSheet = () => {
               name="meleeWeapon"
               value={character.meleeWeaponIndex}
               onChange={handleMeleeWeaponChange}
+              className="ut-no-print"
             >
               {meleeWeaponData.map((weapon, i) => (
                 <option key={weapon.name} value={i}>
@@ -871,6 +909,14 @@ const CharacterSheet = () => {
                 </option>
               ))}
             </select>
+            <div className="ut-no-screen print-text-input">
+              {meleeWeaponData[character.meleeWeaponIndex].name}
+              {character.meleeWeaponIndex > 0 && (
+                <span>
+                  ({meleeWeaponData[character.meleeWeaponIndex].damage})
+                </span>
+              )}
+            </div>
             <br />
             <span className="label">Melee Weapon</span>
           </label>
@@ -881,6 +927,7 @@ const CharacterSheet = () => {
               name="rangedWeapon"
               value={character.rangedWeaponIndex}
               onChange={handleRangedWeaponChange}
+              className="ut-no-print"
             >
               {rangedWeaponData.map((weapon, i) => (
                 <option key={weapon.name} value={i}>
@@ -888,6 +935,14 @@ const CharacterSheet = () => {
                 </option>
               ))}
             </select>
+            <div className="ut-no-screen print-text-input">
+              {rangedWeaponData[character.rangedWeaponIndex].name}
+              {character.rangedWeaponIndex > 0 && (
+                <span>
+                  ({rangedWeaponData[character.rangedWeaponIndex].damage})
+                </span>
+              )}
+            </div>
             <br />
             <span className="label">Ranged Weapon</span>
           </label>
@@ -941,6 +996,7 @@ const CharacterSheet = () => {
               name="alignment"
               onChange={(e) => handleInputChange(e, "alignment")}
               value={character.alignment}
+              className="ut-no-print"
             >
               <option value="Lawful Good">Lawful Good </option>
               <option value="Neutral Good">Neutral Good </option>
@@ -952,6 +1008,9 @@ const CharacterSheet = () => {
               <option value="Neutral Evil">Neutral Evil</option>
               <option value="Chaotic Evil">Chaotic Evil </option>
             </select>
+            <div className="ut-no-screen print-text-input">
+              {character.alignment}
+            </div>
             <br />
             <span className="label">Alignment</span>
           </label>
@@ -964,7 +1023,8 @@ const CharacterSheet = () => {
               handleSetDisad={handleSetDisad}
             />
             <span className="label">
-              Disad 1 <span className="ut-text-explain">(optional)</span>
+              Disad 1{" "}
+              <span className="ut-text-explain ut-no-print">(optional)</span>
             </span>
           </label>
 
@@ -975,13 +1035,15 @@ const CharacterSheet = () => {
               handleSetDisad={handleSetDisad}
             />
             <span className="label">
-              Disad 2 <span className="ut-text-explain">(optional)</span>
+              Disad 2{" "}
+              <span className="ut-text-explain ut-no-print">(optional)</span>
             </span>
           </label>
 
           {/*  ------- XP ------ */}
           <label>
-            <input type="text" disabled />
+            <input type="text" disabled className="ut-no-print" />
+            <div className="ut-no-screen print-text-input"></div>
             <br />
             <span className="label">XP/AP</span>
           </label>

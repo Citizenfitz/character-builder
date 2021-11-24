@@ -96,7 +96,7 @@ const LevelsTable = (props) => {
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentAssigned1)}
             </td>
-            <td>
+            <td className="ut-align-center">
               {calcTalentLevel(
                 props.character.aspect,
                 props.character.talents.talentAssigned1
@@ -118,7 +118,7 @@ const LevelsTable = (props) => {
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentAssigned2)}
             </td>
-            <td>
+            <td className="ut-align-center">
               {calcTalentLevel(
                 props.character.aspect,
                 props.character.talents.talentAssigned2
@@ -146,7 +146,7 @@ const LevelsTable = (props) => {
             <td className="ut-align-center">
               {getTalentMod(props.character.talents.talentLevel1)}
             </td>
-            <td>
+            <td className="ut-align-center">
               {calcTalentLevel(
                 props.character.aspect,
                 props.character.talents.talentLevel1
@@ -173,7 +173,7 @@ const LevelsTable = (props) => {
               <td className="ut-align-center">
                 {getTalentMod(props.character.talents.talentKnave1)}
               </td>
-              <td>
+              <td className="ut-align-center">
                 {calcTalentLevel(
                   props.character.aspect,
                   props.character.talents.talentKnave1
@@ -203,7 +203,7 @@ const LevelsTable = (props) => {
               <td className="ut-align-center">
                 {getTalentMod(props.character.talents.talentDisad1)}
               </td>
-              <td>
+              <td className="ut-align-center">
                 {calcTalentLevel(
                   props.character.aspect,
                   props.character.talents.talentDisad1
@@ -233,7 +233,7 @@ const LevelsTable = (props) => {
               <td className="ut-align-center">
                 {getTalentMod(props.character.talents.talentDisad2)}
               </td>
-              <td>
+              <td className="ut-align-center">
                 {calcTalentLevel(
                   props.character.aspect,
                   props.character.talents.talentDisad2
@@ -283,7 +283,7 @@ const LevelsTable = (props) => {
                         props.character.talents[`talentLevel${i.level}`]
                       )}
                     </td>
-                    <td>
+                    <td className="ut-align-center">
                       {calcTalentLevel(
                         props.character.aspect,
                         props.character.talents[`talentLevel${i.level}`]

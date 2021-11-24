@@ -1,12 +1,17 @@
 .header {
   @include site-layout;
   padding: 1em $margins-desktop;
+  padding-bottom: 0.5rem;
+  padding-top: 2rem;
   //background: lighten($color-royal, 50%);
   color: $color-royal;
   text-align: center;
   position: relative;
-  // border: 1px solid;
   overflow: hidden;
+  > .flex-grid {
+    width: 70%;
+    margin: 0 auto;
+  }
 
   h1 {
     font-size: 3rem;

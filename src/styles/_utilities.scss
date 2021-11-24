@@ -82,10 +82,12 @@
   }
 }
 
-.ut-text-explain {
+.ut-text-explain,
+.ut-text-helper {
   color: $color-gray-2;
-  font-family: $text-regular;
-  font-style: italic;
+  font-family: $text-cursive;
+  font-size: 0.9375em;
+  //font-style: italic;
 }
 
 .ut-text-greyhawk {

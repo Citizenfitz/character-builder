@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () => (
   <header role="banner" className="header" id="header">
-    <div className="flex-grid flex-grid--space-evenly  flex-grid--align-items-end">
+    <div className="flex-grid flex-grid--space-evenly  flex-grid--align-items-center">
       <div className="aspect-icon  aspect-icon--large aspect-icon--fighter"></div>
       <div className="aspect-icon  aspect-icon--large aspect-icon--priest"></div>
       <h1 className="flex-grid flex-grid--flex-start">

@@ -18,7 +18,7 @@ const Aspects = (props) => {
       {/*  ------- CLASS ------ */}
       <label>
         <button
-          className="button aspect__modal-open-button "
+          className="button aspect__modal-open-button ut-no-print"
           onClick={toggleAspectModal}
         >
           <span
@@ -29,6 +29,9 @@ const Aspects = (props) => {
             &nbsp;&nbsp;
           </span>
         </button>
+        <div className="ut-no-screen print-text-input">
+          {whichAspectDisplayName(props.character.aspect)}
+        </div>
         <br />
         <span className="label">Class</span>
       </label>
