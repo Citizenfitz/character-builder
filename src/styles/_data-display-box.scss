@@ -50,7 +50,12 @@
     width: 100%;
   }
   &--quick-values {
-    height: 66px;
+    height: 68px;
+  }
+  &--perception {
+    .data-display-box__text {
+      padding: 0.25rem;
+    }
   }
   &--quick-values.flex-grid__child {
     width: calc(50% - 1rem);

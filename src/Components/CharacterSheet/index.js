@@ -15,10 +15,11 @@ import {
   meleeWeaponData,
   rangedWeaponData,
   dataAttributes,
+  shieldData,
 } from "../../Data";
 import {
   calculateBonus,
-  // formatNumberModifier,
+  formatNumberModifier,
   whichTalentAspect,
   whichAspectId,
   formatNumberSuffix,
@@ -535,7 +536,8 @@ const CharacterSheet = () => {
 
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
-      const ac = 10 + attributes.dexterity.mod + prev.armor.ac + prev.shield;
+      const ac =
+        10 + attributes.dexterity.mod + prev.armor.modifier + prev.shield;
       const perception = 10 + attributes.wisdom.mod;
       return {
         ...prev,
@@ -550,7 +552,7 @@ const CharacterSheet = () => {
     const armor = armorData[e.target.value];
     setCharacter((prev) => {
       const ac =
-        10 + prev.attributes.dexterity.mod + armor.ac + character.shield;
+        10 + prev.attributes.dexterity.mod + armor.modifier + character.shield;
       return {
         ...prev,
         ac,
@@ -562,7 +564,7 @@ const CharacterSheet = () => {
 
   const handleShieldChange = (e) => {
     const shieldBonus = parseInt(e.target.value);
-    const ArmorBonus = armorData[character.armorIndex].ac;
+    const ArmorBonus = armorData[character.armorIndex].modifier;
     const newAc =
       10 + character.attributes.dexterity.mod + ArmorBonus + shieldBonus;
     setCharacter((prev) => ({
@@ -696,7 +698,7 @@ const CharacterSheet = () => {
               onChange={(e) => handleInputChange(e, "namePlayer")}
               className="ut-no-print"
             />
-            <div className="ut-no-screen print-text-input">
+            <div className="ut-no-screen print-text-input ut-text-cursive ">
               {character.namePlayer}&nbsp;
             </div>
             <br />
@@ -711,7 +713,7 @@ const CharacterSheet = () => {
               className="ut-no-print"
               onChange={(e) => handleInputChange(e, "nameCharacter")}
             />
-            <div className="ut-no-screen print-text-input">
+            <div className="ut-no-screen print-text-input ut-text-cursive ">
               {character.nameCharacter}
             </div>
             <br />
@@ -812,9 +814,12 @@ const CharacterSheet = () => {
               </div>
               <h2 className="data-display-box__header">Move</h2>
             </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+            <div className="flex-grid__child data-display-box data-display-box--quick-values data-display-box--perception">
               <div className="data-display-box__text">
-                {character.perception}
+                <span className="label">Roll Mod: </span>
+                {formatNumberModifier(character.attributes.wisdom.mod)}
+                <br />
+                <span className="label">Passive:</span> {character.perception}
               </div>
               <h2 className="data-display-box__header">Perc.</h2>
             </div>
@@ -859,14 +864,14 @@ const CharacterSheet = () => {
                 >
                   {armorData.map((armor, i) => (
                     <option key={armor.armor} value={i}>
-                      {armor.armor} (+{armor.ac})
+                      {armor.armor} (+{armor.modifier})
                     </option>
                   ))}
                 </select>
                 <div className="ut-no-screen print-text-input">
                   {armorData[character.armorIndex].armor}{" "}
                   {character.armorIndex > 0 && (
-                    <span>(+{armorData[character.armorIndex].ac})</span>
+                    <span>(+{armorData[character.armorIndex].modifier})</span>
                   )}
                 </div>
                 <br />
@@ -883,9 +888,11 @@ const CharacterSheet = () => {
                   onChange={(e) => handleShieldChange(e)}
                   className="ut-no-print"
                 >
-                  <option value="0">none (+0)</option>
-                  <option value="1">Small (+1)</option>
-                  <option value="2">Large (+2)</option>
+                  {shieldData.map((shield, i) => (
+                    <option key={shield.name} value={i}>
+                      {shield.name} (+{shield.modifier})
+                    </option>
+                  ))}
                 </select>
                 <div className="ut-no-screen print-text-input">
                   {character.shield}

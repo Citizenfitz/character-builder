@@ -6,8 +6,14 @@ import { aspectData } from "./dataAspects";
 import { presetData } from "./dataPresets";
 import { dataDisads } from "./dataDisads";
 import { armorData } from "./dataArmor";
+import { shieldData } from "./dataShield";
 import { meleeWeaponData, rangedWeaponData } from "./dataWeapons";
-import { thaumaturgyList, wizardryList, spellData, spellSlots} from "./dataSpells";
+import {
+  thaumaturgyList,
+  wizardryList,
+  spellData,
+  spellSlots,
+} from "./dataSpells";
 export {
   aspectData,
   dataAttributes,
@@ -17,10 +23,11 @@ export {
   talentData,
   raceData,
   armorData,
-	meleeWeaponData,
-	rangedWeaponData,
+  shieldData,
+  meleeWeaponData,
+  rangedWeaponData,
   thaumaturgyList,
   wizardryList,
   spellData,
-  spellSlots
+  spellSlots,
 };

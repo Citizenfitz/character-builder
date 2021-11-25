@@ -1,8 +1,5 @@
 //* *************** UTILITES ***************** */
 
-.cursive {
-  font-family: $text-cursive;
-}
 .ut-hidden {
   height: 0px;
   width: 0px;
@@ -90,8 +87,13 @@
   //font-style: italic;
 }
 
+//  ------- FOntS --------
 .ut-text-greyhawk {
   font-family: $text-header;
+}
+
+.ut-text-cursive {
+  font-family: $text-cursive;
 }
 
 .ut-display-inine-block {

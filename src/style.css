@@ -256,7 +256,7 @@ dd,
   max-width: 960px;
   margin: 0 auto;
   padding: 1em 1.5rem;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0;
   padding-top: 2rem;
   color: #883c8d;
   text-align: center;
@@ -1393,7 +1393,10 @@ input[type=radio] + label.aspect-radio-label__type {
   width: 100%;
 }
 .data-display-box--quick-values {
-  height: 66px;
+  height: 68px;
+}
+.data-display-box--perception .data-display-box__text {
+  padding: 0.25rem;
 }
 .data-display-box--quick-values.flex-grid__child {
   width: calc(50% - 1rem);
@@ -1729,6 +1732,10 @@ body {
 }
 
 @media print {
+  * {
+    -webkit-print-color-adjust: exact;
+  }
+
   #footer,
 .preset-chooser,
 .data-display-box--explanations > div,
@@ -1760,16 +1767,6 @@ input[type=number]::-webkit-outer-spin-button {
   select {
     -webkit-appearance: none;
     -moz-appearance: textfield;
-  }
-
-  #header {
-    padding: 0;
-  }
-  #header h1 {
-    font-size: 2rem;
-  }
-  #header .subheader {
-    font-size: 1.25rem;
   }
 
   .aspect-icon--large:after {
@@ -2098,6 +2095,10 @@ input[type=number]::-webkit-outer-spin-button {
     position: relative;
     page-break-before: always;
   }
+
+  .attrib-val {
+    background: transparent;
+  }
 }
 .print-text-input {
   height: 24px;
@@ -2106,10 +2107,6 @@ input[type=number]::-webkit-outer-spin-button {
   display: inline-block;
   width: 100%;
   border-bottom: 1px solid #767676;
-}
-
-.cursive {
-  font-family: "Kaushan Script", cursive;
 }
 
 .ut-hidden {
@@ -2195,6 +2192,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 .ut-text-greyhawk {
   font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+}
+
+.ut-text-cursive {
+  font-family: "Kaushan Script", cursive;
 }
 
 .ut-display-inine-block {
