@@ -968,7 +968,7 @@ const CharacterSheet = () => {
                 <li className="list-downloads__item">
                   <a
                     href="assets/pdfs/BLRPG - no art - web.pdf"
-                    className="list-downloads__link"
+                    className="list-downloads__link "
                     target="_blank"
                   >
                     Game Rules - beta, no art PDF
@@ -977,7 +977,7 @@ const CharacterSheet = () => {
                 <li className="list-downloads__item" target="_blank">
                   <a
                     href="assets/pdfs/BLRPG  - Character Sheets.pdf"
-                    className="list-downloads__link"
+                    className="list-downloads__link  "
                     target="_blank"
                   >
                     Character Sheet PDF
@@ -986,7 +986,7 @@ const CharacterSheet = () => {
                 <li className="list-downloads__item">
                   <a
                     href="assets/pdfs/BLRGP - Refence Sheets.pdf"
-                    className="list-downloads__link"
+                    className="list-downloads__link "
                     target="_blank"
                   >
                     Quick Reference Rules PDF
