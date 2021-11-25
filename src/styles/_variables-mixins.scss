@@ -61,22 +61,28 @@ $color-gray-3: #c4c4c4; // Form borders
 $color-gray-4: #ebebeb; // Disabled elements backgrounds
 $color-gray-5: #f6f7fb; // Page background.
 
-$color-yellow-1: #f1be42;
-
 // class colors
 $color-common: #d2691e;
 $color-fighter: #04a54f;
 $color-priest: #2375b9;
 $color-wizard: #e1a525;
 $color-knave: #eb2026;
-//$color-royal: #9900ff;
 $color-royal: #883c8d;
 $color-input-background: #f5f3ed;
+
+// colors for wizadry schools
 $school-white: rgb(158, 158, 158);
 $school-black: $color-black;
 $school-green: $color-fighter;
 $school-blue: $color-priest;
 $school-red: $color-knave;
+
+// bakcground and/or overlays colors
+$color-overlay-dark: rgba(0, 0, 0, 0.75);
+$color-overlay-light: rgba(255, 255, 255, 0.75);
+
+// misc colors
+$color-yellow-1: #f1be42;
 
 // *********************** LAYOUT VARIABLES ***********************//
 
@@ -169,6 +175,14 @@ $margins-form-element-bottom: 1rem;
   padding: 0 0.25em;
   background-color: $color-input-background;
   font-family: $text-regular;
+  &:hover {
+    color: $color-royal;
+    border-color: $color-royal;
+  }
+  &:active {
+    color: $color-royal;
+    border-color: $color-royal;
+  }
 }
 
 @mixin list-columns($columns: 3, $gap: 3em) {

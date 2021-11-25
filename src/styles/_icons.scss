@@ -1,3 +1,4 @@
+// ********** font awesome icons **********
 .fas {
   font-size: 18px;
   padding: 0;
@@ -20,4 +21,29 @@
 }
 .fa-pointer::before {
   content: "\f0a4";
+}
+
+// ********** magic school icons **********
+.icon-school {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-left: 4px;
+  background-color: $school-white;
+  &--white {
+    background-color: $school-white;
+  }
+  &--black {
+    background-color: $school-black;
+  }
+  &--green {
+    background-color: $school-green;
+  }
+  &--blue {
+    background-color: $school-blue;
+  }
+  &--red {
+    background-color: $school-red;
+  }
 }

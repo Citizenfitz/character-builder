@@ -59,10 +59,6 @@
   }
 }
 
-.ut-captialize {
-  text-transform: capitalize;
-}
-
 //  ------- Margins --------
 .ut-margin {
   &-top-0 {
@@ -87,7 +83,10 @@
   //font-style: italic;
 }
 
-//  ------- FOntS --------
+//  ------- FontS --------
+.ut-captialize {
+  text-transform: capitalize;
+}
 .ut-text-greyhawk {
   font-family: $text-header;
 }
@@ -98,14 +97,6 @@
 
 .ut-display-inine-block {
   display: inline-block;
-}
-
-.clearfix:after {
-  content: ".";
-  visibility: hidden;
-  display: block;
-  height: 0;
-  clear: both;
 }
 
 //  ------- PRINT VS SCREEN --------
@@ -119,4 +110,20 @@
   .ut-no-screen {
     display: none !important;
   }
+}
+
+//  ------- MISC--------
+.ut-clickable {
+  cursor: pointer;
+  &:hover {
+    color: $color-royal;
+  }
+}
+
+.ut-clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
 }
