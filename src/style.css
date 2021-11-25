@@ -467,10 +467,12 @@ button--primary,
 button--primary:hover,
 .button--primary:hover {
   background-color: #652d69;
+  color: #fff;
 }
 button--primary:active,
 .button--primary:active {
   background-color: #652d69;
+  color: #fff;
 }
 button--secondary,
 .button--secondary {
@@ -1615,9 +1617,10 @@ body {
   bottom: 0;
   left: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.75);
+  padding-top: 1em;
 }
 .spells__table {
   width: 100%;
@@ -1646,30 +1649,15 @@ body {
   color: #fff;
   border-color: #000;
 }
-
-.button-showSpellSlots {
-  margin-left: 20px;
-}
-
-.knownSchools {
+.spells__known-schools {
   display: inline-block;
   position: relative;
   margin-left: 10px;
   top: 2px;
 }
 
-.table-wrapper {
-  position: relative;
-}
-
-.spells--thaumaturgy th {
-  background-color: #2375b9;
-  color: #fff;
-  border-color: #000;
-}
-.spells--thaumaturgy tr:hover,
-.spells--thaumaturgy .active {
-  background-color: #e2eff9 !important;
+.button-showSpellSlots {
+  margin-left: 20px;
 }
 
 #modal--spellSlots .modal__body {
@@ -2153,6 +2141,10 @@ input[type=number]::-webkit-outer-spin-button {
   border-bottom: 1px solid #767676;
 }
 
+.ut-position-relative {
+  position: relative;
+}
+
 .ut-hidden {
   height: 0px;
   width: 0px;
@@ -2226,8 +2218,8 @@ input[type=number]::-webkit-outer-spin-button {
 .ut-text-explain,
 .ut-text-helper {
   color: #767676;
-  font-family: "Kaushan Script", cursive;
   font-size: 0.9375em;
+  font-style: italic;
 }
 
 .ut-captialize {

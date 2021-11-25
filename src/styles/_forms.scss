@@ -63,9 +63,11 @@ button,
     vertical-align: bottom;
     &:hover {
       background-color: darken($color-royal, 10%);
+      color: $color-white;
     }
     &:active {
       background-color: darken($color-royal, 10%);
+      color: $color-white;
     }
   }
   &--secondary {

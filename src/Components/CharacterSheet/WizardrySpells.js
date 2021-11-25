@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { spellData, spellSlots, wizardryList } from "../../Data";
+import { formatNumberSuffix } from "../Utilities";
 import SpellSlotsModal from "./SpellSlotsModal";
 
 const defaultSpellList = [[], [], [], [], [], [], []];
@@ -154,16 +155,22 @@ export default function WizardrySpells(props) {
     <div>
       <h2>
         Wizardry Spells
-        <div className="knownSchools">
+        <div className="spells__known-schools">
           {schools.map((color) => (
             <div key={color} className={`icon-school icon-school--${color}`}>
               <span className="ut-only-sr">{color} school of magic</span>
             </div>
           ))}
         </div>
-        <SpellSlotsModal level={level} header="Wizardry Spell Slots" />
       </h2>
-      <div className="table-wrapper">
+      <p className="ut-text-explain">
+        At {formatNumberSuffix(level)} level
+        {intStat > 12 && (
+          <span> plus one extra 1st level spell for 13+ INT</span>
+        )}
+      </p>
+
+      <div className="ut-position-relative">
         {manageSchool && (
           <div id="cta-schools" className="spells__cta">
             <button

@@ -1,5 +1,9 @@
 //* *************** UTILITES ***************** */
 
+.ut-position-relative {
+  position: relative;
+}
+
 .ut-hidden {
   height: 0px;
   width: 0px;
@@ -78,12 +82,12 @@
 .ut-text-explain,
 .ut-text-helper {
   color: $color-gray-2;
-  font-family: $text-cursive;
+  // font-family: $text-cursive;
   font-size: 0.9375em;
-  //font-style: italic;
+  font-style: italic;
 }
 
-//  ------- FontS --------
+//  ------- Fonts --------
 .ut-captialize {
   text-transform: capitalize;
 }
