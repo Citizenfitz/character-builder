@@ -26,11 +26,11 @@
 // ********** magic school icons **********
 .icon-school {
   display: inline-block;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   margin-left: 4px;
-  background-color: $school-white;
+  background-color: transparent;
   &--white {
     background-color: $school-white;
   }

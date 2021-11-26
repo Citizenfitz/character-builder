@@ -96,6 +96,7 @@ const characterDefaults = {
   saveModsRace: [],
   armor: armorData[0],
   shield: 0,
+  shieldIndex: 0,
   armorIndex: 0,
   meleeWeapon: meleeWeaponData[0],
   meleeWeaponIndex: 0,
@@ -103,8 +104,12 @@ const characterDefaults = {
   rangedWeaponIndex: 0,
   characteristicsRace: [],
   hasWizardry: false,
-  hasThaumaturgy: false,
   wizardrySchools: [],
+  wizardryNeedsToChooseSchool: true,
+  thaumaturgyStartLevel: 0,
+  wizardry1StartLevel: 0,
+  wizardry2StartLevel: 0,
+  wizardry3StartLevel: 0,
 };
 
 const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));
@@ -369,29 +374,86 @@ const CharacterSheet = () => {
     }));
   };
 
+  // this tells you at what level a character took a talent - needed for Wizadry schools & thaurmaturgy
+  // pass it the object of the current char talents
+  // returns zero if not taken at all
+  const findTalentLevelSlot = (talents, talentName) => {
+    if (talents.talentLevel3 === talentName) {
+      return 3;
+    }
+    if (talents.talentLevel5 === talentName) {
+      return 5;
+    }
+    if (talents.talentLevel7 === talentName) {
+      return 7;
+    }
+    if (talents.talentLevel9 === talentName) {
+      return 9;
+    }
+    if (Object.values(talents).indexOf(talentName) > -1) {
+      return 1;
+    }
+    return 0;
+  };
+
+  // ses an index of a wizard school.
+  const setWizardSchool = (color, schoolIndex) => {
+    let tempObject = character.wizardrySchools.slice(0);
+
+    if (color === "Choose") {
+      color = "";
+    }
+    tempObject[schoolIndex] = color;
+
+    setCharacter((prev) => ({
+      ...prev,
+      wizardrySchools: tempObject,
+    }));
+  };
+
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
     const talents = Object.values(state.talents);
 
+    // find out at what level, if any, character has spellcasting talents
+    state.thaumaturgyStartLevel = findTalentLevelSlot(
+      state.talents,
+      "Thaumaturgy"
+    );
+    state.wizardry1StartLevel = findTalentLevelSlot(
+      state.talents,
+      "Wizardry 1"
+    );
+    state.wizardry2StartLevel = findTalentLevelSlot(
+      state.talents,
+      "Wizardry 2"
+    );
+    state.wizardry3StartLevel = findTalentLevelSlot(
+      state.talents,
+      "Wizardry 3"
+    );
+
     // check all talent values for 'Wizardry' and 'Thaurmaturgy'
     const wizardryRegEx = /Wizardry/g;
     state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
-    state.hasThaumaturgy = talents.includes("Thaumaturgy");
 
     let hasWizardry1 = talents.includes("Wizardry 1");
     let hasWizardry2 = talents.includes("Wizardry 2");
     let hasWizardry3 = talents.includes("Wizardry 3");
 
-    if (!hasWizardry2) {
+    // if they don't have wizardry 2, dump any wizardry 3 they took
+    if (state.wizardry2StartLevel === 0) {
       Object.entries(state.talents).forEach(([key, val]) => {
         if (val === "Wizardry 3") {
           state.talents[key] = "choose";
+          state.wizardry3StartLevel = 0;
           hasWizardry3 = false;
         }
       });
     }
 
-    if (!hasWizardry1) {
+    // if they don't have wizardry 2, dump any wizardry-related talents
+    if (state.wizardry1StartLevel === 0) {
       state.hasWizardry = false;
       Object.entries(state.talents).forEach(([key, val]) => {
         if (
@@ -404,6 +466,8 @@ const CharacterSheet = () => {
           state.talents[key] = "choose";
         }
       });
+      state.wizardry2StartLevel = 0;
+      state.wizardry3StartLevel = 0;
       hasWizardry2 = false;
       hasWizardry3 = false;
     }
@@ -1079,23 +1143,31 @@ const CharacterSheet = () => {
       </section>
 
       {/*  --------------- SPELLS -------------- */}
-      {character.hasWizardry && (
-        <WizardrySpells
-          level={character.wizardLevel}
-          intStat={character.attributes.intelligence.total}
-          schools={character.wizardrySchools}
-          schoolLimit={schoolLimit}
-          onPickSchool={handlePickSchool}
-          useLocalStorage={useLocalStorage}
-        />
-      )}
-      {character.hasThaumaturgy && (
-        <ThaumaturgySpells
-          level={character.priestLevel}
-          wisStat={character.attributes.wisdom.total}
-          useLocalStorage={useLocalStorage}
-        />
-      )}
+      {character.wizardry1StartLevel > 0 &&
+        character.level >= character.wizardry1StartLevel && (
+          <WizardrySpells
+            charLevel={character.level}
+            wizLevel={character.wizardLevel}
+            intStat={character.attributes.intelligence.total}
+            schools={character.wizardrySchools}
+            schoolLimit={schoolLimit}
+            onPickSchool={handlePickSchool}
+            setWizardSchool={setWizardSchool}
+            wizardryNeedsToChooseSchool
+            wizardry1StartLevel={character.wizardry1StartLevel}
+            wizardry2StartLevel={character.wizardry2StartLevel}
+            wizardry3StartLevel={character.wizardry3StartLevel}
+            useLocalStorage={useLocalStorage}
+          />
+        )}
+      {character.thaumaturgyStartLevel > 0 &&
+        character.level >= character.thaumaturgyStartLevel && (
+          <ThaumaturgySpells
+            level={character.priestLevel}
+            wisStat={character.attributes.wisdom.total}
+            useLocalStorage={useLocalStorage}
+          />
+        )}
       <div className="autosave">
         <label>
           <input

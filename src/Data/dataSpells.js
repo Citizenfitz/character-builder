@@ -1,18 +1,46 @@
 export const spellSlots = [
-  [1,"-","-","-","-","-","-"],
-  [2,"-","-","-","-","-","-"],
-  [2,1,"-","-","-","-","-"],
-  [3,2,"-","-","-","-","-"],
-  [3,2,1,"-","-","-","-"],
-  [4,3,1,"-","-","-","-"],
-  [4,3,2,1,"-","-","-"],
-  [4,3,3,2,"-","-","-"],
-  [4,3,3,2,1,"-","-"],
-  [4,4,3,3,2,"-","-"],
-  [4,4,3,3,2,1,"-"],
-  [4,4,4,3,2,2,"-"],
-  [4,4,4,3,2,2,1]
-]
+  [1, "-", "-", "-", "-", "-", "-"],
+  [2, "-", "-", "-", "-", "-", "-"],
+  [2, 1, "-", "-", "-", "-", "-"],
+  [3, 2, "-", "-", "-", "-", "-"],
+  [3, 2, 1, "-", "-", "-", "-"],
+  [4, 3, 1, "-", "-", "-", "-"],
+  [4, 3, 2, 1, "-", "-", "-"],
+  [4, 3, 3, 2, "-", "-", "-"],
+  [4, 3, 3, 2, 1, "-", "-"],
+  [4, 4, 3, 3, 2, "-", "-"],
+  [4, 4, 3, 3, 2, 1, "-"],
+  [4, 4, 4, 3, 2, 2, "-"],
+  [4, 4, 4, 3, 2, 2, 1],
+];
+export const magicSchools = [
+  {
+    id: 0,
+    name: "white",
+    desc: "Life, light, healing, revelation, protection",
+  },
+  {
+    id: 1,
+    name: "black",
+    desc: "Death, darkness, slumber, insanity, disease, demonology",
+  },
+  {
+    id: 2,
+    name: "green",
+    desc: "Nature, weather, fecundity, water, air, ice",
+  },
+  {
+    id: 3,
+    name: "blue",
+    desc: "Illusion, transformation, charms, trickery",
+  },
+  {
+    id: 4,
+    name: "red",
+    desc: "Fire, earth, destruction, raw power",
+  },
+];
+
 export const thaumaturgyList = [
   [
     "Aura of Protection",
@@ -78,8 +106,8 @@ export const thaumaturgyList = [
     "Regenerate",
     "Resurrection",
     "Symbol",
-  ]
-]
+  ],
+];
 
 export const wizardryList = [
   [
@@ -203,8 +231,8 @@ export const wizardryList = [
     "Mirage Arcana",
     "Simulacrum",
     "Vision",
-  ]
-]
+  ],
+];
 
 export const spellData = {
   "Alter Self": {
@@ -216,7 +244,7 @@ export const spellData = {
     components: "V,S",
     save: "none",
   },
-  "Amnesia": {
+  Amnesia: {
     cast: "1 action",
     range: "120'",
     target: "1 creature",
@@ -248,11 +276,11 @@ export const spellData = {
     range: "0'",
     target: "caster",
     duration: "10 min/level",
-    school: ["white","black","green","blue","red"],
+    school: ["white", "black", "green", "blue", "red"],
     components: "V,S",
     save: "none",
   },
-  "Augury": {
+  Augury: {
     cast: "1 turn",
     range: "0'",
     target: "special",
@@ -266,7 +294,7 @@ export const spellData = {
     range: "0'",
     target: "1 creature",
     duration: "1 hour",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
@@ -275,20 +303,20 @@ export const spellData = {
     range: "0'",
     target: "10' radius",
     duration: "1 hour",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
-  "Banishment": {
+  Banishment: {
     cast: "1 action",
     range: "120'",
     target: "1 creature/4 levels",
     duration: "instant",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S",
     save: "Wis to negate",
   },
-  "Barkskin": {
+  Barkskin: {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
@@ -302,7 +330,7 @@ export const spellData = {
     range: "60'",
     target: "20' cube",
     duration: "1 hour",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "Wis to negate",
   },
@@ -311,7 +339,7 @@ export const spellData = {
     range: "30'",
     target: "1 weapon",
     duration: "10 min",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
@@ -342,7 +370,7 @@ export const spellData = {
     components: "V,S",
     save: "negate",
   },
-  "Clairvoyance": {
+  Clairvoyance: {
     cast: "1 min",
     range: "480'",
     target: "special",
@@ -351,21 +379,21 @@ export const spellData = {
     components: "V,S",
     save: "none",
   },
-  "Cloudkill": {
+  Cloudkill: {
     cast: "1 action",
     range: "60'",
     target: "30' diameter",
     duration: "4 rounds + 1 round/level",
-    school: ["black","green"],
+    school: ["black", "green"],
     components: "V,S,M",
     save: "negate",
   },
-  "Commune": {
+  Commune: {
     cast: "1 hour",
     range: "0'",
     target: "caster",
     duration: "1 min",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
@@ -374,16 +402,16 @@ export const spellData = {
     range: "0'",
     target: "1 creature or written document",
     duration: "20 min",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S",
     save: "negate",
   },
-  "Confusion": {
+  Confusion: {
     cast: "1 action",
     range: "120'",
     target: "1d6 creatures / 3 levels within 40ft radius",
     duration: "1 min/level",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "V,S,M",
     save: "Wis to negate",
   },
@@ -392,16 +420,16 @@ export const spellData = {
     range: "90'",
     target: "special",
     duration: "permanent",
-    school: ["black","red","white"],
+    school: ["black", "red", "white"],
     components: "V,S",
     save: "negate",
   },
-  "Counterspell": {
+  Counterspell: {
     cast: "instant",
     range: "120'",
     target: "1 spell being cast within range",
     duration: "permanent",
-    school: ["black","white","red","blue","green"],
+    school: ["black", "white", "red", "blue", "green"],
     components: "V,S",
     save: "none",
   },
@@ -428,7 +456,7 @@ export const spellData = {
     range: "0'",
     target: "1 creature",
     duration: "permanent",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
@@ -437,7 +465,7 @@ export const spellData = {
     range: "0'",
     target: "1 creature",
     duration: "special",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S",
     save: "Con to negate",
   },
@@ -446,7 +474,7 @@ export const spellData = {
     range: "0'",
     target: "1 creature",
     duration: "permanent",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
@@ -455,16 +483,16 @@ export const spellData = {
     range: "0'",
     target: "1 creature",
     duration: "permanent",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
-  "Darksight": {
+  Darksight: {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
     duration: "1 hour + 10 min/level",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,",
     save: "none",
   },
@@ -473,7 +501,7 @@ export const spellData = {
     range: "120'",
     target: "20' cube",
     duration: "1 hour/level",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "V,S,",
     save: "special",
   },
@@ -482,7 +510,7 @@ export const spellData = {
     range: "10'/level",
     target: "caster",
     duration: "1 hour",
-    school: ["white","blue"],
+    school: ["white", "blue"],
     components: "V,S,M",
     save: "none",
   },
@@ -491,7 +519,7 @@ export const spellData = {
     range: "60'",
     target: "caster",
     duration: "1 round/level",
-    school: ["black","white"],
+    school: ["black", "white"],
     components: "V,S,M",
     save: "none",
   },
@@ -500,7 +528,7 @@ export const spellData = {
     range: "0'",
     target: "60' radius",
     duration: "20 min",
-    school: ["black","white","red","blue","green"],
+    school: ["black", "white", "red", "blue", "green"],
     components: "V,S",
     save: "none",
   },
@@ -522,7 +550,7 @@ export const spellData = {
     components: "V,S,M",
     save: "negate",
   },
-  "Disintegrate": {
+  Disintegrate: {
     cast: "1 action",
     range: "120'",
     target: "special",
@@ -536,20 +564,20 @@ export const spellData = {
     range: "120'",
     target: "1 spell or 20' cube",
     duration: "instant",
-    school: ["black","white","red","blue","green"],
+    school: ["black", "white", "red", "blue", "green"],
     components: "V,S",
     save: "none",
   },
-  "Earthquake": {
+  Earthquake: {
     cast: "1 action",
     range: "240'",
     target: "5' diameter/level",
     duration: "1 round",
-    school: ["red","green"],
+    school: ["red", "green"],
     components: "V,S,M",
     save: "special",
   },
-  "Entangle": {
+  Entangle: {
     cast: "1 action",
     range: "90'",
     target: "50' diameter",
@@ -558,7 +586,7 @@ export const spellData = {
     components: "V,S,M",
     save: "half",
   },
-  "ESP": {
+  ESP: {
     cast: "1 action",
     range: "60'",
     target: "special",
@@ -585,7 +613,7 @@ export const spellData = {
     components: "V,M",
     save: "negate",
   },
-  "Feeblemind": {
+  Feeblemind: {
     cast: "1 action",
     range: "60'",
     target: "1 creature",
@@ -601,7 +629,7 @@ export const spellData = {
     duration: "1 hour + 1 hour/level",
     school: ["black"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Find the Path (Lose the Path)": {
     cast: "1 action",
@@ -610,7 +638,7 @@ export const spellData = {
     duration: "10 min/level",
     school: null,
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Fire Charm": {
     cast: "1 action",
@@ -619,16 +647,16 @@ export const spellData = {
     duration: "1 min/level",
     school: ["red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Fire Seeds": {
     cast: "1 action",
     range: "0'",
     target: "special",
     duration: "special",
-    school: ["green","red"],
+    school: ["green", "red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Fire Trap": {
     cast: "1 min",
@@ -637,43 +665,43 @@ export const spellData = {
     duration: "until discharged",
     school: ["red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Fireball": {
+  Fireball: {
     cast: "1 action",
     range: "240'",
     target: "20' radius",
     duration: "instant",
     school: ["red"],
     components: "V,S,M",
-    save: "half"
+    save: "half",
   },
-  "Fly": {
+  Fly: {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
     duration: "10 min/level + 10-60 min",
-    school: ["green","red"],
+    school: ["green", "red"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
-  "Forget": {
+  Forget: {
     cast: "1 action",
     range: "120'",
     target: "up to 6 creatures within 40'x40' area",
     duration: "permanent",
     school: ["black"],
     components: "V,S",
-    save: "Wis to negate"
+    save: "Wis to negate",
   },
-  "Gate": {
+  Gate: {
     cast: "1 turn",
     range: "30'",
     target: "special",
     duration: "concentration or 1 round/level",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Hallucinatory Terrain": {
     cast: "1 min",
@@ -682,16 +710,16 @@ export const spellData = {
     duration: "special",
     school: ["blue"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
-  "Haste": {
+  Haste: {
     cast: "1 action",
     range: "240'",
     target: "1 creature/level within 20' radius",
     duration: "3 rounds + 1 round/level",
     school: ["red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Heal (Harm)": {
     cast: "1 action",
@@ -700,25 +728,25 @@ export const spellData = {
     duration: "permanent",
     school: null,
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Hold Monster": {
     cast: "1 action",
     range: "120'",
     target: "1 creature or 1 group within 20' radius",
     duration: "1d6 rounds + 1 round/level",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "negate"
+    save: "negate",
   },
   "Hold Person": {
     cast: "1 action",
     range: "120'",
     target: "1 creature or 1 group within 20' radius",
     duration: "1d6 rounds + 1 round/level",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "negate"
+    save: "negate",
   },
   "Holy Word (Unholy Word)": {
     cast: "1 action",
@@ -727,25 +755,25 @@ export const spellData = {
     duration: "special",
     school: null,
     components: "V",
-    save: "special"
+    save: "special",
   },
-  "Hurricane": {
+  Hurricane: {
     cast: "1 action",
     range: "480'",
     target: "360' high, 360' wide, 160' deep",
     duration: "1 round/level",
     school: ["green"],
     components: "V,S",
-    save: "special"
+    save: "special",
   },
   "Hypnotic Pattern": {
     cast: "1 action",
     range: "120'",
     target: "30' square",
     duration: "concentration",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "S",
-    save: "Wis to negate"
+    save: "Wis to negate",
   },
   "Insect Plague": {
     cast: "1 action",
@@ -754,16 +782,16 @@ export const spellData = {
     duration: "10 min/level",
     school: ["green"],
     components: "V,S,M",
-    save: "special"
+    save: "special",
   },
-  "Invisibility": {
+  Invisibility: {
     cast: "1 action",
     range: "0'",
     target: "1 creature or object",
     duration: "special",
     school: ["blue"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Invisibility, 10' radius": {
     cast: "1 action",
@@ -772,7 +800,7 @@ export const spellData = {
     duration: "special",
     school: ["blue"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Legend Lore": {
     cast: "special",
@@ -781,25 +809,25 @@ export const spellData = {
     duration: "permanent",
     school: ["white"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Levitate": {
+  Levitate: {
     cast: "1 action",
     range: "60'",
     target: "1 creature no larger than a horse",
     duration: "10 min/level",
     school: ["red"],
     components: "V,S,M",
-    save: "negate"
+    save: "negate",
   },
   "Light (Darkness)": {
     cast: "1 action",
     range: "90'",
     target: "special",
     duration: "1 hour +10 min/level",
-    school: ["white","black","red"],
+    school: ["white", "black", "red"],
     components: "V,S",
-    save: "negate"
+    save: "negate",
   },
   "Lightning Bolt": {
     cast: "1 action",
@@ -808,16 +836,16 @@ export const spellData = {
     duration: "instant",
     school: ["red"],
     components: "V,S,M",
-    save: "half"
+    save: "half",
   },
   "Limited Wish": {
     cast: "1 action",
     range: "special",
     target: "special",
     duration: "special",
-    school: ["white","black","green","blue","red"],
+    school: ["white", "black", "green", "blue", "red"],
     components: "V",
-    save: "special"
+    save: "special",
   },
   "Locate Object": {
     cast: "1 ",
@@ -826,7 +854,7 @@ export const spellData = {
     duration: "5 min/level",
     school: ["white"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Magic Missile": {
     cast: "1 action",
@@ -835,16 +863,16 @@ export const spellData = {
     duration: "instant",
     school: ["red"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Major Creation": {
     cast: "1 turn",
     range: "0'",
     target: "special",
     duration: "1 hour/level",
-    school: ["white","blue"],
+    school: ["white", "blue"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Mass Suggestion": {
     cast: "1 action",
@@ -853,16 +881,16 @@ export const spellData = {
     duration: "1 hour + 1 hour/level",
     school: ["blue"],
     components: "V,M",
-    save: "negate"
+    save: "negate",
   },
   "Minor Creation": {
     cast: "1 turn",
     range: "0'",
     target: "special",
     duration: "1 hour/level",
-    school: ["white","blue"],
+    school: ["white", "blue"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Mirage Arcana": {
     cast: "1 turn",
@@ -871,7 +899,7 @@ export const spellData = {
     duration: "12 days",
     school: ["blue"],
     components: "V,S",
-    save: "special"
+    save: "special",
   },
   "Mirror Image": {
     cast: "1 action",
@@ -880,7 +908,7 @@ export const spellData = {
     duration: "1 hour",
     school: ["blue"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Negate Invisibility": {
     cast: "1 action",
@@ -889,16 +917,16 @@ export const spellData = {
     duration: "1 hour",
     school: ["blue"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Neutralize Poison (Poison)": {
     cast: "1 action",
     range: "0'",
     target: "1 creature or 1 object",
     duration: "permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S",
-    save: "Con to negate"
+    save: "Con to negate",
   },
   "Part Water": {
     cast: "1 action",
@@ -907,7 +935,7 @@ export const spellData = {
     duration: "1 hour + 10 mins./level",
     school: ["green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Pass Without Trace": {
     cast: "1 action",
@@ -916,16 +944,16 @@ export const spellData = {
     duration: "30 mins./level",
     school: ["green"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
-  "Passwall": {
+  Passwall: {
     cast: "1 action",
     range: "30'",
     target: "special",
     duration: "10 mins./level",
     school: ["green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Phantasmal Force": {
     cast: "1 action",
@@ -934,7 +962,7 @@ export const spellData = {
     duration: "concentration",
     school: ["blue"],
     components: "V,S,M",
-    save: "special"
+    save: "special",
   },
   "Phantom Image": {
     cast: "1 action",
@@ -943,34 +971,34 @@ export const spellData = {
     duration: "10 min",
     school: ["blue"],
     components: "V,S,M",
-    save: "special"
+    save: "special",
   },
   "Plane Shift": {
     cast: "1 action",
     range: "0'",
     target: "Up to 7 creatures",
     duration: "permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "special"
+    save: "special",
   },
   "Polymorph Other": {
     cast: "1 action",
     range: "120'",
     target: "1 creature",
     duration: "permanent",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "V,S,M",
-    save: "Wis to negate"
+    save: "Wis to negate",
   },
   "Polymorph Self": {
     cast: "1 action",
     range: "0'",
     target: "caster",
     duration: "1 hour + 10 min/level",
-    school: ["green","blue"],
+    school: ["green", "blue"],
     components: "V",
-    save: "none"
+    save: "none",
   },
   "Projected Image": {
     cast: "1 action",
@@ -979,7 +1007,7 @@ export const spellData = {
     duration: "1 hour",
     school: ["blue"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Protection From Normal Missiles": {
     cast: "1 action",
@@ -988,43 +1016,43 @@ export const spellData = {
     duration: "2 rounds/level",
     school: ["white"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Purify Food & Water (Putrify Food & Water)": {
     cast: "1 action",
     range: "30'",
     target: "special",
     duration: "permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Pyrotechnics": {
+  Pyrotechnics: {
     cast: "1 action",
     range: "60'",
     target: "10 or 100 times fire source",
     duration: "special",
     school: ["red"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Quest (Remove Quest)": {
     cast: "1 action",
     range: "60'",
     target: "1 creature",
     duration: "special",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Raise Dead (Finger of Death)": {
     cast: "1 action",
     range: "30'",
     target: "1 creature",
     duration: "permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S",
-    save: "special"
+    save: "special",
   },
   "Ray of Enfeeblement": {
     cast: "1 action",
@@ -1033,124 +1061,124 @@ export const spellData = {
     duration: "1 round/level",
     school: ["black"],
     components: "V,S",
-    save: "Con or Dex to negate"
+    save: "Con or Dex to negate",
   },
-  "Regenerate": {
+  Regenerate: {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
     duration: "permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Reincarnation": {
+  Reincarnation: {
     cast: "1 turn",
     range: "0'",
     target: "1 creature",
     duration: "permanent",
-    school: ["white","green"],
+    school: ["white", "green"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Remove Curse (Curse)": {
     cast: "1 turn",
     range: "0'",
     target: "1 creature, place, or object",
     duration: "permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Remove Fear (Cause Fear)": {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
     duration: "permanent or 1 min/level",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "none/neg."
+    save: "none/neg.",
   },
-  "Repulsion": {
+  Repulsion: {
     cast: "1 action",
     range: "0'",
     target: "special",
     duration: "1 round/level",
-    school: ["white","red"],
+    school: ["white", "red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Resist Cold": {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
     duration: "10 mins./level",
-    school: ["white","green"],
+    school: ["white", "green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Resist Fire": {
     cast: "1 action",
     range: "0'",
     target: "1 creature",
     duration: "10 mins./level",
-    school: ["white","red"],
+    school: ["white", "red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Resurrection": {
+  Resurrection: {
     cast: "1 turn",
     range: "0'",
     target: "1 creature",
     duration: "permanent",
     school: null,
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Rust": {
+  Rust: {
     cast: "1 action",
     range: "120'",
     target: "special",
     duration: "permanent",
-    school: ["green","red"],
+    school: ["green", "red"],
     components: "V,S,M",
-    save: "negate"
+    save: "negate",
   },
-  "Scrying": {
+  Scrying: {
     cast: "1 min",
     range: "0'",
     target: "special",
     duration: "special",
     school: ["white"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Shades": {
+  Shades: {
     cast: "1 action",
     range: "120'",
     target: "20' cube",
     duration: "1 round/level",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "V,S",
-    save: "special"
+    save: "special",
   },
   "Shadow Monsters": {
     cast: "1 action",
     range: "120'",
     target: "20' cube",
     duration: "1 round/level",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "V,S",
-    save: "special"
+    save: "special",
   },
-  "Shield": {
+  Shield: {
     cast: "1 action",
     range: "0'",
     target: "caster",
     duration: "30 min",
     school: ["white"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Silence 15' Radius": {
     cast: "1 action",
@@ -1159,25 +1187,25 @@ export const spellData = {
     duration: "2 rounds/level",
     school: null,
     components: "V,S",
-    save: "special"
+    save: "special",
   },
-  "Simulacrum": {
+  Simulacrum: {
     cast: "8 hours",
     range: "0'",
     target: "1 creature",
     duration: "permanent",
-    school: ["black","blue"],
+    school: ["black", "blue"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Sleep": {
+  Sleep: {
     cast: "1 action",
     range: "90'",
     target: "special",
     duration: "10 min/level",
     school: ["black"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Slow Spell": {
     cast: "1 action",
@@ -1186,7 +1214,7 @@ export const spellData = {
     duration: "3 rounds + 1 round/level",
     school: ["black"],
     components: "V,S,M",
-    save: "negate"
+    save: "negate",
   },
   "Speak with Animals": {
     cast: "1 action",
@@ -1195,7 +1223,7 @@ export const spellData = {
     duration: "10 min",
     school: ["green"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Speak with Plants": {
     cast: "1 action",
@@ -1204,7 +1232,7 @@ export const spellData = {
     duration: "10 min",
     school: ["green"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Spell Fork": {
     cast: "Instant",
@@ -1213,7 +1241,7 @@ export const spellData = {
     duration: "special",
     school: ["red"],
     components: "V,S",
-    save: "special"
+    save: "special",
   },
   "Spider Climb": {
     cast: "1 action",
@@ -1222,7 +1250,7 @@ export const spellData = {
     duration: "1 hour",
     school: ["green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Sticks to Snakes": {
     cast: "1 action",
@@ -1231,25 +1259,25 @@ export const spellData = {
     duration: "2 rounds/level",
     school: ["green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Stinking Cloud": {
     cast: "1 action",
     range: "30'",
     target: "20' diameter cloud",
     duration: "1 round/level",
-    school: ["green","red"],
+    school: ["green", "red"],
     components: "V,S,M",
-    save: "special"
+    save: "special",
   },
-  "Suggestion": {
+  Suggestion: {
     cast: "1 action",
     range: "120'",
     target: "1 creature",
     duration: "1 hour + 1 hour/level",
     school: ["blue"],
     components: "V,M",
-    save: "negate"
+    save: "negate",
   },
   "Suspend Life": {
     cast: "1 action",
@@ -1258,27 +1286,27 @@ export const spellData = {
     duration: "10 years/level",
     school: ["black"],
     components: "V,S",
-    save: "Con to negate"
+    save: "Con to negate",
   },
-  "Symbol": {
+  Symbol: {
     cast: "1 action",
     range: "0'",
     target: "special",
     duration: "10 min/level",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
-  "Telekinesis": {
+  Telekinesis: {
     cast: "1 action",
     range: "120'",
     target: "special",
     duration: "2 rounds/level",
     school: ["red"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
-  "Teleport": {
+  Teleport: {
     cast: "1 action",
     range: "0'",
     target: "caster and 1 other creature per 4 levels",
@@ -1290,7 +1318,7 @@ export const spellData = {
     Blue: "",
     red: "TRUE",
     components: "V",
-    save: "negate"
+    save: "negate",
   },
   "Tongues (Gibberish)": {
     cast: "1 action",
@@ -1304,7 +1332,7 @@ export const spellData = {
     Blue: "",
     red: "",
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "True Seeing": {
     cast: "1 action",
@@ -1313,7 +1341,7 @@ export const spellData = {
     duration: "10 min/level",
     school: ["white"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Vampiric Grasp": {
     cast: "1 action",
@@ -1322,7 +1350,7 @@ export const spellData = {
     duration: "instant",
     school: ["black"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Vampiric Transfusion": {
     cast: "1 min",
@@ -1331,34 +1359,34 @@ export const spellData = {
     duration: "permanent",
     school: ["black"],
     components: "V,S",
-    save: "negate"
+    save: "negate",
   },
-  "Veil": {
+  Veil: {
     cast: "1 action",
     range: "120'",
     target: "20' x 20'/level",
     duration: "10 min/level",
     school: ["blue"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
-  "Visage": {
+  Visage: {
     cast: "1 action",
     range: "90'",
     target: "1 creature",
     duration: "1 hour",
     school: ["blue"],
     components: "V,S",
-    save: "negate"
+    save: "negate",
   },
-  "Vision": {
+  Vision: {
     cast: "1 hour",
     range: "0'",
     target: "caster",
     duration: "1 min",
     school: ["white"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Wall of Fire": {
     cast: "1 action",
@@ -1367,16 +1395,16 @@ export const spellData = {
     duration: "concenteration or 1 round/level",
     school: ["red"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Wall of Force": {
     cast: "1 action",
     range: "30'",
     target: "special",
     duration: "10 min + 1 min/level",
-    school: ["white","red"],
+    school: ["white", "red"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Wall of Ice": {
     cast: "1 action",
@@ -1385,7 +1413,7 @@ export const spellData = {
     duration: "10 min/level",
     school: ["green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Wall of Thorns": {
     cast: "1 action",
@@ -1394,7 +1422,7 @@ export const spellData = {
     duration: "10 min/level",
     school: ["green"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Water Breathing": {
     cast: "1 action",
@@ -1403,16 +1431,16 @@ export const spellData = {
     duration: "1 hour/level",
     school: ["green"],
     components: "S,M",
-    save: "none"
+    save: "none",
   },
-  "Web": {
+  Web: {
     cast: "1 action",
     range: "60'",
     target: "21' cube",
     duration: "1 hour",
     school: ["green"],
     components: "V,S,M",
-    save: "negate"
+    save: "negate",
   },
   "Wizard Eye": {
     cast: "1 min",
@@ -1421,24 +1449,24 @@ export const spellData = {
     duration: "1 hour",
     school: ["white"],
     components: "V,S,M",
-    save: "none"
+    save: "none",
   },
   "Wizard Lock (Wizard Knock)": {
     cast: "1 action",
     range: "0'",
     target: "1 door, chest, gate, etc.",
     duration: "Permanent",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V,S",
-    save: "none"
+    save: "none",
   },
   "Word of Recall": {
     cast: "1 action",
     range: "0'",
     target: "special",
     duration: "instant",
-    school: ["white","black"],
+    school: ["white", "black"],
     components: "V",
-    save: "none"
-  }
-}
+    save: "none",
+  },
+};

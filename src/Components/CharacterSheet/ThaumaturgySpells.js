@@ -100,13 +100,15 @@ export default function ThaumaturgySpells(props) {
 
   return (
     <div>
-      <h2>Thaumaturgy Spells</h2>
-      <p className="ut-text-explain">
-        At {formatNumberSuffix(level)} level
-        {wisStat > 12 && (
-          <span> plus one extra 1st level spell for 13+ WIS</span>
-        )}
-      </p>
+      <h2>
+        Thaumaturgy Spells
+        <span className="ut-text-explain ut-margin-left-half-em">
+          - At {formatNumberSuffix(level)} level
+          {wisStat > 12 && (
+            <span> plus one extra 1st level spell for 13+ WIS</span>
+          )}
+        </span>
+      </h2>
       <table className="table spells__table spells--table-thaumaturgy">
         <thead>
           <tr>

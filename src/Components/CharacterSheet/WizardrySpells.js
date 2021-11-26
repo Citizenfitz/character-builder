@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { spellData, spellSlots, wizardryList } from "../../Data";
+import { spellData, spellSlots, wizardryList, magicSchools } from "../../Data";
 import { formatNumberSuffix } from "../Utilities";
 import SpellSlotsModal from "./SpellSlotsModal";
 
@@ -10,19 +10,25 @@ Modal.setAppElement("#root");
 
 export default function WizardrySpells(props) {
   const {
-    level,
+    charLevel,
+    wizLevel,
     intStat,
     schools,
     schoolLimit,
     onPickSchool,
     useLocalStorage,
+    wizardry2StartLevel,
+    wizardry3StartLevel,
+    setWizardSchool,
   } = props;
-  const spellCount = spellSlots[level - 1];
+  const spellCount = spellSlots[wizLevel - 1];
   const [spellList, setSpellList] = useState(defaultSpellList);
   const [isOpen, setOpen] = useState(false);
   const [spellLevel, setSpellLevel] = useState(0);
   const [spellSlot, setSpellSlot] = useState(0);
+  // todo: remove setManageSchool when new one working
   const [manageSchool, setManageSchool] = useState(false);
+  const [needsToChooseSchool, setneedsToChooseSchool] = useState(false);
   const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
   const [schoolValidation, setSchoolValidation] = useState(null);
   const [showAll, setShowAll] = useState(false);
@@ -52,9 +58,9 @@ export default function WizardrySpells(props) {
   // const openModal = () => setOpen(true)
   const closeModal = () => setOpen(false);
 
-  const selectSpell = (level, slot) => {
+  const selectSpell = (wizLevel, slot) => {
     setOpen(true);
-    setSpellLevel(level + 1);
+    setSpellLevel(wizLevel + 1);
     setSpellSlot(slot);
   };
 
@@ -89,6 +95,14 @@ export default function WizardrySpells(props) {
       const plural = schoolLimit === 1 ? "" : "s";
       setSchoolValidation(`You must select ${schoolLimit} school${plural}`);
     }
+  };
+
+  const handleSetSchool = (e, schoolIndex) => {
+    let value;
+    if (e.target) {
+      value = e.target.value;
+    }
+    setWizardSchool(value, schoolIndex);
   };
 
   const toggleShowAll = () => {
@@ -153,22 +167,78 @@ export default function WizardrySpells(props) {
 
   return (
     <div>
-      <h2>
+      <h2 className="ut-margin-bottom-half-rem">
         Wizardry Spells
-        <div className="spells__known-schools">
-          {schools.map((color) => (
-            <div key={color} className={`icon-school icon-school--${color}`}>
-              <span className="ut-only-sr">{color} school of magic</span>
+        <span className="ut-text-explain ut-margin-left-half-em">
+          - At {formatNumberSuffix(wizLevel)} level
+          {intStat > 12 && (
+            <span> plus one extra 1st level spell for 13+ INT</span>
+          )}
+        </span>
+      </h2>
+      {/* If they don't have Wizardry three or its above level,  allow them to pick character wiz1 school */}
+      {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
+        <label className="ut-display-inine-block ut-margin-right-2em">
+          <span className="label">Wizardy 1 School: </span>
+          <div
+            className={`ut-margin-right-half-em icon-school icon-school--${schools[0]}`}
+          >
+            <span className="ut-only-sr">{schools[0]} school of magic</span>
+          </div>
+          <select
+            name="wizardry1school"
+            className="ut-no-print"
+            value={schools[0]}
+            onChange={(e) => handleSetSchool(e, 0)}
+          >
+            <option value="">Choose</option>
+            {magicSchools.map((school) => (
+              <option key={school.id} value={school.name}>
+                {school.name}
+              </option>
+            ))}
+          </select>
+          <div className="ut-no-screen print-text-input">{schools[0]}</div>
+        </label>
+      )}
+      {/* If they don't have Wizardry three & wiz is within char's level, allow them to pick character wiz2 school */}
+      {wizardry2StartLevel > 0 &&
+        charLevel >= wizardry2StartLevel &&
+        wizardry3StartLevel === 0 && (
+          <label className="ut-display-inine-block">
+            <span className="label">Wizardy 2 School: </span>
+            <div
+              className={`ut-margin-right-half-em  icon-school icon-school--${schools[1]}`}
+            >
+              <span className="ut-only-sr">{schools[1]} school of magic</span>
+            </div>
+            <select
+              name="wizardry2school"
+              className="ut-no-print"
+              value={schools[1]}
+              onChange={(e) => handleSetSchool(e, 1)}
+            >
+              <option value="">Choose</option>
+              {magicSchools.map((school) => (
+                <option key={school.id} value={school.name}>
+                  {school.name}
+                </option>
+              ))}
+            </select>
+            <div className="ut-no-screen print-text-input">{schools[1]}</div>
+          </label>
+        )}
+      {/* If they have wiz3 &  wiz3 is within level, then just show all the schools */}
+      {wizardry3StartLevel > 0 && charLevel >= wizardry3StartLevel && (
+        <div>
+          <span className="label">All Schools: </span>
+          {magicSchools.map((school) => (
+            <div className={`icon-school icon-school--${school.name}`}>
+              <span className="ut-only-sr">{school.name} school of magic</span>
             </div>
           ))}
         </div>
-      </h2>
-      <p className="ut-text-explain">
-        At {formatNumberSuffix(level)} level
-        {intStat > 12 && (
-          <span> plus one extra 1st level spell for 13+ INT</span>
-        )}
-      </p>
+      )}
 
       <div className="ut-position-relative">
         {manageSchool && (
@@ -219,7 +289,6 @@ export default function WizardrySpells(props) {
           </tbody>
         </table>
       </div>
-
       <Modal
         id="modal--wizardrySpells"
         className="modal"
@@ -303,7 +372,6 @@ export default function WizardrySpells(props) {
           </table>
         </div>
       </Modal>
-
       <Modal
         id="modal--schools"
         className="modal"
