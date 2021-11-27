@@ -16,6 +16,7 @@ import {
   rangedWeaponData,
   dataAttributes,
   shieldData,
+  magicSchools,
 } from "../../Data";
 import {
   calculateBonus,
@@ -26,7 +27,6 @@ import {
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
-import ReactTooltip from "react-tooltip";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -103,9 +103,8 @@ const characterDefaults = {
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
-  hasWizardry: false,
-  wizardrySchools: [],
-  wizardryNeedsToChooseSchool: true,
+  //hasWizardry: false,
+  wizardrySchools: ["Choose", "Choose"],
   thaumaturgyStartLevel: 0,
   wizardry1StartLevel: 0,
   wizardry2StartLevel: 0,
@@ -123,7 +122,6 @@ if (useLocalStorage) {
 
 /**
  * TODO:
- * - only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
  * - Lowered Attributes / Attribute Increase modal to add to bonus
  * - clear spells (of specific color) when schools change
  * - armor and weapons for presets
@@ -374,7 +372,7 @@ const CharacterSheet = () => {
     }));
   };
 
-  // this tells you at what level a character took a talent - needed for Wizadry schools & thaurmaturgy
+  // this tells you at what level a character took a talent - needed for Wizardry schools & thaurmaturgy
   // pass it the object of the current char talents
   // returns zero if not taken at all
   const findTalentLevelSlot = (talents, talentName) => {
@@ -396,24 +394,46 @@ const CharacterSheet = () => {
     return 0;
   };
 
-  // ses an index of a wizard school.
+  // sets an index of a wizard school.
   const setWizardSchool = (color, schoolIndex) => {
     let tempObject = character.wizardrySchools.slice(0);
-
-    if (color === "Choose") {
-      color = "";
-    }
+    console.log("tempObject = " + tempObject);
     tempObject[schoolIndex] = color;
-
+    console.log("tempObject = " + tempObject);
     setCharacter((prev) => ({
       ...prev,
       wizardrySchools: tempObject,
     }));
   };
 
+  // const fillInExtraWizSchools = () => {
+  //   // if they DO have wizardry 3 then fill in the other three school slots with colors not chosen
+  //   let tempObject = character.wizardrySchools.slice(0);
+  //   for (let index = 0; index < magicSchools.length; index++) {
+  //     if (!tempObject.includes(magicSchools[index].name)) {
+  //       character.wizardrySchools.push(magicSchools[index].name);
+  //     }
+  //   }
+  // };
+
+  // cleans up the e wizadrySchool array and sets the wizardryNeedsToChooseSchool var
+  // const wizardrySchoolCleanUp = () => {
+  //   // finally, see if wizadrySchool contains a single string from the magic schools. If it does, wizardryNeedsToChooseSchool is false
+  //   let needsSchool = true;
+  //   for (let index = 0; index < magicSchools.level; index++) {
+  //     if (character.wizardrySchools.includes(magicSchools[index].name)) {
+  //       needsSchool = false;
+  //     }
+  //   }
+  //   setCharacter((prev) => ({
+  //     ...prev,
+  //     wizardryNeedsToChooseSchool: needsSchool,
+  //   }));
+  // };
+
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
-    const talents = Object.values(state.talents);
+    //const talents = Object.values(state.talents);
 
     // find out at what level, if any, character has spellcasting talents
     state.thaumaturgyStartLevel = findTalentLevelSlot(
@@ -434,27 +454,39 @@ const CharacterSheet = () => {
     );
 
     // check all talent values for 'Wizardry' and 'Thaurmaturgy'
-    const wizardryRegEx = /Wizardry/g;
-    state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
+    // const wizardryRegEx = /Wizardry/g;
+    // state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
 
-    let hasWizardry1 = talents.includes("Wizardry 1");
-    let hasWizardry2 = talents.includes("Wizardry 2");
-    let hasWizardry3 = talents.includes("Wizardry 3");
+    // let hasWizardry1 = talents.includes("Wizardry 1");
+    // let hasWizardry2 = talents.includes("Wizardry 2");
+    // let hasWizardry3 = talents.includes("Wizardry 3");
 
-    // if they don't have wizardry 2, dump any wizardry 3 they took
+    // if they don't have wizardry 3, dump any extra schools
     if (state.wizardry2StartLevel === 0) {
+      state.wizardrySchools.slice(0, 2);
+    }
+
+    // if they don't have wizardry 2, dump  wizardry 3  & set second school to "Choose"
+    if (state.wizardry2StartLevel === 0) {
+      state.wizardrySchools[2] = "Choose";
+      state.wizardry3StartLevel = 0;
+      // hasWizardry3 = false;
       Object.entries(state.talents).forEach(([key, val]) => {
         if (val === "Wizardry 3") {
           state.talents[key] = "choose";
-          state.wizardry3StartLevel = 0;
-          hasWizardry3 = false;
         }
       });
     }
 
-    // if they don't have wizardry 2, dump any wizardry-related talents
+    // if they don't have wizardry 1, dump any wizardry-related talents
     if (state.wizardry1StartLevel === 0) {
-      state.hasWizardry = false;
+      state.wizardrySchools[1] = "Choose";
+      state.wizardrySchools[2] = "Choose";
+
+      state.wizardry2StartLevel = 0;
+      state.wizardry3StartLevel = 0;
+      // state.hasWizardry = false;
+
       Object.entries(state.talents).forEach(([key, val]) => {
         if (
           val === "Encumbered Casting" ||
@@ -466,22 +498,6 @@ const CharacterSheet = () => {
           state.talents[key] = "choose";
         }
       });
-      state.wizardry2StartLevel = 0;
-      state.wizardry3StartLevel = 0;
-      hasWizardry2 = false;
-      hasWizardry3 = false;
-    }
-
-    // check that Wiz school has been selected
-    if (state.hasWizardry) {
-      let schoolCount = [1, 2, 5];
-      let level = 0;
-      level += hasWizardry2 ? 1 : 0;
-      level += hasWizardry3 ? 1 : 0;
-      // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
-      if (schoolCount[level] !== character.wizardrySchools.length) {
-        setSchoolLimit(schoolCount[level]);
-      }
     }
 
     return state;
@@ -1149,11 +1165,10 @@ const CharacterSheet = () => {
             charLevel={character.level}
             wizLevel={character.wizardLevel}
             intStat={character.attributes.intelligence.total}
-            schools={character.wizardrySchools}
-            schoolLimit={schoolLimit}
+            wizardrySchools={character.wizardrySchools}
+            // schoolLimit={schoolLimit}
             onPickSchool={handlePickSchool}
             setWizardSchool={setWizardSchool}
-            wizardryNeedsToChooseSchool
             wizardry1StartLevel={character.wizardry1StartLevel}
             wizardry2StartLevel={character.wizardry2StartLevel}
             wizardry3StartLevel={character.wizardry3StartLevel}

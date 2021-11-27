@@ -13,9 +13,9 @@ export default function WizardrySpells(props) {
     charLevel,
     wizLevel,
     intStat,
-    schools,
-    schoolLimit,
-    onPickSchool,
+    wizardrySchools,
+    // schoolLimit,
+    // onPickSchool,
     useLocalStorage,
     wizardry2StartLevel,
     wizardry3StartLevel,
@@ -27,11 +27,12 @@ export default function WizardrySpells(props) {
   const [spellLevel, setSpellLevel] = useState(0);
   const [spellSlot, setSpellSlot] = useState(0);
   // todo: remove setManageSchool when new one working
-  const [manageSchool, setManageSchool] = useState(false);
-  const [needsToChooseSchool, setneedsToChooseSchool] = useState(false);
-  const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
-  const [schoolValidation, setSchoolValidation] = useState(null);
+  //const [manageSchool, setManageSchool] = useState(false);
+  // const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
+  //const [schoolValidation, setSchoolValidation] = useState(null);
   const [showAll, setShowAll] = useState(false);
+  const [wizardryNeedsToChooseSchool, setWizardryNeedsToChooseSchool] =
+    useState(true);
 
   useEffect(() => {
     if (useLocalStorage) {
@@ -48,12 +49,33 @@ export default function WizardrySpells(props) {
     }
   }, [spellList, useLocalStorage]);
 
+  // useEffect(() => {
+  //   if (schoolLimit) {
+  //     // setIsOpen_Schools(true)
+  //     setManageSchool(true);
+  //   }
+  // }, [schoolLimit]);
+
+  // listen for change in wizardrySchools and adjust dropdowns, selected spells, and CTA
   useEffect(() => {
-    if (schoolLimit) {
-      // setIsOpen_Schools(true)
-      setManageSchool(true);
+    if (wizardrySchools) {
+      // if nothing is choosen, set CTA to true
+      let needsSchooling = true;
+      for (let index = 0; index < magicSchools.length; index++) {
+        if (wizardrySchools.includes(magicSchools[index].name)) {
+          needsSchooling = false;
+        }
+      }
+      setWizardryNeedsToChooseSchool(needsSchooling);
+
+      // TODO remove only spells that aren't in characters wizardrySchools
+      // For now removes ALL spells
+      setSpellList(defaultSpellList);
+      console.log(JSON.stringify(spellList));
+
+      // handle disabled dropdowns
     }
-  }, [schoolLimit]);
+  }, [wizardrySchools, spellList]);
 
   // const openModal = () => setOpen(true)
   const closeModal = () => setOpen(false);
@@ -74,28 +96,28 @@ export default function WizardrySpells(props) {
     setOpen(false);
   };
 
-  const manageSchools = (e) => {
-    setIsOpen_Schools(true);
-  };
+  // const manageSchools = (e) => {
+  //   setIsOpen_Schools(true);
+  // };
 
-  const handleSave_Schools = (e) => {
-    e.preventDefault();
-    const checked = Array.from(e.currentTarget.schools)
-      .filter((check) => {
-        return check.checked;
-      })
-      .map((check) => check.value);
+  // const handleSave_Schools = (e) => {
+  //   e.preventDefault();
+  //   const checked = Array.from(e.currentTarget.schools)
+  //     .filter((check) => {
+  //       return check.checked;
+  //     })
+  //     .map((check) => check.value);
 
-    if (schoolLimit === checked.length) {
-      setIsOpen_Schools(false);
-      setSchoolValidation(null);
-      setManageSchool(false);
-      onPickSchool(checked);
-    } else {
-      const plural = schoolLimit === 1 ? "" : "s";
-      setSchoolValidation(`You must select ${schoolLimit} school${plural}`);
-    }
-  };
+  //   if (schoolLimit === checked.length) {
+  //     setIsOpen_Schools(false);
+  //     setSchoolValidation(null);
+  //     setManageSchool(false);
+  //     onPickSchool(checked);
+  //   } else {
+  //     const plural = schoolLimit === 1 ? "" : "s";
+  //     setSchoolValidation(`You must select ${schoolLimit} school${plural}`);
+  //   }
+  // };
 
   const handleSetSchool = (e, schoolIndex) => {
     let value;
@@ -114,6 +136,7 @@ export default function WizardrySpells(props) {
       <tr key={j}>
         <td>{i + 1}</td>
         <td>
+          {/* sets state for which spell slot is to be changed then opens modal */}
           <button onClick={() => selectSpell(i, j)} className="button ">
             Choose Spell
           </button>
@@ -181,14 +204,16 @@ export default function WizardrySpells(props) {
         <label className="ut-display-inine-block ut-margin-right-2em">
           <span className="label">Wizardy 1 School: </span>
           <div
-            className={`ut-margin-right-half-em icon-school icon-school--${schools[0]}`}
+            className={`ut-margin-right-half-em icon-school icon-school--${wizardrySchools[0]}`}
           >
-            <span className="ut-only-sr">{schools[0]} school of magic</span>
+            <span className="ut-only-sr">
+              {wizardrySchools[0]} school of magic
+            </span>
           </div>
           <select
             name="wizardry1school"
             className="ut-no-print"
-            value={schools[0]}
+            value={wizardrySchools[0]}
             onChange={(e) => handleSetSchool(e, 0)}
           >
             <option value="">Choose</option>
@@ -198,7 +223,9 @@ export default function WizardrySpells(props) {
               </option>
             ))}
           </select>
-          <div className="ut-no-screen print-text-input">{schools[0]}</div>
+          <div className="ut-no-screen print-text-input">
+            {wizardrySchools[0]}
+          </div>
         </label>
       )}
       {/* If they don't have Wizardry three & wiz is within char's level, allow them to pick character wiz2 school */}
@@ -208,14 +235,16 @@ export default function WizardrySpells(props) {
           <label className="ut-display-inine-block">
             <span className="label">Wizardy 2 School: </span>
             <div
-              className={`ut-margin-right-half-em  icon-school icon-school--${schools[1]}`}
+              className={`ut-margin-right-half-em  icon-school icon-school--${wizardrySchools[1]}`}
             >
-              <span className="ut-only-sr">{schools[1]} school of magic</span>
+              <span className="ut-only-sr">
+                {wizardrySchools[1]} school of magic
+              </span>
             </div>
             <select
               name="wizardry2school"
               className="ut-no-print"
-              value={schools[1]}
+              value={wizardrySchools[1]}
               onChange={(e) => handleSetSchool(e, 1)}
             >
               <option value="">Choose</option>
@@ -225,7 +254,9 @@ export default function WizardrySpells(props) {
                 </option>
               ))}
             </select>
-            <div className="ut-no-screen print-text-input">{schools[1]}</div>
+            <div className="ut-no-screen print-text-input">
+              {wizardrySchools[1]}
+            </div>
           </label>
         )}
       {/* If they have wiz3 &  wiz3 is within level, then just show all the schools */}
@@ -241,21 +272,16 @@ export default function WizardrySpells(props) {
       )}
 
       <div className="ut-position-relative">
-        {manageSchool && (
+        {/* show this if they need to choose at least one wizardry school */}
+        {wizardryNeedsToChooseSchool && (
           <div id="cta-schools" className="spells__cta">
-            <button
-              onClick={manageSchools}
-              className="button button--primary button--large"
-            >
-              Choose Wizardry Schools
-            </button>
+            Select a Wizardry School before choosing spells
           </div>
         )}
         <table className="table spells__table spells--table-wizardry">
           <thead>
             <tr>
               <th style={{ minWidth: "58px" }}>Level</th>
-              {/* <th>School</th> */}
               <th>Name</th>
               <th>Cast</th>
               <th>Duration</th>
@@ -289,6 +315,7 @@ export default function WizardrySpells(props) {
           </tbody>
         </table>
       </div>
+      {/*  The modal for choosing spells */}
       <Modal
         id="modal--wizardrySpells"
         className="modal"
@@ -298,7 +325,7 @@ export default function WizardrySpells(props) {
         contentLabel="Spell Slots"
       >
         <header className="modal__header">
-          <h2 className="modal__h2">Pick Your Spell</h2>
+          <h2 className="modal__h2">Choose Your Spell</h2>
           <button
             className="button modal__header-button"
             aria-label="Close modal"
@@ -308,15 +335,17 @@ export default function WizardrySpells(props) {
           </button>
         </header>
         <div className="modal__body">
-          <button className="showAll" onClick={toggleShowAll}>
-            {showAll ? "Show Available Spells" : "Show All Spells"}
-          </button>
-          <table className="table spells--wizardry">
+          {/*  If they have Wiz 3 don't show toggle all button */}
+          {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
+            <button className="showAll" onClick={toggleShowAll}>
+              {showAll ? "Show Available Spells" : "Show All Spells"}
+            </button>
+          )}
+          <table className="table spells__table spells--table-wizardry">
             <thead>
               <tr>
                 <th>Level</th>
                 <th style={{ minWidth: "58px" }}>Name</th>
-                {/* <th>School</th> */}
                 <th>Cast</th>
                 <th>Duration</th>
                 <th>Range</th>
@@ -329,7 +358,7 @@ export default function WizardrySpells(props) {
             <tbody>
               {spellLevel &&
                 wizardryList[spellLevel - 1].map((spellName, i) => {
-                  const intersection = schools.filter((element) =>
+                  const intersection = wizardrySchools.filter((element) =>
                     spellData[spellName].school.includes(element)
                   );
                   // console.log(`intersection`, intersection, 'on', spellName)
@@ -372,7 +401,7 @@ export default function WizardrySpells(props) {
           </table>
         </div>
       </Modal>
-      <Modal
+      {/*   <Modal
         id="modal--schools"
         className="modal"
         overlayClassName="modal-overlay"
@@ -477,7 +506,7 @@ export default function WizardrySpells(props) {
             </button>
           </form>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

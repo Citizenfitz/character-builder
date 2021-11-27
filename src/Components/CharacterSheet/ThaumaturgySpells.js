@@ -156,7 +156,7 @@ export default function ThaumaturgySpells(props) {
         contentLabel="Spell Slots"
       >
         <header className="modal__header">
-          <h2 className="modal__h2">Pick Your Spell</h2>
+          <h2 className="modal__h2">Choose Your Spell</h2>
           <button
             className="button modal__header-button"
             aria-label="Close modal"
