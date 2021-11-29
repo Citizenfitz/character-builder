@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { spellData, spellSlots, wizardryList, magicSchools } from "../../Data";
+import {
+  spellData,
+  spellSlots,
+  wizardryList,
+  magicSchoolsData,
+} from "../../Data";
 import { formatNumberSuffix } from "../Utilities";
 import SpellSlotsModal from "./SpellSlotsModal";
 
@@ -26,6 +31,7 @@ export default function WizardrySpells(props) {
   const [isOpen, setOpen] = useState(false);
   const [spellLevel, setSpellLevel] = useState(0);
   const [spellSlot, setSpellSlot] = useState(0);
+  const [magicSchools, setMagicSchools] = useState(magicSchoolsData);
   // todo: remove setManageSchool when new one working
   //const [manageSchool, setManageSchool] = useState(false);
   // const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
@@ -60,20 +66,24 @@ export default function WizardrySpells(props) {
   useEffect(() => {
     if (wizardrySchools) {
       // if nothing is choosen, set CTA to true
+      // handle disabled dropdowns by setting chosen colors to disabled
       let needsSchooling = true;
+      let tempArray = magicSchools;
       for (let index = 0; index < magicSchools.length; index++) {
         if (wizardrySchools.includes(magicSchools[index].name)) {
           needsSchooling = false;
+          tempArray[index].isDisabled = true;
+        } else {
+          tempArray[index].isDisabled = false;
         }
       }
       setWizardryNeedsToChooseSchool(needsSchooling);
+      setMagicSchools(tempArray);
 
       // TODO remove only spells that aren't in characters wizardrySchools
       // For now removes ALL spells
       setSpellList(defaultSpellList);
       console.log(JSON.stringify(spellList));
-
-      // handle disabled dropdowns
     }
   }, [wizardrySchools, spellList]);
 
@@ -218,7 +228,11 @@ export default function WizardrySpells(props) {
           >
             <option value="">Choose</option>
             {magicSchools.map((school) => (
-              <option key={school.id} value={school.name}>
+              <option
+                key={school.id}
+                value={school.name}
+                disabled={school.isDisabled}
+              >
                 {school.name}
               </option>
             ))}
@@ -249,7 +263,11 @@ export default function WizardrySpells(props) {
             >
               <option value="">Choose</option>
               {magicSchools.map((school) => (
-                <option key={school.id} value={school.name}>
+                <option
+                  key={school.id}
+                  value={school.name}
+                  disabled={school.isDisabled}
+                >
                   {school.name}
                 </option>
               ))}

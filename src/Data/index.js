@@ -13,7 +13,7 @@ import {
   wizardryList,
   spellData,
   spellSlots,
-  magicSchools,
+  magicSchoolsData,
 } from "./dataSpells";
 export {
   aspectData,
@@ -31,5 +31,5 @@ export {
   wizardryList,
   spellData,
   spellSlots,
-  magicSchools,
+  magicSchoolsData,
 };

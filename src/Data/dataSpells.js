@@ -13,31 +13,36 @@ export const spellSlots = [
   [4, 4, 4, 3, 2, 2, "-"],
   [4, 4, 4, 3, 2, 2, 1],
 ];
-export const magicSchools = [
+export const magicSchoolsData = [
   {
     id: 0,
     name: "white",
     desc: "Life, light, healing, revelation, protection",
+    isDisabled: false,
   },
   {
     id: 1,
     name: "black",
     desc: "Death, darkness, slumber, insanity, disease, demonology",
+    isDisabled: false,
   },
   {
     id: 2,
     name: "green",
     desc: "Nature, weather, fecundity, water, air, ice",
+    isDisabled: false,
   },
   {
     id: 3,
     name: "blue",
     desc: "Illusion, transformation, charms, trickery",
+    isDisabled: false,
   },
   {
     id: 4,
     name: "red",
     desc: "Fire, earth, destruction, raw power",
+    isDisabled: false,
   },
 ];
 

@@ -16,13 +16,11 @@ import {
   rangedWeaponData,
   dataAttributes,
   shieldData,
-  magicSchools,
 } from "../../Data";
 import {
   calculateBonus,
   formatNumberModifier,
   whichTalentAspect,
-  whichAspectId,
   formatNumberSuffix,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
