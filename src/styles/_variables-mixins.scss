@@ -92,7 +92,7 @@ $border-radius-standard: 3px;
 
 $mq-phone-max: 480px;
 $mq-tablet-max: 768px;
-$mq-desktop-max: 960px;
+$mq-desktop-max: 1240px;
 
 $margins-desktop: 1.5rem;
 $margins-tablet: 1rem;
@@ -100,6 +100,12 @@ $margins-phone: 0.5rem;
 $margins-form-element-bottom: 1rem;
 
 // ******************** MIXINS ***************************//
+@mixin site-layout {
+  width: 100%;
+  max-width: $mq-desktop-max;
+  margin: 0 auto;
+}
+
 @mixin mq-phone {
   @media (max-width: $mq-phone-max) {
     @content;

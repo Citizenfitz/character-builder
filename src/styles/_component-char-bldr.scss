@@ -1,0 +1,21 @@
+.char-bldr {
+  max-width: 900px;
+  text-align: left;
+  &__h2 {
+    margin-top: -1rem;
+    font-size: 1.8em;
+    font-family: $text-cursive;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  &__toolbar {
+    background: #dcdcdc;
+    padding: 1em 1em 0 1em;
+    margin-bottom: 1em;
+    border-radius: $border-radius-standard;
+    > div {
+      margin-right: 3em;
+    }
+  }
+}

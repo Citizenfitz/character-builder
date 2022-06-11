@@ -764,7 +764,30 @@ const CharacterSheet = () => {
   };
 
   return (
-    <div>
+    <div className="char-bldr">
+      <h2 className="char-bldr__h2">EverLore Character Builder</h2>
+      <div className="char-bldr__toolbar flex-grid flex-grid--flex-start">
+        {/*  ------- TOOLBAR ------ */}
+        <div>
+          {" "}
+          <PresetsSelector
+            presetData={presetData}
+            handlePreset={handlePreset}
+          />{" "}
+        </div>
+        <div>
+          <button>
+            {" "}
+            <span className="fas fa-die"></span> Roll Attributes
+          </button>
+        </div>
+        <div>
+          <button>
+            {" "}
+            <span className="fas fa-die"></span> Roll Attributes
+          </button>
+        </div>
+      </div>
       <div className="flex-grid">
         <div className="flex-grid__child">
           {/*  ------- NAMEs ------ */}
@@ -903,7 +926,7 @@ const CharacterSheet = () => {
             </div>
           </div>
           {/*  ------- SAVING THROW MODS ------ */}
-          <h2 className="ut-align-center ut-margin-top-0">Saving Throw Mods</h2>
+
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
               <ul className="data-display-box__save-mods-list">
@@ -926,9 +949,11 @@ const CharacterSheet = () => {
                 ))}
               </ul>
             </div>
+            <h2 className="ut-align-center ut-margin-top-0">
+              Saving Throw Mods
+            </h2>
           </div>
 
-          <br />
           <br />
           <div className="flex-grid  flex-grid--flex-start">
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
@@ -1034,45 +1059,12 @@ const CharacterSheet = () => {
         </div>
 
         <div className="flex-grid__child">
-          {/*  ------ OPTIONAL PRESETS ---- */}
-          <PresetsSelector
-            presetData={presetData}
-            handlePreset={handlePreset}
-          />
           {/*  ------- EXPLAINER BOX ------ */}
           <div className="data-display-box  data-display-box--explanations">
-            <div className="data-display-box__text">
-              <ul className="list-downloads">
-                <li className="list-downloads__item">
-                  <a
-                    href="assets/pdfs/BLRPG - no art - web.pdf"
-                    className="list-downloads__link "
-                    target="_blank"
-                  >
-                    Game Rules - beta, no art PDF
-                  </a>
-                </li>
-                <li className="list-downloads__item" target="_blank">
-                  <a
-                    href="assets/pdfs/BLRPG  - Character Sheets.pdf"
-                    className="list-downloads__link  "
-                    target="_blank"
-                  >
-                    Character Sheet PDF
-                  </a>
-                </li>
-                <li className="list-downloads__item">
-                  <a
-                    href="assets/pdfs/BLRGP - Refence Sheets.pdf"
-                    className="list-downloads__link "
-                    target="_blank"
-                  >
-                    Quick Reference Rules PDF
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <h2 className="data-display-box__header">Downloads</h2>
+            <div className="data-display-box__text"></div>
+            <h2 className="data-display-box__header">
+              Symbol or Character Sketch
+            </h2>
           </div>
 
           {/*  ------- ALIGNMENT ------ */}
@@ -1134,7 +1126,6 @@ const CharacterSheet = () => {
           </label>
         </div>
       </div>
-
       {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
       <section>
         <LevelsTable
@@ -1143,7 +1134,6 @@ const CharacterSheet = () => {
           handleSetCharTalents={handleSetCharTalents}
         />
       </section>
-
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
       <section className="section--notes">
         <h2>Special Abilites &amp; Notes</h2>
@@ -1155,7 +1145,6 @@ const CharacterSheet = () => {
           character={character}
         />
       </section>
-
       {/*  --------------- SPELLS -------------- */}
       {character.wizardry1StartLevel > 0 &&
         character.level >= character.wizardry1StartLevel && (

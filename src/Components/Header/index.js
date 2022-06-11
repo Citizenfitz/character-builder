@@ -2,25 +2,52 @@ import React from "react";
 
 const Header = () => (
   <header role="banner" className="header" id="header">
-    <div className="flex-grid flex-grid--space-evenly  flex-grid--align-items-center">
-      <div className="aspect-icon  aspect-icon--large aspect-icon--fighter"></div>
-      <div className="aspect-icon  aspect-icon--large aspect-icon--priest"></div>
-      <h1 className="flex-grid flex-grid--flex-start">
-        <span className="header__dropcap">E</span>
-        <div>
-          <span className="ut-only-sr">E</span>verLore
-          <span className="subheader">Character Generator</span>
+    <div className="flex-grid  flex-grid--align-items-center">
+      <a href="./" className="header__h1-link">
+        <h1 className="flex-grid flex-grid--flex-start">
+          <span className="header__dropcap">E</span>
+          <div>
+            <span className="ut-only-sr">E</span>verLore
+            <span className="subheader">A Classic Fantasy RPG</span>
+          </div>
+        </h1>
+      </a>
+
+      <div className="header__card-icons">
+        <div className="flex-grid flex-grid--align-items-end">
+          <div className="aspect-icon  aspect-icon--large aspect-icon--fighter"></div>
+          <div className="aspect-icon  aspect-icon--large aspect-icon--priest"></div>
+
+          <div className="aspect-icon  aspect-icon--large aspect-icon--wizard"></div>
+          <div className="aspect-icon  aspect-icon--large aspect-icon--knave"></div>
         </div>
-      </h1>
-      <div className="aspect-icon  aspect-icon--large aspect-icon--wizard"></div>
-      <div className="aspect-icon  aspect-icon--large aspect-icon--knave"></div>
+      </div>
     </div>
-    <div className="header__bottom-border"></div>
-    <div className="header__system-banner">
-      Bottled Lightning
-      <br />
-      Game System
-    </div>
+
+    <nav role="navigation">
+      <ul className="header__nav-list">
+        <li className="header__nav-list-item">
+          <a href="./"> About </a>
+        </li>
+        <li className="header__nav-list-item">
+          <a
+            href="https://www.drivethrurpg.com/product/398899/EverLore-Core-Rules"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            Buy & Free Downloads <span className="fas fa-new-window"></span>
+          </a>
+        </li>
+        <li className="header__nav-list-item">
+          <a href="./character"> Character Builder </a>
+        </li>
+
+        <li className="header__nav-list-item">
+          <a href="#"> Coming Soon </a>
+        </li>
+      </ul>
+    </nav>
   </header>
 );
 
