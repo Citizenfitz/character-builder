@@ -1270,10 +1270,14 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .data-display-box__header {
   position: absolute;
-  bottom: 0.25rem;
+  bottom: 0;
+  padding: 0.125rem 0;
+  background: #ddb5e0;
   left: 0;
   width: 100%;
   text-align: center;
+  color: #000;
+  font-size: 0.75rem;
 }
 .data-display-box--save-mods {
   margin-bottom: 0;

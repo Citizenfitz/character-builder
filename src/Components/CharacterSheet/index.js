@@ -917,9 +917,7 @@ const CharacterSheet = () => {
                 <br />
                 <span className="label">Passive:</span> {character.perception}
               </div>
-              <h2 className="data-display-box__header">
-                <span className="fas fa-eye"></span> Perc.
-              </h2>
+              <h2 className="data-display-box__header">Perc.</h2>
             </div>
           </div>
           {/*  ------- SAVING THROW MODS ------ */}

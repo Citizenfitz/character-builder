@@ -8,10 +8,14 @@
   }
   &__header {
     position: absolute;
-    bottom: 0.25rem;
+    bottom: 0;
+    padding: 0.125rem 0;
+    background: lighten($color-royal, 40%);
     left: 0;
     width: 100%;
     text-align: center;
+    color: $color-black;
+    font-size: 0.75rem;
   }
   &--save-mods {
     margin-bottom: 0;

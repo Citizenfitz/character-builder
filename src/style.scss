@@ -23,7 +23,8 @@
 }
 @font-face {
   font-family: "FontAwesome";
-  src: url("assets/fonts/FontAwesome/fontawesome-webfont.ttf") format("truetype");
+  src: url("assets/fonts/FontAwesome/fontawesome-webfont.ttf")
+    format("truetype");
 }
 *,
 *:before,
@@ -120,7 +121,7 @@ h1,
 }
 @media (max-width: 480px) {
   h1,
-.h1 {
+  .h1 {
     font-size: 1.25em;
   }
 }
@@ -135,7 +136,7 @@ h2,
 }
 @media (max-width: 480px) {
   h2,
-.h2 {
+  .h2 {
     font-size: 1em;
   }
 }
@@ -260,7 +261,7 @@ label {
 }
 
 /***** INPUTS *****/
-input[type=text] {
+input[type="text"] {
   height: 24px;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
@@ -268,7 +269,7 @@ input[type=text] {
   background-color: #f5f3ed;
 }
 
-input[type=number] {
+input[type="number"] {
   height: 24px;
   border-radius: 3px;
   border: 1px solid #c4c4c4;
@@ -365,12 +366,12 @@ input.input--attached-button {
   padding: 0 3px;
 }
 
-input[type=radio] {
+input[type="radio"] {
   visibility: hidden;
   position: absolute;
 }
 
-input[type=radio] + label {
+input[type="radio"] + label {
   display: inline-block;
   height: 24px;
   border-radius: 3px;
@@ -385,22 +386,22 @@ input[type=radio] + label {
   margin-left: 0.5em;
 }
 
-input[type=radio]:checked + label {
+input[type="radio"]:checked + label {
   display: inline-block;
   background: #883c8d;
   color: white;
   border-color: black;
 }
-input[type=radio]:checked + label.fighter {
+input[type="radio"]:checked + label.fighter {
   background: #049648;
 }
-input[type=radio]:checked + label.wizard {
+input[type="radio"]:checked + label.wizard {
   background: #d99d1e;
 }
-input[type=radio]:checked + label.priest {
+input[type="radio"]:checked + label.priest {
   background: #2375b9;
 }
-input[type=radio]:checked + label.knave {
+input[type="radio"]:checked + label.knave {
   background: #eb2026;
 }
 
@@ -536,7 +537,8 @@ th {
   background: #f5f3ed;
   margin: 1em auto 0 auto;
 }
-.aspect-radio-set__item:nth-child(1), .aspect-radio-set__item:nth-child(4) {
+.aspect-radio-set__item:nth-child(1),
+.aspect-radio-set__item:nth-child(4) {
   flex-basis: 100%;
   display: flex;
   justify-content: center;
@@ -657,7 +659,9 @@ th {
 }
 .data-display-box__header {
   position: absolute;
-  bottom: 0.25rem;
+  bottom: 0;
+  padding: 0.25rem 0;
+  background: #ddb5e0;
   left: 0;
   width: 100%;
   text-align: center;
