@@ -977,6 +977,26 @@ th {
   content: "";
 }
 
+.fa-eye::before {
+  content: "";
+}
+
+.fa-wand::before {
+  content: "";
+}
+
+.fa-shield::before {
+  content: "";
+}
+
+.fa-diamond::before {
+  content: "";
+}
+
+.fa-castle::before {
+  content: "";
+}
+
 .icon-school {
   display: inline-block;
   width: 14px;
@@ -1288,7 +1308,7 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .data-display-box--explanations {
   margin-bottom: 2rem;
-  height: 149px;
+  height: 152px;
   width: 100%;
 }
 .data-display-box--quick-values {
@@ -1522,8 +1542,9 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .char-bldr {
-  max-width: 900px;
+  max-width: 880px;
   text-align: left;
+  margin: 0 auto;
 }
 .char-bldr__h2 {
   margin-top: -1rem;
@@ -1535,11 +1556,23 @@ input[type=radio] + label.aspect-radio-label__type {
 .char-bldr__toolbar {
   background: #dcdcdc;
   padding: 1em 1em 0 1em;
-  margin-bottom: 1em;
   border-radius: 3px;
 }
 .char-bldr__toolbar > div {
   margin-right: 3em;
+}
+.char-bldr__bottom-border {
+  background-image: url("assets/images/border-triangles-down-no-bottom.svg");
+  background-repeat: repeat-x;
+  background-size: 60% auto;
+  width: 100%;
+  height: 20px;
+  top: 0;
+  left: 0;
+  margin-bottom: 1em;
+}
+.char-bldr__bottom-border--flip {
+  transform: rotate(180deg);
 }
 
 .hp {
@@ -1837,7 +1870,8 @@ body {
     -webkit-print-color-adjust: exact;
   }
 
-  #footer,
+  .header, .footer,
+.char-bldr__toolbar,
 .preset-chooser,
 .data-display-box--explanations > div,
 .data-display-box--explanations > h2,

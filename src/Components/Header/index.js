@@ -31,7 +31,7 @@ const Header = () => (
         </li>
         <li className="header__nav-list-item">
           <a
-            href="https://www.drivethrurpg.com/product/398899/EverLore-Core-Rules"
+            href="https://www.drivethrurpg.com/browse/pub/21114/EverLore-Games"
             target="_blank"
             rel="noreferrer"
           >

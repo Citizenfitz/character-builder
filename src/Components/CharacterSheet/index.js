@@ -776,18 +776,13 @@ const CharacterSheet = () => {
           />{" "}
         </div>
         <div>
-          <button>
-            {" "}
-            <span className="fas fa-die"></span> Roll Attributes
-          </button>
+          <button>Roll Attributes</button>
         </div>
         <div>
-          <button>
-            {" "}
-            <span className="fas fa-die"></span> Roll Attributes
-          </button>
+          <button>Roll Attributes</button>
         </div>
       </div>
+      <div className="char-bldr__bottom-border"></div>
       <div className="flex-grid">
         <div className="flex-grid__child">
           {/*  ------- NAMEs ------ */}
@@ -922,7 +917,9 @@ const CharacterSheet = () => {
                 <br />
                 <span className="label">Passive:</span> {character.perception}
               </div>
-              <h2 className="data-display-box__header">Perc.</h2>
+              <h2 className="data-display-box__header">
+                <span className="fas fa-eye"></span> Perc.
+              </h2>
             </div>
           </div>
           {/*  ------- SAVING THROW MODS ------ */}
@@ -1181,6 +1178,7 @@ const CharacterSheet = () => {
           <span>Auto save</span>
         </label>
       </div>
+      <div className="char-bldr__bottom-border char-bldr__bottom-border--flip"></div>
     </div>
   );
 };
