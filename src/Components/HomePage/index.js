@@ -11,7 +11,9 @@ const HomePage = () => (
         />
       </div>
       <div className="flex-grid__child--half">
-        <h2 className="homepage__h2">Your Flexible, Old-School Fantasy RPG!</h2>
+        <h2 className="homepage__h2">
+          Your Flexible, Old-School, Fantasy RPG!
+        </h2>
         <p className="homepage__p">
           <b>EverLore</b> is a table-top, fantasy role-playing game based on the
           most famous RPG from the 80s. It leverages the old-school RPG
@@ -58,6 +60,11 @@ const HomePage = () => (
         </p>
       </div>
     </div>
+    <h2 className="homepage__h2">Choose One of the Four Classes</h2>
+    <h2 className="homepage__h2">Choose Your Character's Talents</h2>
+    <h2 className="homepage__h2">
+      Choose Schools of Magic to Give your Magic-Users Flavor
+    </h2>
   </div>
 );
 

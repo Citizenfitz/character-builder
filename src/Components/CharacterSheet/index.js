@@ -782,7 +782,7 @@ const CharacterSheet = () => {
           <button>Roll Attributes</button>
         </div>
       </div>
-      <div className="char-bldr__bottom-border"></div>
+      <div className="char-bldr__bottom-border ut-no-screen"></div>
       <div className="flex-grid">
         <div className="flex-grid__child">
           {/*  ------- NAMEs ------ */}
@@ -1178,7 +1178,7 @@ const CharacterSheet = () => {
           <span>Auto save</span>
         </label>
       </div>
-      <div className="char-bldr__bottom-border char-bldr__bottom-border--flip"></div>
+      <div className="char-bldr__bottom-border char-bldr__bottom-border--flip ut-no-screen"></div>
     </div>
   );
 };
