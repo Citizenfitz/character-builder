@@ -21,12 +21,10 @@ import {
   calculateBonus,
   formatNumberModifier,
   whichTalentAspect,
-  whichAspectId,
   formatNumberSuffix,
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
-import ReactTooltip from "react-tooltip";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -96,15 +94,19 @@ const characterDefaults = {
   saveModsRace: [],
   armor: armorData[0],
   shield: 0,
+  shieldIndex: 0,
   armorIndex: 0,
   meleeWeapon: meleeWeaponData[0],
   meleeWeaponIndex: 0,
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
   characteristicsRace: [],
-  hasWizardry: false,
-  hasThaumaturgy: false,
-  wizardrySchools: [],
+  //hasWizardry: false,
+  wizardrySchools: ["Choose", "Choose"],
+  thaumaturgyStartLevel: 0,
+  wizardry1StartLevel: 0,
+  wizardry2StartLevel: 0,
+  wizardry3StartLevel: 0,
 };
 
 const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));
@@ -118,7 +120,6 @@ if (useLocalStorage) {
 
 /**
  * TODO:
- * - only show spell tables if talent is at level. e.g.: 3rd level talent but character is only on 1st level
  * - Lowered Attributes / Attribute Increase modal to add to bonus
  * - clear spells (of specific color) when schools change
  * - armor and weapons for presets
@@ -369,30 +370,121 @@ const CharacterSheet = () => {
     }));
   };
 
+  // this tells you at what level a character took a talent - needed for Wizardry schools & thaurmaturgy
+  // pass it the object of the current char talents
+  // returns zero if not taken at all
+  const findTalentLevelSlot = (talents, talentName) => {
+    if (talents.talentLevel3 === talentName) {
+      return 3;
+    }
+    if (talents.talentLevel5 === talentName) {
+      return 5;
+    }
+    if (talents.talentLevel7 === talentName) {
+      return 7;
+    }
+    if (talents.talentLevel9 === talentName) {
+      return 9;
+    }
+    if (Object.values(talents).indexOf(talentName) > -1) {
+      return 1;
+    }
+    return 0;
+  };
+
+  // sets an index of a wizard school.
+  const setWizardSchool = (color, schoolIndex) => {
+    let tempObject = character.wizardrySchools.slice(0);
+    console.log("tempObject = " + tempObject);
+    tempObject[schoolIndex] = color;
+    console.log("tempObject = " + tempObject);
+    setCharacter((prev) => ({
+      ...prev,
+      wizardrySchools: tempObject,
+    }));
+  };
+
+  // const fillInExtraWizSchools = () => {
+  //   // if they DO have wizardry 3 then fill in the other three school slots with colors not chosen
+  //   let tempObject = character.wizardrySchools.slice(0);
+  //   for (let index = 0; index < magicSchools.length; index++) {
+  //     if (!tempObject.includes(magicSchools[index].name)) {
+  //       character.wizardrySchools.push(magicSchools[index].name);
+  //     }
+  //   }
+  // };
+
+  // cleans up the e wizadrySchool array and sets the wizardryNeedsToChooseSchool var
+  // const wizardrySchoolCleanUp = () => {
+  //   // finally, see if wizadrySchool contains a single string from the magic schools. If it does, wizardryNeedsToChooseSchool is false
+  //   let needsSchool = true;
+  //   for (let index = 0; index < magicSchools.level; index++) {
+  //     if (character.wizardrySchools.includes(magicSchools[index].name)) {
+  //       needsSchool = false;
+  //     }
+  //   }
+  //   setCharacter((prev) => ({
+  //     ...prev,
+  //     wizardryNeedsToChooseSchool: needsSchool,
+  //   }));
+  // };
+
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
-    const talents = Object.values(state.talents);
+    //const talents = Object.values(state.talents);
+
+    // find out at what level, if any, character has spellcasting talents
+    state.thaumaturgyStartLevel = findTalentLevelSlot(
+      state.talents,
+      "Thaumaturgy"
+    );
+    state.wizardry1StartLevel = findTalentLevelSlot(
+      state.talents,
+      "Wizardry 1"
+    );
+    state.wizardry2StartLevel = findTalentLevelSlot(
+      state.talents,
+      "Wizardry 2"
+    );
+    state.wizardry3StartLevel = findTalentLevelSlot(
+      state.talents,
+      "Wizardry 3"
+    );
 
     // check all talent values for 'Wizardry' and 'Thaurmaturgy'
-    const wizardryRegEx = /Wizardry/g;
-    state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
-    state.hasThaumaturgy = talents.includes("Thaumaturgy");
+    // const wizardryRegEx = /Wizardry/g;
+    // state.hasWizardry = talents.some((e) => wizardryRegEx.test(e));
 
-    let hasWizardry1 = talents.includes("Wizardry 1");
-    let hasWizardry2 = talents.includes("Wizardry 2");
-    let hasWizardry3 = talents.includes("Wizardry 3");
+    // let hasWizardry1 = talents.includes("Wizardry 1");
+    // let hasWizardry2 = talents.includes("Wizardry 2");
+    // let hasWizardry3 = talents.includes("Wizardry 3");
 
-    if (!hasWizardry2) {
+    // if they don't have wizardry 3, dump any extra schools
+    if (state.wizardry2StartLevel === 0) {
+      state.wizardrySchools.slice(0, 2);
+    }
+
+    // if they don't have wizardry 2, dump  wizardry 3  & set second school to "Choose"
+    if (state.wizardry2StartLevel === 0) {
+      state.wizardrySchools[2] = "Choose";
+      state.wizardry3StartLevel = 0;
+      // hasWizardry3 = false;
       Object.entries(state.talents).forEach(([key, val]) => {
         if (val === "Wizardry 3") {
           state.talents[key] = "choose";
-          hasWizardry3 = false;
         }
       });
     }
 
-    if (!hasWizardry1) {
-      state.hasWizardry = false;
+    // if they don't have wizardry 1, dump any wizardry-related talents
+    if (state.wizardry1StartLevel === 0) {
+      state.wizardrySchools[1] = "Choose";
+      state.wizardrySchools[2] = "Choose";
+
+      state.wizardry2StartLevel = 0;
+      state.wizardry3StartLevel = 0;
+      // state.hasWizardry = false;
+
       Object.entries(state.talents).forEach(([key, val]) => {
         if (
           val === "Encumbered Casting" ||
@@ -404,20 +496,6 @@ const CharacterSheet = () => {
           state.talents[key] = "choose";
         }
       });
-      hasWizardry2 = false;
-      hasWizardry3 = false;
-    }
-
-    // check that Wiz school has been selected
-    if (state.hasWizardry) {
-      let schoolCount = [1, 2, 5];
-      let level = 0;
-      level += hasWizardry2 ? 1 : 0;
-      level += hasWizardry3 ? 1 : 0;
-      // if the school count allowed does not match our character's school count, then show the "Schools of Magic" modal for editing
-      if (schoolCount[level] !== character.wizardrySchools.length) {
-        setSchoolLimit(schoolCount[level]);
-      }
     }
 
     return state;
@@ -686,7 +764,25 @@ const CharacterSheet = () => {
   };
 
   return (
-    <div>
+    <div className="char-bldr">
+      <h2 className="char-bldr__h2">EverLore Character Builder</h2>
+      <div className="char-bldr__toolbar flex-grid flex-grid--flex-start">
+        {/*  ------- TOOLBAR ------ */}
+        <div>
+          {" "}
+          <PresetsSelector
+            presetData={presetData}
+            handlePreset={handlePreset}
+          />{" "}
+        </div>
+        <div>
+          <button>Roll Attributes</button>
+        </div>
+        <div>
+          <button>Roll Attributes</button>
+        </div>
+      </div>
+      <div className="char-bldr__bottom-border ut-no-screen"></div>
       <div className="flex-grid">
         <div className="flex-grid__child">
           {/*  ------- NAMEs ------ */}
@@ -821,11 +917,13 @@ const CharacterSheet = () => {
                 <br />
                 <span className="label">Passive:</span> {character.perception}
               </div>
-              <h2 className="data-display-box__header">Perc.</h2>
+              <h2 className="data-display-box__header">
+                <span className="fas fa-eye"></span> Perc.
+              </h2>
             </div>
           </div>
           {/*  ------- SAVING THROW MODS ------ */}
-          <h2 className="ut-align-center ut-margin-top-0">Saving Throw Mods</h2>
+
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
               <ul className="data-display-box__save-mods-list">
@@ -848,9 +946,11 @@ const CharacterSheet = () => {
                 ))}
               </ul>
             </div>
+            <h2 className="ut-align-center ut-margin-top-0">
+              Saving Throw Mods
+            </h2>
           </div>
 
-          <br />
           <br />
           <div className="flex-grid  flex-grid--flex-start">
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
@@ -956,45 +1056,12 @@ const CharacterSheet = () => {
         </div>
 
         <div className="flex-grid__child">
-          {/*  ------ OPTIONAL PRESETS ---- */}
-          <PresetsSelector
-            presetData={presetData}
-            handlePreset={handlePreset}
-          />
           {/*  ------- EXPLAINER BOX ------ */}
           <div className="data-display-box  data-display-box--explanations">
-            <div className="data-display-box__text">
-              <ul className="list-downloads">
-                <li className="list-downloads__item">
-                  <a
-                    href="assets/pdfs/BLRPG - no art - web.pdf"
-                    className="list-downloads__link "
-                    target="_blank"
-                  >
-                    Game Rules - beta, no art PDF
-                  </a>
-                </li>
-                <li className="list-downloads__item" target="_blank">
-                  <a
-                    href="assets/pdfs/BLRPG  - Character Sheets.pdf"
-                    className="list-downloads__link  "
-                    target="_blank"
-                  >
-                    Character Sheet PDF
-                  </a>
-                </li>
-                <li className="list-downloads__item">
-                  <a
-                    href="assets/pdfs/BLRGP - Refence Sheets.pdf"
-                    className="list-downloads__link "
-                    target="_blank"
-                  >
-                    Quick Reference Rules PDF
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <h2 className="data-display-box__header">Downloads</h2>
+            <div className="data-display-box__text"></div>
+            <h2 className="data-display-box__header">
+              Symbol or Character Sketch
+            </h2>
           </div>
 
           {/*  ------- ALIGNMENT ------ */}
@@ -1056,7 +1123,6 @@ const CharacterSheet = () => {
           </label>
         </div>
       </div>
-
       {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
       <section>
         <LevelsTable
@@ -1065,7 +1131,6 @@ const CharacterSheet = () => {
           handleSetCharTalents={handleSetCharTalents}
         />
       </section>
-
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
       <section className="section--notes">
         <h2>Special Abilites &amp; Notes</h2>
@@ -1077,25 +1142,31 @@ const CharacterSheet = () => {
           character={character}
         />
       </section>
-
       {/*  --------------- SPELLS -------------- */}
-      {character.hasWizardry && (
-        <WizardrySpells
-          level={character.wizardLevel}
-          intStat={character.attributes.intelligence.total}
-          schools={character.wizardrySchools}
-          schoolLimit={schoolLimit}
-          onPickSchool={handlePickSchool}
-          useLocalStorage={useLocalStorage}
-        />
-      )}
-      {character.hasThaumaturgy && (
-        <ThaumaturgySpells
-          level={character.priestLevel}
-          wisStat={character.attributes.wisdom.total}
-          useLocalStorage={useLocalStorage}
-        />
-      )}
+      {character.wizardry1StartLevel > 0 &&
+        character.level >= character.wizardry1StartLevel && (
+          <WizardrySpells
+            charLevel={character.level}
+            wizLevel={character.wizardLevel}
+            intStat={character.attributes.intelligence.total}
+            wizardrySchools={character.wizardrySchools}
+            // schoolLimit={schoolLimit}
+            onPickSchool={handlePickSchool}
+            setWizardSchool={setWizardSchool}
+            wizardry1StartLevel={character.wizardry1StartLevel}
+            wizardry2StartLevel={character.wizardry2StartLevel}
+            wizardry3StartLevel={character.wizardry3StartLevel}
+            useLocalStorage={useLocalStorage}
+          />
+        )}
+      {character.thaumaturgyStartLevel > 0 &&
+        character.level >= character.thaumaturgyStartLevel && (
+          <ThaumaturgySpells
+            level={character.priestLevel}
+            wisStat={character.attributes.wisdom.total}
+            useLocalStorage={useLocalStorage}
+          />
+        )}
       <div className="autosave">
         <label>
           <input
@@ -1107,6 +1178,7 @@ const CharacterSheet = () => {
           <span>Auto save</span>
         </label>
       </div>
+      <div className="char-bldr__bottom-border char-bldr__bottom-border--flip ut-no-screen"></div>
     </div>
   );
 };

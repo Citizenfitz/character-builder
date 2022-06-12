@@ -1,16 +1,21 @@
 @import "variables-mixins";
 @import "base";
-@import "header";
+
 @import "forms";
 @import "tables";
 @import "flexgrid";
-@import "modal";
+
 @import "icons";
 
 @import "alignment";
 @import "aspect";
 
 @import "data-display-box";
+
+@import "component-homepage";
+@import "component-modal";
+@import "component-header";
+@import "component-char-bldr";
 
 @import "quickRef";
 @import "attributes";

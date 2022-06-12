@@ -17,29 +17,21 @@ body {
   font-family: $text-regular;
   color: $color-black;
   background: $color-gray-5;
+  // text-align: center;
 }
 
 // bg base color for main elements
 main,
 header {
-  background: $color-white;
-  border-left: 1px solid $color-royal;
-  border-right: 1px solid $color-royal;
+  // background: $color-white;
+  // border-left: 1px solid $color-royal;
+  // border-right: 1px solid $color-royal;
 }
 #root {
 }
 
-@mixin site-layout {
-  width: 100%;
-  max-width: $mq-desktop-max;
-  margin: 0 auto;
-}
-
 main {
   @include site-layout;
-  padding: $margins-desktop;
-  // border-left: 1px solid $color-royal;
-  // border-right: 1px solid $color-royal;
   @include mq-tablet {
     padding: $margins-tablet;
   }
@@ -49,6 +41,7 @@ main {
 }
 
 .autosave {
+  display: none;
   position: fixed;
   bottom: 5px;
   right: 5px;
@@ -64,32 +57,14 @@ main {
   }
 }
 
-footer,
 .footer {
   @include site-layout;
-  position: relative;
-
-  padding: $margins-desktop;
-  margin-bottom: 2rem;
   background: lighten($color-royal, 40%);
   color: darken($color-royal, 10%);
-  @include mq-tablet {
-    padding: $margins-tablet;
-  }
-  @include mq-phone {
-    padding: $margins-phone;
-  }
-  &__top-border {
-    background-image: url($path-img + "border-triangles-down-no-bottom.svg");
-    background-repeat: repeat-x;
-    background-size: 60% auto;
-    width: 100%;
-    height: 20px;
-    position: absolute;
-    top: -20px;
-    left: 0;
-    transform: rotate(180deg);
-  }
+  box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
+    -1000px 0px 0px 0px lighten($color-royal, 40%);
+  padding: $margins-desktop;
+  padding-bottom: 10rem;
 }
 
 /***** HEADERS *****/
@@ -123,62 +98,6 @@ input[type="submit"],
 input[type="button"] {
   cursor: pointer;
 }
-
-/***** SECTIONS  *****/
-// section {
-//   // border: 1px solid;
-//   // border-color: #dcdcdc;
-//   transition: border-color 0.5s ease;
-//   margin-bottom: 1em;
-//   padding: 0.5em;
-//   background: $color-white;
-
-//   &.l-basics {
-//     width: calc(50% - 0.5em);
-//   }
-//   &.l-level {
-//     width: calc(50% - 0.5em);
-//   }
-//   &.l-attributes {
-//     width: calc(50% - 0.5em);
-//   }
-//   &.l-aspect {
-//     width: calc(50% - 0.5em);
-//   }
-//   &.l-talents {
-//     width: 100%;
-//   }
-//   &.l-alignment {
-//     width: 33%;
-//   }
-//   &.l-traits {
-//     width: 66%;
-//   }
-//   @include mq-phone {
-//     padding-left: 0;
-//     padding-right: 0;
-//     border-left: none;
-//     border-right: none;
-//   }
-// }
-
-// .fighter section {
-//   border-top: 3px solid $color-fighter;
-// }
-// .priest section {
-//   border-top: 3px solid $color-priest;
-// }
-// .wizard section {
-//   border-top: 3px solid $color-wizard;
-// }
-// .knave section {
-//   border-top: 3px solid $color-knave;
-// }
-
-// section > h2 {
-//   margin-top: 0;
-//   margin-bottom: 1rem;
-// }
 
 /*******************  LISTS  ****************************/
 dl,

@@ -1,17 +1,15 @@
 //* *************** UTILITES ***************** */
 
-.ut-hidden {
-  height: 0px;
-  width: 0px;
-  overflow: hidden;
-  opacity: 0;
+// ------- position & display -------
+.ut-position-relative {
+  position: relative;
 }
 
-.ut-ellipsis-overflow {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+.ut-display-inine-block {
+  display: inline-block;
 }
+
+// ------- alignment -------
 
 .ut-align-center {
   text-align: center;
@@ -19,20 +17,7 @@
   margin-right: auto;
 }
 
-.ut-all-caps {
-  text-transform: uppercase;
-}
-
-.ut-only-sr {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
+// ------- colors -------
 
 .ut-zebra-gray {
   background: $color-gray-5;
@@ -59,14 +44,16 @@
   }
 }
 
-.ut-captialize {
-  text-transform: capitalize;
-}
-
 //  ------- Margins --------
 .ut-margin {
   &-top-0 {
     margin-top: 0;
+  }
+  &-bottom-half-em {
+    margin-bottom: 0.5em;
+  }
+  &-bottom-half-rem {
+    margin-bottom: 0.5rem;
   }
   &-right-2em {
     margin-right: 2em;
@@ -74,20 +61,33 @@
   &-right-1em {
     margin-right: 1em;
   }
-  &-bottom-half-em {
-    margin-bottom: 0.5em;
+  &-right-half-em {
+    margin-right: 0.5em;
   }
+  &-left-1em {
+    margin-left: 1em;
+  }
+  &-left-half-em {
+    margin-left: 0.5em;
+  }
+}
+
+//  ------- Fonts & text styles --------
+
+.ut-all-caps {
+  text-transform: uppercase;
 }
 
 .ut-text-explain,
 .ut-text-helper {
   color: $color-gray-2;
-  font-family: $text-cursive;
-  font-size: 0.9375em;
-  //font-style: italic;
+  font-family: $text-regular;
+  font-size: 0.9375rem;
+  font-style: italic;
 }
-
-//  ------- FOntS --------
+.ut-captialize {
+  text-transform: capitalize;
+}
 .ut-text-greyhawk {
   font-family: $text-header;
 }
@@ -96,18 +96,16 @@
   font-family: $text-cursive;
 }
 
-.ut-display-inine-block {
-  display: inline-block;
+.ut-dropcap {
+  color: #903;
+  float: left;
+  font-family: Georgia;
+  font-size: 75px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
 }
-
-.clearfix:after {
-  content: ".";
-  visibility: hidden;
-  display: block;
-  height: 0;
-  clear: both;
-}
-
 //  ------- PRINT VS SCREEN --------
 @media print {
   .ut-no-print {
@@ -119,4 +117,44 @@
   .ut-no-screen {
     display: none !important;
   }
+}
+
+//  ------- MISC--------
+.ut-clickable {
+  cursor: pointer;
+  &:hover {
+    color: $color-royal;
+  }
+}
+
+.ut-clearfix:after {
+  content: ".";
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.ut-hidden {
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.ut-ellipsis-overflow {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.ut-only-sr {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }

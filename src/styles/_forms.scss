@@ -59,12 +59,15 @@ button,
     color: $color-white;
     border-radius: $border-radius-standard;
     border: $form-element-border;
+    border-color: $color-royal;
     vertical-align: bottom;
     &:hover {
       background-color: darken($color-royal, 10%);
+      color: $color-white;
     }
     &:active {
       background-color: darken($color-royal, 10%);
+      color: $color-white;
     }
   }
   &--secondary {

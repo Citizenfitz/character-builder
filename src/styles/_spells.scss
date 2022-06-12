@@ -1,88 +1,60 @@
+.spells {
+  &__cta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background-color: $color-overlay-light;
+    padding-top: 1em;
+    > .button {
+      box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+  }
+  &__table {
+    width: 100%;
+    tr:nth-child(even) {
+      background-color: $color-gray-5;
+    }
+    th {
+      border-color: $color-black;
+    }
+    th,
+    td {
+      padding: 5px;
+      text-align: center;
+    }
+    td:nth-child(2) {
+      text-align: left;
+    }
+  }
+  &--table-wizardry {
+    th {
+      background-color: $color-wizard;
+      color: $color-white;
+      border-color: $color-black;
+    }
+  }
+  &--table-thaumaturgy {
+    th {
+      background-color: $color-priest;
+      color: $color-white;
+      border-color: $color-black;
+    }
+  }
+  &__known-schools {
+    display: inline-block;
+    position: relative;
+    margin-left: 10px;
+    top: 2px;
+  }
+}
+
 .button-showSpellSlots {
   margin-left: 20px;
-}
-.spells--table {
-  width: 100%;
-  tr:nth-child(even) {
-    background-color: $color-gray-5;
-  }
-  th {
-    border-color: $color-black;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-  td:nth-child(2) {
-    text-align: left;
-  }
-}
-.knownSchools {
-  display: inline-block;
-  position: relative;
-  margin-left:10px;
-  top: 2px;
-}
-.table-wrapper {
-  position: relative
-}
-#cta-schools {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: darken(rgba($color-wizard,.9), 20%);
-}
-.spells--wizardry {
-  th {
-    background-color: $color-wizard;
-    color: $color-white;
-    border-color: $color-black;
-  }
-  tr:hover, tr:active {
-    background-color: lighten($color-wizard, 40%);
-  }
-  [class^='school'] {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    margin-left: 4px
-  }
-  .school-white {
-    background-color: $school-white;
-  }
-  .school-black {
-    background-color: $school-black;
-  }
-  .school-green {
-    background-color: $school-green;
-  }
-  .school-blue {
-    background-color: $school-blue;
-  }
-  .school-red {
-    background-color: $school-red;
-  }
-}
-
-.spells--thaumaturgy {
-  th {
-    background-color: $color-priest;
-    color: $color-white;
-    border-color: $color-black;
-  }
-  tr:hover, .active {
-    background-color: lighten($color-priest, 50%) !important;
-  }
-}
-
-.clickable {
-  cursor: pointer;
 }
 
 #modal--spellSlots {
@@ -93,7 +65,8 @@
   td {
     text-align: center;
   }
-  .active, .active th {
+  .active,
+  .active th {
     background-color: lighten($color-wizard, 30%);
   }
 }
@@ -110,10 +83,11 @@
   }
   .unavailable {
     background-color: $color-gray-4;
-    color: rgba($color-gray-1,.8);
+    color: rgba($color-gray-1, 0.8);
     cursor: not-allowed;
     pointer-events: none;
-    &:hover, &:active {
+    &:hover,
+    &:active {
       background-color: $color-gray-4;
     }
   }
@@ -129,10 +103,10 @@
       display: inline-block;
       margin: 5px 0 5px 20px;
       &:first-child {
-        margin-left: 0
+        margin-left: 0;
       }
       &:last-child {
-        margin-right: 0
+        margin-right: 0;
       }
     }
   }
