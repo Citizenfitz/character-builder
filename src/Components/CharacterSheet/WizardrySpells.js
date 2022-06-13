@@ -106,29 +106,6 @@ export default function WizardrySpells(props) {
     setOpen(false);
   };
 
-  // const manageSchools = (e) => {
-  //   setIsOpen_Schools(true);
-  // };
-
-  // const handleSave_Schools = (e) => {
-  //   e.preventDefault();
-  //   const checked = Array.from(e.currentTarget.schools)
-  //     .filter((check) => {
-  //       return check.checked;
-  //     })
-  //     .map((check) => check.value);
-
-  //   if (schoolLimit === checked.length) {
-  //     setIsOpen_Schools(false);
-  //     setSchoolValidation(null);
-  //     setManageSchool(false);
-  //     onPickSchool(checked);
-  //   } else {
-  //     const plural = schoolLimit === 1 ? "" : "s";
-  //     setSchoolValidation(`You must select ${schoolLimit} school${plural}`);
-  //   }
-  // };
-
   const handleSetSchool = (e, schoolIndex) => {
     let value;
     if (e.target) {

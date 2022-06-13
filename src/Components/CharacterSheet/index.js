@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import ReactModal from "react-modal";
 import DiceBox from "@3d-dice/dice-box";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -763,6 +764,11 @@ const CharacterSheet = () => {
     }
   };
 
+  const [raceModalOpen, setRaceModalOpen] = useState(false);
+  const toggleRaceModal = () => {
+    setRaceModalOpen(!raceModalOpen);
+  };
+
   return (
     <div className="char-bldr">
       <h2 className="char-bldr__h2">EverLore Character Builder</h2>
@@ -841,16 +847,14 @@ const CharacterSheet = () => {
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- RACE ------ */}
               <label>
-                <input
+                <button
                   type="text"
-                  value={character.race}
-                  disabled
                   size="8"
-                  className="ut-no-print"
-                />
-                <div className="ut-no-screen print-text-input">
-                  {character.race}
-                </div>
+                  className="button ut-no-print"
+                  onClick={toggleRaceModal}
+                >
+                  {character.race}&nbsp;
+                </button>
                 <br />
                 <span className="label">Race</span>
               </label>
@@ -1177,6 +1181,49 @@ const CharacterSheet = () => {
         </label>
       </div>
       <div className="char-bldr__bottom-border char-bldr__bottom-border--flip ut-no-screen"></div>
+      {/*  ------- MODAL WITH CLASS PICKER ------ */}
+      <ReactModal
+        isOpen={raceModalOpen}
+        onRequestClose={toggleRaceModal}
+        contentLabel="Choose Class"
+        className="modal"
+        overlayClassName="modal-overlay"
+        ariaHideApp={false}
+      >
+        <div className="modal__header">
+          <h2 className="modal__h2">Choose a Class</h2>
+          <button
+            className="button modal__header-button"
+            onClick={toggleRaceModal}
+            aria-label="Close modal"
+          >
+            X
+          </button>
+        </div>
+        <div className="modal__body">
+          <p className="ut-margin-top-0">
+            To be any race other than human costs one talent slot. This can only
+            be chosen when a character is first created, it never changes, and
+            only ONE race talent may ever be taken.
+          </p>
+          <p>
+            Choose in the <b>talents section below</b> and it will be reflected
+            here as well.
+          </p>
+          <img
+            src="assets/images/race-choose-screenshot.png"
+            alt="EverLore race picker "
+          />
+        </div>
+        <div className="modal__footer">
+          <button
+            className="button button--primary button--large"
+            onClick={toggleRaceModal}
+          >
+            Close
+          </button>
+        </div>
+      </ReactModal>
     </div>
   );
 };
