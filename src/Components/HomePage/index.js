@@ -60,11 +60,6 @@ const HomePage = () => (
         </p>
       </div>
     </div>
-    <h2 className="homepage__h2">Choose One of the Four Classes</h2>
-    <h2 className="homepage__h2">Choose Your Character's Talents</h2>
-    <h2 className="homepage__h2">
-      Choose Schools of Magic to Give your Magic-Users Flavor
-    </h2>
   </div>
 );
 

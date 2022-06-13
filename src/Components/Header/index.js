@@ -43,7 +43,7 @@ const Header = () => (
           <a href="./character"> Character Builder </a>
         </li>
 
-        <li className="header__nav-list-item">
+        <li className="header__nav-list-item ut-hidden">
           <a href="#"> Coming Soon </a>
         </li>
       </ul>

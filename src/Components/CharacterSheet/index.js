@@ -779,7 +779,7 @@ const CharacterSheet = () => {
           <button>Roll Attributes</button>
         </div>
         <div>
-          <button>Roll Attributes</button>
+          <button>Roll Hit Points</button>
         </div>
       </div>
       <div className="char-bldr__bottom-border ut-no-screen"></div>
