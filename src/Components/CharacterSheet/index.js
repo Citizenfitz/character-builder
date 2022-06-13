@@ -772,6 +772,11 @@ const CharacterSheet = () => {
   return (
     <div className="char-bldr">
       <h2 className="char-bldr__h2">EverLore Character Builder</h2>
+      <p className="ut-text-explain ut-no-print">
+        <b>Instructions:</b> Play around with the form below till you get a
+        character you like (it's often easiest to start with a preset). <br />
+        Then print the page to paper or a PDFs. Simple! Desktop-only for now.
+      </p>
       <div className="char-bldr__toolbar flex-grid flex-grid--flex-start">
         {/*  ------- TOOLBAR ------ */}
         <div>
@@ -1191,7 +1196,7 @@ const CharacterSheet = () => {
         ariaHideApp={false}
       >
         <div className="modal__header">
-          <h2 className="modal__h2">Choose a Class</h2>
+          <h2 className="modal__h2">Choosing a Race</h2>
           <button
             className="button modal__header-button"
             onClick={toggleRaceModal}
