@@ -19,8 +19,6 @@ export default function WizardrySpells(props) {
     wizLevel,
     intStat,
     wizardrySchools,
-    // schoolLimit,
-    // onPickSchool,
     useLocalStorage,
     wizardry2StartLevel,
     wizardry3StartLevel,
@@ -33,9 +31,7 @@ export default function WizardrySpells(props) {
   const [spellSlot, setSpellSlot] = useState(0);
   const [magicSchools, setMagicSchools] = useState(magicSchoolsData);
   // todo: remove setManageSchool when new one working
-  //const [manageSchool, setManageSchool] = useState(false);
-  // const [modalIsOpen_Schools, setIsOpen_Schools] = useState(false);
-  //const [schoolValidation, setSchoolValidation] = useState(null);
+
   const [showAll, setShowAll] = useState(false);
   const [wizardryNeedsToChooseSchool, setWizardryNeedsToChooseSchool] =
     useState(true);
@@ -54,13 +50,6 @@ export default function WizardrySpells(props) {
       localStorage.setItem("wizardrySpells", JSON.stringify(spellList));
     }
   }, [spellList, useLocalStorage]);
-
-  // useEffect(() => {
-  //   if (schoolLimit) {
-  //     // setIsOpen_Schools(true)
-  //     setManageSchool(true);
-  //   }
-  // }, [schoolLimit]);
 
   // listen for change in wizardrySchools and adjust dropdowns, selected spells, and CTA
   useEffect(() => {
@@ -396,112 +385,6 @@ export default function WizardrySpells(props) {
           </table>
         </div>
       </Modal>
-      {/*   <Modal
-        id="modal--schools"
-        className="modal"
-        overlayClassName="modal-overlay"
-        isOpen={modalIsOpen_Schools}
-        contentLabel="Wizard Schools"
-      >
-        <header className="modal__header">
-          <h2 className="modal__h2">Schools of Magic</h2>
-        </header>
-
-        <div className="modal__body">
-          <div className="schoolDescriptions">
-            <ul>
-              <li className="li-white">
-                <span className="school-white">WHITE</span> - Life, light,
-                healing, revelation, protection
-              </li>
-              <li className="li-black">
-                <span className="school-black">BLACK</span> - Death, darkness,
-                slumber, insanity, disease, demonology
-              </li>
-              <li className="li-green">
-                <span className="school-green">GREEN</span> - Nature, weather,
-                fecundity, water, air, ice
-              </li>
-              <li className="li-blue">
-                <span className="school-blue">BLUE</span> - Illusion,
-                transformation, charms, trickery
-              </li>
-              <li className="li-red">
-                <span className="school-red">RED</span> - Fire, earth,
-                destruction, raw power
-              </li>
-            </ul>
-          </div>
-          <form className="ut-clearfix" onSubmit={handleSave_Schools}>
-            <span>
-              You are proficient in <b>{schoolLimit}</b> school
-              {schoolLimit === 1 ? "" : "s"} of magic. Choose wisely.
-            </span>
-            <fieldset>
-              <div className="school-white">
-                <input
-                  id="chk-white"
-                  type="checkbox"
-                  name="schools"
-                  value="white"
-                  defaultChecked={schools.includes("white")}
-                />
-                <label htmlFor="chk-white">White</label>
-              </div>
-              <div className="school-black">
-                <input
-                  id="chk-black"
-                  type="checkbox"
-                  name="schools"
-                  value="black"
-                  defaultChecked={schools.includes("black")}
-                />
-                <label htmlFor="chk-black">Black</label>
-              </div>
-              <div className="school-green">
-                <input
-                  id="chk-green"
-                  type="checkbox"
-                  name="schools"
-                  value="green"
-                  defaultChecked={schools.includes("green")}
-                />
-                <label htmlFor="chk-green">Green</label>
-              </div>
-              <div className="school-blue">
-                <input
-                  id="chk-blue"
-                  type="checkbox"
-                  name="schools"
-                  value="blue"
-                  defaultChecked={schools.includes("blue")}
-                />
-                <label htmlFor="chk-blue">Blue</label>
-              </div>
-              <div className="school-red">
-                <input
-                  id="chk-red"
-                  type="checkbox"
-                  name="schools"
-                  value="red"
-                  defaultChecked={schools.includes("red")}
-                />
-                <label htmlFor="chk-red">Red</label>
-              </div>
-            </fieldset>
-            {schoolValidation && (
-              <div className="validation--error">{schoolValidation}</div>
-            )}
-            <button
-              className="button button--primary button--large"
-              type="submit"
-              value="Save"
-            >
-              Save
-            </button>
-          </form>
-        </div>
-      </Modal> */}
     </div>
   );
 }

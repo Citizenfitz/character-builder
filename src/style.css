@@ -1451,12 +1451,26 @@ input[type=radio] + label.aspect-radio-label__type {
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  background: #883c8d;
+  background-image: url("assets/images/vintage-dragon.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: right center;
+  background-color: #883c8d;
   color: #fff;
   box-shadow: 1000px 0px 0px 0px #883c8d, -1000px 0px 0px 0px #883c8d;
   position: relative;
   padding-top: 1.5rem;
   margin-bottom: 3rem;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    margin-bottom: 1.5rem;
+  }
+}
+@media (max-width: 480px) {
+  .header {
+    padding: 0.5rem;
+  }
 }
 .header__h1-link {
   color: #fff;
@@ -1473,10 +1487,20 @@ input[type=radio] + label.aspect-radio-label__type {
   text-align: left;
   margin-left: 1rem;
 }
+@media (min-width: 481px) and (max-width: 768px) {
+  .header h1 {
+    font-size: 3rem;
+  }
+}
 .header__dropcap {
   font-size: 5.9rem;
   margin-top: 0;
   letter-spacing: 0;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .header__dropcap {
+    font-size: 5rem;
+  }
 }
 .header .subheader {
   font-family: "Kaushan Script", cursive;
@@ -1487,9 +1511,15 @@ input[type=radio] + label.aspect-radio-label__type {
   margin-top: -4px;
   margin-left: 4px;
 }
+@media (min-width: 481px) and (max-width: 768px) {
+  .header .subheader {
+    font-size: 1rem;
+  }
+}
 .header__card-icons {
   margin-right: 1rem;
   width: 33%;
+  visibility: hidden;
 }
 .header__nav-list {
   list-style: none;
@@ -1497,6 +1527,12 @@ input[type=radio] + label.aspect-radio-label__type {
   background: #2375b9;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 0;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .header__nav-list {
+    margin-top: 0.25rem;
+  }
 }
 .header__nav-list-item a {
   display: inline-block;
@@ -1505,6 +1541,11 @@ input[type=radio] + label.aspect-radio-label__type {
   text-decoration: none;
   font-size: 1.25em;
   font-weight: bold;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .header__nav-list-item a {
+    font-size: 1rem;
+  }
 }
 .header__nav-list-item a:hover {
   background: #f1be42;
@@ -1533,16 +1574,6 @@ input[type=radio] + label.aspect-radio-label__type {
   position: absolute;
   top: 0;
   left: 0;
-}
-@media (min-width: 481px) and (max-width: 768px) {
-  .header {
-    padding: 1rem;
-  }
-}
-@media (max-width: 480px) {
-  .header {
-    padding: 0.5rem;
-  }
 }
 
 .char-bldr {

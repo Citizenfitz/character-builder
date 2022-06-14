@@ -1,11 +1,23 @@
 .header {
   @include site-layout;
-  background: $color-royal;
+  background-image: url($path-img + "vintage-dragon.png");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: right center;
+  background-color: $color-royal;
   color: $color-white;
   box-shadow: 1000px 0px 0px 0px $color-royal, -1000px 0px 0px 0px $color-royal;
   position: relative;
   padding-top: 1.5rem;
   margin-bottom: 3rem;
+
+  @include mq-tablet {
+    margin-bottom: 1.5rem;
+  }
+  @include mq-phone {
+    padding: $margins-phone;
+  }
+
   &__h1-link {
     color: $color-white;
     text-decoration: none;
@@ -20,11 +32,17 @@
     letter-spacing: 0.33rem;
     text-align: left;
     margin-left: 1rem;
+    @include mq-tablet {
+      font-size: 3rem;
+    }
   }
   &__dropcap {
     font-size: 5.9rem;
     margin-top: 0;
     letter-spacing: 0;
+    @include mq-tablet {
+      font-size: 5rem;
+    }
   }
   .subheader {
     font-family: $text-cursive;
@@ -34,11 +52,15 @@
     letter-spacing: 0.1rem;
     margin-top: -4px;
     margin-left: 4px;
+    @include mq-tablet {
+      font-size: 1rem;
+    }
   }
   // header card icons
   &__card-icons {
     margin-right: 1rem;
     width: 33%;
+    visibility: hidden;
   }
   // header nav bar
   &__nav-list {
@@ -47,6 +69,10 @@
     background: $color-priest;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 0;
+    @include mq-tablet {
+      margin-top: 0.25rem;
+    }
   }
 
   &__nav-list-item a {
@@ -56,6 +82,9 @@
     text-decoration: none;
     font-size: 1.25em;
     font-weight: bold;
+    @include mq-tablet {
+      font-size: 1rem;
+    }
 
     &:hover {
       background: $color-yellow-1;
@@ -86,11 +115,5 @@
     position: absolute;
     top: 0;
     left: 0;
-  }
-  @include mq-tablet {
-    padding: $margins-tablet;
-  }
-  @include mq-phone {
-    padding: $margins-phone;
   }
 }

@@ -44,6 +44,10 @@ const Header = () => (
         </li>
 
         <li className="header__nav-list-item ut-hidden">
+          <a href="./traits"> Character Traits </a>
+        </li>
+
+        <li className="header__nav-list-item ut-hidden">
           <a href="#"> Coming Soon </a>
         </li>
       </ul>
