@@ -1278,12 +1278,14 @@ input[type=radio] + label.aspect-radio-label__type {
   text-align: center;
   color: #000;
   font-size: 0.75rem;
+  border-top: 1px solid;
 }
 .data-display-box--save-mods {
   margin-bottom: 0;
   min-height: 66px;
   height: auto;
   text-align: left;
+  padding-bottom: 1rem;
 }
 .data-display-box__save-mods-list {
   list-style: none;
@@ -1454,7 +1456,7 @@ input[type=radio] + label.aspect-radio-label__type {
   background-image: url("assets/images/vintage-dragon.png");
   background-repeat: no-repeat;
   background-size: 50%;
-  background-position: right center;
+  background-position: right top;
   background-color: #883c8d;
   color: #fff;
   box-shadow: 1000px 0px 0px 0px #883c8d, -1000px 0px 0px 0px #883c8d;
@@ -1510,6 +1512,7 @@ input[type=radio] + label.aspect-radio-label__type {
   letter-spacing: 0.1rem;
   margin-top: -4px;
   margin-left: 4px;
+  color: #ffffa1;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .header .subheader {
@@ -1548,7 +1551,7 @@ input[type=radio] + label.aspect-radio-label__type {
   }
 }
 .header__nav-list-item a:hover {
-  background: #f1be42;
+  background: #ffffa1;
   color: #000;
 }
 .header__system-banner {

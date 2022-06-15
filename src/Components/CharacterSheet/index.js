@@ -953,9 +953,7 @@ const CharacterSheet = () => {
                 ))}
               </ul>
             </div>
-            <h2 className="ut-align-center ut-margin-top-0">
-              Saving Throw Mods
-            </h2>
+            <h2 className="data-display-box__header">Saving Throw Mods</h2>
           </div>
 
           <br />

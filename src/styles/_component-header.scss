@@ -3,7 +3,7 @@
   background-image: url($path-img + "vintage-dragon.png");
   background-repeat: no-repeat;
   background-size: 50%;
-  background-position: right center;
+  background-position: right top;
   background-color: $color-royal;
   color: $color-white;
   box-shadow: 1000px 0px 0px 0px $color-royal, -1000px 0px 0px 0px $color-royal;
@@ -52,6 +52,7 @@
     letter-spacing: 0.1rem;
     margin-top: -4px;
     margin-left: 4px;
+    color: $color-yellow-2;
     @include mq-tablet {
       font-size: 1rem;
     }
@@ -87,7 +88,7 @@
     }
 
     &:hover {
-      background: $color-yellow-1;
+      background: $color-yellow-2;
       color: $color-black;
     }
   }
