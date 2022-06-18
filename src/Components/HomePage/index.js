@@ -15,12 +15,15 @@ const HomePage = () => (
           Your Flexible, Old-School, Fantasy RPG!
         </h2>
         <p className="homepage__p">
-          <b>EverLore</b> is a table-top, fantasy role-playing game based on the
-          most famous RPG from the 80s. It leverages the old-school RPG
-          conventions everyone already knows but with streamlined modern game
-          mechanics and a <b>unique Talent system</b>. Its rules are
-          comprehensive enough to cover all the basics, yet spare enough to
-          avoid bloat and encourage player interpretation.
+          <b>
+            EverLore<span className="ut_tm">®</span>
+          </b>{" "}
+          is a table-top, fantasy role-playing game based on the most famous RPG
+          from the 80s. It leverages the old-school RPG conventions everyone
+          already knows but with streamlined modern game mechanics and a{" "}
+          <b>unique Talent system</b>. Its rules are comprehensive enough to
+          cover all the basics, yet spare enough to avoid bloat and encourage
+          player interpretation.
         </p>
 
         <ul className="homepage__p homepage__ul">

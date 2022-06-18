@@ -8,6 +8,7 @@ const Header = () => (
           <span className="header__dropcap">E</span>
           <div>
             <span className="ut-only-sr">E</span>verLore
+            <span className="ut_tm">®</span>
             <span className="subheader">A Classic Fantasy RPG</span>
           </div>
         </h1>

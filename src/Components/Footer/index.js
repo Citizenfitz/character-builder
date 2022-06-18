@@ -3,7 +3,9 @@ import React from "react";
 const Footer = () => (
   <footer className="footer" id="footer">
     <div className="footer__top-border"></div>
-    Copyright © 2022 Zentropolis, Inc. <br />
+    EverLore<span className="ut_tm">®</span> and content copyright
+    <span className="ut_tm"> © </span>
+    2022 Zentropolis, Inc. <br />
     Some content distributed under the terms of the Open Game License version
     1.0a.
     <p>

@@ -1488,6 +1488,7 @@ input[type=radio] + label.aspect-radio-label__type {
   letter-spacing: 0.33rem;
   text-align: left;
   margin-left: 1rem;
+  text-shadow: 2px 2px 2px #000000;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .header h1 {
@@ -2431,6 +2432,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin: -1px;
   padding: 0;
   border: 0;
+}
+
+.ut_tm {
+  font-size: 0.75em;
+  vertical-align: super;
 }
 
 /*# sourceMappingURL=style.css.map */
