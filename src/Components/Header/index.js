@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => (
   <header role="banner" className="header" id="header">
@@ -28,7 +29,7 @@ const Header = () => (
     <nav role="navigation">
       <ul className="header__nav-list">
         <li className="header__nav-list-item">
-          <a href="./"> About </a>
+          <Link to="./">About</Link>
         </li>
         <li className="header__nav-list-item">
           <a
@@ -41,15 +42,15 @@ const Header = () => (
           </a>
         </li>
         <li className="header__nav-list-item">
-          <a href="./character"> Character Builder </a>
+          <Link to="./character"> Character Builder</Link>
         </li>
 
         <li className="header__nav-list-item ut-hidden">
-          <a href="./traits"> Character Traits </a>
+          <Link to="./traits">Character Traits</Link>
         </li>
 
         <li className="header__nav-list-item ut-hidden">
-          <a href="#"> Coming Soon </a>
+          <Link to="#">Coming Soon</Link>
         </li>
       </ul>
     </nav>

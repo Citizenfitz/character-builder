@@ -6,17 +6,17 @@ import "./style.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <main id="main">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/character" element={<CharacterSheet />} />
-          <Route path="/traits" element={<Traits />} />
-        </Routes>
-      </BrowserRouter>
-    </main>
-    <Footer />
+    <BrowserRouter>
+      <Header />
+      <main id="main">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/character" element={<CharacterSheet />} />
+            <Route path="/traits" element={<Traits />} />
+          </Routes>
+      </main>
+      <Footer />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
