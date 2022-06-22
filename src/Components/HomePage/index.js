@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomePage = () => (
   <div className="homepage">
@@ -16,8 +17,8 @@ const HomePage = () => (
         </h2>
         <p className="homepage__p">
           <b>
-            EverLore<span className="ut_tm">®</span>
-          </b>{" "}
+            EverLore<span className="ut_tm">®</span>&nbsp;
+          </b>
           is a table-top, fantasy role-playing game based on the most famous RPG
           from the 80s. It leverages the old-school RPG conventions everyone
           already knows but with streamlined modern game mechanics and a{" "}
@@ -30,27 +31,24 @@ const HomePage = () => (
           <li>
             <b>Familiar Old-School Gaming</b> - Simple, powerful rules that most
             players already know. Get games up and running quickly with minimum
-            fuss.{" "}
+            fuss.
           </li>
           <li>
             <b>Powerful Talent System</b> - Quickly and easily build the
             characters you want without dozens of classes or all characters
-            becoming the same.{" "}
-            <a href="./character">
-              {" "}
+            becoming the same.&nbsp;
+            <Link to="./character">
               <button className="button button--primary homepage__btn-try">
                 Try it <span className="fas fa-pointer"></span>
               </button>
-            </a>
+            </Link>
           </li>
           <li>
-            {" "}
             <b>Themed Magic</b> - Add flavor to your mages with simple, built-in
             schools of magic.
-          </li>{" "}
+          </li>
         </ul>
         <p className="ut-align-center">
-          {" "}
           <a
             href="https://www.drivethrurpg.com/product/398899/EverLore-Core-Rules"
             target="_blank"
