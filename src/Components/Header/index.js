@@ -19,7 +19,6 @@ const Header = () => (
         <div className="flex-grid flex-grid--align-items-end">
           <div className="aspect-icon  aspect-icon--large aspect-icon--fighter"></div>
           <div className="aspect-icon  aspect-icon--large aspect-icon--priest"></div>
-
           <div className="aspect-icon  aspect-icon--large aspect-icon--wizard"></div>
           <div className="aspect-icon  aspect-icon--large aspect-icon--knave"></div>
         </div>
@@ -37,7 +36,6 @@ const Header = () => (
             target="_blank"
             rel="noreferrer"
           >
-            {" "}
             Buy &amp; Free Downloads <span className="fas fa-new-window"></span>
           </a>
         </li>
