@@ -38,7 +38,7 @@ const Header = () => (
             rel="noreferrer"
           >
             {" "}
-            Buy & Free Downloads <span className="fas fa-new-window"></span>
+            Buy &amp; Free Downloads <span className="fas fa-new-window"></span>
           </a>
         </li>
         <li className="header__nav-list-item">
