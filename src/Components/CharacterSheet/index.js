@@ -30,8 +30,12 @@ import WizardrySpells from "./WizardrySpells";
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
 const Box = new DiceBox("#dice-box", {
-  theme: "purpleRock",
+  id: "dice-canvas",
   assetPath: "/assets/dice-box/",
+  themeColor: "#883c8d",
+  startingHeight: 12,
+  throwForce: 6,
+  gravity: 2
 });
 
 // initalize DiceBox onDomReady so canvas can be properly measured
@@ -43,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // clear dice on click anywhere on the screen
 document.addEventListener("mousedown", () => {
   const diceBoxCanvas = document.getElementById("dice-canvas");
-  if (window.getComputedStyle(diceBoxCanvas).display !== "none") {
+  if (diceBoxCanvas && window.getComputedStyle(diceBoxCanvas).display !== "none") {
     Box.hide().clear();
   }
 });
@@ -396,9 +400,9 @@ const CharacterSheet = () => {
   // sets an index of a wizard school.
   const setWizardSchool = (color, schoolIndex) => {
     let tempObject = character.wizardrySchools.slice(0);
-    console.log("tempObject = " + tempObject);
+    // console.log("tempObject = " + tempObject);
     tempObject[schoolIndex] = color;
-    console.log("tempObject = " + tempObject);
+    // console.log("tempObject = " + tempObject);
     setCharacter((prev) => ({
       ...prev,
       wizardrySchools: tempObject,
@@ -613,6 +617,10 @@ const CharacterSheet = () => {
     Box.show().roll(notation);
   };
 
+  const rollAttribDice = () => {
+    rollDice("18d6","all-attributes")
+  }
+
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
       const ac =
@@ -677,7 +685,7 @@ const CharacterSheet = () => {
     const rolls = [];
     const bonus = [];
     // for each character level
-    let resultIndex = 0;
+    // let resultIndex = 0;
     for (let index = 0; index < character.level; index++) {
       // does the character have durability for this level
       if (
@@ -687,15 +695,15 @@ const CharacterSheet = () => {
         // pick the highest of the two dice roll results
         rolls.push(
           Math.max(
-            results[resultIndex].rolls[0].result,
-            results[resultIndex].rolls[1].result
+            results[0].rolls[index].value,
+            results[0].rolls[index+1].value
           )
         );
       } else {
         // store the roll result
-        rolls.push(results[resultIndex].rolls[0].result);
+        rolls.push(results[0].rolls[index].value);
       }
-      resultIndex++;
+      // resultIndex++;
       bonus.push(calculateBonus(character.attributes.constitution.total));
     }
 
@@ -737,7 +745,10 @@ const CharacterSheet = () => {
     // sum bonus
     const bonusSum = newHp.bonus.reduce((a, b) => a + b, 0);
 
-    newHp.total = rollsSum + bonusSum + newHp.manual + newHp.durabilityBonus;
+    const total = rollsSum + bonusSum + newHp.manual + newHp.durabilityBonus;
+
+    // set a min value of 1 - don't want 0 or negative HP due to poor CON modifier
+    newHp.total = Math.max(1,total)
 
     setCharacter((prev) => ({
       ...prev,
@@ -751,17 +762,9 @@ const CharacterSheet = () => {
 
   const rollHP = () => {
     setDiceGroup("hp");
-    for (let index = 0; index < character.level; index++) {
-      let dice = 1;
-      // advantage die for durability
-      if (
-        character.hp.hasDurability &&
-        index + 1 >= character.hp.hasDurability
-      ) {
-        dice = 2;
-      }
-      Box.show().add(`${dice}d${character.hitDiceType}`);
-    }
+    const multiplier = character.hp.hasDurability ? 2 : 1
+    let dice = character.level * multiplier;
+    Box.show().roll(`${dice}d${character.hitDiceType}`);
   };
 
   const [raceModalOpen, setRaceModalOpen] = useState(false);
@@ -789,10 +792,10 @@ const CharacterSheet = () => {
           />{" "}
         </div>
         <div>
-          <button>Roll Attributes</button>
+          <button onClick={rollAttribDice}>Roll Attributes</button>
         </div>
         <div>
-          <button>Roll Hit Points</button>
+          <button onClick={rollHP}>Roll Hit Points</button>
         </div>
       </div>
       <div className="char-bldr__bottom-border ut-no-screen"></div>

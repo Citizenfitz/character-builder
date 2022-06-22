@@ -24,10 +24,10 @@ const Attributes = (props) => {
   // update attribute from dice roll
   const setAttributeFromRoll = (result) => {
     const newState = { ...attributes };
-    if(pendingRoll === 'all') {
+    if(result[0].rolls.length === 18 || pendingRoll === 'all') {
       let counter = 0
       Object.keys(newState).forEach(attr => {
-        const resultTotal = result[0].rolls[counter].result + result[0].rolls[counter+1].result + result[0].rolls[counter+2].result
+        const resultTotal = result[0].rolls[counter].value + result[0].rolls[counter+1].value + result[0].rolls[counter+2].value
         newState[attr].roll = resultTotal - newState[attr].bonus;
         newState[attr].total = resultTotal
         newState[attr].mod = calculateBonus(resultTotal);
