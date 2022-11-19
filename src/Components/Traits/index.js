@@ -5,7 +5,7 @@ const Traits = () => (
     <h2 className="homepage__h2">Character Trait Generator</h2>
     <p className="homepage__p">
       Confused as to who your character actually is beyond the stats? Never
-      fear! The EverLore Character Generator will quickly fill you with ideas.
+      fear! The QuestRex Character Generator will quickly fill you with ideas.
     </p>
 
     <label>

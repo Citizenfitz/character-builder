@@ -775,7 +775,7 @@ const CharacterSheet = () => {
   return (
     <div className="char-bldr">
       <h2 className="char-bldr__h2">
-        EverLore<span className="ut_tm">®</span> Character Builder
+        QuestRex Character Builder
       </h2>
       <p className="ut-text-explain ut-no-print">
         <b>Instructions:</b> Play around with the form below till you get a
@@ -1220,7 +1220,7 @@ const CharacterSheet = () => {
           </p>
           <img
             src="assets/images/race-choose-screenshot.png"
-            alt="EverLore race picker "
+            alt="QuestRex race picker "
           />
         </div>
         <div className="modal__footer">
