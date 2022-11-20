@@ -18,47 +18,34 @@
     padding: $margins-phone;
   }
 
+  // h1 Logo & subheader text
   &__h1-link {
-    color: $color-white;
     text-decoration: none;
-    &:hover {
-      color: $color-yellow-1;
+    margin: 0;
+    h1 {
+      margin: 0;
+      position: relative;
+    }
+    &-logo {
+      filter: drop-shadow(2px 2px 2px #000000);
+      height: 110px;
+    }
+    &-subheader {
+      font-family: $text-cursive;
+      display: block;
+      position: absolute;
+      width: 300px;
+      top: 68px;
+      left: 120px;
+      font-size: 1.25rem;
+      letter-spacing: 0.1rem;
+      color: $color-yellow-2;
+      @include mq-tablet {
+        font-size: 1rem;
+      }
     }
   }
-  h1 {
-    font-size: 4rem;
-    margin-top: 0;
-    margin-bottom: 0px;
-    letter-spacing: 0.33rem;
-    text-align: left;
-    margin-left: 1rem;
-    text-shadow: 2px 2px 2px #000000;
-    @include mq-tablet {
-      font-size: 3rem;
-    }
-  }
-  &__dropcap {
-    font-size: 5.9rem;
-    margin-top: 0;
-    letter-spacing: 0;
-    @include mq-tablet {
-      font-size: 5rem;
-    }
-  }
-  .subheader {
-    font-family: $text-cursive;
-    display: block;
-    font-size: 1.25rem;
-    margin-bottom: 0px;
-    letter-spacing: 0.1rem;
-    margin-top: -4px;
-    margin-left: 4px;
-    color: $color-yellow-2;
-    // text-shadow: none;
-    @include mq-tablet {
-      font-size: 1rem;
-    }
-  }
+
   // header card icons
   &__card-icons {
     margin-right: 1rem;

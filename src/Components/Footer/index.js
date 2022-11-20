@@ -15,6 +15,11 @@ const Footer = () => (
       </a>
       .
     </p>
+    <img
+      src="assets/images/logo-questrex-mono.svg"
+      alt="QuestRex Logo"
+      width="25%"
+    />
   </footer>
 );
 

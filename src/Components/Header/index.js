@@ -5,14 +5,15 @@ const Header = () => (
   <header role="banner" className="header" id="header">
     <div className="flex-grid  flex-grid--align-items-center">
       <a href="./" className="header__h1-link">
-        <h1 className="flex-grid flex-grid--flex-start">
-          <span className="header__dropcap">Q</span>
-          <div>
-            <span className="ut-only-sr">Q</span>uestRex
-            <span className="subheader">
-              &nbsp;&nbsp;&nbsp;&nbsp;A Classic Fantasy RPG
-            </span>
-          </div>
+        <h1>
+          <img
+            src="assets/images/logo-questrex-mono-white.svg"
+            alt="QuestRex Logo"
+            className="header__h1-link-logo"
+          />
+          <span className="header__h1-link-subheader">
+            A Classic Fantasy RPG
+          </span>
         </h1>
       </a>
 
