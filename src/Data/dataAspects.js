@@ -162,7 +162,7 @@ const aspectData = [
       "Jester",
       "Jongleur",
       "Fili",
-      " Lark",
+      "Lark",
       "Minstrel",
       "Mummer",
       "Racaraide",
