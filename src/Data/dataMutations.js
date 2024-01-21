@@ -1,0 +1,281 @@
+const mutationsData = [
+  {
+    id: 1,
+    wt: 3,
+    roll: "1-3",
+    name: "Acid Attack",
+    disc: "description",
+  },
+
+  {
+    id: 2,
+    wt: 3,
+    roll: "4-6",
+    name: "Alacrity",
+    disc: "description",
+  },
+
+  {
+    id: 3,
+    wt: 3,
+    roll: "7-9",
+    name: "Aquatic adaptation",
+    disc: "description",
+  },
+
+  {
+    id: 4,
+    wt: 3,
+    roll: "10-12",
+    name: "Bioluminescence",
+    disc: "description",
+  },
+
+  {
+    id: 5,
+    wt: 3,
+    roll: "13-15",
+    name: "Clinging",
+    disc: "description",
+  },
+
+  {
+    id: 6,
+    wt: 3,
+    roll: "16-18",
+    name: "Compressible Form",
+    disc: "description",
+  },
+
+  {
+    id: 7,
+    wt: 3,
+    roll: "19-21",
+    name: "Darksight",
+    disc: "description",
+  },
+
+  {
+    id: 8,
+    wt: 2,
+    roll: "22-23",
+    name: "Dual Heads",
+    disc: "description",
+  },
+
+  {
+    id: 9,
+    wt: 3,
+    roll: "24-26",
+    name: "Dwarfism",
+    disc: "description",
+  },
+
+  {
+    id: 10,
+    wt: 3,
+    roll: "27-29",
+    name: "Echolocation",
+    disc: "description",
+  },
+
+  {
+    id: 11,
+    wt: 3,
+    roll: "30-32",
+    name: "Electrogenic attack",
+    disc: "description",
+  },
+
+  {
+    id: 12,
+    wt: 3,
+    roll: "33-35",
+    name: "Extra Arms",
+    disc: "description",
+  },
+
+  {
+    id: 13,
+    wt: 3,
+    roll: "36-38",
+    name: "Extra Legs",
+    disc: "description",
+  },
+
+  {
+    id: 14,
+    wt: 3,
+    roll: "39-41",
+    name: "Gas Attack",
+    disc: "description",
+  },
+
+  {
+    id: 15,
+    wt: 1,
+    roll: "42",
+    name: "Gas Bags",
+    disc: "description",
+  },
+
+  {
+    id: 16,
+    wt: 3,
+    roll: "43-35",
+    name: "Gigantism",
+    disc: "description",
+  },
+
+  {
+    id: 17,
+    wt: 3,
+    roll: "46-48",
+    name: "Hyper Hearing",
+    disc: "description",
+  },
+
+  {
+    id: 18,
+    wt: 3,
+    roll: "49-51",
+    name: "Hyper Immune System",
+    disc: "description",
+  },
+
+  {
+    id: 19,
+    wt: 3,
+    roll: "52-54",
+    name: "Hyper Smell",
+    disc: "description",
+  },
+
+  {
+    id: 20,
+    wt: 3,
+    roll: "55-57",
+    name: "Hyper Vision",
+    disc: "description",
+  },
+
+  {
+    id: 21,
+    wt: 1,
+    roll: "58",
+    name: "Metamorphosis",
+    disc: "description",
+  },
+
+  {
+    id: 22,
+    wt: 3,
+    roll: "59-61",
+    name: "Natural Armor",
+    disc: "description",
+  },
+
+  {
+    id: 23,
+    wt: 3,
+    roll: "62-64",
+    name: "Natural Weaponry",
+    disc: "description",
+  },
+
+  {
+    id: 24,
+    wt: 1,
+    roll: "65",
+    name: "Pheromonic Influence",
+    disc: "description",
+  },
+
+  {
+    id: 25,
+    wt: 3,
+    roll: "66-68",
+    name: "Prehensile Tail",
+    disc: "description",
+  },
+
+  {
+    id: 26,
+    wt: 3,
+    roll: "69-71",
+    name: "Radiant Gaze",
+    disc: "description",
+  },
+
+  {
+    id: 27,
+    wt: 3,
+    roll: "72-74",
+    name: "Regeneration",
+    disc: "description",
+  },
+
+  {
+    id: 28,
+    wt: 3,
+    roll: "75-77",
+    name: "Resistance",
+    disc: "description",
+  },
+
+  {
+    id: 29,
+    wt: 3,
+    roll: "78-80",
+    name: "Sonic Attack",
+    disc: "description",
+  },
+
+  {
+    id: 30,
+    wt: 3,
+    roll: "81-83",
+    name: "Spines, Thorns, or Quills",
+    disc: "description",
+  },
+
+  {
+    id: 31,
+    wt: 2,
+    roll: "84-85",
+    name: "Symbiotic Domination",
+    disc: "description",
+  },
+
+  {
+    id: 32,
+    wt: 3,
+    roll: "86-8",
+    name: "Thanatosis",
+    disc: "description",
+  },
+
+  {
+    id: 33,
+    wt: 3,
+    roll: "89-91",
+    name: "Venom",
+    disc: "description",
+  },
+
+  {
+    id: 34,
+    wt: 3,
+    roll: "92-94",
+    name: "Web generation",
+    disc: "description",
+  },
+
+  {
+    id: 35,
+    wt: 3,
+    roll: "97-97",
+    name: "Wings",
+    disc: "description",
+  },
+];
