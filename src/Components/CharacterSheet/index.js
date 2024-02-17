@@ -35,7 +35,7 @@ const Box = new DiceBox("#dice-box", {
   themeColor: "#883c8d",
   startingHeight: 12,
   throwForce: 6,
-  gravity: 2
+  gravity: 2,
 });
 
 // initalize DiceBox onDomReady so canvas can be properly measured
@@ -47,7 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
 // clear dice on click anywhere on the screen
 document.addEventListener("mousedown", () => {
   const diceBoxCanvas = document.getElementById("dice-canvas");
-  if (diceBoxCanvas && window.getComputedStyle(diceBoxCanvas).display !== "none") {
+  if (
+    diceBoxCanvas &&
+    window.getComputedStyle(diceBoxCanvas).display !== "none"
+  ) {
     Box.hide().clear();
   }
 });
@@ -618,8 +621,8 @@ const CharacterSheet = () => {
   };
 
   const rollAttribDice = () => {
-    rollDice("18d6","all-attributes")
-  }
+    rollDice("18d6", "all-attributes");
+  };
 
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
@@ -696,7 +699,7 @@ const CharacterSheet = () => {
         rolls.push(
           Math.max(
             results[0].rolls[index].value,
-            results[0].rolls[index+1].value
+            results[0].rolls[index + 1].value
           )
         );
       } else {
@@ -748,7 +751,7 @@ const CharacterSheet = () => {
     const total = rollsSum + bonusSum + newHp.manual + newHp.durabilityBonus;
 
     // set a min value of 1 - don't want 0 or negative HP due to poor CON modifier
-    newHp.total = Math.max(1,total)
+    newHp.total = Math.max(1, total);
 
     setCharacter((prev) => ({
       ...prev,
@@ -762,7 +765,7 @@ const CharacterSheet = () => {
 
   const rollHP = () => {
     setDiceGroup("hp");
-    const multiplier = character.hp.hasDurability ? 2 : 1
+    const multiplier = character.hp.hasDurability ? 2 : 1;
     let dice = character.level * multiplier;
     Box.show().roll(`${dice}d${character.hitDiceType}`);
   };
@@ -775,7 +778,7 @@ const CharacterSheet = () => {
   return (
     <div className="char-bldr">
       <h2 className="char-bldr__h2">
-        EverLore<span className="ut_tm">®</span> Character Builder
+        QuestRex<span className="ut_tm">®</span> Character Builder
       </h2>
       <p className="ut-text-explain ut-no-print">
         <b>Instructions:</b> Play around with the form below till you get a
@@ -1220,7 +1223,7 @@ const CharacterSheet = () => {
           </p>
           <img
             src="assets/images/race-choose-screenshot.png"
-            alt="EverLore race picker "
+            alt="QuestRex race picker "
           />
         </div>
         <div className="modal__footer">

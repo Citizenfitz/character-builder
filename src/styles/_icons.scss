@@ -40,6 +40,36 @@
 .fa-castle::before {
   content: "\f286";
 }
+.fa-sphere::before {
+  content: "\f111";
+}
+
+.fa-circle::before {
+  content: "\f10c";
+}
+
+.fa-spell-dot {
+  font-size: 16px;
+  margin-left: 6px;
+  &::before {
+    content: "\f111";
+  }
+  &--black {
+    color: black;
+  }
+  &--blue {
+    color: blue;
+  }
+  &--green {
+    color: green;
+  }
+  &--red {
+    color: red;
+  }
+  &--white::before {
+    content: "\f10c";
+  }
+}
 
 // ********** magic school icons **********
 .icon-school {

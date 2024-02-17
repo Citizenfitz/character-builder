@@ -7,7 +7,7 @@ const HomePage = () => (
       <div className="flex-grid__child--half">
         <img
           src="assets/images/everlore-core-rules.png"
-          alt="EverLore Core Rules Cover"
+          alt="QuestRex Core Rules Cover"
           className="homepage__cover"
         />
       </div>
@@ -17,7 +17,7 @@ const HomePage = () => (
         </h2>
         <p className="homepage__p">
           <b>
-            EverLore<span className="ut_tm">®</span>&nbsp;
+            QuestRex<span className="ut_tm">®</span>&nbsp;
           </b>
           is a table-top, fantasy role-playing game based on the most famous RPG
           from the 80s. It leverages the old-school RPG conventions everyone

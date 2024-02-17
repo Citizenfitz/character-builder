@@ -39,6 +39,16 @@ $path-img: "assets/images/";
     format("truetype");
 }
 
+@font-face {
+  font-family: "Carmen";
+  src: url($path-font + "Carmen/carmen-regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Carmen Shadow";
+  src: url($path-font + "Carmen/carmen-shadow.ttf") format("truetype");
+}
+
 // ********************* FONTS *********************
 $text-regular: "Cabin Regular", Cabin, sans-serif;
 $text-medium: "Cabin Medium", Cabin, sans-serif;
@@ -48,6 +58,8 @@ $text-bold: "Cabin Bold", Cabin, sans-serif;
 $text-header: "GreyhawkGothic", GreyhawkGothic, sans-serif;
 
 $text-cursive: "Kaushan Script", cursive;
+
+$text-header-2: "Carmen", Carmen, sans-serif;
 
 // *********************** COLOR VARIABLES ***********************//
 

@@ -4,7 +4,14 @@ const mutationsData = [
     wt: 3,
     roll: "1-3",
     name: "Acid Attack",
-    disc: "description",
+    desc: `
+    Thrice per day the character may spew forth a stream of potent acid at a single target up to 15' away. If used on inanimate objects it will dissolve up to 1 cubic foot of materials (excluding glass, ceramics, or other substances immune to acid). The target:
+
+    - Must be hit be the with the acid attack in combat
+    - If hit, suffers 3d4 damage, then 2d4 on the following round, and 1d4 on the third and final round.
+    - May make a saving throw each round to reduce the damage by half.
+    Targets may stop the second and third rounds of damage by diving into water, applying an alkaline substance, etc.
+    `,
   },
 
   {
@@ -12,15 +19,15 @@ const mutationsData = [
     wt: 3,
     roll: "4-6",
     name: "Alacrity",
-    disc: "description",
+    desc: "- test - test",
   },
 
   {
     id: 3,
     wt: 3,
     roll: "7-9",
-    name: "Aquatic adaptation",
-    disc: "description",
+    name: "Aquatic Adaptation",
+    desc: "description",
   },
 
   {
@@ -28,7 +35,7 @@ const mutationsData = [
     wt: 3,
     roll: "10-12",
     name: "Bioluminescence",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -36,7 +43,7 @@ const mutationsData = [
     wt: 3,
     roll: "13-15",
     name: "Clinging",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -44,7 +51,7 @@ const mutationsData = [
     wt: 3,
     roll: "16-18",
     name: "Compressible Form",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -52,7 +59,7 @@ const mutationsData = [
     wt: 3,
     roll: "19-21",
     name: "Darksight",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -60,7 +67,7 @@ const mutationsData = [
     wt: 2,
     roll: "22-23",
     name: "Dual Heads",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -68,7 +75,7 @@ const mutationsData = [
     wt: 3,
     roll: "24-26",
     name: "Dwarfism",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -76,7 +83,7 @@ const mutationsData = [
     wt: 3,
     roll: "27-29",
     name: "Echolocation",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -84,7 +91,7 @@ const mutationsData = [
     wt: 3,
     roll: "30-32",
     name: "Electrogenic attack",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -92,7 +99,7 @@ const mutationsData = [
     wt: 3,
     roll: "33-35",
     name: "Extra Arms",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -100,7 +107,7 @@ const mutationsData = [
     wt: 3,
     roll: "36-38",
     name: "Extra Legs",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -108,7 +115,7 @@ const mutationsData = [
     wt: 3,
     roll: "39-41",
     name: "Gas Attack",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -116,7 +123,7 @@ const mutationsData = [
     wt: 1,
     roll: "42",
     name: "Gas Bags",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -124,7 +131,7 @@ const mutationsData = [
     wt: 3,
     roll: "43-35",
     name: "Gigantism",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -132,7 +139,7 @@ const mutationsData = [
     wt: 3,
     roll: "46-48",
     name: "Hyper Hearing",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -140,7 +147,7 @@ const mutationsData = [
     wt: 3,
     roll: "49-51",
     name: "Hyper Immune System",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -148,7 +155,7 @@ const mutationsData = [
     wt: 3,
     roll: "52-54",
     name: "Hyper Smell",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -156,7 +163,7 @@ const mutationsData = [
     wt: 3,
     roll: "55-57",
     name: "Hyper Vision",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -164,7 +171,7 @@ const mutationsData = [
     wt: 1,
     roll: "58",
     name: "Metamorphosis",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -172,7 +179,7 @@ const mutationsData = [
     wt: 3,
     roll: "59-61",
     name: "Natural Armor",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -180,7 +187,7 @@ const mutationsData = [
     wt: 3,
     roll: "62-64",
     name: "Natural Weaponry",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -188,7 +195,7 @@ const mutationsData = [
     wt: 1,
     roll: "65",
     name: "Pheromonic Influence",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -196,7 +203,7 @@ const mutationsData = [
     wt: 3,
     roll: "66-68",
     name: "Prehensile Tail",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -204,7 +211,7 @@ const mutationsData = [
     wt: 3,
     roll: "69-71",
     name: "Radiant Gaze",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -212,7 +219,7 @@ const mutationsData = [
     wt: 3,
     roll: "72-74",
     name: "Regeneration",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -220,7 +227,7 @@ const mutationsData = [
     wt: 3,
     roll: "75-77",
     name: "Resistance",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -228,7 +235,7 @@ const mutationsData = [
     wt: 3,
     roll: "78-80",
     name: "Sonic Attack",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -236,7 +243,7 @@ const mutationsData = [
     wt: 3,
     roll: "81-83",
     name: "Spines, Thorns, or Quills",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -244,7 +251,7 @@ const mutationsData = [
     wt: 2,
     roll: "84-85",
     name: "Symbiotic Domination",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -252,7 +259,7 @@ const mutationsData = [
     wt: 3,
     roll: "86-8",
     name: "Thanatosis",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -260,7 +267,7 @@ const mutationsData = [
     wt: 3,
     roll: "89-91",
     name: "Venom",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -268,7 +275,7 @@ const mutationsData = [
     wt: 3,
     roll: "92-94",
     name: "Web generation",
-    disc: "description",
+    desc: "description",
   },
 
   {
@@ -276,6 +283,8 @@ const mutationsData = [
     wt: 3,
     roll: "97-97",
     name: "Wings",
-    disc: "description",
+    desc: "description",
   },
 ];
+
+export { mutationsData };

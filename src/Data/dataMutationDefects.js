@@ -199,3 +199,5 @@ const mutationDefectsData = [
     disc: "description",
   },
 ];
+
+export { mutationDefectsData };

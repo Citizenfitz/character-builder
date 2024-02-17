@@ -6,11 +6,12 @@ const Header = () => (
     <div className="flex-grid  flex-grid--align-items-center">
       <a href="./" className="header__h1-link">
         <h1 className="flex-grid flex-grid--flex-start">
-          <span className="header__dropcap">E</span>
+          <span className="header__dropcap">Q</span>
           <div>
-            <span className="ut-only-sr">E</span>verLore
-            <span className="ut_tm">®</span>
-            <span className="subheader">A Classic Fantasy RPG</span>
+            <span className="ut-only-sr">Q</span>uestRex
+            <span className="subheader">
+              &nbsp;&nbsp;&nbsp;A Classic Fantasy RPG
+            </span>
           </div>
         </h1>
       </a>

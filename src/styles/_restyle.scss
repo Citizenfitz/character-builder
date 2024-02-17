@@ -1,0 +1,86 @@
+@mixin font-header {
+  font-family: $text-header-2;
+}
+
+@mixin font-bold {
+  @include font-header();
+  font-size: 1.2em;
+}
+
+.newstyle {
+  font-family: $text-medium;
+  font-size: 16px;
+  max-width: 750px;
+  line-height: 1.33em;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @include font-header();
+    color: $color-black;
+    //letter-spacing: 1px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  h3 {
+    font-size: 13px;
+  }
+  h4 {
+    font-size: 11px;
+  }
+  P {
+    font-size: 16px;
+    margin-top: 0;
+  }
+  li {
+    font-size: 16px;
+  }
+  b,
+  strong {
+    @include font-bold();
+  }
+
+  // ********* Lists **********
+  .ul,
+  ol {
+    margin-top: 0;
+  }
+
+  // ********* Tables **********
+  table {
+    border: 0;
+    font-size: 14px;
+  }
+  td {
+    border: 0;
+    padding: 0.5em;
+  }
+  th {
+    @include font-bold();
+    border: 0;
+    background: transparent;
+    border-bottom: 2px solid;
+    padding: 0.5em;
+  }
+  theader th:first-child {
+    min-width: 100px;
+  }
+  tbody tr:nth-child(odd) {
+    background: #fae1c1;
+  }
+
+  // ********* Grid **********
+
+  .spell-desc {
+    margin-top: 0;
+    font-size: 12px;
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 250px 250px 250px;
+  }
+}
