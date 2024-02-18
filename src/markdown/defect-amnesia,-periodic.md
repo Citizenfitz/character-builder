@@ -1,0 +1,1 @@
+When subject to stress the character must make a WIS-modified saving throw or forget everything that has occurred in the last 24 hours. The character may make additional saving throws each hour thereafter to recover the memories.

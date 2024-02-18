@@ -55,16 +55,16 @@
     content: "\f111";
   }
   &--black {
-    color: black;
+    color: $school-black;
   }
   &--blue {
-    color: blue;
+    color: $school-blue;
   }
   &--green {
-    color: green;
+    color: $school-green;
   }
   &--red {
-    color: red;
+    color: $school-red;
   }
   &--white::before {
     content: "\f10c";

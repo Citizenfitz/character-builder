@@ -85,4 +85,24 @@
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
   }
+
+  .desc {
+    margin-bottom: 32px;
+    &--mutation {
+      h2 {
+        color: $color-mutation;
+      }
+      tbody tr:nth-child(odd) {
+        background: $color-mutation-zebra;
+      }
+    }
+    &--defect {
+      h2 {
+        color: $color-defect;
+      }
+      tbody tr:nth-child(odd) {
+        background: $color-defect-zebra;
+      }
+    }
+  }
 }
