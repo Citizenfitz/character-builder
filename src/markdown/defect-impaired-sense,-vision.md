@@ -1,0 +1,1 @@
+This is identical to the disadvantage, _Weak Eyes_ and the character cannot take that disadvantage if they have this defect.The character has poor vision and will suffer _disadvantage_ to all perception rolls involving sight. He or she will also be unable to read or discern fine details without a visual aid (glasses, monocle, magnifying glass, etc.).

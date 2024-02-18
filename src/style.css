@@ -1021,16 +1021,16 @@ th {
   content: "";
 }
 .fa-spell-dot--black {
-  color: black;
+  color: #000;
 }
 .fa-spell-dot--blue {
-  color: blue;
+  color: #2375b9;
 }
 .fa-spell-dot--green {
-  color: green;
+  color: #04a54f;
 }
 .fa-spell-dot--red {
-  color: red;
+  color: #eb2026;
 }
 .fa-spell-dot--white::before {
   content: "";
@@ -2511,6 +2511,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .newstyle h2 {
   font-size: 22px;
+  margin-bottom: 6px;
 }
 .newstyle h3 {
   font-size: 13px;
@@ -2562,7 +2563,23 @@ input[type=number]::-webkit-outer-spin-button {
   list-style: none;
   padding: 0;
   display: grid;
-  grid-template-columns: 250px 250px 250px;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+}
+.newstyle .desc {
+  margin-bottom: 32px;
+}
+.newstyle .desc--mutation h2 {
+  color: #ff2600;
+}
+.newstyle .desc--mutation tbody tr:nth-child(odd) {
+  background: #f7d2bc;
+}
+.newstyle .desc--defect h2 {
+  color: #04a54f;
+}
+.newstyle .desc--defect tbody tr:nth-child(odd) {
+  background: #beebd1;
 }
 
 /*# sourceMappingURL=style.css.map */
