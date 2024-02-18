@@ -1,0 +1,1 @@
+Twice per day the character may briefly increase their speed. The effect is identical to the spell _Haste_ though it only affects the character. Alacrity lasts for 4 rounds plus the character's CON modifier.

@@ -1,0 +1,1 @@
+The character can project searing energy beams from their eyes. These beams have a range of 30 feet and inflict 3d4 hit points of radiation damage with a successful Combat attack. Radiant Gaze may only be used once every 4 rounds.

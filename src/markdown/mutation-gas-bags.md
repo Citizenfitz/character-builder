@@ -1,0 +1,1 @@
+The character is able to inflate gas bags enabling them to float in the air indefinitely. The character may control their vertical movement but horizontal movement is at the mercy of wind currents. He or she may carry aloft up to four times their body weight.
