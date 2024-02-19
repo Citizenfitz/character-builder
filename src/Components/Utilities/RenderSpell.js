@@ -18,15 +18,20 @@ const RenderSpell = (props) => {
       .catch((err) => console.log(err));
   });
 
+  /**
+   *
+   * @param {string[] | null} schools
+   * @returns
+   */
   const parseSchools = (schools) => {
-    if (schools === null) {
+    if (!schools) {
       return "n/a";
     }
-    let schoolArray = ["black", "blue", "green", "red", "white"];
-    if (schools === schoolArray) {
+    const allSchools = ["black", "blue", "green", "red", "white"];
+    if (schools.length === allSchools.length) {
       return "All";
     }
-    return schools;
+    return schools.join(", ");
   };
 
   return (
