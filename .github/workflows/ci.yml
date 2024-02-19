@@ -16,4 +16,4 @@ jobs:
       - name: Perform CI check
         run: npm run ci:check
         env:
-          CI: ""
+          CI: "" # prevents warnings being treated as errors
