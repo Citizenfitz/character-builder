@@ -17,8 +17,79 @@ import RenderSpell from "../Utilities/RenderSpell";
 import RenderPsionic from "../Utilities/RenderPsionic";
 
 const PageMutations = () => {
+  const flinger = (spell) => {
+    console.log("spell = " + spell);
+  };
+
   return (
     <div className="newstyle">
+      <h1>Magic Spells</h1>
+      <section>
+        {Object.values(spellData).map((spell) => (
+          <div key={spell.id}>
+            {flinger(spell)}
+            <RenderSpell
+              name={spell.name}
+              cast={spell.cast}
+              components={spell.components}
+              duration={spell.duration}
+              range={spell.range}
+              save={spell.save}
+              target={spell.target}
+              school={spell.school}
+            ></RenderSpell>
+          </div>
+        ))}
+      </section>
+      <hr />
+
+      <h1>Spells</h1>
+      <h2>
+        Dispel Magic
+        <span className="fas fa-spell-dot fa-spell-dot--black"></span>
+        <span className="fas fa-spell-dot fa-spell-dot--blue"></span>
+        <span className="fas fa-spell-dot fa-spell-dot--green"></span>
+        <span className="fas fa-spell-dot fa-spell-dot--red"></span>
+        <span className="fas fa-spell-dot fa-spell-dot--white"></span>
+      </h2>
+      <ul className="desc__list desc__list--spell">
+        <li>Casting: 1 action</li>
+        <li>School: All</li>
+        <li>Components: V,S</li>
+        <li>Duration: instant</li>
+        <li>Range: 120'</li>
+        <li>Save: none</li>
+        <li>Target: 1 spell or 20' cube</li>
+      </ul>
+      <p>
+        This spell instantaneously ends either all spells within its area of
+        effect or a single spell of the caster's choice. It affects enchantments
+        on creatures and magically summoned creatures (they're dismissed to
+        whence they came), but not magic items. The caster may dispel:
+      </p>
+      <ul>
+        <li>Their own spells automatically</li>
+        <li>Third level or below spells automatically</li>
+        <li>
+          4th level or higher spells with an Wizardry or Thaumaturgy talent roll
+          against a DC of 5 + the level of the spell to be dispelled.{" "}
+        </li>
+      </ul>
+
+      <hr />
+      <h1>Talents</h1>
+      <h2>Alertness</h2>
+      <ul className="spell-desc">
+        <li>Type: Common</li>
+        <li>Modifier: none</li>
+        <li>Prerequisite: none</li>
+      </ul>
+      <p>
+        The character is incredibly aware and gains +3 to all perception rolls,
+        is only surprised on a roll of 1 on d12, and makes such rolls without
+        penalty even while distracted or asleep.
+      </p>
+
       <section>
         <h1>Mutations</h1>
         {mutationsData.map((mutation) => (
@@ -75,62 +146,6 @@ const PageMutations = () => {
         ))}
       </section>
       <hr />
-
-      <h1>Magic Spells</h1>
-      <section>
-        {Object.values(spellData).map((spell) => (
-          <div key={spell.id}>
-            <RenderTalent name={spell.cast}></RenderTalent>
-          </div>
-        ))}
-      </section>
-      <hr />
-
-      <h1>Spells</h1>
-      <h2>
-        Dispel Magic
-        <span className="fas fa-spell-dot fa-spell-dot--black"></span>
-        <span className="fas fa-spell-dot fa-spell-dot--blue"></span>
-        <span className="fas fa-spell-dot fa-spell-dot--green"></span>
-        <span className="fas fa-spell-dot fa-spell-dot--red"></span>
-        <span className="fas fa-spell-dot fa-spell-dot--white"></span>
-      </h2>
-      <ul className="desc__list desc__list--spell">
-        <li>Casting: 1 action</li>
-        <li>School: All</li>
-        <li>Components: V,S</li>
-        <li>Duration: instant</li>
-        <li>Range: 120'</li>
-        <li>Save: none</li>
-        <li>Target: 1 spell or 20' cube</li>
-      </ul>
-      <p>
-        This spell instantaneously ends either all spells within its area of
-        effect or a single spell of the caster's choice. It affects enchantments
-        on creatures and magically summoned creatures (they're dismissed to
-        whence they came), but not magic items. The caster may dispel:
-      </p>
-      <ul>
-        <li>Their own spells automatically</li>
-        <li>Third level or below spells automatically</li>
-        <li>
-          4th level or higher spells with an Wizardry or Thaumaturgy talent roll
-          against a DC of 5 + the level of the spell to be dispelled.{" "}
-        </li>
-      </ul>
-      <hr />
-      <h1>Talents</h1>
-      <h2>Alertness</h2>
-      <ul className="spell-desc">
-        <li>Type: Common</li>
-        <li>Modifier: none</li>
-        <li>Prerequisite: none</li>
-      </ul>
-      <p>
-        The character is incredibly aware and gains +3 to all perception rolls,
-        is only surprised on a roll of 1 on d12, and makes such rolls without
-        penalty even while distracted or asleep.
-      </p>
     </div>
   );
 };

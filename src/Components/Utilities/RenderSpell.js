@@ -18,6 +18,17 @@ const RenderSpell = (props) => {
       .catch((err) => console.log(err));
   });
 
+  const parseSchools = (schools) => {
+    if (schools === null) {
+      return "n/a";
+    }
+    let schoolArray = ["black", "blue", "green", "red", "white"];
+    if (schools === schoolArray) {
+      return "All";
+    }
+    return schools;
+  };
+
   return (
     <div className="desc desc--spell">
       <h2>{props.name} </h2>
@@ -26,7 +37,8 @@ const RenderSpell = (props) => {
           <span className="ut-font-bold">Casting:</span> {props.cast}
         </li>
         <li>
-          <span className="ut-font-bold">School:</span> schools
+          <span className="ut-font-bold">School:</span>{" "}
+          {parseSchools(props.school)}
         </li>
         <li>
           <span className="ut-font-bold">Components:</span> {props.components}
