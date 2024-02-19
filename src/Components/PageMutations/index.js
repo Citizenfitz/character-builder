@@ -17,17 +17,12 @@ import RenderSpell from "../Utilities/RenderSpell";
 import RenderPsionic from "../Utilities/RenderPsionic";
 
 const PageMutations = () => {
-  const flinger = (spell) => {
-    console.log("spell = " + spell);
-  };
-
   return (
     <div className="newstyle">
       <h1>Magic Spells</h1>
       <section>
         {Object.values(spellData).map((spell) => (
           <div key={spell.id}>
-            {flinger(spell)}
             <RenderSpell
               name={spell.name}
               cast={spell.cast}
