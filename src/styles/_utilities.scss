@@ -61,6 +61,9 @@
   &spell-white {
     color: $color-royal;
   }
+  &-psionic-glow {
+    @include color-psionic-glow;
+  }
 }
 
 //  ------- Margins --------
@@ -125,6 +128,19 @@
   padding-right: 8px;
   padding-left: 3px;
 }
+
+.ut-font-regular {
+  @include font-regular;
+}
+
+.ut-font-semi {
+  @include font-semi;
+}
+
+.ut-font-bold {
+  @include font-bold;
+}
+
 //  ------- PRINT VS SCREEN --------
 @media print {
   .ut-no-print {

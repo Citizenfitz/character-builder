@@ -1,0 +1,3 @@
+With a successful Psionics talent roll user can telekinetically deflect physical missiles no larger than a javelin or beam/ray effects (lasers, blasters, etc.) directed at himself or herself. Psionic powers (_Mind Thrust, Psychic Lightning_, etc.) and magical spells may not be deflected except for _Magic Missile,_ which may be. Multiple missiles may be deflected in a round (each with an additional PSP cost and a separate roll) but for each one beyond the first there is a -2 cumulative modifier to the roll.
+
+The DC for making a Psionics talent roll with _Psychokinetic Deflection_ starts at DC 10, can never be lower, and will often start as higher in high-distraction situations (see _Psionic Roll_ q.v.).

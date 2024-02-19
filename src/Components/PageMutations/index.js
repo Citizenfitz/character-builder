@@ -6,10 +6,15 @@ import {
   mutationsData,
   mutationDefectsData,
   talentData,
+  talentData2,
   spellData,
+  psionicsData,
 } from "../../Data/";
 import RenderMutation from "../Utilities/RenderMutation";
 import RenderDefect from "../Utilities/RenderDefect";
+import RenderTalent from "../Utilities/RenderTalent";
+import RenderSpell from "../Utilities/RenderSpell";
+import RenderPsionic from "../Utilities/RenderPsionic";
 
 const PageMutations = () => {
   return (
@@ -36,53 +41,51 @@ const PageMutations = () => {
 
       <h1>Talents</h1>
       <section>
-        {talentData.map((talent) => (
+        {talentData2.map((talent) => (
           <div key={talent.id}>
-            <h2>{talent.name}</h2>
-            <ul className="spell-desc">
-              <li>Type: {talent.aspect}</li>
-              <li>Modifier: {talent.mod}</li>
-              <li>Prerequisite: none</li>
-            </ul>
-            <p>{talent.desc}</p>
+            <RenderTalent
+              name={talent.name}
+              mod={talent.mod}
+              aspect={talent.aspect}
+              preq={talent.preq}
+              bonus={talent.bonus}
+            ></RenderTalent>
           </div>
         ))}
       </section>
       <hr />
 
-      <h1>Psionic Powers</h1>
-      <h2>Blink</h2>
-      <ul className="spell-desc">
-        <li>PSP: 2 (stacking)</li>
-        <li>Initiate: 1 action</li>
-        <li>Discipline: Psychokinesis</li>
-        <li>Duration: instant</li>
-        <li>Range: 120' </li>
-        <li>Visibility: invisible</li>
-        <li>Save: negate </li>
-        <li>Target: user + 1 other creature </li>
-      </ul>
-      <p>
-        This power instantly teleports the user to any spot within the power's
-        range. Blink is unfailingly accurate and the destination may be a place
-        the user can see, one they're familiar with, or specified with
-        directions and distance (i.e. "20 feet down"). The user may bring along
-        one other creature weighing no more than 500lb. Unwilling creatures are
-        allowed a saving throw to avoid the effect. If a solid object occupies
-        the destination the power fails and the user and any creature traveling
-        with them suffer 4d6 points of damage.
-      </p>
-      <ul>
-        <li>
-          <b>x2 Stacking:</b> Range of 240' and can take up to two creatures
-          1000 lbs or less
-        </li>
-        <li>
-          <b>x3 Stacking:</b> Range of 480' and can take up to four creatures of
-          2000 lbs or less
-        </li>
-      </ul>
+      <h1 className="ut-color-psionic-glow">Psionic Powers</h1>
+      <section>
+        {psionicsData.map((psionic) => (
+          <div key={psionic.id}>
+            <RenderPsionic
+              name={psionic.name}
+              discipline={psionic.discipline}
+              psp={psionic.psp}
+              initiate={psionic.initiate}
+              duration={psionic.duration}
+              range={psionic.range}
+              visibility={psionic.visibility}
+              save={psionic.save}
+              target={psionic.target}
+              rangeInf={psionic.rangeInf}
+            ></RenderPsionic>
+          </div>
+        ))}
+      </section>
       <hr />
+
+      <h1>Magic Spells</h1>
+      <section>
+        {Object.values(spellData).map((spell) => (
+          <div key={spell.id}>
+            <RenderTalent name={spell.cast}></RenderTalent>
+          </div>
+        ))}
+      </section>
+      <hr />
+
       <h1>Spells</h1>
       <h2>
         Dispel Magic
@@ -92,7 +95,7 @@ const PageMutations = () => {
         <span className="fas fa-spell-dot fa-spell-dot--red"></span>
         <span className="fas fa-spell-dot fa-spell-dot--white"></span>
       </h2>
-      <ul className="spell-desc">
+      <ul className="desc__list desc__list--spell">
         <li>Casting: 1 action</li>
         <li>School: All</li>
         <li>Components: V,S</li>

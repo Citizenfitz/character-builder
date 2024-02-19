@@ -1,0 +1,1 @@
+With a successful talent roll character hits a target in combat. For melee attacks, the character's Strength modifier is added to to-hit and to damage rolls. For ranged attacks, the character Dexterity modifier is added to to-hit roll. In both cases the target's armor class (AC) is the difficulty class (DC) to succeed.

@@ -1,0 +1,1 @@
+The power allows the user to successfully make any one saving throw by granting them a flash of insight on exactly what fate is about to befall them. _Fate Avoidance_ must be declared and used before the saving throw roll is made.

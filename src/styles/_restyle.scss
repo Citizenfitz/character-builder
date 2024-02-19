@@ -76,15 +76,15 @@
 
   // ********* Grid **********
 
-  .spell-desc {
-    margin-top: 0;
-    font-size: 12px;
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 10px;
-  }
+  // .spell-desc {
+  //   margin-top: 0;
+  //   font-size: 12px;
+  //   list-style: none;
+  //   padding: 0;
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr 1fr;
+  //   column-gap: 10px;
+  // }
 
   .desc {
     margin-bottom: 32px;
@@ -104,5 +104,28 @@
         background: $color-defect-zebra;
       }
     }
+    &--psionic {
+      h2 {
+        @include color-psionic-glow;
+      }
+    }
+  }
+
+  // temp for spceificity
+  .ut-color-psionic-glow {
+    @include color-psionic-glow;
+  }
+}
+
+.desc__list {
+  font-size: 12px;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+  &--talent {
+    grid-template-columns: 1fr 1fr;
   }
 }

@@ -6,12 +6,10 @@
 }
 @font-face {
   font-family: "cabin-medium";
-  font-weight: normal;
   src: url("assets/fonts/Cabin/Cabin-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "cabin-semibold";
-  font-weight: normal;
   src: url("assets/fonts/Cabin/Cabin-SemiBold.ttf") format("truetype");
 }
 @font-face {
@@ -1235,11 +1233,11 @@ input[type=radio] + label.aspect-radio-label__type {
   width: 100%;
   left: 0px;
   bottom: 0px;
-  color: #883c8d;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
-  font-size: 14px;
+  font-family: "Carmen", Carmen, sans-serif;
+  font-size: 18px;
   line-height: 24px;
   text-align: center;
+  border-radius: 100%;
 }
 .aspect-icon--large {
   height: 36px;
@@ -1268,9 +1266,13 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .aspect-icon--common:after {
   content: "C";
+  color: white;
+  background: #883c8d;
 }
 .aspect-icon--race:after {
   content: "R";
+  color: white;
+  background: #883c8d;
 }
 .aspect-icon--fighter:after {
   background-image: url("assets/images/spade.svg");
@@ -2374,6 +2376,10 @@ input[type=number]::-webkit-outer-spin-button {
 .ut-color-spell-white {
   color: #883c8d;
 }
+.ut-color--psionic-glow {
+  text-shadow: 0 0 10px #ecde82;
+  color: #883c8d;
+}
 
 .ut-margin-top-0 {
   margin-top: 0;
@@ -2433,6 +2439,21 @@ input[type=number]::-webkit-outer-spin-button {
   padding-top: 4px;
   padding-right: 8px;
   padding-left: 3px;
+}
+
+.ut-font-regular {
+  font-family: "Cabin Regular", Cabin, sans-serif;
+  font-weight: 400;
+}
+
+.ut-font-semi {
+  font-family: "Cabin Regular", Cabin, sans-serif;
+  font-weight: 500;
+}
+
+.ut-font-bold {
+  font-family: "Cabin Bold", Cabin, sans-serif;
+  font-weight: 700;
 }
 
 @media print {
@@ -2557,15 +2578,6 @@ input[type=number]::-webkit-outer-spin-button {
 .newstyle tbody tr:nth-child(odd) {
   background: #fae1c1;
 }
-.newstyle .spell-desc {
-  margin-top: 0;
-  font-size: 12px;
-  list-style: none;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: 10px;
-}
 .newstyle .desc {
   margin-bottom: 32px;
 }
@@ -2580,6 +2592,27 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .newstyle .desc--defect tbody tr:nth-child(odd) {
   background: #beebd1;
+}
+.newstyle .desc--psionic h2 {
+  text-shadow: 0 0 10px #ecde82;
+  color: #883c8d;
+}
+.newstyle .ut-color-psionic-glow {
+  text-shadow: 0 0 10px #ecde82;
+  color: #883c8d;
+}
+
+.desc__list {
+  font-size: 12px;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 10px;
+}
+.desc__list--talent {
+  grid-template-columns: 1fr 1fr;
 }
 
 /*# sourceMappingURL=style.css.map */

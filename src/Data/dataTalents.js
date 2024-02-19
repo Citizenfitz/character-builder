@@ -9,6 +9,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "r2",
@@ -20,6 +22,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "r3",
@@ -31,6 +35,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "r4",
@@ -42,6 +48,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "r5",
@@ -53,6 +61,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "r6",
@@ -64,6 +74,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "c1",
@@ -75,6 +87,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "c2",
@@ -97,6 +111,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "c4",
@@ -108,6 +124,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "c5",
@@ -119,6 +137,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: false,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "c6",
@@ -130,6 +150,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f1",
@@ -141,6 +163,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f2",
@@ -152,6 +176,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f3",
@@ -163,6 +189,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f4",
@@ -174,6 +202,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f5",
@@ -185,6 +215,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f6",
@@ -196,6 +228,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f7",
@@ -207,6 +241,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "f8",
@@ -218,6 +254,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p1",
@@ -229,6 +267,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p2",
@@ -240,6 +280,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p3",
@@ -251,6 +293,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p4",
@@ -262,6 +306,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p5",
@@ -273,6 +319,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p6",
@@ -284,6 +332,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p7",
@@ -295,6 +345,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "p8",
@@ -328,6 +380,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w1",
@@ -350,6 +404,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w3",
@@ -361,6 +417,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: false,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w4",
@@ -372,6 +430,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: false,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w5",
@@ -383,6 +443,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: false,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w6",
@@ -394,6 +456,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w7",
@@ -405,6 +469,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: false,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "w8",
@@ -416,6 +482,8 @@ const talentData = [
     isstacking: false,
     isRollable: false,
     isoption: false,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k1",
@@ -427,6 +495,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k2",
@@ -438,6 +508,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k3",
@@ -449,6 +521,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k4",
@@ -460,6 +534,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k5",
@@ -471,6 +547,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k6",
@@ -482,6 +560,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k7",
@@ -493,6 +573,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k8",
@@ -504,6 +586,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k9",
@@ -515,6 +599,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k10",
@@ -526,6 +612,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k11",
@@ -537,6 +625,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k12",
@@ -548,6 +638,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
   {
     id: "k13",
@@ -559,6 +651,8 @@ const talentData = [
     isstacking: false,
     isRollable: true,
     isoption: true,
+    preq: "none",
+    bonus: "none",
   },
 ];
 
