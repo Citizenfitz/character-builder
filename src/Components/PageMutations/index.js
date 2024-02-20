@@ -25,11 +25,11 @@ const PageMutations = () => {
     <div className="newstyle">
       <h1>Magic Spells</h1>
       <section>
-        {Object.values(spellData).map((spell) => (
+        {Object.entries(spellData).map(([ spellName, spell ]) => (
           <div key={spell.id}>
             {flinger(spell)}
             <RenderSpell
-              name={spell.name}
+              name={spellName}
               cast={spell.cast}
               components={spell.components}
               duration={spell.duration}
