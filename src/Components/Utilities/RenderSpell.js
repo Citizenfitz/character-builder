@@ -36,14 +36,41 @@ const RenderSpell = (props) => {
 
   return (
     <div className="desc desc--spell">
-      <h2>{props.name} </h2>
+      <h2>
+        {props.name}
+        {props.school && props.school.includes("black") ? (
+          <span className="fas fa-spell-dot fa-spell-dot--black"></span>
+        ) : (
+          <span></span>
+        )}
+        {props.school && props.school.includes("blue") ? (
+          <span className="fas fa-spell-dot fa-spell-dot--blue"></span>
+        ) : (
+          <span></span>
+        )}
+        {props.school && props.school.includes("green") ? (
+          <span className="fas fa-spell-dot fa-spell-dot--green"></span>
+        ) : (
+          <span></span>
+        )}
+        {props.school && props.school.includes("red") ? (
+          <span className="fas fa-spell-dot fa-spell-dot--red"></span>
+        ) : (
+          <span></span>
+        )}
+        {props.school && props.school.includes("white") ? (
+          <span className="fas fa-spell-dot fa-spell-dot--white"></span>
+        ) : (
+          <span></span>
+        )}
+      </h2>
       <ul className="desc__list desc__list--spell">
         <li>
           <span className="ut-font-bold">Casting:</span> {props.cast}
         </li>
         <li>
           <span className="ut-font-bold">School:</span>{" "}
-          {parseSchools(props.school)}
+          <span className="ut-captialize"> {parseSchools(props.school)}</span>
         </li>
         <li>
           <span className="ut-font-bold">Components:</span> {props.components}
