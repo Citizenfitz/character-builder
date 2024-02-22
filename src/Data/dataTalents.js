@@ -654,6 +654,19 @@ const talentData = [
     preq: "none",
     bonus: "none",
   },
+  {
+    id: "p11",
+    aspect: "priest",
+    name: "Psionic Amplification",
+    desc: "none",
+    mod: "none",
+    isleveling: false,
+    isstacking: true,
+    isRollable: false,
+    isoption: false,
+    preq: "Psionics",
+    bonus: "none",
+  },
 ];
 
 export { talentData };

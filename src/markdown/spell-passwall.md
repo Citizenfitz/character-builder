@@ -1,0 +1,1 @@
+The spell opens a 5' diameter, 10' deep passage through rock or wood. The passage closes without a trace when the spell ends ejecting anything within towards the nearest open space. The material component is a bit of sesame seed.

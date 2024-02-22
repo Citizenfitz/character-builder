@@ -21,7 +21,7 @@ const PageMutations = () => {
     <div className="newstyle">
       <h1>Magic Spells</h1>
       <section>
-        {Object.entries(spellData).map(([ spellName, spell ]) => (
+        {Object.entries(spellData).map(([spellName, spell]) => (
           <div key={spell.id}>
             <RenderSpell
               name={spellName}
@@ -32,6 +32,8 @@ const PageMutations = () => {
               save={spell.save}
               target={spell.target}
               school={spell.school}
+              wizLvl={spell.wizLvl}
+              priestLvl={spell.priestLvl}
             ></RenderSpell>
           </div>
         ))}

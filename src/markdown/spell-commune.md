@@ -1,0 +1,1 @@
+This spell enables the caster to seek guidance from their divinity in the form of yes-or-no questions. They may ask one question per level and the answer will be unfailingly correct. _Commune_ may only be cast once per month.

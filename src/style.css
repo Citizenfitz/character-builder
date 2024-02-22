@@ -2361,6 +2361,12 @@ input[type=number]::-webkit-outer-spin-button {
 .ut-color-royal {
   color: #883c8d;
 }
+.ut-color-mutation {
+  color: #ff2600;
+}
+.ut-color-gray {
+  color: #767676;
+}
 .ut-color-spell-black {
   color: #883c8d;
 }

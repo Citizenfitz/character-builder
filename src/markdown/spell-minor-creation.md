@@ -1,0 +1,1 @@
+This spell allows the caster to create a single object of up to 1 cubic foot in size per level of caster. The object must be non living, vegetable based (foodstuff, cloth, rope, leather, etc.), and cannot be used as the material component for another spell. The material component is a bit, however small, of the material to be created.

@@ -1,0 +1,1 @@
+This dark necromancy reanimates dead humanoids as zombies or skeletons under the caster's control. The caster can animate their level in hit dice of these creatures (.i.e. a 5th level caster can create 5HD of either skeletons or zombies). The creatures persist until destroyed or dispelled.

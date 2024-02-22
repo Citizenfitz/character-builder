@@ -1,0 +1,1 @@
+This magic conjures glowing bolts that fly from the caster's fingertip to unerringly strike their target causing 1d6+1 damage per missile. The missiles may be directed at multiple or a single target. For every five levels of the caster the spell generates two additional missiles (three missiles at 5-9th level, 5 missiles at 10-15, etc.).

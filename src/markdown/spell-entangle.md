@@ -1,0 +1,1 @@
+This spell causes vegetation in an area to grow and thicken so as to entwine and hold fast creatures for the spell's duration. Creatures making their saving throw may move with _slowed movement_ (see Movement section, q.v.). The spell will not function in areas devoid of all vegetation. The material component is a bit of any fast-growing plant.

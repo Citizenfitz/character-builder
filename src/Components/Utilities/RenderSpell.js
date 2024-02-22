@@ -85,6 +85,20 @@ const RenderSpell = (props) => {
           <span className="ut-font-bold">Save:</span> {props.save}
         </li>
         <li>
+          {props.wizLvl && props.wizLvl > 0 ? (
+            <span className="ut-color-wizard">W{props.wizLvl}</span>
+          ) : null}
+          {props.priestLvl &&
+          props.priestLvl > 0 &&
+          props.wizLvl &&
+          props.wizLvl > 0 ? (
+            <span className="ut-color-gray"> / </span>
+          ) : null}
+          {props.priestLvl && props.priestLvl > 0 ? (
+            <span className="ut-color-priest"> P{props.priestLvl}</span>
+          ) : null}
+        </li>
+        <li>
           <span className="ut-font-bold">Target:</span> {props.target}
         </li>
       </ul>

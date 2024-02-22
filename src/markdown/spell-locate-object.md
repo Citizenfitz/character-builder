@@ -1,0 +1,1 @@
+This spell allows the caster to know the direction, but not distance, of a specific object known to the caster, or a general class of objects (stairs, swords, shrubberies, etc. ). It cannot locate creatures. The material component is a bit of crystal or lodestone.

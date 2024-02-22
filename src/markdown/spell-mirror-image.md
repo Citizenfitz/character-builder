@@ -1,0 +1,1 @@
+This spell creates 1d4+1 illusory apparitions that mirror the caster's speech and actions, and shift about in a manner making it impossible for opponents to discern which is the real caster. Apparitions remain within 20' of the caster and each vanish if struck (but others will remain). All of them vanish when the spell ends.
