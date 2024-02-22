@@ -1,0 +1,1 @@
+This spell bestows the ability to breathe water upon two creatures per level of caster. Creatures must be within the spell's area of effect to be enchanted but can venture anywhere once it takes effect. The spell may also be used to bestow air breathing on aquatic creatures. The material component is a small hollow reed.

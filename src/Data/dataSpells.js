@@ -109,7 +109,7 @@ export const thaumaturgyList = [
     "Gate",
     "Holy Word (Unholy Word)",
     "Regenerate",
-    "Resurrection",
+    "Resurrection (Annihilation)",
     "Symbol",
   ],
 ];
@@ -1330,7 +1330,7 @@ export const spellData = {
     wizLvl: 2,
     priestLvl: 2,
   },
-  Resurrection: {
+  "Resurrection (Annihilation)": {
     cast: "1 turn",
     range: "0'",
     target: "1 creature",
