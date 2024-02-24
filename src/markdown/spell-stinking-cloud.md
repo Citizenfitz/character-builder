@@ -1,0 +1,1 @@
+This spell creates a billowing cloud of foul, noxious vapors. Creatures within must make a CON-modified saving throw or be rendered helpless with nausea for 1d4+1 rounds. Those successfully saving are helpless only as long as they remain in the cloud and for 1 round after emerging. The material components are a bit of rotten egg or skunk cabbage.

@@ -1,0 +1,1 @@
+This spell girds the caster with complete immunity to normal, non-magical missiles no larger than a javelin. Such projectiles lose all velocity mere inches from the caster and drop harmlessly to the ground.

@@ -1,0 +1,1 @@
+This spell bestows on one creature per level of the caster (2 at 2[^nd] level, 3 at 3rd, etc.) the ability to see up to 60 feet in complete darkness. The vision bestowed is grainy and cannot discern fine details (like writing).

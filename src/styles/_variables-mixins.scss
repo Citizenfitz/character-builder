@@ -9,12 +9,10 @@ $path-img: "assets/images/";
 }
 @font-face {
   font-family: "cabin-medium";
-  font-weight: normal;
   src: url($path-font + "Cabin/Cabin-Medium.ttf") format("truetype");
 }
 @font-face {
   font-family: "cabin-semibold";
-  font-weight: normal;
   src: url($path-font + "Cabin/Cabin-SemiBold.ttf") format("truetype");
 }
 @font-face {
@@ -60,6 +58,21 @@ $text-header: "GreyhawkGothic", GreyhawkGothic, sans-serif;
 $text-cursive: "Kaushan Script", cursive;
 
 $text-header-2: "Carmen", Carmen, sans-serif;
+
+@mixin font-regular {
+  font-family: $text-regular;
+  font-weight: 400;
+}
+
+@mixin font-semi {
+  font-family: $text-regular;
+  font-weight: 500;
+}
+
+@mixin font-bold {
+  font-family: $text-bold;
+  font-weight: 700;
+}
 
 // *********************** COLOR VARIABLES ***********************//
 
@@ -231,4 +244,9 @@ $margins-form-element-bottom: 1rem;
 
 @mixin background-color-transition {
   transition: background-color 0.5s ease;
+}
+
+@mixin color-psionic-glow {
+  text-shadow: 0 0 10px rgb(236, 222, 130);
+  color: $color-royal;
 }

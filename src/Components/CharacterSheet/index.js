@@ -561,6 +561,7 @@ const CharacterSheet = () => {
       case "Half-Elf":
       case "Half-Orc":
       case "Halfling":
+      case "Mutant":
         if (character.race !== "Human") {
           // remove attribute bonus from previous race
           newState = removeRaceBonus(newState, character.race);

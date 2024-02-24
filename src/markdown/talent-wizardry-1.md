@@ -1,0 +1,1 @@
+Characters can cast wizardry spells of any one school type (Blue, Black, Green, Red, or White). This type must be chosen when the talent is taken and does not change. Characters with a 16 or greater Intelligence begin with one additional 1st-level spell slot. See the magic section for details (q.v.).

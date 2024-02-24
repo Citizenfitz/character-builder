@@ -1,0 +1,1 @@
+With a successful roll on the _Remote Sensing Table_ (q.v.) the user can know the direction of and rough distance to any creature they seek. _Mind Stalking_ only functions on creatures with an aura. Targets can detect they've been located by the power with a successful INT-based saving throw. This manifests itself as a dreadful sense of being watched and followed.

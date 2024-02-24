@@ -1,0 +1,1 @@
+_Banishment_ instantly sends creatures back to the plane of existence from whence they came. Creatures native to the plane where the spell is cast are merely shunted into a pocket dimension for 10-60 minutes and then reappear unharmed. The spell affects up to 1 creature for every 4 levels of the caster. Target creatures may make a WIS-modified saving throw to negate the spell.

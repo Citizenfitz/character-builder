@@ -1,0 +1,1 @@
+This power is virtually identical to the spell of the same name. With one minute of concentration, the user can divine the direction, but not distance, of a specific object known to the user, or a general class of objects (stairs, swords, shrubberies, etc. ). This power cannot locate creatures.

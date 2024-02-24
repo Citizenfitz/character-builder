@@ -1,0 +1,1 @@
+This spell caused the subject's skin to harden, take on a bark-like appearance, and add +3 to their armor class. This armor class bonus is increased by +1 for every 5 levels of the caster (i.e. +4 at 5th level, +5 at 10th level, +6 at 15th level, etc.). The material component is a bit of bark.

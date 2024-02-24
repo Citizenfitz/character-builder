@@ -1,0 +1,1 @@
+This spell surrounds the caster with an invisible barrier that nullifies all magic within - including the caster's. Charmed or summoned creatures may not breach its perimeter, Gaze, breath, or other mystic attacks will not affect anyone within, and magical items within lose all potency (save powerful artifacts & relics).

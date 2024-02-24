@@ -1,0 +1,1 @@
+When the _Word Of Recall_ is uttered the caster is instantly transported back to their sanctuary. The sanctuary must be a well-known place but can be of any distance away. _Word Of Recall_ is unfailing accurate and the caster may bring with them an additional 25 lb. per level or items or creatures.

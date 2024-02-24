@@ -6,7 +6,7 @@ const HomePage = () => (
     <div className="flex-grid">
       <div className="flex-grid__child--half">
         <img
-          src="assets/images/everlore-core-rules.png"
+          src="assets/images/questrex-core-rules.png"
           alt="QuestRex Core Rules Cover"
           className="homepage__cover"
         />

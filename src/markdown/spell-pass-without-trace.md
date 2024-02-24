@@ -1,0 +1,1 @@
+By means of this spell a creature can traverse any terrain without leaving trail, scent, or trace of their passage. Even the freshest snow will leave nary a single imprint. The spell affects up to three creatures plus one creature for every two levels of the caster (four creatures at 2nd, five creatures at 4th, etc.).

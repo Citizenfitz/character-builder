@@ -76,16 +76,6 @@
 
   // ********* Grid **********
 
-  .spell-desc {
-    margin-top: 0;
-    font-size: 12px;
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 10px;
-  }
-
   .desc {
     margin-bottom: 32px;
     &--mutation {
@@ -104,5 +94,47 @@
         background: $color-defect-zebra;
       }
     }
+    &--psionic {
+      h2 {
+        @include color-psionic-glow;
+      }
+    }
   }
+
+  // temp for spceificity
+  .ut-color-psionic-glow {
+    @include color-psionic-glow;
+  }
+}
+
+.desc__list {
+  font-size: 12px;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 0.75rem;
+  &--talent {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.top-search {
+  padding: 0.25em 1em;
+  border: 1px solid $color-royal;
+  background: #f0e0f2;
+  margin: 1em 0;
+}
+
+.grid-talent-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 0.75rem;
+}
+
+.grid-psionic-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.75rem;
 }
