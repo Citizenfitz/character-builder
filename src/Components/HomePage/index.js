@@ -16,9 +16,7 @@ const HomePage = () => (
           Your Flexible, Old-School, Fantasy RPG!
         </h2>
         <p className="homepage__p">
-          <b>
-            QuestRex<span className="ut_tm">®</span>&nbsp;
-          </b>
+          <b>QuestRex &nbsp;</b>
           is a table-top, fantasy role-playing game based on the most famous RPG
           from the 80s. It leverages the old-school RPG conventions everyone
           already knows but with streamlined modern game mechanics and a{" "}

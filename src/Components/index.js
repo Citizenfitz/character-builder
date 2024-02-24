@@ -2,7 +2,7 @@ import Footer from "./Footer";
 import Header from "./Header";
 import CharacterSheet from "./CharacterSheet";
 import HomePage from "./HomePage";
-import Traits from "./Traits";
+import PageTraits from "./PageTraits";
 import PageMutations from "./PageMutations";
 import PageSpells from "./PageSpells";
 import PageTalents from "./PageTalents";
@@ -13,7 +13,7 @@ export {
   Header,
   CharacterSheet,
   HomePage,
-  Traits,
+  PageTraits,
   PageMutations,
   PageSpells,
   PageTalents,

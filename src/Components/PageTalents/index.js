@@ -5,9 +5,8 @@ import RenderTalent from "../Utilities/RenderTalent";
 
 const PageTalents = () => {
   return (
-    <div className="newstyle">
-      <h1>Talents</h1>
-      <div className="top-search grid-talent-list">
+    <div className="newstyle layou__page layout__page--aside">
+      <aside className="content-aside">
         <div>
           <h2 className="ut-color-common">Race Talents</h2>
           <ol>
@@ -98,18 +97,21 @@ const PageTalents = () => {
               ))}
           </ol>
         </div>
+      </aside>
+      <div className="content-main">
+        <h1>Talents Descriptions</h1>
+        {talentData.map((talent) => (
+          <div key={talent.id}>
+            <RenderTalent
+              name={talent.name}
+              mod={talent.mod}
+              aspect={talent.aspect}
+              preq={talent.preq}
+              bonus={talent.bonus}
+            ></RenderTalent>
+          </div>
+        ))}
       </div>
-      {talentData.map((talent) => (
-        <div key={talent.id}>
-          <RenderTalent
-            name={talent.name}
-            mod={talent.mod}
-            aspect={talent.aspect}
-            preq={talent.preq}
-            bonus={talent.bonus}
-          ></RenderTalent>
-        </div>
-      ))}
     </div>
   );
 };

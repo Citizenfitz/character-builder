@@ -1,6 +1,6 @@
 import React from "react";
 
-const Traits = () => (
+const PageTraits = () => (
   <div className="traits">
     <h2 className="homepage__h2">Character Trait Generator</h2>
     <p className="homepage__p">
@@ -55,4 +55,4 @@ const Traits = () => (
   </div>
 );
 
-export default Traits;
+export default PageTraits;

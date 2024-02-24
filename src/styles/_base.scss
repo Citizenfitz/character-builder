@@ -17,27 +17,35 @@ body {
   font-family: $text-regular;
   color: $color-black;
   background: $color-gray-5;
-  // text-align: center;
 }
 
-// bg base color for main elements
-main,
-header {
-  // background: $color-white;
-  // border-left: 1px solid $color-royal;
-  // border-right: 1px solid $color-royal;
-}
-#root {
+.root {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 2rem;
+  grid-template-areas:
+    "hd hd hd hd hd hd hd hd hd hd hd hd"
+    "mn mn mn mn mn mn mn mn mn mn mn mn"
+    "ft ft ft ft ft ft ft ft ft ft ft ft";
 }
 
-main {
-  @include site-layout;
-  @include mq-tablet {
-    padding: $margins-tablet;
-  }
-  @include mq-phone {
-    padding: $margins-phone;
-  }
+.header {
+  grid-area: hd;
+}
+.main {
+  grid-area: mn;
+  padding: $margins-desktop;
+}
+
+.footer {
+  grid-area: ft;
+  background: lighten($color-royal, 40%);
+  color: darken($color-royal, 10%);
+  // box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
+  //   -1000px 0px 0px 0px lighten($color-royal, 40%);
+  padding: $margins-desktop;
+  padding-bottom: 10rem;
 }
 
 .autosave {
@@ -55,16 +63,6 @@ main {
   input {
     cursor: pointer;
   }
-}
-
-.footer {
-  @include site-layout;
-  background: lighten($color-royal, 40%);
-  color: darken($color-royal, 10%);
-  box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
-    -1000px 0px 0px 0px lighten($color-royal, 40%);
-  padding: $margins-desktop;
-  padding-bottom: 10rem;
 }
 
 /***** HEADERS *****/

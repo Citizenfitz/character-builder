@@ -10,7 +10,7 @@
 .newstyle {
   font-family: $text-medium;
   font-size: 16px;
-  max-width: 750px;
+  //max-width: 750px;
   line-height: 1.33em;
   h1,
   h2,
@@ -123,7 +123,7 @@
 .top-search {
   padding: 0.25em 1em;
   border: 1px solid $color-royal;
-  background: #f0e0f2;
+  background: $color-royal-zebra;
   margin: 1em 0;
 }
 
@@ -137,4 +137,26 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 0.75rem;
+}
+
+.layout {
+  &__page {
+  }
+  &__page--aside {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 2rem;
+    grid-template-areas: "as as as ct ct ct ct ct ct";
+  }
+}
+
+.content-aside {
+  grid-area: as;
+  padding: 0.25em 1em;
+  border: 1px solid $color-royal;
+  background: $color-royal-zebra;
+}
+.content-main {
+  grid-area: ct;
 }
