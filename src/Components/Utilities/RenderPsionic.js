@@ -20,7 +20,7 @@ const RenderPsionic = (props) => {
 
   return (
     <div className="desc desc--psionic">
-      <h2>{props.name}</h2>
+      <h2 id={props.id}>{props.name}</h2>
       <ul className="desc__list desc__list--psionic">
         <li>
           <span className="ut-font-bold">PSP:</span> {props.psp}

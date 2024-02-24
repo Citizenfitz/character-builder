@@ -7,6 +7,43 @@ const PageMutations = () => {
     <div className="newstyle">
       <section>
         <h1>Mutations</h1>
+
+        <div className="top-search">
+          <table className="table-mutations">
+            <thead>
+              <tr>
+                <th>d100 Roll</th>
+                <th>Mutation</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mutationsData.map((mutation) => (
+                <tr key={mutation.id}>
+                  <td>{mutation.roll}</td>
+                  <td>{mutation.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <table className="table-defects">
+            <thead>
+              <tr>
+                <th>d100 Roll</th>
+                <th>Defect</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mutationDefectsData.map((defect) => (
+                <tr key={defect.id}>
+                  <td>{defect.roll}</td>
+                  <td>{defect.name}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
         {mutationsData.map((mutation) => (
           <div key={mutation.id}>
             <RenderMutation name={mutation.name}></RenderMutation>

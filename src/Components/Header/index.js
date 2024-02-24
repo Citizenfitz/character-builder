@@ -48,13 +48,13 @@ const Header = () => (
           <Link to="./talents">Talents</Link>
         </li>
         <li className="header__nav-list-item ">
+          <Link to="./spells">Spells</Link>
+        </li>
+        <li className="header__nav-list-item ">
           <Link to="./mutations">Mutations</Link>
         </li>
         <li className="header__nav-list-item ">
           <Link to="./psionics">Psionics</Link>
-        </li>
-        <li className="header__nav-list-item ">
-          <Link to="./spells">Spells</Link>
         </li>
       </ul>
     </nav>

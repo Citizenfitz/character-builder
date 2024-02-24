@@ -6,9 +6,55 @@ const PagePsionics = () => {
   return (
     <div className="newstyle">
       <h1 className="ut-color-psionic-glow">Psionic Powers</h1>
+      <div className="top-search grid-psionic-list">
+        <div>
+          <h2>Aura Disciplines</h2>
+          <ol>
+            {psionicsData
+              .filter((psionic) => psionic.discipline === "Aura")
+              .map((psionic) => (
+                <li key={psionic.id}>{psionic.name}</li>
+              ))}
+          </ol>
+        </div>
+
+        <div>
+          <h2>Omniscience Disciplines</h2>
+          <ol>
+            {psionicsData
+              .filter((psionic) => psionic.discipline === "Omniscience")
+              .map((psionic) => (
+                <li key={psionic.id}>{psionic.name}</li>
+              ))}
+          </ol>
+        </div>
+
+        <div>
+          <h2>Psychokinesis Disciplines</h2>
+          <ol>
+            {psionicsData
+              .filter((psionic) => psionic.discipline === "Psychokinesis")
+              .map((psionic) => (
+                <li key={psionic.id}>{psionic.name}</li>
+              ))}
+          </ol>
+        </div>
+
+        <div>
+          <h2>Telepathy Disciplines</h2>
+          <ol>
+            {psionicsData
+              .filter((psionic) => psionic.discipline === "Telepathy")
+              .map((psionic) => (
+                <li key={psionic.id}>{psionic.name}</li>
+              ))}
+          </ol>
+        </div>
+      </div>
       {psionicsData.map((psionic) => (
         <div key={psionic.id}>
           <RenderPsionic
+            id={psionic.id}
             name={psionic.name}
             discipline={psionic.discipline}
             psp={psionic.psp}

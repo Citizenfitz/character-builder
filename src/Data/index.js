@@ -11,7 +11,6 @@ import { presetData } from "./dataPresets";
 import { raceData } from "./dataRaces";
 import { shieldData } from "./dataShield";
 import { talentData } from "./dataTalents";
-import { talentData2 } from "./dataTalents2";
 import { psionicsData } from "./dataPsionics";
 import {
   thaumaturgyList,
@@ -32,14 +31,13 @@ export {
   mutationsData,
   mutationsRollData,
   presetData,
+  psionicsData,
   raceData,
   rangedWeaponData,
   shieldData,
   spellData,
   spellSlots,
   talentData,
-  talentData2,
   thaumaturgyList,
   wizardryList,
-  psionicsData,
 };

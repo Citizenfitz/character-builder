@@ -19,7 +19,7 @@ const mutationDefectsData = [
     id: 3,
     wt: 15,
     roll: "13-15",
-    name: "Amnesia, memory limit",
+    name: "Amnesia, Memory Limit",
     desc: "description",
   },
 
@@ -27,7 +27,7 @@ const mutationDefectsData = [
     id: 4,
     wt: 18,
     roll: "16-18",
-    name: "Amnesia, periodic",
+    name: "Amnesia, Periodic",
     desc: "description",
   },
 

@@ -6,6 +6,8 @@ const PageSpells = () => {
   return (
     <div className="newstyle">
       <h1>Magic Spells</h1>
+      <div className="top-search">copy</div>
+
       {Object.entries(spellData).map(([spellName, spell]) => (
         <div key={spell.id}>
           <RenderSpell
