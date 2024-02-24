@@ -32,18 +32,25 @@ body {
 
 .header {
   grid-area: hd;
+  max-width: $page-max;
+  margin: 0 auto;
+  box-shadow: 1000px 0px 0px 0px $color-royal, -1000px 0px 0px 0px $color-royal;
 }
 .main {
   grid-area: mn;
+  max-width: $page-max;
+  margin: 0 auto;
   padding: $margins-desktop;
 }
 
 .footer {
   grid-area: ft;
+  max-width: $page-max;
+  margin: 0 auto;
   background: lighten($color-royal, 40%);
   color: darken($color-royal, 10%);
-  // box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
-  //   -1000px 0px 0px 0px lighten($color-royal, 40%);
+  box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
+    -1000px 0px 0px 0px lighten($color-royal, 40%);
   padding: $margins-desktop;
   padding-bottom: 10rem;
 }

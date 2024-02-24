@@ -66,17 +66,25 @@ body {
 
 .header {
   grid-area: hd;
+  max-width: 1600px;
+  margin: 0 auto;
+  box-shadow: 1000px 0px 0px 0px #883c8d, -1000px 0px 0px 0px #883c8d;
 }
 
 .main {
   grid-area: mn;
+  max-width: 1600px;
+  margin: 0 auto;
   padding: 1.5rem;
 }
 
 .footer {
   grid-area: ft;
+  max-width: 1600px;
+  margin: 0 auto;
   background: #ddb5e0;
   color: #652d69;
+  box-shadow: 1000px 0px 0px 0px #ddb5e0, -1000px 0px 0px 0px #ddb5e0;
   padding: 1.5rem;
   padding-bottom: 10rem;
 }
@@ -2609,6 +2617,11 @@ input[type=number]::-webkit-outer-spin-button {
   grid-template-rows: auto;
   gap: 2rem;
   grid-template-areas: "as as as ct ct ct ct ct ct";
+}
+@media (max-width: 768px) {
+  .layout__page--aside {
+    grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+  }
 }
 
 .content-aside {
