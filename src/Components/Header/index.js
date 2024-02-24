@@ -44,12 +44,17 @@ const Header = () => (
           <Link to="./character"> Character Builder</Link>
         </li>
 
-        <li className="header__nav-list-item ut-hidden">
-          <Link to="./traits">Character Traits</Link>
+        <li className="header__nav-list-item">
+          <Link to="./talents">Talents</Link>
         </li>
-
-        <li className="header__nav-list-item ut-hidden">
-          <Link to="#">Coming Soon</Link>
+        <li className="header__nav-list-item ">
+          <Link to="./mutations">Mutations</Link>
+        </li>
+        <li className="header__nav-list-item ">
+          <Link to="./psionics">Psionics</Link>
+        </li>
+        <li className="header__nav-list-item ">
+          <Link to="./spells">Spells</Link>
         </li>
       </ul>
     </nav>

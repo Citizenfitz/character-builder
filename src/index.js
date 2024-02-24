@@ -8,6 +8,9 @@ import {
   HomePage,
   Traits,
   PageMutations,
+  PageSpells,
+  PageTalents,
+  PagePsionics,
 } from "./Components";
 import "./style.css";
 
@@ -21,6 +24,9 @@ ReactDOM.render(
           <Route path="/character" element={<CharacterSheet />} />
           <Route path="/traits" element={<Traits />} />
           <Route path="/mutations" element={<PageMutations />} />
+          <Route path="/spells" element={<PageSpells />} />
+          <Route path="/talents" element={<PageTalents />} />
+          <Route path="/psionics" element={<PagePsionics />} />
         </Routes>
       </main>
       <Footer />
