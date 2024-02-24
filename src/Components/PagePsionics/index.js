@@ -4,9 +4,8 @@ import RenderPsionic from "../Utilities/RenderPsionic";
 
 const PagePsionics = () => {
   return (
-    <div className="newstyle">
-      <h1 className="ut-color-psionic-glow">Psionic Powers</h1>
-      <div className="top-search grid-psionic-list">
+    <div className="newstyle layou__page layout__page--aside">
+      <aside className="content-aside">
         <div>
           <h2>Aura Disciplines</h2>
           <ol>
@@ -50,24 +49,29 @@ const PagePsionics = () => {
               ))}
           </ol>
         </div>
+      </aside>
+
+      <div className="content-main">
+        <h1 className="ut-color-psionic-glow">Psionic Powers</h1>
+
+        {psionicsData.map((psionic) => (
+          <div key={psionic.id}>
+            <RenderPsionic
+              id={psionic.id}
+              name={psionic.name}
+              discipline={psionic.discipline}
+              psp={psionic.psp}
+              initiate={psionic.initiate}
+              duration={psionic.duration}
+              range={psionic.range}
+              visibility={psionic.visibility}
+              save={psionic.save}
+              target={psionic.target}
+              rangeInf={psionic.rangeInf}
+            ></RenderPsionic>
+          </div>
+        ))}
       </div>
-      {psionicsData.map((psionic) => (
-        <div key={psionic.id}>
-          <RenderPsionic
-            id={psionic.id}
-            name={psionic.name}
-            discipline={psionic.discipline}
-            psp={psionic.psp}
-            initiate={psionic.initiate}
-            duration={psionic.duration}
-            range={psionic.range}
-            visibility={psionic.visibility}
-            save={psionic.save}
-            target={psionic.target}
-            rangeInf={psionic.rangeInf}
-          ></RenderPsionic>
-        </div>
-      ))}
     </div>
   );
 };

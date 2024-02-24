@@ -6,7 +6,7 @@ import {
   Header,
   CharacterSheet,
   HomePage,
-  Traits,
+  PageTraits,
   PageMutations,
   PageSpells,
   PageTalents,
@@ -18,11 +18,11 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Header />
-      <main id="main">
+      <main className="main" id="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/character" element={<CharacterSheet />} />
-          <Route path="/traits" element={<Traits />} />
+          <Route path="/traits" element={<PageTraits />} />
           <Route path="/mutations" element={<PageMutations />} />
           <Route path="/spells" element={<PageSpells />} />
           <Route path="/talents" element={<PageTalents />} />
