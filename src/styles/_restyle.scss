@@ -148,6 +148,9 @@
     grid-template-rows: auto;
     gap: 2rem;
     grid-template-areas: "as as as ct ct ct ct ct ct";
+    @include mq-desktop {
+      grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+    }
     @include mq-tablet-down {
       grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
     }

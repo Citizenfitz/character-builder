@@ -2618,6 +2618,11 @@ input[type=number]::-webkit-outer-spin-button {
   gap: 2rem;
   grid-template-areas: "as as as ct ct ct ct ct ct";
 }
+@media (min-width: 769px) and (max-width: 1240px) {
+  .layout__page--aside {
+    grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+  }
+}
 @media (max-width: 768px) {
   .layout__page--aside {
     grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
