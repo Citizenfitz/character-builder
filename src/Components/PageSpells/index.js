@@ -87,8 +87,8 @@ const PageSpells = () => {
         </fieldset>
         <hr />
         <ul>
-          {Object.entries(spellData).map(([spellName, spell]) => (
-            <li key={spellName}>{spellName}</li>
+          {displayedSpells && displayedSpells.map((spell) => (
+            <li key={spell.name}><a href={`#${spell.name}`}>{spell.name}</a></li>
           ))}
         </ul>
       </aside>
@@ -96,7 +96,7 @@ const PageSpells = () => {
         <h1>Magic Spells - { displayedTitle }</h1>
         { 
         displayedSpells && displayedSpells.map((spell) => (
-          <div key={spell.name}>
+          <div key={spell.name} id={spell.name}>
             <RenderSpell
               name={spell.name}
               cast={spell.cast}
