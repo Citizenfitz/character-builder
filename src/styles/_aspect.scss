@@ -156,13 +156,13 @@ input[type="radio"] + label.aspect-radio-label {
 
   &--common:after {
     content: "C";
-    color: white;
-    background: $color-royal;
+    color: $color-royal;
+    font-size: 20px;
   }
   &--race:after {
     content: "R";
-    color: white;
-    background: $color-royal;
+    color: $color-royal;
+    font-size: 20px;
   }
   &--fighter:after {
     background-image: url($path-img + "spade.svg");

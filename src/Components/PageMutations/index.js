@@ -18,7 +18,11 @@ const PageMutations = () => {
             {mutationsData.map((mutation) => (
               <tr key={mutation.id}>
                 <td className="ut-align-center">{mutation.roll}</td>
-                <td>{mutation.name}</td>
+                <td>
+                  <a href={`#${mutation.name}`} className="aside__link">
+                    {mutation.name}
+                  </a>
+                </td>
               </tr>
             ))}
             <tr>
@@ -27,6 +31,8 @@ const PageMutations = () => {
             </tr>
           </tbody>
         </table>
+        <br />
+        <br />
         <h2 className="ut-align-center">Defects</h2>
         <table className="table-defects">
           <thead>
@@ -39,7 +45,11 @@ const PageMutations = () => {
             {mutationDefectsData.map((defect) => (
               <tr key={defect.id}>
                 <td className="ut-align-center">{defect.roll}</td>
-                <td>{defect.name}</td>
+                <td>
+                  <a href={`#${defect.name}`} className="aside__link">
+                    {defect.name}
+                  </a>
+                </td>
               </tr>
             ))}
             <tr>
@@ -53,7 +63,7 @@ const PageMutations = () => {
       <div className="content-main">
         <h1>Mutations</h1>
         {mutationsData.map((mutation) => (
-          <div key={mutation.id}>
+          <div key={mutation.name} id={mutation.name}>
             <RenderMutation name={mutation.name}></RenderMutation>
           </div>
         ))}
@@ -62,7 +72,7 @@ const PageMutations = () => {
 
         <h1>Mutation Defects</h1>
         {mutationDefectsData.map((defect) => (
-          <div key={defect.id}>
+          <div key={defect.name} id={defect.name}>
             <RenderDefect name={defect.name}></RenderDefect>
           </div>
         ))}

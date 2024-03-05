@@ -85,8 +85,9 @@ const RenderSpell = (props) => {
           <span className="ut-font-bold">Save:</span> {props.save}
         </li>
         <li>
+          <span className="ut-font-bold">Level: </span>
           {props.wizLvl && props.wizLvl > 0 ? (
-            <span className="ut-color-wizard">W{props.wizLvl}</span>
+            <span className="ut-color-wizard">Wizard {props.wizLvl}</span>
           ) : null}
           {props.priestLvl &&
           props.priestLvl > 0 &&
@@ -95,7 +96,7 @@ const RenderSpell = (props) => {
             <span className="ut-color-gray"> / </span>
           ) : null}
           {props.priestLvl && props.priestLvl > 0 ? (
-            <span className="ut-color-priest"> P{props.priestLvl}</span>
+            <span className="ut-color-priest"> Priest {props.priestLvl}</span>
           ) : null}
         </li>
         <li>
@@ -103,6 +104,9 @@ const RenderSpell = (props) => {
         </li>
       </ul>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+      <a href="#main" className="back-to-top">
+        <span className="fas fa-triangle-up"></span> Back to Top
+      </a>
     </div>
   );
 };

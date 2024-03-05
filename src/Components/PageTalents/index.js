@@ -17,7 +17,9 @@ const PageTalents = () => {
                   <span
                     className={`aspect-icon aspect-icon--${talent.aspect}`}
                   ></span>{" "}
-                  {talent.name}
+                  <a href={`#${talent.name}`} className="aside__link">
+                    {talent.name}
+                  </a>
                 </li>
               ))}
           </ol>
@@ -32,7 +34,9 @@ const PageTalents = () => {
                   <span
                     className={`aspect-icon aspect-icon--${talent.aspect}`}
                   ></span>{" "}
-                  {talent.name}
+                  <a href={`#${talent.name}`} className="aside__link">
+                    {talent.name}
+                  </a>
                 </li>
               ))}
           </ol>
@@ -47,7 +51,9 @@ const PageTalents = () => {
                   <span
                     className={`aspect-icon aspect-icon--${talent.aspect}`}
                   ></span>{" "}
-                  {talent.name}
+                  <a href={`#${talent.name}`} className="aside__link">
+                    {talent.name}
+                  </a>
                 </li>
               ))}
           </ol>
@@ -62,7 +68,9 @@ const PageTalents = () => {
                   <span
                     className={`aspect-icon aspect-icon--${talent.aspect}`}
                   ></span>{" "}
-                  {talent.name}
+                  <a href={`#${talent.name}`} className="aside__link">
+                    {talent.name}
+                  </a>
                 </li>
               ))}
           </ol>
@@ -77,7 +85,9 @@ const PageTalents = () => {
                   <span
                     className={`aspect-icon aspect-icon--${talent.aspect}`}
                   ></span>{" "}
-                  {talent.name}
+                  <a href={`#${talent.name}`} className="aside__link">
+                    {talent.name}
+                  </a>
                 </li>
               ))}
           </ol>
@@ -92,7 +102,9 @@ const PageTalents = () => {
                   <span
                     className={`aspect-icon aspect-icon--${talent.aspect}`}
                   ></span>{" "}
-                  {talent.name}
+                  <a href={`#${talent.name}`} className="aside__link">
+                    {talent.name}
+                  </a>
                 </li>
               ))}
           </ol>
@@ -101,13 +113,14 @@ const PageTalents = () => {
       <div className="content-main">
         <h1>Talents Descriptions</h1>
         {talentData.map((talent) => (
-          <div key={talent.id}>
+          <div key={talent.name} id={talent.name}>
             <RenderTalent
               name={talent.name}
               mod={talent.mod}
               aspect={talent.aspect}
               preq={talent.preq}
               bonus={talent.bonus}
+              img={talent.img}
             ></RenderTalent>
           </div>
         ))}

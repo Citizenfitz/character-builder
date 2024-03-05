@@ -12,7 +12,11 @@ const PagePsionics = () => {
             {psionicsData
               .filter((psionic) => psionic.discipline === "Aura")
               .map((psionic) => (
-                <li key={psionic.id}>{psionic.name}</li>
+                <li key={psionic.id}>
+                  <a href={`#${psionic.name}`} className="aside__link">
+                    {psionic.name}
+                  </a>
+                </li>
               ))}
           </ol>
         </div>
@@ -23,7 +27,11 @@ const PagePsionics = () => {
             {psionicsData
               .filter((psionic) => psionic.discipline === "Omniscience")
               .map((psionic) => (
-                <li key={psionic.id}>{psionic.name}</li>
+                <li key={psionic.id}>
+                  <a href={`#${psionic.name}`} className="aside__link">
+                    {psionic.name}
+                  </a>
+                </li>
               ))}
           </ol>
         </div>
@@ -34,7 +42,11 @@ const PagePsionics = () => {
             {psionicsData
               .filter((psionic) => psionic.discipline === "Psychokinesis")
               .map((psionic) => (
-                <li key={psionic.id}>{psionic.name}</li>
+                <li key={psionic.id}>
+                  <a href={`#${psionic.name}`} className="aside__link">
+                    {psionic.name}
+                  </a>
+                </li>
               ))}
           </ol>
         </div>
@@ -45,7 +57,11 @@ const PagePsionics = () => {
             {psionicsData
               .filter((psionic) => psionic.discipline === "Telepathy")
               .map((psionic) => (
-                <li key={psionic.id}>{psionic.name}</li>
+                <li key={psionic.id}>
+                  <a href={`#${psionic.name}`} className="aside__link">
+                    {psionic.name}
+                  </a>
+                </li>
               ))}
           </ol>
         </div>
@@ -55,7 +71,7 @@ const PagePsionics = () => {
         <h1 className="ut-color-psionic-glow">Psionic Powers</h1>
 
         {psionicsData.map((psionic) => (
-          <div key={psionic.id}>
+          <div key={psionic.name} id={psionic.name}>
             <RenderPsionic
               id={psionic.id}
               name={psionic.name}
