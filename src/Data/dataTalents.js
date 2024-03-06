@@ -12,6 +12,7 @@ const talentData = [
     rating: 3,
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "talent-race-dwarf.png",
   },
   {
     idNum: 2,
@@ -26,6 +27,7 @@ const talentData = [
     rating: 3,
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "talent-race-elf.png",
   },
   {
     idNum: 3,
@@ -40,6 +42,7 @@ const talentData = [
     rating: 3,
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "",
   },
   {
     idNum: 4,
@@ -54,6 +57,7 @@ const talentData = [
     rating: 3,
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "talent-race-half-elf.png",
   },
   {
     idNum: 5,
@@ -68,6 +72,7 @@ const talentData = [
     rating: 3,
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "talent-tace-half-orc.png",
   },
   {
     idNum: 6,
@@ -82,6 +87,7 @@ const talentData = [
     rating: 3,
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "",
   },
   {
     idNum: 7,
@@ -96,6 +102,7 @@ const talentData = [
     rating: "",
     preq: "Can only be taken at 1st level. Can't have another race talent.",
     bonus: "special",
+    img: "",
   },
 
   {
@@ -111,6 +118,7 @@ const talentData = [
     rating: 3,
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 9,
@@ -125,6 +133,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "special",
+    img: "",
   },
   {
     idNum: 10,
@@ -139,6 +148,7 @@ const talentData = [
     rating: 2,
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -155,6 +165,7 @@ const talentData = [
     idSort: "c4",
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -171,6 +182,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to STR, DEX, or CON. None can exceed racial max (18 for humans).",
+    img: "",
   },
 
   {
@@ -187,6 +199,7 @@ const talentData = [
     idSort: "c6",
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -202,6 +215,7 @@ const talentData = [
     rating: 2,
     preq: "9th level or higher",
     bonus: "+1 to WIS or CHA. Neither can exceed racial max (18 for humans).",
+    img: "talent-stronghold.png",
   },
   {
     idNum: 15,
@@ -216,6 +230,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "+1 to WIS or CON. Neither can exceed racial max (18 for humans).",
+    img: "talent-survival-&-tracking.png",
   },
   {
     idNum: 16,
@@ -230,6 +245,7 @@ const talentData = [
     rating: "",
     preq: "Can only be taken at 1st level. Cannot have taken the Psionics talent.",
     bonus: "",
+    img: "",
   },
 
   {
@@ -246,6 +262,7 @@ const talentData = [
     idSort: "f1",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 18,
@@ -261,6 +278,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed to WIS or DEX in any combination. None can exceed racial max (18 for humans).",
+    img: "",
   },
   {
     idNum: 19,
@@ -275,6 +293,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 20,
@@ -289,6 +308,7 @@ const talentData = [
     rating: 4,
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 21,
@@ -303,6 +323,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 22,
@@ -317,6 +338,7 @@ const talentData = [
     rating: 4,
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 23,
@@ -331,6 +353,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -346,6 +369,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "talent-divine-attunement.png",
   },
   {
     idNum: 25,
@@ -360,6 +384,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 26,
@@ -374,6 +399,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 27,
@@ -388,6 +414,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -404,6 +431,7 @@ const talentData = [
     idSort: "p5",
     preq: "Can only be taken at 1st level. Cannot have taken either the Thaumaturgy or Wild Psionics talent.",
     bonus: "",
+    img: "",
   },
 
   {
@@ -420,8 +448,8 @@ const talentData = [
     idSort: "p5",
     preq: "Psionics",
     bonus: "",
+    img: "",
   },
-
   {
     idNum: 30,
     id: "p7",
@@ -435,6 +463,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "+1 to WIS or CHA. Neither can exceed racial max (18 for humans).",
+    img: "talent-sermonize.png",
   },
 
   {
@@ -450,6 +479,7 @@ const talentData = [
     rating: 5,
     preq: "Cannot take Psionics",
     bonus: "",
+    img: "",
   },
   {
     idNum: 32,
@@ -464,6 +494,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -480,6 +511,7 @@ const talentData = [
     preq: "",
     bonus:
       "+1 to INT or WIS. Neither can exceed racial max (18 for humans). One extra Wizard spell slot of any level the user can cast (must have Wizardry 1 to gain this bonus).",
+    img: "",
   },
   {
     idNum: 34,
@@ -494,6 +526,7 @@ const talentData = [
     rating: "",
     preq: "Wizardry 1",
     bonus: "",
+    img: "",
   },
   {
     idNum: 35,
@@ -508,6 +541,7 @@ const talentData = [
     rating: "",
     preq: "Wizardry 1",
     bonus: "",
+    img: "",
   },
   {
     idNum: 36,
@@ -522,6 +556,7 @@ const talentData = [
     rating: "",
     preq: "Thaumaturgy or Wizardry",
     bonus: "",
+    img: "",
   },
   {
     idNum: 37,
@@ -536,6 +571,7 @@ const talentData = [
     rating: 5,
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 38,
@@ -550,6 +586,7 @@ const talentData = [
     rating: "",
     preq: "Wizardry 1",
     bonus: "",
+    img: "",
   },
   {
     idNum: 39,
@@ -564,6 +601,7 @@ const talentData = [
     rating: "",
     preq: "Wizardry 2",
     bonus: "",
+    img: "",
   },
 
   {
@@ -580,6 +618,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to STR, DEX, or CON. None can exceed racial max (18 for humans).",
+    img: "",
   },
   {
     idNum: 41,
@@ -595,6 +634,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to INT, CHA, or DEX. None can exceed racial max (18 for humans).",
+    img: "",
   },
   {
     idNum: 42,
@@ -609,6 +649,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 43,
@@ -623,6 +664,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
 
   {
@@ -638,6 +680,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
   {
     idNum: 45,
@@ -653,6 +696,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to STR, DEX, or CON. None can exceed racial max (18 for humans).",
+    img: "talent-climbing.png",
   },
   {
     idNum: 46,
@@ -668,6 +712,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to CHA, WIS, or DEX. None can exceed racial max (18 for humans).",
+    img: "",
   },
   {
     idNum: 47,
@@ -683,6 +728,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to INT, WIS, or DEX. None can exceed racial max (18 for humans).",
+    img: "",
   },
   {
     idNum: 48,
@@ -697,6 +743,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "talent-inspiration.png",
   },
   {
     idNum: 49,
@@ -712,6 +759,7 @@ const talentData = [
     preq: "",
     bonus:
       "+2 points distributed in any combination to DEX or CHA. None can exceed racial max (18 for humans).",
+    img: "",
   },
   {
     idNum: 50,
@@ -726,6 +774,7 @@ const talentData = [
     rating: "",
     preq: "",
     bonus: "",
+    img: "",
   },
 ];
 

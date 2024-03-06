@@ -19,26 +19,44 @@ const RenderTalent = (props) => {
   });
 
   return (
-    <div className="desc desc--talent">
-      <h2>
-        {props.name}{" "}
-        <div className={`aspect-icon aspect-icon--${props.aspect}`}></div>
-      </h2>
-      <ul className="desc__list desc__list--talent">
-        <li>
-          <span className="ut-font-bold">Type:</span> {props.aspect}
-        </li>
-        <li>
-          <span className="ut-font-bold">Modifier:</span> {props.mod}
-        </li>
-        <li>
-          <span className="ut-font-bold">Bonus:</span> {props.bonus}
-        </li>
-        <li>
-          <span className="ut-font-bold">Prerequisite:</span> {props.preq}
-        </li>
-      </ul>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+    <div className="desc desc-talent">
+      <h2 classname="desc__header">{props.name}</h2>
+      <div className="desc-talent__wrapper">
+        <div>
+          <ul className="desc__list desc__list--talent">
+            <li>
+              <span className="ut-font-bold">Type:</span>{" "}
+              <strong className={`ut-captialize ut-color-${props.aspect}`}>
+                {props.aspect}
+              </strong>
+              <div className={`aspect-icon aspect-icon--${props.aspect}`}></div>
+            </li>
+            <li>
+              <span className="ut-font-bold">Modifier:</span> {props.mod}
+            </li>
+            <li>
+              <span className="ut-font-bold">Bonus:</span> {props.bonus}
+            </li>
+            <li>
+              <span className="ut-font-bold">Prerequisite:</span> {props.preq}
+            </li>
+          </ul>
+
+          <div className="desc-talent__markdown">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+            <a href="#main" className="back-to-top">
+              <span className="fas fa-triangle-up"></span> Back to Top
+            </a>
+          </div>
+        </div>
+        {props.img !== "" ? (
+          <div className="desc-talent__image">
+            <img src={`assets/images/${props.img}`} alt="talent illustration" />
+          </div>
+        ) : (
+          ""
+        )}
+      </div>
     </div>
   );
 };

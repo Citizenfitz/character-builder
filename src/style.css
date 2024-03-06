@@ -1017,6 +1017,10 @@ th {
   content: "";
 }
 
+.fa-triangle-up::before {
+  content: "";
+}
+
 .fa-spell-dot {
   font-size: 16px;
   margin-left: 6px;
@@ -1272,13 +1276,13 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .aspect-icon--common:after {
   content: "C";
-  color: white;
-  background: #883c8d;
+  color: #883c8d;
+  font-size: 20px;
 }
 .aspect-icon--race:after {
   content: "R";
-  color: white;
-  background: #883c8d;
+  color: #883c8d;
+  font-size: 20px;
 }
 .aspect-icon--fighter:after {
   background-image: url("assets/images/spade.svg");
@@ -2555,6 +2559,24 @@ input[type=number]::-webkit-outer-spin-button {
 .newstyle tbody tr:nth-child(odd) {
   background: #fae1c1;
 }
+.newstyle .table-mutations {
+  width: 100%;
+}
+.newstyle .table-mutations tbody tr {
+  border: 1px solid #ff2600;
+}
+.newstyle .table-mutations tbody tr:nth-child(odd) {
+  background: #f7d2bc;
+}
+.newstyle .table-defects {
+  width: 100%;
+}
+.newstyle .table-defects tbody tr {
+  border: 1px solid #04a54f;
+}
+.newstyle .table-defects tbody tr:nth-child(odd) {
+  background: #beebd1;
+}
 .newstyle .desc {
   margin-bottom: 32px;
 }
@@ -2574,6 +2596,14 @@ input[type=number]::-webkit-outer-spin-button {
   text-shadow: 0 0 10px #ecde82;
   color: #883c8d;
 }
+.newstyle .desc-talent__wrapper {
+  display: flex;
+}
+.newstyle .desc-talent__image > img {
+  margin-left: 1rem;
+  max-height: 350px;
+  border: 2px solid #883c8d;
+}
 .newstyle .ut-color-psionic-glow {
   text-shadow: 0 0 10px #ecde82;
   color: #883c8d;
@@ -2589,7 +2619,7 @@ input[type=number]::-webkit-outer-spin-button {
   column-gap: 0.75rem;
 }
 .desc__list--talent {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 .top-search {
@@ -2618,6 +2648,11 @@ input[type=number]::-webkit-outer-spin-button {
   gap: 2rem;
   grid-template-areas: "as as as ct ct ct ct ct ct";
 }
+@media (min-width: 769px) and (max-width: 1240px) {
+  .layout__page--aside {
+    grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+  }
+}
 @media (max-width: 768px) {
   .layout__page--aside {
     grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
@@ -2633,6 +2668,21 @@ input[type=number]::-webkit-outer-spin-button {
 
 .content-main {
   grid-area: ct;
+}
+
+.aside__link {
+  color: #000;
+  text-decoration: none;
+}
+.aside__link:hover {
+  text-decoration: underline;
+}
+
+.back-to-top {
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  text-align: right;
 }
 
 /*# sourceMappingURL=style.css.map */
