@@ -3,6 +3,7 @@ import Header from "./Header";
 import CharacterSheet from "./CharacterSheet";
 import HomePage from "./HomePage";
 import PageTraits from "./PageTraits";
+import PageMonsters from "./PageMonsters";
 import PageMutations from "./PageMutations";
 import PageSpells from "./PageSpells";
 import PageTalents from "./PageTalents";
@@ -14,6 +15,7 @@ export {
   CharacterSheet,
   HomePage,
   PageTraits,
+  PageMonsters,
   PageMutations,
   PageSpells,
   PageTalents,

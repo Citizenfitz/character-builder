@@ -7,6 +7,7 @@ import {
   CharacterSheet,
   HomePage,
   PageTraits,
+  PageMonsters,
   PageMutations,
   PageSpells,
   PageTalents,
@@ -23,6 +24,7 @@ ReactDOM.render(
           <Route path="/" element={<HomePage />} />
           <Route path="/character" element={<CharacterSheet />} />
           <Route path="/traits" element={<PageTraits />} />
+          <Route path="/monsters" element={<PageMonsters />} />
           <Route path="/mutations" element={<PageMutations />} />
           <Route path="/spells" element={<PageSpells />} />
           <Route path="/talents" element={<PageTalents />} />
