@@ -109,7 +109,7 @@ export default function ThaumaturgySpells(props) {
           )}
         </span>
       </h2>
-      <table className="table spells__table spells--table-thaumaturgy">
+      <table className="table table-ch-builder spells__table spells--table-thaumaturgy">
         <thead>
           <tr>
             <th style={{ minWidth: "58px" }}>Level</th>
@@ -166,7 +166,7 @@ export default function ThaumaturgySpells(props) {
           </button>
         </header>
         <div className="modal__body">
-          <table className="table spells--thaumaturgy">
+          <table className="table table-ch-builder spells--thaumaturgy">
             <thead>
               <tr>
                 <th>Level</th>

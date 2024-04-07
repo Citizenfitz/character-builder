@@ -1,25 +1,25 @@
 //* *************** TABLES  ***************** */
-table {
+.table-ch-builder {
   margin: 1em 0;
   border-collapse: collapse;
   font-size: 0.875rem;
-}
 
-td,
-th {
-  padding: 0.25em 0.5em;
-  border: none;
-  min-width: 30px;
-  text-align: left;
-  vertical-align: top;
-  border: 1px solid;
-}
+  td,
+  th {
+    padding: 0.25em 0.5em;
+    border: none;
+    min-width: 30px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid;
+  }
 
-th {
-  text-align: center;
-  background: lighten($color-royal, 40%);
-  @include greyhawkfont;
-  font-size: 0.75rem;
+  th {
+    text-align: center;
+    background: lighten($color-royal, 40%);
+    @include greyhawkfont;
+    font-size: 0.75rem;
+  }
 }
 
 .list-columns {
@@ -30,7 +30,7 @@ th {
   width: 100%;
   .talentAssigned {
     display: inline-block;
-    margin-bottom: .25rem;
+    margin-bottom: 0.25rem;
   }
 }
 
@@ -45,5 +45,48 @@ th {
         }
       }
     }
+  }
+}
+
+// ********* All Tables Except Char Builder **********
+table:not(.table-ch-builder) {
+  border: 0;
+  font-size: 14px;
+  td {
+    border: 0;
+    padding: 0.5em;
+  }
+  th {
+    @include font-bold();
+    border: 0;
+    background: transparent;
+    border-bottom: 2px solid;
+    padding: 0.5em;
+  }
+  theader th:first-child {
+    min-width: 100px;
+  }
+  tbody tr:nth-child(odd) {
+    background: #fae1c1;
+  }
+}
+
+.table-mutations {
+  width: 100%;
+  tbody tr {
+    border: 1px solid $color-mutation;
+  }
+  tbody tr:nth-child(odd) {
+    background: $color-mutation-zebra;
+  }
+}
+
+.table-defects {
+  width: 100%;
+  tbody tr {
+    border: 1px solid $color-defect;
+  }
+  tbody tr:nth-child(odd) {
+    background: $color-defect-zebra;
   }
 }

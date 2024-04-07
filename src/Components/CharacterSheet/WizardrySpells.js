@@ -262,7 +262,7 @@ export default function WizardrySpells(props) {
             Select a Wizardry School before choosing spells
           </div>
         )}
-        <table className="table spells__table spells--table-wizardry">
+        <table className="table table-ch-builder spells__table spells--table-wizardry">
           <thead>
             <tr>
               <th style={{ minWidth: "58px" }}>Level</th>
@@ -325,7 +325,7 @@ export default function WizardrySpells(props) {
               {showAll ? "Show Available Spells" : "Show All Spells"}
             </button>
           )}
-          <table className="table spells__table spells--table-wizardry">
+          <table className="table table-ch-builder spells__table spells--table-wizardry">
             <thead>
               <tr>
                 <th>Level</th>

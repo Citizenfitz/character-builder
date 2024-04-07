@@ -1,0 +1,142 @@
+/* *********** base ********** */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: $color;
+  background: $color-bg;
+}
+
+.skipnav {
+  @include only-sr();
+}
+
+/* *********** Layout ********** */
+// normally this would be .body-wrapper but for React use the root id
+#root {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1176px;
+  padding: 0 16px;
+
+  @include mq-desktop {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 60px;
+  }
+}
+
+// this sits inside the main element and allows for layout within
+.main-wrapper {
+}
+
+.section-large {
+  padding-top: 16px;
+  padding-bottom: 16px;
+
+  @include mq-desktop {
+    padding-bottom: 60px;
+    padding-top: 60px;
+  }
+}
+
+/* *********** Layout & MQs ********** */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto;
+  gap: 32px;
+  align-items: center;
+}
+
+/* *********** ELEMENTS ********** */
+.text-giant {
+  @include text-large();
+}
+
+.text-medium {
+  @include text-medium();
+}
+
+.text-small {
+  @include text-small();
+}
+
+.button {
+  @include button();
+}
+
+h1 {
+  @include text-medium();
+  font-family: "Righteous", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0;
+}
+
+h2,
+.h2 {
+  @include text-small();
+  font-family: "Righteous", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+a {
+  color: $color;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+/* *********** LVL 2 page Layouts ********** */
+
+.page {
+  margin: 16px 0;
+  @include mq-desktop {
+    margin: 32px 0;
+  }
+
+  // for pages with an aside
+  &--aside {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 2rem;
+    grid-template-areas: "as as as ct ct ct ct ct ct";
+    @include mq-desktop {
+      grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+    }
+    @include mq-tablet-down {
+      grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+    }
+  }
+  &__aside {
+    @include scheme-navy-on-gray();
+    grid-area: as;
+    padding: 16px;
+  }
+
+  &__content {
+    @include scheme-navy-on-white();
+    grid-area: ct;
+    padding: 16px;
+  }
+}

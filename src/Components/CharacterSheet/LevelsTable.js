@@ -55,7 +55,7 @@ const LevelsTable = (props) => {
   return (
     <div>
       <table
-        className={`table table-levels table-levels--${props.character.level}`}
+        className={`table table-ch-builder table-levels table-levels--${props.character.level}`}
       >
         <thead>
           <tr>

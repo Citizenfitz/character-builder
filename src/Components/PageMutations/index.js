@@ -4,8 +4,8 @@ import RenderMutation from "../Utilities/RenderMutation";
 import RenderDefect from "../Utilities/RenderDefect";
 const PageMutations = () => {
   return (
-    <div className="newstyle layou__page layout__page--aside">
-      <aside className="content-aside">
+    <div className="page page--aside">
+      <aside className="page__aside">
         <h2 className="ut-align-center">Mutations</h2>
         <table className="table-mutations">
           <thead>
@@ -60,22 +60,24 @@ const PageMutations = () => {
         </table>
       </aside>
 
-      <div className="content-main">
-        <h1>Mutations</h1>
-        {mutationsData.map((mutation) => (
-          <div key={mutation.name} id={mutation.name}>
-            <RenderMutation name={mutation.name}></RenderMutation>
-          </div>
-        ))}
-
+      <div className="page__content">
+        <section>
+          <h1>Mutations</h1>
+          {mutationsData.map((mutation) => (
+            <div key={mutation.name} id={mutation.name}>
+              <RenderMutation name={mutation.name}></RenderMutation>
+            </div>
+          ))}
+        </section>
         <hr />
-
-        <h1>Mutation Defects</h1>
-        {mutationDefectsData.map((defect) => (
-          <div key={defect.name} id={defect.name}>
-            <RenderDefect name={defect.name}></RenderDefect>
-          </div>
-        ))}
+        <section>
+          <h1>Mutation Defects</h1>
+          {mutationDefectsData.map((defect) => (
+            <div key={defect.name} id={defect.name}>
+              <RenderDefect name={defect.name}></RenderDefect>
+            </div>
+          ))}
+        </section>
       </div>
     </div>
   );

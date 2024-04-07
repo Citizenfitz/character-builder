@@ -1,82 +1,16 @@
+/* *********** Variables & mixins ********** */
+
 // ********************* PATHS *********************
 $path-font: "assets/fonts/";
 $path-img: "assets/images/";
 
-/***************************** FONT IMPORTS ************************************* */
-@font-face {
-  font-family: "cabin-regular";
-  src: url($path-font + "Cabin/Cabin-Regular.ttf") format("truetype");
-}
-@font-face {
-  font-family: "cabin-medium";
-  src: url($path-font + "Cabin/Cabin-Medium.ttf") format("truetype");
-}
-@font-face {
-  font-family: "cabin-semibold";
-  src: url($path-font + "Cabin/Cabin-SemiBold.ttf") format("truetype");
-}
-@font-face {
-  font-family: "cabin-bold";
-  src: url($path-font + "Cabin/Cabin-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "GreyhawkGothic";
-  src: url($path-font + "GreyhawkGothic/GreyhawkGothic.ttf") format("truetype");
-}
-
+// fonts
 @font-face {
   font-family: "FontAwesome";
   src: url($path-font + "FontAwesome/fontawesome-webfont.ttf")
     format("truetype");
 }
 
-@font-face {
-  font-family: "Kaushan Script";
-  src: url($path-font + "Kaushan_Script/KaushanScript-Regular.ttf")
-    format("truetype");
-}
-
-@font-face {
-  font-family: "Carmen";
-  src: url($path-font + "Carmen/carmen-regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Carmen Shadow";
-  src: url($path-font + "Carmen/carmen-shadow.ttf") format("truetype");
-}
-
-// ********************* FONTS *********************
-$text-regular: "Cabin Regular", Cabin, sans-serif;
-$text-medium: "Cabin Medium", Cabin, sans-serif;
-$text-semi: "Cabin Medium", Cabin, sans-serif;
-$text-bold: "Cabin Bold", Cabin, sans-serif;
-
-$text-header: "GreyhawkGothic", GreyhawkGothic, sans-serif;
-
-$text-cursive: "Kaushan Script", cursive;
-
-$text-header-2: "Carmen", Carmen, sans-serif;
-
-@mixin font-regular {
-  font-family: $text-regular;
-  font-weight: 400;
-}
-
-@mixin font-semi {
-  font-family: $text-regular;
-  font-weight: 500;
-}
-
-@mixin font-bold {
-  font-family: $text-bold;
-  font-weight: 700;
-}
-
-// *********************** COLOR VARIABLES ***********************//
-
-// $color-white: rgb(253, 255, 245);
 $color-white: #fff;
 $color-black: #000;
 
@@ -115,126 +49,141 @@ $color-overlay-light: rgba(255, 255, 255, 0.75);
 // misc colors
 $color-yellow-1: #f1be42;
 $color-yellow-2: rgb(255, 255, 161);
+$color-navy: #000080;
 
-// *********************** LAYOUT VARIABLES ***********************//
+// colors
+$color: black;
+$color-bg: white;
+$color-alt: white;
+$color-bg-alt: #883c8d;
+$color-header: white;
+$color-header-bg: black;
+$color-btn: black;
+$color-btn-bg: #e1a525;
+$color-btn-hover: orange;
+$form-border-radius: 4px;
+$color-gray: #767676;
 
-$form-element-height: 24px;
-$form-element-border: 1px solid $color-gray-3;
-$border-radius-standard: 3px;
+$color-gray-bg: #e0e6f2;
 
-$mq-phone-max: 480px;
-$mq-tablet-max: 768px;
-$mq-desktop-max: 1240px;
-$page-max: 1600px;
+/* *********** Mixins ********** */
 
-$margins-desktop: 1.5rem;
-$margins-tablet: 1rem;
-$margins-phone: 0.5rem;
-$margins-form-element-bottom: 1rem;
+// color schemes
+@mixin scheme-white-on-black($shadow: false) {
+  color: $color-white;
+  background: $color-black;
+  @if $shadow {
+    box-shadow: 1000px 0px 0px 0px $color-black,
+      -1000px 0px 0px 0px $color-black;
+  }
+}
 
-// ******************** MIXINS ***************************//
-@mixin site-layout {
-  width: 100%;
-  max-width: $mq-desktop-max;
-  margin: 0 auto;
+@mixin scheme-white-on-royal($shadow: false) {
+  color: $color-white;
+  background: $color-royal;
+  @if $shadow {
+    box-shadow: 1000px 0px 0px 0px $color-royal,
+      -1000px 0px 0px 0px $color-royal;
+  }
+}
+
+@mixin scheme-navy-on-white($shadow: false) {
+  color: $color-navy;
+  background: $color-white;
+  @if $shadow {
+    box-shadow: 1000px 0px 0px 0px $color-white,
+      -1000px 0px 0px 0px $color-white;
+  }
+}
+
+@mixin scheme-navy-on-gray($shadow: false) {
+  color: $color-navy;
+  background: $color-gray-bg;
+  @if $shadow {
+    box-shadow: 1000px 0px 0px 0px $color-gray-bg,
+      -1000px 0px 0px 0px $color-gray-bg;
+  }
+}
+
+@mixin color-psionic-glow {
+  text-shadow: 0 0 10px rgb(236, 222, 130);
+  color: $color-royal;
+}
+
+// Media queries
+@mixin mq-desktop {
+  @media (min-width: 769px) {
+    @content;
+  }
 }
 
 @mixin mq-phone {
-  @media (max-width: $mq-phone-max) {
+  @media (max-width: 768px) {
     @content;
   }
 }
+
 @mixin mq-tablet-down {
-  @media (max-width: $mq-tablet-max) {
-    @content;
-  }
-}
-@mixin mq-tablet {
-  @media (min-width: $mq-phone-max + 1) and (max-width: $mq-tablet-max) {
-    @content;
-  }
-}
-@mixin mq-tablet-up {
-  @media (min-width: $mq-tablet-max + 1) {
-    @content;
-  }
-}
-@mixin mq-desktop {
-  @media (min-width: $mq-tablet-max + 1) and (max-width: $mq-desktop-max) {
-    @content;
-  }
-}
-@mixin mq-desktop-large {
-  @media (min-width: $mq-desktop-max + 1) {
+  @media (max-width: 789px) {
     @content;
   }
 }
 
-@mixin placeholder {
-  color: $color-gray-3;
-  font-style: italic;
-}
-@mixin greyhawkfont {
-  font-family: $text-header;
-  font-weight: normal;
-}
-@mixin header1 {
-  @include greyhawkfont;
-  font-size: 2.5em;
-  margin-bottom: 0;
-  @include mq-phone {
-    font-size: 1.25em;
+// font sizes
+@mixin text-small {
+  font-size: 12px;
+  @include mq-desktop {
+    font-size: 16px;
   }
-}
-@mixin header2 {
-  @include greyhawkfont;
-  font-size: 1rem;
-  color: $color-royal;
-  margin-bottom: 0;
-  @include mq-phone {
-    font-size: 1em;
-  }
-}
-@mixin header3 {
-  font-size: 0.875em;
-  margin-bottom: 0;
-  font-weight: bold;
-}
-@mixin header4 {
-}
-@mixin header5 {
-}
-@mixin header6 {
 }
 
-@mixin input-basics {
-  height: $form-element-height;
-  border-radius: $border-radius-standard;
-  border: $form-element-border;
-  padding: 0 0.25em;
-  background-color: $color-input-background;
-  font-family: $text-regular;
+@mixin text-medium {
+  font-size: 20px;
+  @include mq-desktop {
+    font-size: 24px;
+    line-height: 1.3em;
+  }
+}
+
+@mixin text-large {
+  font-size: 32px;
+  @include mq-desktop {
+    font-size: 60px;
+  }
+}
+
+@mixin only-sr {
+  position: absolute;
+  top: 0.5rem;
+  left: 2rem;
+  height: auto;
+  width: auto;
+  overflow: hidden;
+  z-index: 1000;
+  color: transparent;
+}
+
+@mixin button {
+  @include text-medium();
+  color: $color-black;
+  background: $color-yellow-1;
+  border-radius: $form-border-radius;
+  font-weight: 500;
+  border: 1px solid;
+  display: block;
+  width: 100%;
+  padding: 16px;
   &:hover {
-    color: $color-royal;
-    border-color: $color-royal;
+    background: $color-yellow-2;
   }
-  &:active {
-    color: $color-royal;
-    border-color: $color-royal;
+  @include mq-desktop() {
+    display: inline-block;
+    width: auto;
+    padding: 8px 16px;
   }
 }
 
-@mixin list-columns($columns: 3, $gap: 3em) {
-  list-style: none;
-  padding: 0;
-  -webkit-column-count: $columns;
-  -moz-column-count: $columns;
-  column-count: $columns;
-  -webkit-column-gap: $gap;
-  -moz-column-gap: $gap;
-  column-gap: $gap;
-  //column-rule: medium solid $color-gray-3;
-}
+// TB SOrted
 
 @mixin hide-item {
   opacity: 0;
@@ -246,9 +195,4 @@ $margins-form-element-bottom: 1rem;
 
 @mixin background-color-transition {
   transition: background-color 0.5s ease;
-}
-
-@mixin color-psionic-glow {
-  text-shadow: 0 0 10px rgb(236, 222, 130);
-  color: $color-royal;
 }

@@ -46,7 +46,7 @@
     color: $color-mutation;
   }
   &gray {
-    color: #767676;
+    color: $color-gray-2;
   }
   &spell-black {
     color: $color-royal;
@@ -109,7 +109,7 @@
 .ut-text-explain,
 .ut-text-helper {
   color: $color-gray-2;
-  font-family: $text-regular;
+  // font-family: $text-regular;
   font-size: 0.9375rem;
   font-style: italic;
 }
@@ -117,11 +117,11 @@
   text-transform: capitalize;
 }
 .ut-text-greyhawk {
-  font-family: $text-header;
+  // font-family: $text-header;
 }
 
 .ut-text-cursive {
-  font-family: $text-cursive;
+  // font-family: $text-cursive;
 }
 
 .ut-dropcap {
@@ -136,15 +136,15 @@
 }
 
 .ut-font-regular {
-  @include font-regular;
+  // @include font-regular;
 }
 
 .ut-font-semi {
-  @include font-semi;
+  // @include font-semi;
 }
 
 .ut-font-bold {
-  @include font-bold;
+  // @include font-bold;
 }
 
 //  ------- PRINT VS SCREEN --------
@@ -193,18 +193,26 @@
   overflow: hidden;
 }
 
-.ut-only-sr {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-}
-
 .ut_tm {
   font-size: 0.75em;
   vertical-align: super;
+}
+
+// to be refactored
+.only-desktop,
+.ut-only-desktop {
+  @include mq-phone {
+    display: none;
+  }
+}
+.only-phone,
+.ut-only-phone {
+  @include mq-desktop {
+    display: none;
+  }
+}
+
+.only-sr,
+.ut-only-sr {
+  @include only-sr();
 }

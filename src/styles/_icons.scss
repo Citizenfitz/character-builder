@@ -50,6 +50,19 @@
   content: "\f0d8";
 }
 
+.fas-volume::before {
+  content: "\f027";
+}
+.fas-feather::before {
+  content: "\f06C";
+}
+.fas-leaf::before {
+  content: "\f06D";
+}
+.fas-heart::before {
+  content: "\f004";
+}
+
 .fa-spell-dot {
   font-size: 16px;
   margin-left: 6px;
