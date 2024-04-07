@@ -47,6 +47,9 @@ const Header = () => (
         <li className="header__nav-list-item ">
           <Link to="./psionics">Psionics</Link>
         </li>
+        <li className="header__nav-list-item ">
+          <Link to="./monsters">Monsters</Link>
+        </li>
       </ul>
     </nav>
   </header>

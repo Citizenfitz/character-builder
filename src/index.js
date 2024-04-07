@@ -11,6 +11,7 @@ import {
   PageSpells,
   PageTalents,
   PagePsionics,
+  PageMonsters,
 } from "./Components";
 import "./style.css";
 
@@ -27,6 +28,7 @@ ReactDOM.render(
           <Route path="/spells" element={<PageSpells />} />
           <Route path="/talents" element={<PageTalents />} />
           <Route path="/psionics" element={<PagePsionics />} />
+          <Route path="/monsters" element={<PageMonsters />} />
         </Routes>
       </main>
       <Footer />

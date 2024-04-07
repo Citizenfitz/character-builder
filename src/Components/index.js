@@ -7,6 +7,7 @@ import PageMutations from "./PageMutations";
 import PageSpells from "./PageSpells";
 import PageTalents from "./PageTalents";
 import PagePsionics from "./PagePsionics";
+import PageMonsters from "./PageMonsters";
 
 export {
   Footer,
@@ -18,4 +19,5 @@ export {
   PageSpells,
   PageTalents,
   PagePsionics,
+  PageMonsters,
 };
