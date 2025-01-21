@@ -36,6 +36,10 @@
   font-family: "Carmen Shadow";
   src: url("assets/fonts/Carmen/carmen-shadow.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Edelgotisch";
+  src: url("assets/fonts/Edelgotisch/Edelgotisch.TTF") format("truetype");
+}
 *,
 *:before,
 *:after {
@@ -85,7 +89,7 @@ body {
   background: #ddb5e0;
   color: #652d69;
   box-shadow: 1000px 0px 0px 0px #ddb5e0, -1000px 0px 0px 0px #ddb5e0;
-  padding: 1.5rem;
+  padding: 30px;
   padding-bottom: 10rem;
 }
 
@@ -109,7 +113,7 @@ body {
 /***** HEADERS *****/
 h1,
 .h1 {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 2.5em;
   margin-bottom: 0;
@@ -123,7 +127,7 @@ h1,
 
 h2,
 .h2 {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1rem;
   color: #883c8d;
@@ -230,6 +234,16 @@ dd,
   background: #883c8d;
 }
 
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 30px;
+  text-align: left;
+}
+.content-container h1 {
+  margin-bottom: 2rem;
+}
+
 /***** PLACEHOLDERS *****/
 ::-webkit-input-placeholder {
   color: #c4c4c4;
@@ -267,7 +281,7 @@ fieldset {
 }
 
 legend {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1rem;
   color: #883c8d;
@@ -520,7 +534,7 @@ th {
 th {
   text-align: center;
   background: #ddb5e0;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 0.75rem;
 }
@@ -1175,7 +1189,7 @@ input[type=radio] + label.aspect-radio-label {
   border-radius: 3px;
   margin: 0;
   color: black;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   cursor: pointer;
 }
 input[type=radio] + label.aspect-radio-label--fighter {
@@ -1243,7 +1257,7 @@ input[type=radio] + label.aspect-radio-label__type {
   width: 100%;
   left: 0px;
   bottom: 0px;
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 18px;
   line-height: 24px;
   text-align: center;
@@ -1476,7 +1490,7 @@ input[type=radio] + label.aspect-radio-label__type {
   border-radius: 0;
   border: none;
   font-size: 1.25em;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   border: 1px solid #883c8d;
   position: absolute;
   right: 0;
@@ -1501,18 +1515,20 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 
 .header {
-  background-image: url("assets/images/vintage-dragon.png");
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position: right top;
   background-color: #883c8d;
   color: #fff;
   position: relative;
-  padding-top: 1.5rem;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  gap: 2rem;
 }
 @media (max-width: 480px) {
   .header {
-    padding: 0.5rem;
+    padding: 15px;
   }
 }
 .header__h1-link {
@@ -1564,37 +1580,118 @@ input[type=radio] + label.aspect-radio-label__type {
 .header__card-icons {
   margin-right: 1rem;
   width: 33%;
-  visibility: hidden;
 }
 .header__nav-list {
   list-style: none;
   padding: 0;
-  background: #2375b9;
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 0;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0;
+  gap: 1rem;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .header__nav-list {
-    margin-top: 0.25rem;
+    margin-top: 0;
   }
+}
+@media (max-width: 768px) {
+  .header__nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+}
+.header__nav-list-item {
+  margin: 0;
 }
 .header__nav-list-item a {
   display: inline-block;
   color: #fff;
-  padding: 1em;
+  padding: 0.5em 1em;
   text-decoration: none;
-  font-size: 1.25em;
+  font-size: 22px;
   font-weight: bold;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
+  text-transform: uppercase;
 }
 @media (min-width: 481px) and (max-width: 768px) {
   .header__nav-list-item a {
-    font-size: 1rem;
+    font-size: 18px;
   }
 }
 .header__nav-list-item a:hover {
+  color: #f1be42;
+}
+.header__nav-list-item a.active {
+  border-bottom: 2px solid #ffffa1;
+}
+@media (max-width: 768px) {
+  .header__nav-list-item {
+    margin: 0;
+  }
+  .header__nav-list-item a {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+  }
+  .header__nav-list-item a:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+.header__cta {
+  padding: 0.5em;
+  background-color: #f1be42;
+  color: #000;
+  font-size: 24px;
+  border: none;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
+  border-radius: 3px;
+}
+@media (min-width: 481px) and (max-width: 768px) {
+  .header__cta {
+    font-size: 18px;
+  }
+}
+.header__cta:hover {
   background: #ffffa1;
   color: #000;
+}
+.header__menu-button {
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 0.5rem;
+  font-size: 24px;
+  cursor: pointer;
+}
+.header__menu-button .fa-menu::before {
+  font-family: "FontAwesome";
+  content: "";
+}
+@media (max-width: 768px) {
+  .header__menu-button {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .header__nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #883c8d;
+    padding: 1rem 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .header__nav--open {
+    display: block;
+  }
 }
 
 .char-bldr {
@@ -1692,7 +1789,7 @@ input[type=radio] + label.aspect-radio-label__type {
   padding-left: 10px;
 }
 .attrib-name button {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 1.2rem;
   color: #883c8d;
   background-color: transparent;
@@ -1871,7 +1968,7 @@ body {
 }
 #modal--schools label {
   cursor: pointer;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1.2rem;
   display: inline-block;
@@ -1890,7 +1987,7 @@ body {
   margin-bottom: 1em;
 }
 #modal--schools .schoolDescriptions span {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1rem;
 }
@@ -2405,7 +2502,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .ut-text-greyhawk {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
 }
 
 .ut-text-cursive {
@@ -2505,7 +2602,7 @@ input[type=number]::-webkit-outer-spin-button {
 .newstyle h2,
 .newstyle h3,
 .newstyle h4 {
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   color: #000;
 }
 .newstyle h1 {
@@ -2530,7 +2627,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .newstyle b,
 .newstyle strong {
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 1.2em;
 }
 .newstyle .ul,
@@ -2546,7 +2643,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0.5em;
 }
 .newstyle th {
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 1.2em;
   border: 0;
   background: transparent;
@@ -2738,6 +2835,87 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .monster__markdown {
   grid-area: md;
+}
+
+.page-about__h2 {
+  margin-top: 0;
+  font-size: 1.8em;
+  font-family: "Kaushan Script", cursive;
+  font-weight: bold;
+  text-align: center;
+}
+.page-about__p {
+  font-size: 1.33rem;
+  line-height: 1.66em;
+}
+.page-about__p b {
+  font-family: "Kaushan Script", cursive;
+  font-size: 1.4rem;
+  color: #883c8d;
+}
+
+.char-sheet-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+  padding: 0 1.5rem;
+}
+.char-sheet-grid__basics, .char-sheet-grid__stats, .char-sheet-grid__details {
+  min-width: 0;
+}
+.char-sheet-grid__basics {
+  grid-column: 1;
+}
+.char-sheet-grid__stats {
+  grid-column: 2;
+}
+.char-sheet-grid__details {
+  grid-column: 3;
+}
+@media (max-width: 768px) {
+  .char-sheet-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  .char-sheet-grid__details {
+    grid-column: 1/-1;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+@media (max-width: 480px) {
+  .char-sheet-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    padding: 0 0.5rem;
+  }
+  .char-sheet-grid__basics, .char-sheet-grid__stats, .char-sheet-grid__details {
+    grid-column: 1;
+  }
+}
+@media print {
+  .char-sheet-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.char-basics__inputs {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.char-basics__inputs > label {
+  flex: 1;
+  min-width: 0;
+}
+.char-basics__name-inputs {
+  margin-bottom: 1.5rem;
 }
 
 /*# sourceMappingURL=style.css.map */

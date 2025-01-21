@@ -1,23 +1,12 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import CharacterSheet from "./CharacterSheet";
-import HomePage from "./HomePage";
-import PageTraits from "./PageTraits";
-import PageMutations from "./PageMutations";
-import PageSpells from "./PageSpells";
-import PageTalents from "./PageTalents";
-import PagePsionics from "./PagePsionics";
-import PageMonsters from "./PageMonsters";
-
-export {
-  Footer,
-  Header,
-  CharacterSheet,
-  HomePage,
-  PageTraits,
-  PageMutations,
-  PageSpells,
-  PageTalents,
-  PagePsionics,
-  PageMonsters,
-};
+export { default as Footer } from "./Footer";
+export { default as Header } from "./Header";
+export { default as CharacterSheet } from "./CharacterSheet";
+export { default as HomePage } from "./HomePage";
+export { default as PageTraits } from "./PageTraits";
+export { default as PageMutations } from "./PageMutations";
+export { default as PageSpells } from "./PageSpells";
+export { default as PageTalents } from "./PageTalents";
+export { default as PagePsionics } from "./PagePsionics";
+export { default as PageMonsters } from "./PageMonsters";
+export { default as PageAbout } from "./PageAbout";
+export { default as PageProducts } from "./PageProducts";

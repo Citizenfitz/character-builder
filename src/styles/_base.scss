@@ -51,7 +51,7 @@ body {
   color: darken($color-royal, 10%);
   box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
     -1000px 0px 0px 0px lighten($color-royal, 40%);
-  padding: $margins-desktop;
+  padding: 30px;
   padding-bottom: 10rem;
 }
 
@@ -183,5 +183,16 @@ dd,
   }
   &--royal {
     background: $color-royal;
+  }
+}
+
+.content-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 30px;
+  text-align: left;
+
+  h1 {
+    margin-bottom: 2rem;
   }
 }

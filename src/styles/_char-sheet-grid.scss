@@ -1,0 +1,78 @@
+// Character Sheet Grid Layout
+.char-sheet-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: $margins-desktop;
+  margin: $margins-desktop 0;
+  padding: 0 $margins-desktop;
+
+  &__basics,
+  &__stats,
+  &__details {
+    min-width: 0; // Prevent overflow
+  }
+
+  &__basics {
+    grid-column: 1;
+  }
+
+  &__stats {
+    grid-column: 2;
+  }
+
+  &__details {
+    grid-column: 3;
+  }
+
+  // Responsive adjustments
+  @include mq-tablet-down {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: $margins-tablet;
+    padding: 0 $margins-tablet;
+
+    &__details {
+      grid-column: 1 / -1;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+
+  @include mq-phone {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $margins-phone;
+    padding: 0 $margins-phone;
+
+    &__basics,
+    &__stats,
+    &__details {
+      grid-column: 1;
+    }
+  }
+
+  // Print styles
+  @media print {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: $margins-phone;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Add these new styles
+.char-basics {
+  &__inputs {
+    display: flex;
+    gap: $margins-desktop;
+    margin: $margins-desktop 0;
+
+    > label {
+      flex: 1;
+      min-width: 0; // Prevent flex items from overflowing
+    }
+  }
+
+  &__name-inputs {
+    margin-bottom: $margins-desktop;
+  }
+}

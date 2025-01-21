@@ -1,0 +1,20 @@
+.page-about {
+  &__h2 {
+    margin-top: 0;
+    font-size: 1.8em;
+    font-family: $text-cursive;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  &__p {
+    font-size: 1.33rem;
+    line-height: 1.66em;
+
+    b {
+      font-family: $text-cursive;
+      font-size: 1.4rem;
+      color: $color-royal;
+    }
+  }
+}

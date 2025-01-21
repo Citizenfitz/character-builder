@@ -26,6 +26,19 @@ import {
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
+import { useCharacter } from "./hooks/useCharacter";
+import { useDiceBox } from "./hooks/useDiceBox";
+import { useEquipment } from "./hooks/useEquipment";
+import { useRaceAspect } from "./hooks/useRaceAspect";
+import { useHP } from "./hooks/useHP";
+import useSpells from "./hooks/useSpells";
+import CharacterBasics from "./components/CharacterBasics";
+import RaceAspect from "./components/RaceAspect";
+import Equipment from "./components/Equipment";
+import HPManager from "./components/HPManager";
+import QuickStats from "./components/QuickStats";
+import CharacterDetails from "./components/CharacterDetails";
+import LevelSelector from "./components/LevelSelector";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -115,36 +128,36 @@ const characterDefaults = {
   wizardry1StartLevel: 0,
   wizardry2StartLevel: 0,
   wizardry3StartLevel: 0,
+  xp: "",
 };
 
-const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));
-let characterData;
-let notesData;
-
-if (useLocalStorage) {
-  characterData = JSON.parse(localStorage.getItem("character"));
-  notesData = JSON.parse(localStorage.getItem("notes"));
-}
-
-/**
- * TODO:
- * - Lowered Attributes / Attribute Increase modal to add to bonus
- * - clear spells (of specific color) when schools change
- * - armor and weapons for presets
- * - spells for presets
- * - add disability description to notes
- */
-
 const CharacterSheet = () => {
-  const defaultCharacterData = characterData || characterDefaults;
-  const [character, setCharacter] = useState(defaultCharacterData);
-  const defaultNotesData = notesData || [];
+  // Move these up before any state initialization
+  const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));
+  const defaultCharacterData = useLocalStorage
+    ? JSON.parse(localStorage.getItem("character"))
+    : characterDefaults;
+  const defaultNotesData = useLocalStorage
+    ? JSON.parse(localStorage.getItem("notes"))
+    : [];
+
+  // Initialize hooks
+  const { character, updateCharacter, resetCharacter, autoSave, setAutoSave } =
+    useCharacter(defaultCharacterData);
+
+  const diceBox = useDiceBox();
+  const equipment = useEquipment(character, updateCharacter);
+  const raceAspect = useRaceAspect(character, updateCharacter);
+  const hp = useHP(character, updateCharacter, diceBox);
+  const spells = useSpells(character);
+
+  // Other state
   const [notes, setNotes] = useState(defaultNotesData);
   const [notesIndex, setNotesIndex] = useState(false);
   const [schoolLimit, setSchoolLimit] = useState();
   const [diceGroup, setDiceGroup] = useState();
   const [attributeDice, setAttributeDice] = useState();
-  const [autoSave, setAutoSave] = useState(useLocalStorage);
+  const [raceModalOpen, setRaceModalOpen] = useState(false);
 
   Box.onRollComplete = (results) => {
     if (diceGroup === "attribute" || diceGroup === "all-attributes") {
@@ -170,15 +183,20 @@ const CharacterSheet = () => {
     }
   }, [notes, autoSave]);
 
-  const handleInputChange = (e, name) => {
-    let value;
-    if (e.target) {
-      value = e.target.value;
-    }
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      [name]: value,
-    }));
+  const handleInputChange = (e, field) => {
+    console.log("handleInputChange called with:", {
+      value: e.target.value,
+      field,
+    });
+
+    // Create the update explicitly
+    const update = {
+      ...character,
+      [field]: e.target.value,
+    };
+
+    console.log("About to update character with:", update);
+    updateCharacter(update);
   };
 
   const calcAspectLevel = (level, aspect) => {
@@ -226,35 +244,49 @@ const CharacterSheet = () => {
   };
 
   const handleCharLevel = (e) => {
-    const aspectLevels = calcAspectLevel(e.target.value, character.aspect);
+    const newLevel = parseInt(e.target.value);
+    const aspectLevels = calcAspectLevel(newLevel, character.aspect);
 
-    // adjust hp when down leveling
-    if (aspectLevels.level < character.level) {
+    // Create new state object with all required updates
+    const newState = {
+      ...character,
+      level: newLevel,
+      fighterLevel: aspectLevels.fighterLevel,
+      priestLevel: aspectLevels.priestLevel,
+      wizardLevel: aspectLevels.wizardLevel,
+      knaveLevel: aspectLevels.knaveLevel,
+    };
+
+    // Handle HP adjustments for level change
+    if (newLevel < character.level) {
       const rolls = [...character.hp.rolls];
       const bonus = [...character.hp.bonus];
-      for (let index = character.level; index > aspectLevels.level; index--) {
-        rolls.splice(index, 1);
-        bonus.splice(index, 1);
+      for (let index = character.level; index > newLevel; index--) {
+        rolls.pop();
+        bonus.pop();
       }
-      calcHpTotal({ rolls, bonus });
+      newState.hp = {
+        ...character.hp,
+        rolls,
+        bonus,
+      };
+      calcHpTotal(newState.hp);
     }
 
-    setCharacter((PrevState) => ({
-      ...PrevState,
-      ...aspectLevels,
-    }));
+    // Update character with all changes
+    updateCharacter(newState);
   };
 
   const handleCharAspect = (e) => {
-    const newAspectId = e.target.value;
+    const newAspectIndex = parseInt(e.target.value);
+    const newAspectInfo = aspectData[newAspectIndex];
 
     // adjust the character data
     let tempObject = { ...character };
-    tempObject.aspect = aspectData[newAspectId].name;
-    tempObject.hitDiceType = aspectData[newAspectId].hitDiceType;
-    tempObject.saveModsClass = aspectData[newAspectId].saveModsClass;
-    tempObject.talents.talentAssigned2 =
-      aspectData[newAspectId].assignedTalent2;
+    tempObject.aspect = newAspectInfo.name;
+    tempObject.hitDiceType = newAspectInfo.hitDiceType;
+    tempObject.saveModsClass = newAspectInfo.saveModsClass;
+    tempObject.talents.talentAssigned2 = newAspectInfo.assignedTalent2;
 
     // check if any of the talents are spell casting talents
     tempObject = validateSpellCaster(tempObject);
@@ -269,7 +301,7 @@ const CharacterSheet = () => {
       total: 0,
     };
 
-    setCharacter({
+    updateCharacter({
       ...tempObject,
       ...aspectLevels,
     });
@@ -283,88 +315,53 @@ const CharacterSheet = () => {
   };
 
   const handlePreset = (e) => {
-    const { value } = e.target;
-    let presetValues = {};
-    if (value === "choose") {
-      presetValues = {
-        ...character,
-        talents: {
-          talentAssigned1: characterDefaults.talents.talentAssigned1,
-          talentAssigned2: characterDefaults.talents.talentAssigned2,
-          talentLevel1: characterDefaults.talents.talentLevel1,
-          talentKnave1: characterDefaults.talents.talentKnave1,
-          talentDisad1: characterDefaults.talents.talentDisad1,
-          talentDisad2: characterDefaults.talents.talentDisad2,
-          talentLevel3: characterDefaults.talents.talentLevel3,
-          talentLevel5: characterDefaults.talents.talentLevel5,
-          talentLevel7: characterDefaults.talents.talentLevel7,
-          talentLevel9: characterDefaults.talents.talentLevel9,
-        },
-        disad1: characterDefaults.disad1,
-        disad2: characterDefaults.disad2,
-        talentsUpdated: Date.now(),
-      };
-    } else {
-      presetValues = {
-        ...character,
-        aspect: presetData[value].aspect,
-        talents: {
-          talentAssigned1: presetData[value].talents.talentAssigned1,
-          talentAssigned2: presetData[value].talents.talentAssigned2,
-          talentLevel1: presetData[value].talents.talentLevel1,
-          talentKnave1: presetData[value].talents.talentKnave1,
-          talentDisad1: presetData[value].talents.talentDisad1,
-          talentDisad2: presetData[value].talents.talentDisad2,
-          talentLevel3: presetData[value].talents.talentLevel3,
-          talentLevel5: presetData[value].talents.talentLevel5,
-          talentLevel7: presetData[value].talents.talentLevel7,
-          talentLevel9: presetData[value].talents.talentLevel9,
-        },
-        disad1: presetData[value].disad1,
-        disad2: presetData[value].disad2,
-        talentsUpdated: Date.now(),
-      };
-    }
+    const value = e.target.value;
+    if (value === "choose") return;
 
-    // check if any of the talents are spell casting talents
-    presetValues = validateSpellCaster(presetValues);
+    let presetValues = {
+      ...character,
+      ...presetData[value],
+      attributes: {
+        ...dataAttributes,
+        ...(presetData[value].attributes || {}),
+      },
+    };
 
-    const hadRaceTalent =
-      whichTalentAspect(character.talents.talentLevel1) === "race";
-    const hasRaceTalent =
-      whichTalentAspect(presetValues.talents.talentLevel1) === "race";
-
-    if (hadRaceTalent) {
-      // remove attribute bonus from previous race
+    // First, remove any existing race bonuses
+    if (character.race !== "Human") {
       presetValues = removeRaceBonus(presetValues, character.race);
-      presetValues.race = "Human";
-    }
-    if (hasRaceTalent) {
-      // add attribute bonus from currently selected race
-      presetValues = addRaceBonus(
-        presetValues,
-        presetValues.talents.talentLevel1
-      );
     }
 
-    const hasDurabilityTalent = Object.entries(
-      presetData[value].talents
-    ).filter(([key, val]) => val === "Durability")[0];
+    // Reset to human by default
+    presetValues.race = "Human";
+    presetValues.saveModsRace = [];
+    presetValues.characteristicsRace = [];
+    presetValues.movement = 30;
 
-    if (hasDurabilityTalent) {
-      let level = 1;
-      if (hasDurabilityTalent[0].match("talentLevel")) {
-        level = parseInt(hasDurabilityTalent[0].replace("talentLevel", ""));
-      }
-      presetValues.hp.hasDurability = level;
-    }
-
-    const aspectLevels = calcAspectLevel(
-      character.level,
-      presetData[value].aspect
+    // Then check for and apply new race if present
+    const raceTalent = Object.entries(presetValues.talents).find(([key, val]) =>
+      [
+        "Dwarf",
+        "Elf",
+        "Gnome",
+        "Half-Elf",
+        "Half-Orc",
+        "Halfling",
+        "Mutant",
+      ].includes(val)
     );
 
-    setCharacter({
+    if (raceTalent) {
+      const newRace = raceTalent[1];
+      presetValues = addRaceBonus(presetValues, newRace);
+      presetValues.race = newRace;
+    }
+
+    // Handle other talent effects
+    presetValues = validateSpellCaster(presetValues);
+
+    const aspectLevels = calcAspectLevel(character.level, presetValues.aspect);
+    updateCharacter({
       ...presetValues,
       ...aspectLevels,
     });
@@ -372,7 +369,7 @@ const CharacterSheet = () => {
 
   // save schools that were picked in the WizardySpells component to the character data
   const handlePickSchool = (schools) => {
-    setCharacter((prev) => ({
+    updateCharacter((prev) => ({
       ...prev,
       wizardrySchools: schools,
     }));
@@ -406,36 +403,11 @@ const CharacterSheet = () => {
     // console.log("tempObject = " + tempObject);
     tempObject[schoolIndex] = color;
     // console.log("tempObject = " + tempObject);
-    setCharacter((prev) => ({
+    updateCharacter((prev) => ({
       ...prev,
       wizardrySchools: tempObject,
     }));
   };
-
-  // const fillInExtraWizSchools = () => {
-  //   // if they DO have wizardry 3 then fill in the other three school slots with colors not chosen
-  //   let tempObject = character.wizardrySchools.slice(0);
-  //   for (let index = 0; index < magicSchools.length; index++) {
-  //     if (!tempObject.includes(magicSchools[index].name)) {
-  //       character.wizardrySchools.push(magicSchools[index].name);
-  //     }
-  //   }
-  // };
-
-  // cleans up the e wizadrySchool array and sets the wizardryNeedsToChooseSchool var
-  // const wizardrySchoolCleanUp = () => {
-  //   // finally, see if wizadrySchool contains a single string from the magic schools. If it does, wizardryNeedsToChooseSchool is false
-  //   let needsSchool = true;
-  //   for (let index = 0; index < magicSchools.level; index++) {
-  //     if (character.wizardrySchools.includes(magicSchools[index].name)) {
-  //       needsSchool = false;
-  //     }
-  //   }
-  //   setCharacter((prev) => ({
-  //     ...prev,
-  //     wizardryNeedsToChooseSchool: needsSchool,
-  //   }));
-  // };
 
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
@@ -550,69 +522,76 @@ const CharacterSheet = () => {
   const handleSetCharTalents = (e) => {
     const value = e.target.value;
     const talentSlot = e.target.id;
-
     let newState = { ...character };
 
-    switch (value) {
-      // if it's setting a race
-      case "Dwarf":
-      case "Elf":
-      case "Gnome":
-      case "Half-Elf":
-      case "Half-Orc":
-      case "Halfling":
-      case "Mutant":
-        if (character.race !== "Human") {
-          // remove attribute bonus from previous race
-          newState = removeRaceBonus(newState, character.race);
+    // First handle race changes
+    if (
+      [
+        "Dwarf",
+        "Elf",
+        "Gnome",
+        "Half-Elf",
+        "Half-Orc",
+        "Halfling",
+        "Mutant",
+      ].includes(value)
+    ) {
+      // Remove old race bonuses if any
+      if (character.race !== "Human") {
+        newState = removeRaceBonus(newState, character.race);
+      }
+
+      // Apply new race
+      newState = addRaceBonus(newState, value);
+      newState.race = value;
+      newState.talents[talentSlot] = value;
+    } else {
+      // If changing talentLevel1 and it was a race talent, reset to human
+      if (
+        talentSlot === "talentLevel1" &&
+        [
+          "Dwarf",
+          "Elf",
+          "Gnome",
+          "Half-Elf",
+          "Half-Orc",
+          "Halfling",
+          "Mutant",
+        ].includes(character.talents[talentSlot])
+      ) {
+        newState = removeRaceBonus(newState, character.race);
+        newState.race = "Human";
+        newState.saveModsRace = [];
+        newState.characteristicsRace = [];
+        newState.movement = 30;
+      }
+
+      // Handle other talents
+      if (value === "Durability") {
+        let level = 1;
+        if (talentSlot.match("talentLevel")) {
+          level = parseInt(talentSlot.replace("talentLevel", ""));
         }
+        newState.hp.hasDurability = level;
+      } else if (character.talents[talentSlot] === "Durability") {
+        newState.hp.hasDurability = false;
+      }
 
-        // add attribute bonus from currently selected race
-        newState = addRaceBonus(newState, value);
-        newState.talents[talentSlot] = value;
-
-        // check if any of the talents are spell casting talents
-        newState = validateSpellCaster(newState);
-
-        return setCharacter(() => newState);
-      // if it's nothing to do with race and just choosing a talent
-
-      default:
-        // race can only be selected in talentLevel1 - if none is picked then you're human
-        if (talentSlot === "talentLevel1" && character.race !== "Human") {
-          newState = removeRaceBonus(newState, character.race);
-          newState.race = "Human";
-          newState.movement = 30;
-          newState.saveModsRace = [];
-          newState.characteristicsRace = [];
-        }
-        // save the level "Durability" was obtained for HP calculation
-        if (value === "Durability") {
-          let level = 1;
-          if (talentSlot.match("talentLevel")) {
-            level = parseInt(talentSlot.replace("talentLevel", ""));
-          }
-          newState.hp.hasDurability = level;
-        }
-        // mark durability as being unselected
-        if (character.talents[talentSlot] === "Durability") {
-          newState.hp.hasDurability = false;
-        }
-
-        // save this talent to state
-        newState.talents[talentSlot] = value;
-
-        // check if any of the talents are spell casting talents
-        newState = validateSpellCaster(newState);
-        newState.talentsUpdated = Date.now();
-        return setCharacter(() => newState);
+      newState.talents[talentSlot] = value;
     }
+
+    newState = validateSpellCaster(newState);
+    newState.talentsUpdated = Date.now();
+
+    updateCharacter(newState);
   };
 
   const handleSetDisad = (e) => {
-    setCharacter((prev) => ({
+    console.log("Handling disad change:", e.target);
+    const { id, value } = e.target;
+    updateCharacter((prev) => ({
       ...prev,
-      [e.target.id]: e.target.value,
+      [id]: value,
     }));
   };
 
@@ -626,7 +605,7 @@ const CharacterSheet = () => {
   };
 
   const updateAttributes = useCallback((attributes) => {
-    setCharacter((prev) => {
+    updateCharacter((prev) => {
       const ac =
         10 + attributes.dexterity.mod + prev.armor.modifier + prev.shield;
       const perception = 10 + attributes.wisdom.mod;
@@ -638,52 +617,6 @@ const CharacterSheet = () => {
       };
     });
   }, []);
-
-  const handleArmorChange = (e) => {
-    const armor = armorData[e.target.value];
-    setCharacter((prev) => {
-      const ac =
-        10 + prev.attributes.dexterity.mod + armor.modifier + character.shield;
-      return {
-        ...prev,
-        ac,
-        armorIndex: e.target.value,
-        armor,
-      };
-    });
-  };
-
-  const handleShieldChange = (e) => {
-    const shieldBonus = parseInt(e.target.value);
-    const ArmorBonus = armorData[character.armorIndex].modifier;
-    const newAc =
-      10 + character.attributes.dexterity.mod + ArmorBonus + shieldBonus;
-    setCharacter((prev) => ({
-      ...prev,
-      ac: newAc,
-      shield: shieldBonus,
-    }));
-  };
-
-  const handleMeleeWeaponChange = (e) => {
-    const index = e.target.value;
-    const meleeWeapon = meleeWeaponData[index];
-    setCharacter((prev) => ({
-      ...prev,
-      meleeWeapon,
-      meleeWeaponIndex: index,
-    }));
-  };
-
-  const handleRangedWeaponChange = (e) => {
-    const index = e.target.value;
-    const rangedWeapon = rangedWeaponData[index];
-    setCharacter((prev) => ({
-      ...prev,
-      rangedWeapon,
-      rangedWeaponIndex: index,
-    }));
-  };
 
   const setHpFromDice = (results) => {
     const rolls = [];
@@ -754,7 +687,7 @@ const CharacterSheet = () => {
     // set a min value of 1 - don't want 0 or negative HP due to poor CON modifier
     newHp.total = Math.max(1, total);
 
-    setCharacter((prev) => ({
+    updateCharacter((prev) => ({
       ...prev,
       hp: { ...newHp },
     }));
@@ -771,9 +704,29 @@ const CharacterSheet = () => {
     Box.show().roll(`${dice}d${character.hitDiceType}`);
   };
 
-  const [raceModalOpen, setRaceModalOpen] = useState(false);
   const toggleRaceModal = () => {
     setRaceModalOpen(!raceModalOpen);
+  };
+
+  const handleAlignmentChange = (e) => {
+    console.log("Handling alignment change:", e.target.value);
+    const update = {
+      ...character,
+      alignment: e.target.value,
+    };
+    console.log("About to update character with:", update);
+    updateCharacter(update);
+  };
+
+  const handleDisadChange = (e) => {
+    console.log("Handling disad change:", e.target);
+    const { id, value } = e.target;
+    const update = {
+      ...character,
+      [id]: value,
+    };
+    console.log("About to update character with:", update);
+    updateCharacter(update);
   };
 
   return (
@@ -803,87 +756,19 @@ const CharacterSheet = () => {
         </div>
       </div>
       <div className="char-bldr__bottom-border ut-no-screen"></div>
-      <div className="flex-grid">
-        <div className="flex-grid__child">
-          {/*  ------- NAMEs ------ */}
-          <label>
-            <input
-              type="text"
-              value={character.namePlayer}
-              name="namePlayer"
-              onChange={(e) => handleInputChange(e, "namePlayer")}
-              className="ut-no-print"
-            />
-            <div className="ut-no-screen print-text-input ut-text-cursive ">
-              {character.namePlayer}&nbsp;
-            </div>
-            <br />
-            <span className="label">Player Name</span>
-          </label>
+      <div className="char-sheet-grid">
+        {/* Left Column */}
+        <div className="char-sheet-grid__basics">
+          <CharacterBasics
+            character={character}
+            onNameChange={handleInputChange}
+            onLevelChange={handleCharLevel}
+            onRaceClick={toggleRaceModal}
+            onAspectChange={handleCharAspect}
+            aspectData={aspectData}
+          />
 
-          <label>
-            <input
-              type="text"
-              value={character.nameCharacter}
-              name="namePlayer"
-              className="ut-no-print"
-              onChange={(e) => handleInputChange(e, "nameCharacter")}
-            />
-            <div className="ut-no-screen print-text-input ut-text-cursive ">
-              {character.nameCharacter}
-            </div>
-            <br />
-            <span className="label">Character Name</span>
-          </label>
-
-          <div className="flex-grid flex-grid--flex-start character-lrc">
-            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
-              {/*  ------- LEVEL ------ */}
-              <label>
-                <select
-                  onChange={handleCharLevel}
-                  value={character.level}
-                  className="ut-no-print"
-                >
-                  {levelsData.map((i) => (
-                    <option key={i.level} value={i.level}>
-                      {formatNumberSuffix(i.level)}
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {formatNumberSuffix(character.level)}
-                </div>
-                <br />
-                <span className="label">Level</span>
-              </label>
-            </div>
-            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
-              {/*  ------- RACE ------ */}
-              <label>
-                <button
-                  type="text"
-                  size="8"
-                  className="button ut-no-print"
-                  onClick={toggleRaceModal}
-                >
-                  {character.race}&nbsp;
-                </button>
-                <br />
-                <span className="label">Race</span>
-              </label>
-            </div>
-            <div className="flex-grid__child flex-grid__child--auto">
-              {/*  ------- CLASS / "Aspects" ------ */}
-              <Aspects
-                character={character}
-                handleCharAspect={handleCharAspect}
-              ></Aspects>
-            </div>
-          </div>
-
-          {/*  --------------- ATTRIBUTES -------------- */}
-          <section>
+          <section className="char-sheet-grid__attributes">
             <Attributes
               onChange={updateAttributes}
               attributes={character.attributes}
@@ -894,51 +779,9 @@ const CharacterSheet = () => {
           </section>
         </div>
 
-        <div className="flex-grid__child">
-          {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
-          <div className="flex-grid flex-grid--wrap">
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">{character.ac}</div>
-              <h2 className="data-display-box__header">AC</h2>
-            </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <button
-                className="button button--secondary data-display-box__button"
-                aria-label="Roll Hit Points"
-                onClick={rollHP}
-              >
-                <span className="fas fa-die"></span>
-              </button>
-              <div className="data-display-box__text">
-                <input
-                  className="hp"
-                  type="number"
-                  inputMode="numeric"
-                  min={0}
-                  max={999}
-                  value={character.hp.total}
-                  onChange={manuallyUpdateHP}
-                />
-              </div>
-              <h2 className="data-display-box__header">HP</h2>
-            </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">
-                {character.movement}'
-              </div>
-              <h2 className="data-display-box__header">Move</h2>
-            </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values data-display-box--perception">
-              <div className="data-display-box__text">
-                <span className="label">Roll Mod: </span>
-                {formatNumberModifier(character.attributes.wisdom.mod)}
-                <br />
-                <span className="label">Passive:</span> {character.perception}
-              </div>
-              <h2 className="data-display-box__header">Perc.</h2>
-            </div>
-          </div>
-          {/*  ------- SAVING THROW MODS ------ */}
+        {/* Middle Column */}
+        <div className="char-sheet-grid__stats">
+          <QuickStats character={character} onHPChange={manuallyUpdateHP} />
 
           <div className="data-display-box data-display-box--save-mods">
             <div className="data-display-box__text">
@@ -965,176 +808,22 @@ const CharacterSheet = () => {
             <h2 className="data-display-box__header">Saving Throw Mods</h2>
           </div>
 
-          <br />
-          <div className="flex-grid  flex-grid--flex-start">
-            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
-              {/*  ------- ARMOR ------ */}
-              <label>
-                <select
-                  name="armor"
-                  value={character.armorIndex}
-                  onChange={handleArmorChange}
-                  className="ut-no-print"
-                >
-                  {armorData.map((armor, i) => (
-                    <option key={armor.armor} value={i}>
-                      {armor.armor} (+{armor.modifier})
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {armorData[character.armorIndex].armor}{" "}
-                  {character.armorIndex > 0 && (
-                    <span>(+{armorData[character.armorIndex].modifier})</span>
-                  )}
-                </div>
-                <br />
-                <span className="label">Armor</span>
-              </label>
-            </div>
-            <div className="flex-grid__child flex-grid__child--auto">
-              {/*  ------- SHIELD ------ */}
-              {/*  TODO: create data for shield as opposed to putting directly into form element */}
-              <label>
-                <select
-                  name="shield"
-                  value={character.shield}
-                  onChange={(e) => handleShieldChange(e)}
-                  className="ut-no-print"
-                >
-                  {shieldData.map((shield, i) => (
-                    <option key={shield.name} value={i}>
-                      {shield.name} (+{shield.modifier})
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {character.shield}
-                </div>
-                <br />
-                <span className="label">Shield</span>
-              </label>
-            </div>
-          </div>
-          {/*  ------- MELEE WEAPON ------ */}
-          <label>
-            <select
-              name="meleeWeapon"
-              value={character.meleeWeaponIndex}
-              onChange={handleMeleeWeaponChange}
-              className="ut-no-print"
-            >
-              {meleeWeaponData.map((weapon, i) => (
-                <option key={weapon.name} value={i}>
-                  {weapon.name} ({weapon.damage})
-                </option>
-              ))}
-            </select>
-            <div className="ut-no-screen print-text-input">
-              {meleeWeaponData[character.meleeWeaponIndex].name}
-              {character.meleeWeaponIndex > 0 && (
-                <span>
-                  ({meleeWeaponData[character.meleeWeaponIndex].damage})
-                </span>
-              )}
-            </div>
-            <br />
-            <span className="label">Melee Weapon</span>
-          </label>
-
-          {/*  ------- RANGED WEAPON ------ */}
-          <label>
-            <select
-              name="rangedWeapon"
-              value={character.rangedWeaponIndex}
-              onChange={handleRangedWeaponChange}
-              className="ut-no-print"
-            >
-              {rangedWeaponData.map((weapon, i) => (
-                <option key={weapon.name} value={i}>
-                  {weapon.name} ({weapon.damage})
-                </option>
-              ))}
-            </select>
-            <div className="ut-no-screen print-text-input">
-              {rangedWeaponData[character.rangedWeaponIndex].name}
-              {character.rangedWeaponIndex > 0 && (
-                <span>
-                  ({rangedWeaponData[character.rangedWeaponIndex].damage})
-                </span>
-              )}
-            </div>
-            <br />
-            <span className="label">Ranged Weapon</span>
-          </label>
+          <Equipment
+            character={character}
+            onArmorChange={equipment.handleArmorChange}
+            onShieldChange={equipment.handleShieldChange}
+            onMeleeWeaponChange={equipment.handleMeleeWeaponChange}
+            onRangedWeaponChange={equipment.handleRangedWeaponChange}
+          />
         </div>
 
-        <div className="flex-grid__child">
-          {/*  ------- EXPLAINER BOX ------ */}
-          <div className="data-display-box  data-display-box--explanations">
-            <div className="data-display-box__text"></div>
-            <h2 className="data-display-box__header">
-              Symbol or Character Sketch
-            </h2>
-          </div>
-
-          {/*  ------- ALIGNMENT ------ */}
-          <label>
-            <select
-              name="alignment"
-              onChange={(e) => handleInputChange(e, "alignment")}
-              value={character.alignment}
-              className="ut-no-print"
-            >
-              <option value="Lawful Good">Lawful Good </option>
-              <option value="Neutral Good">Neutral Good </option>
-              <option value="Chaotic Good">Chaotic Good </option>
-              <option value="Lawful Neutral">Lawful Neutral </option>
-              <option value="Neutral">Neutral</option>
-              <option value="Chaotic Neutral">Chaotic Neutral </option>
-              <option value="Lawful Evil">Lawful Evil </option>
-              <option value="Neutral Evil">Neutral Evil</option>
-              <option value="Chaotic Evil">Chaotic Evil </option>
-            </select>
-            <div className="ut-no-screen print-text-input">
-              {character.alignment}
-            </div>
-            <br />
-            <span className="label">Alignment</span>
-          </label>
-
-          {/*  ------- DISADS ------ */}
-          <label>
-            <DisadSelector
-              id="disad1"
-              character={character}
-              handleSetDisad={handleSetDisad}
-            />
-            <span className="label">
-              Disad 1{" "}
-              <span className="ut-text-explain ut-no-print">(optional)</span>
-            </span>
-          </label>
-
-          <label>
-            <DisadSelector
-              id="disad2"
-              character={character}
-              handleSetDisad={handleSetDisad}
-            />
-            <span className="label">
-              Disad 2{" "}
-              <span className="ut-text-explain ut-no-print">(optional)</span>
-            </span>
-          </label>
-
-          {/*  ------- XP ------ */}
-          <label>
-            <input type="text" disabled className="ut-no-print" />
-            <div className="ut-no-screen print-text-input"></div>
-            <br />
-            <span className="label">XP/AP</span>
-          </label>
+        {/* Right Column */}
+        <div className="char-sheet-grid__details">
+          <CharacterDetails
+            character={character}
+            onAlignmentChange={handleAlignmentChange}
+            onDisadChange={handleDisadChange}
+          />
         </div>
       </div>
       {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}

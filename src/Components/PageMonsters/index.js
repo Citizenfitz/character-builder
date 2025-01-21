@@ -1,6 +1,5 @@
 import React from "react";
 import RenderMonster from "../Utilities/RenderMonster";
-
 import { monstersData } from "../../Data/";
 
 const PageMonsters = () => {

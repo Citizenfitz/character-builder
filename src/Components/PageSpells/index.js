@@ -1,22 +1,39 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { spellData } from "../../Data/";
 import RenderSpell from "../Utilities/RenderSpell";
 
-const filterMap = new Map([
-  ["spellFilterAll", (arr) => arr.sort(spellAlphaSort)],
-  ["spellFilterPriest", levelFilter("priestLvl")],
-  ["spellFilterWizard", levelFilter("wizLvl")],
-  ["spellFilterBlack", colorFilter("black")],
-  ["spellFilterBlue", colorFilter("blue")],
-  ["spellFilterGreen", colorFilter("green")],
-  ["spellFilterRed", colorFilter("red")],
-  ["spellFilterWhite", colorFilter("white")],
-]);
-
-const spells = Object.entries(spellData).map(([spellName, spell]) => ({
+// Move spell data processing outside component to avoid recalculation on every render
+const processedSpells = Object.entries(spellData).map(([spellName, spell]) => ({
   ...spell,
-  ...{ name: spellName },
+  name: spellName,
 }));
+
+// Pre-compute filtered spell lists
+const spellLists = {
+  spellFilterAll: processedSpells.sort((a, b) => a.name.localeCompare(b.name)),
+  spellFilterPriest: processedSpells
+    .filter((s) => s.priestLvl > 0)
+    .sort((a, b) => a.priestLvl - b.priestLvl),
+  spellFilterWizard: processedSpells
+    .filter((s) => s.wizLvl > 0)
+    .sort((a, b) => a.wizLvl - b.wizLvl),
+  spellFilterBlack: processedSpells
+    .filter((s) => s.school?.includes("black"))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+  spellFilterBlue: processedSpells
+    .filter((s) => s.school?.includes("blue"))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+  spellFilterGreen: processedSpells
+    .filter((s) => s.school?.includes("green"))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+  spellFilterRed: processedSpells
+    .filter((s) => s.school?.includes("red"))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+  spellFilterWhite: processedSpells
+    .filter((s) => s.school?.includes("white"))
+    .sort((a, b) => a.name.localeCompare(b.name)),
+};
+
 const filterConfig = [
   {
     filterType: "spellFilterAll",
@@ -59,95 +76,81 @@ const filterConfig = [
 
 const PageSpells = () => {
   const [filterType, setFilterType] = useState(filterConfig[0].filterType);
-  const [displayedTitle, setDisplayedTitle] = useState(filterConfig[0].label);
-  const [displayedSpells, setDisplayedSpells] = useState();
 
-  useEffect(() => {
-    const filterFunc = filterMap.get(filterType);
-    setDisplayedSpells(filterFunc(spells));
-  }, [filterType]);
+  // Use useMemo to avoid recalculating the current filter config
+  const currentFilter = useMemo(
+    () => filterConfig.find((f) => f.filterType === filterType),
+    [filterType]
+  );
+
+  // Get pre-computed spell list based on filter
+  const displayedSpells = spellLists[filterType];
+
+  const handleFilterChange = (newFilter) => {
+    setFilterType(newFilter.filterType);
+  };
 
   return (
     <div className="newstyle layou__page layout__page--aside">
       <aside className="content-aside">
         <fieldset>
           <legend>Show:</legend>
-          {filterConfig.map((c) => (
-            <Fragment key={c.filterType}>
-              <br />
+          {filterConfig.map((config) => (
+            <div key={config.filterType}>
               <input
                 type="radio"
-                id={c.filterType}
+                id={config.filterType}
                 name="spellFilter"
-                value={c.filterType}
-                checked={filterType === c.filterType}
-                onChange={() => {
-                  setDisplayedTitle(c.label);
-                  setFilterType(c.filterType);
-                }}
+                value={config.filterType}
+                checked={filterType === config.filterType}
+                onChange={() => handleFilterChange(config)}
               />
-              <label htmlFor={c.filterType}>
-                {c.dotColor ? (
+              <label htmlFor={config.filterType}>
+                {config.dotColor && (
                   <span
-                    className={`fas fa-spell-dot fa-spell-dot--${c.dotColor}`}
-                  ></span>
-                ) : (
-                  ""
+                    className={`fas fa-spell-dot fa-spell-dot--${config.dotColor}`}
+                  />
                 )}{" "}
-                {c.label}
+                {config.label}
               </label>
-            </Fragment>
+            </div>
           ))}
-          <br />
         </fieldset>
         <hr />
-        <ul>
-          {displayedSpells &&
-            displayedSpells.map((spell) => (
+        <nav>
+          <ul>
+            {displayedSpells.map((spell) => (
               <li key={spell.name}>
                 <a href={`#${spell.name}`} className="aside__link">
                   {spell.name}
                 </a>
               </li>
             ))}
-        </ul>
+          </ul>
+        </nav>
       </aside>
+
       <div className="content-main">
-        <h1>Magic Spells - {displayedTitle}</h1>
-        {displayedSpells &&
-          displayedSpells.map((spell) => (
-            <div key={spell.name} id={spell.name}>
-              <RenderSpell
-                name={spell.name}
-                cast={spell.cast}
-                components={spell.components}
-                duration={spell.duration}
-                range={spell.range}
-                save={spell.save}
-                target={spell.target}
-                school={spell.school}
-                wizLvl={spell.wizLvl}
-                priestLvl={spell.priestLvl}
-              ></RenderSpell>
-            </div>
-          ))}
+        <h1>Magic Spells - {currentFilter.label}</h1>
+        {displayedSpells.map((spell) => (
+          <div key={spell.name} id={spell.name}>
+            <RenderSpell
+              name={spell.name}
+              cast={spell.cast}
+              components={spell.components}
+              duration={spell.duration}
+              range={spell.range}
+              save={spell.save}
+              target={spell.target}
+              school={spell.school}
+              wizLvl={spell.wizLvl}
+              priestLvl={spell.priestLvl}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
 export default PageSpells;
-
-function spellAlphaSort(a, b) {
-  return a.name - b.name;
-}
-
-function levelFilter(prop) {
-  return (arr) =>
-    arr.filter((s) => s[prop] > 0).sort((a, b) => a[prop] - b[prop]);
-}
-
-function colorFilter(color) {
-  return (arr) =>
-    arr.filter((s) => s.school?.includes(color)).sort(spellAlphaSort);
-}

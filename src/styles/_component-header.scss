@@ -1,15 +1,17 @@
 .header {
-  background-image: url($path-img + "vintage-dragon.png");
-  background-repeat: no-repeat;
-  background-size: 50%;
-  background-position: right top;
   background-color: $color-royal;
   color: $color-white;
   position: relative;
-  padding-top: 1.5rem;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  gap: 2rem;
 
   @include mq-phone {
-    padding: $margins-phone;
+    padding: 15px;
   }
 
   &__h1-link {
@@ -57,35 +59,123 @@
   &__card-icons {
     margin-right: 1rem;
     width: 33%;
-    visibility: hidden;
   }
   // header nav bar
   &__nav-list {
     list-style: none;
     padding: 0;
-    background: $color-priest;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 0;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    gap: 1rem;
+
     @include mq-tablet {
-      margin-top: 0.25rem;
+      margin-top: 0;
+    }
+
+    @include mq-tablet-down {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
     }
   }
 
-  &__nav-list-item a {
-    display: inline-block;
-    color: $color-white;
-    padding: 1em;
+  &__nav-list-item {
+    margin: 0;
+
+    a {
+      display: inline-block;
+      color: $color-white;
+      padding: 0.5em 1em;
+      text-decoration: none;
+      font-size: 22px;
+      font-weight: bold;
+      font-family: $text-menu;
+      text-transform: uppercase;
+
+      @include mq-tablet {
+        font-size: 18px;
+      }
+
+      &:hover {
+        color: $color-yellow-1;
+      }
+
+      &.active {
+        border-bottom: 2px solid $color-yellow-2;
+      }
+    }
+
+    @include mq-tablet-down {
+      margin: 0;
+
+      a {
+        display: block;
+        padding: 1rem;
+        text-align: center;
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+  }
+
+  &__cta {
+    padding: 0.5em;
+    background-color: $color-yellow-1;
+    color: $color-black;
+    font-size: 24px;
+    border: none;
+    text-transform: uppercase;
+    text-align: center;
     text-decoration: none;
-    font-size: 1.25em;
-    font-weight: bold;
+    font-family: $text-menu;
+    border-radius: $border-radius-standard;
     @include mq-tablet {
-      font-size: 1rem;
+      font-size: 18px;
     }
 
     &:hover {
       background: $color-yellow-2;
       color: $color-black;
+    }
+  }
+
+  &__menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: $color-white;
+    padding: 0.5rem;
+    font-size: 24px;
+    cursor: pointer;
+
+    .fa-menu::before {
+      font-family: "FontAwesome";
+      content: "\f0c9";
+    }
+
+    @include mq-tablet-down {
+      display: block;
+    }
+  }
+
+  &__nav {
+    @include mq-tablet-down {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: $color-royal;
+      padding: 1rem 0;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      &--open {
+        display: block;
+      }
     }
   }
 }

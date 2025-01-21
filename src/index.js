@@ -12,6 +12,8 @@ import {
   PageTalents,
   PagePsionics,
   PageMonsters,
+  PageAbout,
+  PageProducts,
 } from "./Components";
 import "./style.css";
 
@@ -22,6 +24,8 @@ ReactDOM.render(
       <main className="main" id="main">
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<PageAbout />} />
+          <Route path="/products" element={<PageProducts />} />
           <Route path="/character" element={<CharacterSheet />} />
           <Route path="/traits" element={<PageTraits />} />
           <Route path="/mutations" element={<PageMutations />} />

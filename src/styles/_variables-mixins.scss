@@ -47,17 +47,21 @@ $path-img: "assets/images/";
   src: url($path-font + "Carmen/carmen-shadow.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "Edelgotisch";
+  src: url($path-font + "Edelgotisch/Edelgotisch.TTF") format("truetype");
+}
+
 // ********************* FONTS *********************
 $text-regular: "Cabin Regular", Cabin, sans-serif;
 $text-medium: "Cabin Medium", Cabin, sans-serif;
 $text-semi: "Cabin Medium", Cabin, sans-serif;
 $text-bold: "Cabin Bold", Cabin, sans-serif;
 
-$text-header: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+$text-header: "Edelgotisch", Edelgotisch, sans-serif;
+$text-menu: "Edelgotisch", Edelgotisch, sans-serif;
 
 $text-cursive: "Kaushan Script", cursive;
-
-$text-header-2: "Carmen", Carmen, sans-serif;
 
 @mixin font-regular {
   font-family: $text-regular;
