@@ -76,6 +76,25 @@ $text-header-2: "Carmen", Carmen, sans-serif;
 
 // *********************** COLOR VARIABLES ***********************//
 
+// Brand Colors
+$color-brand-dark: #5a2780;
+$color-brand-darker: #110812;
+$color-brand-lighter: #efd9f7;
+$color-brand-accent: #f7ebc7;
+$color-brand-accent-dark: #c78d17;
+$color-brand-cta: #d7ac28;
+$color-brand-cta-hover: #c78d17;
+$color-brand-link-hover: #f7ebc7;
+
+// Text Colors
+$color-text-primary: #ffffff;
+$color-text-dark: #333333; // This matches your existing $color-gray-1
+$color-text-muted: #cccccc;
+$color-text-cta: #1a1a1a;
+
+// UI Colors
+$color-border-dark: $color-brand-darker;
+
 // $color-white: rgb(253, 255, 245);
 $color-white: #fff;
 $color-black: #000;
@@ -92,7 +111,7 @@ $color-fighter: #04a54f;
 $color-priest: #2375b9;
 $color-wizard: #e1a525;
 $color-knave: #eb2026;
-$color-royal: #883c8d;
+$color-royal: $color-brand-dark;
 $color-royal-zebra: #f0e0f2;
 $color-input-background: #f5f3ed;
 

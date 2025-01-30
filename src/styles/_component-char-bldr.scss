@@ -11,27 +11,12 @@
   }
 
   &__toolbar {
-    background: #dcdcdc;
+    background: $color-brand-lighter;
     padding: 1em 1em 0 1em;
     margin-bottom: 1em;
     border-radius: $border-radius-standard;
     > div {
       margin-right: 3em;
-    }
-  }
-
-  &__bottom-border {
-    background-image: url($path-img + "border-triangles-down-no-bottom.svg");
-    background-repeat: repeat-x;
-    background-size: 60% auto;
-    width: 100%;
-    height: 20px;
-    // position: absolute;
-    top: 0;
-    left: 0;
-    margin-bottom: 1em;
-    &--flip {
-      transform: rotate(180deg);
     }
   }
 }
