@@ -1,0 +1,67 @@
+.char-sheet {
+  // Main container styles
+  max-width: 880px;
+  background: $color-dark-inverted;
+  border-radius: 8px;
+  padding: 8px 18px;
+  margin: 0 auto;
+  color: $color-text-inverted;
+  &__toolbar {
+    color: $color-text-primary;
+    background: $color-brand-dark;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+  }
+
+  // Grid layout for the three columns
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  // Column containers
+  &__col {
+    min-width: 0;
+
+    &--basics {
+      grid-column: 1;
+    }
+
+    &--stats {
+      grid-column: 2;
+    }
+
+    &--details {
+      grid-column: 3;
+    }
+  }
+
+  // Quick reference boxes
+  &__quick-ref {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    &-item {
+      flex: 1;
+      min-width: calc(50% - 1rem);
+    }
+  }
+
+  // Sections
+  &__section {
+    margin-bottom: 2rem;
+
+    &--talents {
+      margin-top: 3rem;
+    }
+
+    &--notes {
+      page-break-before: always;
+    }
+  }
+}

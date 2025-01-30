@@ -36,6 +36,10 @@
   font-family: "Carmen Shadow";
   src: url("assets/fonts/Carmen/carmen-shadow.ttf") format("truetype");
 }
+@font-face {
+  font-family: "Edelgotisch";
+  src: url("assets/fonts/Edelgotisch/Edelgotisch.ttf") format("truetype");
+}
 *,
 *:before,
 *:after {
@@ -52,8 +56,8 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Cabin Regular", Cabin, sans-serif;
-  color: #000;
-  background: #f6f7fb;
+  color: #ffffff;
+  background: #110812;
 }
 
 .root {
@@ -109,7 +113,7 @@ body {
 /***** HEADERS *****/
 h1,
 .h1 {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 2.5em;
   margin-bottom: 0;
@@ -123,7 +127,7 @@ h1,
 
 h2,
 .h2 {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1rem;
   color: #5a2780;
@@ -267,7 +271,7 @@ fieldset {
 }
 
 legend {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1rem;
   color: #5a2780;
@@ -520,7 +524,7 @@ th {
 th {
   text-align: center;
   background: #bf94df;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 0.75rem;
 }
@@ -1175,7 +1179,7 @@ input[type=radio] + label.aspect-radio-label {
   border-radius: 3px;
   margin: 0;
   color: black;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   cursor: pointer;
 }
 input[type=radio] + label.aspect-radio-label--fighter {
@@ -1243,7 +1247,7 @@ input[type=radio] + label.aspect-radio-label__type {
   width: 100%;
   left: 0px;
   bottom: 0px;
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 18px;
   line-height: 24px;
   text-align: center;
@@ -1475,7 +1479,7 @@ input[type=radio] + label.aspect-radio-label__type {
   border-radius: 0;
   border: none;
   font-size: 1.25em;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   border: 1px solid #5a2780;
   position: absolute;
   right: 0;
@@ -1618,6 +1622,59 @@ input[type=radio] + label.aspect-radio-label__type {
   margin-right: 3em;
 }
 
+.char-sheet {
+  max-width: 880px;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 8px 18px;
+  margin: 0 auto;
+  color: #333333;
+}
+.char-sheet__toolbar {
+  color: #ffffff;
+  background: #5a2780;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+}
+.char-sheet__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.char-sheet__col {
+  min-width: 0;
+}
+.char-sheet__col--basics {
+  grid-column: 1;
+}
+.char-sheet__col--stats {
+  grid-column: 2;
+}
+.char-sheet__col--details {
+  grid-column: 3;
+}
+.char-sheet__quick-ref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.char-sheet__quick-ref-item {
+  flex: 1;
+  min-width: calc(50% - 1rem);
+}
+.char-sheet__section {
+  margin-bottom: 2rem;
+}
+.char-sheet__section--talents {
+  margin-top: 3rem;
+}
+.char-sheet__section--notes {
+  page-break-before: always;
+}
+
 .hp {
   position: relative;
   top: -4px;
@@ -1678,7 +1735,7 @@ input[type=radio] + label.aspect-radio-label__type {
   padding-left: 10px;
 }
 .attrib-name button {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 1.2rem;
   color: #5a2780;
   background-color: transparent;
@@ -1857,7 +1914,7 @@ body {
 }
 #modal--schools label {
   cursor: pointer;
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1.2rem;
   display: inline-block;
@@ -1876,7 +1933,7 @@ body {
   margin-bottom: 1em;
 }
 #modal--schools .schoolDescriptions span {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
   font-size: 1rem;
 }
@@ -2391,7 +2448,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .ut-text-greyhawk {
-  font-family: "GreyhawkGothic", GreyhawkGothic, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
 }
 
 .ut-text-cursive {
@@ -2491,7 +2548,7 @@ input[type=number]::-webkit-outer-spin-button {
 .newstyle h2,
 .newstyle h3,
 .newstyle h4 {
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   color: #000;
 }
 .newstyle h1 {
@@ -2516,7 +2573,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .newstyle b,
 .newstyle strong {
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 1.2em;
 }
 .newstyle .ul,
@@ -2532,7 +2589,7 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 0.5em;
 }
 .newstyle th {
-  font-family: "Carmen", Carmen, sans-serif;
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-size: 1.2em;
   border: 0;
   background: transparent;

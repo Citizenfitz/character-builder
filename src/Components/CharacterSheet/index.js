@@ -777,16 +777,14 @@ const CharacterSheet = () => {
   };
 
   return (
-    <div className="char-bldr">
-      <h2 className="char-bldr__h2">
-        QuestRex<span className="ut_tm">®</span> Character Builder
-      </h2>
+    <div className="char-sheet">
+      <h1 className="char-sheet__h2">QuestRex Character Builder</h1>
       <p className="ut-text-explain ut-no-print">
         <b>Instructions:</b> Play around with the form below till you get a
         character you like (it's often easiest to start with a preset). <br />
         Then print the page to paper or a PDFs. Simple! Desktop-only for now.
       </p>
-      <div className="char-bldr__toolbar flex-grid flex-grid--flex-start">
+      <div className="char-sheet__toolbar">
         {/*  ------- TOOLBAR ------ */}
         <div>
           {" "}
@@ -802,9 +800,9 @@ const CharacterSheet = () => {
           <button onClick={rollHP}>Roll Hit Points</button>
         </div>
       </div>
-      <div className="char-bldr__bottom-border ut-no-screen"></div>
-      <div className="flex-grid">
-        <div className="flex-grid__child">
+      <div className="char-sheet__bottom-border ut-no-screen"></div>
+      <div className="char-sheet__grid">
+        <div className="char-sheet__col char-sheet__col--basics">
           {/*  ------- NAMEs ------ */}
           <label>
             <input
@@ -894,14 +892,14 @@ const CharacterSheet = () => {
           </section>
         </div>
 
-        <div className="flex-grid__child">
+        <div className="char-sheet__col char-sheet__col--stats">
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
-          <div className="flex-grid flex-grid--wrap">
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+          <div className="char-sheet__quick-ref">
+            <div className="data-display-box data-display-box--quick-values">
               <div className="data-display-box__text">{character.ac}</div>
               <h2 className="data-display-box__header">AC</h2>
             </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+            <div className="data-display-box data-display-box--quick-values">
               <button
                 className="button button--secondary data-display-box__button"
                 aria-label="Roll Hit Points"
@@ -922,13 +920,13 @@ const CharacterSheet = () => {
               </div>
               <h2 className="data-display-box__header">HP</h2>
             </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values">
+            <div className="data-display-box data-display-box--quick-values">
               <div className="data-display-box__text">
                 {character.movement}'
               </div>
               <h2 className="data-display-box__header">Move</h2>
             </div>
-            <div className="flex-grid__child data-display-box data-display-box--quick-values data-display-box--perception">
+            <div className="data-display-box data-display-box--quick-values data-display-box--perception">
               <div className="data-display-box__text">
                 <span className="label">Roll Mod: </span>
                 {formatNumberModifier(character.attributes.wisdom.mod)}
@@ -1069,7 +1067,7 @@ const CharacterSheet = () => {
           </label>
         </div>
 
-        <div className="flex-grid__child">
+        <div className="char-sheet__col char-sheet__col--details">
           {/*  ------- EXPLAINER BOX ------ */}
           <div className="data-display-box  data-display-box--explanations">
             <div className="data-display-box__text"></div>
@@ -1138,7 +1136,7 @@ const CharacterSheet = () => {
         </div>
       </div>
       {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
-      <section>
+      <section className="char-sheet__section char-sheet__section--talents">
         <LevelsTable
           character={character}
           // talentDisabled={talentDisabled}
@@ -1192,7 +1190,7 @@ const CharacterSheet = () => {
           <span>Auto save</span>
         </label>
       </div>
-      <div className="char-bldr__bottom-border char-bldr__bottom-border--flip ut-no-screen"></div>
+      <div className="char-sheet__bottom-border char-sheet__bottom-border--flip ut-no-screen"></div>
       {/*  ------- MODAL WITH CLASS PICKER ------ */}
       <ReactModal
         isOpen={raceModalOpen}
