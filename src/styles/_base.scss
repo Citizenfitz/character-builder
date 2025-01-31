@@ -1,23 +1,23 @@
 // *********************** BASE ELEMENTS ***********************//
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-}
+// *,
+// *:before,
+// *:after {
+//   box-sizing: border-box;
+// }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-}
+// html,
+// body {
+//   height: 100%;
+//   margin: 0;
+// }
 
-body {
-  padding: 0;
-  margin: 0;
-  font-family: $text-regular;
-  color: $color-text-primary;
-  background: $color-brand-darker;
-}
+// body {
+//   padding: 0;
+//   margin: 0;
+//   font-family: $text-regular;
+//   color: $color-text-primary;
+//   background: $color-brand-darker;
+// }
 
 .root {
   display: grid;
@@ -73,36 +73,46 @@ body {
 }
 
 /***** HEADERS *****/
-h1,
-.h1 {
-  @include header1;
-}
-h2,
-.h2 {
-  @include header2;
-}
-h3,
-.h3 {
-  @include header3;
-}
-h4,
-.h4 {
-  @include header4;
-}
-h5,
-.h5 {
-  @include header5;
-}
-h6,
-.h6 {
-  @include header6;
-}
+// h1,
+// .h1 {
+//   @include header1;
+// }
+// h2,
+// .h2 {
+//   @include header2;
+// }
+// h3,
+// .h3 {
+//   @include header3;
+// }
+// h4,
+// .h4 {
+//   @include header4;
+// }
+// h5,
+// .h5 {
+//   @include header5;
+// }
+// h6,
+// .h6 {
+//   @include header6;
+// }
 
-button,
-input[type="submit"],
-input[type="button"] {
-  cursor: pointer;
-}
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// label {
+//   font-family: $text-header;
+// }
+
+// button,
+// input[type="submit"],
+// input[type="button"] {
+//   cursor: pointer;
+// }
 
 /*******************  LISTS  ****************************/
 dl,

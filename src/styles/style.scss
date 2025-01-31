@@ -1,4 +1,5 @@
 @import "variables-mixins";
+@import "QR-theme";
 @import "base";
 
 @import "forms";
@@ -10,17 +11,17 @@
 @import "alignment";
 @import "aspect";
 
-@import "data-display-box";
+// @import "data-display-box";
 
 @import "component-homepage";
 @import "component-modal";
 @import "component-header";
-@import "component-char-bldr";
+// @import "component-char-bldr";
 @import "component-traits";
 
 @import "character-sheet";
 
-@import "quickRef";
+// @import "quickRef";
 @import "attributes";
 @import "dice-box";
 @import "notes";
@@ -28,5 +29,3 @@
 @import "print";
 
 @import "utilities";
-
-@import "restyle";

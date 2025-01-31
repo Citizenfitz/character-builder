@@ -32,9 +32,6 @@ label {
   display: block;
   margin-bottom: $margins-form-element-bottom;
 }
-.label {
-  @include header3;
-}
 
 /***** INPUTS *****/
 input[type="text"] {

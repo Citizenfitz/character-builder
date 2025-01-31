@@ -779,8 +779,8 @@ const CharacterSheet = () => {
   return (
     <div className="char-sheet">
       <h1 className="char-sheet__h2">QuestRex Character Builder</h1>
-      <p className="ut-text-explain ut-no-print">
-        <b>Instructions:</b> Play around with the form below till you get a
+      <p className="ut-no-print">
+        <b>INSTRUCTIONS:</b> Play around with the form below till you get a
         character you like (it's often easiest to start with a preset). <br />
         Then print the page to paper or a PDFs. Simple! Desktop-only for now.
       </p>
@@ -895,19 +895,12 @@ const CharacterSheet = () => {
         <div className="char-sheet__col char-sheet__col--stats">
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
           <div className="char-sheet__quick-ref">
-            <div className="data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">{character.ac}</div>
-              <h2 className="data-display-box__header">AC</h2>
+            <div className="char-sheet__quick-ref-item">
+              <div className="char-sheet__quick-ref-text">{character.ac}</div>
+              <h2 className="char-sheet__quick-ref-footer">AC</h2>
             </div>
-            <div className="data-display-box data-display-box--quick-values">
-              <button
-                className="button button--secondary data-display-box__button"
-                aria-label="Roll Hit Points"
-                onClick={rollHP}
-              >
-                <span className="fas fa-die"></span>
-              </button>
-              <div className="data-display-box__text">
+            <div className="char-sheet__quick-ref-item">
+              <div className="char-sheet__quick-ref-text">
                 <input
                   className="hp"
                   type="number"
@@ -918,49 +911,50 @@ const CharacterSheet = () => {
                   onChange={manuallyUpdateHP}
                 />
               </div>
-              <h2 className="data-display-box__header">HP</h2>
+              <h2 className="char-sheet__quick-ref-footer">HP</h2>
             </div>
-            <div className="data-display-box data-display-box--quick-values">
-              <div className="data-display-box__text">
+            <div className="char-sheet__quick-ref-item">
+              <div className="char-sheet__quick-ref-text">
                 {character.movement}'
               </div>
-              <h2 className="data-display-box__header">Move</h2>
+              <h2 className="char-sheet__quick-ref-footer">Move</h2>
             </div>
-            <div className="data-display-box data-display-box--quick-values data-display-box--perception">
-              <div className="data-display-box__text">
+            <div className="char-sheet__quick-ref-item">
+              <div className="char-sheet__quick-ref-text">
                 <span className="label">Roll Mod: </span>
                 {formatNumberModifier(character.attributes.wisdom.mod)}
                 <br />
                 <span className="label">Passive:</span> {character.perception}
               </div>
-              <h2 className="data-display-box__header">Perc.</h2>
+              <h2 className="char-sheet__quick-ref-footer">Perc.</h2>
             </div>
           </div>
           {/*  ------- SAVING THROW MODS ------ */}
 
-          <div className="data-display-box data-display-box--save-mods">
-            <div className="data-display-box__text">
-              <ul className="data-display-box__save-mods-list">
-                <li className="data-display-box__save-mods-list-item">
-                  <span className="fas fa-pointer ut-color-royal"></span>+
-                  {levelsData[character.level - 1].saveBonus} to all{" "}
-                  <span className="ut-text-explain"> (for level)</span>
+          <div className="char-sheet__quick-ref-item char-sheet__quick-ref--save-mods">
+            <ul className="char-sheet__quick-ref-save-mods-list">
+              <li className="char-sheet__quick-ref-save-mods-list-item">
+                <span className="fas fa-pointer"></span>+
+                {levelsData[character.level - 1].saveBonus} to all{" "}
+                <span className="ut-text-explain"> (for level)</span>
+              </li>
+              <li className="char-sheet__quick-ref-save-mods-list-item">
+                <div
+                  className={`aspect-icon aspect-icon--${character.aspect}`}
+                ></div>{" "}
+                {character.saveModsClass}
+              </li>
+              {character.saveModsRace.map((note, i) => (
+                <li
+                  className="char-sheet__quick-ref-save-mods-list-item"
+                  key={i}
+                >
+                  <div className="aspect-icon aspect-icon--race"></div>
+                  {note}
                 </li>
-                <li className="data-display-box__save-mods-list-item">
-                  <div
-                    className={`aspect-icon aspect-icon--${character.aspect}`}
-                  ></div>{" "}
-                  {character.saveModsClass}
-                </li>
-                {character.saveModsRace.map((note, i) => (
-                  <li className="data-display-box__save-mods-list-item" key={i}>
-                    <div className="aspect-icon aspect-icon--race"></div>
-                    {note}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <h2 className="data-display-box__header">Saving Throw Mods</h2>
+              ))}
+            </ul>
+            <h2 className="char-sheet__quick-ref-footer">Saving Throw Mods</h2>
           </div>
 
           <br />
@@ -1069,9 +1063,9 @@ const CharacterSheet = () => {
 
         <div className="char-sheet__col char-sheet__col--details">
           {/*  ------- EXPLAINER BOX ------ */}
-          <div className="data-display-box  data-display-box--explanations">
-            <div className="data-display-box__text"></div>
-            <h2 className="data-display-box__header">
+          <div className="char-sheet__quick-ref-item  char-sheet__quick-ref--explain">
+            <div className="char-sheet__quick-ref-text"></div>
+            <h2 className="char-sheet__quick-ref-footer">
               Symbol or Character Sketch
             </h2>
           </div>

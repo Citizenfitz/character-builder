@@ -1,25 +1,36 @@
 .char-sheet {
   // Main container styles
-  max-width: 880px;
-  background: $color-dark-inverted;
+  max-width: var(--container-char-sheet);
+  background: $color-brand-dark;
+  color: $color-text-primary;
   border-radius: 8px;
-  padding: 8px 18px;
+  padding: var(--spacing-md);
   margin: 0 auto;
-  color: $color-text-inverted;
+  label {
+    font-family: var(--font-header);
+    font-size: 1.2em;
+    margin-bottom: var(--spacing-sm);
+  }
   &__toolbar {
-    color: $color-text-primary;
-    background: $color-brand-dark;
-    padding: 1rem;
-    margin-bottom: 1rem;
+    background: #341749;
+    padding: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm-alt);
     border-radius: 8px;
+    border: 1px solid $color-brand-accent;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    .preset-chooser {
+      margin-bottom: 0;
+    }
   }
 
   // Grid layout for the three columns
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-    gap: 1.5rem;
-    margin: 1.5rem 0;
+    gap: var(--spacing-sm-alt);
+    margin: var(--spacing-sm-alt) 0;
   }
 
   // Column containers
@@ -43,12 +54,69 @@
   &__quick-ref {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: var(--spacing-sm-alt);
 
     &-item {
       flex: 1;
-      min-width: calc(50% - 1rem);
+      min-height: 124px;
+      position: relative;
+      border: 1px solid $color-brand-accent;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      // First child container
+      > div:first-child {
+        flex: 1;
+        margin-right: 0;
+      }
+    }
+    &-text {
+      padding: var(--spacing-sm-alt);
+    }
+    &--save-mods {
+      margin: var(--spacing-sm-alt) 0;
+    }
+    &-save-mods-list {
+      padding: var(--spacing-sm-alt);
+      list-style: none;
+      margin: 0;
+      padding-left: calc(var(--spacing-md) + 16px);
+      text-align: left;
+    }
+    &-save-mods-list-item {
+      position: relative;
+      margin-bottom: 0.75em;
+      &:last-child {
+        margin-bottom: 0;
+      }
+      > .aspect-icon {
+        position: absolute;
+        left: -28px;
+        top: -1px;
+      }
+      > .aspect-icon--race {
+        top: -3px;
+      }
+      > .fas {
+        position: absolute;
+        left: -24px;
+        top: -1px;
+      }
+    }
+    &--explain {
+      margin-bottom: var(--spacing-sm-alt);
+      min-height: 284px;
+    }
+
+    &-footer {
+      font-size: 1rem;
+      padding: var(--spacing-xs);
+      background: var(--color-dark-alt);
+      color: var(--color-accent);
+      text-align: center;
+      border-top: 1px solid;
+      text-transform: uppercase;
     }
   }
 
@@ -64,4 +132,81 @@
       page-break-before: always;
     }
   }
+}
+
+//* *************** ATTRIBUTES ***************** */
+.attributes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm);
+
+  // Keep existing nested styles
+  .attrib-input {
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2rem;
+  }
+
+  // Keep Firefox number input styles
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+// Update attrib-group for grid layout
+.attrib-group {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.attrib-val {
+  width: 44px;
+  height: 44px;
+  border: 1px solid $color-gray-3;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $color-input-background;
+}
+
+.attrib-name {
+  padding-left: var(--spacing-sm);
+  font-family: var(--font-header);
+  font-size: 1.75rem;
+  color: var(--color-accent);
+}
+
+.attrib-mod {
+  padding-left: var(--spacing-sm);
+  font-size: 0.875rem;
+  span {
+    border-bottom: 1px solid black;
+  }
+  input {
+    width: 30px;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+}
+
+.attrib-bonus {
+  display: inline-block;
+  width: 16px;
+  overflow: hidden;
+  vertical-align: middle;
 }

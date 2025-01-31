@@ -38,16 +38,6 @@ $path-img: "assets/images/";
 }
 
 @font-face {
-  font-family: "Carmen";
-  src: url($path-font + "Carmen/carmen-regular.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "Carmen Shadow";
-  src: url($path-font + "Carmen/carmen-shadow.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "Edelgotisch";
   src: url($path-font + "Edelgotisch/Edelgotisch.ttf") format("truetype");
 }
@@ -61,8 +51,6 @@ $text-bold: "Cabin Bold", Cabin, sans-serif;
 $text-header: "Edelgotisch", Edelgotisch, sans-serif;
 
 $text-cursive: "Kaushan Script", cursive;
-
-$text-header-2: "Edelgotisch", Edelgotisch, sans-serif;
 
 @mixin font-regular {
   font-family: $text-regular;
@@ -212,7 +200,6 @@ $margins-form-element-bottom: 1rem;
   font-weight: normal;
 }
 @mixin header1 {
-  @include greyhawkfont;
   font-size: 2.5em;
   margin-bottom: 0;
   @include mq-phone {
@@ -220,7 +207,6 @@ $margins-form-element-bottom: 1rem;
   }
 }
 @mixin header2 {
-  @include greyhawkfont;
   font-size: 1rem;
   color: $color-royal;
   margin-bottom: 0;
@@ -231,7 +217,6 @@ $margins-form-element-bottom: 1rem;
 @mixin header3 {
   font-size: 0.875em;
   margin-bottom: 0;
-  font-weight: bold;
 }
 @mixin header4 {
 }

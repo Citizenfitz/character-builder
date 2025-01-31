@@ -24,17 +24,20 @@ const Attributes = (props) => {
   // update attribute from dice roll
   const setAttributeFromRoll = (result) => {
     const newState = { ...attributes };
-    if(result[0].rolls.length === 18 || pendingRoll === 'all') {
-      let counter = 0
-      Object.keys(newState).forEach(attr => {
-        const resultTotal = result[0].rolls[counter].value + result[0].rolls[counter+1].value + result[0].rolls[counter+2].value
+    if (result[0].rolls.length === 18 || pendingRoll === "all") {
+      let counter = 0;
+      Object.keys(newState).forEach((attr) => {
+        const resultTotal =
+          result[0].rolls[counter].value +
+          result[0].rolls[counter + 1].value +
+          result[0].rolls[counter + 2].value;
         newState[attr].roll = resultTotal - newState[attr].bonus;
-        newState[attr].total = resultTotal
+        newState[attr].total = resultTotal;
         newState[attr].mod = calculateBonus(resultTotal);
         counter += 3;
-      })
+      });
     } else {
-      const resultTotal = result[0].value
+      const resultTotal = result[0].value;
       newState[pendingRoll].roll = resultTotal - newState[pendingRoll].bonus;
       newState[pendingRoll].total = resultTotal;
       newState[pendingRoll].mod = calculateBonus(resultTotal);
@@ -42,11 +45,11 @@ const Attributes = (props) => {
     onChange(newState);
   };
 
-  useEffect(()=>{
-    if(onRollResults){
-      setAttributeFromRoll(onRollResults)
+  useEffect(() => {
+    if (onRollResults) {
+      setAttributeFromRoll(onRollResults);
     }
-  },[onRollResults])
+  }, [onRollResults]);
 
   // roll dice on button click
   const rollDice = (e) => {
@@ -55,25 +58,18 @@ const Attributes = (props) => {
     // store which attribute we're rolling for
     setPendingRoll(attr);
     // roll 3d dice
-    onRoll("3d6","attribute")
+    onRoll("3d6", "attribute");
   };
 
   const rollAll = (e) => {
     // store which attribute we're rolling for
-    setPendingRoll('all');
+    setPendingRoll("all");
     // roll 3d dice
-    onRoll("18d6","all-attributes")
-  }
+    onRoll("18d6", "all-attributes");
+  };
 
   return (
     <div className="attributes">
-      <button
-        className="button button--secondary attributes__die-button"
-        aria-label="Roll Attributes Points"
-        onClick={rollAll}
-      >
-        <span className="fas fa-die"></span>
-      </button>
       {Object.entries(attributes).map(([key, values]) => {
         return (
           <div className="attrib-group" key={key}>
@@ -89,15 +85,7 @@ const Attributes = (props) => {
                 onChange={updateAttribute}
               />
             </div>
-            <div className="attrib-name">
-              <button
-                className="button attribute__button"
-                id={`roll-${key}`}
-                onClick={rollDice}
-              >
-                {values.name}
-              </button>
-            </div>
+            <div className="attrib-name">{values.name}</div>
             <div className="attrib-mod">
               Mod:{" "}
               <span>
