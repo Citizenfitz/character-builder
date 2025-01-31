@@ -6,6 +6,12 @@
   border-radius: 8px;
   padding: var(--spacing-md);
   margin: 0 auto;
+
+  .ut-text-explain {
+    color: var(--color-text-muted);
+    font-style: italic;
+  }
+
   label {
     font-family: var(--font-header);
     font-size: 1.2em;
@@ -28,7 +34,7 @@
   // Grid layout for the three columns
   &__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr) minmax(0, 0.95fr);
     gap: var(--spacing-sm-alt);
     margin: var(--spacing-sm-alt) 0;
   }
@@ -122,11 +128,11 @@
 
   // Sections
   &__section {
-    margin-bottom: 2rem;
+    // margin-bottom: 2rem;
 
-    &--talents {
-      margin-top: 3rem;
-    }
+    // &--talents {
+    //   margin-top: 3rem;
+    // }
 
     &--notes {
       page-break-before: always;
@@ -136,10 +142,11 @@
 
 //* *************** ATTRIBUTES ***************** */
 .attributes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: inline-flex;
+  flex-direction: column;
   gap: var(--spacing-sm);
-  padding: var(--spacing-sm);
+  align-self: flex-start;
+  min-width: min-content;
 
   // Keep existing nested styles
   .attrib-input {
@@ -163,12 +170,13 @@
   }
 }
 
-// Update attrib-group for grid layout
+// Update attrib-group for single column layout
 .attrib-group {
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto minmax(60px, auto) auto;
   align-items: center;
-  gap: var(--spacing-sm);
+  gap: 0.5rem;
+  white-space: nowrap;
 }
 
 .attrib-val {
@@ -193,7 +201,7 @@
   padding-left: var(--spacing-sm);
   font-size: 0.875rem;
   span {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid;
   }
   input {
     width: 30px;
@@ -209,4 +217,72 @@
   width: 16px;
   overflow: hidden;
   vertical-align: middle;
+}
+
+//* *************** TABLES  ***************** */
+.talent-table {
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.talent-table__tr {
+  &--zebra-gray {
+    background: #351748;
+  }
+  &--zebra-white {
+    background: transparent;
+  }
+}
+
+.talent-table__td,
+.talent-table__th {
+  padding: var(--spacing-xs);
+  border: none;
+  min-width: 30px;
+  text-align: center;
+  vertical-align: top;
+  border: 1px solid;
+  &:nth-child(1) {
+    font-family: var(--font-header);
+    color: var(--color-accent);
+    font-size: 1rem;
+  }
+}
+
+.talent-table__th {
+  background: var(--color-dark-alt);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-family: var(--font-header);
+  font-size: 1rem;
+}
+
+.talent-table__level--talent {
+  text-align: left;
+}
+
+.list-columns {
+  @include list-columns();
+}
+
+.talent-table__level {
+  width: 100%;
+  .talentAssigned {
+    display: inline-block;
+    margin-bottom: 0.25rem;
+  }
+}
+
+// this sets up the styles that grey out levels the character hasn't reached yet.
+@for $i from 1 through 13 {
+  .talent-table__level--#{$i} {
+    @for $i2 from $i through 13 {
+      .talent-table__level--lvl#{$i2 + 1} {
+        td {
+          opacity: 0.5;
+          border-color: #dcdcdc;
+        }
+      }
+    }
+  }
 }

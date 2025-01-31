@@ -944,6 +944,7 @@ const CharacterSheet = () => {
                 ></div>{" "}
                 {character.saveModsClass}
               </li>
+              {/* Remove the race saving throw mods for now 
               {character.saveModsRace.map((note, i) => (
                 <li
                   className="char-sheet__quick-ref-save-mods-list-item"
@@ -953,11 +954,11 @@ const CharacterSheet = () => {
                   {note}
                 </li>
               ))}
+                 */}
             </ul>
             <h2 className="char-sheet__quick-ref-footer">Saving Throw Mods</h2>
           </div>
 
-          <br />
           <div className="flex-grid  flex-grid--flex-start">
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- ARMOR ------ */}

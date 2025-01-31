@@ -60,7 +60,7 @@
 
   /* Layout */
   --container-max: 1200px;
-  --container-char-sheet: 960px;
+  --container-char-sheet: 880px;
   --container-blog: 800px;
   --sidebar-width: 300px;
 
@@ -1609,4 +1609,17 @@ button[type="submit"]:hover {
 
 .typography-test {
   display: none !important;
+}
+
+//  ------- PRINT VS SCREEN --------
+@media print {
+  .ut-no-print {
+    display: none !important;
+  }
+}
+
+@media screen {
+  .ut-no-screen {
+    display: none !important;
+  }
 }

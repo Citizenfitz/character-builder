@@ -1,73 +1,73 @@
-.data-display-box {
-  position: relative;
-  border: 1px solid;
-  text-align: center;
-  margin-bottom: $margins-form-element-bottom;
+// .data-display-box {
+//   position: relative;
+//   border: 1px solid;
+//   text-align: center;
+//   margin-bottom: $margins-form-element-bottom;
 
-  &__text {
-    padding: 1rem 1rem 1.5rem 1rem;
-  }
-  &__header {
-    position: absolute;
-    bottom: 0;
-    padding: 0.5rem;
-    background: $color-brand-accent;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    border-top: 1px solid;
-  }
-  &--save-mods {
-    margin-bottom: 0;
-    min-height: 66px;
-    height: auto;
-    text-align: left;
-    padding-bottom: 1rem;
-  }
-  &__save-mods-list {
-    list-style: none;
-    margin: 0;
-    padding-left: 26px;
-  }
-  &__save-mods-list-item {
-    position: relative;
-    margin-bottom: 0.75em;
-    &:last-child {
-      margin-bottom: 0;
-    }
-    > .aspect-icon {
-      position: absolute;
-      left: -28px;
-      top: -1px;
-    }
-    > .aspect-icon--race {
-      top: -3px;
-    }
-    > .fas {
-      position: absolute;
-      left: -24px;
-      top: -1px;
-    }
-  }
-  &--explanations {
-    margin-bottom: $margins-form-element-bottom * 2;
-    height: 234px;
-    width: 100%;
-  }
-  &--quick-values {
-    height: 68px;
-  }
-  &--perception {
-    .data-display-box__text {
-      padding: 0.25rem;
-    }
-  }
-  &--quick-values.flex-grid__child {
-    width: calc(50% - 1rem);
-  }
-  &__button {
-    position: absolute;
-    right: 6px;
-    top: 6px;
-  }
-}
+//   &__text {
+//     padding: 1rem 1rem 1.5rem 1rem;
+//   }
+//   &__header {
+//     position: absolute;
+//     bottom: 0;
+//     padding: 0.5rem;
+//     background: $color-brand-accent;
+//     left: 0;
+//     width: 100%;
+//     text-align: center;
+//     border-top: 1px solid;
+//   }
+//   &--save-mods {
+//     margin-bottom: 0;
+//     min-height: 66px;
+//     height: auto;
+//     text-align: left;
+//     padding-bottom: 1rem;
+//   }
+//   &__save-mods-list {
+//     list-style: none;
+//     margin: 0;
+//     padding-left: 26px;
+//   }
+//   &__save-mods-list-item {
+//     position: relative;
+//     margin-bottom: 0.75em;
+//     &:last-child {
+//       margin-bottom: 0;
+//     }
+//     > .aspect-icon {
+//       position: absolute;
+//       left: -28px;
+//       top: -1px;
+//     }
+//     > .aspect-icon--race {
+//       top: -3px;
+//     }
+//     > .fas {
+//       position: absolute;
+//       left: -24px;
+//       top: -1px;
+//     }
+//   }
+//   &--explanations {
+//     margin-bottom: $margins-form-element-bottom * 2;
+//     height: 234px;
+//     width: 100%;
+//   }
+//   &--quick-values {
+//     height: 68px;
+//   }
+//   &--perception {
+//     .data-display-box__text {
+//       padding: 0.25rem;
+//     }
+//   }
+//   &--quick-values.flex-grid__child {
+//     width: calc(50% - 1rem);
+//   }
+//   &__button {
+//     position: absolute;
+//     right: 6px;
+//     top: 6px;
+//   }
+// }
