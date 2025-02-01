@@ -778,7 +778,7 @@ const CharacterSheet = () => {
 
   return (
     <div className="char-sheet">
-      <h1 className="char-sheet__h2">QuestRex Character Builder</h1>
+      <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
       <p className="ut-no-print">
         <b>INSTRUCTIONS:</b> Play around with the form below till you get a
         character you like (it's often easiest to start with a preset). <br />
@@ -896,7 +896,9 @@ const CharacterSheet = () => {
           {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
           <div className="char-sheet__quick-ref">
             <div className="char-sheet__quick-ref-item">
-              <div className="char-sheet__quick-ref-text">{character.ac}</div>
+              <div className="char-sheet__quick-ref-text">
+                <b>{character.ac}</b>
+              </div>
               <h2 className="char-sheet__quick-ref-footer">AC</h2>
             </div>
             <div className="char-sheet__quick-ref-item">
@@ -915,16 +917,17 @@ const CharacterSheet = () => {
             </div>
             <div className="char-sheet__quick-ref-item">
               <div className="char-sheet__quick-ref-text">
-                {character.movement}'
+                <b>{character.movement}'</b>
               </div>
               <h2 className="char-sheet__quick-ref-footer">Move</h2>
             </div>
             <div className="char-sheet__quick-ref-item">
               <div className="char-sheet__quick-ref-text">
                 <span className="label">Roll Mod: </span>
-                {formatNumberModifier(character.attributes.wisdom.mod)}
+                <b>{formatNumberModifier(character.attributes.wisdom.mod)}</b>
                 <br />
-                <span className="label">Passive:</span> {character.perception}
+                <span className="label">Passive:</span>{" "}
+                <b>{character.perception}</b>
               </div>
               <h2 className="char-sheet__quick-ref-footer">Perc.</h2>
             </div>
@@ -1139,7 +1142,7 @@ const CharacterSheet = () => {
         />
       </section>
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
-      <section className="section--notes">
+      <section className="char-sheet__section char-sheet__section--notes">
         <h2>Special Abilites &amp; Notes</h2>
         <Notes
           notes={notes}

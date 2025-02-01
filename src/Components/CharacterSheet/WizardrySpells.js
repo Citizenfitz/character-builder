@@ -165,8 +165,8 @@ export default function WizardrySpells(props) {
   };
 
   return (
-    <div>
-      <h2 className="ut-margin-bottom-half-rem">
+    <section className="char-sheet__section char-sheet__section--spells">
+      <h2 className="char-sheet__h2">
         Wizardry Spells
         <span className="ut-text-explain ut-margin-left-half-em">
           - At {formatNumberSuffix(wizLevel)} level
@@ -262,7 +262,7 @@ export default function WizardrySpells(props) {
             Select a Wizardry School before choosing spells
           </div>
         )}
-        <table className="table spells__table spells--table-wizardry">
+        <table className="talent-table spells__table spells--table-wizardry">
           <thead>
             <tr>
               <th style={{ minWidth: "58px" }}>Level</th>
@@ -385,6 +385,6 @@ export default function WizardrySpells(props) {
           </table>
         </div>
       </Modal>
-    </div>
+    </section>
   );
 }
