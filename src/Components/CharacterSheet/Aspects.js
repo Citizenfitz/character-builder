@@ -48,7 +48,7 @@ const Aspects = (props) => {
         <div className="modal__header">
           <h2 className="modal__h2">Choose a Class</h2>
           <button
-            className="button modal__header-button"
+            className="char-sheet__button modal__header-button"
             onClick={toggleAspectModal}
             aria-label="Close modal"
           >
@@ -125,7 +125,7 @@ const Aspects = (props) => {
         </div>
         <div className="modal__footer">
           <button
-            className="button button--primary button--large"
+            className="char-sheet__button char-sheet__button--large"
             onClick={toggleAspectModal}
           >
             close

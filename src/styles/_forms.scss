@@ -48,8 +48,8 @@ select {
 }
 
 // ***** Buttons *****/
-button,
-.button {
+buttonx,
+.buttonx {
   @include input-basics;
   &--primary {
     background-color: $color-royal;

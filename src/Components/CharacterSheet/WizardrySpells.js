@@ -110,10 +110,10 @@ export default function WizardrySpells(props) {
   const renderEmptyRow = (i, j) => {
     return (
       <tr key={j}>
-        <td className="spell-table__cell spell-table__cell--level">
+        <td className="char-sheet__table__cell char-sheet__table__cell--level">
           {formatNumberSuffix(i + 1)}
         </td>
-        <td className="spell-table__cell spell-table__cell--name">
+        <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
           {/* sets state for which spell slot is to be changed then opens modal */}
           <button
             onClick={() => selectSpell(i, j)}
@@ -122,13 +122,13 @@ export default function WizardrySpells(props) {
             <i className="fas fa-bolt"></i> Choose Spell
           </button>
         </td>
-        <td className="spell-table__cell"></td>
-        <td className="spell-table__cell"></td>
-        <td className="spell-table__cell"></td>
-        <td className="spell-table__cell"></td>
-        <td className="spell-table__cell"></td>
-        <td className="spell-table__cell"></td>
-        <td className="spell-table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
+        <td className="char-sheet__table__cell"></td>
       </tr>
     );
   };
@@ -136,22 +136,26 @@ export default function WizardrySpells(props) {
   const renderSpellRow = (i, j) => {
     return (
       <tr key={j}>
-        <td className="spell-table__cell spell-table__cell--level">
+        <td className="char-sheet__table__cell char-sheet__table__cell--level">
           {formatNumberSuffix(i + 1)}
         </td>
-        <td
-          className="ut-clickable spell-table__cell spell-table__cell--name"
-          onClick={() => selectSpell(i, j)}
-        >
-          {spellList[i][j].name}
+        <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
+          <button
+            onClick={() => selectSpell(i, j)}
+            className="char-sheet__button char-sheet__button--spell"
+          >
+            {spellList[i][j].name}
+          </button>
         </td>
-        <td className="spell-table__cell">{spellList[i][j].cast}</td>
-        <td className="spell-table__cell">{spellList[i][j].duration}</td>
-        <td className="spell-table__cell">{spellList[i][j].range}</td>
-        <td className="spell-table__cell">{spellList[i][j].target}</td>
-        <td className="spell-table__cell">{spellList[i][j].components}</td>
-        <td className="spell-table__cell">{spellList[i][j].save}</td>
-        <td className="spell-table__cell">
+        <td className="char-sheet__table__cell">{spellList[i][j].cast}</td>
+        <td className="char-sheet__table__cell">{spellList[i][j].duration}</td>
+        <td className="char-sheet__table__cell">{spellList[i][j].range}</td>
+        <td className="char-sheet__table__cell">{spellList[i][j].target}</td>
+        <td className="char-sheet__table__cell">
+          {spellList[i][j].components}
+        </td>
+        <td className="char-sheet__table__cell">{spellList[i][j].save}</td>
+        <td className="char-sheet__table__cell">
           {spellList[i][j].school.map((color) => (
             <div key={color} className={`icon-school icon-school--${color}`}>
               <span className="ut-only-sr">{color} school of magic</span>
@@ -172,7 +176,7 @@ export default function WizardrySpells(props) {
 
   return (
     <section className="char-sheet__section char-sheet__section--spells">
-      <h2 className="char-sheet__h2">
+      {/*<h2 className="char-sheet__h2">
         Wizardry Spells
         <span className="ut-text-explain ut-margin-left-half-em">
           - At {formatNumberSuffix(wizLevel)} level
@@ -180,7 +184,7 @@ export default function WizardrySpells(props) {
             <span> plus one extra 1st level spell for 13+ INT</span>
           )}
         </span>
-      </h2>
+      </h2>*/}
       {/* If they don't have Wizardry three or its above level,  allow them to pick character wiz1 school */}
       {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
         <label className="ut-display-inine-block ut-margin-right-2em">
@@ -264,38 +268,47 @@ export default function WizardrySpells(props) {
       <div className="ut-position-relative">
         {/* show this if they need to choose at least one wizardry school */}
         {wizardryNeedsToChooseSchool && (
-          <div className="spell-table__cta">
+          <div className="char-sheet__table__cta">
             Select a Wizardry School before choosing spells
           </div>
         )}
-        <table className="spell-table">
+        <table className="char-sheet__table">
+          <caption className="char-sheet__table__caption char-sheet__table__caption--wizardry">
+            Wizardry Spells
+            <span className="ut-text-explain ut-margin-left-half-em">
+              - At {formatNumberSuffix(wizLevel)} level
+              {intStat > 12 && (
+                <span> plus one extra 1st level spell for 13+ INT</span>
+              )}
+            </span>
+          </caption>
           <thead>
             <tr>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Level
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Name
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Cast
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Duration
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Range
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Target
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Components
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 Save
               </th>
-              <th className="spell-table__header spell-table__header--wizardry">
+              <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                 School
               </th>
             </tr>
@@ -351,34 +364,34 @@ export default function WizardrySpells(props) {
               {showAll ? "Show Available Spells" : "Show All Spells"}
             </button>
           )}
-          <table className="spell__table spell--table-wizardry">
+          <table className="char-sheet__table">
             <thead>
               <tr>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Level
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Name
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Cast
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Duration
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Range
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Target
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Components
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   Save
                 </th>
-                <th className="spell-table__header spell-table__header--wizardry">
+                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
                   School
                 </th>
               </tr>
@@ -395,36 +408,42 @@ export default function WizardrySpells(props) {
                     return (
                       <tr
                         key={i}
-                        className={`spell-table__row ${
-                          !hasSchool ? "spell-table__row--unavailable" : ""
+                        className={`char-sheet__table__row ${
+                          !hasSchool
+                            ? "char-sheet__table__row--unavailable"
+                            : ""
                         }`}
-                        onClick={() => handleAssignSpell(spellName)}
                       >
-                        <td className="spell-table__cell spell-table__cell--level">
+                        <td className="char-sheet__table__cell char-sheet__table__cell--level">
                           {spellLevel}
                         </td>
-                        <td className="spell-table__cell spell-table__cell--name">
-                          {spellName}
+                        <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
+                          <button
+                            className="showAll char-sheet__button"
+                            onClick={() => handleAssignSpell(spellName)}
+                          >
+                            {spellName}
+                          </button>
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].cast}
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].duration}
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].range}
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].target}
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].components}
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].save}
                         </td>
-                        <td className="spell-table__cell">
+                        <td className="char-sheet__table__cell">
                           {spellData[spellName].school.map((color) => (
                             <div
                               key={color}

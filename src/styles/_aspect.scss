@@ -16,6 +16,7 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+
   // border: 1px solid;
   border-radius: $border-radius-standard;
   //background: $color-input-background;
@@ -47,7 +48,7 @@ input[type="radio"] + label.aspect-radio-label {
   border: 2px solid;
   filter: grayscale(1);
   opacity: 0.5;
-  background-color: transparent;
+  background-color: var(--color-dark-inverted);
   position: relative;
   display: flex;
   flex-direction: column;

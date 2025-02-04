@@ -36,7 +36,6 @@
     line-height: 40px;
     color: var(--color-dark);
     text-transform: uppercase;
-    // letter-spacing: 2px;
   }
   &__header-button {
     height: 40px;
@@ -47,11 +46,11 @@
     position: absolute;
     right: 0;
     top: 0;
+    border: none;
   }
 
   &__body {
     padding: var(--spacing-md);
-    // line-height: 1.25em;
     overflow-y: auto;
     max-height: calc(100vh - 120px);
   }
