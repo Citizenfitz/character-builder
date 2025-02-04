@@ -18,7 +18,7 @@
     font-size: 3rem;
   }
   &__h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   label {
@@ -26,6 +26,25 @@
     font-size: 1.2em;
     margin-bottom: var(--spacing-sm);
   }
+  &__button {
+    background: radial-gradient(
+      circle at center,
+      #f4cd5c 0%,
+      var(--color-cta) 100%
+    );
+    color: var(--color-text-cta);
+    border-radius: 4px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: 700;
+
+    .fas {
+      margin-right: 0.125rem;
+    }
+  }
+
   &__toolbar {
     background: #341749;
     padding: var(--spacing-sm);
@@ -293,7 +312,7 @@
 
 /// Spell tables
 
-.spells {
+.spells-old {
   &__cta {
     position: absolute;
     top: 0;
@@ -454,5 +473,79 @@
   .validation--error {
     margin: 0;
     color: $color-knave;
+  }
+}
+
+// Spell Tables
+.spell-table {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+  tr:nth-child(even) {
+    background: var(--color-dark-alt);
+  }
+
+  &__header {
+    background: var(--color-dark-alt);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-family: var(--font-header);
+    padding: var(--spacing-xs);
+    border: 1px solid;
+    text-align: center;
+
+    &--wizardry {
+      background-color: var(--color-wizard);
+      color: var(--color-text-inverted);
+    }
+
+    &--thaumaturgy {
+      background-color: var(--color-priest);
+      color: var(--color-text);
+    }
+  }
+
+  &__cell {
+    padding: var(--spacing-xs);
+    border: none;
+    min-width: 30px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid;
+    &--name {
+      text-align: left;
+    }
+    &--level {
+      font-family: var(--font-header);
+      color: var(--color-accent);
+      font-size: 1rem;
+    }
+  }
+
+  &__row {
+    &--zebra {
+      background: var(--color-zebra);
+    }
+
+    &--unavailable {
+      opacity: 0.6;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  &__cta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: var(--spacing-md);
   }
 }

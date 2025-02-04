@@ -52,40 +52,46 @@ export default function ThaumaturgySpells(props) {
 
   const renderEmptyRow = (i, j) => {
     return (
-      <tr key={j}>
-        <td>{i + 1}</td>
-        <td>
-          <button onClick={() => selectSpell(i, j)} className="button">
-            Choose Spell
+      <tr key={j} className="spell-table__row">
+        <td className="spell-table__cell spell-table__cell--level">
+          {formatNumberSuffix(i + 1)}
+        </td>
+        <td className="spell-table__cell spell-table__cell--name">
+          <button
+            onClick={() => selectSpell(i, j)}
+            className="char-sheet__button button"
+          >
+            <i className="fas fa-bolt"></i> Choose Spell
           </button>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
       </tr>
     );
   };
 
   const renderSpellRow = (i, j) => {
     return (
-      <tr key={j}>
-        <td>{i + 1}</td>
-        <td className="ut-clickable" onClick={() => selectSpell(i, j)}>
+      <tr key={j} className="spell-table__row">
+        <td className="spell-table__cell spell-table__cell--level">
+          {formatNumberSuffix(i + 1)}
+        </td>
+        <td
+          className="spell-table__cell spell-table__cell--name ut-clickable"
+          onClick={() => selectSpell(i, j)}
+        >
           {spellList[i][j].name}
         </td>
-        <td>{spellList[i][j].cast}</td>
-        <td>{spellList[i][j].duration}</td>
-        <td>{spellList[i][j].range}</td>
-        <td>{spellList[i][j].target}</td>
-        <td>{spellList[i][j].components}</td>
-        <td>{spellList[i][j].save}</td>
-        <td>
-          <input type="checkbox" id={`${i}_${j}`} defaultChecked />
-        </td>
+        <td className="spell-table__cell">{spellList[i][j].cast}</td>
+        <td className="spell-table__cell">{spellList[i][j].duration}</td>
+        <td className="spell-table__cell">{spellList[i][j].range}</td>
+        <td className="spell-table__cell">{spellList[i][j].target}</td>
+        <td className="spell-table__cell">{spellList[i][j].components}</td>
+        <td className="spell-table__cell">{spellList[i][j].save}</td>
       </tr>
     );
   };
@@ -99,8 +105,8 @@ export default function ThaumaturgySpells(props) {
   };
 
   return (
-    <div>
-      <h2>
+    <section className="char-sheet__section char-sheet__section--spells">
+      <h2 className="char-sheet__h2">
         Thaumaturgy Spells
         <span className="ut-text-explain ut-margin-left-half-em">
           - At {formatNumberSuffix(level)} level
@@ -109,19 +115,34 @@ export default function ThaumaturgySpells(props) {
           )}
         </span>
       </h2>
-      <table className="table spells__table spells--table-thaumaturgy">
+      <table className="spell-table">
         <thead>
           <tr>
-            <th style={{ minWidth: "58px" }}>Level</th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Level
+            </th>
             {/* <th>School</th> */}
-            <th>Name</th>
-            <th>Cast</th>
-            <th>Duration</th>
-            <th>Range</th>
-            <th>Target</th>
-            <th>Components</th>
-            <th>Save</th>
-            <th>Available</th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Name
+            </th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Cast
+            </th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Duration
+            </th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Range
+            </th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Target
+            </th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Components
+            </th>
+            <th className="spell-table__header spell-table__header--thaumaturgy">
+              Save
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -158,7 +179,7 @@ export default function ThaumaturgySpells(props) {
         <header className="modal__header">
           <h2 className="modal__h2">Choose Your Spell</h2>
           <button
-            className="button modal__header-button"
+            className="char-sheet__button modal__header-button"
             aria-label="Close modal"
             onClick={closeModal}
           >
@@ -204,6 +225,6 @@ export default function ThaumaturgySpells(props) {
           </table>
         </div>
       </Modal>
-    </div>
+    </section>
   );
 }

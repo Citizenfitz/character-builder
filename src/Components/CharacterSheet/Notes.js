@@ -56,11 +56,8 @@ const Notes = (props) => {
 
       {/*  ------- User nates -------- */}
       <div className="ut-margin-bottom-half-em">
-        <button
-          className="button button--secondary"
-          onClick={toggleNotesModalOpen}
-        >
-          + Add Note
+        <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
+          <i className="fas fa-plus"></i> Add Note
         </button>
       </div>
       <ul className="notes__list">

@@ -794,10 +794,14 @@ const CharacterSheet = () => {
           />{" "}
         </div>
         <div>
-          <button onClick={rollAttribDice}>Roll Attributes</button>
+          <button className="char-sheet__button" onClick={rollAttribDice}>
+            <i className="fas fa-dice"></i> Roll Attributes
+          </button>
         </div>
         <div>
-          <button onClick={rollHP}>Roll Hit Points</button>
+          <button className="char-sheet__button" onClick={rollHP}>
+            <i className="fas fa-dice"></i> Roll Hit Points
+          </button>
         </div>
       </div>
       <div className="char-sheet__bottom-border ut-no-screen"></div>

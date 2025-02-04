@@ -110,21 +110,25 @@ export default function WizardrySpells(props) {
   const renderEmptyRow = (i, j) => {
     return (
       <tr key={j}>
-        <td>{i + 1}</td>
-        <td>
+        <td className="spell-table__cell spell-table__cell--level">
+          {formatNumberSuffix(i + 1)}
+        </td>
+        <td className="spell-table__cell spell-table__cell--name">
           {/* sets state for which spell slot is to be changed then opens modal */}
-          <button onClick={() => selectSpell(i, j)} className="button ">
-            Choose Spell
+          <button
+            onClick={() => selectSpell(i, j)}
+            className="button char-sheet__button"
+          >
+            <i className="fas fa-bolt"></i> Choose Spell
           </button>
         </td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
+        <td className="spell-table__cell"></td>
       </tr>
     );
   };
@@ -132,25 +136,27 @@ export default function WizardrySpells(props) {
   const renderSpellRow = (i, j) => {
     return (
       <tr key={j}>
-        <td>{i + 1}</td>
-        <td className="ut-clickable" onClick={() => selectSpell(i, j)}>
+        <td className="spell-table__cell spell-table__cell--level">
+          {formatNumberSuffix(i + 1)}
+        </td>
+        <td
+          className="ut-clickable spell-table__cell spell-table__cell--name"
+          onClick={() => selectSpell(i, j)}
+        >
           {spellList[i][j].name}
         </td>
-        <td>{spellList[i][j].cast}</td>
-        <td>{spellList[i][j].duration}</td>
-        <td>{spellList[i][j].range}</td>
-        <td>{spellList[i][j].target}</td>
-        <td>{spellList[i][j].components}</td>
-        <td>{spellList[i][j].save}</td>
-        <td>
+        <td className="spell-table__cell">{spellList[i][j].cast}</td>
+        <td className="spell-table__cell">{spellList[i][j].duration}</td>
+        <td className="spell-table__cell">{spellList[i][j].range}</td>
+        <td className="spell-table__cell">{spellList[i][j].target}</td>
+        <td className="spell-table__cell">{spellList[i][j].components}</td>
+        <td className="spell-table__cell">{spellList[i][j].save}</td>
+        <td className="spell-table__cell">
           {spellList[i][j].school.map((color) => (
             <div key={color} className={`icon-school icon-school--${color}`}>
               <span className="ut-only-sr">{color} school of magic</span>
             </div>
           ))}
-        </td>
-        <td>
-          <input type="checkbox" id={`${i}_${j}`} defaultChecked />
         </td>
       </tr>
     );
@@ -258,23 +264,40 @@ export default function WizardrySpells(props) {
       <div className="ut-position-relative">
         {/* show this if they need to choose at least one wizardry school */}
         {wizardryNeedsToChooseSchool && (
-          <div id="cta-schools" className="spells__cta">
+          <div className="spell-table__cta">
             Select a Wizardry School before choosing spells
           </div>
         )}
-        <table className="talent-table spells__table spells--table-wizardry">
+        <table className="spell-table">
           <thead>
             <tr>
-              <th style={{ minWidth: "58px" }}>Level</th>
-              <th>Name</th>
-              <th>Cast</th>
-              <th>Duration</th>
-              <th>Range</th>
-              <th>Target</th>
-              <th>Components</th>
-              <th>Save</th>
-              <th>School</th>
-              <th>Available</th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Level
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Name
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Cast
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Duration
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Range
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Target
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Components
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                Save
+              </th>
+              <th className="spell-table__header spell-table__header--wizardry">
+                School
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -311,7 +334,7 @@ export default function WizardrySpells(props) {
         <header className="modal__header">
           <h2 className="modal__h2">Choose Your Spell</h2>
           <button
-            className="button modal__header-button"
+            className="button modal__header-button "
             aria-label="Close modal"
             onClick={closeModal}
           >
@@ -321,7 +344,10 @@ export default function WizardrySpells(props) {
         <div className="modal__body">
           {/*  If they have Wiz 3 don't show toggle all button */}
           {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
-            <button className="showAll" onClick={toggleShowAll}>
+            <button
+              className="showAll char-sheet__button"
+              onClick={toggleShowAll}
+            >
               {showAll ? "Show Available Spells" : "Show All Spells"}
             </button>
           )}
@@ -351,13 +377,15 @@ export default function WizardrySpells(props) {
                     return (
                       <tr
                         key={i}
-                        className={`ut-clickable ${
-                          hasSchool ? "available" : "unavailable"
+                        className={`spell-table__row ${
+                          !hasSchool ? "spell-table__row--unavailable" : ""
                         }`}
                         onClick={() => handleAssignSpell(spellName)}
                       >
-                        <td>{spellLevel}</td>
-                        <td>{spellName}</td>
+                        <td className="spell-table__cell">{spellLevel}</td>
+                        <td className="spell-table__cell spell-table__cell--name">
+                          {spellName}
+                        </td>
                         <td>{spellData[spellName].cast}</td>
                         <td>{spellData[spellName].duration}</td>
                         <td>{spellData[spellName].range}</td>
