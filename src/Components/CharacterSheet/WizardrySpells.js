@@ -334,7 +334,7 @@ export default function WizardrySpells(props) {
         <header className="modal__header">
           <h2 className="modal__h2">Choose Your Spell</h2>
           <button
-            className="button modal__header-button "
+            className="modal__header-button char-sheet__button"
             aria-label="Close modal"
             onClick={closeModal}
           >
@@ -351,18 +351,36 @@ export default function WizardrySpells(props) {
               {showAll ? "Show Available Spells" : "Show All Spells"}
             </button>
           )}
-          <table className="table spells__table spells--table-wizardry">
+          <table className="spell__table spell--table-wizardry">
             <thead>
               <tr>
-                <th>Level</th>
-                <th style={{ minWidth: "58px" }}>Name</th>
-                <th>Cast</th>
-                <th>Duration</th>
-                <th>Range</th>
-                <th>Target</th>
-                <th>Components</th>
-                <th>Save</th>
-                <th>School</th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Level
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Name
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Cast
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Duration
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Range
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Target
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Components
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  Save
+                </th>
+                <th className="spell-table__header spell-table__header--wizardry">
+                  School
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -382,17 +400,31 @@ export default function WizardrySpells(props) {
                         }`}
                         onClick={() => handleAssignSpell(spellName)}
                       >
-                        <td className="spell-table__cell">{spellLevel}</td>
+                        <td className="spell-table__cell spell-table__cell--level">
+                          {spellLevel}
+                        </td>
                         <td className="spell-table__cell spell-table__cell--name">
                           {spellName}
                         </td>
-                        <td>{spellData[spellName].cast}</td>
-                        <td>{spellData[spellName].duration}</td>
-                        <td>{spellData[spellName].range}</td>
-                        <td>{spellData[spellName].target}</td>
-                        <td>{spellData[spellName].components}</td>
-                        <td>{spellData[spellName].save}</td>
-                        <td>
+                        <td className="spell-table__cell">
+                          {spellData[spellName].cast}
+                        </td>
+                        <td className="spell-table__cell">
+                          {spellData[spellName].duration}
+                        </td>
+                        <td className="spell-table__cell">
+                          {spellData[spellName].range}
+                        </td>
+                        <td className="spell-table__cell">
+                          {spellData[spellName].target}
+                        </td>
+                        <td className="spell-table__cell">
+                          {spellData[spellName].components}
+                        </td>
+                        <td className="spell-table__cell">
+                          {spellData[spellName].save}
+                        </td>
+                        <td className="spell-table__cell">
                           {spellData[spellName].school.map((color) => (
                             <div
                               key={color}

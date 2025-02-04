@@ -42,6 +42,7 @@
 
     .fas {
       margin-right: 0.125rem;
+      font-size: 0.875rem;
     }
   }
 
@@ -310,9 +311,74 @@
   }
 }
 
-/// Spell tables
+// Spell Tables
+.spell-table {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+  border-collapse: collapse;
+  tr:nth-child(even) {
+    background: var(--color-dark-alt);
+  }
 
-.spells-old {
+  &__row--unavailable {
+    td {
+      opacity: 0.5;
+      border-color: rgba(247, 235, 199, 0.5);
+    }
+  }
+
+  &__header {
+    background: var(--color-dark-alt);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-family: var(--font-header);
+    padding: var(--spacing-xs);
+    border: 1px solid;
+    text-align: center;
+
+    &--wizardry {
+      background-color: var(--color-wizard);
+      color: var(--color-text-inverted);
+    }
+
+    &--thaumaturgy {
+      background-color: var(--color-priest);
+      color: var(--color-text);
+    }
+  }
+
+  &__cell {
+    padding: var(--spacing-xs);
+    border: none;
+    min-width: 30px;
+    text-align: center;
+    vertical-align: top;
+    border: 1px solid;
+    &--name {
+      text-align: left;
+    }
+    &--level {
+      font-family: var(--font-header);
+      color: var(--color-accent);
+      font-size: 1rem;
+    }
+  }
+
+  &__row {
+    &--zebra {
+      background: var(--color-zebra);
+    }
+
+    &--unavailable {
+      opacity: 0.6;
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
   &__cta {
     position: absolute;
     top: 0;
@@ -320,50 +386,10 @@
     bottom: 0;
     left: 0;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    background-color: $color-overlay-light;
-    padding-top: 1em;
-    > .button {
-      box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    }
-  }
-  &__table {
-    width: 100%;
-    tr:nth-child(even) {
-      background-color: $color-gray-5;
-    }
-    th {
-      border-color: $color-black;
-    }
-    th,
-    td {
-      padding: 5px;
-      text-align: center;
-    }
-    td:nth-child(2) {
-      text-align: left;
-    }
-  }
-  &--table-wizardry {
-    th {
-      background-color: $color-wizard;
-      color: $color-white;
-      border-color: $color-black;
-    }
-  }
-  &--table-thaumaturgy {
-    th {
-      background-color: $color-priest;
-      color: $color-white;
-      border-color: $color-black;
-    }
-  }
-  &__known-schools {
-    display: inline-block;
-    position: relative;
-    margin-left: 10px;
-    top: 2px;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: var(--spacing-md);
   }
 }
 
@@ -376,13 +402,6 @@
     display: flex;
     justify-content: center;
   }
-  td {
-    text-align: center;
-  }
-  .active,
-  .active th {
-    background-color: lighten($color-wizard, 30%);
-  }
 }
 
 #modal--thaumaturgySpells {
@@ -394,16 +413,6 @@
 
   .showAll {
     margin-bottom: 10px;
-  }
-  .unavailable {
-    background-color: $color-gray-4;
-    color: rgba($color-gray-1, 0.8);
-    cursor: not-allowed;
-    pointer-events: none;
-    &:hover,
-    &:active {
-      background-color: $color-gray-4;
-    }
   }
 }
 
@@ -473,79 +482,5 @@
   .validation--error {
     margin: 0;
     color: $color-knave;
-  }
-}
-
-// Spell Tables
-.spell-table {
-  margin-top: var(--spacing-xs);
-  margin-bottom: var(--spacing-sm-alt);
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  width: 100%;
-  tr:nth-child(even) {
-    background: var(--color-dark-alt);
-  }
-
-  &__header {
-    background: var(--color-dark-alt);
-    color: var(--color-accent);
-    text-transform: uppercase;
-    font-family: var(--font-header);
-    padding: var(--spacing-xs);
-    border: 1px solid;
-    text-align: center;
-
-    &--wizardry {
-      background-color: var(--color-wizard);
-      color: var(--color-text-inverted);
-    }
-
-    &--thaumaturgy {
-      background-color: var(--color-priest);
-      color: var(--color-text);
-    }
-  }
-
-  &__cell {
-    padding: var(--spacing-xs);
-    border: none;
-    min-width: 30px;
-    text-align: center;
-    vertical-align: top;
-    border: 1px solid;
-    &--name {
-      text-align: left;
-    }
-    &--level {
-      font-family: var(--font-header);
-      color: var(--color-accent);
-      font-size: 1rem;
-    }
-  }
-
-  &__row {
-    &--zebra {
-      background: var(--color-zebra);
-    }
-
-    &--unavailable {
-      opacity: 0.6;
-      pointer-events: none;
-      cursor: not-allowed;
-    }
-  }
-
-  &__cta {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: var(--spacing-md);
   }
 }

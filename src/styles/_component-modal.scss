@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $color-overlay-dark;
+  background-color: rgba(0, 0, 0, 0.85);
 }
 .modal {
   position: fixed;
@@ -16,56 +16,46 @@
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, 0);
-  background: $color-white;
+  background: var(--color-dark);
   overflow: hidden;
-  // border-radius: 0 0 $border-radius $border-radius;
+  border-radius: 8px;
   outline: none;
   padding: 0;
   &__header {
-    background: $color-royal;
+    background: var(--color-accent);
     height: 40px;
     position: relative;
     padding: 0;
     text-align: left;
+    border-radius: 8px 8px 0 0;
   }
   &__h2 {
-    margin: 0 0 0 $margins-desktop;
+    margin: 0 0 0 var(--spacing-md);
     font-size: 1.25rem;
     height: 40px;
     line-height: 40px;
-    color: $color-white;
-    letter-spacing: 2px;
+    color: var(--color-dark);
+    text-transform: uppercase;
+    // letter-spacing: 2px;
   }
   &__header-button {
     height: 40px;
     width: 40px;
-    color: $color-royal;
-    background: $color-white;
-    border-radius: 0;
-    border: none;
+    border-radius: 0 8px 0 0;
     font-size: 1.25em;
-    font-family: $text-header;
-    border: 1px solid $color-royal;
+    font-family: var(--font-header);
     position: absolute;
     right: 0;
     top: 0;
-    &:hover {
-      color: $color-white;
-      background: $color-royal;
-    }
   }
 
   &__body {
-    padding: $margins-desktop;
-    line-height: 1.25em;
+    padding: var(--spacing-md);
+    // line-height: 1.25em;
     overflow-y: auto;
     max-height: calc(100vh - 120px);
-    table {
-      width: 100%;
-      margin: 0;
-    }
   }
   &__footer {
-    padding: $margins-desktop;
+    padding: var(--spacing-md);
   }
 }

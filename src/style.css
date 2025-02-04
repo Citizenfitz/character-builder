@@ -2468,7 +2468,7 @@ input[type=radio] + label.aspect-radio-label__type {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.85);
 }
 
 .modal {
@@ -2481,56 +2481,45 @@ input[type=radio] + label.aspect-radio-label__type {
   bottom: auto;
   margin-right: -50%;
   transform: translate(-50%, 0);
-  background: #fff;
+  background: var(--color-dark);
   overflow: hidden;
+  border-radius: 8px;
   outline: none;
   padding: 0;
 }
 .modal__header {
-  background: #5a2780;
+  background: var(--color-accent);
   height: 40px;
   position: relative;
   padding: 0;
   text-align: left;
+  border-radius: 8px 8px 0 0;
 }
 .modal__h2 {
-  margin: 0 0 0 1.5rem;
+  margin: 0 0 0 var(--spacing-md);
   font-size: 1.25rem;
   height: 40px;
   line-height: 40px;
-  color: #fff;
-  letter-spacing: 2px;
+  color: var(--color-dark);
+  text-transform: uppercase;
 }
 .modal__header-button {
   height: 40px;
   width: 40px;
-  color: #5a2780;
-  background: #fff;
-  border-radius: 0;
-  border: none;
+  border-radius: 0 8px 0 0;
   font-size: 1.25em;
-  font-family: "Edelgotisch", Edelgotisch, sans-serif;
-  border: 1px solid #5a2780;
+  font-family: var(--font-header);
   position: absolute;
   right: 0;
   top: 0;
 }
-.modal__header-button:hover {
-  color: #fff;
-  background: #5a2780;
-}
 .modal__body {
-  padding: 1.5rem;
-  line-height: 1.25em;
+  padding: var(--spacing-md);
   overflow-y: auto;
   max-height: calc(100vh - 120px);
 }
-.modal__body table {
-  width: 100%;
-  margin: 0;
-}
 .modal__footer {
-  padding: 1.5rem;
+  padding: var(--spacing-md);
 }
 
 .header {
@@ -2667,6 +2656,7 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__button .fas {
   margin-right: 0.125rem;
+  font-size: 0.875rem;
 }
 .char-sheet__toolbar {
   background: #341749;
@@ -3278,53 +3268,73 @@ input[type=radio] + label.aspect-radio-label__type {
   border-color: rgba(247, 235, 199, 0.5);
 }
 
-.spells-old__cta {
+.spell-table {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+  border-collapse: collapse;
+}
+.spell-table tr:nth-child(even) {
+  background: var(--color-dark-alt);
+}
+.spell-table__row--unavailable td {
+  opacity: 0.5;
+  border-color: rgba(247, 235, 199, 0.5);
+}
+.spell-table__header {
+  background: var(--color-dark-alt);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-family: var(--font-header);
+  padding: var(--spacing-xs);
+  border: 1px solid;
+  text-align: center;
+}
+.spell-table__header--wizardry {
+  background-color: var(--color-wizard);
+  color: var(--color-text-inverted);
+}
+.spell-table__header--thaumaturgy {
+  background-color: var(--color-priest);
+  color: var(--color-text);
+}
+.spell-table__cell {
+  padding: var(--spacing-xs);
+  border: none;
+  min-width: 30px;
+  text-align: center;
+  vertical-align: top;
+  border: 1px solid;
+}
+.spell-table__cell--name {
+  text-align: left;
+}
+.spell-table__cell--level {
+  font-family: var(--font-header);
+  color: var(--color-accent);
+  font-size: 1rem;
+}
+.spell-table__row--zebra {
+  background: var(--color-zebra);
+}
+.spell-table__row--unavailable {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+.spell-table__cta {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.75);
-  padding-top: 1em;
-}
-.spells-old__cta > .button {
-  box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-}
-.spells-old__table {
-  width: 100%;
-}
-.spells-old__table tr:nth-child(even) {
-  background-color: #f6f7fb;
-}
-.spells-old__table th {
-  border-color: #000;
-}
-.spells-old__table th,
-.spells-old__table td {
-  padding: 5px;
-  text-align: center;
-}
-.spells-old__table td:nth-child(2) {
-  text-align: left;
-}
-.spells-old--table-wizardry th {
-  background-color: #e1a525;
-  color: #fff;
-  border-color: #000;
-}
-.spells-old--table-thaumaturgy th {
-  background-color: #2375b9;
-  color: #fff;
-  border-color: #000;
-}
-.spells-old__known-schools {
-  display: inline-block;
-  position: relative;
-  margin-left: 10px;
-  top: 2px;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: var(--spacing-md);
 }
 
 .button-showSpellSlots {
@@ -3334,13 +3344,6 @@ input[type=radio] + label.aspect-radio-label__type {
 #modal--spellSlots .modal__body {
   display: flex;
   justify-content: center;
-}
-#modal--spellSlots td {
-  text-align: center;
-}
-#modal--spellSlots .active,
-#modal--spellSlots .active th {
-  background-color: #f4ddab;
 }
 
 #modal--thaumaturgySpells {
@@ -3352,15 +3355,6 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 #modal--wizardrySpells .showAll {
   margin-bottom: 10px;
-}
-#modal--wizardrySpells .unavailable {
-  background-color: #ebebeb;
-  color: rgba(51, 51, 51, 0.8);
-  cursor: not-allowed;
-  pointer-events: none;
-}
-#modal--wizardrySpells .unavailable:hover, #modal--wizardrySpells .unavailable:active {
-  background-color: #ebebeb;
 }
 
 #modal--schools {
@@ -3432,70 +3426,6 @@ input[type=radio] + label.aspect-radio-label__type {
 #modal--schools .validation--error {
   margin: 0;
   color: #eb2026;
-}
-
-.spell-table {
-  margin-top: var(--spacing-xs);
-  margin-bottom: var(--spacing-sm-alt);
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  width: 100%;
-}
-.spell-table tr:nth-child(even) {
-  background: var(--color-dark-alt);
-}
-.spell-table__header {
-  background: var(--color-dark-alt);
-  color: var(--color-accent);
-  text-transform: uppercase;
-  font-family: var(--font-header);
-  padding: var(--spacing-xs);
-  border: 1px solid;
-  text-align: center;
-}
-.spell-table__header--wizardry {
-  background-color: var(--color-wizard);
-  color: var(--color-text-inverted);
-}
-.spell-table__header--thaumaturgy {
-  background-color: var(--color-priest);
-  color: var(--color-text);
-}
-.spell-table__cell {
-  padding: var(--spacing-xs);
-  border: none;
-  min-width: 30px;
-  text-align: center;
-  vertical-align: top;
-  border: 1px solid;
-}
-.spell-table__cell--name {
-  text-align: left;
-}
-.spell-table__cell--level {
-  font-family: var(--font-header);
-  color: var(--color-accent);
-  font-size: 1rem;
-}
-.spell-table__row--zebra {
-  background: var(--color-zebra);
-}
-.spell-table__row--unavailable {
-  opacity: 0.6;
-  pointer-events: none;
-  cursor: not-allowed;
-}
-.spell-table__cta {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: var(--spacing-md);
 }
 
 body {
