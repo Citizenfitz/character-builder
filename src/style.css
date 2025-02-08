@@ -53,6 +53,7 @@
   --color-text-cta: #1a1a1a;
   /* UI Colors */
   --color-border: #333;
+  --color-input-background: #f5f3ed;
   /* Game-Specific Colors */
   --color-common: #d2691e;
   --color-fighter: #04a54f;
@@ -78,6 +79,7 @@
   --color-border-inverted: #dddddd;
   --color-zebra-inverted: rgba(90, 39, 128, 0.05);
   /* Spacing Scale */
+  --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-sm-alt: 1.5rem;
@@ -94,6 +96,10 @@
   --font-primary: "Titillium Web", sans-serif;
   --font-icon: "FontAwesome";
   --font-header: "Edelgotisch";
+  /* Form Elements */
+  --form-element-height: 1.5rem;
+  --border-radius-standard: 3px;
+  --border-radius-lg: 8px;
 }
 
 /* ==========================================================================
@@ -2280,30 +2286,30 @@ input[type=radio] + label.aspect-radio-label {
   justify-content: center;
   border-radius: 3px;
   margin: 0;
-  color: black;
-  font-family: "Edelgotisch", Edelgotisch, sans-serif;
+  color: var(--color-text-dark);
+  font-family: var(--font-header);
   cursor: pointer;
 }
 input[type=radio] + label.aspect-radio-label--fighter {
-  border-color: #04a54f;
+  border-color: var(--color-fighter);
 }
 input[type=radio] + label.aspect-radio-label--fighter:hover {
   filter: none;
 }
 input[type=radio] + label.aspect-radio-label--priest {
-  border-color: #2375b9;
+  border-color: var(--color-priest);
 }
 input[type=radio] + label.aspect-radio-label--priest:hover {
   filter: none;
 }
 input[type=radio] + label.aspect-radio-label--wizard {
-  border-color: #e1a525;
+  border-color: var(--color-wizard);
 }
 input[type=radio] + label.aspect-radio-label--wizard:hover {
   filter: none;
 }
 input[type=radio] + label.aspect-radio-label--knave {
-  border-color: #eb2026;
+  border-color: var(--color-knave);
 }
 input[type=radio] + label.aspect-radio-label--knave:hover {
   filter: none;
@@ -2349,7 +2355,7 @@ input[type=radio] + label.aspect-radio-label__type {
   width: 100%;
   left: 0px;
   bottom: 0px;
-  font-family: "Edelgotisch", Edelgotisch, sans-serif;
+  font-family: var(--font-header);
   font-size: 18px;
   line-height: 24px;
   text-align: center;
@@ -2624,7 +2630,7 @@ input[type=radio] + label.aspect-radio-label__type {
   max-width: var(--container-char-sheet);
   background: var(--color-dark);
   color: var(--color-text);
-  border-radius: 8px;
+  border-radius: --border-radius-lg;
   padding: var(--spacing-md);
   margin: 0 auto;
 }
@@ -2644,6 +2650,32 @@ input[type=radio] + label.aspect-radio-label__type {
   font-family: var(--font-header);
   font-size: 1.2em;
   margin-bottom: var(--spacing-sm);
+}
+.char-sheet button,
+.char-sheet input[type=text],
+.char-sheet input[type=number] {
+  height: var(--spacing-sm-alt);
+  border-radius: var(--border-radius-standard);
+  border: 1px solid var(--color-dark-alt);
+  padding: 0 var(--spacing-xxs);
+  background-color: var(--color-input-background);
+  font-family: "Cabin Regular", Cabin, sans-serif;
+}
+.char-sheet button:hover,
+.char-sheet input[type=text]:hover,
+.char-sheet input[type=number]:hover {
+  background: radial-gradient(circle at center, #ebc23d 0%, var(--color-cta-hover) 100%);
+  color: var(--color-text-cta);
+  text-decoration: none;
+}
+.char-sheet button:active,
+.char-sheet input[type=text]:active,
+.char-sheet input[type=number]:active {
+  color: #5a2780;
+  border-color: #5a2780;
+}
+.char-sheet input[type=number] {
+  text-align: center;
 }
 .char-sheet__button {
   background: radial-gradient(circle at center, #f4cd5c 0%, var(--color-cta) 100%);
@@ -2874,8 +2906,12 @@ input[type=radio] + label.aspect-radio-label__type {
   text-align: center;
   font-size: 1rem;
 }
+.char-sheet__table__header--talent, .char-sheet__table__caption--talent {
+  text-align: left;
+}
 .char-sheet__table__caption {
   border-bottom: 0;
+  letter-spacing: 2px;
 }
 .char-sheet__table__caption--wizardry {
   background-color: var(--color-wizard);
@@ -2905,6 +2941,9 @@ input[type=radio] + label.aspect-radio-label__type {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.char-sheet__table__cell--talent {
+  text-align: left;
 }
 .char-sheet__table__row--zebra {
   background: var(--color-zebra);

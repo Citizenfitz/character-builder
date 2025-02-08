@@ -1229,7 +1229,7 @@ const CharacterSheet = () => {
         </div>
         <div className="modal__footer">
           <button
-            className="button button--primary button--large"
+            className="char-sheet__button char-sheet__button--large"
             onClick={toggleRaceModal}
           >
             Close

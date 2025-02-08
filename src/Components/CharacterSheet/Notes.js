@@ -66,14 +66,14 @@ const Notes = (props) => {
             <div className="note--text">{note}</div>
             <div className="notes__buttons">
               <button
-                className="button button--secondary"
+                className="char-sheet__button"
                 onClick={() => editNote(i)}
                 aria-label="edit note"
               >
                 <span className="fas fa-edit"></span>
               </button>
               <button
-                className="button button--secondary"
+                className="char-sheet__button"
                 aria-label="delete note"
                 onClick={() => deleteNote(i)}
               >

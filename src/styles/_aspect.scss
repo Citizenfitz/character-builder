@@ -56,29 +56,29 @@ input[type="radio"] + label.aspect-radio-label {
   justify-content: center;
   border-radius: $border-radius-standard;
   margin: 0;
-  color: black;
-  font-family: $text-header;
+  color: var(--color-text-dark);
+  font-family: var(--font-header);
   cursor: pointer;
   &--fighter {
-    border-color: $color-fighter;
+    border-color: var(--color-fighter);
     &:hover {
       filter: none;
     }
   }
   &--priest {
-    border-color: $color-priest;
+    border-color: var(--color-priest);
     &:hover {
       filter: none;
     }
   }
   &--wizard {
-    border-color: $color-wizard;
+    border-color: var(--color-wizard);
     &:hover {
       filter: none;
     }
   }
   &--knave {
-    border-color: $color-knave;
+    border-color: var(--color-knave);
     &:hover {
       filter: none;
     }
@@ -121,7 +121,7 @@ input[type="radio"] + label.aspect-radio-label {
     width: 100%;
     left: 0px;
     bottom: 0px;
-    font-family: $text-header;
+    font-family: var(--font-header);
     font-size: 18px;
     line-height: 24px;
     text-align: center;

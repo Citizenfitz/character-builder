@@ -21,6 +21,7 @@
 
   /* UI Colors */
   --color-border: #333;
+  --color-input-background: #f5f3ed;
 
   /* Game-Specific Colors */
   --color-common: #d2691e;
@@ -51,6 +52,7 @@
   --color-zebra-inverted: rgba(90, 39, 128, 0.05);
 
   /* Spacing Scale */
+  --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-sm-alt: 1.5rem;
@@ -69,6 +71,14 @@
   --font-primary: "Titillium Web", sans-serif;
   --font-icon: "FontAwesome";
   --font-header: "Edelgotisch";
+
+  /* Form Elements */
+  --form-element-height: 1.5rem;
+  // $form-element-border: 1px solid $color-gray-3;
+
+  // border-radius
+  --border-radius-standard: 3px;
+  --border-radius-lg: 8px;
 }
 
 /* ==========================================================================

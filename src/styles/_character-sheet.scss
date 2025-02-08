@@ -3,7 +3,7 @@
   max-width: var(--container-char-sheet);
   background: var(--color-dark);
   color: var(--color-text);
-  border-radius: 8px;
+  border-radius: --border-radius-lg;
   padding: var(--spacing-md);
   margin: 0 auto;
 
@@ -26,6 +26,39 @@
     font-size: 1.2em;
     margin-bottom: var(--spacing-sm);
   }
+
+  button,
+  input[type="text"],
+  input[type="number"] {
+    height: var(--spacing-sm-alt);
+    border-radius: var(--border-radius-standard);
+    border: 1px solid var(--color-dark-alt);
+    padding: 0 var(--spacing-xxs);
+    background-color: var(--color-input-background);
+    font-family: $text-regular;
+    &:hover {
+      background: radial-gradient(
+        circle at center,
+        #ebc23d 0%,
+        var(--color-cta-hover) 100%
+      );
+      color: var(--color-text-cta);
+      text-decoration: none;
+    }
+    &:active {
+      color: $color-royal;
+      border-color: $color-royal;
+    }
+    &:disabled {
+    }
+  }
+
+  input[type="text"] {
+  }
+  input[type="number"] {
+    text-align: center;
+  }
+
   &__button {
     background: radial-gradient(
       circle at center,
@@ -294,10 +327,14 @@
     border: 1px solid;
     text-align: center;
     font-size: 1rem;
+    &--talent {
+      text-align: left;
+    }
   }
 
   &__caption {
     border-bottom: 0;
+    letter-spacing: 2px;
     &--wizardry {
       background-color: var(--color-wizard);
       color: var(--color-text-inverted);
@@ -332,6 +369,10 @@
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+
+    &--talent {
+      text-align: left;
     }
   }
 
