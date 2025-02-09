@@ -12,7 +12,7 @@ const Attributes = (props) => {
     if (val) {
       val = parseInt(val);
     }
-    const attr = e.target.id.replace("attrib-", "");
+    const attr = e.target.id.replace("attrib__", "");
 
     const newState = { ...attributes };
     newState[attr].roll = val - newState[attr].bonus;
@@ -69,14 +69,14 @@ const Attributes = (props) => {
   };
 
   return (
-    <div className="attributes">
+    <div className="attrib">
       {Object.entries(attributes).map(([key, values]) => {
         return (
-          <div className="attrib-group" key={key}>
-            <div className="attrib-val">
+          <div className="attrib__group" key={key}>
+            <div className="attrib__val">
               <input
-                id={`attrib-${key}`}
-                className="attrib-input"
+                id={`attrib__${key}`}
+                className="attrib__input"
                 type="number"
                 inputMode="numeric"
                 min={values.min}
@@ -85,16 +85,9 @@ const Attributes = (props) => {
                 onChange={updateAttribute}
               />
             </div>
-            <div className="attrib-name">{values.name}</div>
-            <div className="attrib-mod">
-              Mod:{" "}
-              <span>
-                <input
-                  type="text"
-                  readOnly
-                  value={formatNumberModifier(values.mod)}
-                />
-              </span>
+            <div className="attrib__name">{values.name}</div>
+            <div className="attrib__mod">
+              Mod:<span>{formatNumberModifier(values.mod)}</span>
             </div>
           </div>
         );

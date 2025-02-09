@@ -2601,6 +2601,9 @@ input[type=radio] + label.aspect-radio-label__type {
   /***** LABELS *****/
   /***** INPUTS *****/
 }
+.char-sheet .default-typography {
+  font-size: 1rem;
+}
 .char-sheet .ut-text-explain {
   color: var(--color-text-muted);
   font-style: italic;
@@ -2612,6 +2615,18 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__h2 {
   font-size: 1.5rem;
+}
+.char-sheet__h3 {
+  font-size: 1.25rem;
+}
+.char-sheet ul,
+.char-sheet ol {
+  list-style: disc;
+  margin-bottom: var(--spacing-sm-alt);
+  padding-left: var(--spacing-md);
+}
+.char-sheet li {
+  margin-bottom: 0.25em;
 }
 .char-sheet label {
   font-family: var(--font-header);
@@ -2791,14 +2806,14 @@ input[type=radio] + label.aspect-radio-label__type {
   page-break-before: always;
 }
 
-.attributes {
+.attrib {
   display: inline-flex;
   flex-direction: column;
   gap: var(--spacing-sm);
   align-self: flex-start;
   min-width: min-content;
 }
-.attributes .attrib-input {
+.attrib__input {
   width: var(--spacing-md);
   height: var(--spacing-md);
   text-align: center;
@@ -2806,24 +2821,22 @@ input[type=radio] + label.aspect-radio-label__type {
   border: none;
   font-size: 1.2rem;
 }
-.attributes input[type=number] {
+.attrib input[type=number] {
   -moz-appearance: textfield;
 }
-.attributes input[type=number]::-webkit-inner-spin-button,
-.attributes input[type=number]::-webkit-outer-spin-button {
+.attrib input[type=number]::-webkit-inner-spin-button,
+.attrib input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-.attrib-group {
+.attrib__group {
   display: grid;
   grid-template-columns: auto minmax(60px, auto) auto;
   align-items: center;
   gap: 0.5rem;
   white-space: nowrap;
 }
-
-.attrib-val {
+.attrib__val {
   width: 44px;
   height: 44px;
   border: 1px solid var(--color-border);
@@ -2833,30 +2846,24 @@ input[type=radio] + label.aspect-radio-label__type {
   align-items: center;
   background: #f5f3ed;
 }
-
-.attrib-name {
+.attrib__name {
   padding-left: var(--spacing-sm);
   font-family: var(--font-header);
   font-size: 1.75rem;
   color: var(--color-accent);
 }
-
-.attrib-mod {
+.attrib__mod {
   padding-left: var(--spacing-sm);
-  font-size: 0.875rem;
 }
-.attrib-mod span {
-  border-bottom: 1px solid;
-}
-.attrib-mod input {
+.attrib__mod span {
+  display: inline-block;
+  margin-left: var(--spacing-xxs);
   width: 30px;
   text-align: center;
-  background-color: transparent;
-  border: none;
-  color: var(--color-text);
+  color: var(--color-accent);
+  border-bottom: 1px solid;
 }
-
-.attrib-bonus {
+.attrib__bonus {
   display: inline-block;
   width: 16px;
   overflow: hidden;

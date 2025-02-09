@@ -39,11 +39,13 @@ const Notes = (props) => {
 
   return (
     <div className="notes">
-      {/*  ------- Race nates -------- */}
+      {/*  ------- Race notes -------- */}
       {props.character.characteristicsRace &&
         props.character.characteristicsRace.length > 0 && (
           <div>
-            <b className="label">Racial Abilities ({props.character.race}): </b>
+            <h3 className="char-sheet__h3">
+              Racial Abilities ({props.character.race}):{" "}
+            </h3>
             <ul className="notes__list">
               {props.character.characteristicsRace.map((note, i) => (
                 <li className="notes__list-item" key={i}>

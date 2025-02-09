@@ -7,6 +7,10 @@
   padding: var(--spacing-md);
   margin: 0 auto;
 
+  .default-typography {
+    font-size: 1rem;
+  }
+
   .ut-text-explain {
     color: var(--color-text-muted);
     font-style: italic;
@@ -19,6 +23,19 @@
   }
   &__h2 {
     font-size: 1.5rem;
+  }
+  &__h3 {
+    font-size: 1.25rem;
+  }
+
+  ul,
+  ol {
+    list-style: disc;
+    margin-bottom: var(--spacing-sm-alt);
+    padding-left: var(--spacing-md);
+  }
+  li {
+    margin-bottom: 0.25em;
   }
 
   /***** LABELS *****/
@@ -226,7 +243,7 @@
 }
 
 //* *************** ATTRIBUTES ***************** */
-.attributes {
+.attrib {
   display: inline-flex;
   flex-direction: column;
   gap: var(--spacing-sm);
@@ -234,7 +251,7 @@
   min-width: min-content;
 
   // Keep existing nested styles
-  .attrib-input {
+  &__input {
     width: var(--spacing-md);
     height: var(--spacing-md);
     text-align: center;
@@ -253,57 +270,54 @@
     -webkit-appearance: none;
     margin: 0;
   }
-}
 
-// Update attrib-group for single column layout
-.attrib-group {
-  display: grid;
-  grid-template-columns: auto minmax(60px, auto) auto;
-  align-items: center;
-  gap: 0.5rem;
-  white-space: nowrap;
-}
-
-.attrib-val {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--color-border);
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $color-input-background;
-}
-
-.attrib-name {
-  padding-left: var(--spacing-sm);
-  font-family: var(--font-header);
-  font-size: 1.75rem;
-  color: var(--color-accent);
-}
-
-.attrib-mod {
-  padding-left: var(--spacing-sm);
-  font-size: 0.875rem;
-  span {
-    border-bottom: 1px solid;
+  // Update attrib-group for single column layout
+  &__group {
+    display: grid;
+    grid-template-columns: auto minmax(60px, auto) auto;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
   }
-  input {
-    width: 30px;
-    text-align: center;
-    background-color: transparent;
-    border: none;
-    color: var(--color-text);
+
+  &__val {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $color-input-background;
+  }
+
+  &__name {
+    padding-left: var(--spacing-sm);
+    font-family: var(--font-header);
+    font-size: 1.75rem;
+    color: var(--color-accent);
+  }
+
+  &__mod {
+    padding-left: var(--spacing-sm);
+
+    span {
+      display: inline-block;
+      margin-left: var(--spacing-xxs);
+      width: 30px;
+      text-align: center;
+      color: var(--color-accent);
+      border-bottom: 1px solid;
+    }
+  }
+
+  &__bonus {
+    display: inline-block;
+    width: 16px;
+    overflow: hidden;
+    vertical-align: middle;
   }
 }
-
-.attrib-bonus {
-  display: inline-block;
-  width: 16px;
-  overflow: hidden;
-  vertical-align: middle;
-}
-
 //* *************** TABLES  ***************** */
 
 .char-sheet__table {

@@ -861,6 +861,28 @@ const CharacterSheet = () => {
               </label>
             </div>
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+              {/*  ------- SEX ------ */}
+              <label>
+                <select
+                  name="gender"
+                  onChange={(e) => handleInputChange(e, "gender")}
+                  value={character.gender}
+                  className="ut-no-print"
+                >
+                  <option value="Male">Male</option>
+                  <option value="Female">Female </option>
+                  <option value="other">Other </option>
+                </select>
+                <div className="ut-no-screen print-text-input">
+                  {character.gender}
+                </div>
+                <br />
+                <span className="label">Sex</span>
+              </label>
+            </div>
+          </div>
+          <div className="flex-grid flex-grid--flex-start character-lrc">
+            <div className="flex-grid__child flex-grid__child--auto  ut-margin-right-1em">
               {/*  ------- RACE ------ */}
               <label>
                 <button
@@ -1147,7 +1169,7 @@ const CharacterSheet = () => {
       </section>
       {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
       <section className="char-sheet__section char-sheet__section--notes">
-        <h2>Special Abilites &amp; Notes</h2>
+        <h2 className="char-sheet__h2">Special Abilites &amp; Notes</h2>
         <Notes
           notes={notes}
           setNotes={setNotes}
