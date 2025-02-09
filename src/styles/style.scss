@@ -20,13 +20,17 @@
 // @import "component-char-bldr";
 @import "component-traits";
 
-@import "character-sheet";
+@import "char-sheet";
+@import "char-sheet-attribs";
+@import "char-sheet-tables";
+@import "char-sheet-desc";
 
 // @import "quickRef";
 // @import "attributes";
 @import "dice-box";
 @import "notes";
 // @import "spells";
+
 @import "print";
 
 @import "utilities";

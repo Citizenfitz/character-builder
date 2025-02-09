@@ -39,24 +39,7 @@ const Notes = (props) => {
 
   return (
     <div className="notes">
-      {/*  ------- Race notes -------- */}
-      {props.character.characteristicsRace &&
-        props.character.characteristicsRace.length > 0 && (
-          <div>
-            <h3 className="char-sheet__h3">
-              Racial Abilities ({props.character.race}):{" "}
-            </h3>
-            <ul className="notes__list">
-              {props.character.characteristicsRace.map((note, i) => (
-                <li className="notes__list-item" key={i}>
-                  {note}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-      {/*  ------- User nates -------- */}
+      {/*  ------- User notes -------- */}
       <div className="ut-margin-bottom-half-em">
         <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
           <i className="fas fa-plus"></i> Add Note

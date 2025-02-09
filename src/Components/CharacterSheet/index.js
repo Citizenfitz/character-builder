@@ -26,6 +26,7 @@ import {
 } from "../Utilities";
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
+import TalentDetails from "./TalentDetails";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -1167,17 +1168,7 @@ const CharacterSheet = () => {
           handleSetCharTalents={handleSetCharTalents}
         />
       </section>
-      {/*  --------------- READ-ONLY SPECIAL ABILITIES & NOTES -------------- */}
-      <section className="char-sheet__section char-sheet__section--notes">
-        <h2 className="char-sheet__h2">Special Abilites &amp; Notes</h2>
-        <Notes
-          notes={notes}
-          setNotes={setNotes}
-          notesIndex={notesIndex}
-          setNotesIndex={setNotesIndex}
-          character={character}
-        />
-      </section>
+
       {/*  --------------- SPELLS -------------- */}
       {character.wizardry1StartLevel > 0 &&
         character.level >= character.wizardry1StartLevel && (
@@ -1203,17 +1194,25 @@ const CharacterSheet = () => {
             useLocalStorage={useLocalStorage}
           />
         )}
-      <div className="autosave">
-        <label>
-          <input
-            type="checkbox"
-            checked={autoSave}
-            value="autosave"
-            onChange={() => setAutoSave(!autoSave)}
-          />
-          <span>Auto save</span>
-        </label>
-      </div>
+
+      {/*  --------------- NOTES -------------- */}
+      <section className="char-sheet__section char-sheet__section--notes">
+        <h2 className="char-sheet__h2">Notes</h2>
+        <Notes
+          notes={notes}
+          setNotes={setNotes}
+          notesIndex={notesIndex}
+          setNotesIndex={setNotesIndex}
+          character={character}
+        />
+      </section>
+
+      {/*  --------------- TALENT DETAILS -------------- */}
+      <section className="char-sheet__section char-sheet__section--notes">
+        <h2 className="char-sheet__h2">Talent Details</h2>
+        <TalentDetails character={character} />
+      </section>
+
       <div className="char-sheet__bottom-border char-sheet__bottom-border--flip ut-no-screen"></div>
       {/*  ------- MODAL WITH CLASS PICKER ------ */}
       <ReactModal

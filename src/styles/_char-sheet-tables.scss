@@ -1,0 +1,117 @@
+//* *************** TABLES  ***************** */
+
+.char-sheet__table {
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+
+  tr:nth-child(even) {
+    background: var(--color-dark-alt);
+  }
+
+  // Header styles
+  &__header,
+  &__caption {
+    background: var(--color-dark-alt);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    font-family: var(--font-header);
+    padding: var(--spacing-xs);
+    border: 1px solid;
+    text-align: center;
+    font-size: 1rem;
+    &--talent {
+      text-align: left;
+    }
+  }
+
+  &__caption {
+    border-bottom: 0;
+    letter-spacing: 2px;
+    &--wizardry {
+      background-color: var(--color-wizard);
+      color: var(--color-text-inverted);
+    }
+
+    &--thaumaturgy {
+      background-color: var(--color-priest);
+      color: var(--color-text);
+    }
+  }
+
+  // Cell styles
+  &__cell {
+    padding: var(--spacing-xs);
+    border: 1px solid;
+    min-width: 30px;
+    text-align: center;
+    vertical-align: top;
+
+    &--name {
+      text-align: left;
+    }
+
+    &--level {
+      font-family: var(--font-header);
+      color: var(--color-accent);
+      font-size: 1rem;
+    }
+
+    &--spell-name {
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    &--talent {
+      text-align: left;
+    }
+  }
+
+  // Row styles
+  &__row {
+    &--zebra {
+      background: var(--color-zebra);
+    }
+
+    &--unavailable {
+      td {
+        opacity: 0.5;
+        border-color: rgba(247, 235, 199, 0.5);
+      }
+      pointer-events: none;
+      cursor: not-allowed;
+    }
+  }
+
+  // CTA overlay
+  &__cta {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: var(--spacing-md);
+  }
+}
+
+// Level graying styles
+@for $i from 1 through 13 {
+  .char-sheet__table__level--#{$i} {
+    @for $i2 from $i through 13 {
+      .char-sheet__table__level--lvl#{$i2 + 1} {
+        td {
+          opacity: 0.5;
+          border-color: rgba(247, 235, 199, 0.5);
+        }
+      }
+    }
+  }
+}

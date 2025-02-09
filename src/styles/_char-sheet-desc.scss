@@ -1,0 +1,55 @@
+// all  Descriptions
+.desc {
+  margin-top: var(--spacing-sm-alt);
+  .desc__header {
+    font-size: 20px;
+  }
+  &--mutation {
+    .desc__header {
+      color: $color-mutation;
+    }
+    tbody tr:nth-child(odd) {
+      background: $color-mutation-zebra;
+    }
+  }
+  &--defect {
+    .desc__header {
+      color: $color-defect;
+    }
+    tbody tr:nth-child(odd) {
+      background: $color-defect-zebra;
+    }
+  }
+  &--psionic {
+    .desc__header {
+      @include color-psionic-glow;
+    }
+  }
+  &--talent {
+    .back-to-top {
+      display: none;
+    }
+    table {
+      width: auto;
+      min-width: 50%;
+    }
+    .desc__list {
+      list-style: none;
+      padding: 0;
+      margin-top: 0;
+      margin-bottom: var(--spacing-xs);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      column-gap: var(--spacing-sm-alt);
+      // Make fourth item span all columns
+      li:nth-child(4) {
+        grid-column: 1 / -1; // This makes it span from first to last column
+      }
+    }
+    .desc__list-label {
+      text-transform: uppercase;
+      color: var(--color-accent);
+      font-weight: 600;
+    }
+  }
+}
