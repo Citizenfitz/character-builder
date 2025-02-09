@@ -21,38 +21,35 @@
     font-size: 1.5rem;
   }
 
+  /***** LABELS *****/
   label {
     font-family: var(--font-header);
     font-size: 1.2em;
     margin-bottom: var(--spacing-sm);
   }
 
+  /***** INPUTS *****/
   button,
   input[type="text"],
-  input[type="number"] {
+  input[type="number"],
+  select {
     height: var(--spacing-sm-alt);
     border-radius: var(--border-radius-standard);
     border: 1px solid var(--color-dark-alt);
     padding: 0 var(--spacing-xxs);
     background-color: var(--color-input-background);
     font-family: $text-regular;
-    &:hover {
-      background: radial-gradient(
-        circle at center,
-        #ebc23d 0%,
-        var(--color-cta-hover) 100%
-      );
-      color: var(--color-text-cta);
-      text-decoration: none;
-    }
     &:active {
       color: $color-royal;
-      border-color: $color-royal;
+      border-color: var(--color-accent-dark);
     }
     &:disabled {
+      opacity: 0.5;
+    }
+    &:focus {
+      background-color: var(--color-accent);
     }
   }
-
   input[type="text"] {
   }
   input[type="number"] {
@@ -72,7 +69,11 @@
     cursor: pointer;
     transition: background 0.3s ease;
     font-weight: 700;
-    &:hover {
+    &--alt {
+      background-color: var(--color-input-background);
+    }
+    &:hover,
+    &--alt:hover {
       background: radial-gradient(
         circle at center,
         #ebc23d 0%,

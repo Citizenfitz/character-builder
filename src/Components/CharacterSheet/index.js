@@ -866,7 +866,7 @@ const CharacterSheet = () => {
                 <button
                   type="text"
                   size="8"
-                  className="button ut-no-print"
+                  className="char-sheet__button--alt ut-no-print"
                   onClick={toggleRaceModal}
                 >
                   {character.race}&nbsp;

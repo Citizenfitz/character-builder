@@ -34,13 +34,13 @@ label {
 }
 
 /***** INPUTS *****/
-input[type="text"] {
-  @include input-basics;
-}
-input[type="number"] {
-  @include input-basics;
-  text-align: center;
-}
+// input[type="text"] {
+//   @include input-basics;
+// }
+// input[type="number"] {
+//   @include input-basics;
+//   text-align: center;
+// }
 
 /***** SELECTS *****/
 select {

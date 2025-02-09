@@ -1824,41 +1824,6 @@ label {
 }
 
 /***** INPUTS *****/
-input[type=text] {
-  height: 24px;
-  border-radius: 3px;
-  border: 1px solid #c4c4c4;
-  padding: 0 0.25em;
-  background-color: #f5f3ed;
-  font-family: "Cabin Regular", Cabin, sans-serif;
-}
-input[type=text]:hover {
-  color: #5a2780;
-  border-color: #5a2780;
-}
-input[type=text]:active {
-  color: #5a2780;
-  border-color: #5a2780;
-}
-
-input[type=number] {
-  height: 24px;
-  border-radius: 3px;
-  border: 1px solid #c4c4c4;
-  padding: 0 0.25em;
-  background-color: #f5f3ed;
-  font-family: "Cabin Regular", Cabin, sans-serif;
-  text-align: center;
-}
-input[type=number]:hover {
-  color: #5a2780;
-  border-color: #5a2780;
-}
-input[type=number]:active {
-  color: #5a2780;
-  border-color: #5a2780;
-}
-
 /***** SELECTS *****/
 select {
   height: 24px;
@@ -2633,6 +2598,8 @@ input[type=radio] + label.aspect-radio-label__type {
   border-radius: --border-radius-lg;
   padding: var(--spacing-md);
   margin: 0 auto;
+  /***** LABELS *****/
+  /***** INPUTS *****/
 }
 .char-sheet .ut-text-explain {
   color: var(--color-text-muted);
@@ -2653,7 +2620,8 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet button,
 .char-sheet input[type=text],
-.char-sheet input[type=number] {
+.char-sheet input[type=number],
+.char-sheet select {
   height: var(--spacing-sm-alt);
   border-radius: var(--border-radius-standard);
   border: 1px solid var(--color-dark-alt);
@@ -2661,18 +2629,24 @@ input[type=radio] + label.aspect-radio-label__type {
   background-color: var(--color-input-background);
   font-family: "Cabin Regular", Cabin, sans-serif;
 }
-.char-sheet button:hover,
-.char-sheet input[type=text]:hover,
-.char-sheet input[type=number]:hover {
-  background: radial-gradient(circle at center, #ebc23d 0%, var(--color-cta-hover) 100%);
-  color: var(--color-text-cta);
-  text-decoration: none;
-}
 .char-sheet button:active,
 .char-sheet input[type=text]:active,
-.char-sheet input[type=number]:active {
+.char-sheet input[type=number]:active,
+.char-sheet select:active {
   color: #5a2780;
-  border-color: #5a2780;
+  border-color: var(--color-accent-dark);
+}
+.char-sheet button:disabled,
+.char-sheet input[type=text]:disabled,
+.char-sheet input[type=number]:disabled,
+.char-sheet select:disabled {
+  opacity: 0.5;
+}
+.char-sheet button:focus,
+.char-sheet input[type=text]:focus,
+.char-sheet input[type=number]:focus,
+.char-sheet select:focus {
+  background-color: var(--color-accent);
 }
 .char-sheet input[type=number] {
   text-align: center;
@@ -2687,7 +2661,10 @@ input[type=radio] + label.aspect-radio-label__type {
   transition: background 0.3s ease;
   font-weight: 700;
 }
-.char-sheet__button:hover {
+.char-sheet__button--alt {
+  background-color: var(--color-input-background);
+}
+.char-sheet__button:hover, .char-sheet__button--alt:hover {
   background: radial-gradient(circle at center, #ebc23d 0%, var(--color-cta-hover) 100%);
   color: var(--color-text-cta);
   text-decoration: none;

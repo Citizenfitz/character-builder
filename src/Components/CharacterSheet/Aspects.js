@@ -18,7 +18,7 @@ const Aspects = (props) => {
       {/*  ------- CLASS ------ */}
       <label>
         <button
-          className="button aspect__modal-open-button ut-no-print"
+          className="char-sheet__button--alt aspect__modal-open-button ut-no-print"
           onClick={toggleAspectModal}
         >
           <span
