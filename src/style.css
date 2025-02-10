@@ -2899,9 +2899,6 @@ input[type=radio] + label.aspect-radio-label__type {
   font-size: 0.875rem;
   width: 100%;
 }
-.char-sheet__table tr:nth-child(even) {
-  background: var(--color-dark-alt);
-}
 .char-sheet__table__header, .char-sheet__table__caption {
   background: var(--color-dark-alt);
   color: var(--color-accent);
@@ -2952,7 +2949,7 @@ input[type=radio] + label.aspect-radio-label__type {
   text-align: left;
 }
 .char-sheet__table__row--zebra {
-  background: var(--color-zebra);
+  background: var(--color-dark-alt);
 }
 .char-sheet__table__row--unavailable {
   pointer-events: none;

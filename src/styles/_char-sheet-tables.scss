@@ -7,9 +7,9 @@
   font-size: 0.875rem;
   width: 100%;
 
-  tr:nth-child(even) {
-    background: var(--color-dark-alt);
-  }
+  // tr:nth-child(even) {
+  //   background: var(--color-dark-alt);
+  // }
 
   // Header styles
   &__header,
@@ -74,7 +74,7 @@
   // Row styles
   &__row {
     &--zebra {
-      background: var(--color-zebra);
+      background: var(--color-dark-alt);
     }
 
     &--unavailable {

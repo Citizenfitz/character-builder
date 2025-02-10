@@ -55,7 +55,7 @@ const LevelsTable = (props) => {
   return (
     <div>
       <table
-        className={`char-sheet__table talent-table talent-table__level talent-table__level--${props.character.level}`}
+        className={`char-sheet__table  char-sheet__table__level--${props.character.level}`}
       >
         <caption className="char-sheet__table__caption">
           Character Levels
@@ -109,7 +109,7 @@ const LevelsTable = (props) => {
             </td>
           </tr>
           {/*  --------------- 1st Level - Assigned based on class (aspect) -------------- */}
-          <tr className="char-sheet__table__row talent-table__level--lvl1">
+          <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
             <td className="char-sheet__table__cell char-sheet__table__cell--talent">
               <div
                 className={`aspect-icon aspect-icon--${getTalentAspect(
@@ -131,7 +131,7 @@ const LevelsTable = (props) => {
             </td>
           </tr>
           {/*  --------------- 1st Level - Choose a race or any talent -------------- */}
-          <tr className="char-sheet__table__row talent-table__level--lvl1">
+          <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
             <td className="char-sheet__table__cell char-sheet__table__cell--talent">
               <div
                 className={`aspect-icon aspect-icon--${getTalentAspect(
@@ -160,7 +160,7 @@ const LevelsTable = (props) => {
           </tr>
           {/*  --------------- 1st Level - If they're a Knave they get an extra talent -------------- */}
           {props.character.aspect === "knave" && (
-            <tr className="char-sheet__table__row talent-table__level--lvl1">
+            <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
               <td className="char-sheet__table__cell char-sheet__table__cell--talent">
                 <div
                   className={`aspect-icon aspect-icon--${getTalentAspect(
@@ -188,7 +188,7 @@ const LevelsTable = (props) => {
           )}
           {/*  --------------- 1st Level - If they have a disad they get an extra talent  -------------- */}
           {props.character.disad1 !== "none" && (
-            <tr className="char-sheet__table__row talent-table__level--lvl1">
+            <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
               <td className="char-sheet__table__cell">Disad 1</td>
               <td></td>
               <td className="char-sheet__table__cell char-sheet__table__cell--talent">
@@ -218,7 +218,7 @@ const LevelsTable = (props) => {
           )}
           {/*  --------------- 1st Level - If they have a second disad they get a seconmd extra talent  -------------- */}
           {props.character.disad2 !== "none" && (
-            <tr className="char-sheet__table__row talent-table__level--lvl1">
+            <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
               <td className="char-sheet__table__cell ut-align-center">
                 Disad 2
               </td>
@@ -257,8 +257,8 @@ const LevelsTable = (props) => {
                 key={i.level}
                 className={
                   i.level % 2 === 0
-                    ? `char-sheet__table__row char-sheet__table__row--zebra-gray  talent-table__level--lvl${i.level}`
-                    : `char-sheet__table__row char-sheet__table__row--zebra-white  talent-table__level--lvl${i.level}`
+                    ? `char-sheet__table__row char-sheet__table__row--zebra  char-sheet__table__level--lvl${i.level}`
+                    : `char-sheet__table__level--lvl${i.level}`
                 }
               >
                 <td className="char-sheet__table__cell">
