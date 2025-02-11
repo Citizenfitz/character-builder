@@ -330,23 +330,24 @@ const CharacterSheet = () => {
     // check if any of the talents are spell casting talents
     presetValues = validateSpellCaster(presetValues);
 
-    const hadRaceTalent =
-      whichTalentAspect(character.talents.talentLevel1) === "race";
-    const hasRaceTalent =
-      whichTalentAspect(presetValues.talents.talentLevel1) === "race";
+    // Taking out the race attribute mods for now
+    // const hadRaceTalent =
+    //   whichTalentAspect(character.talents.talentLevel1) === "race";
+    // const hasRaceTalent =
+    //   whichTalentAspect(presetValues.talents.talentLevel1) === "race";
 
-    if (hadRaceTalent) {
-      // remove attribute bonus from previous race
-      presetValues = removeRaceBonus(presetValues, character.race);
-      presetValues.race = "Human";
-    }
-    if (hasRaceTalent) {
-      // add attribute bonus from currently selected race
-      presetValues = addRaceBonus(
-        presetValues,
-        presetValues.talents.talentLevel1
-      );
-    }
+    // if (hadRaceTalent) {
+    //   // remove attribute bonus from previous race
+    //   presetValues = removeRaceBonus(presetValues, character.race);
+    //   presetValues.race = "Human";
+    // }
+    // if (hasRaceTalent) {
+    //   // add attribute bonus from currently selected race
+    //   presetValues = addRaceBonus(
+    //     presetValues,
+    //     presetValues.talents.talentLevel1
+    //   );
+    // }
 
     const hasDurabilityTalent = Object.entries(
       presetData[value].talents
@@ -511,6 +512,7 @@ const CharacterSheet = () => {
   };
 
   const adjustRaceBonus = (state, race = "human", add = true) => {
+    // taking our the race attribute mods for now
     const data = raceData.filter((el) => el.name === race)[0];
     if (Object.keys(data.attributes).length > 0) {
       Object.entries(data.attributes).forEach(([key, val]) => {
@@ -565,11 +567,13 @@ const CharacterSheet = () => {
       case "Mutant":
         if (character.race !== "Human") {
           // remove attribute bonus from previous race
-          newState = removeRaceBonus(newState, character.race);
+          // removing the race attribute mods for now
+          // newState = removeRaceBonus(newState, character.race);
         }
 
         // add attribute bonus from currently selected race
-        newState = addRaceBonus(newState, value);
+        // removing the race attribute mods for now
+        // newState = addRaceBonus(newState, value);
         newState.talents[talentSlot] = value;
 
         // check if any of the talents are spell casting talents
@@ -581,7 +585,8 @@ const CharacterSheet = () => {
       default:
         // race can only be selected in talentLevel1 - if none is picked then you're human
         if (talentSlot === "talentLevel1" && character.race !== "Human") {
-          newState = removeRaceBonus(newState, character.race);
+          // removing the race attribute mods for now
+          //newState = removeRaceBonus(newState, character.race);
           newState.race = "Human";
           newState.movement = 30;
           newState.saveModsRace = [];
@@ -1213,7 +1218,6 @@ const CharacterSheet = () => {
         <TalentDetails character={character} />
       </section>
 
-      <div className="char-sheet__bottom-border char-sheet__bottom-border--flip ut-no-screen"></div>
       {/*  ------- MODAL WITH CLASS PICKER ------ */}
       <ReactModal
         isOpen={raceModalOpen}
