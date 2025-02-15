@@ -338,7 +338,7 @@ export default function WizardrySpells(props) {
       {/*  The modal for choosing spells */}
       <Modal
         id="modal--wizardrySpells"
-        className="modal"
+        className="modal ut-no-print"
         overlayClassName="modal-overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}

@@ -41,7 +41,7 @@ const Aspects = (props) => {
         isOpen={aspectModalOpen}
         onRequestClose={toggleAspectModal}
         contentLabel="Choose Class"
-        className="modal"
+        className="modal ut-no-print"
         overlayClassName="modal-overlay"
         ariaHideApp={false}
       >

@@ -73,7 +73,7 @@ const Notes = (props) => {
         id="note--modal"
         isOpen={notesModalOpen}
         onRequestClose={toggleNotesModalOpen}
-        className="modal"
+        className="modal ut-no-print"
         overlayClassName="modal-overlay"
         contentLabel="Add a note"
       >

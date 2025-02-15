@@ -785,7 +785,7 @@ const CharacterSheet = () => {
         character you like (it's often easiest to start with a preset). <br />
         Then print the page to paper or a PDFs. Simple! Desktop-only for now.
       </p>
-      <div className="char-sheet__toolbar">
+      <div className="char-sheet__toolbar ut-no-print">
         {/*  ------- TOOLBAR ------ */}
         <div>
           {" "}
@@ -810,7 +810,6 @@ const CharacterSheet = () => {
           </button>
         </div>
       </div>
-      <div className="char-sheet__bottom-border ut-no-screen"></div>
       <div className="char-sheet__grid">
         <div className="char-sheet__col char-sheet__col--basics">
           {/*  ------- NAMEs ------ */}
@@ -822,7 +821,7 @@ const CharacterSheet = () => {
               onChange={(e) => handleInputChange(e, "namePlayer")}
               className="ut-no-print"
             />
-            <div className="ut-no-screen print-text-input ut-text-cursive ">
+            <div className="ut-no-screen print-text-input">
               {character.namePlayer}&nbsp;
             </div>
             <br />
@@ -844,7 +843,7 @@ const CharacterSheet = () => {
             <span className="label">Character Name</span>
           </label>
 
-          <div className="flex-grid flex-grid--flex-start character-lrc">
+          <div className="flex-grid flex-grid--flex-start ">
             <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
               {/*  ------- LEVEL ------ */}
               <label>
@@ -887,7 +886,7 @@ const CharacterSheet = () => {
               </label>
             </div>
           </div>
-          <div className="flex-grid flex-grid--flex-start character-lrc">
+          <div className="flex-grid flex-grid--flex-start ">
             <div className="flex-grid__child flex-grid__child--auto  ut-margin-right-1em">
               {/*  ------- RACE ------ */}
               <label>
@@ -899,6 +898,9 @@ const CharacterSheet = () => {
                 >
                   {character.race}&nbsp;
                 </button>
+                <div className="ut-no-screen print-text-input">
+                  {character.race}
+                </div>
                 <br />
                 <span className="label">Race</span>
               </label>
@@ -936,7 +938,7 @@ const CharacterSheet = () => {
             <div className="char-sheet__quick-ref-item">
               <div className="char-sheet__quick-ref-text">
                 <input
-                  className="hp"
+                  className="hp  ut-no-print"
                   type="number"
                   inputMode="numeric"
                   min={0}
@@ -944,6 +946,7 @@ const CharacterSheet = () => {
                   value={character.hp.total}
                   onChange={manuallyUpdateHP}
                 />
+                <b className="ut-no-screen">{character.hp.total}</b>
               </div>
               <h2 className="char-sheet__quick-ref-footer">HP</h2>
             </div>
@@ -1223,7 +1226,7 @@ const CharacterSheet = () => {
         isOpen={raceModalOpen}
         onRequestClose={toggleRaceModal}
         contentLabel="Choose Class"
-        className="modal"
+        className="modal ut-no-print"
         overlayClassName="modal-overlay"
         ariaHideApp={false}
       >

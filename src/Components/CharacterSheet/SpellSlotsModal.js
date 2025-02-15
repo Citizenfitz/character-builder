@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from "react";
 import Modal from "react-modal";
 import { spellSlots } from "../../Data";
 
 export default function SpellSlotsModal(props) {
-  const [isOpen, setOpen] = useState(false)
-  const openModal = () => setOpen(true)
-  const closeModal = () => setOpen(false)
+  const [isOpen, setOpen] = useState(false);
+  const openModal = () => setOpen(true);
+  const closeModal = () => setOpen(false);
 
   return (
     <React.Fragment>
@@ -14,16 +14,14 @@ export default function SpellSlotsModal(props) {
       </button>
       <Modal
         id="modal--spellSlots"
-        className="modal"
+        className="modal ut-no-print"
         overlayClassName="modal-overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Spell Slots"
       >
         <header className="modal__header">
-          <h2 className="modal__h2">
-            {props.header}
-          </h2>
+          <h2 className="modal__h2">{props.header}</h2>
           <button
             className="button modal__header-button"
             aria-label="Close modal"
@@ -37,12 +35,11 @@ export default function SpellSlotsModal(props) {
             <thead>
               <tr>
                 <th rowSpan="2">
-                  Level<br />
+                  Level
+                  <br />
                   with Talent
                 </th>
-                <th colSpan="7">
-                  Spell Level
-                </th>
+                <th colSpan="7">Spell Level</th>
               </tr>
               <tr>
                 <th>1</th>
@@ -55,9 +52,12 @@ export default function SpellSlotsModal(props) {
               </tr>
             </thead>
             <tbody>
-              {spellSlots.map((level,i) => (
-                <tr key={level} className={parseInt(props.level) === i + 1 ? 'active' : ''}>
-                  <th>{i+1}</th>
+              {spellSlots.map((level, i) => (
+                <tr
+                  key={level}
+                  className={parseInt(props.level) === i + 1 ? "active" : ""}
+                >
+                  <th>{i + 1}</th>
                   <td>{level[0]}</td>
                   <td>{level[1]}</td>
                   <td>{level[2]}</td>
@@ -72,5 +72,5 @@ export default function SpellSlotsModal(props) {
         </div>
       </Modal>
     </React.Fragment>
-  )
+  );
 }

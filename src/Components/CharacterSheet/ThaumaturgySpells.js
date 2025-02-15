@@ -183,7 +183,7 @@ export default function ThaumaturgySpells(props) {
       </table>
       <Modal
         id="modal--thaumaturgySpells"
-        className="modal"
+        className="modal ut-no-print"
         overlayClassName="modal-overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}
