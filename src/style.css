@@ -2735,7 +2735,6 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__section--notes {
   margin: var(--spacing-sm-alt) 0;
-  page-break-before: always;
 }
 
 .button-showSpellSlots {
@@ -3358,6 +3357,55 @@ input[type=radio] + label.aspect-radio-label__type {
 .desc .desc__header {
   font-size: 20px;
 }
+.desc__list-label {
+  text-transform: uppercase;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+.desc table {
+  width: auto;
+  min-width: 50%;
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.desc th,
+.desc caption {
+  background: var(--color-dark-alt);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-family: var(--font-header);
+  padding: var(--spacing-xs);
+  border: 1px solid;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+}
+.desc td {
+  padding: var(--spacing-xs);
+  border: 1px solid;
+  text-align: center;
+  vertical-align: top;
+}
+.desc tr:nth-child(even) {
+  background: var(--color-dark-alt);
+}
+.desc--talent .back-to-top {
+  display: none;
+}
+.desc__list--talent.desc__list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: var(--spacing-sm-alt);
+}
+.desc__list--talent.desc__list li:nth-child(4) {
+  grid-column: 1/-1;
+}
 .desc--mutation .desc__header {
   color: #ff2600;
 }
@@ -3373,30 +3421,6 @@ input[type=radio] + label.aspect-radio-label__type {
 .desc--psionic .desc__header {
   text-shadow: 0 0 10px #ecde82;
   color: #5a2780;
-}
-.desc--talent .back-to-top {
-  display: none;
-}
-.desc--talent table {
-  width: auto;
-  min-width: 50%;
-}
-.desc--talent .desc__list {
-  list-style: none;
-  padding: 0;
-  margin-top: 0;
-  margin-bottom: var(--spacing-xs);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  column-gap: var(--spacing-sm-alt);
-}
-.desc--talent .desc__list li:nth-child(4) {
-  grid-column: 1/-1;
-}
-.desc--talent .desc__list-label {
-  text-transform: uppercase;
-  color: var(--color-accent);
-  font-weight: 600;
 }
 
 body {
@@ -3803,10 +3827,7 @@ input[type=number]::-webkit-outer-spin-button {
   border-bottom: 1px solid #767676;
 }
 
-.char-sheet__section--notes,
-.char-sheet__section--talents,
-.char-sheet__section--spells {
-  position: relative;
+.char-sheet__section--talents {
   page-break-before: always;
 }
 
@@ -3844,6 +3865,20 @@ input[type=number]::-webkit-outer-spin-button {
     color: var(--color-dark-inverted);
     border-bottom-color: var(--color-accent-inverted);
     background-color: var(--color-accent-inverted);
+  }
+  .char-sheet .char-sheet__table__caption--thaumaturgy {
+    color: var(--color-dark-inverted);
+    background-color: var(--color-priest);
+  }
+  .char-sheet .char-sheet__table__caption--thaumaturgy .ut-text-explain {
+    color: var(--color-dark-inverted);
+  }
+  .char-sheet .char-sheet__table__caption--wizardry {
+    color: var(--color-text-inverted);
+    background-color: var(--color-wizard);
+  }
+  .char-sheet .char-sheet__table__caption--wizardry .ut-text-explain {
+    color: var(--color-text-inverted);
   }
   .char-sheet .char-sheet__table__row--zebra {
     background-color: var(--color-zebra-inverted);
@@ -3888,6 +3923,19 @@ input[type=number]::-webkit-outer-spin-button {
   }
   .char-sheet .aspect-icon.aspect-icon--common {
     color: var(--color-accent-inverted);
+  }
+}
+@media print {
+  .desc .desc__list-label {
+    color: var(--color-accent-inverted);
+  }
+  .desc th,
+.desc caption {
+    background: var(--color-accent-inverted);
+    color: var(--color-dark-inverted);
+  }
+  .desc tr:nth-child(even) {
+    background: var(--color-zebra-inverted);
   }
 }
 .ut-position-relative {

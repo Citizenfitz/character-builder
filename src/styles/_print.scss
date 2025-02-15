@@ -90,10 +90,7 @@
 }
 
 // Page breaks
-.char-sheet__section--notes,
-.char-sheet__section--talents,
-.char-sheet__section--spells {
-  position: relative;
+.char-sheet__section--talents {
   page-break-before: always;
 }
 
@@ -129,6 +126,7 @@
       color: var(--color-accent-inverted);
     }
 
+    // tables
     .char-sheet__table {
       color: var(--color-text-inverted);
       border-color: var(--color-border-inverted);
@@ -137,6 +135,20 @@
         color: var(--color-dark-inverted);
         border-bottom-color: var(--color-accent-inverted);
         background-color: var(--color-accent-inverted);
+      }
+      &__caption--thaumaturgy {
+        color: var(--color-dark-inverted);
+        background-color: var(--color-priest);
+        .ut-text-explain {
+          color: var(--color-dark-inverted);
+        }
+      }
+      &__caption--wizardry {
+        color: var(--color-text-inverted);
+        background-color: var(--color-wizard);
+        .ut-text-explain {
+          color: var(--color-text-inverted);
+        }
       }
     }
 
@@ -192,6 +204,22 @@
     }
     .aspect-icon.aspect-icon--common {
       color: var(--color-accent-inverted);
+    }
+  }
+}
+
+@media print {
+  .desc {
+    .desc__list-label {
+      color: var(--color-accent-inverted);
+    }
+    th,
+    caption {
+      background: var(--color-accent-inverted);
+      color: var(--color-dark-inverted);
+    }
+    tr:nth-child(even) {
+      background: var(--color-zebra-inverted);
     }
   }
 }

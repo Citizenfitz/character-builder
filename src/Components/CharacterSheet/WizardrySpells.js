@@ -187,7 +187,7 @@ export default function WizardrySpells(props) {
       </h2>*/}
       {/* If they don't have Wizardry three or its above level,  allow them to pick character wiz1 school */}
       {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
-        <label className="ut-display-inine-block ut-margin-right-2em">
+        <label className="ut-display-inine-block ut-margin-right-2em ut-no-print">
           <span className="label">Wizardy 1 School: </span>
           <div
             className={`ut-margin-right-half-em icon-school icon-school--${wizardrySchools[0]}`}
@@ -222,7 +222,7 @@ export default function WizardrySpells(props) {
       {wizardry2StartLevel > 0 &&
         charLevel >= wizardry2StartLevel &&
         wizardry3StartLevel === 0 && (
-          <label className="ut-display-inine-block">
+          <label className="ut-display-inine-block ut-no-print">
             <span className="label">Wizardy 2 School: </span>
             <div
               className={`ut-margin-right-half-em  icon-school icon-school--${wizardrySchools[1]}`}
