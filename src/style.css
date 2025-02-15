@@ -2845,6 +2845,7 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .attrib input[type=number] {
   -moz-appearance: textfield;
+  border: none;
 }
 .attrib input[type=number]::-webkit-inner-spin-button,
 .attrib input[type=number]::-webkit-outer-spin-button {

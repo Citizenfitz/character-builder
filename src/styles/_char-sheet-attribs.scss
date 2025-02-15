@@ -19,6 +19,7 @@
   // Keep Firefox number input styles
   input[type="number"] {
     -moz-appearance: textfield;
+    border: none;
   }
 
   input[type="number"]::-webkit-inner-spin-button,
