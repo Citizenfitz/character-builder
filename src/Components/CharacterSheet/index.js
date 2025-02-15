@@ -27,6 +27,7 @@ import {
 import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
 import TalentDetails from "./TalentDetails";
+import DisadDetails from "./DisadDetails";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -783,7 +784,7 @@ const CharacterSheet = () => {
       <p className="ut-no-print">
         <b>INSTRUCTIONS:</b> Play around with the form below till you get a
         character you like (it's often easiest to start with a preset). <br />
-        Then print the page to paper or a PDFs. Simple! Desktop-only for now.
+        Then print the page to paper or a PDF. Simple! Desktop-only for now.
       </p>
       <div className="char-sheet__toolbar ut-no-print">
         {/*  ------- TOOLBAR ------ */}
@@ -1215,8 +1216,16 @@ const CharacterSheet = () => {
         />
       </section>
 
+      {/* Add new Disadvantage Details section */}
+      {(character.disad1 !== "none" || character.disad2 !== "none") && (
+        <section className="char-sheet__section char-sheet__section--disad-details">
+          <h2 className="char-sheet__h2">Disadvantage Details</h2>
+          <DisadDetails character={character} />
+        </section>
+      )}
+
       {/*  --------------- TALENT DETAILS -------------- */}
-      <section className="char-sheet__section char-sheet__section--notes">
+      <section className="char-sheet__section char-sheet__section--talent-details">
         <h2 className="char-sheet__h2">Talent Details</h2>
         <TalentDetails character={character} />
       </section>

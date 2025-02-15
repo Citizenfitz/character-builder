@@ -2546,6 +2546,7 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__h2 {
   font-size: 1.5rem;
+  text-transform: uppercase;
 }
 .char-sheet__h3 {
   font-size: 1.25rem;
@@ -2733,8 +2734,10 @@ input[type=radio] + label.aspect-radio-label__type {
   border-top: 1px solid;
   text-transform: uppercase;
 }
-.char-sheet__section--notes {
-  margin: var(--spacing-sm-alt) 0;
+.char-sheet__section--notes, .char-sheet__section--disad-details {
+  margin: var(--spacing-sm-alt) 0 var(--spacing-md) 0;
+  padding-bottom: var(--spacing-md);
+  border-bottom: 1px solid;
 }
 
 .button-showSpellSlots {
@@ -3421,6 +3424,14 @@ input[type=radio] + label.aspect-radio-label__type {
 .desc--psionic .desc__header {
   text-shadow: 0 0 10px #ecde82;
   color: #5a2780;
+}
+.desc__list--disad.desc__list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 body {

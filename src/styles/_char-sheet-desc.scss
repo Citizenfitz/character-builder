@@ -80,4 +80,15 @@
       @include color-psionic-glow;
     }
   }
+  &--disad {
+  }
+
+  &__list--disad.desc__list {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+    margin-bottom: var(--spacing-xs);
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }

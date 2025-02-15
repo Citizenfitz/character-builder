@@ -23,6 +23,7 @@
   }
   &__h2 {
     font-size: 1.5rem;
+    text-transform: uppercase;
   }
   &__h3 {
     font-size: 1.25rem;
@@ -236,8 +237,11 @@
 
   // Sections
   &__section {
-    &--notes {
-      margin: var(--spacing-sm-alt) 0;
+    &--notes,
+    &--disad-details {
+      margin: var(--spacing-sm-alt) 0 var(--spacing-md) 0;
+      padding-bottom: var(--spacing-md);
+      border-bottom: 1px solid;
     }
   }
 }
