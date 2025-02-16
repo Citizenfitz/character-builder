@@ -793,210 +793,214 @@ const CharacterSheet = () => {
 
   return (
     <div className="char-sheet">
-      <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
-      <p className="ut-no-print">
-        <b>INSTRUCTIONS:</b> Play around with the form below till you get a
-        character you like (it's often easiest to start with a preset). <br />
-        Then print the page to paper or a PDF. Simple! Desktop-only for now.
-      </p>
-      <div className="char-sheet__toolbar ut-no-print">
-        {/*  ------- TOOLBAR ------ */}
-        <div>
-          {" "}
-          <PresetsSelector
-            presetData={presetData}
-            handlePreset={handlePreset}
-          />{" "}
-        </div>
-        <div>
-          <button className="char-sheet__button" onClick={rollAttribDice}>
-            <i className="fas fa-dice"></i> Roll Attributes
-          </button>
-        </div>
-        <div>
-          <button className="char-sheet__button" onClick={rollHP}>
-            <i className="fas fa-dice"></i> Roll Hit Points
-          </button>
-        </div>
-        <div>
-          <button className="char-sheet__button" onClick={() => window.print()}>
-            <i className="fas fa-print"></i> Print Sheet
-          </button>
-        </div>
-      </div>
-      <div className="char-sheet__grid">
-        <div className="char-sheet__col char-sheet__col--basics">
-          {/*  ------- NAMEs ------ */}
-          <label>
-            <input
-              type="text"
-              value={character.namePlayer}
-              name="namePlayer"
-              onChange={(e) => handleInputChange(e, "namePlayer")}
-              className="ut-no-print"
-            />
-            <div className="ut-no-screen print-text-input">
-              {character.namePlayer}&nbsp;
-            </div>
-            <br />
-            <span className="label">Player Name</span>
-          </label>
-
-          <label>
-            <input
-              type="text"
-              value={character.nameCharacter}
-              name="namePlayer"
-              className="ut-no-print"
-              onChange={(e) => handleInputChange(e, "nameCharacter")}
-            />
-            <div className="ut-no-screen print-text-input ut-text-cursive ">
-              {character.nameCharacter}
-            </div>
-            <br />
-            <span className="label">Character Name</span>
-          </label>
-
-          <div className="flex-grid flex-grid--flex-start ">
-            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
-              {/*  ------- LEVEL ------ */}
-              <label>
-                <select
-                  onChange={handleCharLevel}
-                  value={character.level}
-                  className="ut-no-print"
-                >
-                  {levelsData.map((i) => (
-                    <option key={i.level} value={i.level}>
-                      {formatNumberSuffix(i.level)}
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {formatNumberSuffix(character.level)}
-                </div>
-                <br />
-                <span className="label">Level</span>
-              </label>
-            </div>
-            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
-              {/*  ------- SEX ------ */}
-              <label>
-                <select
-                  name="gender"
-                  onChange={(e) => handleInputChange(e, "gender")}
-                  value={character.gender}
-                  className="ut-no-print"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female </option>
-                  <option value="other">Other </option>
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {character.gender}
-                </div>
-                <br />
-                <span className="label">Sex</span>
-              </label>
-            </div>
+      <section className="char-sheet__section char-sheet__section--top">
+        <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
+        <p className="ut-no-print">
+          <b>INSTRUCTIONS:</b> Play around with the form below till you get a
+          character you like (it's often easiest to start with a preset). <br />
+          Then print the page to paper or a PDF. Simple! Desktop-only for now.
+        </p>
+        <div className="char-sheet__toolbar ut-no-print">
+          {/*  ------- TOOLBAR ------ */}
+          <div>
+            {" "}
+            <PresetsSelector
+              presetData={presetData}
+              handlePreset={handlePreset}
+            />{" "}
           </div>
-          <div className="flex-grid flex-grid--flex-start ">
-            <div className="flex-grid__child flex-grid__child--auto  ut-margin-right-1em">
-              {/*  ------- RACE ------ */}
-              <label>
-                <button
-                  type="text"
-                  size="8"
-                  className="char-sheet__button--alt ut-no-print"
-                  onClick={toggleRaceModal}
-                >
-                  {character.race}&nbsp;
-                </button>
-                <div className="ut-no-screen print-text-input">
-                  {character.race}
-                </div>
-                <br />
-                <span className="label">Race</span>
-              </label>
-            </div>
-            <div className="flex-grid__child flex-grid__child--auto">
-              {/*  ------- CLASS / "Aspects" ------ */}
-              <Aspects
-                character={character}
-                handleCharAspect={handleCharAspect}
-              ></Aspects>
-            </div>
+          <div>
+            <button className="char-sheet__button" onClick={rollAttribDice}>
+              <i className="fas fa-dice"></i> Roll Attributes
+            </button>
           </div>
-
-          {/*  --------------- ATTRIBUTES -------------- */}
-          <section>
-            <Attributes
-              onChange={updateAttributes}
-              attributes={character.attributes}
-              updated={character.attributesUpdates}
-              onRollResults={attributeDice}
-              onRoll={rollDice}
-            />
-          </section>
+          <div>
+            <button className="char-sheet__button" onClick={rollHP}>
+              <i className="fas fa-dice"></i> Roll Hit Points
+            </button>
+          </div>
+          <div>
+            <button
+              className="char-sheet__button"
+              onClick={() => window.print()}
+            >
+              <i className="fas fa-print"></i> Print Sheet
+            </button>
+          </div>
         </div>
+        <div className="char-sheet__grid">
+          <div className="char-sheet__col char-sheet__col--basics">
+            {/*  ------- NAMEs ------ */}
+            <label>
+              <input
+                type="text"
+                value={character.namePlayer}
+                name="namePlayer"
+                onChange={(e) => handleInputChange(e, "namePlayer")}
+                className="ut-no-print"
+              />
+              <div className="ut-no-screen print-text-input">
+                {character.namePlayer}&nbsp;
+              </div>
+              <br />
+              <span className="label">Player Name</span>
+            </label>
 
-        <div className="char-sheet__col char-sheet__col--stats">
-          {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
-          <div className="char-sheet__quick-ref">
-            <div className="char-sheet__quick-ref-item">
-              <div className="char-sheet__quick-ref-text">
-                <b>{character.ac}</b>
+            <label>
+              <input
+                type="text"
+                value={character.nameCharacter}
+                name="namePlayer"
+                className="ut-no-print"
+                onChange={(e) => handleInputChange(e, "nameCharacter")}
+              />
+              <div className="ut-no-screen print-text-input ut-text-cursive ">
+                {character.nameCharacter}
               </div>
-              <h2 className="char-sheet__quick-ref-footer">AC</h2>
-            </div>
-            <div className="char-sheet__quick-ref-item">
-              <div className="char-sheet__quick-ref-text">
-                <input
-                  className="hp  ut-no-print"
-                  type="number"
-                  inputMode="numeric"
-                  min={0}
-                  max={999}
-                  value={character.hp.total}
-                  onChange={manuallyUpdateHP}
-                />
-                <b className="ut-no-screen">{character.hp.total}</b>
+              <br />
+              <span className="label">Character Name</span>
+            </label>
+
+            <div className="flex-grid flex-grid--flex-start ">
+              <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+                {/*  ------- LEVEL ------ */}
+                <label>
+                  <select
+                    onChange={handleCharLevel}
+                    value={character.level}
+                    className="ut-no-print"
+                  >
+                    {levelsData.map((i) => (
+                      <option key={i.level} value={i.level}>
+                        {formatNumberSuffix(i.level)}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {formatNumberSuffix(character.level)}
+                  </div>
+                  <br />
+                  <span className="label">Level</span>
+                </label>
               </div>
-              <h2 className="char-sheet__quick-ref-footer">HP</h2>
-            </div>
-            <div className="char-sheet__quick-ref-item">
-              <div className="char-sheet__quick-ref-text">
-                <b>{character.movement}'</b>
+              <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+                {/*  ------- SEX ------ */}
+                <label>
+                  <select
+                    name="gender"
+                    onChange={(e) => handleInputChange(e, "gender")}
+                    value={character.gender}
+                    className="ut-no-print"
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female </option>
+                    <option value="other">Other </option>
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {character.gender}
+                  </div>
+                  <br />
+                  <span className="label">Sex</span>
+                </label>
               </div>
-              <h2 className="char-sheet__quick-ref-footer">Move</h2>
             </div>
-            <div className="char-sheet__quick-ref-item">
-              <div className="char-sheet__quick-ref-text">
-                <span className="label">Roll Mod: </span>
-                <b>{formatNumberModifier(character.attributes.wisdom.mod)}</b>
-                <br />
-                <span className="label">Passive:</span>{" "}
-                <b>{character.perception}</b>
+            <div className="flex-grid flex-grid--flex-start ">
+              <div className="flex-grid__child flex-grid__child--auto  ut-margin-right-1em">
+                {/*  ------- RACE ------ */}
+                <label>
+                  <button
+                    type="text"
+                    size="8"
+                    className="char-sheet__button--alt ut-no-print"
+                    onClick={toggleRaceModal}
+                  >
+                    {character.race}&nbsp;
+                  </button>
+                  <div className="ut-no-screen print-text-input">
+                    {character.race}
+                  </div>
+                  <br />
+                  <span className="label">Race</span>
+                </label>
               </div>
-              <h2 className="char-sheet__quick-ref-footer">Perc.</h2>
+              <div className="flex-grid__child flex-grid__child--auto">
+                {/*  ------- CLASS / "Aspects" ------ */}
+                <Aspects
+                  character={character}
+                  handleCharAspect={handleCharAspect}
+                ></Aspects>
+              </div>
             </div>
+
+            {/*  --------------- ATTRIBUTES -------------- */}
+            <section>
+              <Attributes
+                onChange={updateAttributes}
+                attributes={character.attributes}
+                updated={character.attributesUpdates}
+                onRollResults={attributeDice}
+                onRoll={rollDice}
+              />
+            </section>
           </div>
-          {/*  ------- SAVING THROW MODS ------ */}
 
-          <div className="char-sheet__quick-ref-item char-sheet__quick-ref--save-mods">
-            <ul className="char-sheet__quick-ref-save-mods-list">
-              <li className="char-sheet__quick-ref-save-mods-list-item">
-                <span className="fas fa-pointer"></span>+
-                {levelsData[character.level - 1].saveBonus} to all{" "}
-                <span className="ut-text-explain"> (for level)</span>
-              </li>
-              <li className="char-sheet__quick-ref-save-mods-list-item">
-                <div
-                  className={`aspect-icon aspect-icon--${character.aspect}`}
-                ></div>{" "}
-                {character.saveModsClass}
-              </li>
-              {/* Remove the race saving throw mods for now 
+          <div className="char-sheet__col char-sheet__col--stats">
+            {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
+            <div className="char-sheet__quick-ref">
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <b>{character.ac}</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">AC</h2>
+              </div>
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <input
+                    className="hp  ut-no-print"
+                    type="number"
+                    inputMode="numeric"
+                    min={0}
+                    max={999}
+                    value={character.hp.total}
+                    onChange={manuallyUpdateHP}
+                  />
+                  <b className="ut-no-screen">{character.hp.total}</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">HP</h2>
+              </div>
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <b>{character.movement}'</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">Move</h2>
+              </div>
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <span className="label">Roll Mod: </span>
+                  <b>{formatNumberModifier(character.attributes.wisdom.mod)}</b>
+                  <br />
+                  <span className="label">Passive:</span>{" "}
+                  <b>{character.perception}</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">Perc.</h2>
+              </div>
+            </div>
+            {/*  ------- SAVING THROW MODS ------ */}
+
+            <div className="char-sheet__quick-ref-item char-sheet__quick-ref--save-mods">
+              <ul className="char-sheet__quick-ref-save-mods-list">
+                <li className="char-sheet__quick-ref-save-mods-list-item">
+                  <span className="fas fa-pointer"></span>+
+                  {levelsData[character.level - 1].saveBonus} to all{" "}
+                  <span className="ut-text-explain"> (for level)</span>
+                </li>
+                <li className="char-sheet__quick-ref-save-mods-list-item">
+                  <div
+                    className={`aspect-icon aspect-icon--${character.aspect}`}
+                  ></div>{" "}
+                  {character.saveModsClass}
+                </li>
+                {/* Remove the race saving throw mods for now 
               {character.saveModsRace.map((note, i) => (
                 <li
                   className="char-sheet__quick-ref-save-mods-list-item"
@@ -1007,181 +1011,184 @@ const CharacterSheet = () => {
                 </li>
               ))}
                  */}
-            </ul>
-            <h2 className="char-sheet__quick-ref-footer">Saving Throw Mods</h2>
+              </ul>
+              <h2 className="char-sheet__quick-ref-footer">
+                Saving Throw Mods
+              </h2>
+            </div>
+
+            <div className="flex-grid  flex-grid--flex-start">
+              <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+                {/*  ------- ARMOR ------ */}
+                <label>
+                  <select
+                    name="armor"
+                    value={character.armorIndex}
+                    onChange={handleArmorChange}
+                    className="ut-no-print"
+                  >
+                    {armorData.map((armor, i) => (
+                      <option key={armor.armor} value={i}>
+                        {armor.armor} (+{armor.modifier})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {armorData[character.armorIndex].armor}{" "}
+                    {character.armorIndex > 0 && (
+                      <span>(+{armorData[character.armorIndex].modifier})</span>
+                    )}
+                  </div>
+                  <br />
+                  <span className="label">Armor</span>
+                </label>
+              </div>
+              <div className="flex-grid__child flex-grid__child--auto">
+                {/*  ------- SHIELD ------ */}
+                {/*  TODO: create data for shield as opposed to putting directly into form element */}
+                <label>
+                  <select
+                    name="shield"
+                    value={character.shield}
+                    onChange={(e) => handleShieldChange(e)}
+                    className="ut-no-print"
+                  >
+                    {shieldData.map((shield, i) => (
+                      <option key={shield.name} value={i}>
+                        {shield.name} (+{shield.modifier})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {character.shield}
+                  </div>
+                  <br />
+                  <span className="label">Shield</span>
+                </label>
+              </div>
+            </div>
+            {/*  ------- MELEE WEAPON ------ */}
+            <label>
+              <select
+                name="meleeWeapon"
+                value={character.meleeWeaponIndex}
+                onChange={handleMeleeWeaponChange}
+                className="ut-no-print"
+              >
+                {meleeWeaponData.map((weapon, i) => (
+                  <option key={weapon.name} value={i}>
+                    {weapon.name} ({weapon.damage})
+                  </option>
+                ))}
+              </select>
+              <div className="ut-no-screen print-text-input">
+                {meleeWeaponData[character.meleeWeaponIndex].name}
+                {character.meleeWeaponIndex > 0 && (
+                  <span>
+                    ({meleeWeaponData[character.meleeWeaponIndex].damage})
+                  </span>
+                )}
+              </div>
+              <br />
+              <span className="label">Melee Weapon</span>
+            </label>
+
+            {/*  ------- RANGED WEAPON ------ */}
+            <label>
+              <select
+                name="rangedWeapon"
+                value={character.rangedWeaponIndex}
+                onChange={handleRangedWeaponChange}
+                className="ut-no-print"
+              >
+                {rangedWeaponData.map((weapon, i) => (
+                  <option key={weapon.name} value={i}>
+                    {weapon.name} ({weapon.damage})
+                  </option>
+                ))}
+              </select>
+              <div className="ut-no-screen print-text-input">
+                {rangedWeaponData[character.rangedWeaponIndex].name}
+                {character.rangedWeaponIndex > 0 && (
+                  <span>
+                    ({rangedWeaponData[character.rangedWeaponIndex].damage})
+                  </span>
+                )}
+              </div>
+              <br />
+              <span className="label">Ranged Weapon</span>
+            </label>
           </div>
 
-          <div className="flex-grid  flex-grid--flex-start">
-            <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
-              {/*  ------- ARMOR ------ */}
-              <label>
-                <select
-                  name="armor"
-                  value={character.armorIndex}
-                  onChange={handleArmorChange}
-                  className="ut-no-print"
-                >
-                  {armorData.map((armor, i) => (
-                    <option key={armor.armor} value={i}>
-                      {armor.armor} (+{armor.modifier})
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {armorData[character.armorIndex].armor}{" "}
-                  {character.armorIndex > 0 && (
-                    <span>(+{armorData[character.armorIndex].modifier})</span>
-                  )}
-                </div>
-                <br />
-                <span className="label">Armor</span>
-              </label>
+          <div className="char-sheet__col char-sheet__col--details">
+            {/*  ------- EXPLAINER BOX ------ */}
+            <div className="char-sheet__quick-ref-item  char-sheet__quick-ref--explain">
+              <div className="char-sheet__quick-ref-text"></div>
+              <h2 className="char-sheet__quick-ref-footer">
+                Symbol or Character Sketch
+              </h2>
             </div>
-            <div className="flex-grid__child flex-grid__child--auto">
-              {/*  ------- SHIELD ------ */}
-              {/*  TODO: create data for shield as opposed to putting directly into form element */}
-              <label>
-                <select
-                  name="shield"
-                  value={character.shield}
-                  onChange={(e) => handleShieldChange(e)}
-                  className="ut-no-print"
-                >
-                  {shieldData.map((shield, i) => (
-                    <option key={shield.name} value={i}>
-                      {shield.name} (+{shield.modifier})
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {character.shield}
-                </div>
-                <br />
-                <span className="label">Shield</span>
-              </label>
-            </div>
-          </div>
-          {/*  ------- MELEE WEAPON ------ */}
-          <label>
-            <select
-              name="meleeWeapon"
-              value={character.meleeWeaponIndex}
-              onChange={handleMeleeWeaponChange}
-              className="ut-no-print"
-            >
-              {meleeWeaponData.map((weapon, i) => (
-                <option key={weapon.name} value={i}>
-                  {weapon.name} ({weapon.damage})
-                </option>
-              ))}
-            </select>
-            <div className="ut-no-screen print-text-input">
-              {meleeWeaponData[character.meleeWeaponIndex].name}
-              {character.meleeWeaponIndex > 0 && (
-                <span>
-                  ({meleeWeaponData[character.meleeWeaponIndex].damage})
-                </span>
-              )}
-            </div>
-            <br />
-            <span className="label">Melee Weapon</span>
-          </label>
 
-          {/*  ------- RANGED WEAPON ------ */}
-          <label>
-            <select
-              name="rangedWeapon"
-              value={character.rangedWeaponIndex}
-              onChange={handleRangedWeaponChange}
-              className="ut-no-print"
-            >
-              {rangedWeaponData.map((weapon, i) => (
-                <option key={weapon.name} value={i}>
-                  {weapon.name} ({weapon.damage})
-                </option>
-              ))}
-            </select>
-            <div className="ut-no-screen print-text-input">
-              {rangedWeaponData[character.rangedWeaponIndex].name}
-              {character.rangedWeaponIndex > 0 && (
-                <span>
-                  ({rangedWeaponData[character.rangedWeaponIndex].damage})
-                </span>
-              )}
-            </div>
-            <br />
-            <span className="label">Ranged Weapon</span>
-          </label>
+            {/*  ------- ALIGNMENT ------ */}
+            <label>
+              <select
+                name="alignment"
+                onChange={(e) => handleInputChange(e, "alignment")}
+                value={character.alignment}
+                className="ut-no-print"
+              >
+                <option value="Lawful Good">Lawful Good </option>
+                <option value="Neutral Good">Neutral Good </option>
+                <option value="Chaotic Good">Chaotic Good </option>
+                <option value="Lawful Neutral">Lawful Neutral </option>
+                <option value="Neutral">Neutral</option>
+                <option value="Chaotic Neutral">Chaotic Neutral </option>
+                <option value="Lawful Evil">Lawful Evil </option>
+                <option value="Neutral Evil">Neutral Evil</option>
+                <option value="Chaotic Evil">Chaotic Evil </option>
+              </select>
+              <div className="ut-no-screen print-text-input">
+                {character.alignment}
+              </div>
+              <br />
+              <span className="label">Alignment</span>
+            </label>
+
+            {/*  ------- DISADS ------ */}
+            <label>
+              <DisadSelector
+                id="disad1"
+                character={character}
+                handleSetDisad={handleSetDisad}
+              />
+              <span className="label">
+                Disad 1{" "}
+                <span className="ut-text-explain ut-no-print">(optional)</span>
+              </span>
+            </label>
+
+            <label>
+              <DisadSelector
+                id="disad2"
+                character={character}
+                handleSetDisad={handleSetDisad}
+              />
+              <span className="label">
+                Disad 2{" "}
+                <span className="ut-text-explain ut-no-print">(optional)</span>
+              </span>
+            </label>
+
+            {/*  ------- XP ------ */}
+            <label>
+              <input type="text" disabled className="ut-no-print" />
+              <div className="ut-no-screen print-text-input"></div>
+              <br />
+              <span className="label">XP/AP</span>
+            </label>
+          </div>
         </div>
-
-        <div className="char-sheet__col char-sheet__col--details">
-          {/*  ------- EXPLAINER BOX ------ */}
-          <div className="char-sheet__quick-ref-item  char-sheet__quick-ref--explain">
-            <div className="char-sheet__quick-ref-text"></div>
-            <h2 className="char-sheet__quick-ref-footer">
-              Symbol or Character Sketch
-            </h2>
-          </div>
-
-          {/*  ------- ALIGNMENT ------ */}
-          <label>
-            <select
-              name="alignment"
-              onChange={(e) => handleInputChange(e, "alignment")}
-              value={character.alignment}
-              className="ut-no-print"
-            >
-              <option value="Lawful Good">Lawful Good </option>
-              <option value="Neutral Good">Neutral Good </option>
-              <option value="Chaotic Good">Chaotic Good </option>
-              <option value="Lawful Neutral">Lawful Neutral </option>
-              <option value="Neutral">Neutral</option>
-              <option value="Chaotic Neutral">Chaotic Neutral </option>
-              <option value="Lawful Evil">Lawful Evil </option>
-              <option value="Neutral Evil">Neutral Evil</option>
-              <option value="Chaotic Evil">Chaotic Evil </option>
-            </select>
-            <div className="ut-no-screen print-text-input">
-              {character.alignment}
-            </div>
-            <br />
-            <span className="label">Alignment</span>
-          </label>
-
-          {/*  ------- DISADS ------ */}
-          <label>
-            <DisadSelector
-              id="disad1"
-              character={character}
-              handleSetDisad={handleSetDisad}
-            />
-            <span className="label">
-              Disad 1{" "}
-              <span className="ut-text-explain ut-no-print">(optional)</span>
-            </span>
-          </label>
-
-          <label>
-            <DisadSelector
-              id="disad2"
-              character={character}
-              handleSetDisad={handleSetDisad}
-            />
-            <span className="label">
-              Disad 2{" "}
-              <span className="ut-text-explain ut-no-print">(optional)</span>
-            </span>
-          </label>
-
-          {/*  ------- XP ------ */}
-          <label>
-            <input type="text" disabled className="ut-no-print" />
-            <div className="ut-no-screen print-text-input"></div>
-            <br />
-            <span className="label">XP/AP</span>
-          </label>
-        </div>
-      </div>
+      </section>
       {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
       <section className="char-sheet__section char-sheet__section--talents">
         <LevelsTable

@@ -3,9 +3,10 @@
   max-width: var(--container-char-sheet);
   background: var(--color-dark);
   color: var(--color-text);
-  border-radius: --border-radius-lg;
-  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
+  // padding: var(--spacing-sm) 0;
   margin: 0 auto;
+  border: 1px solid var(--color-dark);
 
   .default-typography {
     font-size: 1rem;
@@ -37,6 +38,21 @@
   }
   li {
     margin-bottom: 0.25em;
+  }
+
+  // Sections
+  &__section {
+    padding: var(--spacing-sm) var(--spacing-md);
+
+    // Start zebra striping from 3rd child
+    &:nth-child(n + 3):nth-child(odd) {
+      background-color: var(--color-dark-alt);
+      padding: var(--spacing-md);
+    }
+
+    &:last-child {
+      border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+    }
   }
 
   /***** LABELS *****/
@@ -129,8 +145,8 @@
   &__toolbar {
     background: #341749;
     padding: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm-alt);
-    border-radius: 8px;
+    margin: var(--spacing-sm) 0 var(--spacing-sm-alt) 0;
+    border-radius: var(--border-radius-lg);
     border: 1px solid var(--color-accent);
     display: flex;
     align-items: center;
@@ -176,6 +192,7 @@
       min-height: 124px;
       position: relative;
       border: 1px solid var(--color-accent);
+      // border-radius: var(--border-radius-lg);
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -232,17 +249,7 @@
       text-align: center;
       border-top: 1px solid;
       text-transform: uppercase;
-    }
-  }
-
-  // Sections
-  &__section {
-    &--notes,
-    &--disad-details,
-    &--mutation-details {
-      margin: var(--spacing-sm-alt) 0 var(--spacing-md) 0;
-      padding-bottom: var(--spacing-md);
-      border-bottom: 1px solid;
+      // border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
     }
   }
 
@@ -306,9 +313,6 @@
 
     &-details {
       margin-top: var(--spacing-sm);
-      display: flex;
-      flex-direction: column;
-      gap: var(--spacing-xs);
     }
   }
 }

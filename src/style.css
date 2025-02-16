@@ -2526,9 +2526,9 @@ input[type=radio] + label.aspect-radio-label__type {
   max-width: var(--container-char-sheet);
   background: var(--color-dark);
   color: var(--color-text);
-  border-radius: --border-radius-lg;
-  padding: var(--spacing-md);
+  border-radius: var(--border-radius-lg);
   margin: 0 auto;
+  border: 1px solid var(--color-dark);
   /***** LABELS *****/
   /***** INPUTS *****/
 }
@@ -2559,6 +2559,16 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet li {
   margin-bottom: 0.25em;
+}
+.char-sheet__section {
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+.char-sheet__section:nth-child(n + 3):nth-child(odd) {
+  background-color: var(--color-dark-alt);
+  padding: var(--spacing-md);
+}
+.char-sheet__section:last-child {
+  border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
 }
 .char-sheet label {
   font-family: var(--font-header);
@@ -2641,8 +2651,8 @@ input[type=radio] + label.aspect-radio-label__type {
 .char-sheet__toolbar {
   background: #341749;
   padding: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm-alt);
-  border-radius: 8px;
+  margin: var(--spacing-sm) 0 var(--spacing-sm-alt) 0;
+  border-radius: var(--border-radius-lg);
   border: 1px solid var(--color-accent);
   display: flex;
   align-items: center;
@@ -2734,11 +2744,6 @@ input[type=radio] + label.aspect-radio-label__type {
   border-top: 1px solid;
   text-transform: uppercase;
 }
-.char-sheet__section--notes, .char-sheet__section--disad-details, .char-sheet__section--mutation-details {
-  margin: var(--spacing-sm-alt) 0 var(--spacing-md) 0;
-  padding-bottom: var(--spacing-md);
-  border-bottom: 1px solid;
-}
 .char-sheet__mutations-controls {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -2791,9 +2796,6 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__mutations-details {
   margin-top: var(--spacing-sm);
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
 }
 
 .button-showSpellSlots {
