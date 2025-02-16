@@ -247,8 +247,6 @@
   }
 
   &__mutations {
-    margin-top: var(--spacing-sm-alt);
-
     &-controls {
       display: grid;
       grid-template-columns: auto auto auto;
@@ -304,6 +302,13 @@
         vertical-align: top;
         min-width: 230px;
       }
+    }
+
+    &-details {
+      margin-top: var(--spacing-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-xs);
     }
   }
 }

@@ -2739,9 +2739,6 @@ input[type=radio] + label.aspect-radio-label__type {
   padding-bottom: var(--spacing-md);
   border-bottom: 1px solid;
 }
-.char-sheet__mutations {
-  margin-top: var(--spacing-sm-alt);
-}
 .char-sheet__mutations-controls {
   display: grid;
   grid-template-columns: auto auto auto;
@@ -2791,6 +2788,12 @@ input[type=radio] + label.aspect-radio-label__type {
   text-align: left;
   vertical-align: top;
   min-width: 230px;
+}
+.char-sheet__mutations-details {
+  margin-top: var(--spacing-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
 }
 
 .button-showSpellSlots {
@@ -3466,7 +3469,7 @@ input[type=radio] + label.aspect-radio-label__type {
   color: var(--color-mutation);
 }
 .desc--defect .desc__header {
-  color: #04a54f;
+  color: var(--color-defect);
 }
 .desc--defect tbody tr:nth-child(odd) {
   background: #beebd1;

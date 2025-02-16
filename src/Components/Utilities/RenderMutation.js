@@ -20,11 +20,8 @@ const RenderMutation = (props) => {
 
   return (
     <div className="desc desc--mutation">
-      <h2>{props.name}</h2>
+      <h3 className="desc__header desc__header--mutation">{props.name}</h3>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
-      <a href="#main" className="back-to-top">
-        <span className="fas fa-triangle-up"></span> Back to Top
-      </a>
     </div>
   );
 };

@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { mutationsData } from "../../Data";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import RenderMutation from "../Utilities/RenderMutation";
+import RenderDefect from "../Utilities/RenderDefect";
 
 const MUTATION_OPTIONS = [
   "Acid Attack",
@@ -318,6 +320,22 @@ const MutationDetails = ({ character, setCharacter }) => {
           ))}
         </tbody>
       </table>
+
+      <div className="char-sheet__mutations-details">
+        {[1, 2, 3, 4].map((num) => {
+          const mutation = character.mutations[`mutation${num}`];
+          return mutation && mutation !== "none" ? (
+            <RenderMutation key={`mutation-${num}`} name={mutation} />
+          ) : null;
+        })}
+
+        {[1, 2, 3].map((num) => {
+          const defect = character.mutations[`defect${num}`];
+          return defect && defect !== "none" ? (
+            <RenderDefect key={`defect-${num}`} name={defect} />
+          ) : null;
+        })}
+      </div>
     </div>
   );
 };
