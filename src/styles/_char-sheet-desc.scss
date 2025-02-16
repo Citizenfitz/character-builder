@@ -61,10 +61,7 @@
 
   &--mutation {
     .desc__header {
-      color: $color-mutation;
-    }
-    tbody tr:nth-child(odd) {
-      background: $color-mutation-zebra;
+      color: var(--color-mutation);
     }
   }
   &--defect {
@@ -90,5 +87,39 @@
     margin-bottom: var(--spacing-xs);
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  &__controls {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    align-items: center;
+  }
+
+  &__control {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+
+    select {
+      margin-left: var(--spacing-xs);
+      min-width: 80px;
+    }
+  }
+
+  &__table {
+    th {
+      &:first-child {
+        // Mutations header
+        background: var(--color-mutation);
+        color: var(--color-dark-inverted); // White text for contrast
+      }
+      &:last-child {
+        // Defects header
+        background: var(--color-defect);
+        color: var(--color-dark-inverted); // White text for contrast
+      }
+    }
   }
 }

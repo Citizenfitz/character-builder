@@ -2734,10 +2734,63 @@ input[type=radio] + label.aspect-radio-label__type {
   border-top: 1px solid;
   text-transform: uppercase;
 }
-.char-sheet__section--notes, .char-sheet__section--disad-details {
+.char-sheet__section--notes, .char-sheet__section--disad-details, .char-sheet__section--mutation-details {
   margin: var(--spacing-sm-alt) 0 var(--spacing-md) 0;
   padding-bottom: var(--spacing-md);
   border-bottom: 1px solid;
+}
+.char-sheet__mutations {
+  margin-top: var(--spacing-sm-alt);
+}
+.char-sheet__mutations-controls {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  align-items: center;
+}
+.char-sheet__mutations-control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+.char-sheet__mutations-control select {
+  margin-left: var(--spacing-xs);
+  min-width: 80px;
+}
+.char-sheet__mutations-table {
+  width: auto;
+  min-width: 50%;
+  margin-top: var(--spacing-xs);
+  margin-bottom: var(--spacing-sm-alt);
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+.char-sheet__mutations-table th {
+  background: var(--color-dark-alt);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-family: var(--font-header);
+  padding: var(--spacing-xs);
+  border: 1px solid;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+}
+.char-sheet__mutations-table th:first-child {
+  background: var(--color-mutation);
+  color: var(--color-dark-inverted);
+}
+.char-sheet__mutations-table th:last-child {
+  background: var(--color-defect);
+  color: var(--color-dark-inverted);
+}
+.char-sheet__mutations-table td {
+  padding: var(--spacing-xs);
+  border: 1px solid;
+  text-align: left;
+  vertical-align: top;
+  min-width: 230px;
 }
 
 .button-showSpellSlots {
@@ -3410,10 +3463,7 @@ input[type=radio] + label.aspect-radio-label__type {
   grid-column: 1/-1;
 }
 .desc--mutation .desc__header {
-  color: #ff2600;
-}
-.desc--mutation tbody tr:nth-child(odd) {
-  background: #f7d2bc;
+  color: var(--color-mutation);
 }
 .desc--defect .desc__header {
   color: #04a54f;
@@ -3432,6 +3482,30 @@ input[type=radio] + label.aspect-radio-label__type {
   margin-bottom: var(--spacing-xs);
   display: grid;
   grid-template-columns: 1fr;
+}
+.desc__controls {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  align-items: center;
+}
+.desc__control {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+.desc__control select {
+  margin-left: var(--spacing-xs);
+  min-width: 80px;
+}
+.desc__table th:first-child {
+  background: var(--color-mutation);
+  color: var(--color-dark-inverted);
+}
+.desc__table th:last-child {
+  background: var(--color-defect);
+  color: var(--color-dark-inverted);
 }
 
 body {

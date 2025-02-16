@@ -28,6 +28,7 @@ import ThaumaturgySpells from "./ThaumaturgySpells";
 import WizardrySpells from "./WizardrySpells";
 import TalentDetails from "./TalentDetails";
 import DisadDetails from "./DisadDetails";
+import MutationDetails from "./MutationDetails";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -117,6 +118,18 @@ const characterDefaults = {
   wizardry1StartLevel: 0,
   wizardry2StartLevel: 0,
   wizardry3StartLevel: 0,
+  mutations: {
+    numMutations: 1,
+    numDefects: 0,
+    mutation1: "none",
+    mutation2: "none",
+    mutation3: "none",
+    mutation4: "none",
+    mutation5: "none",
+    defect1: "none",
+    defect2: "none",
+    defect3: "none",
+  },
 };
 
 const useLocalStorage = JSON.parse(localStorage.getItem("autosave"));
@@ -1203,6 +1216,14 @@ const CharacterSheet = () => {
             useLocalStorage={useLocalStorage}
           />
         )}
+
+      {/* Mutation Details section - only shows for Mutant race */}
+      {character.race === "Mutant" && (
+        <section className="char-sheet__section char-sheet__section--mutation-details">
+          <h2 className="char-sheet__h2">Mutation Details</h2>
+          <MutationDetails character={character} setCharacter={setCharacter} />
+        </section>
+      )}
 
       {/*  --------------- NOTES -------------- */}
       <section className="char-sheet__section char-sheet__section--notes">
