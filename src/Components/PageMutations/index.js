@@ -2,7 +2,19 @@ import React from "react";
 import { mutationsData, mutationDefectsData } from "../../Data/";
 import RenderMutation from "../Utilities/RenderMutation";
 import RenderDefect from "../Utilities/RenderDefect";
+
+const getRollRange = (currentRoll, prevRoll = 0) => {
+  const start = prevRoll + 1;
+  return start === currentRoll ? start : `${start}-${currentRoll}`;
+};
+
 const PageMutations = () => {
+  // Sort data by roll value to ensure correct ranges
+  const sortedMutations = [...mutationsData].sort((a, b) => a.roll - b.roll);
+  const sortedDefects = [...mutationDefectsData].sort(
+    (a, b) => a.roll - b.roll
+  );
+
   return (
     <div className="newstyle layou__page layout__page--aside">
       <aside className="content-aside">
@@ -15,9 +27,14 @@ const PageMutations = () => {
             </tr>
           </thead>
           <tbody>
-            {mutationsData.map((mutation) => (
+            {sortedMutations.map((mutation, index) => (
               <tr key={mutation.id}>
-                <td className="ut-align-center">{mutation.roll}</td>
+                <td className="ut-align-center">
+                  {getRollRange(
+                    mutation.roll,
+                    index > 0 ? sortedMutations[index - 1].roll : 0
+                  )}
+                </td>
                 <td>
                   <a href={`#${mutation.name}`} className="aside__link">
                     {mutation.name}
@@ -42,9 +59,14 @@ const PageMutations = () => {
             </tr>
           </thead>
           <tbody>
-            {mutationDefectsData.map((defect) => (
+            {sortedDefects.map((defect, index) => (
               <tr key={defect.id}>
-                <td className="ut-align-center">{defect.roll}</td>
+                <td className="ut-align-center">
+                  {getRollRange(
+                    defect.roll,
+                    index > 0 ? sortedDefects[index - 1].roll : 0
+                  )}
+                </td>
                 <td>
                   <a href={`#${defect.name}`} className="aside__link">
                     {defect.name}
@@ -62,7 +84,7 @@ const PageMutations = () => {
 
       <div className="content-main">
         <h1>Mutations</h1>
-        {mutationsData.map((mutation) => (
+        {sortedMutations.map((mutation) => (
           <div key={mutation.name} id={mutation.name}>
             <RenderMutation name={mutation.name}></RenderMutation>
           </div>
@@ -71,7 +93,7 @@ const PageMutations = () => {
         <hr />
 
         <h1>Mutation Defects</h1>
-        {mutationDefectsData.map((defect) => (
+        {sortedDefects.map((defect) => (
           <div key={defect.name} id={defect.name}>
             <RenderDefect name={defect.name}></RenderDefect>
           </div>
