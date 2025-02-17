@@ -298,53 +298,44 @@ const CharacterSheet = () => {
     const preset = document.getElementById("presetSelector");
     if (preset.value !== "choose") {
       preset.value = "choose";
-      handlePreset({ target: { value: "choose" } });
+      handlePreset("choose");
     }
   };
 
   const handlePreset = (e) => {
-    const { value } = e.target;
-    let presetValues = {};
-    if (value === "choose") {
-      presetValues = {
-        ...character,
+    // Handle both direct preset ID and event cases
+    const presetId = e.target ? e.target.value : e;
+
+    // Early return if "choose" is selected
+    if (presetId === "choose") {
+      setCharacter((prev) => ({
+        ...prev,
         talents: {
-          talentAssigned1: characterDefaults.talents.talentAssigned1,
-          talentAssigned2: characterDefaults.talents.talentAssigned2,
-          talentLevel1: characterDefaults.talents.talentLevel1,
-          talentKnave1: characterDefaults.talents.talentKnave1,
-          talentDisad1: characterDefaults.talents.talentDisad1,
-          talentDisad2: characterDefaults.talents.talentDisad2,
-          talentLevel3: characterDefaults.talents.talentLevel3,
-          talentLevel5: characterDefaults.talents.talentLevel5,
-          talentLevel7: characterDefaults.talents.talentLevel7,
-          talentLevel9: characterDefaults.talents.talentLevel9,
+          ...characterDefaults.talents,
         },
         disad1: characterDefaults.disad1,
         disad2: characterDefaults.disad2,
         talentsUpdated: Date.now(),
-      };
-    } else {
-      presetValues = {
-        ...character,
-        aspect: presetData[value].aspect,
-        talents: {
-          talentAssigned1: presetData[value].talents.talentAssigned1,
-          talentAssigned2: presetData[value].talents.talentAssigned2,
-          talentLevel1: presetData[value].talents.talentLevel1,
-          talentKnave1: presetData[value].talents.talentKnave1,
-          talentDisad1: presetData[value].talents.talentDisad1,
-          talentDisad2: presetData[value].talents.talentDisad2,
-          talentLevel3: presetData[value].talents.talentLevel3,
-          talentLevel5: presetData[value].talents.talentLevel5,
-          talentLevel7: presetData[value].talents.talentLevel7,
-          talentLevel9: presetData[value].talents.talentLevel9,
-        },
-        disad1: presetData[value].disad1,
-        disad2: presetData[value].disad2,
-        talentsUpdated: Date.now(),
-      };
+      }));
+      return;
     }
+
+    // Find the preset
+    const preset = presetData[presetId]; // Changed from find to direct index access
+    if (!preset) return;
+
+    // Create new character with preset data
+    let presetValues = {
+      ...character,
+      aspect: preset.aspect,
+      talents: {
+        ...characterDefaults.talents,
+        ...preset.talents,
+      },
+      disad1: preset.disad1,
+      disad2: preset.disad2,
+      talentsUpdated: Date.now(),
+    };
 
     // check if any of the talents are spell casting talents
     presetValues = validateSpellCaster(presetValues);
@@ -355,34 +346,17 @@ const CharacterSheet = () => {
       whichTalentAspect(presetValues.talents.talentLevel1) === "race";
 
     if (hadRaceTalent) {
-      // remove attribute bonus from previous race
       presetValues = removeRaceBonus(presetValues, character.race);
       presetValues.race = "Human";
     }
     if (hasRaceTalent) {
-      // add attribute bonus from currently selected race
       presetValues = addRaceBonus(
         presetValues,
         presetValues.talents.talentLevel1
       );
     }
 
-    const hasDurabilityTalent = Object.entries(
-      presetData[value].talents
-    ).filter(([key, val]) => val === "Durability")[0];
-
-    if (hasDurabilityTalent) {
-      let level = 1;
-      if (hasDurabilityTalent[0].match("talentLevel")) {
-        level = parseInt(hasDurabilityTalent[0].replace("talentLevel", ""));
-      }
-      presetValues.hp.hasDurability = level;
-    }
-
-    const aspectLevels = calcAspectLevel(
-      character.level,
-      presetData[value].aspect
-    );
+    const aspectLevels = calcAspectLevel(character.level, preset.aspect);
 
     setCharacter({
       ...presetValues,

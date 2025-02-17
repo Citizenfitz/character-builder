@@ -1,19 +1,19 @@
 import React from "react";
 
-const PresetsSelector = (props) => {
+const PresetsSelector = ({ handlePreset, presetData }) => {
   return (
     <label className="preset-chooser">
       <span className="label">Optional Preset </span>:&nbsp;
       <select
         id="presetSelector"
-        onChange={props.handlePreset}
+        onChange={(e) => handlePreset(e.target.value)}
         defaultValue="choose"
       >
         <option value="choose">Choose</option>
-        {props.presetData.map((i) => (
-          <option key={i.id} value={i.id}>
-            {i.subclass && "---"}
-            {i.name}
+        {presetData.map((preset) => (
+          <option key={preset.id} value={preset.id}>
+            {preset.subclass && "---"}
+            {preset.name}
           </option>
         ))}
       </select>
