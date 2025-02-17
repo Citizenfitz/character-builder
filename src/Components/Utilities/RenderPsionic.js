@@ -20,31 +20,35 @@ const RenderPsionic = (props) => {
 
   return (
     <div className="desc desc--psionic">
-      <h2 id={props.id}>{props.name}</h2>
+      <h3 className="desc__header" id={props.id}>
+        {props.name}
+      </h3>
       <ul className="desc__list desc__list--psionic">
         <li>
-          <span className="ut-font-bold">PSP:</span> {props.psp}
+          <span className="desc__list-label">PSP:</span> {props.psp}
         </li>
         <li>
-          <span className="ut-font-bold">Initiate:</span> {props.initiate}
+          <span className="desc__list-label">Initiate:</span> {props.initiate}
         </li>
         <li>
-          <span className="ut-font-bold">Discipline:</span> {props.discipline}
+          <span className="desc__list-label">Discipline:</span>{" "}
+          {props.discipline}
         </li>
         <li>
-          <span className="ut-font-bold">Duration:</span> {props.duration}
+          <span className="desc__list-label">Duration:</span> {props.duration}
         </li>
         <li>
-          <span className="ut-font-bold">Range:</span> {props.range}
+          <span className="desc__list-label">Range:</span> {props.range}
         </li>
         <li>
-          <span className="ut-font-bold">Visibility:</span> {props.visibility}
+          <span className="desc__list-label">Visibility:</span>{" "}
+          {props.visibility}
         </li>
         <li>
-          <span className="ut-font-bold">Save:</span> {props.save}
+          <span className="desc__list-label">Save:</span> {props.save}
         </li>
         <li>
-          <span className="ut-font-bold">Target:</span> {props.target}
+          <span className="desc__list-label">Target:</span> {props.target}
         </li>
       </ul>
       <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>

@@ -1,4 +1,4 @@
-import { talentData, aspectData } from "../../Data";
+import { talentData, aspectData, psionicsData } from "../../Data";
 
 const calculateBonus = (attributeValue = 0) => {
   const bonusRange = [
@@ -108,6 +108,17 @@ const whichTalentAspect = (talentName) => {
 const whichAspectDisplayName = (aspectName) => {
   const aspectId = aspectData.findIndex((x) => x.name === aspectName);
   return aspectData[aspectId].displayName;
+};
+
+export const rollPsionicPower = () => {
+  const roll = Math.floor(Math.random() * 100) + 1;
+
+  // Sort and find first psionic where roll is less than or equal to its roll value
+  const psionic = psionicsData
+    .sort((a, b) => a.roll - b.roll)
+    .find((p) => roll <= p.roll);
+
+  return psionic || null;
 };
 
 export {

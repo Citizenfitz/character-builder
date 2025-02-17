@@ -140,6 +140,21 @@
       padding: var(--spacing-sm) var(--spacing-md);
       line-height: 1rem;
     }
+
+    &--icon {
+      max-width: 2rem;
+      min-width: 2rem;
+      height: 2rem;
+      padding: 0;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      .fas {
+        margin: 0;
+      }
+    }
   }
 
   &__toolbar {
@@ -313,6 +328,77 @@
 
     &-details {
       margin-top: var(--spacing-sm);
+    }
+  }
+
+  &__wild-psionics-psp {
+    margin-bottom: 1rem;
+
+    .label {
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    .value {
+      font-size: 1.2em;
+      margin-right: 0.5rem;
+    }
+
+    .explanation {
+      color: #666;
+      font-style: italic;
+    }
+  }
+
+  &__wild-psionics-table {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 0.5rem;
+      border: 1px solid var(--color-accent);
+      text-align: left;
+    }
+
+    th {
+      background: var(--color-dark-alt);
+      color: var(--color-accent);
+      font-family: var(--font-header);
+      font-weight: normal;
+    }
+
+    select {
+      width: 100%;
+    }
+
+    &-total {
+      font-weight: bold;
+
+      td {
+        background: var(--color-dark-alt);
+      }
+
+      &-label {
+        text-align: right;
+      }
+    }
+
+    td .char-sheet__button {
+      width: 100%;
+      height: auto;
+      padding: 0.25rem;
+    }
+  }
+
+  &__wild-psionics-power {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    select {
+      flex: 1;
     }
   }
 }

@@ -243,7 +243,7 @@ const talentData = [
     isStacking: true,
     isRollable: true,
     rating: "",
-    preq: "Can only be taken at 1st level. Cannot have taken the Psionics talent.",
+    preq: "Cannot have taken the Psionics talent.",
     bonus: "",
     img: "",
   },

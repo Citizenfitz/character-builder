@@ -29,6 +29,7 @@ import WizardrySpells from "./WizardrySpells";
 import TalentDetails from "./TalentDetails";
 import DisadDetails from "./DisadDetails";
 import MutationDetails from "./MutationDetails";
+import WildPsionics from "./WildPsionics";
 
 /*  --------------- DICE BOX -------------- */
 // create new DiceBox class
@@ -129,6 +130,10 @@ const characterDefaults = {
     defect1: "none",
     defect2: "none",
     defect3: "none",
+  },
+  psionics: {
+    psp: 0,
+    wildPsionics: [],
   },
 };
 
@@ -854,7 +859,7 @@ const CharacterSheet = () => {
                 className="ut-no-print"
                 onChange={(e) => handleInputChange(e, "nameCharacter")}
               />
-              <div className="ut-no-screen print-text-input ut-text-cursive ">
+              <div className="ut-no-screen print-text-input">
                 {character.nameCharacter}
               </div>
               <br />
@@ -1223,8 +1228,16 @@ const CharacterSheet = () => {
             useLocalStorage={useLocalStorage}
           />
         )}
+      {/* --------- Wild Psionics section - only shows with Wild Psionics talent --------- */}
+      {Object.values(character.talents).some(
+        (talent) => talent === "Wild Psionics"
+      ) && (
+        <section className="char-sheet__section char-sheet__section--wild-psionics">
+          <WildPsionics character={character} setCharacter={setCharacter} />
+        </section>
+      )}
 
-      {/* Mutation Details section - only shows for Mutant race */}
+      {/* --------- Mutation Details section - only shows for Mutant race --------- */}
       {character.race === "Mutant" && (
         <section className="char-sheet__section char-sheet__section--mutation-details">
           <h2 className="char-sheet__h2">Mutation Details</h2>

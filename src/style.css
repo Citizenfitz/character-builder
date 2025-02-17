@@ -2648,6 +2648,19 @@ input[type=radio] + label.aspect-radio-label__type {
   padding: var(--spacing-sm) var(--spacing-md);
   line-height: 1rem;
 }
+.char-sheet__button--icon {
+  max-width: 2rem;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.char-sheet__button--icon .fas {
+  margin: 0;
+}
 .char-sheet__toolbar {
   background: #341749;
   padding: var(--spacing-sm);
@@ -2796,6 +2809,63 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__mutations-details {
   margin-top: var(--spacing-sm);
+}
+.char-sheet__wild-psionics-psp {
+  margin-bottom: 1rem;
+}
+.char-sheet__wild-psionics-psp .label {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+.char-sheet__wild-psionics-psp .value {
+  font-size: 1.2em;
+  margin-right: 0.5rem;
+}
+.char-sheet__wild-psionics-psp .explanation {
+  color: #666;
+  font-style: italic;
+}
+.char-sheet__wild-psionics-table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+}
+.char-sheet__wild-psionics-table th,
+.char-sheet__wild-psionics-table td {
+  padding: 0.5rem;
+  border: 1px solid var(--color-accent);
+  text-align: left;
+}
+.char-sheet__wild-psionics-table th {
+  background: var(--color-dark-alt);
+  color: var(--color-accent);
+  font-family: var(--font-header);
+  font-weight: normal;
+}
+.char-sheet__wild-psionics-table select {
+  width: 100%;
+}
+.char-sheet__wild-psionics-table-total {
+  font-weight: bold;
+}
+.char-sheet__wild-psionics-table-total td {
+  background: var(--color-dark-alt);
+}
+.char-sheet__wild-psionics-table-total-label {
+  text-align: right;
+}
+.char-sheet__wild-psionics-table td .char-sheet__button {
+  width: 100%;
+  height: auto;
+  padding: 0.25rem;
+}
+.char-sheet__wild-psionics-power {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.char-sheet__wild-psionics-power select {
+  flex: 1;
 }
 
 .button-showSpellSlots {
@@ -3476,9 +3546,14 @@ input[type=radio] + label.aspect-radio-label__type {
 .desc--defect tbody tr:nth-child(odd) {
   background: #beebd1;
 }
-.desc--psionic .desc__header {
-  text-shadow: 0 0 10px #ecde82;
-  color: #5a2780;
+.desc__list--psionic.desc__list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: var(--spacing-xs);
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: var(--spacing-sm-alt);
 }
 .desc__list--disad.desc__list {
   list-style: none;
