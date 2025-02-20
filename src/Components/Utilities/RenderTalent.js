@@ -20,7 +20,7 @@ const RenderTalent = (props) => {
 
   return (
     <div className="desc desc--talent">
-      <h3 classname="desc__header">{props.name}</h3>
+      <h3 className="desc__header">{props.name}</h3>
       <div className="desc-talent__wrapper">
         <div>
           <ul className="desc__list desc__list--talent">

@@ -158,7 +158,7 @@
   }
 
   &__toolbar {
-    background: #341749;
+    background: var(--color-dark-alt-2);
     padding: var(--spacing-sm);
     margin: var(--spacing-sm) 0 var(--spacing-sm-alt) 0;
     border-radius: var(--border-radius-lg);
@@ -207,7 +207,7 @@
       min-height: 124px;
       position: relative;
       border: 1px solid var(--color-accent);
-      // border-radius: var(--border-radius-lg);
+      border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -259,11 +259,10 @@
     &-footer {
       font-size: 1rem;
       padding: var(--spacing-xs);
-      background: var(--color-dark-alt);
-      color: var(--color-accent);
+      background: var(--color-dark-alt-2);
       text-align: center;
       border-top: 1px solid;
-      text-transform: uppercase;
+      // text-transform: uppercase;
       // border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
     }
   }
@@ -492,5 +491,74 @@
   .validation--error {
     margin: 0;
     color: $color-knave;
+  }
+}
+
+// Light theme overrides
+.char-sheet--lightx {
+  background: var(--color-dark-inverted);
+  color: var(--color-text-inverted);
+  border-color: var(--color-border-inverted);
+  h1,
+  h2,
+  h3 {
+    color: var(--color-accent-inverted);
+  }
+
+  .char-sheet__section {
+    &:nth-child(n + 3):nth-child(odd) {
+      background-color: var(--color-zebra-inverted);
+    }
+  }
+
+  .char-sheet__toolbar {
+    background: var(--color-zebra-inverted);
+    border-color: var(--color-accent-inverted);
+  }
+
+  .char-sheet__quick-ref-item {
+    border-color: var(--color-accent-inverted);
+  }
+
+  .char-sheet__quick-ref-footer {
+    background: var(--color-accent-inverted);
+    color: var(--color-dark-inverted);
+  }
+
+  .char-sheet__wild-psionics-table {
+    th {
+      background: var(--color-accent-inverted);
+      color: var(--color-dark-inverted);
+    }
+
+    td {
+      border-color: var(--color-accent-inverted);
+    }
+
+    &-total td {
+      background: var(--color-accent-inverted);
+      color: var(--color-dark-inverted);
+    }
+  }
+
+  .ut-text-explain {
+    color: var(--color-muted-inverted);
+  }
+
+  label {
+    color: var(--color-accent-inverted);
+  }
+
+  select,
+  input[type="text"],
+  input[type="number"] {
+    border-color: var(--color-accent-inverted);
+    background-color: var(--color-dark-inverted);
+    color: var(--color-text-inverted);
+
+    &:focus {
+      background-color: var(--color-accent-inverted);
+      color: var(--color-dark-inverted);
+    }
   }
 }

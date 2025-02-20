@@ -1,15 +1,99 @@
-// *********************** BASE ELEMENTS ***********************//
-// *,
-// *:before,
-// *:after {
-//   box-sizing: border-box;
-// }
+/* ==========================================================================
+   1. Variables & Configuration
+   ========================================================================== */
 
-// html,
-// body {
-//   height: 100%;
-//   margin: 0;
-// }
+:root {
+  /* Brand Colors */
+  --color-dark: #5a2780;
+  --color-dark-alt: #110812;
+  --color-dark-alt-2: #351748;
+  --color-accent: #f7ebc7;
+  --color-accent-dark: #c78d17;
+  --color-cta: #d7ac28;
+  --color-cta-hover: #c78d17;
+  --color-link-hover: #f7ebc7;
+  --color-zebra: #110812;
+
+  /* Text Colors */
+  --color-text: #ffffff;
+  --color-text-dark: #333333;
+  --color-text-muted: #cccccc;
+  --color-text-cta: #1a1a1a;
+
+  /* UI Colors */
+  --color-border: #333;
+  --color-input-background: #f5f3ed;
+
+  /* Game-Specific Colors */
+  --color-common: #d2691e;
+  --color-fighter: #04a54f;
+  --color-priest: #2375b9;
+  --color-wizard: #e1a525;
+  --color-knave: #eb2026;
+
+  /* Mutation System Colors */
+  --color-mutation: #ff2600;
+  --color-mutation-zebra: #f7d2bc;
+  --color-defect: #04a54f;
+  --color-defect-zebra: #beebd1;
+
+  /* Magic School Colors */
+  --school-white: #9e9e9e;
+  --school-black: #333333;
+  --school-green: #04a54f;
+  --school-blue: #2375b9;
+  --school-red: #eb2026;
+
+  /* Inverted Theme Colors */
+  --color-dark-inverted: #ffffff;
+  --color-text-inverted: #333333;
+  --color-accent-inverted: #5a2780;
+  --color-muted-inverted: #666666;
+  --color-border-inverted: #dddddd;
+  --color-zebra-inverted: rgba(90, 39, 128, 0.05);
+
+  /* Spacing Scale */
+  --spacing-xxs: 0.25rem;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-sm-alt: 1.5rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 4rem;
+  --spacing-xl: 6rem;
+  --spacing-xxl: 8rem;
+
+  /* Layout */
+  --container-max: 1200px;
+  --container-char-sheet: 880px;
+  --container-blog: 800px;
+  --sidebar-width: 300px;
+
+  /* Typography */
+  --font-primary: "Titillium Web", sans-serif;
+  --font-icon: "FontAwesome";
+  --font-header: "Edelgotisch";
+
+  /* Form Elements */
+  --form-element-height: 1.5rem;
+  // $form-element-border: 1px solid $color-gray-3;
+
+  // border-radius
+  --border-radius-standard: 3px;
+  --border-radius-lg: 8px;
+}
+
+// *********************** BASE ELEMENTS ***********************//
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 
 // body {
 //   padding: 0;

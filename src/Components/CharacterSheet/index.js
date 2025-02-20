@@ -771,7 +771,7 @@ const CharacterSheet = () => {
   };
 
   return (
-    <div className="char-sheet">
+    <div className="char-sheet char-sheet--light">
       <section className="char-sheet__section char-sheet__section--top">
         <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
         <p className="ut-no-print">
