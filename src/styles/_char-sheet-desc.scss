@@ -1,14 +1,34 @@
 // all  Descriptions
 
 .desc {
-  margin-top: var(--spacing-sm-alt);
+  margin-top: $spacing-sm-alt;
   .desc__header {
     font-size: 20px;
+    font-family: $font-header;
+    color: $color-accent;
   }
   &__list-label {
     text-transform: uppercase;
-    color: var(--color-accent);
+    color: $color-accent;
     font-weight: 600;
+  }
+  &__content {
+    padding: $spacing-xs;
+    border-left: 3px solid $color-accent;
+    margin-left: $spacing-sm;
+  }
+  &__item {
+    margin-bottom: $spacing-xs;
+    &--important {
+      color: $color-accent-dark;
+    }
+  }
+  &__link {
+    color: $color-cta;
+    &:hover {
+      color: $color-cta-hover;
+      text-decoration: underline;
+    }
   }
   table {
     width: auto;

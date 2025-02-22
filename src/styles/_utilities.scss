@@ -1,16 +1,15 @@
-//* *************** UTILITES ***************** */
+//* *************** UTILITIES ***************** */
 
 // ------- position & display -------
 .ut-position-relative {
   position: relative;
 }
 
-.ut-display-inine-block {
+.ut-display-inline-block {
   display: inline-block;
 }
 
 // ------- alignment -------
-
 .ut-align-center {
   text-align: center;
   margin-left: auto;
@@ -18,61 +17,53 @@
 }
 
 // ------- colors -------
-
 .ut-zebra-gray {
-  background: $color-gray-5;
+  background: $color-muted-inverted;
 }
 
-.ut-color- {
-  &knave {
-    color: $color-common;
-  }
-  &fighter {
-    color: $color-fighter;
-  }
-  &priest {
-    color: $color-priest;
-  }
-  &wizard {
-    color: $color-wizard;
-  }
-  &knave {
+.ut-color {
+  &-knave {
     color: $color-knave;
   }
-  &royal {
+  &-fighter {
+    color: $color-fighter;
+  }
+  &-priest {
+    color: $color-priest;
+  }
+  &-wizard {
+    color: $color-wizard;
+  }
+  &-royal {
     color: $color-royal;
   }
-  &mutation {
+  &-mutation {
     color: $color-mutation;
   }
-  &gray {
-    color: #767676;
+  &-gray {
+    color: $color-muted-inverted;
   }
-  &spell-black {
-    color: $color-royal;
+  &-spell-black {
+    color: $color-black;
   }
-
-  &spell-blue {
-    color: $color-royal;
+  &-spell-blue {
+    color: $school-blue;
   }
-
-  &spell-green {
-    color: $color-royal;
+  &-spell-green {
+    color: $school-green;
   }
-
-  &spell-red {
-    color: $color-royal;
+  &-spell-red {
+    color: $school-red;
   }
-
-  &spell-white {
-    color: $color-royal;
+  &-spell-white {
+    color: $school-white;
   }
   &-psionic-glow {
-    @include color-psionic-glow;
+    @include color-psionic-glow; // Ensure this mixin is defined or adjust accordingly
   }
 }
 
-//  ------- Margins --------
+// ------- Margins --------
 .ut-margin {
   &-top-0 {
     margin-top: 0;
@@ -100,22 +91,23 @@
   }
 }
 
-//  ------- Fonts & text styles --------
-
+// ------- Fonts & text styles --------
 .ut-all-caps {
   text-transform: uppercase;
 }
 
 .ut-text-explain,
 .ut-text-helper {
-  color: $color-gray-2;
+  color: $color-muted-inverted;
   font-family: $text-regular;
   font-size: 0.9375rem;
   font-style: italic;
 }
+
 .ut-captialize {
   text-transform: capitalize;
 }
+
 .ut-text-greyhawk {
   font-family: $text-header;
 }
@@ -125,7 +117,7 @@
 }
 
 .ut-dropcap {
-  color: #903;
+  color: #903; // Consider defining this color in variables if used frequently
   float: left;
   font-family: Georgia;
   font-size: 75px;
@@ -136,18 +128,18 @@
 }
 
 .ut-font-regular {
-  @include font-regular;
+  @include font-regular; // Ensure this mixin is defined or adjust accordingly
 }
 
 .ut-font-semi {
-  @include font-semi;
+  @include font-semi; // Ensure this mixin is defined or adjust accordingly
 }
 
 .ut-font-bold {
-  @include font-bold;
+  @include font-bold; // Ensure this mixin is defined or adjust accordingly
 }
 
-//  ------- PRINT VS SCREEN --------
+// ------- PRINT VS SCREEN --------
 @media print {
   .ut-no-print {
     display: none !important;
@@ -160,7 +152,7 @@
   }
 }
 
-//  ------- MISC--------
+// ------- MISC --------
 .ut-clickable {
   cursor: pointer;
   &:hover {
@@ -178,9 +170,6 @@
 
 .ut-hidden {
   visibility: hidden;
-}
-
-.ut-hidden {
   height: 0px;
   width: 0px;
   overflow: hidden;

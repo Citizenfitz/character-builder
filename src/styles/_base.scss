@@ -2,280 +2,44 @@
    1. Variables & Configuration
    ========================================================================== */
 
-:root {
-  /* Brand Colors */
-  --color-dark: #5a2780;
-  --color-dark-alt: #110812;
-  --color-dark-alt-2: #351748;
-  --color-accent: #f7ebc7;
-  --color-accent-dark: #c78d17;
-  --color-cta: #d7ac28;
-  --color-cta-hover: #c78d17;
-  --color-link-hover: #f7ebc7;
-  --color-zebra: #110812;
-
-  /* Text Colors */
-  --color-text: #ffffff;
-  --color-text-dark: #333333;
-  --color-text-muted: #cccccc;
-  --color-text-cta: #1a1a1a;
-
-  /* UI Colors */
-  --color-border: #333;
-  --color-input-background: #f5f3ed;
-
-  /* Game-Specific Colors */
-  --color-common: #d2691e;
-  --color-fighter: #04a54f;
-  --color-priest: #2375b9;
-  --color-wizard: #e1a525;
-  --color-knave: #eb2026;
-
-  /* Mutation System Colors */
-  --color-mutation: #ff2600;
-  --color-mutation-zebra: #f7d2bc;
-  --color-defect: #04a54f;
-  --color-defect-zebra: #beebd1;
-
-  /* Magic School Colors */
-  --school-white: #9e9e9e;
-  --school-black: #333333;
-  --school-green: #04a54f;
-  --school-blue: #2375b9;
-  --school-red: #eb2026;
-
-  /* Inverted Theme Colors */
-  --color-dark-inverted: #ffffff;
-  --color-text-inverted: #333333;
-  --color-accent-inverted: #5a2780;
-  --color-muted-inverted: #666666;
-  --color-border-inverted: #dddddd;
-  --color-zebra-inverted: rgba(90, 39, 128, 0.05);
-
-  /* Spacing Scale */
-  --spacing-xxs: 0.25rem;
-  --spacing-xs: 0.5rem;
-  --spacing-sm: 1rem;
-  --spacing-sm-alt: 1.5rem;
-  --spacing-md: 2rem;
-  --spacing-lg: 4rem;
-  --spacing-xl: 6rem;
-  --spacing-xxl: 8rem;
-
-  /* Layout */
-  --container-max: 1200px;
-  --container-char-sheet: 880px;
-  --container-blog: 800px;
-  --sidebar-width: 300px;
-
-  /* Typography */
-  --font-primary: "Titillium Web", sans-serif;
-  --font-icon: "FontAwesome";
-  --font-header: "Edelgotisch";
-
-  /* Form Elements */
-  --form-element-height: 1.5rem;
-  // $form-element-border: 1px solid $color-gray-3;
-
-  // border-radius
-  --border-radius-standard: 3px;
-  --border-radius-lg: 8px;
-}
-
 // *********************** BASE ELEMENTS ***********************//
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+/* Typography Base */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  color: var(--color-accent);
+  font-family: var(--font-header);
+  font-weight: normal;
 }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
-// body {
-//   padding: 0;
-//   margin: 0;
-//   font-family: $text-regular;
-//   color: $color-text-primary;
-//   background: $color-brand-darker;
-// }
-
-.root {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
-  gap: 2rem;
-  grid-template-areas:
-    "hd hd hd hd hd hd hd hd hd hd hd hd"
-    "mn mn mn mn mn mn mn mn mn mn mn mn"
-    "ft ft ft ft ft ft ft ft ft ft ft ft";
+/* Font Declarations */
+@font-face {
+  font-family: "Edelgotisch";
+  src: url("./assets/fonts/Edelgotisch/Edelgotisch.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-.header {
-  grid-area: hd;
-  max-width: $page-max;
-  margin: 0 auto;
-  box-shadow: 1000px 0px 0px 0px $color-royal, -1000px 0px 0px 0px $color-royal;
-}
-.main {
-  grid-area: mn;
-  max-width: $page-max;
-  margin: 0 auto;
-  padding: $margins-desktop;
+/* Common Icon Classes */
+.fa-menu:before {
+  content: "\f0c9";
 }
 
-.footer {
-  grid-area: ft;
-  max-width: $page-max;
-  margin: 0 auto;
-  background: lighten($color-royal, 40%);
-  color: darken($color-royal, 10%);
-  box-shadow: 1000px 0px 0px 0px lighten($color-royal, 40%),
-    -1000px 0px 0px 0px lighten($color-royal, 40%);
-  padding: $margins-desktop;
-  padding-bottom: 10rem;
+.fa-search:before {
+  content: "\f002";
 }
 
-// .autosave {
-//   display: none;
-//   position: fixed;
-//   bottom: 5px;
-//   right: 5px;
-//   background-color: $color-input-background;
-//   border: 1px solid $color-gray-3;
-//   padding: 5px;
-//   label {
-//     margin: 0;
-//     cursor: pointer;
-//   }
-//   input {
-//     cursor: pointer;
-//   }
-// }
-
-/***** HEADERS *****/
-// h1,
-// .h1 {
-//   @include header1;
-// }
-// h2,
-// .h2 {
-//   @include header2;
-// }
-// h3,
-// .h3 {
-//   @include header3;
-// }
-// h4,
-// .h4 {
-//   @include header4;
-// }
-// h5,
-// .h5 {
-//   @include header5;
-// }
-// h6,
-// .h6 {
-//   @include header6;
-// }
-
-// h1,
-// h2,
-// h3,
-// h4,
-// h5,
-// h6,
-// label {
-//   font-family: $text-header;
-// }
-
-// button,
-// input[type="submit"],
-// input[type="button"] {
-//   cursor: pointer;
-// }
-
-/*******************  LISTS  ****************************/
-// dl,
-// .dl {
-//   &.dl--columns-4 {
-//     -moz-column-count: 4;
-//     -moz-column-gap: 1em;
-//     -webkit-column-count: 4;
-//     -webkit-column-gap: 1em;
-//     column-count: 4;
-//     column-gap: 1em;
-//   }
-// }
-
-// dt,
-// .dt {
-//   font-weight: bold;
-// }
-
-// dd,
-// .dd {
-//   margin-left: 0;
-//   margin-bottom: 0.5em;
-// }
-
-// .list-downloads {
-//   list-style: none;
-//   padding: 0.5rem 0 0 2rem;
-//   margin: 0;
-//   text-align: left;
-//   &__item {
-//     margin-bottom: 0.75rem;
-//   }
-//   &__link {
-//     text-decoration: none;
-//     display: inline-block;
-//     position: relative;
-//     color: $color-royal;
-//     &:hover {
-//       text-decoration: underline;
-//     }
-//     &:before {
-//       font-family: "FontAwesome";
-//       color: $color-royal;
-//       font-size: 18px;
-//       display: inline-block;
-//       text-rendering: auto;
-//       -webkit-font-smoothing: antialiased;
-//       content: "\f045";
-//       position: absolute;
-//       left: -1.5rem;
-//       top: 2px;
-//     }
-//   }
-// }
-/*******************  Talent class indicators next to selects  ****************************/
-.talent-class-indicator {
-  display: inline-block;
-  color: $color-white;
-  height: 16px;
-  width: 16px;
-  font-size: 0.75rem;
-  margin: 0 4px 0 0;
-  text-align: center;
-  border-radius: 2px;
-  background: $color-gray-3;
-  &--fighter {
-    background: $color-fighter;
-  }
-  &--knave {
-    background: $color-knave;
-  }
-  &--priest {
-    background: $color-priest;
-  }
-  &--wizard {
-    background: $color-wizard;
-  }
-  &--royal {
-    background: $color-royal;
-  }
+.fa-close:before {
+  content: "\f00d";
 }

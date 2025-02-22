@@ -4,57 +4,79 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.modal {
-  position: fixed;
-  width: 640px;
-  max-width: 960px;
-  max-height: calc(100vh - 80px);
-  top: 40px;
-  left: 50%;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, 0);
-  background: var(--color-dark);
-  overflow: hidden;
-  border-radius: 8px;
-  outline: none;
-  padding: 0;
-  &__header {
-    background: var(--color-accent);
-    height: 40px;
-    position: relative;
-    padding: 0;
-    text-align: left;
-    border-radius: 8px 8px 0 0;
-  }
-  &__h2 {
-    margin: 0 0 0 var(--spacing-md);
-    font-size: 1.25rem;
-    height: 40px;
-    line-height: 40px;
-    color: var(--color-dark);
-    text-transform: uppercase;
-  }
-  &__header-button {
-    height: 40px;
-    width: 40px;
-    border-radius: 0 8px 0 0;
-    font-size: 1.25em;
-    font-family: var(--font-header);
-    position: absolute;
-    right: 0;
-    top: 0;
-    border: none;
-  }
 
-  &__body {
-    padding: var(--spacing-md);
-    overflow-y: auto;
-    max-height: calc(100vh - 120px);
+.modal-content {
+  position: relative;
+  background-color: $color-dark;
+  padding: $spacing-md;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  max-width: 600px;
+  z-index: 1051;
+}
+
+.modal-header {
+  padding: $spacing-xs $spacing-sm;
+  border-bottom: 1px solid $color-border;
+  background-color: $color-dark-alt;
+  color: $color-accent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-title {
+  margin: 0;
+  font-family: $font-header;
+  font-size: 1.5rem;
+  color: $color-accent;
+}
+
+.modal-close {
+  font-size: 1.25rem;
+  color: $color-text-muted;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+
+  &:hover {
+    color: $color-accent;
   }
-  &__footer {
-    padding: var(--spacing-md);
+}
+
+.modal-body {
+  padding: $spacing-sm;
+  color: $color-text;
+  line-height: 1.5;
+}
+
+.modal-footer {
+  padding: $spacing-xs $spacing-sm;
+  border-top: 1px solid $color-border;
+  background-color: $color-dark-alt-2;
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-xs;
+}
+
+.modal-button {
+  padding: $spacing-xs $spacing-sm;
+  background-color: $color-cta;
+  color: $color-text-cta;
+  border: none;
+  border-radius: $border-radius-standard;
+  cursor: pointer;
+  font-family: $font-primary;
+
+  &:hover {
+    background-color: $color-cta-hover;
   }
 }

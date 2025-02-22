@@ -21,8 +21,8 @@
 
   .header,
   .footer,
-  .char-sheet__table__level--lvl1 .ut-display-inine-block .label,
-  .char-sheet__table__level--lvl1 .ut-display-inine-block br,
+  .char-sheet__table__level--lvl1 .ut-display-inline-block .label,
+  .char-sheet__table__level--lvl1 .ut-display-inline-block br,
   .char-sheet__button {
     display: none;
   }
@@ -85,7 +85,7 @@
     font-family: $text-regular;
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid $color-gray-2;
+    border-bottom: 1px solid $color-muted-inverted;
   }
 }
 
@@ -97,8 +97,8 @@
 // COLORS
 @media print {
   .char-sheet {
-    background-color: var(--color-dark-inverted);
-    color: var(--color-text-inverted);
+    background-color: $color-dark-inverted;
+    color: $color-text-inverted;
 
     h1,
     h2,
@@ -106,104 +106,104 @@
     h4,
     h5,
     h6 {
-      color: var(--color-accent-inverted);
+      color: $color-accent-inverted;
     }
 
     .section {
-      border-color: var(--color-accent-inverted);
+      border-color: $color-accent-inverted;
     }
 
     .section-header {
-      color: var(--color-accent-inverted);
-      border-bottom-color: var(--color-border-inverted);
+      color: $color-accent-inverted;
+      border-bottom-color: $color-border-inverted;
     }
 
     .subsection {
-      border-color: var(--color-border-inverted);
+      border-color: $color-border-inverted;
     }
 
     .subsection-header {
-      color: var(--color-accent-inverted);
+      color: $color-accent-inverted;
     }
 
     // tables
     .char-sheet__table {
-      color: var(--color-text-inverted);
-      border-color: var(--color-border-inverted);
+      color: $color-text-inverted;
+      border-color: $color-border-inverted;
       &__header,
       &__caption {
-        color: var(--color-dark-inverted);
-        border-bottom-color: var(--color-accent-inverted);
-        background-color: var(--color-accent-inverted);
+        color: $color-dark-inverted;
+        border-bottom-color: $color-accent-inverted;
+        background-color: $color-accent-inverted;
       }
       &__caption--thaumaturgy {
-        color: var(--color-dark-inverted);
-        background-color: var(--color-priest);
+        color: $color-dark-inverted;
+        background-color: $color-priest;
         .ut-text-explain {
-          color: var(--color-dark-inverted);
+          color: $color-dark-inverted;
         }
       }
       &__caption--wizardry {
-        color: var(--color-text-inverted);
-        background-color: var(--color-wizard);
+        color: $color-text-inverted;
+        background-color: $color-wizard;
         .ut-text-explain {
-          color: var(--color-text-inverted);
+          color: $color-text-inverted;
         }
       }
     }
 
     .char-sheet__table__row--zebra {
-      background-color: var(--color-zebra-inverted);
+      background-color: $color-zebra-inverted;
     }
 
     .char-sheet__table__cell--level {
-      color: var(--color-text-inverted);
-      border: 1px solid var(--color-text-inverted);
+      color: $color-text-inverted;
+      border: 1px solid $color-text-inverted;
     }
 
     .input-field {
-      border-color: var(--color-border-inverted);
-      color: var(--color-text-inverted);
-      background-color: var(--color-dark-inverted);
+      border-color: $color-border-inverted;
+      color: $color-text-inverted;
+      background-color: $color-dark-inverted;
     }
 
     .checkbox {
-      border-color: var(--color-border-inverted);
+      border-color: $color-border-inverted;
     }
 
     .checkbox:checked {
-      background-color: var(--color-accent-inverted);
+      background-color: $color-accent-inverted;
     }
 
     .label {
-      color: var(--color-text-inverted);
+      color: $color-text-inverted;
     }
 
     .note {
-      color: var(--color-muted-inverted);
+      color: $color-muted-inverted;
     }
 
     .divider {
-      border-color: var(--color-border-inverted);
+      border-color: $color-border-inverted;
     }
 
     .char-sheet__quick-ref-item {
-      border-color: var(--color-accent-inverted);
+      border-color: $color-accent-inverted;
     }
     .char-sheet__quick-ref-footer {
-      color: var(--color-dark-inverted);
-      border-bottom-color: var(--color-accent-inverted);
-      background-color: var(--color-accent-inverted);
+      color: $color-dark-inverted;
+      border-bottom-color: $color-accent-inverted;
+      background-color: $color-accent-inverted;
     }
 
     .attrib__name {
-      color: var(--color-accent-inverted);
+      color: $color-accent-inverted;
     }
     .attrib__mod span {
-      color: var(--color-accent-inverted);
+      color: $color-accent-inverted;
     }
     .aspect-icon.aspect-icon--common {
-      color: var(--color-accent-inverted);
+      color: $color-accent-inverted;
     }
   }
 }
@@ -211,15 +211,15 @@
 @media print {
   .desc {
     .desc__list-label {
-      color: var(--color-accent-inverted);
+      color: $color-accent-inverted;
     }
     th,
     caption {
-      background: var(--color-accent-inverted);
-      color: var(--color-dark-inverted);
+      background: $color-accent-inverted;
+      color: $color-dark-inverted;
     }
     tr:nth-child(even) {
-      background: var(--color-zebra-inverted);
+      background: $color-zebra-inverted;
     }
   }
 }

@@ -103,79 +103,39 @@ input[type="radio"] + label.aspect-radio-label {
 }
 
 //* *************** ASPECT / CLASS ICONS ***************** */
-.aspect-icon {
-  display: inline-block;
-  position: relative;
-  height: 24px;
-  width: 24px;
-  margin-right: 0.5rem;
-  vertical-align: bottom;
-  &:after {
-    content: "";
-    position: absolute;
-    background-image: none;
-    background-repeat: no-repeat;
-    background-size: 60%;
-    background-position: center center;
-    height: 100%;
-    width: 100%;
-    left: 0px;
-    bottom: 0px;
-    font-family: var(--font-header);
-    font-size: 18px;
-    line-height: 24px;
+.aspect {
+  &-icon {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    font-size: 0.75rem;
+    margin: 0 4px 0 0;
     text-align: center;
-    border-radius: 100%;
-  }
-  &--large {
-    height: 36px;
-    width: 36px;
-    margin: 0;
-    &:after {
-      background-size: 90%;
-    }
-  }
+    border-radius: 2px;
+    background: $color-text-muted;
+    color: $color-text;
 
-  &--medium {
-    height: 20px;
-    width: 20px;
-    margin: 0;
-    &:after {
-      background-size: 90%;
+    &--fighter {
+      background: $color-fighter;
     }
-  }
-
-  &--in-button {
-    height: 12px;
-    width: 12px;
-    margin: 0 0.25rem 0 0;
-    &:after {
-      background-size: 90%;
-      bottom: 2px;
+    &--knave {
+      background: $color-knave;
     }
-  }
-
-  &--common:after {
-    content: "C";
-    color: var(--color-accent);
-    font-size: 20px;
-  }
-  &--race:after {
-    content: "R";
-    color: var(--color-accent);
-    font-size: 20px;
-  }
-  &--fighter:after {
-    background-image: url($path-img + "spade.svg");
-  }
-  &--priest:after {
-    background-image: url($path-img + "diamond.svg");
-  }
-  &--wizard:after {
-    background-image: url($path-img + "club.svg");
-  }
-  &--knave:after {
-    background-image: url($path-img + "heart.svg");
+    &--priest {
+      background: $color-priest;
+    }
+    &--wizard {
+      background: $color-wizard;
+    }
+    &--common {
+      background: $color-common;
+    }
+    &--race {
+      background: $color-dark;
+      height: 20px;
+      width: 20px;
+      font-size: 1rem;
+    }
   }
 }
 
@@ -193,5 +153,16 @@ input[type="radio"] + label.aspect-radio-label {
   }
   &__list {
     margin: 0;
+  }
+}
+
+.aspect-select {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-sm;
+
+  select {
+    flex: 1;
   }
 }

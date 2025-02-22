@@ -23,24 +23,12 @@ fieldset {
   padding: 0;
   border: none;
 }
-// legend {
-//   @include header2;
-// }
 
 /***** LABELS *****/
 label {
   display: block;
   margin-bottom: $margins-form-element-bottom;
 }
-
-/***** INPUTS *****/
-// input[type="text"] {
-//   @include input-basics;
-// }
-// input[type="number"] {
-//   @include input-basics;
-//   text-align: center;
-// }
 
 /***** SELECTS *****/
 select {
@@ -161,5 +149,76 @@ input[type="radio"]:checked + label {
   }
   &.knave {
     background: $color-knave;
+  }
+}
+
+.form {
+  &__group {
+    margin-bottom: $spacing-sm;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: $spacing-xs;
+    font-family: $font-header;
+    font-size: 1.2em;
+  }
+
+  &__input {
+    width: 100%;
+    height: $spacing-sm-alt;
+    border-radius: $border-radius-standard;
+    border: 1px solid $color-dark-alt;
+    padding: 0 $spacing-xxs;
+    background-color: $color-input-background;
+    font-family: $text-regular;
+
+    &:focus {
+      border-color: $color-accent;
+      outline: none;
+    }
+
+    &--small {
+      width: 4rem;
+      text-align: center;
+    }
+  }
+
+  &__select {
+    width: 100%;
+    height: $spacing-sm-alt;
+    border-radius: $border-radius-standard;
+    border: 1px solid $color-dark-alt;
+    padding: 0 $spacing-xxs;
+    background-color: $color-input-background;
+    font-family: $text-regular;
+
+    &:focus {
+      border-color: $color-accent;
+      outline: none;
+    }
+  }
+
+  &__textarea {
+    width: 100%;
+    min-height: $spacing-lg;
+    border-radius: $border-radius-standard;
+    border: 1px solid $color-dark-alt;
+    padding: $spacing-xs;
+    background-color: $color-input-background;
+    font-family: $text-regular;
+    resize: vertical;
+
+    &:focus {
+      border-color: $color-accent;
+      outline: none;
+    }
+  }
+
+  &__help-text {
+    display: block;
+    margin-top: $spacing-xxs;
+    color: $color-text-muted;
+    font-size: 0.875em;
   }
 }

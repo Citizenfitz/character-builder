@@ -1,19 +1,28 @@
 .char-sheet {
+  *,
+  *:before,
+  *:after {
+    box-sizing: border-box;
+  }
+  font-family: $font-primary;
+  line-height: 1.6;
+  background-color: $color-dark-alt;
+  color: $color-text;
+
   // Main container styles
-  max-width: var(--container-char-sheet);
-  background: var(--color-dark);
-  color: var(--color-text);
-  border-radius: var(--border-radius-lg);
-  // padding: var(--spacing-sm) 0;
+  max-width: $container-char-sheet;
+  background: $color-dark;
+  color: $color-text;
+  border-radius: $border-radius-lg;
   margin: 0 auto;
-  border: 1px solid var(--color-dark);
+  border: 1px solid $color-dark;
 
   .default-typography {
     font-size: 1rem;
   }
 
   .ut-text-explain {
-    color: var(--color-text-muted);
+    color: $color-text-muted;
     font-style: italic;
   }
 
@@ -33,8 +42,8 @@
   ul,
   ol {
     list-style: disc;
-    margin-bottom: var(--spacing-sm-alt);
-    padding-left: var(--spacing-md);
+    margin-bottom: $spacing-sm-alt;
+    padding-left: $spacing-md;
   }
   li {
     margin-bottom: 0.25em;
@@ -42,24 +51,24 @@
 
   // Sections
   &__section {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: $spacing-sm $spacing-md;
 
     // Start zebra striping from 3rd child
     &:nth-child(n + 3):nth-child(odd) {
-      background-color: var(--color-dark-alt);
-      padding: var(--spacing-md);
+      background-color: $color-dark-alt;
+      padding: $spacing-md;
     }
 
     &:last-child {
-      border-radius: 0 0 var(--border-radius-lg) var(--border-radius-lg);
+      border-radius: 0 0 $border-radius-lg $border-radius-lg;
     }
   }
 
   /***** LABELS *****/
   label {
-    font-family: var(--font-header);
+    font-family: $font-header;
     font-size: 1.2em;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: $spacing-sm;
     font-weight: normal;
   }
 
@@ -68,21 +77,21 @@
   input[type="text"],
   input[type="number"],
   select {
-    height: var(--spacing-sm-alt);
-    border-radius: var(--border-radius-standard);
-    border: 1px solid var(--color-dark-alt);
-    padding: 0 var(--spacing-xxs);
-    background-color: var(--color-input-background);
+    height: $spacing-sm-alt;
+    border-radius: $border-radius-standard;
+    border: 1px solid $color-dark-alt;
+    padding: 0 $spacing-xxs;
+    background-color: $color-input-background;
     font-family: $text-regular;
     &:active {
-      color: $color-royal;
-      border-color: var(--color-accent-dark);
+      color: $color-dark;
+      border-color: $color-accent-dark;
     }
     &:disabled {
       opacity: 0.5;
     }
     &:focus {
-      background-color: var(--color-accent);
+      background-color: $color-accent;
     }
   }
   input[type="text"] {
@@ -92,12 +101,8 @@
   }
 
   &__button {
-    background: radial-gradient(
-      circle at center,
-      #f4cd5c 0%,
-      var(--color-cta) 100%
-    );
-    color: var(--color-text-cta);
+    background: radial-gradient(circle at center, #f4cd5c 0%, $color-cta 100%);
+    color: $color-text-cta;
     border-radius: 4px;
     text-decoration: none;
     border: none;
@@ -105,16 +110,16 @@
     transition: background 0.3s ease;
     font-weight: 700;
     &--alt {
-      background-color: var(--color-input-background);
+      background-color: $color-input-background;
     }
     &:hover,
     &--alt:hover {
       background: radial-gradient(
         circle at center,
         #ebc23d 0%,
-        var(--color-cta-hover) 100%
+        $color-cta-hover 100%
       );
-      color: var(--color-text-cta);
+      color: $color-text-cta;
       text-decoration: none;
     }
 
@@ -125,19 +130,19 @@
 
     &--spell {
       background: transparent;
-      color: var(--color-text);
+      color: $color-text;
       max-width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
       padding: 0;
       &:hover {
-        color: var(--color-cta-hover);
+        color: $color-cta-hover;
       }
     }
     &--large {
       font-size: 1.25rem;
-      padding: var(--spacing-sm) var(--spacing-md);
+      padding: $spacing-sm $spacing-md;
       line-height: 1rem;
     }
 
@@ -158,14 +163,14 @@
   }
 
   &__toolbar {
-    background: var(--color-dark-alt-2);
-    padding: var(--spacing-sm);
-    margin: var(--spacing-sm) 0 var(--spacing-sm-alt) 0;
-    border-radius: var(--border-radius-lg);
-    border: 1px solid var(--color-accent);
+    background: $color-dark-alt-2;
+    padding: $spacing-sm;
+    margin: $spacing-sm 0 $spacing-sm-alt 0;
+    border-radius: $border-radius-lg;
+    border: 1px solid $color-accent;
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: $spacing-md;
     .preset-chooser {
       margin-bottom: 0;
     }
@@ -175,8 +180,8 @@
   &__grid {
     display: grid;
     grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr) minmax(0, 0.95fr);
-    gap: var(--spacing-sm-alt);
-    margin: var(--spacing-sm-alt) 0;
+    gap: $spacing-sm-alt;
+    margin: $spacing-sm-alt 0;
   }
 
   // Column containers
@@ -200,14 +205,14 @@
   &__quick-ref {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--spacing-sm-alt);
+    gap: $spacing-sm-alt;
 
     &-item {
       flex: 1;
       min-height: 124px;
       position: relative;
-      border: 1px solid var(--color-accent);
-      border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+      border: 1px solid $color-accent;
+      border-radius: $border-radius-lg $border-radius-lg 0 0;
       text-align: center;
       display: flex;
       flex-direction: column;
@@ -219,16 +224,16 @@
       }
     }
     &-text {
-      padding: var(--spacing-sm-alt);
+      padding: $spacing-sm-alt;
     }
     &--save-mods {
-      margin: var(--spacing-sm-alt) 0;
+      margin: $spacing-sm-alt 0;
     }
     &-save-mods-list {
-      padding: var(--spacing-sm-alt);
+      padding: $spacing-sm-alt;
       list-style: none;
       margin: 0;
-      padding-left: calc(var(--spacing-md) + 16px);
+      padding-left: calc($spacing-md + 16px);
       text-align: left;
     }
     &-save-mods-list-item {
@@ -252,14 +257,14 @@
       }
     }
     &--explain {
-      margin-bottom: var(--spacing-sm-alt);
+      margin-bottom: $spacing-sm-alt;
       min-height: 284px;
     }
 
     &-footer {
       font-size: 1rem;
-      padding: var(--spacing-xs);
-      background: var(--color-dark-alt-2);
+      padding: $spacing-xs;
+      background: $color-dark-alt-2;
       text-align: center;
       border-top: 1px solid;
       // text-transform: uppercase;
@@ -271,18 +276,18 @@
     &-controls {
       display: grid;
       grid-template-columns: auto auto auto;
-      gap: var(--spacing-md);
-      margin-bottom: var(--spacing-sm);
+      gap: $spacing-md;
+      margin-bottom: $spacing-sm;
       align-items: center;
     }
 
     &-control {
       display: flex;
       align-items: center;
-      gap: var(--spacing-xs);
+      gap: $spacing-xs;
 
       select {
-        margin-left: var(--spacing-xs);
+        margin-left: $spacing-xs;
         min-width: 80px;
       }
     }
@@ -290,34 +295,34 @@
     &-table {
       width: auto;
       min-width: 50%;
-      margin-top: var(--spacing-xs);
-      margin-bottom: var(--spacing-sm-alt);
+      margin-top: $spacing-xs;
+      margin-bottom: $spacing-sm-alt;
       border-collapse: collapse;
       font-size: 0.875rem;
 
       th {
-        background: var(--color-dark-alt);
-        color: var(--color-accent);
+        background: $color-dark-alt;
+        color: $color-accent;
         text-transform: uppercase;
-        font-family: var(--font-header);
-        padding: var(--spacing-xs);
+        font-family: $font-header;
+        padding: $spacing-xs;
         border: 1px solid;
         text-align: center;
         font-size: 1rem;
         font-weight: normal;
 
         &:first-child {
-          background: var(--color-mutation);
-          color: var(--color-dark-inverted);
+          background: $color-mutation;
+          color: $color-dark-inverted;
         }
         &:last-child {
-          background: var(--color-defect);
-          color: var(--color-dark-inverted);
+          background: $color-defect;
+          color: $color-dark-inverted;
         }
       }
 
       td {
-        padding: var(--spacing-xs);
+        padding: $spacing-xs;
         border: 1px solid;
         text-align: left;
         vertical-align: top;
@@ -326,7 +331,7 @@
     }
 
     &-details {
-      margin-top: var(--spacing-sm);
+      margin-top: $spacing-sm;
     }
   }
 
@@ -357,14 +362,14 @@
     th,
     td {
       padding: 0.5rem;
-      border: 1px solid var(--color-accent);
+      border: 1px solid $color-accent;
       text-align: left;
     }
 
     th {
-      background: var(--color-dark-alt);
-      color: var(--color-accent);
-      font-family: var(--font-header);
+      background: $color-dark-alt;
+      color: $color-accent;
+      font-family: $font-header;
       font-weight: normal;
     }
 
@@ -376,7 +381,7 @@
       font-weight: bold;
 
       td {
-        background: var(--color-dark-alt);
+        background: $color-dark-alt;
       }
 
       &-label {
@@ -457,7 +462,7 @@
     margin: 0;
   }
   .schoolDescriptions {
-    border: 1px solid $color-royal;
+    border: 1px solid $color-dark;
     padding: 1em;
     margin-bottom: 1em;
     span {
@@ -495,70 +500,98 @@
 }
 
 // Light theme overrides
-.char-sheet--lightx {
-  background: var(--color-dark-inverted);
-  color: var(--color-text-inverted);
-  border-color: var(--color-border-inverted);
+.char-sheet--light {
+  background: $color-dark-inverted;
+  color: $color-text-inverted;
+  border-color: $color-border-inverted;
   h1,
   h2,
   h3 {
-    color: var(--color-accent-inverted);
+    color: $color-accent-inverted;
   }
 
   .char-sheet__section {
     &:nth-child(n + 3):nth-child(odd) {
-      background-color: var(--color-zebra-inverted);
+      background-color: $color-zebra-inverted;
     }
   }
 
   .char-sheet__toolbar {
-    background: var(--color-zebra-inverted);
-    border-color: var(--color-accent-inverted);
+    background: $color-zebra-inverted;
+    border-color: $color-accent-inverted;
   }
 
   .char-sheet__quick-ref-item {
-    border-color: var(--color-accent-inverted);
+    border-color: $color-accent-inverted;
   }
 
   .char-sheet__quick-ref-footer {
-    background: var(--color-accent-inverted);
-    color: var(--color-dark-inverted);
+    background: $color-accent-inverted;
+    color: $color-dark-inverted;
   }
 
   .char-sheet__wild-psionics-table {
     th {
-      background: var(--color-accent-inverted);
-      color: var(--color-dark-inverted);
+      background: $color-accent-inverted;
+      color: $color-dark-inverted;
     }
 
     td {
-      border-color: var(--color-accent-inverted);
+      border-color: $color-accent-inverted;
     }
 
     &-total td {
-      background: var(--color-accent-inverted);
-      color: var(--color-dark-inverted);
+      background: $color-accent-inverted;
+      color: $color-dark-inverted;
     }
   }
 
   .ut-text-explain {
-    color: var(--color-muted-inverted);
+    color: $color-muted-inverted;
   }
 
   label {
-    color: var(--color-accent-inverted);
+    color: $color-accent-inverted;
   }
 
   select,
   input[type="text"],
   input[type="number"] {
-    border-color: var(--color-accent-inverted);
-    background-color: var(--color-dark-inverted);
-    color: var(--color-text-inverted);
+    border-color: $color-accent-inverted;
+    background-color: $color-dark-inverted;
+    color: $color-text-inverted;
 
     &:focus {
-      background-color: var(--color-accent-inverted);
-      color: var(--color-dark-inverted);
+      background-color: $color-accent-inverted;
+      color: $color-dark-inverted;
     }
   }
 }
+
+// /*******************  Talent class indicators next to selects  ****************************/
+// .talent-class-indicator {
+//   display: inline-block;
+//   color: $color-white;
+//   height: 16px;
+//   width: 16px;
+//   font-size: 0.75rem;
+//   margin: 0 4px 0 0;
+//   text-align: center;
+//   border-radius: 2px;
+//   background: $color-gray-3;
+//   &--fighter {
+//     background: $color-fighter;
+//   }
+//   &--knave {
+//     background: $color-knave;
+//   }
+//   &--priest {
+//     background: $color-priest;
+//   }
+//   &--wizard {
+//     background: $color-wizard;
+//   }
+//   &--royal {
+//     background: $color-royal;
+//   }
+// }
