@@ -339,7 +339,7 @@ export default function WizardrySpells(props) {
       <Modal
         id="modal--wizardrySpells"
         className="modal ut-no-print"
-        overlayClassName="modal-overlay"
+        overlayClassName="modal__overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Spell Slots"

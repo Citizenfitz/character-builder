@@ -35,7 +35,7 @@
     color: $color-wizard;
   }
   &-royal {
-    color: $color-royal;
+    color: $color-dark;
   }
   &-mutation {
     color: $color-mutation;
@@ -156,7 +156,7 @@
 .ut-clickable {
   cursor: pointer;
   &:hover {
-    color: $color-royal;
+    color: $color-dark;
   }
 }
 

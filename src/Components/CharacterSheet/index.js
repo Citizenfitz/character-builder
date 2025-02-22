@@ -772,7 +772,7 @@ const CharacterSheet = () => {
 
   return (
     <div id="char-sheet">
-      <div className="char-sheet char-sheet--light">
+      <div className="char-sheet char-sheet--lightx">
         <section className="char-sheet__section char-sheet__section--top">
           <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
           <p className="ut-no-print">
@@ -1264,41 +1264,43 @@ const CharacterSheet = () => {
           onRequestClose={toggleRaceModal}
           contentLabel="Choose Class"
           className="modal ut-no-print"
-          overlayClassName="modal-overlay"
+          overlayClassName="modal__overlay"
           ariaHideApp={false}
         >
-          <div className="modal__header">
-            <h2 className="modal__h2">Choosing a Race</h2>
-            <button
-              className="button modal__header-button"
-              onClick={toggleRaceModal}
-              aria-label="Close modal"
-            >
-              X
-            </button>
-          </div>
-          <div className="modal__body">
-            <p className="ut-margin-top-0">
-              To be any race other than human costs one talent slot. This can
-              only be chosen when a character is first created, it never
-              changes, and only ONE race talent may ever be taken.
-            </p>
-            <p>
-              Choose in the <b>talents section below</b> and it will be
-              reflected here as well.
-            </p>
-            <img
-              src="assets/images/race-choose-screenshot.png"
-              alt="QuestRex race picker "
-            />
-          </div>
-          <div className="modal__footer">
-            <button
-              className="char-sheet__button char-sheet__button--large"
-              onClick={toggleRaceModal}
-            >
-              Close
-            </button>
+          <div className="modal__container">
+            <div className="modal__header">
+              <h2 className="modal__h2">Choosing a Race</h2>
+              <button
+                className="button modal__header-button"
+                onClick={toggleRaceModal}
+                aria-label="Close modal"
+              >
+                X
+              </button>
+            </div>
+            <div className="modal__body">
+              <p className="ut-margin-top-0">
+                To be any race other than human costs one talent slot. This can
+                only be chosen when a character is first created, it never
+                changes, and only ONE race talent may ever be taken.
+              </p>
+              <p>
+                Choose in the <b>talents section below</b> and it will be
+                reflected here as well.
+              </p>
+              <img
+                src="assets/images/race-choose-screenshot.png"
+                alt="QuestRex race picker "
+              />
+            </div>
+            <div className="modal__footer">
+              <button
+                className="char-sheet__button char-sheet__button--large"
+                onClick={toggleRaceModal}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </ReactModal>
       </div>

@@ -95,6 +95,8 @@ $color-text-cta: #1a1a1a;
 // UI Colors
 $color-border: #333;
 $color-input-background: #f5f3ed;
+$color-white: white;
+$color-black: black;
 
 // Game-Specific Colors
 $color-common: #d2691e;
@@ -149,6 +151,7 @@ $font-header: "Edelgotisch";
 $form-element-height: 1.5rem;
 $border-radius-standard: 3px;
 $border-radius-lg: 8px;
+$form-element-border: 1px solid $color-border;
 
 // ******************** MIXINS ***************************//
 @mixin site-layout {
@@ -204,6 +207,13 @@ $border-radius-lg: 8px;
   font-weight: normal;
 }
 
+@mixin headerfont {
+  font-family: $text-header;
+  font-weight: normal;
+  line-height: 1.2;
+  color: $color-accent;
+}
+
 @mixin input-basics {
   height: $form-element-height;
   border-radius: $border-radius-standard;
@@ -212,12 +222,12 @@ $border-radius-lg: 8px;
   background-color: $color-input-background;
   font-family: $text-regular;
   &:hover {
-    color: $color-royal;
-    border-color: $color-royal;
+    color: $color-dark;
+    border-color: $color-dark;
   }
   &:active {
-    color: $color-royal;
-    border-color: $color-royal;
+    color: $color-dark;
+    border-color: $color-dark;
   }
 }
 
@@ -246,5 +256,5 @@ $border-radius-lg: 8px;
 
 @mixin color-psionic-glow {
   text-shadow: 0 0 10px rgb(236, 222, 130);
-  color: $color-royal;
+  color: $color-dark;
 }

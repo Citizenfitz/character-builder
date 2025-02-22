@@ -74,44 +74,46 @@ const Notes = (props) => {
         isOpen={notesModalOpen}
         onRequestClose={toggleNotesModalOpen}
         className="modal ut-no-print"
-        overlayClassName="modal-overlay"
+        overlayClassName="modal_overlay"
         contentLabel="Add a note"
       >
-        <div className="modal__header">
-          <h2 className="modal__h2">
-            {typeof notesIndex === "number" ? "Edit" : "Add"} Note
-          </h2>
-          <button
-            className="button modal__header-button"
-            aria-label="Close modal"
-            onClick={toggleNotesModalOpen}
-          >
-            X
-          </button>
-        </div>
-        <form onSubmit={handleSaveNote}>
-          <div className="modal__body">
-            <textarea
-              id="noteText"
-              className="notes__textarea"
-              placeholder="add your note"
-              defaultValue={
-                typeof notesIndex === "number"
-                  ? props.notes[props.notesIndex]
-                  : ""
-              }
-            ></textarea>
-          </div>
-          <div className="modal__footer">
+        <div className="modal__container">
+          <div className="modal__header">
+            <h2 className="modal__h2">
+              {typeof notesIndex === "number" ? "Edit" : "Add"} Note
+            </h2>
             <button
-              className="button button--primary button--large"
-              type="submit"
-              value="Save"
+              className="button modal__header-button"
+              aria-label="Close modal"
+              onClick={toggleNotesModalOpen}
             >
-              Save
+              X
             </button>
           </div>
-        </form>
+          <form onSubmit={handleSaveNote}>
+            <div className="modal__body">
+              <textarea
+                id="noteText"
+                className="notes__textarea"
+                placeholder="add your note"
+                defaultValue={
+                  typeof notesIndex === "number"
+                    ? props.notes[props.notesIndex]
+                    : ""
+                }
+              ></textarea>
+            </div>
+            <div className="modal__footer">
+              <button
+                className="button char-sheet__button"
+                type="submit"
+                value="Save"
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
       </ReactModal>
     </div>
   );

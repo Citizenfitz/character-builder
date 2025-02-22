@@ -27,7 +27,7 @@ fieldset {
 /***** LABELS *****/
 label {
   display: block;
-  margin-bottom: $margins-form-element-bottom;
+  margin-bottom: $spacing-sm;
 }
 
 /***** SELECTS *****/
@@ -40,24 +40,24 @@ buttonx,
 .buttonx {
   @include input-basics;
   &--primary {
-    background-color: $color-royal;
+    background-color: $color-dark;
     color: $color-white;
     border-radius: $border-radius-standard;
     border: $form-element-border;
-    border-color: $color-royal;
+    border-color: $color-dark;
     vertical-align: bottom;
     &:hover {
-      background-color: darken($color-royal, 10%);
+      background-color: darken($color-dark, 10%);
       color: $color-white;
     }
     &:active {
-      background-color: darken($color-royal, 10%);
+      background-color: darken($color-dark, 10%);
       color: $color-white;
     }
   }
   &--secondary {
     background-color: transparent;
-    color: $color-royal;
+    color: $color-dark;
     &:hover {
       background-color: transparent;
       color: darken($color-wizard, 10%);
@@ -65,7 +65,7 @@ buttonx,
     }
     &:active {
       background-color: transparent;
-      color: darken($color-royal, 10%);
+      color: darken($color-dark, 10%);
     }
   }
   &--large {
@@ -135,7 +135,7 @@ input[type="radio"] + label {
 
 input[type="radio"]:checked + label {
   display: inline-block;
-  background: $color-royal;
+  background: $color-dark;
   color: $color-white;
   border-color: black;
   &.fighter {

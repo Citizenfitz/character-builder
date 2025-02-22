@@ -154,17 +154,17 @@ const MutationDetails = ({ character, setCharacter }) => {
         </label>
       </div>
 
-      <table className="char-sheet__mutations-table">
+      <table className="char-sheet__table char-sheet__table--mutations">
         <thead>
           <tr>
-            <th>Mutations</th>
-            <th>Defects</th>
+            <th className="char-sheet__table__header">Mutations</th>
+            <th className="char-sheet__table__header">Defects</th>
           </tr>
         </thead>
         <tbody>
           {[1, 2, 3, 4].map((num) => (
             <tr key={num}>
-              <td>
+              <td className="char-sheet__table__cell">
                 {num <= character.mutations.numMutations ? (
                   <select
                     className="char-sheet__select"
@@ -186,7 +186,7 @@ const MutationDetails = ({ character, setCharacter }) => {
                   <>&nbsp;</>
                 )}
               </td>
-              <td>
+              <td className="char-sheet__table__cell">
                 {num <= character.mutations.numDefects ? (
                   <select
                     className="char-sheet__select"

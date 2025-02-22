@@ -9,13 +9,16 @@ export default function SpellSlotsModal(props) {
 
   return (
     <React.Fragment>
-      <button className="button-showSpellSlots" onClick={openModal}>
+      <button
+        className="char-sheet__button char-sheet__button--showSpellSlots"
+        onClick={openModal}
+      >
         Spell Slots
       </button>
       <Modal
         id="modal--spellSlots"
         className="modal ut-no-print"
-        overlayClassName="modal-overlay"
+        overlayClassName="modal__overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Spell Slots"

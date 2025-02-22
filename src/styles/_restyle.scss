@@ -132,7 +132,7 @@
       > img {
         margin-left: 1rem;
         max-height: 350px;
-        border: 2px solid $color-royal;
+        border: 2px solid $color-dark;
       }
     }
   }
@@ -158,8 +158,8 @@
 
 .top-search {
   padding: 0.25em 1em;
-  border: 1px solid $color-royal;
-  background: $color-royal-zebra;
+  border: 1px solid $color-dark;
+  background: $color-dark-zebra;
   margin: 1em 0;
 }
 
@@ -196,8 +196,8 @@
 .content-aside {
   grid-area: as;
   padding: 0.25em 1em;
-  border: 1px solid $color-royal;
-  background: $color-royal-zebra;
+  border: 1px solid $color-dark;
+  background: $color-dark;
 }
 .content-main {
   grid-area: ct;

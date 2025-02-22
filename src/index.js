@@ -8,9 +8,11 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <main className="main" id="main">
-        <Routes>
-          <Route path="/" element={<CharacterSheet />} />
-        </Routes>
+        <div id="char-app" className="char-app-container">
+          <Routes>
+            <Route path="/" element={<CharacterSheet />} />
+          </Routes>
+        </div>
       </main>
     </BrowserRouter>
   </React.StrictMode>,

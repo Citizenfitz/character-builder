@@ -184,7 +184,7 @@ export default function ThaumaturgySpells(props) {
       <Modal
         id="modal--thaumaturgySpells"
         className="modal ut-no-print"
-        overlayClassName="modal-overlay"
+        overlayClassName="modal__overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}
         contentLabel="Spell Slots"

@@ -22,6 +22,9 @@
     &.common {
       border-left-color: $color-common;
     }
+    &.royal {
+      border-left-color: $color-dark;
+    }
     &[aria-disabled="true"] {
       background: #dcdcdc;
     }
