@@ -4,16 +4,24 @@
 
 // *********************** BASE ELEMENTS ***********************//
 /* Typography Base */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+body {
+  font-family: $font-primary;
+  line-height: 1.6;
+  color: $color-text;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
-  color: var(--color-accent);
-  font-family: var(--font-header);
-  font-weight: normal;
+  @include headerfont;
 }
 
 a {
@@ -22,13 +30,40 @@ a {
   transition: color 0.3s ease;
 }
 
-/* Font Declarations */
-@font-face {
-  font-family: "Edelgotisch";
-  src: url("./assets/fonts/Edelgotisch/Edelgotisch.ttf") format("truetype");
+/***** FORM ELEMENTS *****/
+label {
+  font-family: $font-header;
+  font-size: 1.2em;
+  margin-bottom: $spacing-sm;
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+}
+
+/***** INPUTS *****/
+button,
+input[type="text"],
+input[type="number"],
+select {
+  height: $spacing-sm-alt;
+  border-radius: $border-radius-standard;
+  border: 1px solid $color-dark-alt;
+  padding: 0 $spacing-xxs;
+  background-color: $color-input-background;
+  font-family: $text-regular;
+  &:active {
+    color: $color-dark;
+    border-color: $color-accent-dark;
+  }
+  &:disabled {
+    opacity: 0.5;
+  }
+  &:focus {
+    background-color: $color-accent;
+  }
+}
+input[type="text"] {
+}
+input[type="number"] {
+  text-align: center;
 }
 
 /* Common Icon Classes */

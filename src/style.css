@@ -40,16 +40,28 @@
    1. Variables & Configuration
    ========================================================================== */
 /* Typography Base */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Titillium Web", sans-serif;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  line-height: 1.2;
-  color: var(--color-accent);
-  font-family: var(--font-header);
+  font-family: "Edelgotisch", Edelgotisch, sans-serif;
   font-weight: normal;
+  line-height: 1.2;
+  color: #f7ebc7;
 }
 
 a {
@@ -58,14 +70,50 @@ a {
   transition: color 0.3s ease;
 }
 
-/* Font Declarations */
-@font-face {
+/***** FORM ELEMENTS *****/
+label {
   font-family: "Edelgotisch";
-  src: url("./assets/fonts/Edelgotisch/Edelgotisch.ttf") format("truetype");
+  font-size: 1.2em;
+  margin-bottom: 1rem;
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
+
+/***** INPUTS *****/
+button,
+input[type=text],
+input[type=number],
+select {
+  height: 1.5rem;
+  border-radius: 3px;
+  border: 1px solid #110812;
+  padding: 0 0.25rem;
+  background-color: #f5f3ed;
+  font-family: "Cabin Regular", Cabin, sans-serif;
+}
+button:active,
+input[type=text]:active,
+input[type=number]:active,
+select:active {
+  color: #5a2780;
+  border-color: #c78d17;
+}
+button:disabled,
+input[type=text]:disabled,
+input[type=number]:disabled,
+select:disabled {
+  opacity: 0.5;
+}
+button:focus,
+input[type=text]:focus,
+input[type=number]:focus,
+select:focus {
+  background-color: #f7ebc7;
+}
+
+input[type=number] {
+  text-align: center;
+}
+
 /* Common Icon Classes */
 .fa-menu:before {
   content: "";
@@ -515,248 +563,17 @@ input[type=radio]:checked + label.knave {
   font-size: 0.875em;
 }
 
-.aspect__modal-open-button {
-  text-transform: capitalize;
-}
-
-.aspect-radio-set {
-  list-style: none;
-  padding: 0;
-  width: 242px;
-  height: 194px;
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-radius: 3px;
-  background-color: transparent;
-  margin: 0 auto 1rem auto;
-}
-.aspect-radio-set__item:nth-child(1), .aspect-radio-set__item:nth-child(3) {
-  flex-basis: 100%;
-  display: flex;
-  justify-content: center;
-}
-.aspect-radio-set__item:nth-child(1) {
-  order: 1;
-}
-.aspect-radio-set__item:nth-child(2) {
-  order: 3;
-}
-.aspect-radio-set__item:nth-child(3) {
-  order: 4;
-}
-.aspect-radio-set__item:nth-child(4) {
-  order: 2;
-}
-
-input[type=radio] + label.aspect-radio-label {
-  height: 66px;
-  width: 81px;
-  border: 2px solid;
-  filter: grayscale(1);
-  opacity: 0.5;
-  background-color: var(--color-dark-inverted);
+.modal {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3px;
-  margin: 0;
-  color: var(--color-text-dark);
-  font-family: var(--font-header);
-  cursor: pointer;
-}
-input[type=radio] + label.aspect-radio-label--fighter {
-  border-color: var(--color-fighter);
-}
-input[type=radio] + label.aspect-radio-label--fighter:hover {
-  filter: none;
-}
-input[type=radio] + label.aspect-radio-label--priest {
-  border-color: var(--color-priest);
-}
-input[type=radio] + label.aspect-radio-label--priest:hover {
-  filter: none;
-}
-input[type=radio] + label.aspect-radio-label--wizard {
-  border-color: var(--color-wizard);
-}
-input[type=radio] + label.aspect-radio-label--wizard:hover {
-  filter: none;
-}
-input[type=radio] + label.aspect-radio-label--knave {
-  border-color: var(--color-knave);
-}
-input[type=radio] + label.aspect-radio-label--knave:hover {
-  filter: none;
-}
-input[type=radio] + label.aspect-radio-label__type {
-  font-size: 0.75rem;
-  margin-top: 0.5rem;
-}
-
-.aspect-radio-set__item > input:checked + .aspect-radio-label {
-  filter: none;
-  opacity: 1;
-}
-
-.aspect-radio-set__item > input {
-  opacity: 0;
-  height: 0;
-  width: 0;
-  position: absolute;
-  overflow: hidden;
-}
-
-.trait-list li button {
-  margin-left: 0.25rem;
-}
-
-.aspect-icon {
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-  font-size: 0.75rem;
-  margin: 0 4px 0 0;
-  text-align: center;
-  border-radius: 2px;
-  background: #cccccc;
-  color: #ffffff;
-}
-.aspect-icon--fighter {
-  background: #04a54f;
-}
-.aspect-icon--knave {
-  background: #eb2026;
-}
-.aspect-icon--priest {
-  background: #2375b9;
-}
-.aspect-icon--wizard {
-  background: #e1a525;
-}
-.aspect-icon--common {
-  background: #d2691e;
-}
-.aspect-icon--race {
-  background: #5a2780;
-  height: 20px;
-  width: 20px;
-  font-size: 1rem;
-}
-
-.aspect-picker-desc__header {
-  text-transform: capitalize;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  margin-top: 0;
-}
-.aspect-picker-desc__header > span {
-  margin-right: 0.25rem;
-}
-.aspect-picker-desc__list {
-  margin: 0;
-}
-
-.aspect-select {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-.aspect-select select {
-  flex: 1;
-}
-
-#modal--spellSlots .modal__body {
-  display: flex;
-  justify-content: center;
-}
-
-#modal--thaumaturgySpells {
-  width: 80vw;
-}
-
-#modal--wizardrySpells {
-  width: 80vw;
-}
-#modal--wizardrySpells .showAll {
-  margin-bottom: 10px;
-}
-
-#modal--schools {
-  width: fit-content;
-}
-#modal--schools fieldset {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 0;
-}
-#modal--schools fieldset div {
-  display: inline-block;
-  margin: 5px 0 5px 20px;
-}
-#modal--schools fieldset div:first-child {
-  margin-left: 0;
-}
-#modal--schools fieldset div:last-child {
-  margin-right: 0;
-}
-#modal--schools label {
-  cursor: pointer;
-  font-family: "Edelgotisch", Edelgotisch, sans-serif;
-  font-weight: normal;
-  font-size: 1.2rem;
-  display: inline-block;
-  padding: 0 0 0 8px;
-  margin: 0;
-}
-#modal--schools input {
-  cursor: pointer;
-  display: inline-block;
-  padding: 3px;
-  margin: 0;
-}
-#modal--schools .schoolDescriptions {
-  border: 1px solid #5a2780;
-  padding: 1em;
-  margin-bottom: 1em;
-}
-#modal--schools .schoolDescriptions span {
-  font-family: "Edelgotisch", Edelgotisch, sans-serif;
-  font-weight: normal;
-  font-size: 1rem;
-}
-#modal--schools .schoolDescriptions ul {
-  margin: 0;
+  background-color: #5a2780;
   padding: 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  width: 640px;
+  z-index: 1051;
+  border: 1px solid #f7ebc7;
 }
-#modal--schools .schoolDescriptions li {
-  list-style: none;
-  line-height: 1.4em;
-}
-#modal--schools .school-white {
-  color: #9e9e9e;
-}
-#modal--schools .school-black {
-  color: #333333;
-}
-#modal--schools .school-green {
-  color: #04a54f;
-}
-#modal--schools .school-blue {
-  color: #2375b9;
-}
-#modal--schools .school-red {
-  color: #eb2026;
-}
-#modal--schools .validation--error {
-  margin: 0;
-  color: #eb2026;
-}
-
 .modal__overlay {
   position: fixed;
   top: 0;
@@ -769,66 +586,30 @@ input[type=radio] + label.aspect-radio-label__type {
   align-items: center;
   justify-content: center;
 }
-.modal__content, .modal__container {
-  position: relative;
-  background-color: #5a2780;
-  padding: 0;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: auto;
-  max-width: 600px;
-  z-index: 1051;
-}
 .modal__header {
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid #333;
+  padding: 0.5rem 1.5rem;
   background-color: #110812;
-  color: #f7ebc7;
+  border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.modal__header-button {
+  font-size: 1.25rem;
+  height: 2rem;
+  width: 2rem;
+}
 .modal__title {
   margin: 0;
-  font-family: "Edelgotisch";
   font-size: 1.5rem;
-  color: #f7ebc7;
-}
-.modal__close {
-  font-size: 1.25rem;
-  color: #cccccc;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 0;
-}
-.modal__close:hover {
-  color: #f7ebc7;
 }
 .modal__body {
-  padding: 1rem;
+  padding: 1.5rem;
   color: #ffffff;
   line-height: 1.5;
 }
 .modal__footer {
-  padding: 0.5rem 1rem;
-  border-top: 1px solid #333;
-  background-color: #351748;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.5rem;
-}
-.modal__button {
-  padding: 0.5rem 1rem;
-  background-color: #d7ac28;
-  color: #1a1a1a;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  font-family: "Titillium Web", sans-serif;
-}
-.modal__button:hover {
-  background-color: #c78d17;
+  padding: 2rem 1.5rem;
 }
 
 body {
@@ -918,70 +699,6 @@ body {
 .notes__textarea:focus {
   border-color: #f7ebc7;
   outline: none;
-}
-
-.char-app-container {
-  font-family: "Titillium Web", sans-serif;
-  line-height: 1.6;
-  color: #ffffff;
-  color: #ffffff;
-  /***** LABELS *****/
-  /***** INPUTS *****/
-}
-.char-app-container *,
-.char-app-container *:before,
-.char-app-container *:after {
-  box-sizing: border-box;
-}
-.char-app-container h1,
-.char-app-container h2,
-.char-app-container h3,
-.char-app-container h4,
-.char-app-container h5,
-.char-app-container h6 {
-  font-family: "Edelgotisch", Edelgotisch, sans-serif;
-  font-weight: normal;
-  line-height: 1.2;
-  color: #f7ebc7;
-}
-.char-app-container label {
-  font-family: "Edelgotisch";
-  font-size: 1.2em;
-  margin-bottom: 1rem;
-  font-weight: normal;
-}
-.char-app-container button,
-.char-app-container input[type=text],
-.char-app-container input[type=number],
-.char-app-container select {
-  height: 1.5rem;
-  border-radius: 3px;
-  border: 1px solid #110812;
-  padding: 0 0.25rem;
-  background-color: #f5f3ed;
-  font-family: "Cabin Regular", Cabin, sans-serif;
-}
-.char-app-container button:active,
-.char-app-container input[type=text]:active,
-.char-app-container input[type=number]:active,
-.char-app-container select:active {
-  color: #5a2780;
-  border-color: #c78d17;
-}
-.char-app-container button:disabled,
-.char-app-container input[type=text]:disabled,
-.char-app-container input[type=number]:disabled,
-.char-app-container select:disabled {
-  opacity: 0.5;
-}
-.char-app-container button:focus,
-.char-app-container input[type=text]:focus,
-.char-app-container input[type=number]:focus,
-.char-app-container select:focus {
-  background-color: #f7ebc7;
-}
-.char-app-container input[type=number] {
-  text-align: center;
 }
 
 .char-sheet {
@@ -1146,8 +863,8 @@ body {
 }
 .char-sheet__button--large {
   font-size: 1.25rem;
-  padding: 1rem 2rem;
-  line-height: 1rem;
+  padding: 1.5rem 2rem;
+  line-height: 0;
 }
 .char-sheet__button--showSpellSlots {
   margin-left: 1.5rem;
@@ -1244,6 +961,157 @@ body {
   text-align: center;
   border-top: 1px solid;
   margin-bottom: 0;
+}
+
+.aspect-radio-set {
+  list-style: none;
+  padding: 0;
+  width: 242px;
+  height: 194px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  border-radius: 3px;
+  background-color: transparent;
+  margin: 0 auto 1rem auto;
+}
+.aspect-radio-set__item:nth-child(1), .aspect-radio-set__item:nth-child(3) {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
+}
+.aspect-radio-set__item:nth-child(1) {
+  order: 1;
+}
+.aspect-radio-set__item:nth-child(2) {
+  order: 3;
+}
+.aspect-radio-set__item:nth-child(3) {
+  order: 4;
+}
+.aspect-radio-set__item:nth-child(4) {
+  order: 2;
+}
+
+input[type=radio] + label.aspect-radio-label {
+  height: 66px;
+  width: 81px;
+  border: 2px solid;
+  filter: grayscale(1);
+  opacity: 0.5;
+  background-color: var(--color-dark-inverted);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  margin: 0;
+  color: var(--color-text-dark);
+  font-family: var(--font-header);
+  cursor: pointer;
+}
+input[type=radio] + label.aspect-radio-label--fighter {
+  border-color: var(--color-fighter);
+}
+input[type=radio] + label.aspect-radio-label--fighter:hover {
+  filter: none;
+}
+input[type=radio] + label.aspect-radio-label--priest {
+  border-color: var(--color-priest);
+}
+input[type=radio] + label.aspect-radio-label--priest:hover {
+  filter: none;
+}
+input[type=radio] + label.aspect-radio-label--wizard {
+  border-color: var(--color-wizard);
+}
+input[type=radio] + label.aspect-radio-label--wizard:hover {
+  filter: none;
+}
+input[type=radio] + label.aspect-radio-label--knave {
+  border-color: var(--color-knave);
+}
+input[type=radio] + label.aspect-radio-label--knave:hover {
+  filter: none;
+}
+input[type=radio] + label.aspect-radio-label__type {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.aspect-radio-set__item > input:checked + .aspect-radio-label {
+  filter: none;
+  opacity: 1;
+}
+
+.aspect-radio-set__item > input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+.trait-list li button {
+  margin-left: 0.25rem;
+}
+
+.aspect-icon {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  font-size: 0.75rem;
+  margin: 0 4px 0 0;
+  text-align: center;
+  border-radius: 2px;
+  background: #cccccc;
+  color: #ffffff;
+}
+.aspect-icon--fighter {
+  background: #04a54f;
+}
+.aspect-icon--knave {
+  background: #eb2026;
+}
+.aspect-icon--priest {
+  background: #2375b9;
+}
+.aspect-icon--wizard {
+  background: #e1a525;
+}
+.aspect-icon--common {
+  background: #d2691e;
+}
+.aspect-icon--race {
+  background: #5a2780;
+  height: 20px;
+  width: 20px;
+  font-size: 1rem;
+}
+
+.aspect-picker-desc__header {
+  text-transform: capitalize;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0;
+}
+.aspect-picker-desc__header > span {
+  margin-right: 0.25rem;
+}
+.aspect-picker-desc__list {
+  margin: 0;
+}
+
+.aspect-select {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.aspect-select select {
+  flex: 1;
 }
 
 .attrib {

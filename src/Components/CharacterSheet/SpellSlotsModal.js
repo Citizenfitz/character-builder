@@ -17,7 +17,7 @@ export default function SpellSlotsModal(props) {
       </button>
       <Modal
         id="modal--spellSlots"
-        className="modal ut-no-print"
+        className="modal modal--spellSlots ut-no-print"
         overlayClassName="modal__overlay"
         isOpen={isOpen}
         onRequestClose={closeModal}

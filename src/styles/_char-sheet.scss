@@ -1,59 +1,4 @@
 // this is the container around the entier app including modals and such
-.char-app-container {
-  *,
-  *:before,
-  *:after {
-    box-sizing: border-box;
-  }
-  font-family: $font-primary;
-  line-height: 1.6;
-  color: $color-text;
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @include headerfont;
-  }
-
-  color: $color-text;
-  /***** LABELS *****/
-  label {
-    font-family: $font-header;
-    font-size: 1.2em;
-    margin-bottom: $spacing-sm;
-    font-weight: normal;
-  }
-
-  /***** INPUTS *****/
-  button,
-  input[type="text"],
-  input[type="number"],
-  select {
-    height: $spacing-sm-alt;
-    border-radius: $border-radius-standard;
-    border: 1px solid $color-dark-alt;
-    padding: 0 $spacing-xxs;
-    background-color: $color-input-background;
-    font-family: $text-regular;
-    &:active {
-      color: $color-dark;
-      border-color: $color-accent-dark;
-    }
-    &:disabled {
-      opacity: 0.5;
-    }
-    &:focus {
-      background-color: $color-accent;
-    }
-  }
-  input[type="text"] {
-  }
-  input[type="number"] {
-    text-align: center;
-  }
-}
 
 .char-sheet {
   // Main container styles
@@ -257,8 +202,8 @@
     }
     &--large {
       font-size: 1.25rem;
-      padding: $spacing-sm $spacing-md;
-      line-height: 1rem;
+      padding: $spacing-sm-alt $spacing-md;
+      line-height: 0;
     }
     &--showSpellSlots {
       margin-left: $spacing-sm-alt;

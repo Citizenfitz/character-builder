@@ -74,7 +74,7 @@ const Notes = (props) => {
         isOpen={notesModalOpen}
         onRequestClose={toggleNotesModalOpen}
         className="modal ut-no-print"
-        overlayClassName="modal_overlay"
+        overlayClassName="modal__overlay"
         contentLabel="Add a note"
       >
         <div className="modal__container">
@@ -83,7 +83,7 @@ const Notes = (props) => {
               {typeof notesIndex === "number" ? "Edit" : "Add"} Note
             </h2>
             <button
-              className="button modal__header-button"
+              className="char-sheet__button modal__header-button"
               aria-label="Close modal"
               onClick={toggleNotesModalOpen}
             >
@@ -105,7 +105,7 @@ const Notes = (props) => {
             </div>
             <div className="modal__footer">
               <button
-                className="button char-sheet__button"
+                className="char-sheet__button char-sheet__button--large"
                 type="submit"
                 value="Save"
               >

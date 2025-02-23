@@ -772,7 +772,7 @@ const CharacterSheet = () => {
 
   return (
     <div id="char-sheet">
-      <div className="char-sheet char-sheet--lightx">
+      <div className="char-sheet">
         <section className="char-sheet__section char-sheet__section--top">
           <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
           <p className="ut-no-print">
@@ -1258,7 +1258,7 @@ const CharacterSheet = () => {
           <TalentDetails character={character} />
         </section>
 
-        {/*  ------- MODAL WITH CLASS PICKER ------ */}
+        {/*  ------- MODAL WITH CHOSE A RACE INFO ------ */}
         <ReactModal
           isOpen={raceModalOpen}
           onRequestClose={toggleRaceModal}

@@ -1,93 +1,16 @@
 // ********** Modals **********
-#modal--spellSlots {
-  .modal__body {
-    display: flex;
-    justify-content: center;
-  }
-}
-
-#modal--thaumaturgySpells {
-  width: 80vw;
-}
-
-#modal--wizardrySpells {
-  width: 80vw;
-
-  .showAll {
-    margin-bottom: 10px;
-  }
-}
-
-#modal--schools {
-  width: fit-content;
-  fieldset {
-    display: flex;
-    justify-content: space-between;
-    margin: 15px 0;
-    div {
-      display: inline-block;
-      margin: 5px 0 5px 20px;
-      &:first-child {
-        margin-left: 0;
-      }
-      &:last-child {
-        margin-right: 0;
-      }
-    }
-  }
-  label {
-    cursor: pointer;
-    @include greyhawkfont;
-    font-size: 1.2rem;
-    display: inline-block;
-    padding: 0 0 0 8px;
-    margin: 0;
-  }
-  input {
-    cursor: pointer;
-    display: inline-block;
-    padding: 3px;
-    margin: 0;
-  }
-  .schoolDescriptions {
-    border: 1px solid $color-dark;
-    padding: 1em;
-    margin-bottom: 1em;
-    span {
-      @include greyhawkfont;
-      font-size: 1rem;
-    }
-    ul {
-      margin: 0;
-      padding: 0;
-    }
-    li {
-      list-style: none;
-      line-height: 1.4em;
-    }
-  }
-  .school-white {
-    color: $school-white;
-  }
-  .school-black {
-    color: $school-black;
-  }
-  .school-green {
-    color: $school-green;
-  }
-  .school-blue {
-    color: $school-blue;
-  }
-  .school-red {
-    color: $school-red;
-  }
-  .validation--error {
-    margin: 0;
-    color: $color-knave;
-  }
-}
 
 .modal {
+  position: relative;
+  background-color: $color-dark;
+  padding: 0;
+  border-radius: $border-radius-lg;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: auto;
+  width: 640px;
+  z-index: 1051;
+  border: 1px solid $color-accent;
+
   &__overlay {
     position: fixed;
     top: 0;
@@ -101,74 +24,36 @@
     justify-content: center;
   }
 
-  &__content,
   &__container {
-    position: relative;
-    background-color: $color-dark;
-    padding: 0;
-    border-radius: $border-radius-lg;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: auto;
-    max-width: 600px;
-    z-index: 1051;
   }
 
   &__header {
-    padding: $spacing-xs $spacing-sm;
-    border-bottom: 1px solid $color-border;
+    padding: $spacing-xs $spacing-sm-alt;
     background-color: $color-dark-alt;
-    color: $color-accent;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  &__title {
-    margin: 0;
-    font-family: $font-header;
-    font-size: 1.5rem;
-    color: $color-accent;
+  &__header-button {
+    font-size: 1.25rem;
+    height: $spacing-md;
+    width: $spacing-md;
   }
 
-  &__close {
-    font-size: 1.25rem;
-    color: $color-text-muted;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 0;
-
-    &:hover {
-      color: $color-accent;
-    }
+  &__title {
+    margin: 0;
+    font-size: 1.5rem;
   }
 
   &__body {
-    padding: $spacing-sm;
+    padding: $spacing-sm-alt;
     color: $color-dark-inverted;
     line-height: 1.5;
   }
 
   &__footer {
-    padding: $spacing-xs $spacing-sm;
-    border-top: 1px solid $color-border;
-    background-color: $color-dark-alt-2;
-    display: flex;
-    justify-content: flex-end;
-    gap: $spacing-xs;
-  }
-
-  &__button {
-    padding: $spacing-xs $spacing-sm;
-    background-color: $color-cta;
-    color: $color-text-cta;
-    border: none;
-    border-radius: $border-radius-standard;
-    cursor: pointer;
-    font-family: $font-primary;
-
-    &:hover {
-      background-color: $color-cta-hover;
-    }
+    padding: $spacing-md $spacing-sm-alt;
   }
 }
