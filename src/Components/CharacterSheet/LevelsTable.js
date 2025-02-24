@@ -93,7 +93,7 @@ const LevelsTable = (props) => {
               1d{props.character.hitDiceType}
             </td>
             <td className="char-sheet__table__cell char-sheet__table__cell--talent">
-              <div className="aspect-icon aspect-icon--fighter"></div>
+              <div className="icon-aspect icon-aspect--fighter"></div>
               <span className="talentAssigned">
                 {props.character.talents.talentAssigned1}
               </span>
@@ -112,7 +112,7 @@ const LevelsTable = (props) => {
           <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
             <td className="char-sheet__table__cell char-sheet__table__cell--talent">
               <div
-                className={`aspect-icon aspect-icon--${getTalentAspect(
+                className={`icon-aspect icon-aspect--${getTalentAspect(
                   props.character.talents.talentAssigned2
                 )}`}
               ></div>
@@ -134,7 +134,7 @@ const LevelsTable = (props) => {
           <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
             <td className="char-sheet__table__cell char-sheet__table__cell--talent">
               <div
-                className={`aspect-icon aspect-icon--${getTalentAspect(
+                className={`icon-aspect icon-aspect--${getTalentAspect(
                   props.character.talents.talentLevel1
                 )}`}
               ></div>
@@ -163,7 +163,7 @@ const LevelsTable = (props) => {
             <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
               <td className="char-sheet__table__cell char-sheet__table__cell--talent">
                 <div
-                  className={`aspect-icon aspect-icon--${getTalentAspect(
+                  className={`icon-aspect icon-aspect--${getTalentAspect(
                     props.character.talents.talentKnave1
                   )}`}
                 ></div>
@@ -193,7 +193,7 @@ const LevelsTable = (props) => {
               <td></td>
               <td className="char-sheet__table__cell char-sheet__table__cell--talent">
                 <div
-                  className={`aspect-icon aspect-icon--${getTalentAspect(
+                  className={`icon-aspect icon-aspect--${getTalentAspect(
                     props.character.talents.talentDisad1
                   )}`}
                 ></div>
@@ -225,7 +225,7 @@ const LevelsTable = (props) => {
               <td></td>
               <td className="char-sheet__table__cell char-sheet__table__cell--talent">
                 <div
-                  className={`aspect-icon aspect-icon--${getTalentAspect(
+                  className={`icon-aspect icon-aspect--${getTalentAspect(
                     props.character.talents.talentDisad2
                   )}`}
                 ></div>
@@ -273,7 +273,7 @@ const LevelsTable = (props) => {
                   <Fragment>
                     <td className="char-sheet__table__cell char-sheet__table__cell--talent">
                       <div
-                        className={`aspect-icon aspect-icon--${getTalentAspect(
+                        className={`icon-aspect icon-aspect--${getTalentAspect(
                           props.character.talents[`talentLevel${i.level}`]
                         )}`}
                       ></div>

@@ -254,7 +254,7 @@
 
     &-item {
       flex: 1;
-      min-height: 124px;
+      height: 110px;
       position: relative;
       border: 1px solid $color-accent;
       border-radius: $border-radius-lg $border-radius-lg 0 0;
@@ -269,16 +269,17 @@
       }
     }
     &-text {
-      padding: $spacing-sm-alt;
+      padding: 0 $spacing-sm-alt;
     }
     &--save-mods {
       margin: $spacing-sm-alt 0;
+      height: 160px;
     }
     &-save-mods-list {
-      padding: $spacing-sm-alt;
+      padding: $spacing-sm $spacing-sm-alt;
+      padding-left: calc($spacing-sm-alt + 24px);
       list-style: none;
       margin: 0;
-      padding-left: calc($spacing-md + 16px);
       text-align: left;
     }
     &-save-mods-list-item {
@@ -287,12 +288,12 @@
       &:last-child {
         margin-bottom: 0;
       }
-      > .aspect-icon {
+      > .icon-aspect {
         position: absolute;
         left: -28px;
         top: -1px;
       }
-      > .aspect-icon--race {
+      > .icon-aspect--race {
         top: -3px;
       }
       > .fas {
@@ -301,6 +302,7 @@
         top: -1px;
       }
     }
+    // Symbol or char sketch
     &--explain {
       margin-bottom: $spacing-sm-alt;
       min-height: 284px;

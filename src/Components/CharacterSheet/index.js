@@ -979,7 +979,7 @@ const CharacterSheet = () => {
                   </li>
                   <li className="char-sheet__quick-ref-save-mods-list-item">
                     <div
-                      className={`aspect-icon aspect-icon--${character.aspect}`}
+                      className={`icon-aspect icon-aspect--${character.aspect}`}
                     ></div>{" "}
                     {character.saveModsClass}
                   </li>
@@ -989,7 +989,7 @@ const CharacterSheet = () => {
                   className="char-sheet__quick-ref-save-mods-list-item"
                   key={i}
                 >
-                  <div className="aspect-icon aspect-icon--race"></div>
+                  <div className="icon-aspect icon-aspect--race"></div>
                   {note}
                 </li>
               ))}

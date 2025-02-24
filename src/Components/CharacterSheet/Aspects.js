@@ -22,7 +22,7 @@ const Aspects = (props) => {
           onClick={toggleAspectModal}
         >
           <span
-            className={`aspect-icon aspect-icon--in-button aspect-icon--${props.character.aspect}`}
+            className={`icon-aspect icon-aspect--in-button icon-aspect--${props.character.aspect}`}
           ></span>
           <span className="ut-display-inine-block">
             {whichAspectDisplayName(props.character.aspect)}
@@ -85,7 +85,7 @@ const Aspects = (props) => {
                       className={`aspect-radio-label aspect-radio-label--${i.name}`}
                     >
                       <span
-                        className={`aspect-icon aspect-icon--in-button aspect-icon--${i.name}`}
+                        className={`icon-aspect icon-aspect--in-button icon-aspect--${i.name}`}
                       ></span>
                       {whichAspectDisplayName(i.name)}
                     </label>
@@ -98,7 +98,7 @@ const Aspects = (props) => {
                 className={`aspect-picker-desc__header ut-color-${props.character.aspect}`}
               >
                 <span
-                  className={`aspect-icon aspect-icon--medium aspect-icon--${props.character.aspect}`}
+                  className={`icon-aspect icon-aspect--medium icon-aspect--${props.character.aspect}`}
                 ></span>
                 {whichAspectDisplayName(props.character.aspect)}
               </h2>
