@@ -13,6 +13,7 @@ body {
   font-family: $font-primary;
   line-height: 1.6;
   color: $color-text;
+  background-color: $color-dark;
 }
 
 h1,
@@ -64,6 +65,18 @@ input[type="text"] {
 }
 input[type="number"] {
   text-align: center;
+}
+textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: $spacing-xs;
+  border: 1px solid $color-border;
+  border-radius: $border-radius-standard;
+  background-color: $color-input-background;
+  resize: vertical;
+  &:focus {
+    background-color: $color-accent;
+  }
 }
 
 /* Common Icon Classes */

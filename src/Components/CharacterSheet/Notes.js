@@ -38,27 +38,27 @@ const Notes = (props) => {
   };
 
   return (
-    <div className="notes">
+    <div className="char-sheet__notes">
       {/*  ------- User notes -------- */}
       <div className="ut-margin-bottom-half-em">
         <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
           <i className="fas fa-plus"></i> Add Note
         </button>
       </div>
-      <ul className="notes__list">
+      <ul className="char-sheet__notes__list">
         {props.notes.map((note, i) => (
-          <li className="notes__list-item" key={i}>
-            <div className="note--text">{note}</div>
-            <div className="notes__buttons">
+          <li className="char-sheet__notes__list-item" key={i}>
+            <div className="char-sheet__notes__text">{note}</div>
+            <div className="char-sheet__notes__buttons">
               <button
-                className="char-sheet__button"
+                className="char-sheet__button char-sheet__notes__button"
                 onClick={() => editNote(i)}
                 aria-label="edit note"
               >
                 <span className="fas fa-edit"></span>
               </button>
               <button
-                className="char-sheet__button"
+                className="char-sheet__button char-sheet__notes__button"
                 aria-label="delete note"
                 onClick={() => deleteNote(i)}
               >

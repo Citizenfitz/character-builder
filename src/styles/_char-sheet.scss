@@ -7,7 +7,7 @@
   background: $color-dark;
   border-radius: $border-radius-lg;
   margin: 0 auto;
-  border: 1px solid $color-dark;
+  border: 1px solid;
 
   .default-typography {
     font-size: 1rem;
@@ -21,8 +21,11 @@
   &__h1 {
     text-align: center;
     margin-top: 0;
-    font-size: 3rem;
-    margin-bottom: $spacing-sm;
+    font-size: 2.75rem;
+    background-color: $color-dark-alt-2;
+    padding: $spacing-sm;
+    border-radius: $border-radius-lg $border-radius-lg 0 0;
+    margin: -1rem -2rem $spacing-sm -2rem;
   }
   &__h2 {
     font-size: 1.5rem;
