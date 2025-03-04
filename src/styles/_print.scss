@@ -47,7 +47,7 @@
     -moz-appearance: textfield;
   }
 
-  .aspect-icon--large:after {
+  .icon-aspect--large:after {
     background-size: 80%;
     bottom: 10px;
   }
@@ -202,7 +202,7 @@
     .attrib__mod span {
       color: $color-accent-inverted;
     }
-    .aspect-icon.aspect-icon--common {
+    .icon-aspect.icon-aspect--common {
       color: $color-accent-inverted;
     }
 
