@@ -1170,6 +1170,7 @@ input[type=radio] + label.aspect-radio-label__type {
 .char-sheet__table__caption--wizardry {
   background-color: #e1a525;
   color: #333333;
+  border-color: #e1a525;
 }
 .char-sheet__table__caption--wizardry .ut-text-explain {
   color: #333333;
@@ -1599,6 +1600,10 @@ input[type=radio] + label.aspect-radio-label__type {
 .char-sheet__table__level--13 .char-sheet__table__level--lvl14 td {
   opacity: 0.5;
   border-color: rgba(247, 235, 199, 0.5);
+}
+
+.char-sheet__table--wizardry tr:nth-child(even) {
+  background-color: #351748;
 }
 
 .desc {

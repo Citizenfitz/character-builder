@@ -57,6 +57,15 @@ export default function WizardrySpells(props) {
     }
   }, [wizardrySchools, spellList]);
 
+  useEffect(() => {
+    if (wizardry3StartLevel > 0 && charLevel >= wizardry3StartLevel) {
+      // Initialize with all spells if wizardry three is active
+      refreshSpellOptions([]);
+    } else {
+      refreshSpellOptions(wizardrySchools);
+    }
+  }, [wizardrySchools, wizardry3StartLevel, charLevel]);
+
   const selectSpell = (wizLevel, slot) => {
     setSpellLevel(wizLevel + 1);
     setSpellSlot(slot);
@@ -77,11 +86,35 @@ export default function WizardrySpells(props) {
   };
 
   const handleSetSchool = (e, schoolIndex) => {
-    let value;
-    if (e.target) {
-      value = e.target.value;
-    }
+    let value = e.target.value;
     setWizardSchool(value, schoolIndex);
+
+    // Trigger a refresh of the spell list based on the new school
+    const updatedSchools = [...wizardrySchools];
+    updatedSchools[schoolIndex] = value;
+    refreshSpellOptions(updatedSchools);
+  };
+
+  const refreshSpellOptions = (schools) => {
+    const isWizardryThreeActive =
+      wizardry3StartLevel > 0 && charLevel >= wizardry3StartLevel;
+
+    const newSpellList = wizardryList.map((levelList, levelIndex) => {
+      return levelList
+        .filter((spellName) => {
+          if (isWizardryThreeActive) {
+            return true; // Include all spells
+          } else {
+            const spellSchools = spellData[spellName].school;
+            return schools.some((school) => spellSchools.includes(school));
+          }
+        })
+        .map((spellName) => ({
+          name: spellName,
+          ...spellData[spellName],
+        }));
+    });
+    setSpellList(newSpellList);
   };
 
   const renderEmptyRow = (i, j) => {
@@ -111,14 +144,23 @@ export default function WizardrySpells(props) {
   };
 
   const renderSpellRow = (i, j) => {
+    // Check if wizardry three is active and character level is sufficient
+    const isWizardryThreeActive =
+      wizardry3StartLevel > 0 && charLevel >= wizardry3StartLevel;
+
     const availableSpells = wizardryList[i].filter((spellName) => {
-      const intersection = wizardrySchools.filter((element) =>
-        spellData[spellName].school.includes(element)
-      );
-      return intersection.length > 0;
+      // If wizardry three is active, include all spells, otherwise filter by selected schools
+      if (isWizardryThreeActive) {
+        return true; // Include all spells
+      } else {
+        const intersection = wizardrySchools.filter((element) =>
+          spellData[spellName].school.includes(element)
+        );
+        return intersection.length > 0;
+      }
     });
 
-    const spell = spellList[i][j]; // Get the current spell object or undefined
+    const spell = spellList[i] && spellList[i][j] ? spellList[i][j] : undefined;
 
     return (
       <tr key={j}>
@@ -240,7 +282,7 @@ export default function WizardrySpells(props) {
             Select a Wizardry School before choosing spells
           </div>
         )}
-        <table className="char-sheet__table">
+        <table className="char-sheet__table char-sheet__table--wizardry">
           <caption className="char-sheet__table__caption char-sheet__table__caption--wizardry">
             Wizardry Spells
             <span className="ut-text-explain ut-margin-left-half-em">
