@@ -842,8 +842,8 @@ const CharacterSheet = () => {
                 <span className="label">Character Name</span>
               </label>
 
-              <div className="flex-grid flex-grid--flex-start ">
-                <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+              <div className="flex-grid">
+                <div className="ut-margin-left-xs ut-margin-right-sm-alt">
                   {/*  ------- LEVEL ------ */}
                   <label>
                     <select
@@ -864,7 +864,7 @@ const CharacterSheet = () => {
                     <span className="label">Level</span>
                   </label>
                 </div>
-                <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+                <div>
                   {/*  ------- SEX ------ */}
                   <label>
                     <select
@@ -886,7 +886,7 @@ const CharacterSheet = () => {
                 </div>
               </div>
               <div className="flex-grid flex-grid--flex-start ">
-                <div className="flex-grid__child flex-grid__child--auto  ut-margin-right-1em">
+                <div className="ut-margin-left-xs ut-margin-right-sm-alt">
                   {/*  ------- RACE ------ */}
                   <label>
                     <button
@@ -904,7 +904,7 @@ const CharacterSheet = () => {
                     <span className="label">Race</span>
                   </label>
                 </div>
-                <div className="flex-grid__child flex-grid__child--auto">
+                <div>
                   {/*  ------- CLASS / "Aspects" ------ */}
                   <Aspects
                     character={character}
@@ -1001,7 +1001,7 @@ const CharacterSheet = () => {
               </div>
 
               <div className="flex-grid  flex-grid--flex-start">
-                <div className="flex-grid__child flex-grid__child--auto ut-margin-right-1em">
+                <div className="ut-margin-left-xs ut-margin-right-sm-alt">
                   {/*  ------- ARMOR ------ */}
                   <label>
                     <select
@@ -1279,7 +1279,7 @@ const CharacterSheet = () => {
               </button>
             </div>
             <div className="modal__body">
-              <p className="ut-margin-top-0">
+              <p className="ut-margin-top-none">
                 To be any race other than human costs one talent slot. This can
                 only be chosen when a character is first created, it never
                 changes, and only ONE race talent may ever be taken.

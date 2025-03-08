@@ -95,7 +95,7 @@ input[type=number],
 select {
   height: 1.5rem;
   border-radius: 3px;
-  border: 1px solid #110812;
+  border: 1px solid #4a1f6a;
   padding: 0 0.25rem;
   background-color: #f5f3ed;
   font-family: "Cabin Regular", Cabin, sans-serif;
@@ -605,7 +605,7 @@ input[type=radio]:checked + label.knave {
   width: 100%;
   height: 1.5rem;
   border-radius: 3px;
-  border: 1px solid #110812;
+  border: 1px solid #4a1f6a;
   padding: 0 0.25rem;
   background-color: #f5f3ed;
   font-family: "Cabin Regular", Cabin, sans-serif;
@@ -622,7 +622,7 @@ input[type=radio]:checked + label.knave {
   width: 100%;
   height: 1.5rem;
   border-radius: 3px;
-  border: 1px solid #110812;
+  border: 1px solid #4a1f6a;
   padding: 0 0.25rem;
   background-color: #f5f3ed;
   font-family: "Cabin Regular", Cabin, sans-serif;
@@ -635,7 +635,7 @@ input[type=radio]:checked + label.knave {
   width: 100%;
   min-height: 4rem;
   border-radius: 3px;
-  border: 1px solid #110812;
+  border: 1px solid #4a1f6a;
   padding: 0.5rem;
   background-color: #f5f3ed;
   font-family: "Cabin Regular", Cabin, sans-serif;
@@ -677,7 +677,7 @@ input[type=radio]:checked + label.knave {
 }
 .modal__header {
   padding: 0.5rem 1.5rem;
-  background-color: #110812;
+  background-color: #4a1f6a;
   border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
@@ -748,7 +748,7 @@ body {
   padding: 1rem 2rem;
 }
 .char-sheet__section:nth-child(n + 3):nth-child(odd) {
-  background-color: #110812;
+  background-color: #4a1f6a;
   padding: 2rem;
 }
 .char-sheet__section:last-child {
@@ -1855,6 +1855,7 @@ input[type=radio] + label.aspect-radio-label__type {
 
   body {
     padding: 0;
+    line-height: 1.5em;
   }
 
   main {
@@ -2385,29 +2386,181 @@ input[type=number]::-webkit-outer-spin-button {
   color: #5a2780;
 }
 
-.ut-margin-top-0 {
+/***************************** FONT IMPORTS ************************************* */
+@font-face {
+  font-family: "cabin-regular";
+  src: url("assets/fonts/Cabin/Cabin-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "cabin-medium";
+  src: url("assets/fonts/Cabin/Cabin-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "cabin-semibold";
+  src: url("assets/fonts/Cabin/Cabin-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "cabin-bold";
+  src: url("assets/fonts/Cabin/Cabin-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "GreyhawkGothic";
+  src: url("assets/fonts/GreyhawkGothic/GreyhawkGothic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "FontAwesome";
+  src: url("assets/fonts/FontAwesome/fontawesome-webfont.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Kaushan Script";
+  src: url("assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Edelgotisch";
+  src: url("assets/fonts/Edelgotisch/Edelgotisch.ttf") format("truetype");
+}
+.ut-margin-top-none {
   margin-top: 0;
 }
-.ut-margin-bottom-half-em {
-  margin-bottom: 0.5em;
+
+.ut-margin-top-xxs {
+  margin-top: 0.25rem;
 }
-.ut-margin-bottom-half-rem {
+
+.ut-margin-top-xs {
+  margin-top: 0.5rem;
+}
+
+.ut-margin-top-sm {
+  margin-top: 1rem;
+}
+
+.ut-margin-top-sm-alt {
+  margin-top: 1.5rem;
+}
+
+.ut-margin-top-md {
+  margin-top: 2rem;
+}
+
+.ut-margin-top-lg {
+  margin-top: 4rem;
+}
+
+.ut-margin-top-xl {
+  margin-top: 6rem;
+}
+
+.ut-margin-top-xxl {
+  margin-top: 8rem;
+}
+
+.ut-margin-bottom-none {
+  margin-bottom: 0;
+}
+
+.ut-margin-bottom-xxs {
+  margin-bottom: 0.25rem;
+}
+
+.ut-margin-bottom-xs {
   margin-bottom: 0.5rem;
 }
-.ut-margin-right-2em {
-  margin-right: 2em;
+
+.ut-margin-bottom-sm {
+  margin-bottom: 1rem;
 }
-.ut-margin-right-1em {
-  margin-right: 1em;
+
+.ut-margin-bottom-sm-alt {
+  margin-bottom: 1.5rem;
 }
-.ut-margin-right-half-em {
-  margin-right: 0.5em;
+
+.ut-margin-bottom-md {
+  margin-bottom: 2rem;
 }
-.ut-margin-left-1em {
-  margin-left: 1em;
+
+.ut-margin-bottom-lg {
+  margin-bottom: 4rem;
 }
-.ut-margin-left-half-em {
-  margin-left: 0.5em;
+
+.ut-margin-bottom-xl {
+  margin-bottom: 6rem;
+}
+
+.ut-margin-bottom-xxl {
+  margin-bottom: 8rem;
+}
+
+.ut-margin-left-none {
+  margin-left: 0;
+}
+
+.ut-margin-left-xxs {
+  margin-left: 0.25rem;
+}
+
+.ut-margin-left-xs {
+  margin-left: 0.5rem;
+}
+
+.ut-margin-left-sm {
+  margin-left: 1rem;
+}
+
+.ut-margin-left-sm-alt {
+  margin-left: 1.5rem;
+}
+
+.ut-margin-left-md {
+  margin-left: 2rem;
+}
+
+.ut-margin-left-lg {
+  margin-left: 4rem;
+}
+
+.ut-margin-left-xl {
+  margin-left: 6rem;
+}
+
+.ut-margin-left-xxl {
+  margin-left: 8rem;
+}
+
+.ut-margin-right-none {
+  margin-right: 0;
+}
+
+.ut-margin-right-xxs {
+  margin-right: 0.25rem;
+}
+
+.ut-margin-right-xs {
+  margin-right: 0.5rem;
+}
+
+.ut-margin-right-sm {
+  margin-right: 1rem;
+}
+
+.ut-margin-right-sm-alt {
+  margin-right: 1.5rem;
+}
+
+.ut-margin-right-md {
+  margin-right: 2rem;
+}
+
+.ut-margin-right-lg {
+  margin-right: 4rem;
+}
+
+.ut-margin-right-xl {
+  margin-right: 6rem;
+}
+
+.ut-margin-right-xxl {
+  margin-right: 8rem;
 }
 
 .ut-all-caps {

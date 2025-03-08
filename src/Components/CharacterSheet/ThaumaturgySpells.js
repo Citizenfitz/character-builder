@@ -117,7 +117,7 @@ export default function ThaumaturgySpells(props) {
       <table className="char-sheet__table char-sheet__table--thaumaturgy">
         <caption className="char-sheet__table__caption char-sheet__table__caption--thaumaturgy">
           Thaumaturgy Spells
-          <span className="ut-text-explain ut-margin-left-half-em">
+          <span className="ut-text-explain ut-margin-left-xs">
             - At {formatNumberSuffix(level)} level
             {wisStat > 12 && (
               <span> plus one extra 1st level spell for 13+ WIS</span>

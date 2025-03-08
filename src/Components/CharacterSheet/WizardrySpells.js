@@ -285,7 +285,7 @@ export default function WizardrySpells(props) {
         <table className="char-sheet__table char-sheet__table--wizardry">
           <caption className="char-sheet__table__caption char-sheet__table__caption--wizardry">
             Wizardry Spells
-            <span className="ut-text-explain ut-margin-left-half-em">
+            <span className="ut-text-explain ut-margin-left-xs">
               - At {formatNumberSuffix(wizLevel)} level
             </span>
           </caption>

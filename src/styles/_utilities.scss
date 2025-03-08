@@ -64,32 +64,9 @@
 }
 
 // ------- Margins --------
-.ut-margin {
-  &-top-0 {
-    margin-top: 0;
-  }
-  &-bottom-half-em {
-    margin-bottom: 0.5em;
-  }
-  &-bottom-half-rem {
-    margin-bottom: 0.5rem;
-  }
-  &-right-2em {
-    margin-right: 2em;
-  }
-  &-right-1em {
-    margin-right: 1em;
-  }
-  &-right-half-em {
-    margin-right: 0.5em;
-  }
-  &-left-1em {
-    margin-left: 1em;
-  }
-  &-left-half-em {
-    margin-left: 0.5em;
-  }
-}
+@import "variables-mixins"; // Ensure this is correctly pointing to your variables file
+
+@include generate-margin-utilities;
 
 // ------- Fonts & text styles --------
 .ut-all-caps {

@@ -77,7 +77,8 @@ $text-cursive: "Kaushan Script", cursive;
 
 // Brand Colors
 $color-dark: #5a2780;
-$color-dark-alt: #110812;
+// $color-dark-alt: #110812;
+$color-dark-alt: #4a1f6a;
 $color-accent: #f7ebc7;
 $color-accent-dark: #c78d17;
 $color-cta: #d7ac28;
@@ -90,6 +91,23 @@ $color-text: #ffffff;
 $color-text-dark: #333333;
 $color-text-muted: #cccccc;
 $color-text-cta: #1a1a1a;
+
+// Inverted Theme Colors
+$color-dark-inverted: #ffffff;
+$color-text-inverted: #333333;
+$color-accent-inverted: #5a2780;
+$color-muted-inverted: #666666;
+$color-border-inverted: #dddddd;
+$color-zebra-inverted: rgba(90, 39, 128, 0.05);
+
+// test inverted
+// $color-text: $color-text-dark;
+// $color-text-muted: $color-muted-inverted;
+// $color-text-cta: $color-text-inverted;
+// $color-accent: $color-accent-inverted;
+// $color-zebra: #f7ebc7;
+// $color-dark: $color-dark-inverted;
+// $color-dark-alt: rgba(90, 39, 128, 0.1);
 
 // UI Colors
 $color-border: #333;
@@ -117,14 +135,6 @@ $school-green: #04a54f;
 $school-blue: #2375b9;
 $school-red: #eb2026;
 
-// Inverted Theme Colors
-$color-dark-inverted: #ffffff;
-$color-text-inverted: #333333;
-$color-accent-inverted: #5a2780;
-$color-muted-inverted: #666666;
-$color-border-inverted: #dddddd;
-$color-zebra-inverted: rgba(90, 39, 128, 0.05);
-
 // ********************* SPACING *********************
 $spacing-xxs: 0.25rem;
 $spacing-xs: 0.5rem;
@@ -134,6 +144,19 @@ $spacing-md: 2rem;
 $spacing-lg: 4rem;
 $spacing-xl: 6rem;
 $spacing-xxl: 8rem;
+
+// repeated for mixins
+$spacing-sizes: (
+  none: 0,
+  xxs: 0.25rem,
+  xs: 0.5rem,
+  sm: 1rem,
+  sm-alt: 1.5rem,
+  md: 2rem,
+  lg: 4rem,
+  xl: 6rem,
+  xxl: 8rem,
+);
 
 // ********************* LAYOUT *********************
 $container-max: 1200px;
@@ -281,4 +304,17 @@ $form-element-border: 1px solid $color-border;
   border: 1px solid;
   text-align: center;
   font-weight: normal;
+}
+
+@mixin generate-margin-utilities {
+  $directions: (top, bottom, left, right);
+  $sizes: (none, xxs, xs, sm, sm-alt, md, lg, xl, xxl);
+
+  @each $dir in $directions {
+    @each $size in $sizes {
+      .ut-margin-#{$dir}-#{$size} {
+        margin-#{$dir}: map-get($spacing-sizes, $size);
+      }
+    }
+  }
 }

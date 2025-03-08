@@ -56,7 +56,7 @@ const Aspects = (props) => {
           </button>
         </div>
         <div className="modal__body">
-          <p className="ut-margin-top-0">
+          <p className="ut-margin-top-none">
             A character's main approach to challenges. There are four arranged
             such that each has two adjacent classes
             <i> (those to the left and right) </i> and one opposing class

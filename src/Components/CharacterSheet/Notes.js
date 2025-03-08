@@ -40,7 +40,7 @@ const Notes = (props) => {
   return (
     <div className="char-sheet__notes">
       {/*  ------- User notes -------- */}
-      <div className="ut-margin-bottom-half-em">
+      <div className="ut-margin-bottom-xs">
         <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
           <i className="fas fa-plus"></i> Add Note
         </button>
