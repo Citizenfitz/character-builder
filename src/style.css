@@ -51,6 +51,7 @@ body {
   line-height: 1.6;
   color: #ffffff;
   background-color: #5a2780;
+  font-size: 16px;
 }
 
 h1,
@@ -858,6 +859,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 0.875rem;
 }
 .char-sheet__quick-ref-text {
   padding: 0 1.5rem;
@@ -1141,7 +1143,6 @@ input[type=radio] + label.aspect-radio-label__type {
   padding: 0.5rem;
   border: 1px solid;
   text-align: center;
-  font-size: 1rem;
   font-weight: normal;
 }
 .char-sheet__table__header--talent, .char-sheet__table__caption--talent {
@@ -1164,7 +1165,6 @@ input[type=radio] + label.aspect-radio-label__type {
   padding: 0.5rem;
   border: 1px solid;
   text-align: center;
-  font-size: 1rem;
   font-weight: normal;
 }
 .char-sheet__table__cell--name {
@@ -1706,7 +1706,6 @@ input[type=radio] + label.aspect-radio-label__type {
   padding: 0.5rem;
   border: 1px solid;
   text-align: center;
-  font-size: 1rem;
   font-weight: normal;
   min-width: 80px;
   border-left-width: 0px;
@@ -1722,7 +1721,6 @@ input[type=radio] + label.aspect-radio-label__type {
   padding: 0.5rem;
   border: 1px solid;
   text-align: center;
-  font-size: 1rem;
   font-weight: normal;
   border-left-width: 0px;
   border-top-width: 0px;
