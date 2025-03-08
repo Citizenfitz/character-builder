@@ -151,7 +151,7 @@ const TalentSelector = (props) => {
     default:
       return (
         <Fragment>
-          <span className="label">Choose Talent or Race</span>
+          <span className="label label--inline">Choose Talent or Race</span>
           <br />
           <select
             onChange={props.handleSetCharTalents}

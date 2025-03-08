@@ -133,19 +133,21 @@ const LevelsTable = (props) => {
           {/*  --------------- 1st Level - Choose a race or any talent -------------- */}
           <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
             <td className="char-sheet__table__cell char-sheet__table__cell--talent">
-              <div
-                className={`icon-aspect icon-aspect--${getTalentAspect(
-                  props.character.talents.talentLevel1
-                )}`}
-              ></div>
-              <div className="ut-display-inine-block ">
-                <TalentSelector
-                  type="race"
-                  id="talentLevel1"
-                  handleSetCharTalents={props.handleSetCharTalents}
-                  talents={props.character.talents}
-                  value={props.character.talents.talentLevel1}
-                />
+              <div className="char-sheet__table__cell--talent-all-wrapper">
+                <div
+                  className={`icon-aspect icon-aspect--${getTalentAspect(
+                    props.character.talents.talentLevel1
+                  )}`}
+                ></div>
+                <div className="ut-display-inine-block ">
+                  <TalentSelector
+                    type="race"
+                    id="talentLevel1"
+                    handleSetCharTalents={props.handleSetCharTalents}
+                    talents={props.character.talents}
+                    value={props.character.talents.talentLevel1}
+                  />
+                </div>
               </div>
             </td>
             <td className="char-sheet__table__cell">

@@ -957,12 +957,12 @@ const CharacterSheet = () => {
                 </div>
                 <div className="char-sheet__quick-ref-item">
                   <div className="char-sheet__quick-ref-text">
-                    <span className="label">Roll Mod: </span>
+                    <span className="label label--inline">Roll Mod: </span>
                     <b>
                       {formatNumberModifier(character.attributes.wisdom.mod)}
                     </b>
                     <br />
-                    <span className="label">Passive:</span>{" "}
+                    <span className="label label--inline">Passive:</span>{" "}
                     <b>{character.perception}</b>
                   </div>
                   <h2 className="char-sheet__quick-ref-footer">Perc.</h2>

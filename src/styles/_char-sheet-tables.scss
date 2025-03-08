@@ -16,19 +16,6 @@
     border-bottom: 0;
     font-size: 1.25rem;
     border-radius: $border-radius-lg $border-radius-lg 0 0;
-    &--wizardry {
-      background-color: $color-wizard;
-      color: $color-text-inverted;
-      border-color: $color-wizard;
-      .ut-text-explain {
-        color: $color-text-inverted;
-      }
-    }
-
-    &--thaumaturgy {
-      background-color: $color-priest;
-      color: $color-text;
-    }
   }
 
   // Cell styles
@@ -52,6 +39,10 @@
 
     &--talent {
       text-align: left;
+    }
+
+    &--talent-all-wrapper {
+      display: flex;
     }
   }
 
@@ -105,4 +96,23 @@
   tr:nth-child(even) {
     background-color: $color-zebra;
   }
+}
+.char-sheet__table__caption--wizardry {
+  background-color: $color-wizard;
+  color: $color-text-inverted;
+  border-color: $color-wizard;
+  .ut-text-explain {
+    color: $color-text-inverted;
+  }
+}
+
+// Thaumaturgy table styles
+.char-sheet__table--thaumaturgy {
+  tr:nth-child(even) {
+    background-color: $color-zebra;
+  }
+}
+.char-sheet__table__caption--thaumaturgy {
+  background-color: $color-priest;
+  color: $color-text;
 }

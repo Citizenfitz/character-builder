@@ -3,7 +3,7 @@ import React from "react";
 const PresetsSelector = ({ handlePreset, presetData }) => {
   return (
     <label className="preset-chooser">
-      <span className="label">Optional Preset </span>:&nbsp;
+      <span className="label label--inline">Optional Preset : </span>
       <select
         id="presetSelector"
         onChange={(e) => handlePreset(e.target.value)}

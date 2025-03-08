@@ -40,62 +40,57 @@ export default function ThaumaturgySpells(props) {
     setSpellSlot(slot);
   };
 
-  const handleAssignSpell = (spellName) => {
-    const newSpellList = { ...spellList };
-    newSpellList[spellLevel - 1][spellSlot] = {
-      name: spellName,
-      ...spellData[spellName],
-    };
+  const handleAssignSpell = (spellName, levelIndex, slotIndex) => {
+    const newSpellList = [...spellList];
+    if (spellName === "") {
+      newSpellList[levelIndex][slotIndex] = undefined;
+    } else {
+      newSpellList[levelIndex][slotIndex] = {
+        name: spellName,
+        ...spellData[spellName],
+      };
+    }
     setSpellList(newSpellList);
-    setOpen(false);
   };
 
-  const renderEmptyRow = (i, j) => {
-    return (
-      <tr key={j} className="char-sheet__table__row">
-        <td className="char-sheet__table__cell char-sheet__table__cell--level">
-          {formatNumberSuffix(i + 1)}
-        </td>
-        <td className="char-sheet__table__cell char-sheet__table__cell--name">
-          <button
-            onClick={() => selectSpell(i, j)}
-            className="char-sheet__button button"
-          >
-            <i className="fas fa-bolt"></i> Choose Spell
-          </button>
-        </td>
-        <td className="char-sheet__table__cell"></td>
-        <td className="char-sheet__table__cell"></td>
-        <td className="char-sheet__table__cell"></td>
-        <td className="char-sheet__table__cell"></td>
-        <td className="char-sheet__table__cell"></td>
-        <td className="char-sheet__table__cell"></td>
-      </tr>
-    );
-  };
+  const renderSpellRow = (levelIndex, slotIndex) => {
+    const availableSpells = thaumaturgyList[levelIndex];
+    const spell =
+      spellList[levelIndex] && spellList[levelIndex][slotIndex]
+        ? spellList[levelIndex][slotIndex]
+        : undefined;
 
-  const renderSpellRow = (i, j) => {
     return (
-      <tr key={j} className="char-sheet__table__row">
+      <tr key={slotIndex} className="char-sheet__table__row">
         <td className="char-sheet__table__cell char-sheet__table__cell--level">
-          {formatNumberSuffix(i + 1)}
+          {formatNumberSuffix(levelIndex + 1)}
         </td>
         <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
-          <button
-            onClick={() => selectSpell(i, j)}
-            className="char-sheet__button char-sheet__button--spell"
+          <select
+            value={spell ? spell.name : ""}
+            onChange={(e) =>
+              handleAssignSpell(e.target.value, levelIndex, slotIndex)
+            }
+            className="char-sheet__select"
           >
-            {spellList[i][j].name}
-          </button>
+            <option value="">Select Spell</option>
+            {availableSpells.map((spellName) => (
+              <option key={spellName} value={spellName}>
+                {spellName}
+              </option>
+            ))}
+          </select>
         </td>
-        <td className="char-sheet__table__cell">{spellList[i][j].cast}</td>
-        <td className="char-sheet__table__cell">{spellList[i][j].duration}</td>
-        <td className="char-sheet__table__cell">{spellList[i][j].range}</td>
-        <td className="char-sheet__table__cell">{spellList[i][j].target}</td>
+        <td className="char-sheet__table__cell">{spell ? spell.cast : ""}</td>
         <td className="char-sheet__table__cell">
-          {spellList[i][j].components}
+          {spell ? spell.duration : ""}
         </td>
-        <td className="char-sheet__table__cell">{spellList[i][j].save}</td>
+        <td className="char-sheet__table__cell">{spell ? spell.range : ""}</td>
+        <td className="char-sheet__table__cell">{spell ? spell.target : ""}</td>
+        <td className="char-sheet__table__cell">
+          {spell ? spell.components : ""}
+        </td>
+        <td className="char-sheet__table__cell">{spell ? spell.save : ""}</td>
       </tr>
     );
   };
@@ -104,7 +99,7 @@ export default function ThaumaturgySpells(props) {
     if (spellList[0][spellCount[0]]) {
       return renderSpellRow(0, spellCount[0]);
     } else {
-      return renderEmptyRow(0, spellCount[0]);
+      return renderSpellRow(0, spellCount[0]);
     }
   };
 
@@ -119,7 +114,7 @@ export default function ThaumaturgySpells(props) {
           )}
         </span>
       </h2>*/}
-      <table className="char-sheet__table">
+      <table className="char-sheet__table char-sheet__table--thaumaturgy">
         <caption className="char-sheet__table__caption char-sheet__table__caption--thaumaturgy">
           Thaumaturgy Spells
           <span className="ut-text-explain ut-margin-left-half-em">
@@ -171,107 +166,16 @@ export default function ThaumaturgySpells(props) {
                 if (spellList[i][j]) {
                   row = renderSpellRow(i, j);
                 } else {
-                  row = renderEmptyRow(i, j);
+                  row = renderSpellRow(i, j);
                 }
               } else {
-                row = renderEmptyRow(i, j);
+                row = renderSpellRow(i, j);
               }
               return row;
             });
           })}
         </tbody>
       </table>
-      <Modal
-        id="modal--thaumaturgySpells"
-        className="modal ut-no-print"
-        overlayClassName="modal__overlay"
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        contentLabel="Spell Slots"
-      >
-        <header className="modal__header">
-          <h2 className="modal__h2">Choose Your Spell</h2>
-          <button
-            className="char-sheet__button modal__header-button"
-            aria-label="Close modal"
-            onClick={closeModal}
-          >
-            X
-          </button>
-        </header>
-        <div className="modal__body">
-          <table className="char-sheet__table">
-            <thead>
-              <tr>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Level
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Name
-                </th>
-                {/* <th>School</th> */}
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Cast
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Duration
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Range
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Target
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Components
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
-                  Save
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {spellLevel &&
-                thaumaturgyList[spellLevel - 1].map((spellName, i) => {
-                  return (
-                    <tr key={i}>
-                      <td className="char-sheet__table__cell char-sheet__table__cell--level">
-                        {spellLevel}
-                      </td>
-                      <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
-                        {" "}
-                        <button
-                          className="showAll char-sheet__button"
-                          onClick={() => handleAssignSpell(spellName)}
-                        >
-                          {spellName}
-                        </button>
-                      </td>
-                      <td className="char-sheet__table__cell ">
-                        {spellData[spellName].cast}
-                      </td>
-                      <td className="char-sheet__table__cell">
-                        {spellData[spellName].duration}
-                      </td>
-                      <td className="char-sheet__table__cell">
-                        {spellData[spellName].range}
-                      </td>
-                      <td className="char-sheet__table__cell">
-                        {spellData[spellName].target}
-                      </td>
-                      <td className="char-sheet__table__cell">
-                        {spellData[spellName].components}
-                      </td>
-                      <td className="char-sheet__table__cell">
-                        {spellData[spellName].save}
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
-      </Modal>
     </section>
   );
 }

@@ -85,6 +85,7 @@ label--inline,
 .label--inline {
   display: inline-block;
   margin-right: 0.5rem;
+  margin-bottom: 0;
 }
 
 /***** INPUTS *****/
@@ -853,7 +854,7 @@ body {
 .char-sheet__quick-ref-item {
   padding: 1rem 0 0 0;
   flex: 1;
-  height: 120px;
+  height: 124px;
   position: relative;
   border: 1px solid #f7ebc7;
   border-radius: 8px 8px 0 0;
@@ -1167,18 +1168,6 @@ input[type=radio] + label.aspect-radio-label__type {
   font-size: 1.25rem;
   border-radius: 8px 8px 0 0;
 }
-.char-sheet__table__caption--wizardry {
-  background-color: #e1a525;
-  color: #333333;
-  border-color: #e1a525;
-}
-.char-sheet__table__caption--wizardry .ut-text-explain {
-  color: #333333;
-}
-.char-sheet__table__caption--thaumaturgy {
-  background-color: #2375b9;
-  color: #ffffff;
-}
 .char-sheet__table__cell {
   padding: 0.5rem;
   border: 1px solid;
@@ -1200,6 +1189,9 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__table__cell--talent {
   text-align: left;
+}
+.char-sheet__table__cell--talent-all-wrapper {
+  display: flex;
 }
 .char-sheet__table__row--zebra {
   background: #351748;
@@ -1604,6 +1596,24 @@ input[type=radio] + label.aspect-radio-label__type {
 
 .char-sheet__table--wizardry tr:nth-child(even) {
   background-color: #351748;
+}
+
+.char-sheet__table__caption--wizardry {
+  background-color: #e1a525;
+  color: #333333;
+  border-color: #e1a525;
+}
+.char-sheet__table__caption--wizardry .ut-text-explain {
+  color: #333333;
+}
+
+.char-sheet__table--thaumaturgy tr:nth-child(even) {
+  background-color: #351748;
+}
+
+.char-sheet__table__caption--thaumaturgy {
+  background-color: #2375b9;
+  color: #ffffff;
 }
 
 .desc {
