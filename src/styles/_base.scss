@@ -33,11 +33,17 @@ a {
 }
 
 /***** FORM ELEMENTS *****/
-label {
+label,
+.label {
   font-family: $font-header;
   font-size: 1.2em;
   margin-bottom: $spacing-sm;
   font-weight: normal;
+  display: block;
+  &--inline {
+    display: inline-block;
+    margin-right: $spacing-xs;
+  }
 }
 
 /***** INPUTS *****/

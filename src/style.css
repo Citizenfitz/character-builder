@@ -73,11 +73,18 @@ a {
 }
 
 /***** FORM ELEMENTS *****/
-label {
+label,
+.label {
   font-family: "Edelgotisch";
   font-size: 1.2em;
   margin-bottom: 1rem;
   font-weight: normal;
+  display: block;
+}
+label--inline,
+.label--inline {
+  display: inline-block;
+  margin-right: 0.5rem;
 }
 
 /***** INPUTS *****/
@@ -410,11 +417,6 @@ fieldset {
 }
 
 /***** LABELS *****/
-label {
-  display: block;
-  margin-bottom: 1rem;
-}
-
 /***** SELECTS *****/
 select {
   height: 1.5rem;
@@ -911,6 +913,18 @@ body {
   top: -1px;
 }
 
+.wizardry-school-selectors {
+  display: flex;
+  justify-content: left;
+}
+.wizardry-school-selectors .wizardry-school-selector .label {
+  margin-right: 0.5rem;
+  margin-bottom: 0;
+}
+.wizardry-school-selectors .wizardry-school-selector select {
+  margin: 0 2rem 0 0.5rem;
+}
+
 .aspect-radio-set {
   list-style: none;
   padding: 0;
@@ -1155,6 +1169,9 @@ input[type=radio] + label.aspect-radio-label__type {
 }
 .char-sheet__table__caption--wizardry {
   background-color: #e1a525;
+  color: #333333;
+}
+.char-sheet__table__caption--wizardry .ut-text-explain {
   color: #333333;
 }
 .char-sheet__table__caption--thaumaturgy {

@@ -19,6 +19,9 @@
     &--wizardry {
       background-color: $color-wizard;
       color: $color-text-inverted;
+      .ut-text-explain {
+        color: $color-text-inverted;
+      }
     }
 
     &--thaumaturgy {

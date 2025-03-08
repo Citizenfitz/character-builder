@@ -7,7 +7,6 @@ import {
   magicSchoolsData,
 } from "../../Data";
 import { formatNumberSuffix } from "../Utilities";
-import SpellSlotsModal from "./SpellSlotsModal";
 
 const defaultSpellList = [[], [], [], [], [], [], []];
 
@@ -19,37 +18,19 @@ export default function WizardrySpells(props) {
     wizLevel,
     intStat,
     wizardrySchools,
-    useLocalStorage,
     wizardry2StartLevel,
     wizardry3StartLevel,
     setWizardSchool,
   } = props;
   const spellCount = spellSlots[wizLevel - 1];
   const [spellList, setSpellList] = useState(defaultSpellList);
-  const [isOpen, setOpen] = useState(false);
   const [spellLevel, setSpellLevel] = useState(0);
   const [spellSlot, setSpellSlot] = useState(0);
   const [magicSchools, setMagicSchools] = useState(magicSchoolsData);
   // todo: remove setManageSchool when new one working
 
-  const [showAll, setShowAll] = useState(false);
   const [wizardryNeedsToChooseSchool, setWizardryNeedsToChooseSchool] =
     useState(true);
-
-  useEffect(() => {
-    if (useLocalStorage) {
-      const localData = JSON.parse(localStorage.getItem("wizardrySpells"));
-      if (localData) {
-        setSpellList(localData);
-      }
-    }
-  }, [useLocalStorage]);
-
-  useEffect(() => {
-    if (useLocalStorage) {
-      localStorage.setItem("wizardrySpells", JSON.stringify(spellList));
-    }
-  }, [spellList, useLocalStorage]);
 
   // listen for change in wizardrySchools and adjust dropdowns, selected spells, and CTA
   useEffect(() => {
@@ -76,23 +57,23 @@ export default function WizardrySpells(props) {
     }
   }, [wizardrySchools, spellList]);
 
-  // const openModal = () => setOpen(true)
-  const closeModal = () => setOpen(false);
-
   const selectSpell = (wizLevel, slot) => {
-    setOpen(true);
     setSpellLevel(wizLevel + 1);
     setSpellSlot(slot);
   };
 
-  const handleAssignSpell = (spellName) => {
-    const newSpellList = { ...spellList };
-    newSpellList[spellLevel - 1][spellSlot] = {
-      name: spellName,
-      ...spellData[spellName],
-    };
+  const handleAssignSpell = (spellName, wizLevel, slot) => {
+    const newSpellList = [...spellList];
+    if (spellName === "") {
+      // If the spell is deselected, set the slot to undefined or an empty object
+      newSpellList[wizLevel][slot] = undefined;
+    } else {
+      newSpellList[wizLevel][slot] = {
+        name: spellName,
+        ...spellData[spellName],
+      };
+    }
     setSpellList(newSpellList);
-    setOpen(false);
   };
 
   const handleSetSchool = (e, schoolIndex) => {
@@ -101,10 +82,6 @@ export default function WizardrySpells(props) {
       value = e.target.value;
     }
     setWizardSchool(value, schoolIndex);
-  };
-
-  const toggleShowAll = () => {
-    setShowAll((prev) => !prev);
   };
 
   const renderEmptyRow = (i, j) => {
@@ -134,108 +111,72 @@ export default function WizardrySpells(props) {
   };
 
   const renderSpellRow = (i, j) => {
+    const availableSpells = wizardryList[i].filter((spellName) => {
+      const intersection = wizardrySchools.filter((element) =>
+        spellData[spellName].school.includes(element)
+      );
+      return intersection.length > 0;
+    });
+
+    const spell = spellList[i][j]; // Get the current spell object or undefined
+
     return (
       <tr key={j}>
         <td className="char-sheet__table__cell char-sheet__table__cell--level">
           {formatNumberSuffix(i + 1)}
         </td>
         <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
-          <button
-            onClick={() => selectSpell(i, j)}
-            className="char-sheet__button char-sheet__button--spell"
+          <select
+            value={spell ? spell.name : ""}
+            onChange={(e) => handleAssignSpell(e.target.value, i, j)}
+            className="char-sheet__select"
           >
-            {spellList[i][j].name}
-          </button>
+            <option value="">Select Spell</option>
+            {availableSpells.map((spellName) => (
+              <option key={spellName} value={spellName}>
+                {spellName}
+              </option>
+            ))}
+          </select>
         </td>
-        <td className="char-sheet__table__cell">{spellList[i][j].cast}</td>
-        <td className="char-sheet__table__cell">{spellList[i][j].duration}</td>
-        <td className="char-sheet__table__cell">{spellList[i][j].range}</td>
-        <td className="char-sheet__table__cell">{spellList[i][j].target}</td>
+        <td className="char-sheet__table__cell">{spell ? spell.cast : ""}</td>
         <td className="char-sheet__table__cell">
-          {spellList[i][j].components}
+          {spell ? spell.duration : ""}
         </td>
-        <td className="char-sheet__table__cell">{spellList[i][j].save}</td>
+        <td className="char-sheet__table__cell">{spell ? spell.range : ""}</td>
+        <td className="char-sheet__table__cell">{spell ? spell.target : ""}</td>
         <td className="char-sheet__table__cell">
-          {spellList[i][j].school.map((color) => (
-            <div key={color} className={`icon-school icon-school--${color}`}>
-              <span className="ut-only-sr">{color} school of magic</span>
-            </div>
-          ))}
+          {spell ? spell.components : ""}
+        </td>
+        <td className="char-sheet__table__cell">{spell ? spell.save : ""}</td>
+        <td className="char-sheet__table__cell">
+          {spell &&
+            spell.school.map((color) => (
+              <div key={color} className={`icon-school icon-school--${color}`}>
+                <span className="ut-only-sr">{color} school of magic</span>
+              </div>
+            ))}
         </td>
       </tr>
     );
   };
 
-  const addBonusSpell = () => {
-    if (spellList[0][spellCount[0]]) {
-      return renderSpellRow(0, spellCount[0]);
-    } else {
-      return renderEmptyRow(0, spellCount[0]);
-    }
-  };
-
   return (
     <section className="char-sheet__section char-sheet__section--spells">
-      {/*<h2 className="char-sheet__h2">
-        Wizardry Spells
-        <span className="ut-text-explain ut-margin-left-half-em">
-          - At {formatNumberSuffix(wizLevel)} level
-          {intStat > 12 && (
-            <span> plus one extra 1st level spell for 13+ INT</span>
-          )}
-        </span>
-      </h2>*/}
-      {/* If they don't have Wizardry three or its above level,  allow them to pick character wiz1 school */}
-      {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
-        <label className="ut-display-inine-block ut-margin-right-2em ut-no-print">
-          <span className="label">Wizardy 1 School: </span>
-          <div
-            className={`ut-margin-right-half-em icon-school icon-school--${wizardrySchools[0]}`}
-          >
-            <span className="ut-only-sr">
-              {wizardrySchools[0]} school of magic
-            </span>
-          </div>
-          <select
-            name="wizardry1school"
-            className="ut-no-print"
-            value={wizardrySchools[0]}
-            onChange={(e) => handleSetSchool(e, 0)}
-          >
-            <option value="">Choose</option>
-            {magicSchools.map((school) => (
-              <option
-                key={school.id}
-                value={school.name}
-                disabled={school.isDisabled}
-              >
-                {school.name}
-              </option>
-            ))}
-          </select>
-          <div className="ut-no-screen print-text-input">
-            {wizardrySchools[0]}
-          </div>
-        </label>
-      )}
-      {/* If they don't have Wizardry three & wiz is within char's level, allow them to pick character wiz2 school */}
-      {wizardry2StartLevel > 0 &&
-        charLevel >= wizardry2StartLevel &&
-        wizardry3StartLevel === 0 && (
-          <label className="ut-display-inine-block ut-no-print">
-            <span className="label">Wizardy 2 School: </span>
-            <div
-              className={`ut-margin-right-half-em  icon-school icon-school--${wizardrySchools[1]}`}
-            >
+      <div className="wizardry-school-selectors">
+        {/* If they don't have Wizardry three or its above level, allow them to pick character wiz1 school */}
+        {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
+          <label className="wizardry-school-selector">
+            <span className="label label--inline">Wizardy 1 School: </span>
+            <div className={`icon-school icon-school--${wizardrySchools[0]}`}>
               <span className="ut-only-sr">
-                {wizardrySchools[1]} school of magic
+                {wizardrySchools[0]} school of magic
               </span>
             </div>
             <select
-              name="wizardry2school"
-              className="ut-no-print"
-              value={wizardrySchools[1]}
-              onChange={(e) => handleSetSchool(e, 1)}
+              name="wizardry1school"
+              value={wizardrySchools[0]}
+              onChange={(e) => handleSetSchool(e, 0)}
             >
               <option value="">Choose</option>
               {magicSchools.map((school) => (
@@ -248,15 +189,42 @@ export default function WizardrySpells(props) {
                 </option>
               ))}
             </select>
-            <div className="ut-no-screen print-text-input">
-              {wizardrySchools[1]}
-            </div>
           </label>
         )}
+        {/* If they don't have Wizardry three & wiz is within char's level, allow them to pick character wiz2 school */}
+        {wizardry2StartLevel > 0 &&
+          charLevel >= wizardry2StartLevel &&
+          wizardry3StartLevel === 0 && (
+            <label className="wizardry-school-selector">
+              <span className="label label--inline">Wizardy 2 School: </span>
+              <div className={`icon-school icon-school--${wizardrySchools[1]}`}>
+                <span className="ut-only-sr">
+                  {wizardrySchools[1]} school of magic
+                </span>
+              </div>
+              <select
+                name="wizardry2school"
+                value={wizardrySchools[1]}
+                onChange={(e) => handleSetSchool(e, 1)}
+              >
+                <option value="">Choose</option>
+                {magicSchools.map((school) => (
+                  <option
+                    key={school.id}
+                    value={school.name}
+                    disabled={school.isDisabled}
+                  >
+                    {school.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+      </div>
       {/* If they have wiz3 &  wiz3 is within level, then just show all the schools */}
       {wizardry3StartLevel > 0 && charLevel >= wizardry3StartLevel && (
         <div>
-          <span className="label">All Schools: </span>
+          <span className="label label--inline">All Schools: </span>
           {magicSchools.map((school) => (
             <div className={`icon-school icon-school--${school.name}`}>
               <span className="ut-only-sr">{school.name} school of magic</span>
@@ -277,9 +245,6 @@ export default function WizardrySpells(props) {
             Wizardry Spells
             <span className="ut-text-explain ut-margin-left-half-em">
               - At {formatNumberSuffix(wizLevel)} level
-              {intStat > 12 && (
-                <span> plus one extra 1st level spell for 13+ INT</span>
-              )}
             </span>
           </caption>
           <thead>
@@ -314,156 +279,15 @@ export default function WizardrySpells(props) {
             </tr>
           </thead>
           <tbody>
-            {intStat >= 13 && addBonusSpell()}
             {spellCount.map((count, i) => {
               if (count === "-") return false;
-              // create empty array to map over - for loops doen't work here
-              const index = Array.from(Array(count));
-              return index.map((empty, j) => {
-                // one bonus level one spell if wis is greater than 13
-                if (spellList && spellList[i].length > 0) {
-                  if (spellList[i][j]) {
-                    return renderSpellRow(i, j);
-                  } else {
-                    return renderEmptyRow(i, j);
-                  }
-                } else {
-                  return renderEmptyRow(i, j);
-                }
-              });
+              return Array.from({ length: count }, (_, j) =>
+                renderSpellRow(i, j)
+              );
             })}
           </tbody>
         </table>
       </div>
-      {/*  The modal for choosing spells */}
-      <Modal
-        id="modal--wizardrySpells"
-        className="modal ut-no-print"
-        overlayClassName="modal__overlay"
-        isOpen={isOpen}
-        onRequestClose={closeModal}
-        contentLabel="Spell Slots"
-      >
-        <header className="modal__header">
-          <h2 className="modal__h2">Choose Your Spell</h2>
-          <button
-            className="modal__header-button char-sheet__button"
-            aria-label="Close modal"
-            onClick={closeModal}
-          >
-            X
-          </button>
-        </header>
-        <div className="modal__body">
-          {/*  If they have Wiz 3 don't show toggle all button */}
-          {(wizardry3StartLevel === 0 || charLevel < wizardry3StartLevel) && (
-            <button
-              className="showAll char-sheet__button"
-              onClick={toggleShowAll}
-            >
-              {showAll ? "Show Available Spells" : "Show All Spells"}
-            </button>
-          )}
-          <table className="char-sheet__table">
-            <thead>
-              <tr>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Level
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Name
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Cast
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Duration
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Range
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Target
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Components
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  Save
-                </th>
-                <th className="char-sheet__table__header char-sheet__table__header--wizardry">
-                  School
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {spellLevel &&
-                wizardryList[spellLevel - 1].map((spellName, i) => {
-                  const intersection = wizardrySchools.filter((element) =>
-                    spellData[spellName].school.includes(element)
-                  );
-                  // console.log(`intersection`, intersection, 'on', spellName)
-                  const hasSchool = intersection.length > 0;
-                  if (showAll || hasSchool) {
-                    return (
-                      <tr
-                        key={i}
-                        className={`char-sheet__table__row ${
-                          !hasSchool
-                            ? "char-sheet__table__row--unavailable"
-                            : ""
-                        }`}
-                      >
-                        <td className="char-sheet__table__cell char-sheet__table__cell--level">
-                          {spellLevel}
-                        </td>
-                        <td className="char-sheet__table__cell char-sheet__table__cell--name char-sheet__table__cell--spell-name">
-                          <button
-                            className="showAll char-sheet__button"
-                            onClick={() => handleAssignSpell(spellName)}
-                          >
-                            {spellName}
-                          </button>
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].cast}
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].duration}
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].range}
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].target}
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].components}
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].save}
-                        </td>
-                        <td className="char-sheet__table__cell">
-                          {spellData[spellName].school.map((color) => (
-                            <div
-                              key={color}
-                              className={`icon-school icon-school--${color}`}
-                            >
-                              <span className="ut-only-sr">
-                                {color} school of magic
-                              </span>
-                            </div>
-                          ))}
-                        </td>
-                      </tr>
-                    );
-                  }
-                  return false;
-                })}
-            </tbody>
-          </table>
-        </div>
-      </Modal>
     </section>
   );
 }
