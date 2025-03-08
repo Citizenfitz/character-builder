@@ -747,6 +747,12 @@ body {
 .char-sheet__section {
   padding: 1rem 2rem;
 }
+.char-sheet__section--top {
+  padding-bottom: 0;
+}
+.char-sheet__section--talents {
+  padding-top: 0;
+}
 .char-sheet__section:nth-child(n + 3):nth-child(odd) {
   background-color: #4a1f6a;
   padding: 2rem;

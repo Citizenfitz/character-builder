@@ -1271,7 +1271,7 @@ const CharacterSheet = () => {
             <div className="modal__header">
               <h2 className="modal__h2">Choosing a Race</h2>
               <button
-                className="button modal__header-button"
+                className="char-sheet__button modal__header-button"
                 onClick={toggleRaceModal}
                 aria-label="Close modal"
               >
