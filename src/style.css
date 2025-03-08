@@ -914,8 +914,9 @@ body {
   gap: 1.5rem;
 }
 .char-sheet__quick-ref-item {
+  padding: 1rem 0 0 0;
   flex: 1;
-  height: 110px;
+  height: 120px;
   position: relative;
   border: 1px solid #f7ebc7;
   border-radius: 8px 8px 0 0;
@@ -924,43 +925,14 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
-.char-sheet__quick-ref-item > div:first-child {
-  flex: 1;
-  margin-right: 0;
-}
 .char-sheet__quick-ref-text {
   padding: 0 1.5rem;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .char-sheet__quick-ref--save-mods {
   margin: 1.5rem 0;
-  height: 160px;
-}
-.char-sheet__quick-ref-save-mods-list {
-  padding: 1rem 1.5rem;
-  padding-left: calc($spacing-sm-alt + 24px);
-  list-style: none;
-  margin: 0;
-  text-align: left;
-}
-.char-sheet__quick-ref-save-mods-list-item {
-  position: relative;
-  margin-bottom: 0.75em;
-}
-.char-sheet__quick-ref-save-mods-list-item:last-child {
-  margin-bottom: 0;
-}
-.char-sheet__quick-ref-save-mods-list-item > .icon-aspect {
-  position: absolute;
-  left: -28px;
-  top: -1px;
-}
-.char-sheet__quick-ref-save-mods-list-item > .icon-aspect--race {
-  top: -3px;
-}
-.char-sheet__quick-ref-save-mods-list-item > .fas {
-  position: absolute;
-  left: -24px;
-  top: -1px;
+  height: 188px;
 }
 .char-sheet__quick-ref--explain {
   margin-bottom: 1.5rem;
@@ -972,7 +944,35 @@ body {
   background: #351748;
   text-align: center;
   border-top: 1px solid;
+  margin-top: 1rem;
   margin-bottom: 0;
+}
+.char-sheet .char-sheet__quick-ref-save-mods-list {
+  list-style: none;
+  margin: 0;
+  text-align: left;
+  padding: 0 1.5rem;
+}
+.char-sheet .char-sheet__quick-ref-save-mods-list-item {
+  position: relative;
+  margin-bottom: 0.75em;
+  margin-left: 20px;
+}
+.char-sheet .char-sheet__quick-ref-save-mods-list-item:last-child {
+  margin-bottom: 0;
+}
+.char-sheet .char-sheet__quick-ref-save-mods-list-item > .icon-aspect {
+  position: absolute;
+  left: -28px;
+  top: -1px;
+}
+.char-sheet .char-sheet__quick-ref-save-mods-list-item > .icon-aspect--race {
+  top: -3px;
+}
+.char-sheet .char-sheet__quick-ref-save-mods-list-item > .fas {
+  position: absolute;
+  left: -24px;
+  top: -1px;
 }
 
 .aspect-radio-set {

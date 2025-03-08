@@ -253,8 +253,9 @@
     gap: $spacing-sm-alt;
 
     &-item {
+      padding: $spacing-sm 0 0 0;
       flex: 1;
-      height: 110px;
+      height: 120px;
       position: relative;
       border: 1px solid $color-accent;
       border-radius: $border-radius-lg $border-radius-lg 0 0;
@@ -262,46 +263,17 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      // First child container
-      > div:first-child {
-        flex: 1;
-        margin-right: 0;
-      }
     }
     &-text {
       padding: 0 $spacing-sm-alt;
+      margin-top: auto;
+      margin-bottom: auto;
     }
     &--save-mods {
       margin: $spacing-sm-alt 0;
-      height: 160px;
+      height: 188px;
     }
-    &-save-mods-list {
-      padding: $spacing-sm $spacing-sm-alt;
-      padding-left: calc($spacing-sm-alt + 24px);
-      list-style: none;
-      margin: 0;
-      text-align: left;
-    }
-    &-save-mods-list-item {
-      position: relative;
-      margin-bottom: 0.75em;
-      &:last-child {
-        margin-bottom: 0;
-      }
-      > .icon-aspect {
-        position: absolute;
-        left: -28px;
-        top: -1px;
-      }
-      > .icon-aspect--race {
-        top: -3px;
-      }
-      > .fas {
-        position: absolute;
-        left: -24px;
-        top: -1px;
-      }
-    }
+
     // Symbol or char sketch
     &--explain {
       margin-bottom: $spacing-sm-alt;
@@ -314,7 +286,36 @@
       background: $color-dark-alt-2;
       text-align: center;
       border-top: 1px solid;
+      margin-top: $spacing-sm;
       margin-bottom: 0;
+    }
+  }
+  // extra specificity needed to accomodate MD files
+  .char-sheet__quick-ref-save-mods-list {
+    list-style: none;
+    margin: 0;
+    text-align: left;
+    padding: 0 $spacing-sm-alt;
+  }
+  .char-sheet__quick-ref-save-mods-list-item {
+    position: relative;
+    margin-bottom: 0.75em;
+    margin-left: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    > .icon-aspect {
+      position: absolute;
+      left: -28px;
+      top: -1px;
+    }
+    > .icon-aspect--race {
+      top: -3px;
+    }
+    > .fas {
+      position: absolute;
+      left: -24px;
+      top: -1px;
     }
   }
 }
