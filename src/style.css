@@ -756,7 +756,7 @@ body {
 }
 .char-sheet__grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.1fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.1fr) minmax(0, 0.95fr);
   gap: 1.5rem;
   margin: 1.5rem 0;
 }
@@ -855,6 +855,7 @@ body {
   padding: 1rem 0 0 0;
   flex: 1;
   height: 124px;
+  min-width: 124px;
   position: relative;
   border: 1px solid #f7ebc7;
   border-radius: 8px 8px 0 0;
@@ -871,7 +872,7 @@ body {
 }
 .char-sheet__quick-ref--save-mods {
   margin: 1.5rem 0;
-  height: 188px;
+  height: 172px;
 }
 .char-sheet__quick-ref--explain {
   margin-bottom: 1.5rem;
