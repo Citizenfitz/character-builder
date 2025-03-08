@@ -51,10 +51,9 @@ const RenderPsionic = (props) => {
           <span className="desc__list-label">Target:</span> {props.target}
         </li>
       </ul>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
-      <a href="#main" className="back-to-top">
-        <span className="fas fa-triangle-up"></span> Back to Top
-      </a>
+      <div className="desc__markdown">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+      </div>
     </div>
   );
 };

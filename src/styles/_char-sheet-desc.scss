@@ -6,17 +6,14 @@
     font-size: 20px;
     font-family: $font-header;
     color: $color-accent;
+    margin-bottom: $spacing-xs;
   }
   &__list-label {
     text-transform: uppercase;
     color: $color-accent;
     font-weight: 600;
   }
-  &__content {
-    padding: $spacing-xs;
-    border-left: 3px solid $color-accent;
-    margin-left: $spacing-sm;
-  }
+
   &__item {
     margin-bottom: $spacing-xs;
     &--important {
@@ -30,35 +27,7 @@
       text-decoration: underline;
     }
   }
-  table {
-    width: auto;
-    min-width: 50%;
-    margin-top: var(--spacing-xs);
-    margin-bottom: var(--spacing-sm-alt);
-    border-collapse: collapse;
-    font-size: 0.875rem;
-  }
-  th,
-  caption {
-    background: var(--color-dark-alt);
-    color: var(--color-accent);
-    text-transform: uppercase;
-    font-family: var(--font-header);
-    padding: var(--spacing-xs);
-    border: 1px solid;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: normal;
-  }
-  td {
-    padding: var(--spacing-xs);
-    border: 1px solid;
-    text-align: center;
-    vertical-align: top;
-  }
-  tr:nth-child(even) {
-    background: var(--color-dark-alt);
-  }
+
   // variation per type
   &--talent {
     .back-to-top {
@@ -151,5 +120,51 @@
         color: var(--color-dark-inverted); // White text for contrast
       }
     }
+  }
+}
+
+// anything to fix the markdown code goes here
+.desc__markdown {
+  // lists
+  ul,
+  ol {
+    list-style: disc;
+    margin-bottom: $spacing-sm-alt;
+    padding-left: $spacing-md;
+  }
+  li {
+    margin-bottom: 0.25em;
+  }
+  // tables
+  table {
+    @include table-basics;
+    min-width: 50%;
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  th,
+  caption {
+    @include table-header;
+    min-width: 80px;
+    border-left-width: 0px;
+  }
+  th:first-child {
+    border-top-left-radius: $border-radius-lg;
+    border-left-width: 1px;
+  }
+  th:last-child {
+    border-top-right-radius: $border-radius-lg;
+  }
+  td {
+    @include table-cell;
+    border-left-width: 0px;
+    border-top-width: 0px;
+    &:first-child {
+      text-align: left;
+      border-left-width: 1px;
+    }
+  }
+  tr:nth-child(even) {
+    background: $color-zebra;
   }
 }

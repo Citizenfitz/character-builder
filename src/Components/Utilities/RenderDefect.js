@@ -21,7 +21,9 @@ const RenderDefect = (props) => {
   return (
     <div className="desc desc--defect">
       <h3 className="desc__header desc__header--defect">{props.name}</h3>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+      <div className="desc__markdown">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+      </div>
     </div>
   );
 };

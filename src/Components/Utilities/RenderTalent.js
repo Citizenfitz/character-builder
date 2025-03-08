@@ -29,7 +29,7 @@ const RenderTalent = (props) => {
               <strong className={`ut-captialize ut-color-${props.aspect}`}>
                 {props.aspect}
               </strong>
-              <div className={`aspect-icon aspect-icon--${props.aspect}`}></div>
+              <div className={`icon-aspect icon-aspect--${props.aspect}`}></div>
             </li>
             <li>
               <span className="desc__list-label">Mod:</span> {props.mod}
@@ -42,11 +42,8 @@ const RenderTalent = (props) => {
             </li>
           </ul>
 
-          <div className="desc-talent__markdown">
+          <div className="desc__markdown">
             <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
-            <a href="#main" className="back-to-top">
-              <span className="fas fa-triangle-up"></span> Back to Top
-            </a>
           </div>
         </div>
       </div>

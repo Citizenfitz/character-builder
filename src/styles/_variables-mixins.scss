@@ -78,13 +78,12 @@ $text-cursive: "Kaushan Script", cursive;
 // Brand Colors
 $color-dark: #5a2780;
 $color-dark-alt: #110812;
-$color-dark-alt-2: #351748;
 $color-accent: #f7ebc7;
 $color-accent-dark: #c78d17;
 $color-cta: #d7ac28;
 $color-cta-hover: #c78d17;
 $color-link-hover: #f7ebc7;
-$color-zebra: #110812;
+$color-zebra: #351748;
 
 // Text Colors
 $color-text: #ffffff;
@@ -257,4 +256,31 @@ $form-element-border: 1px solid $color-border;
 @mixin color-psionic-glow {
   text-shadow: 0 0 10px rgb(236, 222, 130);
   color: $color-dark;
+}
+
+@mixin table-basics {
+  margin-top: $spacing-xs;
+  margin-bottom: $spacing-sm-alt;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  width: 100%;
+  border-radius: $border-radius-lg $border-radius-lg 0 0;
+}
+@mixin table-header {
+  background: $color-zebra;
+  color: $color-accent;
+  text-transform: uppercase;
+  font-family: $font-header;
+  padding: $spacing-xs;
+  border: 1px solid;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+}
+@mixin table-cell {
+  padding: $spacing-xs;
+  border: 1px solid;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
 }

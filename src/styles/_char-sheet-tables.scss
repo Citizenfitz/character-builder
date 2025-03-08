@@ -1,25 +1,12 @@
 //* *************** TABLES  ***************** */
 
 .char-sheet__table {
-  margin-top: $spacing-xs;
-  margin-bottom: $spacing-sm-alt;
-  border-collapse: collapse;
-  font-size: 0.875rem;
-  width: 100%;
-  border-radius: $border-radius-lg $border-radius-lg 0 0;
+  @include table-basics;
 
   // Header styles
   &__header,
   &__caption {
-    background: $color-dark-alt-2;
-    color: $color-accent;
-    text-transform: uppercase;
-    font-family: $font-header;
-    padding: $spacing-xs;
-    border: 1px solid;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: normal;
+    @include table-header;
     &--talent {
       text-align: left;
     }
@@ -42,12 +29,7 @@
 
   // Cell styles
   &__cell {
-    padding: $spacing-xs;
-    border: 1px solid;
-    min-width: 30px;
-    text-align: center;
-    vertical-align: top;
-
+    @include table-cell;
     &--name {
       text-align: left;
     }
@@ -72,7 +54,7 @@
   // Row styles
   &__row {
     &--zebra {
-      background: $color-dark-alt-2;
+      background: $color-zebra;
     }
 
     &--unavailable {

@@ -21,7 +21,9 @@ const RenderMutation = (props) => {
   return (
     <div className="desc desc--mutation">
       <h3 className="desc__header desc__header--mutation">{props.name}</h3>
-      <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+      <div className="desc__markdown">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
+      </div>
     </div>
   );
 };

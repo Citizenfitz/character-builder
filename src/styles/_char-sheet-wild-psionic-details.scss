@@ -1,0 +1,26 @@
+.char-sheet {
+  &__wild-psionics {
+    &__psionic-no {
+      max-width: 60px;
+    }
+    &__power {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+
+      select {
+        flex: 1;
+      }
+    }
+
+    &__button {
+      width: 100%;
+      height: auto;
+      padding: 0.25rem;
+    }
+
+    &__total-label {
+      text-align: right;
+    }
+  }
+}

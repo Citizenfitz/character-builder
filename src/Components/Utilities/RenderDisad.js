@@ -21,8 +21,7 @@ const RenderDisad = ({ name, description, bonus }) => {
   return (
     <div className="desc desc--disad">
       <h3 className="desc__header">{name}</h3>
-      <div className="desc__content">
-        <ReactMarkdown>{description.default}</ReactMarkdown>
+      <div className="desc__markdown">
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{post}</ReactMarkdown>
       </div>
     </div>

@@ -58,25 +58,27 @@ const WildPsionics = ({ character, setCharacter }) => {
 
   return (
     <div className="char-sheet__wild-psionics">
-      <table className="char-sheet__wild-psionics-table">
-        <caption>Wild Psionics</caption>
+      <table className="char-sheet__table">
+        <caption className="char-sheet__table__caption">Wild Psionics</caption>
         <thead>
           <tr>
-            <th>Wild Psionic #</th>
-            <th>Psionic Ability</th>
-            <th>PSP</th>
+            <th className="char-sheet__table__header char-sheet__wild-psionics__psionic-no">
+              Wild Psionic NO.
+            </th>
+            <th className="char-sheet__table__header">Psionic Ability</th>
+            <th className="char-sheet__table__header">PSP</th>
           </tr>
         </thead>
         <tbody>
           {[...Array(wildPsionicCount)].map((_, index) => (
             <tr key={index}>
-              <td>{index + 1}</td>
-              <td>
-                <div className="char-sheet__wild-psionics-power">
+              <td className="char-sheet__table__cell">{index + 1}</td>
+              <td className="char-sheet__table__cell">
+                <div className="char-sheet__wild-psionics__power">
                   {character.psionics.wildPsionics[index] ? (
                     <>
                       <button
-                        className="char-sheet__button char-sheet__button--icon"
+                        className="char-sheet__button char-sheet__button--icon char-sheet__wild-psionics__button"
                         onClick={() => {
                           const newPower = rollPsionicPower();
                           if (newPower) {
@@ -156,17 +158,19 @@ const WildPsionics = ({ character, setCharacter }) => {
                   )}
                 </div>
               </td>
-              <td>15</td>
+              <td className="char-sheet__table__cell">15</td>
             </tr>
           ))}
-          <tr className="char-sheet__wild-psionics-table-total">
+          <tr className="char-sheet__wild-psionics-table__total">
             <td
               colSpan={2}
-              className="char-sheet__wild-psionics-table-total-label"
+              className="char-sheet__table__cell char-sheet__wild-psionics__total-label"
             >
-              PSP Total (including attribute bonuses)
+              <b>PSP Total (including attribute bonuses)</b>
             </td>
-            <td>{character.psionics.psp}</td>
+            <td className="char-sheet__table__cell">
+              <b>{character.psionics.psp}</b>
+            </td>
           </tr>
         </tbody>
       </table>
