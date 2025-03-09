@@ -3,9 +3,14 @@ import ReactModal from "react-modal";
 
 const Notes = (props) => {
   const [notesModalOpen, setNotesModalOpen] = useState(false);
+  const [notesIndex, setNotesIndex] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const toggleNotesModalOpen = () => {
     if (notesModalOpen) {
-      props.setNotesIndex(false);
+      // Only reset when closing the modal
+      setNotesIndex(null);
+      setIsDeleting(false);
     }
     setNotesModalOpen(!notesModalOpen);
   };
@@ -13,28 +18,30 @@ const Notes = (props) => {
   const handleSaveNote = (e) => {
     e.preventDefault();
     const noteText = e.target.noteText.value;
+
     if (typeof notesIndex === "number") {
-      // replace the indexed item
-      const tempNotes = props.notes;
-      tempNotes[props.notesIndex] = noteText;
-      props.setNotes(tempNotes);
-      props.setNotesIndex(false);
+      // Correctly create a new array for immutability
+      const updatedNotes = [...props.notes];
+      updatedNotes[notesIndex] = noteText;
+      props.setNotes(updatedNotes);
+      setNotesIndex(null); // Reset index to null or another default value
     } else {
-      // adding a new note
+      // Adding a new note
       props.setNotes((prev) => [...prev, noteText]);
     }
     toggleNotesModalOpen();
   };
 
   const editNote = (index) => {
-    props.setNotesIndex(index);
-    toggleNotesModalOpen();
+    setNotesIndex(index);
+    setIsDeleting(false);
+    setNotesModalOpen(true);
   };
 
   const deleteNote = (index) => {
-    const newNoteList = [...props.notes];
-    newNoteList.splice(index, 1);
-    props.setNotes(newNoteList);
+    setNotesIndex(index);
+    setIsDeleting(true);
+    setNotesModalOpen(true);
   };
 
   return (
@@ -42,7 +49,7 @@ const Notes = (props) => {
       {/*  ------- User notes -------- */}
       <div className="ut-margin-bottom-xs">
         <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
-          <i className="fas fa-plus"></i> Add Note
+          <i className="fas fa-pen"></i> Add Note
         </button>
       </div>
       <ul className="char-sheet__notes__list">
@@ -75,12 +82,17 @@ const Notes = (props) => {
         onRequestClose={toggleNotesModalOpen}
         className="modal ut-no-print"
         overlayClassName="modal__overlay"
-        contentLabel="Add a note"
+        contentLabel={isDeleting ? "Confirm Delete Note" : "Add/Edit Note"}
       >
         <div className="modal__container">
           <div className="modal__header">
             <h2 className="modal__h2">
-              {typeof notesIndex === "number" ? "Edit" : "Add"} Note
+              {isDeleting
+                ? "Confirm Delete"
+                : typeof notesIndex === "number"
+                ? "Edit"
+                : "Add"}{" "}
+              Note
             </h2>
             <button
               className="char-sheet__button modal__header-button"
@@ -97,20 +109,33 @@ const Notes = (props) => {
                 className="notes__textarea"
                 placeholder="add your note"
                 defaultValue={
-                  typeof notesIndex === "number"
-                    ? props.notes[props.notesIndex]
-                    : ""
+                  typeof notesIndex === "number" ? props.notes[notesIndex] : ""
                 }
               ></textarea>
             </div>
             <div className="modal__footer">
-              <button
-                className="char-sheet__button char-sheet__button--large"
-                type="submit"
-                value="Save"
-              >
-                Save
-              </button>
+              {isDeleting ? (
+                <button
+                  className="char-sheet__button char-sheet__button--large"
+                  type="button"
+                  onClick={() => {
+                    props.setNotes((prev) =>
+                      prev.filter((_, i) => i !== notesIndex)
+                    );
+                    toggleNotesModalOpen();
+                  }}
+                >
+                  Confirm Delete Note
+                </button>
+              ) : (
+                <button
+                  className="char-sheet__button char-sheet__button--large"
+                  type="submit"
+                  value="Save"
+                >
+                  Save
+                </button>
+              )}
             </div>
           </form>
         </div>
