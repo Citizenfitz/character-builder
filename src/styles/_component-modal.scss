@@ -2,15 +2,21 @@
 @use "variables-mixins" as *;
 
 .modal {
-  position: relative;
-  background-color: $color-bg;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @include theme-light;
+  font-family: $font-primary;
   padding: 0;
   border-radius: $border-radius-lg;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: auto;
   width: 640px;
   z-index: 1051;
-  border: 1px solid $color-accent;
+  border: 1px solid;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
 
   &__overlay {
     position: fixed;
@@ -29,12 +35,15 @@
   }
 
   &__header {
+    @include theme-dark;
     padding: $spacing-xs $spacing-sm-alt;
-    background-color: $color-bg-alt;
     border-radius: $border-radius-lg $border-radius-lg 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    h2 {
+      color: $color-text-light;
+    }
   }
 
   &__header-button {
@@ -50,11 +59,11 @@
 
   &__body {
     padding: $spacing-sm-alt;
-    color: $color-dark-inverted;
     line-height: 1.5;
   }
 
   &__footer {
     padding: $spacing-md $spacing-sm-alt;
+    text-align: right;
   }
 }

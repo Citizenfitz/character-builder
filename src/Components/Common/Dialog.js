@@ -9,8 +9,15 @@ export const QuestRexDialog = ({
   className = "",
   showFooter = true,
   footerContent,
+  // Optionally allow a custom container to be passed in the future
+  // container,
 }) => {
-  const portalContainer = document.getElementById("questrex-modal-container");
+  // Ensure the modal and overlay are rendered inside the app container, not the body.
+  // This is important for embedding the app in other pages.
+  // The modal will render inside #questrex-modal-container if it exists, otherwise fallback to #questrex-root.
+  const portalContainer =
+    document.getElementById("questrex-modal-container") ||
+    document.getElementById("questrex-root");
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={onClose}>

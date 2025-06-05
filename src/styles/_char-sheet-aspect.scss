@@ -40,12 +40,13 @@
 }
 
 input[type="radio"] + label.aspect-radio-label {
+  @include theme-light;
   height: 66px;
   width: 81px;
   border: 2px solid;
   filter: grayscale(1);
   opacity: 0.5;
-  background-color: var(--color-dark-inverted);
+
   position: relative;
   display: flex;
   flex-direction: column;
@@ -53,29 +54,29 @@ input[type="radio"] + label.aspect-radio-label {
   justify-content: center;
   border-radius: $border-radius-standard;
   margin: 0;
-  color: var(--color-text-dark);
-  font-family: var(--font-header);
+
+  font-family: $font-header;
   cursor: pointer;
   &--fighter {
-    border-color: var(--color-fighter);
+    border-color: $color-fighter;
     &:hover {
       filter: none;
     }
   }
   &--priest {
-    border-color: var(--color-priest);
+    border-color: $color-priest;
     &:hover {
       filter: none;
     }
   }
   &--wizard {
-    border-color: var(--color-wizard);
+    border-color: $color-wizard;
     &:hover {
       filter: none;
     }
   }
   &--knave {
-    border-color: var(--color-knave);
+    border-color: $color-knave;
     &:hover {
       filter: none;
     }

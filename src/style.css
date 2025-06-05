@@ -109,15 +109,22 @@
   transition: color 0.3s ease;
 }
 #questrex-char-builder-root .modal {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #ffffff;
+  color: #333333;
+  font-family: "Cabin", sans-serif;
   padding: 0;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: auto;
   width: 640px;
   z-index: 1051;
-  border: 1px solid #f7ebc7;
+  border: 1px solid;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: auto;
 }
 #questrex-char-builder-root .modal__overlay {
   position: fixed;
@@ -132,12 +139,19 @@
   justify-content: center;
 }
 #questrex-char-builder-root .modal__header {
+  background-color: #5a2780;
+  color: #ffffff;
   padding: 0.5rem 1.5rem;
-  background-color: #fffff0;
   border-radius: 8px 8px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+#questrex-char-builder-root .modal__header .label {
+  color: #ffffff;
+}
+#questrex-char-builder-root .modal__header h2 {
+  color: #ffffff;
 }
 #questrex-char-builder-root .modal__header-button {
   font-size: 1.25rem;
@@ -150,11 +164,11 @@
 }
 #questrex-char-builder-root .modal__body {
   padding: 1.5rem;
-  color: #ffffff;
   line-height: 1.5;
 }
 #questrex-char-builder-root .modal__footer {
   padding: 2rem 1.5rem;
+  text-align: right;
 }
 #questrex-char-builder-root #dice-box,
 #questrex-char-builder-root #dice-box canvas {
@@ -692,12 +706,13 @@
   order: 2;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label {
+  background-color: #ffffff;
+  color: #333333;
   height: 66px;
   width: 81px;
   border: 2px solid;
   filter: grayscale(1);
   opacity: 0.5;
-  background-color: var(--color-dark-inverted);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -705,30 +720,29 @@
   justify-content: center;
   border-radius: 3px;
   margin: 0;
-  color: var(--color-text-dark);
-  font-family: var(--font-header);
+  font-family: "Edelgotisch";
   cursor: pointer;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--fighter {
-  border-color: var(--color-fighter);
+  border-color: #04a54f;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--fighter:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--priest {
-  border-color: var(--color-priest);
+  border-color: #2375b9;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--priest:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--wizard {
-  border-color: var(--color-wizard);
+  border-color: #e1a525;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--wizard:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--knave {
-  border-color: var(--color-knave);
+  border-color: #eb2026;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--knave:hover {
   filter: none;
