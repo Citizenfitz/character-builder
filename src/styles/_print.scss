@@ -2,6 +2,11 @@
 @use "variables-mixins" as *;
 
 @media print {
+  * {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari */
+    print-color-adjust: exact !important; /* Standard, Firefox */
+  }
+
   // Hide non-printable elements
   .ut-no-print,
   .modal,
@@ -17,17 +22,6 @@
   // Ensure proper page breaks
   .char-sheet__section {
     page-break-inside: avoid;
-  }
-
-  // Remove background colors and images for better printing
-  * {
-    // -webkit-print-color-adjust: exact;
-  }
-
-  // Ensure text is readable
-  body {
-    padding: 0;
-    line-height: 1.5em;
   }
 
   // Ensure tables print properly
