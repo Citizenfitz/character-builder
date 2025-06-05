@@ -1321,47 +1321,19 @@ const CharacterSheet = () => {
         onClose={toggleRaceModal}
         title="Choose Race"
       >
-        <div className="flex-grid">
-          <div className="flex-grid__child--half">
-            <ul className="race-radio-set">
-              {raceData.map((i) => (
-                <li key={i.name} className="race-radio-set__item">
-                  <input
-                    type="radio"
-                    name="race"
-                    value={i.name}
-                    id={i.name}
-                    checked={character.race === i.name}
-                    onChange={handleCharRace}
-                    className="race-radio-button"
-                  ></input>
-                  <label
-                    htmlFor={i.name}
-                    className={`race-radio-label race-radio-label--${i.name}`}
-                  >
-                    {i.name}
-                  </label>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="flex-grid__child--half">
-            <h2 className="race-picker-desc__header">{character.race}</h2>
-            <ul className="race-picker-desc__list">
-              <li>
-                <b className="ut-text-header">Description:</b> desc
-              </li>
-              <li>
-                <b className="ut-text-header">Characteristics:</b>{" "}
-                {character.characteristicsRace.join(", ")}
-              </li>
-              <li>
-                <b className="ut-text-header">Saving Throw Mods:</b>{" "}
-                {character.saveModsRace.join(", ")}
-              </li>
-            </ul>
-          </div>
-        </div>
+        <p className="ut-margin-top-0">
+          To be any race other than human costs one talent slot. This can only
+          be chosen when a character is first created, it never changes, and
+          only ONE race talent may ever be taken.
+        </p>
+        <p>
+          Choose in the <b>talents section below</b> and it will be reflected
+          here as well.
+        </p>
+        <img
+          src="assets/images/race-choose-screenshot.png"
+          alt="QuestRex race picker "
+        />
       </QuestRexDialog>
       <footer className="char-sheet__footer">
         QuestRex - A Fantasy Tabletop RPG
