@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Modal from "react-modal";
 import {
   spellData,
   spellSlots,
@@ -9,8 +8,6 @@ import {
 import { formatNumberSuffix } from "../Utilities";
 
 const defaultSpellList = [[], [], [], [], [], [], []];
-
-Modal.setAppElement("#root");
 
 export default function WizardrySpells(props) {
   const {
@@ -285,7 +282,7 @@ export default function WizardrySpells(props) {
         <table className="char-sheet__table char-sheet__table--wizardry">
           <caption className="char-sheet__table__caption char-sheet__table__caption--wizardry">
             Wizardry Spells
-            <span className="ut-text-explain ut-margin-left-xs">
+            <span className="ut-text-primary  ut-margin-left-xs">
               - At {formatNumberSuffix(wizLevel)} level
             </span>
           </caption>

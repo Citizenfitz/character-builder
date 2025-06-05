@@ -1,3 +1,5 @@
+@use "variables-mixins" as *;
+
 /***** PLACEHOLDERS *****/
 ::-webkit-input-placeholder {
   @include placeholder;
@@ -15,6 +17,44 @@ input:-moz-placeholder {
   @include placeholder;
 }
 
+/***** FORM ELEMENTS *****/
+label,
+.label {
+  font-family: $font-header;
+  color: $color-headers;
+  font-size: 1.2em;
+  margin-bottom: $spacing-sm;
+  font-weight: normal;
+  display: block;
+  &--inline {
+    display: inline-block;
+    margin-right: $spacing-xs;
+    margin-bottom: 0;
+  }
+}
+
+/***** INPUTS *****/
+button,
+input[type="text"],
+input[type="number"],
+select {
+  @include input-basics;
+  height: $form-element-height;
+
+  input[type="text"] {
+  }
+  input[type="number"] {
+    text-align: center;
+  }
+  textarea {
+    @include input-basics;
+    width: 100%;
+    min-height: 150px;
+    padding: $spacing-xs;
+    resize: vertical;
+  }
+}
+
 form {
   margin: 0;
 }
@@ -24,57 +64,51 @@ fieldset {
   border: none;
 }
 
-/***** LABELS *****/
-// label {
-//   display: block;
-//   margin-bottom: $spacing-sm;
-// }
-
 /***** SELECTS *****/
 select {
   @include input-basics;
 }
 
 // ***** Buttons *****/
-buttonx,
-.buttonx {
-  @include input-basics;
-  &--primary {
-    background-color: $color-dark;
-    color: $color-white;
-    border-radius: $border-radius-standard;
-    border: $form-element-border;
-    border-color: $color-dark;
-    vertical-align: bottom;
-    &:hover {
-      background-color: darken($color-dark, 10%);
-      color: $color-white;
-    }
-    &:active {
-      background-color: darken($color-dark, 10%);
-      color: $color-white;
-    }
-  }
-  &--secondary {
-    background-color: transparent;
-    color: $color-dark;
-    &:hover {
-      background-color: transparent;
-      color: darken($color-wizard, 10%);
-      border-color: darken($color-wizard, 10%);
-    }
-    &:active {
-      background-color: transparent;
-      color: darken($color-dark, 10%);
-    }
-  }
-  &--large {
-    min-width: 140px;
-    padding: 0.75rem;
-    height: auto;
-    font-size: 1rem;
-  }
-}
+// buttonx,
+// .buttonx {
+//   @include input-basics;
+//   &--primary {
+//     background-color: $color-bg;
+//     color: $color-white;
+//     border-radius: $border-radius-standard;
+//     border: $form-element-border;
+//     border-color: $color-bg;
+//     vertical-align: bottom;
+//     &:hover {
+//       background-color: darken($color-bg, 10%);
+//       color: $color-white;
+//     }
+//     &:active {
+//       background-color: darken($color-bg, 10%);
+//       color: $color-white;
+//     }
+//   }
+//   &--secondary {
+//     background-color: transparent;
+//     color: $color-bg;
+//     &:hover {
+//       background-color: transparent;
+//       color: darken($color-wizard, 10%);
+//       border-color: darken($color-wizard, 10%);
+//     }
+//     &:active {
+//       background-color: transparent;
+//       color: darken($color-bg, 10%);
+//     }
+//   }
+//   &--large {
+//     min-width: 140px;
+//     padding: 0.75rem;
+//     height: auto;
+//     font-size: 1rem;
+//   }
+// }
 
 input.input--attached-button {
   border-top-right-radius: 0;
@@ -135,7 +169,7 @@ input[type="radio"] + label {
 
 input[type="radio"]:checked + label {
   display: inline-block;
-  background: $color-dark;
+  background: $color-bg;
   color: $color-white;
   border-color: black;
   &.fighter {
@@ -168,10 +202,10 @@ input[type="radio"]:checked + label {
     width: 100%;
     height: $spacing-sm-alt;
     border-radius: $border-radius-standard;
-    border: 1px solid $color-dark-alt;
+    border: 1px solid $color-bg-alt;
     padding: 0 $spacing-xxs;
-    background-color: $color-input-background;
-    font-family: $text-regular;
+    background-color: $color-input-bg;
+    font-family: $font-primary;
 
     &:focus {
       border-color: $color-accent;
@@ -188,10 +222,10 @@ input[type="radio"]:checked + label {
     width: 100%;
     height: $spacing-sm-alt;
     border-radius: $border-radius-standard;
-    border: 1px solid $color-dark-alt;
+    border: 1px solid $color-bg-alt;
     padding: 0 $spacing-xxs;
-    background-color: $color-input-background;
-    font-family: $text-regular;
+    background-color: $color-input-bg;
+    font-family: $font-primary;
 
     &:focus {
       border-color: $color-accent;
@@ -203,10 +237,10 @@ input[type="radio"]:checked + label {
     width: 100%;
     min-height: $spacing-lg;
     border-radius: $border-radius-standard;
-    border: 1px solid $color-dark-alt;
+    border: 1px solid $color-bg-alt;
     padding: $spacing-xs;
-    background-color: $color-input-background;
-    font-family: $text-regular;
+    background-color: $color-input-bg;
+    font-family: $font-primary;
     resize: vertical;
 
     &:focus {

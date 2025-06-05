@@ -1,17 +1,51 @@
 // layour and sizing
+@use "variables-mixins" as *;
 
 @media print {
-  * {
-    -webkit-print-color-adjust: exact;
+  // Hide non-printable elements
+  .ut-no-print,
+  .modal,
+  .modal__overlay {
+    display: none !important;
   }
+
+  // Show print-only elements
+  .ut-no-screen {
+    display: block !important;
+  }
+
+  // Ensure proper page breaks
+  .char-sheet__section {
+    page-break-inside: avoid;
+  }
+
+  // Remove background colors and images for better printing
+  * {
+    // -webkit-print-color-adjust: exact;
+  }
+
+  // Ensure text is readable
   body {
     padding: 0;
     line-height: 1.5em;
   }
+
+  // Ensure tables print properly
+  table {
+    page-break-inside: avoid;
+  }
+
+  // Ensure proper margins
+  @page {
+    margin: 20mm;
+    size: auto;
+  }
+
   main {
     margin: 0;
     padding: 0;
   }
+
   .char-sheet {
     max-width: 100%;
     margin: 0;
@@ -20,18 +54,16 @@
     font-size: 0.9375rem;
   }
 
-  .header,
-  .footer,
+  // Hide specific elements
   .char-sheet__table__level--lvl1 .ut-display-inline-block .label,
   .char-sheet__table__level--lvl1 .ut-display-inline-block br,
   .char-sheet__button {
     display: none;
   }
 
-  // hide the number stepper
-  /* For Firefox */
+  // Hide number input styling
   input[type="number"] {
-    background-color: transparent;
+    // background-color: transparent;
     border: none;
     -moz-appearance: textfield;
   }
@@ -43,27 +75,23 @@
     margin: 0;
   }
 
+  // Hide select styling
   select {
     -webkit-appearance: none;
     -moz-appearance: textfield;
-  }
-
-  .icon-aspect--large:after {
-    background-size: 80%;
-    bottom: 10px;
-  }
-
-  .char-sheet__table td select {
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    font-size: 14px;
   }
 
   .char-sheet__table__level--lvl1 select {
     max-width: 157px;
   }
 
+  // Icon adjustments
+  .icon-aspect--large:after {
+    background-size: 80%;
+    bottom: 10px;
+  }
+
+  // Level display logic
   @for $i from 1 through 13 {
     .char-sheet__table__level--#{$i} {
       @for $i2 from $i through 13 {
@@ -72,6 +100,13 @@
         }
       }
     }
+  }
+
+  .char-sheet__table td select {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
   }
 
   .attrib-val {
@@ -83,148 +118,14 @@
   &-text-input {
     height: $form-element-height;
     padding: 0 0.25em;
-    font-family: $text-regular;
+    font-family: $font-primary;
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid $color-muted-inverted;
+    border-bottom: 1px solid $color-border;
   }
 }
 
 // Page breaks
 .char-sheet__section--talents {
   page-break-before: always;
-}
-
-// COLORS
-@media print {
-  .char-sheet {
-    background-color: $color-dark-inverted;
-    color: $color-text-inverted;
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      color: $color-accent-inverted;
-    }
-
-    .section {
-      border-color: $color-accent-inverted;
-    }
-
-    .section-header {
-      color: $color-accent-inverted;
-      border-bottom-color: $color-border-inverted;
-    }
-
-    .subsection {
-      border-color: $color-border-inverted;
-    }
-
-    .subsection-header {
-      color: $color-accent-inverted;
-    }
-
-    // tables
-    .char-sheet__table {
-      color: $color-text-inverted;
-      border-color: $color-border-inverted;
-      &__header,
-      &__caption {
-        color: $color-dark-inverted;
-        border-bottom-color: $color-accent-inverted;
-        background-color: $color-accent-inverted;
-      }
-      &__caption--thaumaturgy {
-        color: $color-dark-inverted;
-        background-color: $color-priest;
-        .ut-text-explain {
-          color: $color-dark-inverted;
-        }
-      }
-      &__caption--wizardry {
-        color: $color-text-inverted;
-        background-color: $color-wizard;
-        .ut-text-explain {
-          color: $color-text-inverted;
-        }
-      }
-    }
-
-    .char-sheet__table__row--zebra {
-      background-color: $color-zebra-inverted;
-    }
-
-    .char-sheet__table__cell--level {
-      color: $color-text-inverted;
-      border: 1px solid $color-text-inverted;
-    }
-
-    .input-field {
-      border-color: $color-border-inverted;
-      color: $color-text-inverted;
-      background-color: $color-dark-inverted;
-    }
-
-    .checkbox {
-      border-color: $color-border-inverted;
-    }
-
-    .checkbox:checked {
-      background-color: $color-accent-inverted;
-    }
-
-    .label {
-      color: $color-text-inverted;
-    }
-
-    .note {
-      color: $color-muted-inverted;
-    }
-
-    .divider {
-      border-color: $color-border-inverted;
-    }
-
-    .char-sheet__quick-ref-item {
-      border-color: $color-accent-inverted;
-    }
-    .char-sheet__quick-ref-footer {
-      color: $color-dark-inverted;
-      border-bottom-color: $color-accent-inverted;
-      background-color: $color-accent-inverted;
-    }
-
-    .attrib__name {
-      color: $color-accent-inverted;
-    }
-    .attrib__mod span {
-      color: $color-accent-inverted;
-    }
-    .icon-aspect.icon-aspect--common {
-      color: $color-accent-inverted;
-    }
-
-    .royal-text {
-      color: $color-dark;
-    }
-  }
-}
-
-@media print {
-  .desc {
-    .desc__list-label {
-      color: $color-accent-inverted;
-    }
-    th,
-    caption {
-      background: $color-accent-inverted;
-      color: $color-dark-inverted;
-    }
-    tr:nth-child(even) {
-      background: $color-zebra-inverted;
-    }
-  }
 }

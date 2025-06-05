@@ -2,12 +2,6 @@
 $path-font: "assets/fonts/";
 $path-img: "assets/images/";
 
-// ********************* BREAKPOINTS *********************
-$mq-phone-max: 767px;
-$mq-tablet-max: 1023px;
-$mq-desktop-max: 1439px;
-$page-max: 1600px;
-
 /***************************** FONT IMPORTS ************************************* */
 @font-face {
   font-family: "cabin-regular";
@@ -27,19 +21,8 @@ $page-max: 1600px;
 }
 
 @font-face {
-  font-family: "GreyhawkGothic";
-  src: url($path-font + "GreyhawkGothic/GreyhawkGothic.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "FontAwesome";
   src: url($path-font + "FontAwesome/fontawesome-webfont.ttf")
-    format("truetype");
-}
-
-@font-face {
-  font-family: "Kaushan Script";
-  src: url($path-font + "Kaushan_Script/KaushanScript-Regular.ttf")
     format("truetype");
 }
 
@@ -48,48 +31,69 @@ $page-max: 1600px;
   src: url($path-font + "Edelgotisch/Edelgotisch.ttf") format("truetype");
 }
 
-// ********************* FONTS *********************
-$text-regular: "Cabin Regular", Cabin, sans-serif;
-$text-medium: "Cabin Medium", Cabin, sans-serif;
-$text-semi: "Cabin Medium", Cabin, sans-serif;
-$text-bold: "Cabin Bold", Cabin, sans-serif;
-
-$text-header: "Edelgotisch", Edelgotisch, sans-serif;
-
-$text-cursive: "Kaushan Script", cursive;
-
-@mixin font-regular {
-  font-family: $text-regular;
-  font-weight: 400;
+// Cabin Condensed variants
+@font-face {
+  font-family: "cabin-condensed-regular";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-Regular.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "cabin-condensed-medium";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-Medium.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "cabin-condensed-semibold";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-SemiBold.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "cabin-condensed-bold";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-Bold.ttf")
+    format("truetype");
 }
 
-@mixin font-semi {
-  font-family: $text-regular;
-  font-weight: 500;
+// Italic variants
+@font-face {
+  font-family: "cabin-condensed-regular-italic";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-Italic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "cabin-condensed-medium-italic";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-MediumItalic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "cabin-condensed-semibold-italic";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-SemiBoldItalic.ttf")
+    format("truetype");
+}
+@font-face {
+  font-family: "cabin-condensed-bold-italic";
+  src: url($path-font + "Cabin_Condensed/Cabin_Condensed-BoldItalic.ttf")
+    format("truetype");
 }
 
-@mixin font-bold {
-  font-family: $text-bold;
-  font-weight: 700;
-}
+// *********************** COLORS ***********************//
 
-// *********************** COLOR VARIABLES ***********************//
+$color-bg: #f5f2ee;
+$color-bg: #ffffff;
+$color-bg-alt: #f7ebc7;
+$color-bg-alt: #fffff0;
+$color-bg-dark: #5a2780;
 
-// Brand Colors
-$color-dark: #5a2780;
-// $color-dark-alt: #110812;
-$color-dark-alt: #4a1f6a;
 $color-accent: #f7ebc7;
 $color-accent-dark: #c78d17;
+
 $color-cta: #d7ac28;
 $color-cta-hover: #c78d17;
 $color-link-hover: #f7ebc7;
-$color-zebra: #351748;
 
 // Text Colors
-$color-text: #ffffff;
-$color-text-dark: #333333;
-$color-text-muted: #cccccc;
+$color-text: #333333;
+$color-text-light: #ffffff;
+$color-text-muted: #666666;
 $color-text-cta: #1a1a1a;
 
 // Inverted Theme Colors
@@ -100,18 +104,11 @@ $color-muted-inverted: #666666;
 $color-border-inverted: #dddddd;
 $color-zebra-inverted: rgba(90, 39, 128, 0.05);
 
-// test inverted
-// $color-text: $color-text-dark;
-// $color-text-muted: $color-muted-inverted;
-// $color-text-cta: $color-text-inverted;
-// $color-accent: $color-accent-inverted;
-// $color-zebra: #f7ebc7;
-// $color-dark: $color-dark-inverted;
-// $color-dark-alt: rgba(90, 39, 128, 0.1);
-
 // UI Colors
-$color-border: #333;
-$color-input-background: #f5f3ed;
+$color-border: #5a2780;
+$color-input-bg: #f5f3ed;
+$color-zebra: #f7f4f9;
+$color-headers: $color-bg-dark;
 $color-white: white;
 $color-black: black;
 
@@ -134,6 +131,7 @@ $school-black: #333333;
 $school-green: #04a54f;
 $school-blue: #2375b9;
 $school-red: #eb2026;
+$color-royal: $color-bg-dark;
 
 // ********************* SPACING *********************
 $spacing-xxs: 0.25rem;
@@ -158,16 +156,28 @@ $spacing-sizes: (
   xxl: 8rem,
 );
 
+// ********************* TYPOGRAPHY *********************
+$font-primary: "Cabin", sans-serif;
+$font-icon: "FontAwesome";
+$font-header: "Edelgotisch";
+$font-forms: "cabin-condensed-medium";
+
+$font-size-base: 16px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 18px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+$font-size-xxl: 32px;
+$font-size-xxxl: 48px;
+$font-size-xxxxl: 60px;
+$line-height-base: 1.4;
+
 // ********************* LAYOUT *********************
 $container-max: 1200px;
 $container-char-sheet: 880px;
 $container-blog: 800px;
 $sidebar-width: 300px;
-
-// ********************* TYPOGRAPHY *********************
-$font-primary: "Titillium Web", sans-serif;
-$font-icon: "FontAwesome";
-$font-header: "Edelgotisch";
 
 // ********************* FORM ELEMENTS *********************
 $form-element-height: 1.5rem;
@@ -175,11 +185,31 @@ $border-radius-standard: 3px;
 $border-radius-lg: 8px;
 $form-element-border: 1px solid $color-border;
 
+// ********************* BREAKPOINTS *********************
+$mq-phone-max: 767px;
+$mq-tablet-max: 1023px;
+$mq-desktop-max: 1439px;
+$page-max: 1600px;
+
 // ******************** MIXINS ***************************//
-@mixin site-layout {
-  width: 100%;
-  max-width: $mq-desktop-max;
-  margin: 0 auto;
+
+// themes
+@mixin theme-dark {
+  background-color: $color-bg-dark;
+  color: $color-text-light;
+  .label {
+    color: $color-text-light;
+  }
+}
+
+@mixin theme-light {
+  background-color: $color-bg;
+  color: $color-text;
+}
+
+@mixin theme-priest {
+  color: $color-text-light;
+  background-color: $color-priest;
 }
 
 // Media Queries
@@ -219,37 +249,39 @@ $form-element-border: 1px solid $color-border;
   }
 }
 
+@mixin headerfont {
+  font-family: $font-header;
+  font-weight: normal;
+  line-height: 1.2;
+  color: $color-headers;
+}
+
+// Form stuff
+
 @mixin placeholder {
-  color: $color-muted-inverted;
+  color: $color-text-muted;
   font-style: italic;
 }
 
-@mixin greyhawkfont {
-  font-family: $text-header;
-  font-weight: normal;
-}
-
-@mixin headerfont {
-  font-family: $text-header;
-  font-weight: normal;
-  line-height: 1.2;
-  color: $color-accent;
-}
-
 @mixin input-basics {
-  height: $form-element-height;
   border-radius: $border-radius-standard;
   border: $form-element-border;
-  padding: 0 0.25em;
-  background-color: $color-input-background;
-  font-family: $text-regular;
-  &:hover {
-    color: $color-dark;
-    border-color: $color-dark;
-  }
+  padding: 0 $spacing-xxs;
+  background-color: $color-input-bg;
+  font-family: $font-forms;
+  // &:hover {
+  //   color: $color-bg;
+  //   border-color: $color-bg;
+  // }
   &:active {
-    color: $color-dark;
-    border-color: $color-dark;
+    color: $color-bg;
+    border-color: $color-bg;
+  }
+  &:focus {
+    background-color: $color-accent;
+  }
+  &:disabled {
+    opacity: 0.5;
   }
 }
 
@@ -278,10 +310,11 @@ $form-element-border: 1px solid $color-border;
 
 @mixin color-psionic-glow {
   text-shadow: 0 0 10px rgb(236, 222, 130);
-  color: $color-dark;
+  color: $color-bg;
 }
 
 @mixin table-basics {
+  background-color: $color-bg;
   margin-top: $spacing-xs;
   margin-bottom: $spacing-sm-alt;
   border-collapse: collapse;
@@ -290,8 +323,7 @@ $form-element-border: 1px solid $color-border;
   border-radius: $border-radius-lg $border-radius-lg 0 0;
 }
 @mixin table-header {
-  background: $color-zebra;
-  color: $color-accent;
+  @include theme-dark;
   text-transform: uppercase;
   font-family: $font-header;
   padding: $spacing-xs;

@@ -1,4 +1,5 @@
 //* *************** UTILITIES ***************** */
+@use "variables-mixins" as *;
 
 // ------- position & display -------
 .ut-position-relative {
@@ -18,7 +19,7 @@
 
 // ------- colors -------
 .ut-zebra-gray {
-  background: $color-muted-inverted;
+  background: $color-zebra;
 }
 
 .ut-color {
@@ -35,7 +36,7 @@
     color: $color-wizard;
   }
   &-royal {
-    color: $color-dark;
+    color: $color-royal;
   }
   &-mutation {
     color: $color-mutation;
@@ -59,61 +60,36 @@
     color: $school-white;
   }
   &-psionic-glow {
-    @include color-psionic-glow; // Ensure this mixin is defined or adjust accordingly
+    @include color-psionic-glow;
   }
 }
 
 // ------- Margins --------
-@import "variables-mixins"; // Ensure this is correctly pointing to your variables file
-
 @include generate-margin-utilities;
 
 // ------- Fonts & text styles --------
-.ut-all-caps {
-  text-transform: uppercase;
+
+.ut-text-header {
+  font-family: $font-header;
 }
 
-.ut-text-explain,
-.ut-text-helper {
-  color: $color-muted-inverted;
-  font-family: $text-regular;
-  font-size: 0.9375rem;
-  font-style: italic;
+.ut-text-primary {
+  font-family: $font-primary;
+}
+
+.ut-all-caps {
+  text-transform: uppercase;
 }
 
 .ut-captialize {
   text-transform: capitalize;
 }
 
-.ut-text-greyhawk {
-  font-family: $text-header;
-}
-
-.ut-text-cursive {
-  font-family: $text-cursive;
-}
-
-.ut-dropcap {
-  color: #903; // Consider defining this color in variables if used frequently
-  float: left;
-  font-family: Georgia;
-  font-size: 75px;
-  line-height: 60px;
-  padding-top: 4px;
-  padding-right: 8px;
-  padding-left: 3px;
-}
-
-.ut-font-regular {
-  @include font-regular; // Ensure this mixin is defined or adjust accordingly
-}
-
-.ut-font-semi {
-  @include font-semi; // Ensure this mixin is defined or adjust accordingly
-}
-
-.ut-font-bold {
-  @include font-bold; // Ensure this mixin is defined or adjust accordingly
+.ut-text-explain,
+.ut-text-helper {
+  color: $color-text-muted;
+  font-size: 0.9375rem;
+  font-style: italic;
 }
 
 // ------- PRINT VS SCREEN --------
@@ -133,7 +109,7 @@
 .ut-clickable {
   cursor: pointer;
   &:hover {
-    color: $color-dark;
+    color: $color-bg;
   }
 }
 
@@ -168,9 +144,4 @@
   margin: -1px;
   padding: 0;
   border: 0;
-}
-
-.ut_tm {
-  font-size: 0.75em;
-  vertical-align: super;
 }

@@ -1,3 +1,5 @@
+@use "variables-mixins" as *;
+
 //* *************** ATTRIBUTES ***************** */
 .attrib {
   display: inline-flex;
@@ -45,14 +47,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $color-input-background;
+    background: $color-input-bg;
   }
 
   &__name {
     padding-left: $spacing-sm;
     font-family: $font-header;
     font-size: 1.75rem;
-    color: $color-accent;
+    color: $color-headers;
   }
 
   &__mod {
@@ -73,5 +75,9 @@
     width: 16px;
     overflow: hidden;
     vertical-align: middle;
+  }
+  &__roll-button,
+  &__roll-all-button {
+    display: none;
   }
 }

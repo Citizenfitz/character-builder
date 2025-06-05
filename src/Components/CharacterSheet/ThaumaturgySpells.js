@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Modal from "react-modal";
 import { spellData, spellSlots, thaumaturgyList } from "../../Data";
 import { formatNumberSuffix } from "../Utilities";
-import SpellSlotsModal from "./SpellSlotsModal";
 
 const defaultSpellList = [[], [], [], [], [], [], []];
-
-Modal.setAppElement("#root");
 
 export default function ThaumaturgySpells(props) {
   const { level, wisStat, useLocalStorage } = props;
@@ -117,7 +113,7 @@ export default function ThaumaturgySpells(props) {
       <table className="char-sheet__table char-sheet__table--thaumaturgy">
         <caption className="char-sheet__table__caption char-sheet__table__caption--thaumaturgy">
           Thaumaturgy Spells
-          <span className="ut-text-explain ut-margin-left-xs">
+          <span className="ut-text-primary ut-margin-left-xs">
             - At {formatNumberSuffix(level)} level
             {wisStat > 12 && (
               <span> plus one extra 1st level spell for 13+ WIS</span>

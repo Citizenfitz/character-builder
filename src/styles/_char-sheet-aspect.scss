@@ -1,3 +1,5 @@
+@use "variables-mixins" as *;
+
 //* *************** ASPECT / CLASS SET ***************** */
 
 //* *************** ASPECT / CLASS  RADIO BUTTONS STYLED INTO GRID FOR CHOOSING ***************** */
@@ -14,7 +16,7 @@
 
   // border: 1px solid;
   border-radius: $border-radius-standard;
-  //background: $color-input-background;
+  //background: $color-input-bg;
   background-color: transparent;
   margin: 0 auto 1rem auto;
   &__item:nth-child(1),
@@ -126,7 +128,7 @@ input[type="radio"] + label.aspect-radio-label {
       background: $color-common;
     }
     &--race {
-      background: $color-dark;
+      background: $color-bg;
       height: 20px;
       width: 20px;
       font-size: 1rem;

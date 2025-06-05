@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { calculateBonus, formatNumberModifier } from "../Utilities";
+import { getRollFunction } from "./index";
 
 const Attributes = (props) => {
-  const { onChange, attributes, onRoll, onRollResults } = props;
+  const { onChange, attributes, onRoll } = props;
   const [pendingRoll, setPendingRoll] = useState("strength");
+  const rollDice = getRollFunction();
 
   // update attribute from numerical input
   const updateAttribute = (e) => {
@@ -45,27 +47,27 @@ const Attributes = (props) => {
     onChange(newState);
   };
 
-  useEffect(() => {
-    if (onRollResults) {
-      setAttributeFromRoll(onRollResults);
-    }
-  }, [onRollResults]);
-
   // roll dice on button click
-  const rollDice = (e) => {
+  const handleRollDice = (e) => {
     e.preventDefault();
     const attr = e.currentTarget.id.replace("roll-", "");
     // store which attribute we're rolling for
     setPendingRoll(attr);
     // roll 3d dice
-    onRoll("3d6", "attribute");
+    const result = rollDice("3d6");
+    if (result) {
+      setAttributeFromRoll(result);
+    }
   };
 
-  const rollAll = (e) => {
+  const handleRollAll = (e) => {
     // store which attribute we're rolling for
     setPendingRoll("all");
-    // roll 3d dice
-    onRoll("18d6", "all-attributes");
+    // roll 18d6 (3d6 for each attribute)
+    const result = rollDice("18d6");
+    if (result) {
+      setAttributeFromRoll(result);
+    }
   };
 
   return (
@@ -89,9 +91,19 @@ const Attributes = (props) => {
             <div className="attrib__mod">
               Mod:<span>{formatNumberModifier(values.mod)}</span>
             </div>
+            <button
+              id={`roll-${key}`}
+              onClick={handleRollDice}
+              className="attrib__roll-button"
+            >
+              Roll
+            </button>
           </div>
         );
       })}
+      <button onClick={handleRollAll} className="attrib__roll-all-button">
+        Roll All Attributes
+      </button>
     </div>
   );
 };

@@ -1,19 +1,14 @@
-import React from 'react';
-import ReactModal from 'react-modal';
+import React from "react";
+import { QuestRexDialog } from "../Common/Dialog";
 
 const OptionModal = (props) => (
-        <ReactModal
-            isOpen={!!props.modalState}
-            onRequestClose= {props.closeModal}
-            contentLabel="modal"
-        >
-            <h3>Modal Title</h3>
-            {props.modalState && (
-                <p>{props.modalState}</p>
-            ) }
-           
-            <button onClick={props.closeModal}>Close</button>
-        </ReactModal>
-    )
+  <QuestRexDialog
+    isOpen={!!props.modalState}
+    onClose={props.closeModal}
+    title="Modal Title"
+  >
+    {props.modalState && <p>{props.modalState}</p>}
+  </QuestRexDialog>
+);
 
 export default OptionModal;

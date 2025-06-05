@@ -1,8 +1,9 @@
 // ********** Modals **********
+@use "variables-mixins" as *;
 
 .modal {
   position: relative;
-  background-color: $color-dark;
+  background-color: $color-bg;
   padding: 0;
   border-radius: $border-radius-lg;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -29,7 +30,7 @@
 
   &__header {
     padding: $spacing-xs $spacing-sm-alt;
-    background-color: $color-dark-alt;
+    background-color: $color-bg-alt;
     border-radius: $border-radius-lg $border-radius-lg 0 0;
     display: flex;
     justify-content: space-between;

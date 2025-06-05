@@ -1,0 +1,11 @@
+@use "variables-mixins" as *;
+
+.footer {
+  @include theme-dark;
+  padding: $spacing-sm;
+  text-align: center;
+  font-family: $font-header;
+  text-transform: uppercase;
+  font-size: $font-size-lg;
+  border-radius: 0 0 $border-radius-standard $border-radius-standard;
+}

@@ -1,26 +1,28 @@
+// Import Font Awesome outside the scope since it's a global CDN resource
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 
+// Import variables and mixins first since they don't generate CSS
 @import "variables-mixins";
-@import "QR-theme";
-@import "base";
 
-@import "flexgrid";
-@import "icons";
-@import "forms";
-
-@import "component-modal";
-
-@import "dice-box";
-
-@import "char-sheet";
-@import "char-sheet-aspect";
-@import "char-sheet-attribs";
-@import "char-sheet-tables";
-@import "char-sheet-desc";
-@import "char-sheet-mutation-details";
-@import "char-sheet-notes";
-@import "char-sheet-wild-psionic-details";
-
-@import "print";
-
-@import "utilities";
+// Wrap all component styles under the app ID
+#questrex-char-builder-root {
+  position: relative;
+  // Import all component styles - they will be automatically nested under the parent ID
+  @import "base";
+  @import "component-modal";
+  @import "dice-box";
+  @import "flexgrid";
+  @import "forms";
+  @import "icons";
+  @import "char-sheet-aspect";
+  @import "char-sheet-attribs";
+  @import "char-sheet-desc";
+  @import "char-sheet-mutation-details";
+  @import "char-sheet-notes";
+  @import "char-sheet-tables";
+  @import "char-sheet-wild-psionic-details";
+  @import "char-sheet";
+  @import "footer";
+  // @import "print";
+  @import "utilities";
+}

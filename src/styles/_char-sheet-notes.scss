@@ -1,3 +1,5 @@
+@use "variables-mixins" as *;
+
 // Extra specificiity needed to accomodate use of imported markdown code
 .char-sheet {
   .char-sheet__notes {

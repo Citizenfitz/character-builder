@@ -1,4 +1,6 @@
 // ********** CUSTON CLASS/ASPECT ICONS **********
+@use "variables-mixins" as *;
+
 .icon-aspect {
   display: inline-block;
   position: relative;
@@ -17,7 +19,7 @@
     width: 100%;
     left: 0px;
     bottom: 0px;
-    font-family: $text-header;
+    font-family: $font-header;
     font-size: 18px;
     line-height: 24px;
     text-align: center;
@@ -80,7 +82,7 @@
   margin: 0;
 }
 .fas::before {
-  font-family: "FontAwesome";
+  font-family: $font-icon;
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
@@ -107,7 +109,7 @@
   content: "\f0D0";
 }
 .fa-shield::before {
-  content: $color-dark;
+  content: $color-bg;
 }
 .fa-diamond::before {
   content: "\f219";
@@ -123,6 +125,18 @@
 }
 .fa-triangle-up::before {
   content: "\f0d8";
+}
+
+.fa-menu:before {
+  content: "\f0c9";
+}
+
+.fa-search:before {
+  content: "\f002";
+}
+
+.fa-close:before {
+  content: "\f00d";
 }
 
 .fa-spell-dot {

@@ -1,5 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
-import ReactModal from "react-modal";
+import React, { useEffect, useState, useCallback, useRef } from "react";
 import DiceBox from "@3d-dice/dice-box";
 import LevelsTable from "./LevelsTable";
 import PresetsSelector from "./PresetsSelector";
@@ -7,6 +6,7 @@ import DisadSelector from "./DisadSelector";
 import Attributes from "./Attributes";
 import Aspects from "./Aspects";
 import Notes from "./Notes";
+import { QuestRexDialog } from "../Common/Dialog";
 import {
   aspectData,
   levelsData,
@@ -30,34 +30,41 @@ import TalentDetails from "./TalentDetails";
 import DisadDetails from "./DisadDetails";
 import MutationDetails from "./MutationDetails";
 import WildPsionics from "./WildPsionics";
+import diceRoller from "../Utilities/diceRoller";
 
 /*  --------------- DICE BOX -------------- */
-// create new DiceBox class
-const Box = new DiceBox("#dice-box", {
-  id: "dice-canvas",
-  assetPath: "/assets/dice-box/",
-  themeColor: "#883c8d",
-  startingHeight: 12,
-  throwForce: 6,
-  gravity: 2,
-});
+// Function to roll dice with fallback
+const rollDiceWithFallback = (box, diceNotation) => {
+  // Parse dice notation (e.g. "3d6")
+  const [count, sides] = diceNotation.split("d").map(Number);
 
-// initalize DiceBox onDomReady so canvas can be properly measured
-document.addEventListener("DOMContentLoaded", () => {
-  // set the onRollComplete function
-  Box.init();
-});
-
-// clear dice on click anywhere on the screen
-document.addEventListener("mousedown", () => {
-  const diceBoxCanvas = document.getElementById("dice-canvas");
-  if (
-    diceBoxCanvas &&
-    window.getComputedStyle(diceBoxCanvas).display !== "none"
-  ) {
-    Box.hide().clear();
+  if (box) {
+    try {
+      box.show().roll(diceNotation);
+      return null; // Return null since result will come through onRollComplete
+    } catch (error) {
+      console.warn("Error rolling 3D dice:", error);
+    }
   }
-});
+
+  // Fallback to basic dice roller
+  const results = [];
+  for (let i = 0; i < count; i++) {
+    results.push({
+      value: diceRoller(1, sides, 0, false),
+    });
+  }
+
+  return [
+    {
+      rolls: results,
+      value: results.reduce((sum, roll) => sum + roll.value, 0),
+    },
+  ];
+};
+
+// Export rollDiceWithFallback for use in other components
+export const getRollFunction = () => rollDiceWithFallback;
 
 /*  --------------- DEFAULTS -------------- */
 const characterDefaults = {
@@ -155,7 +162,71 @@ if (useLocalStorage) {
  * - add disability description to notes
  */
 
+// Custom hook for dice box initialization
+const useDiceBox = (onRollComplete) => {
+  const [box, setBox] = useState(null);
+
+  useEffect(() => {
+    let Box;
+    try {
+      // Check for WebGL support
+      const canvas = document.createElement("canvas");
+      const gl =
+        canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
+
+      if (!gl) {
+        console.warn("WebGL not supported - 3D dice rolling will be disabled");
+        return;
+      }
+
+      Box = new DiceBox("#dice-box", {
+        id: "dice-canvas",
+        assetPath: "/assets/dice-box/",
+        themeColor: "#883c8d",
+        startingHeight: 12,
+        throwForce: 6,
+        gravity: 2,
+      });
+
+      // Initialize DiceBox
+      Box.init();
+      // Set up the roll complete handler
+      Box.onRollComplete = onRollComplete;
+      setBox(Box);
+
+      // clear dice on click anywhere on the screen
+      const handleMouseDown = () => {
+        try {
+          const diceBoxCanvas = document.getElementById("dice-canvas");
+          if (
+            diceBoxCanvas &&
+            window.getComputedStyle(diceBoxCanvas).display !== "none" &&
+            Box
+          ) {
+            Box.hide().clear();
+          }
+        } catch (error) {
+          console.warn("Error clearing dice:", error);
+        }
+      };
+
+      document.addEventListener("mousedown", handleMouseDown);
+
+      // Cleanup
+      return () => {
+        document.removeEventListener("mousedown", handleMouseDown);
+      };
+    } catch (error) {
+      console.warn("Error setting up dice box:", error);
+    }
+  }, [onRollComplete]); // Only re-run if onRollComplete changes
+
+  return box;
+};
+
 const CharacterSheet = () => {
+  const componentRef = useRef();
+
   const defaultCharacterData = characterData || characterDefaults;
   const [character, setCharacter] = useState(defaultCharacterData);
   const defaultNotesData = notesData || [];
@@ -166,12 +237,23 @@ const CharacterSheet = () => {
   const [attributeDice, setAttributeDice] = useState();
   const [autoSave, setAutoSave] = useState(useLocalStorage);
 
-  Box.onRollComplete = (results) => {
-    if (diceGroup === "attribute" || diceGroup === "all-attributes") {
-      setAttributeDice(results);
-    } else if (diceGroup === "hp") {
-      setHpFromDice(results);
-    }
+  const handleRollComplete = useCallback(
+    (results) => {
+      if (diceGroup === "attribute" || diceGroup === "all-attributes") {
+        setAttributeDice(results);
+      } else if (diceGroup === "hp") {
+        setHpFromDice(results);
+      }
+    },
+    [diceGroup]
+  );
+
+  const box = useDiceBox(handleRollComplete);
+
+  // Update the rollDice function to use rollDiceWithFallback
+  const rollDice = (notation, group) => {
+    setDiceGroup(group);
+    return rollDiceWithFallback(box, notation);
   };
 
   useEffect(() => {
@@ -406,31 +488,6 @@ const CharacterSheet = () => {
     }));
   };
 
-  // const fillInExtraWizSchools = () => {
-  //   // if they DO have wizardry 3 then fill in the other three school slots with colors not chosen
-  //   let tempObject = character.wizardrySchools.slice(0);
-  //   for (let index = 0; index < magicSchools.length; index++) {
-  //     if (!tempObject.includes(magicSchools[index].name)) {
-  //       character.wizardrySchools.push(magicSchools[index].name);
-  //     }
-  //   }
-  // };
-
-  // cleans up the e wizadrySchool array and sets the wizardryNeedsToChooseSchool var
-  // const wizardrySchoolCleanUp = () => {
-  //   // finally, see if wizadrySchool contains a single string from the magic schools. If it does, wizardryNeedsToChooseSchool is false
-  //   let needsSchool = true;
-  //   for (let index = 0; index < magicSchools.level; index++) {
-  //     if (character.wizardrySchools.includes(magicSchools[index].name)) {
-  //       needsSchool = false;
-  //     }
-  //   }
-  //   setCharacter((prev) => ({
-  //     ...prev,
-  //     wizardryNeedsToChooseSchool: needsSchool,
-  //   }));
-  // };
-
   // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
     //const talents = Object.values(state.talents);
@@ -610,11 +667,6 @@ const CharacterSheet = () => {
     }));
   };
 
-  const rollDice = (notation, group) => {
-    setDiceGroup(group);
-    Box.show().roll(notation);
-  };
-
   const rollAttribDice = () => {
     rollDice("18d6", "all-attributes");
   };
@@ -762,7 +814,12 @@ const CharacterSheet = () => {
     setDiceGroup("hp");
     const multiplier = character.hp.hasDurability ? 2 : 1;
     let dice = character.level * multiplier;
-    Box.show().roll(`${dice}d${character.hitDiceType}`);
+    const diceNotation = `${dice}d${character.hitDiceType}`;
+    const result = rollDiceWithFallback(box, diceNotation);
+    if (result) {
+      // If we got an immediate result (fallback was used)
+      setHpFromDice(result);
+    }
   };
 
   const [raceModalOpen, setRaceModalOpen] = useState(false);
@@ -770,540 +827,545 @@ const CharacterSheet = () => {
     setRaceModalOpen(!raceModalOpen);
   };
 
+  const handleCharRace = (e) => {
+    const newRace = e.target.value;
+    setCharacter((prevChar) => {
+      const newChar = { ...prevChar, race: newRace };
+      // Remove bonuses from old race and add bonuses from new race
+      const withoutOldRace = removeRaceBonus(newChar, prevChar.race);
+      const withNewRace = addRaceBonus(withoutOldRace, newRace);
+      return withNewRace;
+    });
+    toggleRaceModal();
+  };
+
   return (
-    <div id="char-sheet">
-      <div className="char-sheet">
-        <section className="char-sheet__section char-sheet__section--top">
-          <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
-          <p className="ut-no-print">
-            <b>INSTRUCTIONS:</b> Play around with the form below till you get a
-            character you like (it's often easiest to start with a preset).{" "}
-            <br />
-            Then print the page to paper or a PDF. Simple! Desktop-only for now.
-          </p>
-          <div className="char-sheet__toolbar ut-no-print">
-            {/*  ------- TOOLBAR ------ */}
-            <div>
-              {" "}
-              <PresetsSelector
-                presetData={presetData}
-                handlePreset={handlePreset}
-              />{" "}
-            </div>
-            <div>
-              <button className="char-sheet__button" onClick={rollAttribDice}>
-                <i className="fas fa-dice"></i> Roll Attributes
-              </button>
-            </div>
-            <div>
-              <button className="char-sheet__button" onClick={rollHP}>
-                <i className="fas fa-dice"></i> Roll Hit Points
-              </button>
-            </div>
-            <div>
-              <button
-                className="char-sheet__button"
-                onClick={() => window.print()}
-              >
-                <i className="fas fa-print"></i> Print Sheet
-              </button>
-            </div>
+    <div id="char-sheet" className="char-sheet">
+      <section className="char-sheet__section char-sheet__section--top">
+        <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
+        <p className="ut-no-print">
+          <b>INSTRUCTIONS:</b> Play around with the form below till you get a
+          character you like (it's often easiest to start with a preset). <br />
+          Then print the page to paper or a PDF. Simple! Desktop-only for now.
+        </p>
+        <div className="char-sheet__toolbar ut-no-print">
+          {/*  ------- TOOLBAR ------ */}
+          <div>
+            {" "}
+            <PresetsSelector
+              presetData={presetData}
+              handlePreset={handlePreset}
+            />{" "}
           </div>
-          <div className="char-sheet__grid">
-            <div className="char-sheet__col char-sheet__col--basics">
-              {/*  ------- NAMEs ------ */}
-              <label>
-                <input
-                  type="text"
-                  value={character.namePlayer}
-                  name="namePlayer"
-                  onChange={(e) => handleInputChange(e, "namePlayer")}
-                  className="ut-no-print"
-                />
-                <div className="ut-no-screen print-text-input">
-                  {character.namePlayer}&nbsp;
-                </div>
-                <br />
-                <span className="label">Player Name</span>
-              </label>
+          <div>
+            <button className="char-sheet__button" onClick={rollAttribDice}>
+              <i className="fas fa-dice"></i> Roll Attributes
+            </button>
+          </div>
+          <div>
+            <button className="char-sheet__button" onClick={rollHP}>
+              <i className="fas fa-dice"></i> Roll Hit Points
+            </button>
+          </div>
+          <div>
+            <button
+              className="char-sheet__button"
+              onClick={() => window.print()}
+            >
+              <i className="fas fa-print"></i> Print Sheet
+            </button>
+          </div>
+        </div>
 
-              <label>
-                <input
-                  type="text"
-                  value={character.nameCharacter}
-                  name="namePlayer"
-                  className="ut-no-print"
-                  onChange={(e) => handleInputChange(e, "nameCharacter")}
-                />
-                <div className="ut-no-screen print-text-input">
-                  {character.nameCharacter}
-                </div>
-                <br />
-                <span className="label">Character Name</span>
-              </label>
-
-              <div className="flex-grid">
-                <div className="ut-margin-left-xs ut-margin-right-sm-alt">
-                  {/*  ------- LEVEL ------ */}
-                  <label>
-                    <select
-                      onChange={handleCharLevel}
-                      value={character.level}
-                      className="ut-no-print"
-                    >
-                      {levelsData.map((i) => (
-                        <option key={i.level} value={i.level}>
-                          {formatNumberSuffix(i.level)}
-                        </option>
-                      ))}
-                    </select>
-                    <div className="ut-no-screen print-text-input">
-                      {formatNumberSuffix(character.level)}
-                    </div>
-                    <br />
-                    <span className="label">Level</span>
-                  </label>
-                </div>
-                <div>
-                  {/*  ------- SEX ------ */}
-                  <label>
-                    <select
-                      name="gender"
-                      onChange={(e) => handleInputChange(e, "gender")}
-                      value={character.gender}
-                      className="ut-no-print"
-                    >
-                      <option value="Male">Male</option>
-                      <option value="Female">Female </option>
-                      <option value="other">Other </option>
-                    </select>
-                    <div className="ut-no-screen print-text-input">
-                      {character.gender}
-                    </div>
-                    <br />
-                    <span className="label">Sex</span>
-                  </label>
-                </div>
+        <div className="char-sheet__grid">
+          <div className="char-sheet__col char-sheet__col--basics">
+            {/*  ------- NAMEs ------ */}
+            <label>
+              <input
+                type="text"
+                value={character.namePlayer}
+                name="namePlayer"
+                onChange={(e) => handleInputChange(e, "namePlayer")}
+                className="ut-no-print"
+              />
+              <div className="ut-no-screen print-text-input">
+                {character.namePlayer}&nbsp;
               </div>
-              <div className="flex-grid flex-grid--flex-start ">
-                <div className="ut-margin-left-xs ut-margin-right-sm-alt">
-                  {/*  ------- RACE ------ */}
-                  <label>
-                    <button
-                      type="text"
-                      size="8"
-                      className="char-sheet__button--alt ut-no-print"
-                      onClick={toggleRaceModal}
-                    >
-                      {character.race}&nbsp;
-                    </button>
-                    <div className="ut-no-screen print-text-input">
-                      {character.race}
-                    </div>
-                    <br />
-                    <span className="label">Race</span>
-                  </label>
-                </div>
-                <div>
-                  {/*  ------- CLASS / "Aspects" ------ */}
-                  <Aspects
-                    character={character}
-                    handleCharAspect={handleCharAspect}
-                  ></Aspects>
-                </div>
-              </div>
+              <br />
+              <span className="label">Player Name</span>
+            </label>
 
-              {/*  --------------- ATTRIBUTES -------------- */}
-              <section>
-                <Attributes
-                  onChange={updateAttributes}
-                  attributes={character.attributes}
-                  updated={character.attributesUpdates}
-                  onRollResults={attributeDice}
-                  onRoll={rollDice}
-                />
-              </section>
+            <label>
+              <input
+                type="text"
+                value={character.nameCharacter}
+                name="namePlayer"
+                className="ut-no-print"
+                onChange={(e) => handleInputChange(e, "nameCharacter")}
+              />
+              <div className="ut-no-screen print-text-input">
+                {character.nameCharacter}
+              </div>
+              <br />
+              <span className="label">Character Name</span>
+            </label>
+
+            <div className="flex-grid">
+              <div className="ut-margin-left-xs ut-margin-right-sm-alt">
+                {/*  ------- LEVEL ------ */}
+                <label>
+                  <select
+                    onChange={handleCharLevel}
+                    value={character.level}
+                    className="ut-no-print"
+                  >
+                    {levelsData.map((i) => (
+                      <option key={i.level} value={i.level}>
+                        {formatNumberSuffix(i.level)}
+                      </option>
+                    ))}
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {formatNumberSuffix(character.level)}
+                  </div>
+                  <br />
+                  <span className="label">Level</span>
+                </label>
+              </div>
+              <div>
+                {/*  ------- SEX ------ */}
+                <label>
+                  <select
+                    name="gender"
+                    onChange={(e) => handleInputChange(e, "gender")}
+                    value={character.gender}
+                    className="ut-no-print"
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female </option>
+                    <option value="other">Other </option>
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {character.gender}
+                  </div>
+                  <br />
+                  <span className="label">Sex</span>
+                </label>
+              </div>
+            </div>
+            <div className="flex-grid flex-grid--flex-start ">
+              <div className="ut-margin-left-xs ut-margin-right-sm-alt">
+                {/*  ------- RACE ------ */}
+                <label>
+                  <button
+                    type="text"
+                    size="8"
+                    className="char-sheet__button--alt ut-no-print"
+                    onClick={toggleRaceModal}
+                  >
+                    {character.race}&nbsp;
+                  </button>
+                  <div className="ut-no-screen print-text-input">
+                    {character.race}
+                  </div>
+                  <br />
+                  <span className="label">Race</span>
+                </label>
+              </div>
+              <div>
+                {/*  ------- CLASS / "Aspects" ------ */}
+                <Aspects
+                  character={character}
+                  handleCharAspect={handleCharAspect}
+                ></Aspects>
+              </div>
             </div>
 
-            <div className="char-sheet__col char-sheet__col--stats">
-              {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
-              <div className="char-sheet__quick-ref">
-                <div className="char-sheet__quick-ref-item">
-                  <div className="char-sheet__quick-ref-text">
-                    <b>{character.ac}</b>
-                  </div>
-                  <h2 className="char-sheet__quick-ref-footer">AC</h2>
-                </div>
-                <div className="char-sheet__quick-ref-item">
-                  <div className="char-sheet__quick-ref-text">
-                    <input
-                      className="hp  ut-no-print"
-                      type="number"
-                      inputMode="numeric"
-                      min={0}
-                      max={999}
-                      value={character.hp.total}
-                      onChange={manuallyUpdateHP}
-                    />
-                    <b className="ut-no-screen">{character.hp.total}</b>
-                  </div>
-                  <h2 className="char-sheet__quick-ref-footer">HP</h2>
-                </div>
-                <div className="char-sheet__quick-ref-item">
-                  <div className="char-sheet__quick-ref-text">
-                    <b>{character.movement}'</b>
-                  </div>
-                  <h2 className="char-sheet__quick-ref-footer">Move</h2>
-                </div>
-                <div className="char-sheet__quick-ref-item">
-                  <div className="char-sheet__quick-ref-text">
-                    <span className="label label--inline">Roll Mod: </span>
-                    <b>
-                      {formatNumberModifier(character.attributes.wisdom.mod)}
-                    </b>
-                    <br />
-                    <span className="label label--inline">Passive:</span>{" "}
-                    <b>{character.perception}</b>
-                  </div>
-                  <h2 className="char-sheet__quick-ref-footer">Perc.</h2>
-                </div>
-              </div>
-              {/*  ------- SAVING THROW MODS ------ */}
+            {/*  --------------- ATTRIBUTES -------------- */}
+            <section>
+              <Attributes
+                onChange={updateAttributes}
+                attributes={character.attributes}
+                updated={character.attributesUpdates}
+                onRollResults={attributeDice}
+                onRoll={rollDice}
+              />
+            </section>
+          </div>
 
-              <div className="char-sheet__quick-ref-item char-sheet__quick-ref--save-mods">
-                <ul className="char-sheet__quick-ref-save-mods-list">
-                  <li className="char-sheet__quick-ref-save-mods-list-item">
-                    <span className="fas fa-pointer"></span>+
-                    {levelsData[character.level - 1].saveBonus} to all{" "}
-                    <span className="ut-text-explain"> (for level)</span>
-                  </li>
-                  <li className="char-sheet__quick-ref-save-mods-list-item">
-                    <div
-                      className={`icon-aspect icon-aspect--${character.aspect}`}
-                    ></div>{" "}
-                    {character.saveModsClass}
-                  </li>
-                  {/* Remove the race saving throw mods for now 
-              {character.saveModsRace.map((note, i) => (
-                <li
-                  className="char-sheet__quick-ref-save-mods-list-item"
-                  key={i}
-                >
-                  <div className="icon-aspect icon-aspect--race"></div>
-                  {note}
+          <div className="char-sheet__col char-sheet__col--stats">
+            {/*  ------- 4 QUICK REFERENCE NUMBERS ------ */}
+            <div className="char-sheet__quick-ref">
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <b>{character.ac}</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">AC</h2>
+              </div>
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <input
+                    className="hp  ut-no-print"
+                    type="number"
+                    inputMode="numeric"
+                    min={0}
+                    max={999}
+                    value={character.hp.total}
+                    onChange={manuallyUpdateHP}
+                  />
+                  <b className="ut-no-screen">{character.hp.total}</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">HP</h2>
+              </div>
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <b>{character.movement}'</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">Move</h2>
+              </div>
+              <div className="char-sheet__quick-ref-item">
+                <div className="char-sheet__quick-ref-text">
+                  <span className="label label--inline">Roll Mod: </span>
+                  <b>{formatNumberModifier(character.attributes.wisdom.mod)}</b>
+                  <br />
+                  <span className="label label--inline">Passive:</span>{" "}
+                  <b>{character.perception}</b>
+                </div>
+                <h2 className="char-sheet__quick-ref-footer">Perc.</h2>
+              </div>
+            </div>
+            {/*  ------- SAVING THROW MODS ------ */}
+
+            <div className="char-sheet__quick-ref-item char-sheet__quick-ref--save-mods">
+              <ul className="char-sheet__quick-ref-save-mods-list">
+                <li className="char-sheet__quick-ref-save-mods-list-item">
+                  <span className="fas fa-pointer"></span>+
+                  {levelsData[character.level - 1].saveBonus} to all{" "}
+                  <span className="ut-text-explain"> (for level)</span>
+                </li>
+                <li className="char-sheet__quick-ref-save-mods-list-item">
+                  <div
+                    className={`icon-aspect icon-aspect--${character.aspect}`}
+                  ></div>{" "}
+                  {character.saveModsClass}
+                </li>
+                {/* Remove the race saving throw mods for now 
+                  {character.saveModsRace.map((note, i) => (
+                    <li
+                      className="char-sheet__quick-ref-save-mods-list-item"
+                      key={i}
+                    >
+                      <div className="icon-aspect icon-aspect--race"></div>
+                      {note}
+                    </li>
+                  ))}
+                     */}
+              </ul>
+              <h2 className="char-sheet__quick-ref-footer">
+                Saving Throw Mods
+              </h2>
+            </div>
+
+            <div className="flex-grid  flex-grid--flex-start">
+              <div className="ut-margin-left-xs ut-margin-right-sm-alt">
+                {/*  ------- ARMOR ------ */}
+                <label>
+                  <select
+                    name="armor"
+                    value={character.armorIndex}
+                    onChange={handleArmorChange}
+                    className="ut-no-print"
+                  >
+                    {armorData.map((armor, i) => (
+                      <option key={armor.armor} value={i}>
+                        {armor.armor} (+{armor.modifier})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {armorData[character.armorIndex].armor}{" "}
+                    {character.armorIndex > 0 && (
+                      <span>(+{armorData[character.armorIndex].modifier})</span>
+                    )}
+                  </div>
+                  <br />
+                  <span className="label">Armor</span>
+                </label>
+              </div>
+              <div className="flex-grid__child flex-grid__child--auto">
+                {/*  ------- SHIELD ------ */}
+                {/*  TODO: create data for shield as opposed to putting directly into form element */}
+                <label>
+                  <select
+                    name="shield"
+                    value={character.shield}
+                    onChange={(e) => handleShieldChange(e)}
+                    className="ut-no-print"
+                  >
+                    {shieldData.map((shield, i) => (
+                      <option key={shield.name} value={i}>
+                        {shield.name} (+{shield.modifier})
+                      </option>
+                    ))}
+                  </select>
+                  <div className="ut-no-screen print-text-input">
+                    {character.shield}
+                  </div>
+                  <br />
+                  <span className="label">Shield</span>
+                </label>
+              </div>
+            </div>
+            {/*  ------- MELEE WEAPON ------ */}
+            <label>
+              <select
+                name="meleeWeapon"
+                value={character.meleeWeaponIndex}
+                onChange={handleMeleeWeaponChange}
+                className="ut-no-print"
+              >
+                {meleeWeaponData.map((weapon, i) => (
+                  <option key={weapon.name} value={i}>
+                    {weapon.name} ({weapon.damage})
+                  </option>
+                ))}
+              </select>
+              <div className="ut-no-screen print-text-input">
+                {meleeWeaponData[character.meleeWeaponIndex].name}
+                {character.meleeWeaponIndex > 0 && (
+                  <span>
+                    ({meleeWeaponData[character.meleeWeaponIndex].damage})
+                  </span>
+                )}
+              </div>
+              <br />
+              <span className="label">Melee Weapon</span>
+            </label>
+
+            {/*  ------- RANGED WEAPON ------ */}
+            <label>
+              <select
+                name="rangedWeapon"
+                value={character.rangedWeaponIndex}
+                onChange={handleRangedWeaponChange}
+                className="ut-no-print"
+              >
+                {rangedWeaponData.map((weapon, i) => (
+                  <option key={weapon.name} value={i}>
+                    {weapon.name} ({weapon.damage})
+                  </option>
+                ))}
+              </select>
+              <div className="ut-no-screen print-text-input">
+                {rangedWeaponData[character.rangedWeaponIndex].name}
+                {character.rangedWeaponIndex > 0 && (
+                  <span>
+                    ({rangedWeaponData[character.rangedWeaponIndex].damage})
+                  </span>
+                )}
+              </div>
+              <br />
+              <span className="label">Ranged Weapon</span>
+            </label>
+          </div>
+
+          <div className="char-sheet__col char-sheet__col--details">
+            {/*  ------- EXPLAINER BOX ------ */}
+            <div className="char-sheet__quick-ref-item  char-sheet__quick-ref--explain">
+              <div className="char-sheet__quick-ref-text"></div>
+              <h2 className="char-sheet__quick-ref-footer">
+                Symbol or Character Sketch
+              </h2>
+            </div>
+
+            {/*  ------- ALIGNMENT ------ */}
+            <label>
+              <select
+                name="alignment"
+                onChange={(e) => handleInputChange(e, "alignment")}
+                value={character.alignment}
+                className="ut-no-print"
+              >
+                <option value="Lawful Good">Lawful Good </option>
+                <option value="Neutral Good">Neutral Good </option>
+                <option value="Chaotic Good">Chaotic Good </option>
+                <option value="Lawful Neutral">Lawful Neutral </option>
+                <option value="Neutral">Neutral</option>
+                <option value="Chaotic Neutral">Chaotic Neutral </option>
+                <option value="Lawful Evil">Lawful Evil </option>
+                <option value="Neutral Evil">Neutral Evil</option>
+                <option value="Chaotic Evil">Chaotic Evil </option>
+              </select>
+              <div className="ut-no-screen print-text-input">
+                {character.alignment}
+              </div>
+              <br />
+              <span className="label">Alignment</span>
+            </label>
+
+            {/*  ------- DISADS ------ */}
+            <label>
+              <DisadSelector
+                id="disad1"
+                character={character}
+                handleSetDisad={handleSetDisad}
+              />
+              <span className="label">
+                Disad 1{" "}
+                <span className="ut-text-explain ut-no-print">(optional)</span>
+              </span>
+            </label>
+
+            <label>
+              <DisadSelector
+                id="disad2"
+                character={character}
+                handleSetDisad={handleSetDisad}
+              />
+              <span className="label">
+                Disad 2{" "}
+                <span className="ut-text-explain ut-no-print">(optional)</span>
+              </span>
+            </label>
+
+            {/*  ------- XP ------ */}
+            <label>
+              <input type="text" disabled className="ut-no-print" />
+              <div className="ut-no-screen print-text-input"></div>
+              <br />
+              <span className="label">XP/AP</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
+      <section className="char-sheet__section char-sheet__section--talents">
+        <LevelsTable
+          character={character}
+          handleSetCharTalents={handleSetCharTalents}
+        />
+      </section>
+
+      {/*  --------------- SPELLS -------------- */}
+      {character.wizardry1StartLevel > 0 &&
+        character.level >= character.wizardry1StartLevel && (
+          <WizardrySpells
+            charLevel={character.level}
+            wizLevel={character.wizardLevel}
+            intStat={character.attributes.intelligence.total}
+            wizardrySchools={character.wizardrySchools}
+            onPickSchool={handlePickSchool}
+            setWizardSchool={setWizardSchool}
+            wizardry1StartLevel={character.wizardry1StartLevel}
+            wizardry2StartLevel={character.wizardry2StartLevel}
+            wizardry3StartLevel={character.wizardry3StartLevel}
+            useLocalStorage={useLocalStorage}
+          />
+        )}
+      {character.thaumaturgyStartLevel > 0 &&
+        character.level >= character.thaumaturgyStartLevel && (
+          <ThaumaturgySpells
+            level={character.priestLevel}
+            wisStat={character.attributes.wisdom.total}
+            useLocalStorage={useLocalStorage}
+          />
+        )}
+
+      {/* --------- Wild Psionics section --------- */}
+      {Object.values(character.talents).some(
+        (talent) => talent === "Wild Psionics"
+      ) && (
+        <section className="char-sheet__section char-sheet__section--wild-psionics">
+          <WildPsionics character={character} setCharacter={setCharacter} />
+        </section>
+      )}
+
+      {/* --------- Mutation Details section --------- */}
+      {character.race === "Mutant" && (
+        <section className="char-sheet__section char-sheet__section--mutation-details">
+          <h2 className="char-sheet__h2">Mutation Details</h2>
+          <MutationDetails character={character} setCharacter={setCharacter} />
+        </section>
+      )}
+
+      {/*  --------------- NOTES -------------- */}
+      <section className="char-sheet__section char-sheet__section--notes">
+        <h2 className="char-sheet__h2">Notes</h2>
+        <Notes
+          notes={notes}
+          setNotes={setNotes}
+          notesIndex={notesIndex}
+          setNotesIndex={setNotesIndex}
+          character={character}
+        />
+      </section>
+
+      {/* Disadvantage Details section */}
+      {(character.disad1 !== "none" || character.disad2 !== "none") && (
+        <section className="char-sheet__section char-sheet__section--disad-details">
+          <h2 className="char-sheet__h2">Disadvantage Details</h2>
+          <DisadDetails character={character} />
+        </section>
+      )}
+
+      {/*  --------------- TALENT DETAILS -------------- */}
+      <section className="char-sheet__section char-sheet__section--talent-details">
+        <h2 className="char-sheet__h2">Talent Details</h2>
+        <TalentDetails character={character} />
+      </section>
+
+      {/*  ------- MODALS ------ */}
+      <QuestRexDialog
+        isOpen={raceModalOpen}
+        onClose={toggleRaceModal}
+        title="Choose Race"
+      >
+        <div className="flex-grid">
+          <div className="flex-grid__child--half">
+            <ul className="race-radio-set">
+              {raceData.map((i) => (
+                <li key={i.name} className="race-radio-set__item">
+                  <input
+                    type="radio"
+                    name="race"
+                    value={i.name}
+                    id={i.name}
+                    checked={character.race === i.name}
+                    onChange={handleCharRace}
+                    className="race-radio-button"
+                  ></input>
+                  <label
+                    htmlFor={i.name}
+                    className={`race-radio-label race-radio-label--${i.name}`}
+                  >
+                    {i.name}
+                  </label>
                 </li>
               ))}
-                 */}
-                </ul>
-                <h2 className="char-sheet__quick-ref-footer">
-                  Saving Throw Mods
-                </h2>
-              </div>
-
-              <div className="flex-grid  flex-grid--flex-start">
-                <div className="ut-margin-left-xs ut-margin-right-sm-alt">
-                  {/*  ------- ARMOR ------ */}
-                  <label>
-                    <select
-                      name="armor"
-                      value={character.armorIndex}
-                      onChange={handleArmorChange}
-                      className="ut-no-print"
-                    >
-                      {armorData.map((armor, i) => (
-                        <option key={armor.armor} value={i}>
-                          {armor.armor} (+{armor.modifier})
-                        </option>
-                      ))}
-                    </select>
-                    <div className="ut-no-screen print-text-input">
-                      {armorData[character.armorIndex].armor}{" "}
-                      {character.armorIndex > 0 && (
-                        <span>
-                          (+{armorData[character.armorIndex].modifier})
-                        </span>
-                      )}
-                    </div>
-                    <br />
-                    <span className="label">Armor</span>
-                  </label>
-                </div>
-                <div className="flex-grid__child flex-grid__child--auto">
-                  {/*  ------- SHIELD ------ */}
-                  {/*  TODO: create data for shield as opposed to putting directly into form element */}
-                  <label>
-                    <select
-                      name="shield"
-                      value={character.shield}
-                      onChange={(e) => handleShieldChange(e)}
-                      className="ut-no-print"
-                    >
-                      {shieldData.map((shield, i) => (
-                        <option key={shield.name} value={i}>
-                          {shield.name} (+{shield.modifier})
-                        </option>
-                      ))}
-                    </select>
-                    <div className="ut-no-screen print-text-input">
-                      {character.shield}
-                    </div>
-                    <br />
-                    <span className="label">Shield</span>
-                  </label>
-                </div>
-              </div>
-              {/*  ------- MELEE WEAPON ------ */}
-              <label>
-                <select
-                  name="meleeWeapon"
-                  value={character.meleeWeaponIndex}
-                  onChange={handleMeleeWeaponChange}
-                  className="ut-no-print"
-                >
-                  {meleeWeaponData.map((weapon, i) => (
-                    <option key={weapon.name} value={i}>
-                      {weapon.name} ({weapon.damage})
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {meleeWeaponData[character.meleeWeaponIndex].name}
-                  {character.meleeWeaponIndex > 0 && (
-                    <span>
-                      ({meleeWeaponData[character.meleeWeaponIndex].damage})
-                    </span>
-                  )}
-                </div>
-                <br />
-                <span className="label">Melee Weapon</span>
-              </label>
-
-              {/*  ------- RANGED WEAPON ------ */}
-              <label>
-                <select
-                  name="rangedWeapon"
-                  value={character.rangedWeaponIndex}
-                  onChange={handleRangedWeaponChange}
-                  className="ut-no-print"
-                >
-                  {rangedWeaponData.map((weapon, i) => (
-                    <option key={weapon.name} value={i}>
-                      {weapon.name} ({weapon.damage})
-                    </option>
-                  ))}
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {rangedWeaponData[character.rangedWeaponIndex].name}
-                  {character.rangedWeaponIndex > 0 && (
-                    <span>
-                      ({rangedWeaponData[character.rangedWeaponIndex].damage})
-                    </span>
-                  )}
-                </div>
-                <br />
-                <span className="label">Ranged Weapon</span>
-              </label>
-            </div>
-
-            <div className="char-sheet__col char-sheet__col--details">
-              {/*  ------- EXPLAINER BOX ------ */}
-              <div className="char-sheet__quick-ref-item  char-sheet__quick-ref--explain">
-                <div className="char-sheet__quick-ref-text"></div>
-                <h2 className="char-sheet__quick-ref-footer">
-                  Symbol or Character Sketch
-                </h2>
-              </div>
-
-              {/*  ------- ALIGNMENT ------ */}
-              <label>
-                <select
-                  name="alignment"
-                  onChange={(e) => handleInputChange(e, "alignment")}
-                  value={character.alignment}
-                  className="ut-no-print"
-                >
-                  <option value="Lawful Good">Lawful Good </option>
-                  <option value="Neutral Good">Neutral Good </option>
-                  <option value="Chaotic Good">Chaotic Good </option>
-                  <option value="Lawful Neutral">Lawful Neutral </option>
-                  <option value="Neutral">Neutral</option>
-                  <option value="Chaotic Neutral">Chaotic Neutral </option>
-                  <option value="Lawful Evil">Lawful Evil </option>
-                  <option value="Neutral Evil">Neutral Evil</option>
-                  <option value="Chaotic Evil">Chaotic Evil </option>
-                </select>
-                <div className="ut-no-screen print-text-input">
-                  {character.alignment}
-                </div>
-                <br />
-                <span className="label">Alignment</span>
-              </label>
-
-              {/*  ------- DISADS ------ */}
-              <label>
-                <DisadSelector
-                  id="disad1"
-                  character={character}
-                  handleSetDisad={handleSetDisad}
-                />
-                <span className="label">
-                  Disad 1{" "}
-                  <span className="ut-text-explain ut-no-print">
-                    (optional)
-                  </span>
-                </span>
-              </label>
-
-              <label>
-                <DisadSelector
-                  id="disad2"
-                  character={character}
-                  handleSetDisad={handleSetDisad}
-                />
-                <span className="label">
-                  Disad 2{" "}
-                  <span className="ut-text-explain ut-no-print">
-                    (optional)
-                  </span>
-                </span>
-              </label>
-
-              {/*  ------- XP ------ */}
-              <label>
-                <input type="text" disabled className="ut-no-print" />
-                <div className="ut-no-screen print-text-input"></div>
-                <br />
-                <span className="label">XP/AP</span>
-              </label>
-            </div>
+            </ul>
           </div>
-        </section>
-        {/*  --------------- BIG TABLE WITH LEVELS & TALENT PICKER -------------- */}
-        <section className="char-sheet__section char-sheet__section--talents">
-          <LevelsTable
-            character={character}
-            // talentDisabled={talentDisabled}
-            handleSetCharTalents={handleSetCharTalents}
-          />
-        </section>
-
-        {/*  --------------- SPELLS -------------- */}
-        {character.wizardry1StartLevel > 0 &&
-          character.level >= character.wizardry1StartLevel && (
-            <WizardrySpells
-              charLevel={character.level}
-              wizLevel={character.wizardLevel}
-              intStat={character.attributes.intelligence.total}
-              wizardrySchools={character.wizardrySchools}
-              // schoolLimit={schoolLimit}
-              onPickSchool={handlePickSchool}
-              setWizardSchool={setWizardSchool}
-              wizardry1StartLevel={character.wizardry1StartLevel}
-              wizardry2StartLevel={character.wizardry2StartLevel}
-              wizardry3StartLevel={character.wizardry3StartLevel}
-              useLocalStorage={useLocalStorage}
-            />
-          )}
-        {character.thaumaturgyStartLevel > 0 &&
-          character.level >= character.thaumaturgyStartLevel && (
-            <ThaumaturgySpells
-              level={character.priestLevel}
-              wisStat={character.attributes.wisdom.total}
-              useLocalStorage={useLocalStorage}
-            />
-          )}
-        {/* --------- Wild Psionics section - only shows with Wild Psionics talent --------- */}
-        {Object.values(character.talents).some(
-          (talent) => talent === "Wild Psionics"
-        ) && (
-          <section className="char-sheet__section char-sheet__section--wild-psionics">
-            <WildPsionics character={character} setCharacter={setCharacter} />
-          </section>
-        )}
-
-        {/* --------- Mutation Details section - only shows for Mutant race --------- */}
-        {character.race === "Mutant" && (
-          <section className="char-sheet__section char-sheet__section--mutation-details">
-            <h2 className="char-sheet__h2">Mutation Details</h2>
-            <MutationDetails
-              character={character}
-              setCharacter={setCharacter}
-            />
-          </section>
-        )}
-
-        {/*  --------------- NOTES -------------- */}
-        <section className="char-sheet__section char-sheet__section--notes">
-          <h2 className="char-sheet__h2">Notes</h2>
-          <Notes
-            notes={notes}
-            setNotes={setNotes}
-            notesIndex={notesIndex}
-            setNotesIndex={setNotesIndex}
-            character={character}
-          />
-        </section>
-
-        {/* Add new Disadvantage Details section */}
-        {(character.disad1 !== "none" || character.disad2 !== "none") && (
-          <section className="char-sheet__section char-sheet__section--disad-details">
-            <h2 className="char-sheet__h2">Disadvantage Details</h2>
-            <DisadDetails character={character} />
-          </section>
-        )}
-
-        {/*  --------------- TALENT DETAILS -------------- */}
-        <section className="char-sheet__section char-sheet__section--talent-details">
-          <h2 className="char-sheet__h2">Talent Details</h2>
-          <TalentDetails character={character} />
-        </section>
-
-        {/*  ------- MODAL WITH CHOSE A RACE INFO ------ */}
-        <ReactModal
-          isOpen={raceModalOpen}
-          onRequestClose={toggleRaceModal}
-          contentLabel="Choose Class"
-          className="modal ut-no-print"
-          overlayClassName="modal__overlay"
-          ariaHideApp={false}
-        >
-          <div className="modal__container">
-            <div className="modal__header">
-              <h2 className="modal__h2">Choosing a Race</h2>
-              <button
-                className="char-sheet__button modal__header-button"
-                onClick={toggleRaceModal}
-                aria-label="Close modal"
-              >
-                X
-              </button>
-            </div>
-            <div className="modal__body">
-              <p className="ut-margin-top-none">
-                To be any race other than human costs one talent slot. This can
-                only be chosen when a character is first created, it never
-                changes, and only ONE race talent may ever be taken.
-              </p>
-              <p>
-                Choose in the <b>talents section below</b> and it will be
-                reflected here as well.
-              </p>
-              <img
-                src="assets/images/race-choose-screenshot.png"
-                alt="QuestRex race picker "
-              />
-            </div>
-            <div className="modal__footer">
-              <button
-                className="char-sheet__button char-sheet__button--large"
-                onClick={toggleRaceModal}
-              >
-                Close
-              </button>
-            </div>
+          <div className="flex-grid__child--half">
+            <h2 className="race-picker-desc__header">{character.race}</h2>
+            <ul className="race-picker-desc__list">
+              <li>
+                <b className="ut-text-header">Description:</b> desc
+              </li>
+              <li>
+                <b className="ut-text-header">Characteristics:</b>{" "}
+                {character.characteristicsRace.join(", ")}
+              </li>
+              <li>
+                <b className="ut-text-header">Saving Throw Mods:</b>{" "}
+                {character.saveModsRace.join(", ")}
+              </li>
+            </ul>
           </div>
-        </ReactModal>
-      </div>
+        </div>
+      </QuestRexDialog>
+      <footer className="char-sheet__footer">
+        QuestRex - A Fantasy Tabletop RPG
+      </footer>
     </div>
   );
 };

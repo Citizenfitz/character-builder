@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ReactModal from "react-modal";
+import { QuestRexDialog } from "../Common/Dialog";
 
 const Notes = (props) => {
   const [notesModalOpen, setNotesModalOpen] = useState(false);
@@ -44,12 +44,39 @@ const Notes = (props) => {
     setNotesModalOpen(true);
   };
 
+  const modalTitle = isDeleting
+    ? "Confirm Delete"
+    : typeof notesIndex === "number"
+    ? "Edit Note"
+    : "Add Note";
+
+  const modalFooterContent = isDeleting ? (
+    <button
+      className="char-sheet__button char-sheet__button--large"
+      type="button"
+      onClick={() => {
+        props.setNotes((prev) => prev.filter((_, i) => i !== notesIndex));
+        toggleNotesModalOpen();
+      }}
+    >
+      Confirm Delete Note
+    </button>
+  ) : (
+    <button
+      className="char-sheet__button char-sheet__button--large"
+      type="submit"
+      value="Save"
+    >
+      Save
+    </button>
+  );
+
   return (
     <div className="char-sheet__notes">
       {/*  ------- User notes -------- */}
       <div className="ut-margin-bottom-xs">
         <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
-          <i className="fas fa-pen"></i> Add Note
+          <i className="fas fa-plus"></i> Add Note
         </button>
       </div>
       <ul className="char-sheet__notes__list">
@@ -76,70 +103,23 @@ const Notes = (props) => {
         ))}
       </ul>
 
-      <ReactModal
-        id="note--modal"
+      <QuestRexDialog
         isOpen={notesModalOpen}
-        onRequestClose={toggleNotesModalOpen}
-        className="modal ut-no-print"
-        overlayClassName="modal__overlay"
-        contentLabel={isDeleting ? "Confirm Delete Note" : "Add/Edit Note"}
+        onClose={toggleNotesModalOpen}
+        title={modalTitle}
+        footerContent={modalFooterContent}
       >
-        <div className="modal__container">
-          <div className="modal__header">
-            <h2 className="modal__h2">
-              {isDeleting
-                ? "Confirm Delete"
-                : typeof notesIndex === "number"
-                ? "Edit"
-                : "Add"}{" "}
-              Note
-            </h2>
-            <button
-              className="char-sheet__button modal__header-button"
-              aria-label="Close modal"
-              onClick={toggleNotesModalOpen}
-            >
-              X
-            </button>
-          </div>
-          <form onSubmit={handleSaveNote}>
-            <div className="modal__body">
-              <textarea
-                id="noteText"
-                className="notes__textarea"
-                placeholder="add your note"
-                defaultValue={
-                  typeof notesIndex === "number" ? props.notes[notesIndex] : ""
-                }
-              ></textarea>
-            </div>
-            <div className="modal__footer">
-              {isDeleting ? (
-                <button
-                  className="char-sheet__button char-sheet__button--large"
-                  type="button"
-                  onClick={() => {
-                    props.setNotes((prev) =>
-                      prev.filter((_, i) => i !== notesIndex)
-                    );
-                    toggleNotesModalOpen();
-                  }}
-                >
-                  Confirm Delete Note
-                </button>
-              ) : (
-                <button
-                  className="char-sheet__button char-sheet__button--large"
-                  type="submit"
-                  value="Save"
-                >
-                  Save
-                </button>
-              )}
-            </div>
-          </form>
-        </div>
-      </ReactModal>
+        <form onSubmit={handleSaveNote}>
+          <textarea
+            id="noteText"
+            className="notes__textarea"
+            placeholder="add your note"
+            defaultValue={
+              typeof notesIndex === "number" ? props.notes[notesIndex] : ""
+            }
+          ></textarea>
+        </form>
+      </QuestRexDialog>
     </div>
   );
 };

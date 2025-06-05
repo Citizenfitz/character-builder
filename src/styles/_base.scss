@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. Variables & Configuration
-   ========================================================================== */
+@use "variables-mixins" as *;
 
 // *********************** BASE ELEMENTS ***********************//
 /* Typography Base */
@@ -9,12 +7,10 @@
 *:after {
   box-sizing: border-box;
 }
-body {
-  font-family: $font-primary;
-  line-height: 1.6;
-  color: $color-text;
-  background-color: #5a2780;
-  font-size: 16px;
+
+// stand in for the body tag
+.questrex-root {
+  position: relative;
 }
 
 h1,
@@ -27,75 +23,11 @@ h6 {
 }
 
 a {
-  color: var(--color-text);
+  color: $color-text;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-/***** FORM ELEMENTS *****/
-label,
-.label {
-  font-family: $font-header;
-  font-size: 1.2em;
-  margin-bottom: $spacing-sm;
-  font-weight: normal;
-  display: block;
-  &--inline {
-    display: inline-block;
-    margin-right: $spacing-xs;
-    margin-bottom: 0;
-  }
-}
-
-/***** INPUTS *****/
-button,
-input[type="text"],
-input[type="number"],
-select {
-  height: $spacing-sm-alt;
-  border-radius: $border-radius-standard;
-  border: 1px solid $color-dark-alt;
-  padding: 0 $spacing-xxs;
-  background-color: $color-input-background;
-  font-family: $text-regular;
-  &:active {
-    color: $color-dark;
-    border-color: $color-accent-dark;
-  }
-  &:disabled {
-    opacity: 0.5;
-  }
-  &:focus {
-    background-color: $color-accent;
-  }
-}
-input[type="text"] {
-}
-input[type="number"] {
-  text-align: center;
-}
-textarea {
-  width: 100%;
-  min-height: 150px;
-  padding: $spacing-xs;
-  border: 1px solid $color-border;
-  border-radius: $border-radius-standard;
-  background-color: $color-input-background;
-  resize: vertical;
-  &:focus {
-    background-color: $color-accent;
-  }
-}
-
-/* Common Icon Classes */
-.fa-menu:before {
-  content: "\f0c9";
-}
-
-.fa-search:before {
-  content: "\f002";
-}
-
-.fa-close:before {
-  content: "\f00d";
+@mixin root-styles {
+  @include base-styles;
 }

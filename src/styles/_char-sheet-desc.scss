@@ -1,16 +1,14 @@
-// all  Descriptions
+@use "variables-mixins" as *;
 
 .desc {
   margin-top: $spacing-sm-alt;
   .desc__header {
-    font-size: 20px;
-    font-family: $font-header;
-    color: $color-accent;
+    font-size: $font-size-xl;
     margin-bottom: $spacing-xs;
   }
   &__list-label {
     text-transform: uppercase;
-    color: $color-accent;
+    // color: $color-headers;
     font-weight: 600;
   }
 
@@ -38,10 +36,10 @@
     list-style: none;
     padding: 0;
     margin-top: 0;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: $spacing-xs;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: var(--spacing-sm-alt);
+    column-gap: $spacing-sm-alt;
     // Make fourth item span all columns
     li:nth-child(4) {
       grid-column: 1 / -1; // This makes it span from first to last column
@@ -50,13 +48,13 @@
 
   &--mutation {
     .desc__header {
-      color: var(--color-mutation);
+      color: $color-mutation;
     }
   }
 
   &--defect {
     .desc__header {
-      color: var(--color-defect);
+      color: $color-defect;
     }
     tbody tr:nth-child(odd) {
       background: $color-defect-zebra;
@@ -71,10 +69,10 @@
     list-style: none;
     padding: 0;
     margin-top: 0;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: $spacing-xs;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: var(--spacing-sm-alt);
+    column-gap: $spacing-sm-alt;
   }
   &--disad {
   }
@@ -83,7 +81,7 @@
     list-style: none;
     padding: 0;
     margin-top: 0;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: $spacing-xs;
     display: grid;
     grid-template-columns: 1fr;
   }
@@ -91,18 +89,18 @@
   &__controls {
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-sm);
+    gap: $spacing-md;
+    margin-bottom: $spacing-sm;
     align-items: center;
   }
 
   &__control {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: $spacing-xs;
 
     select {
-      margin-left: var(--spacing-xs);
+      margin-left: $spacing-xs;
       min-width: 80px;
     }
   }
@@ -111,13 +109,13 @@
     th {
       &:first-child {
         // Mutations header
-        background: var(--color-mutation);
-        color: var(--color-dark-inverted); // White text for contrast
+        background: $color-mutation;
+        color: $color-dark-inverted; // White text for contrast
       }
       &:last-child {
         // Defects header
-        background: var(--color-defect);
-        color: var(--color-dark-inverted); // White text for contrast
+        background: $color-defect;
+        color: $color-dark-inverted; // White text for contrast
       }
     }
   }

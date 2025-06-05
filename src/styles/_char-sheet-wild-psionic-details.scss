@@ -1,3 +1,5 @@
+@use "variables-mixins" as *;
+
 .char-sheet {
   &__wild-psionics {
     &__psionic-no {

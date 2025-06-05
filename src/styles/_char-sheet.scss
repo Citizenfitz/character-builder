@@ -1,28 +1,23 @@
-// this is the container around the entier app including modals and such
+// this is the container around the entire app including modals and such
+@use "variables-mixins" as *;
 
 .char-sheet {
   // Main container styles
+  @include theme-light;
+  font-family: $font-primary;
+  line-height: $line-height-base;
+  font-size: $font-size-base;
   position: relative;
   max-width: $container-char-sheet;
-  background: $color-dark;
   border-radius: $border-radius-lg;
   margin: 0 auto;
   border: 1px solid;
 
-  .default-typography {
-    font-size: 1rem;
-  }
-
-  .ut-text-explain {
-    color: $color-text-muted;
-    font-style: italic;
-  }
-
   &__h1 {
+    @include theme-dark;
     text-align: center;
     margin-top: 0;
     font-size: 2.75rem;
-    background-color: $color-zebra;
     padding: $spacing-sm;
     border-radius: $border-radius-lg $border-radius-lg 0 0;
     margin: -1rem -2rem $spacing-sm -2rem;
@@ -48,8 +43,13 @@
     }
     // Start zebra striping from 3rd child
     &:nth-child(n + 3):nth-child(odd) {
-      background-color: $color-dark-alt;
+      background-color: $color-bg-alt;
       padding: $spacing-md;
+      border-top: 1px solid $color-border;
+      border-bottom: 1px solid $color-border;
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     &:last-child {
@@ -83,7 +83,17 @@
   }
 
   .royal-theme {
-    background-color: $color-dark;
+    background-color: $color-bg;
+  }
+  &__footer {
+    @include theme-dark;
+    font-size: $font-size-lg;
+    padding: $spacing-sm;
+    text-align: center;
+    border-top: 1px solid $color-border;
+    border-radius: 0 0 $border-radius-lg $border-radius-lg;
+    font-family: $font-header;
+    text-transform: uppercase;
   }
 }
 
@@ -99,7 +109,7 @@
     transition: background 0.3s ease;
     font-weight: 700;
     &--alt {
-      background-color: $color-input-background;
+      background-color: $color-input-bg;
     }
     &:hover,
     &--alt:hover {
@@ -157,11 +167,11 @@
 // ********** TOOLBAR JUST BELOW THE HEADER **********
 .char-sheet {
   &__toolbar {
-    background: $color-zebra;
+    @include theme-dark;
     padding: $spacing-sm;
     margin: $spacing-sm 0 $spacing-sm-alt 0;
     border-radius: $border-radius-lg;
-    border: 1px solid $color-accent;
+    border: 1px solid $color-border;
     display: flex;
     align-items: center;
     gap: $spacing-md;
@@ -184,7 +194,7 @@
       height: 124px;
       min-width: 124px;
       position: relative;
-      border: 1px solid $color-accent;
+      border: 1px solid $color-border;
       border-radius: $border-radius-lg $border-radius-lg 0 0;
       text-align: center;
       display: flex;
@@ -208,10 +218,10 @@
       min-height: 284px;
     }
 
-    &-footer {
+    &__footer {
+      @include theme-dark;
       font-size: 1rem;
       padding: $spacing-xs;
-      background: $color-zebra;
       text-align: center;
       border-top: 1px solid;
       margin-top: $spacing-sm;
