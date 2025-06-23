@@ -1,0 +1,1 @@
+The character is dependent on light for energy and mobility. When in darkness (less than indirect sunlight) they suffer effects equal to the defect _Reduced Endurance_. They further make all sight perceptions in such low illumination with Disadvantage.

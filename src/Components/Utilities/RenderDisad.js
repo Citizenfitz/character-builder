@@ -6,17 +6,23 @@ const RenderDisad = ({ name, description, bonus }) => {
   const [post, setPost] = useState("");
 
   useEffect(() => {
-    let markdownFile = "disad-" + name + ".md";
-    markdownFile = markdownFile.replace(/\s+/g, "-").toLowerCase();
-    import(`../../markdown/${markdownFile}`)
-      .then((res) => {
-        fetch(res.default)
-          .then((res) => res.text())
-          .then((res) => setPost(res))
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-  });
+    if (name) {
+      let markdownFile = `disad-${name.replace(/\s+/g, "-").toLowerCase()}.md`;
+      const markdownUrl = `${window.questRexData.pluginUrl}assets/markdown/${markdownFile}`;
+
+      fetch(markdownUrl)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              `Failed to fetch ${markdownUrl}: ${res.statusText}`
+            );
+          }
+          return res.text();
+        })
+        .then((text) => setPost(text))
+        .catch((err) => console.error("Error fetching markdown:", err));
+    }
+  }, [name]);
 
   return (
     <div className="desc desc--disad">

@@ -1,0 +1,1 @@
+This spell inures one creature and their possessions to extreme cold. Even nude they can comfortably withstand freezing temperatures. They make saving throws against cold-based attacks with _advantage_, any damage taken from such attacks is reduced by 1 point per die, and any attack-effect duration is halved.

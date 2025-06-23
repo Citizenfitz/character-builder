@@ -6,17 +6,25 @@ const RenderSpell = (props) => {
   const [post, setPost] = useState("");
 
   useEffect(() => {
-    let markdownFile = "spell-" + props.name + ".md";
-    markdownFile = markdownFile.replace(/\s+/g, "-").toLowerCase();
-    import(`../../markdown/${markdownFile}`)
-      .then((res) => {
-        fetch(res.default)
-          .then((res) => res.text())
-          .then((res) => setPost(res))
-          .catch((err) => console.log(err));
-      })
-      .catch((err) => console.log(err));
-  });
+    if (props.name) {
+      let markdownFile = `spell-${props.name
+        .replace(/\s+/g, "-")
+        .toLowerCase()}.md`;
+      const markdownUrl = `${window.questRexData.pluginUrl}assets/markdown/${markdownFile}`;
+
+      fetch(markdownUrl)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(
+              `Failed to fetch ${markdownUrl}: ${res.statusText}`
+            );
+          }
+          return res.text();
+        })
+        .then((text) => setPost(text))
+        .catch((err) => console.error("Error fetching markdown:", err));
+    }
+  }, [props.name]);
 
   /**
    *

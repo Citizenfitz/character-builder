@@ -1,0 +1,1 @@
+This spell renders one creature or one object no bigger than a man invisible. If cast upon a creature it renders them and all their gear invisible and persists until they dismiss it or attack another creature. If cast upon an object is it permanent until dispelled. The material component is an eyelash.

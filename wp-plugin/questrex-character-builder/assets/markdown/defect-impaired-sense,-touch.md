@@ -1,0 +1,1 @@
+The character has no sense of touch, is immune to pain, and will not notice being damaged. The character's hit points are always maintained in secret by the GM with the character making an INT attribute roll to guess their approximate level.

@@ -1,0 +1,1 @@
+Thrice per day the character may project a mass of sticky webbing identical to the spell Web save its range is limited to 30' and its size limited to a 10' radius. Additionally, the character can generate utility webbing as strong as a sturdy rope at will.

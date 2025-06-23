@@ -1,0 +1,1 @@
+The character can alter their form in a manner identical to the spell _Alter Self_. _Metamorphosis_ is extremely taxing and may only be maintained for 30 minutes +10 minutes per +1 CON bonus the character possesses. _Metamorphosis_ may only be initiated once per hour.

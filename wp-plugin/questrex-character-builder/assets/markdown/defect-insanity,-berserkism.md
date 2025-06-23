@@ -1,0 +1,1 @@
+When subject to stress the character must make a WIS-modified saving throw or go into a Berserk identical to the talent _Berserk_, except they gain no bonus to hit, damage, saving throws, or STR-modified Challenge rolls. They may end the berserk exactly as in the talent.

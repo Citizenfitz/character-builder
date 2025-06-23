@@ -1,0 +1,1 @@
+The character's religious devotion has sanctified their body rendering it less susceptible to disease and poison. Against such attacks they receive a +5 bonus (+3 for adjacent aspects, +2 for opposing). Furthermore, the bodies of dead incorruptibles decompose at 1/10th the normal rate and will be avoided and not eaten by all non-magical, non-intelligent animals.

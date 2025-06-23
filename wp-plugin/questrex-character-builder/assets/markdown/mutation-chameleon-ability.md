@@ -1,0 +1,1 @@
+The character can alter their epidermis to blend perfectly into just about any environment. They gain +5 on all rolls involving concealing themselves when stationary and +3 if they are moving. _Chameleon Ability_ will not work (or work much less effectively) if the character is wearing significant clothing, armor, etc.

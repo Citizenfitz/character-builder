@@ -1,0 +1,1 @@
+The character suffers damage from physical contact with living creatures larger than a mouse. Casual brushes against another creature will cause them painful shocks. Being grabbed or held causes them 1d2 points of damage per round.

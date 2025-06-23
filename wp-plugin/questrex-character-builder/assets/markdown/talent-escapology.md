@@ -1,0 +1,1 @@
+With a successful roll character can escape shackles, ropes, and bindings as well as devise methods of escaping prisons, cages, dungeons, etc. Escapology may be used for specific events like escaping a pair of manacles or, with the GM's approval, whole scenarios such as escaping a prison with a single successful roll.

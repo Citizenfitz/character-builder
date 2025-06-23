@@ -1,0 +1,1 @@
+The character can cling to and transverse vertical surfaces like a lizard or insect. This ability functions exactly like the spell _Spider Climb_ except it offers no protection against _Web_ spells. Clinging cannot be used without bare hands and/or feet.

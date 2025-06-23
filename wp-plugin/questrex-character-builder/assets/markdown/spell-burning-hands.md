@@ -1,0 +1,1 @@
+When cast this spell spits forth a cone-shaped gout of flame from the caster's finger tips causing 1d4 point of damage per caster level (maximum 5d4) to all creatures within the area affected. Flammable items within the area are also set ablaze.

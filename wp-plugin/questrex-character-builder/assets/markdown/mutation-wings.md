@@ -1,0 +1,1 @@
+The character is possessed of a set of functioning wings (insectoid, avian, reptilian, or bat-like as they choose) and may fly at a movement rate of 60' while carrying up to twice his or her body weight.

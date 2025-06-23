@@ -1,0 +1,1 @@
+The character sees poorly in brightly lit environments (equal to daylight or brighter). In such environments they suffer disadvantage on all sight-based perception rolls and -2 to hit with the Combat talent. Furthermore, they will suffer double the effect of failed saving throws against Bioluminescence attacks (2-8 rounds of blindness).

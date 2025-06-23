@@ -21,40 +21,13 @@ const QuestRexCharBuilder = ({ containerId }) => {
   );
 };
 
-// Function to initialize the character builder
-window.initQuestRexCharBuilder = (containerId) => {
-  const container = document.getElementById(containerId);
-  if (container) {
-    const root = createRoot(container);
-    root.render(
-      <React.StrictMode>
-        <QuestRexCharBuilder containerId={containerId} />
-      </React.StrictMode>
-    );
-  }
-};
+const container = document.getElementById("questrex-root");
 
-// Auto-mount in development mode
-if (process.env.NODE_ENV === "development") {
-  const rootElement = document.getElementById("questrex-root");
-  if (rootElement) {
-    const root = createRoot(rootElement);
-    root.render(
-      <React.StrictMode>
-        <QuestRexCharBuilder containerId="questrex-root" />
-      </React.StrictMode>
-    );
-  } else {
-    // Create root element if it doesn't exist
-    const root = document.createElement("div");
-    root.id = "questrex-root";
-    root.className = "questrex-root";
-    document.body.appendChild(root);
-    const reactRoot = createRoot(root);
-    reactRoot.render(
-      <React.StrictMode>
-        <QuestRexCharBuilder containerId="questrex-root" />
-      </React.StrictMode>
-    );
-  }
+if (container) {
+  const root = createRoot(container);
+  root.render(
+    <React.StrictMode>
+      <QuestRexCharBuilder containerId="questrex-root" />
+    </React.StrictMode>
+  );
 }

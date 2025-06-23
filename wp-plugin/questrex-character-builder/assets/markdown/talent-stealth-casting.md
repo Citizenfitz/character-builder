@@ -1,0 +1,1 @@
+A character must have Wizardry or Thaumaturgy to choose this talent. With this talent a character may secretly cast a spell without onlookers realizing they are doing so. This is handled as a contested challenge roll of the character’s Stealth Casting vs the onlooker’s perception (see Actions & Dice Rolls, q.v.)

@@ -1,0 +1,1 @@
+The character is incapable of remembering specific events that occurred more than 31 days ago. They retain all skills they learn, and remember who are friends and enemies, but cannot recall how they learned the skills or why they like/hate these people.

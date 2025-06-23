@@ -1,0 +1,1 @@
+The spell allows a caster to converse with normal, non-magical animals within range. Furthermore, these animals will consider the caster friendly for the spell's duration, will not attack the caster, and may help them if properly persuaded.
