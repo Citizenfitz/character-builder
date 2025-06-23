@@ -31,6 +31,10 @@ import DisadDetails from "./DisadDetails";
 import MutationDetails from "./MutationDetails";
 import WildPsionics from "./WildPsionics";
 import diceRoller from "../Utilities/diceRoller";
+import {
+  rollAttributes as tempRollAttributes,
+  rollHp as tempRollHp,
+} from "../Utilities/TempDiceRoller";
 
 /*  --------------- DICE BOX -------------- */
 // Function to roll dice with fallback
@@ -671,6 +675,24 @@ const CharacterSheet = () => {
     rollDice("18d6", "all-attributes");
   };
 
+  const tempRollAttribDice = () => {
+    const newRolls = tempRollAttributes();
+    const newAttributes = { ...character.attributes };
+    const attributeKeys = Object.keys(newAttributes);
+
+    attributeKeys.forEach((key, index) => {
+      newAttributes[key].roll = newRolls[index];
+      const newTotal = newRolls[index] + newAttributes[key].bonus;
+      newAttributes[key].total = newTotal;
+      newAttributes[key].mod = calculateBonus(newTotal);
+    });
+
+    setCharacter((prev) => ({
+      ...prev,
+      attributes: newAttributes,
+    }));
+  };
+
   const updateAttributes = useCallback((attributes) => {
     setCharacter((prev) => {
       const ac =
@@ -822,6 +844,15 @@ const CharacterSheet = () => {
     }
   };
 
+  const tempRollHP = () => {
+    const results = tempRollHp(
+      character.level,
+      character.hitDiceType,
+      character.hp.hasDurability
+    );
+    setHpFromDice(results);
+  };
+
   const [raceModalOpen, setRaceModalOpen] = useState(false);
   const toggleRaceModal = () => {
     setRaceModalOpen(!raceModalOpen);
@@ -842,7 +873,7 @@ const CharacterSheet = () => {
   return (
     <div id="char-sheet" className="char-sheet">
       <section className="char-sheet__section char-sheet__section--top">
-        <h1 className="char-sheet__h1">QuestRex Character Builder</h1>
+        <h1 className="char-sheet__h1">QuestRex Character Builder 1.0</h1>
         <p className="ut-no-print">
           <b>INSTRUCTIONS:</b> Play around with the form below till you get a
           character you like (it's often easiest to start with a preset). <br />
@@ -858,12 +889,12 @@ const CharacterSheet = () => {
             />{" "}
           </div>
           <div>
-            <button className="char-sheet__button" onClick={rollAttribDice}>
+            <button className="char-sheet__button" onClick={tempRollAttribDice}>
               <i className="fas fa-dice"></i> Roll Attributes
             </button>
           </div>
           <div>
-            <button className="char-sheet__button" onClick={rollHP}>
+            <button className="char-sheet__button" onClick={tempRollHP}>
               <i className="fas fa-dice"></i> Roll Hit Points
             </button>
           </div>
@@ -886,7 +917,7 @@ const CharacterSheet = () => {
                 value={character.namePlayer}
                 name="namePlayer"
                 onChange={(e) => handleInputChange(e, "namePlayer")}
-                className="ut-no-print"
+                className="ut-no-print qr-input--text"
               />
               <div className="ut-no-screen print-text-input">
                 {character.namePlayer}&nbsp;
@@ -900,7 +931,7 @@ const CharacterSheet = () => {
                 type="text"
                 value={character.nameCharacter}
                 name="namePlayer"
-                className="ut-no-print"
+                className="ut-no-print qr-input--text"
                 onChange={(e) => handleInputChange(e, "nameCharacter")}
               />
               <div className="ut-no-screen print-text-input">
@@ -1005,7 +1036,7 @@ const CharacterSheet = () => {
               <div className="char-sheet__quick-ref-item">
                 <div className="char-sheet__quick-ref-text">
                   <input
-                    className="hp  ut-no-print"
+                    className="hp  ut-no-print qr-input--number"
                     type="number"
                     inputMode="numeric"
                     min={0}
@@ -1230,7 +1261,11 @@ const CharacterSheet = () => {
 
             {/*  ------- XP ------ */}
             <label>
-              <input type="text" disabled className="ut-no-print" />
+              <input
+                type="text"
+                disabled
+                className="ut-no-print qr-input--text"
+              />
               <div className="ut-no-screen print-text-input"></div>
               <br />
               <span className="label">XP/AP</span>

@@ -33,28 +33,6 @@ label,
   }
 }
 
-/***** INPUTS *****/
-button,
-input[type="text"],
-input[type="number"],
-select {
-  @include input-basics;
-  height: $form-element-height;
-
-  input[type="text"] {
-  }
-  input[type="number"] {
-    text-align: center;
-  }
-  textarea {
-    @include input-basics;
-    width: 100%;
-    min-height: 150px;
-    padding: $spacing-xs;
-    resize: vertical;
-  }
-}
-
 form {
   margin: 0;
 }
@@ -109,6 +87,47 @@ select {
 //     font-size: 1rem;
 //   }
 // }
+
+/***** INPUTS *****/
+button,
+select {
+  @include input-basics;
+  height: $form-element-height;
+  min-height: 0;
+}
+
+// extra specificity to ensure it works within other theme styles
+input.qr-input {
+  &--text {
+    @include input-basics;
+    height: $form-element-height;
+    min-height: 0;
+  }
+  &--number {
+    @include input-basics;
+    height: $form-element-height;
+    min-height: 0;
+    text-align: center;
+  }
+  &--attrib {
+    @include input-basics;
+    width: 24px;
+    height: 24px;
+    font-size: 1.2rem;
+    padding: 0;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+  }
+}
+
+textarea.qr-input--textarea {
+  @include input-basics;
+  width: 100%;
+  min-height: 150px;
+  padding: $spacing-xs;
+  resize: vertical;
+}
 
 input.input--attached-button {
   border-top-right-radius: 0;

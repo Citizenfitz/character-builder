@@ -67,8 +67,8 @@
   @use "variables-mixins" as *;
   /***** PLACEHOLDERS *****/
   /***** FORM ELEMENTS *****/
-  /***** INPUTS *****/
   /***** SELECTS *****/
+  /***** INPUTS *****/
   @use "variables-mixins" as *;
   @use "variables-mixins" as *;
   @use "variables-mixins" as *;
@@ -153,11 +153,6 @@
 #questrex-char-builder-root .modal__header h2 {
   color: #ffffff;
 }
-#questrex-char-builder-root .modal__header-button {
-  font-size: 1.25rem;
-  height: 2rem;
-  width: 2rem;
-}
 #questrex-char-builder-root .modal__title {
   margin: 0;
   font-size: 1.5rem;
@@ -169,6 +164,12 @@
 #questrex-char-builder-root .modal__footer {
   padding: 2rem 1.5rem;
   text-align: right;
+}
+#questrex-char-builder-root button.modal__header-button {
+  font-size: 1.25rem;
+  height: 2rem;
+  width: 2rem;
+  max-width: 2rem;
 }
 #questrex-char-builder-root #dice-box,
 #questrex-char-builder-root #dice-box canvas {
@@ -260,75 +261,6 @@
   margin-right: 0.5rem;
   margin-bottom: 0;
 }
-#questrex-char-builder-root button,
-#questrex-char-builder-root input[type=text],
-#questrex-char-builder-root input[type=number],
-#questrex-char-builder-root select {
-  border-radius: 3px;
-  border: 1px solid #5a2780;
-  padding: 0 0.25rem;
-  background-color: #f5f3ed;
-  font-family: "cabin-condensed-medium";
-  height: 1.5rem;
-}
-#questrex-char-builder-root button:active,
-#questrex-char-builder-root input[type=text]:active,
-#questrex-char-builder-root input[type=number]:active,
-#questrex-char-builder-root select:active {
-  color: #ffffff;
-  border-color: #ffffff;
-}
-#questrex-char-builder-root button:focus,
-#questrex-char-builder-root input[type=text]:focus,
-#questrex-char-builder-root input[type=number]:focus,
-#questrex-char-builder-root select:focus {
-  background-color: #f7ebc7;
-}
-#questrex-char-builder-root button:disabled,
-#questrex-char-builder-root input[type=text]:disabled,
-#questrex-char-builder-root input[type=number]:disabled,
-#questrex-char-builder-root select:disabled {
-  opacity: 0.5;
-}
-#questrex-char-builder-root button input[type=number],
-#questrex-char-builder-root input[type=text] input[type=number],
-#questrex-char-builder-root input[type=number] input[type=number],
-#questrex-char-builder-root select input[type=number] {
-  text-align: center;
-}
-#questrex-char-builder-root button textarea,
-#questrex-char-builder-root input[type=text] textarea,
-#questrex-char-builder-root input[type=number] textarea,
-#questrex-char-builder-root select textarea {
-  border-radius: 3px;
-  border: 1px solid #5a2780;
-  padding: 0 0.25rem;
-  background-color: #f5f3ed;
-  font-family: "cabin-condensed-medium";
-  width: 100%;
-  min-height: 150px;
-  padding: 0.5rem;
-  resize: vertical;
-}
-#questrex-char-builder-root button textarea:active,
-#questrex-char-builder-root input[type=text] textarea:active,
-#questrex-char-builder-root input[type=number] textarea:active,
-#questrex-char-builder-root select textarea:active {
-  color: #ffffff;
-  border-color: #ffffff;
-}
-#questrex-char-builder-root button textarea:focus,
-#questrex-char-builder-root input[type=text] textarea:focus,
-#questrex-char-builder-root input[type=number] textarea:focus,
-#questrex-char-builder-root select textarea:focus {
-  background-color: #f7ebc7;
-}
-#questrex-char-builder-root button textarea:disabled,
-#questrex-char-builder-root input[type=text] textarea:disabled,
-#questrex-char-builder-root input[type=number] textarea:disabled,
-#questrex-char-builder-root select textarea:disabled {
-  opacity: 0.5;
-}
 #questrex-char-builder-root form {
   margin: 0;
 }
@@ -343,6 +275,8 @@
   padding: 0 0.25rem;
   background-color: #f5f3ed;
   font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
 }
 #questrex-char-builder-root select:active {
   color: #ffffff;
@@ -352,6 +286,123 @@
   background-color: #f7ebc7;
 }
 #questrex-char-builder-root select:disabled {
+  opacity: 0.5;
+}
+#questrex-char-builder-root button,
+#questrex-char-builder-root select {
+  border-radius: 3px;
+  border: 1px solid #5a2780;
+  padding: 0 0.25rem;
+  background-color: #f5f3ed;
+  font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
+  height: 1.5rem;
+  min-height: 0;
+}
+#questrex-char-builder-root button:active,
+#questrex-char-builder-root select:active {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+#questrex-char-builder-root button:focus,
+#questrex-char-builder-root select:focus {
+  background-color: #f7ebc7;
+}
+#questrex-char-builder-root button:disabled,
+#questrex-char-builder-root select:disabled {
+  opacity: 0.5;
+}
+#questrex-char-builder-root input.qr-input--text {
+  border-radius: 3px;
+  border: 1px solid #5a2780;
+  padding: 0 0.25rem;
+  background-color: #f5f3ed;
+  font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
+  height: 1.5rem;
+  min-height: 0;
+}
+#questrex-char-builder-root input.qr-input--text:active {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+#questrex-char-builder-root input.qr-input--text:focus {
+  background-color: #f7ebc7;
+}
+#questrex-char-builder-root input.qr-input--text:disabled {
+  opacity: 0.5;
+}
+#questrex-char-builder-root input.qr-input--number {
+  border-radius: 3px;
+  border: 1px solid #5a2780;
+  padding: 0 0.25rem;
+  background-color: #f5f3ed;
+  font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
+  height: 1.5rem;
+  min-height: 0;
+  text-align: center;
+}
+#questrex-char-builder-root input.qr-input--number:active {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+#questrex-char-builder-root input.qr-input--number:focus {
+  background-color: #f7ebc7;
+}
+#questrex-char-builder-root input.qr-input--number:disabled {
+  opacity: 0.5;
+}
+#questrex-char-builder-root input.qr-input--attrib {
+  border-radius: 3px;
+  border: 1px solid #5a2780;
+  padding: 0 0.25rem;
+  background-color: #f5f3ed;
+  font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
+  width: 24px;
+  height: 24px;
+  font-size: 1.2rem;
+  padding: 0;
+  text-align: center;
+  background-color: transparent;
+  border: none;
+}
+#questrex-char-builder-root input.qr-input--attrib:active {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+#questrex-char-builder-root input.qr-input--attrib:focus {
+  background-color: #f7ebc7;
+}
+#questrex-char-builder-root input.qr-input--attrib:disabled {
+  opacity: 0.5;
+}
+#questrex-char-builder-root textarea.qr-input--textarea {
+  border-radius: 3px;
+  border: 1px solid #5a2780;
+  padding: 0 0.25rem;
+  background-color: #f5f3ed;
+  font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
+  width: 100%;
+  min-height: 150px;
+  padding: 0.5rem;
+  resize: vertical;
+}
+#questrex-char-builder-root textarea.qr-input--textarea:active {
+  color: #ffffff;
+  border-color: #ffffff;
+}
+#questrex-char-builder-root textarea.qr-input--textarea:focus {
+  background-color: #f7ebc7;
+}
+#questrex-char-builder-root textarea.qr-input--textarea:disabled {
   opacity: 0.5;
 }
 #questrex-char-builder-root input.input--attached-button {
@@ -407,6 +458,8 @@
   padding: 0 0.25rem;
   background-color: #f5f3ed;
   font-family: "cabin-condensed-medium";
+  min-height: 0;
+  flex: auto;
   text-transform: capitalize;
   vertical-align: bottom;
   line-height: 20px;
@@ -824,14 +877,6 @@
   gap: 1rem;
   align-self: flex-start;
   min-width: min-content;
-}
-#questrex-char-builder-root .attrib__input {
-  width: 2rem;
-  height: 2rem;
-  text-align: center;
-  background-color: transparent;
-  border: none;
-  font-size: 1.2rem;
 }
 #questrex-char-builder-root .attrib input[type=number] {
   -moz-appearance: textfield;

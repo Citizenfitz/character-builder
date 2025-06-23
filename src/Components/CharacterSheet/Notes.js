@@ -1,18 +1,18 @@
 import React, { useState } from "react";
+import * as Dialog from "@radix-ui/react-dialog";
 import { QuestRexDialog } from "../Common/Dialog";
 
-const Notes = (props) => {
+const Notes = ({ notes, setNotes }) => {
   const [notesModalOpen, setNotesModalOpen] = useState(false);
   const [notesIndex, setNotesIndex] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const toggleNotesModalOpen = () => {
-    if (notesModalOpen) {
-      // Only reset when closing the modal
+  const toggleNotesModalOpen = (isOpen) => {
+    setNotesModalOpen(isOpen);
+    if (!isOpen) {
       setNotesIndex(null);
       setIsDeleting(false);
     }
-    setNotesModalOpen(!notesModalOpen);
   };
 
   const handleSaveNote = (e) => {
@@ -20,28 +20,25 @@ const Notes = (props) => {
     const noteText = e.target.noteText.value;
 
     if (typeof notesIndex === "number") {
-      // Correctly create a new array for immutability
-      const updatedNotes = [...props.notes];
+      const updatedNotes = [...notes];
       updatedNotes[notesIndex] = noteText;
-      props.setNotes(updatedNotes);
-      setNotesIndex(null); // Reset index to null or another default value
+      setNotes(updatedNotes);
     } else {
-      // Adding a new note
-      props.setNotes((prev) => [...prev, noteText]);
+      setNotes((prev) => [...prev, noteText]);
     }
-    toggleNotesModalOpen();
+    toggleNotesModalOpen(false);
   };
 
   const editNote = (index) => {
     setNotesIndex(index);
     setIsDeleting(false);
-    setNotesModalOpen(true);
+    toggleNotesModalOpen(true);
   };
 
   const deleteNote = (index) => {
     setNotesIndex(index);
     setIsDeleting(true);
-    setNotesModalOpen(true);
+    toggleNotesModalOpen(true);
   };
 
   const modalTitle = isDeleting
@@ -55,8 +52,8 @@ const Notes = (props) => {
       className="char-sheet__button char-sheet__button--large"
       type="button"
       onClick={() => {
-        props.setNotes((prev) => prev.filter((_, i) => i !== notesIndex));
-        toggleNotesModalOpen();
+        setNotes((prev) => prev.filter((_, i) => i !== notesIndex));
+        toggleNotesModalOpen(false);
       }}
     >
       Confirm Delete Note
@@ -66,6 +63,7 @@ const Notes = (props) => {
       className="char-sheet__button char-sheet__button--large"
       type="submit"
       value="Save"
+      form="note-form"
     >
       Save
     </button>
@@ -75,12 +73,15 @@ const Notes = (props) => {
     <div className="char-sheet__notes">
       {/*  ------- User notes -------- */}
       <div className="ut-margin-bottom-xs">
-        <button className="char-sheet__button" onClick={toggleNotesModalOpen}>
+        <button
+          className="char-sheet__button"
+          onClick={() => toggleNotesModalOpen(true)}
+        >
           <i className="fas fa-plus"></i> Add Note
         </button>
       </div>
       <ul className="char-sheet__notes__list">
-        {props.notes.map((note, i) => (
+        {notes.map((note, i) => (
           <li className="char-sheet__notes__list-item" key={i}>
             <div className="char-sheet__notes__text">{note}</div>
             <div className="char-sheet__notes__buttons">
@@ -105,17 +106,22 @@ const Notes = (props) => {
 
       <QuestRexDialog
         isOpen={notesModalOpen}
-        onClose={toggleNotesModalOpen}
+        onClose={() => toggleNotesModalOpen(false)}
         title={modalTitle}
         footerContent={modalFooterContent}
       >
-        <form onSubmit={handleSaveNote}>
+        <form id="note-form" onSubmit={handleSaveNote}>
+          <Dialog.Description className="sr-only">
+            {isDeleting
+              ? "Confirm deletion of the note."
+              : "Add or edit your note in the text area below."}
+          </Dialog.Description>
           <textarea
             id="noteText"
-            className="notes__textarea"
+            className="notes__textarea qr-input--textarea"
             placeholder="add your note"
             defaultValue={
-              typeof notesIndex === "number" ? props.notes[notesIndex] : ""
+              typeof notesIndex === "number" ? notes[notesIndex] : ""
             }
           ></textarea>
         </form>

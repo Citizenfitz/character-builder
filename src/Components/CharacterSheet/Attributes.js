@@ -78,7 +78,7 @@ const Attributes = (props) => {
             <div className="attrib__val">
               <input
                 id={`attrib__${key}`}
-                className="attrib__input"
+                className="qr-input--attrib"
                 type="number"
                 inputMode="numeric"
                 min={values.min}

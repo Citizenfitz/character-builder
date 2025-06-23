@@ -279,6 +279,8 @@ $page-max: 1600px;
   padding: 0 $spacing-xxs;
   background-color: $color-input-bg;
   font-family: $font-forms;
+  min-height: 0;
+  flex: auto;
   // &:hover {
   //   color: $color-bg;
   //   border-color: $color-bg;
