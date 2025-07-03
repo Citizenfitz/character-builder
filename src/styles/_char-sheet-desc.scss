@@ -143,7 +143,7 @@
   th,
   caption {
     @include table-header;
-    min-width: 80px;
+    min-width: 60px;
     border-left-width: 0px;
   }
   th:first-child {

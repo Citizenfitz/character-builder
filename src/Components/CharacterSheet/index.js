@@ -876,8 +876,8 @@ const CharacterSheet = () => {
         <h1 className="char-sheet__h1">QuestRex Character Builder 1.0</h1>
         <p className="ut-no-print">
           <b>INSTRUCTIONS:</b> Play around with the form below till you get a
-          character you like (it's often easiest to start with a preset). <br />
-          Then print the page to paper or a PDF. Simple! Desktop-only for now.
+          character you like (it's often easiest to start with a preset). Then
+          print the page to paper or a PDF. Simple! Desktop-only for now.
         </p>
         <div className="char-sheet__toolbar ut-no-print">
           {/*  ------- TOOLBAR ------ */}
