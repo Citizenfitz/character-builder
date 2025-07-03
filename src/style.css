@@ -1601,9 +1601,6 @@
 #questrex-char-builder-root .char-sheet__table__caption--thaumaturgy .ut-text-explain {
   color: #ffffff;
 }
-#questrex-char-builder-root .char-sheet__section char-sheet__section--talent-details table {
-  background: pink;
-}
 #questrex-char-builder-root .char-sheet__wild-psionics__psionic-no {
   max-width: 60px;
 }
