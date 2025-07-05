@@ -1,3 +1,0 @@
-The character is uneducated and uncultured. He or she cannot read or write, and has only the most rudimentary grasp of science, culture, history, art, etc. He or she suffers -3 to all reaction or Charisma attribute rolls in settings where education and refinement are important (in a king's court, at formal ball, addressing a powerful wizard, etc.).
-
-The character will be impressed by commonplace objects (like clocks) and the GM may require he or she make a wisdom roll to understand them. Finally, the character will be easily deceived by more educated characters making false claims on learned topics.

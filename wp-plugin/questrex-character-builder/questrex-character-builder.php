@@ -19,6 +19,12 @@ define('QUESTREX_VERSION', '1.0.0');
 define('QUESTREX_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('QUESTREX_PLUGIN_URL', plugin_dir_url(__FILE__));
 
+// Define environment
+define('QUESTREX_IS_LOCAL', 
+    (!empty($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) || 
+    (!empty($_SERVER['SERVER_NAME']) && strpos($_SERVER['SERVER_NAME'], 'localhost') !== false)
+);
+
 /**
  * Clean asset path by removing any double dots or slashes
  */
@@ -29,9 +35,17 @@ function questrex_clean_asset_path($path) {
     $path = preg_replace('#/+#', '/', $path);
     // Ensure path starts with a single slash
     $path = '/' . ltrim($path, '/');
-    // Debug output
-    error_log('Cleaning asset path: ' . $path);
     return $path;
+}
+
+/**
+ * Get the appropriate base URL for assets based on environment
+ */
+function questrex_get_asset_base_url() {
+    if (QUESTREX_IS_LOCAL) {
+        return 'http://localhost:3000';
+    }
+    return QUESTREX_PLUGIN_URL . 'assets/build';
 }
 
 /**
@@ -42,44 +56,42 @@ function questrex_enqueue_assets() {
     global $post;
     if (!is_null($post) && has_shortcode($post->post_content, 'questrex-character-builder')) {
         // Debug output
-        error_log('Plugin URL: ' . QUESTREX_PLUGIN_URL);
-        error_log('Plugin Dir: ' . QUESTREX_PLUGIN_DIR);
+        error_log('Environment: ' . (QUESTREX_IS_LOCAL ? 'Local Development' : 'WordPress Plugin'));
+        error_log('Asset Base URL: ' . questrex_get_asset_base_url());
         
         // Ensure React is loaded
         wp_enqueue_script('wp-element');
         
         // Get the build directory manifest
         $manifest_path = QUESTREX_PLUGIN_DIR . 'assets/build/asset-manifest.json';
-        error_log('Manifest path: ' . $manifest_path);
         
         if (file_exists($manifest_path)) {
             $manifest = json_decode(file_get_contents($manifest_path), true);
-            error_log('Manifest loaded: ' . print_r($manifest, true));
             
             // Create an array to store all chunk handles
             $chunk_handles = array();
             
             // Enqueue all chunk files first
-            foreach ($manifest['files'] as $file => $path) {
-                if (strpos($file, 'chunk.js') !== false) {
-                    $handle = 'questrex-chunk-' . basename($file);
-                    $chunk_handles[] = $handle;
-                    $full_url = QUESTREX_PLUGIN_URL . 'assets/build' . questrex_clean_asset_path($path);
-                    error_log('Enqueuing chunk: ' . $full_url);
-                    wp_enqueue_script(
-                        $handle,
-                        $full_url,
-                        array('wp-element'),
-                        QUESTREX_VERSION,
-                        true
-                    );
+            if (isset($manifest['files']) && is_array($manifest['files'])) {
+                foreach ($manifest['files'] as $file => $path) {
+                    if (strpos($file, 'chunk.js') !== false) {
+                        $handle = 'questrex-chunk-' . basename($file);
+                        $chunk_handles[] = $handle;
+                        $full_url = questrex_get_asset_base_url() . questrex_clean_asset_path($path);
+                        wp_enqueue_script(
+                            $handle,
+                            $full_url,
+                            array('wp-element'),
+                            QUESTREX_VERSION,
+                            true
+                        );
+                    }
                 }
             }
             
             // Enqueue main CSS
             if (isset($manifest['files']['main.css'])) {
-                $css_url = QUESTREX_PLUGIN_URL . 'assets/build' . questrex_clean_asset_path($manifest['files']['main.css']);
-                error_log('Enqueuing CSS: ' . $css_url);
+                $css_url = questrex_get_asset_base_url() . questrex_clean_asset_path($manifest['files']['main.css']);
                 wp_enqueue_style(
                     'questrex-character-builder',
                     $css_url,
@@ -90,8 +102,7 @@ function questrex_enqueue_assets() {
             
             // Enqueue main JS after all chunks
             if (isset($manifest['files']['main.js'])) {
-                $js_url = QUESTREX_PLUGIN_URL . 'assets/build' . questrex_clean_asset_path($manifest['files']['main.js']);
-                error_log('Enqueuing main JS: ' . $js_url);
+                $js_url = questrex_get_asset_base_url() . questrex_clean_asset_path($manifest['files']['main.js']);
                 wp_enqueue_script(
                     'questrex-character-builder',
                     $js_url,
@@ -108,12 +119,16 @@ function questrex_enqueue_assets() {
                         'ajaxUrl' => admin_url('admin-ajax.php'),
                         'nonce' => wp_create_nonce('questrex-nonce'),
                         'pluginUrl' => QUESTREX_PLUGIN_URL,
+                        'isLocal' => QUESTREX_IS_LOCAL,
                         'isLoggedIn' => is_user_logged_in()
                     )
                 );
             }
         } else {
-            error_log('Manifest file not found at: ' . $manifest_path);
+            error_log('Error: Manifest file not found at: ' . $manifest_path);
+            if (QUESTREX_IS_LOCAL) {
+                error_log('In local development, make sure your React dev server is running on port 3000');
+            }
         }
     }
 }

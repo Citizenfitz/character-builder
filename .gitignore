@@ -11,6 +11,11 @@
 # production
 /build
 
+# WordPress plugin assets
+/wp-plugin/questrex-character-builder/assets/*
+!/wp-plugin/questrex-character-builder/assets/markdown/
+!/wp-plugin/questrex-character-builder/assets/README.md
+
 # misc
 .DS_Store
 .env.local

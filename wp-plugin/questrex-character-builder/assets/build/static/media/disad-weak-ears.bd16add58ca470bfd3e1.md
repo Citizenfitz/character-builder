@@ -1,1 +1,0 @@
-The character has poor hearing and will suffer disadvantage to all perception rolls involving sound. He or she will also be unable to hear faint sounds or clearly make out conversations in noisy environments without an auditory aid like an ear trumpet.
