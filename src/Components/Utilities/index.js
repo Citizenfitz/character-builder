@@ -1,9 +1,15 @@
 import { talentData, aspectData, psionicsData } from "../../Data";
 
 const calculateBonus = (attributeValue = 0) => {
+  // old bouns range
+  // const bonusRange = [
+  //   0, 0, 0, -3, -3, -2, -2, -1, -1, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
+  //   6, 6,
+  // ];
+
   const bonusRange = [
-    0, 0, 0, -3, -3, -2, -2, -1, -1, 0, 0, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
-    6, 6,
+    0, -5, -4, -5, -3, -3, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5,
+    6, 6, 7, 7, 8, 8, 9, 9, 10,
   ];
   return bonusRange[attributeValue];
 };
@@ -110,15 +116,18 @@ const whichAspectDisplayName = (aspectName) => {
   return aspectData[aspectId].displayName;
 };
 
-export const rollPsionicPower = () => {
-  const roll = Math.floor(Math.random() * 100) + 1;
+const filenameParser = (name) => {
+  name = name.replace(/\s+/g, "-").toLowerCase();
+  return name;
+};
 
-  // Sort and find first psionic where roll is less than or equal to its roll value
-  const psionic = psionicsData
-    .sort((a, b) => a.roll - b.roll)
-    .find((p) => roll <= p.roll);
-
-  return psionic || null;
+const moveConvert = (move) => {
+  if (move > 12) {
+    move = Math.round((move * 2) / 10) * 10;
+  } else {
+    move = Math.round(((move / 3) * 10) / 10) * 10;
+  }
+  return move;
 };
 
 export {
@@ -127,6 +136,8 @@ export {
   formatNumberSuffix,
   calcTalentLevel,
   calcTalentLevelNumber,
+  filenameParser,
+  moveConvert,
   whichTalentId,
   whichAspectId,
   whichTalentAspect,

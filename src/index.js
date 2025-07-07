@@ -1,6 +1,18 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
-import { CharacterSheet } from "./Components";
+import ReactDOM from "react-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  Footer,
+  Header,
+  CharacterSheet,
+  HomePage,
+  PageTraits,
+  PageMutations,
+  PageSpells,
+  PageTalents,
+  PagePsionics,
+  PageMonsters,
+} from "./Components";
 import "./style.css";
 
 const QuestRexCharBuilder = ({ containerId }) => {
@@ -10,9 +22,16 @@ const QuestRexCharBuilder = ({ containerId }) => {
       <div id="dice-box" />
 
       <main className="main" id="main">
-        <div id="char-app" className="char-app-container">
-          <CharacterSheet />
-        </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/character" element={<CharacterSheet />} />
+          <Route path="/traits" element={<PageTraits />} />
+          <Route path="/mutations" element={<PageMutations />} />
+          <Route path="/spells" element={<PageSpells />} />
+          <Route path="/talents" element={<PageTalents />} />
+          <Route path="/psionics" element={<PagePsionics />} />
+          <Route path="/monsters" element={<PageMonsters />} />
+        </Routes>
       </main>
 
       {/* Portal container for modals */}

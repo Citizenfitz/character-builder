@@ -1,0 +1,286 @@
+@mixin font-header {
+  font-family: $text-header-2;
+}
+
+@mixin font-bold {
+  @include font-header();
+  font-size: 1.2em;
+}
+
+.newstyle {
+  font-family: $text-medium;
+  font-size: 16px;
+  //max-width: 750px;
+  line-height: 1.33em;
+  h1,
+  h2,
+  h3,
+  h4 {
+    @include font-header();
+    color: $color-black;
+    //letter-spacing: 1px;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  h2 {
+    font-size: 22px;
+    margin-bottom: 6px;
+  }
+  h3 {
+    font-size: 13px;
+  }
+  h4 {
+    font-size: 11px;
+  }
+  P {
+    font-size: 16px;
+    margin-top: 0;
+  }
+  li {
+    font-size: 16px;
+  }
+  b,
+  strong {
+    @include font-bold();
+  }
+
+  // ********* Lists **********
+  .ul,
+  ol {
+    margin-top: 0;
+  }
+
+  // ********* Tables **********
+  table {
+    border: 0;
+    font-size: 14px;
+  }
+  td {
+    border: 0;
+    padding: 0.5em;
+  }
+  th {
+    @include font-bold();
+    border: 0;
+    background: transparent;
+    border-bottom: 2px solid;
+    padding: 0.5em;
+  }
+  theader th:first-child {
+    min-width: 100px;
+  }
+  tbody tr:nth-child(odd) {
+    background: #fae1c1;
+  }
+
+  .table-mutations {
+    width: 100%;
+    tbody tr {
+      border: 1px solid $color-mutation;
+    }
+    tbody tr:nth-child(odd) {
+      background: $color-mutation-zebra;
+    }
+  }
+
+  .table-defects {
+    width: 100%;
+    tbody tr {
+      border: 1px solid $color-defect;
+    }
+    tbody tr:nth-child(odd) {
+      background: $color-defect-zebra;
+    }
+  }
+
+  // ********* Grid **********
+
+  .desc {
+    margin-bottom: 32px;
+    &--mutation {
+      h2 {
+        color: $color-mutation;
+      }
+      tbody tr:nth-child(odd) {
+        background: $color-mutation-zebra;
+      }
+    }
+    &--defect {
+      h2 {
+        color: $color-defect;
+      }
+      tbody tr:nth-child(odd) {
+        background: $color-defect-zebra;
+      }
+    }
+    &--psionic {
+      h2 {
+        @include color-psionic-glow;
+      }
+    }
+  }
+
+  .desc-talent {
+    &__wrapper {
+      display: flex;
+    }
+
+    &__markdown {
+    }
+    &__image {
+      > img {
+        margin-left: 1rem;
+        max-height: 350px;
+        border: 2px solid $color-royal;
+      }
+    }
+  }
+
+  // temp for spceificity
+  .ut-color-psionic-glow {
+    @include color-psionic-glow;
+  }
+}
+
+.desc__list {
+  font-size: 12px;
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 0.75rem;
+  &--talent {
+    grid-template-columns: 1fr;
+  }
+}
+
+.top-search {
+  padding: 0.25em 1em;
+  border: 1px solid $color-royal;
+  background: $color-royal-zebra;
+  margin: 1em 0;
+}
+
+.grid-talent-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 0.75rem;
+}
+
+.grid-psionic-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 0.75rem;
+}
+
+.layout {
+  &__page {
+  }
+  &__page--aside {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto;
+    gap: 2rem;
+    grid-template-areas: "as as as ct ct ct ct ct ct";
+    @include mq-desktop {
+      grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+    }
+    @include mq-tablet-down {
+      grid-template-areas: "as as as as ct ct ct ct ct ct ct ct";
+    }
+  }
+}
+
+.content-aside {
+  grid-area: as;
+  padding: 0.25em 1em;
+  border: 1px solid $color-royal;
+  background: $color-royal-zebra;
+}
+.content-main {
+  grid-area: ct;
+}
+
+.aside {
+  &__link {
+    color: $color-black;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.back-to-top {
+  text-decoration: none;
+  font-size: 12px;
+  display: block;
+  text-align: right;
+}
+
+// just monster styles
+
+.monster {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 1rem;
+  grid-template-areas:
+    "nm nm nm nm nm nm nm nm nm nm nm nm"
+    "bs bs bs bs bs bs ig ig ig ig ig ig"
+    "ct ct ct ct ct ct ig ig ig ig ig ig"
+    "at at at at at at ig ig ig ig ig ig"
+    "md md md md md md md md md md md md";
+
+  &__name {
+    grid-area: nm;
+  }
+  &__basics {
+    grid-area: bs;
+  }
+  &__basics,
+  &__combat {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    > li {
+      display: grid;
+      grid-template-columns: 120px auto;
+      padding: 2px;
+      span:nth-child(1) {
+        text-align: right;
+        margin-right: 6px;
+      }
+    }
+    > li:nth-child(odd) {
+      background: $color-royal-zebra;
+    }
+  }
+
+  &__combat {
+    grid-area: ct;
+  }
+  &__attributes {
+    grid-area: at;
+    display: grid;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+  }
+  &__image {
+    grid-area: ig;
+    > img {
+      border: 1px solid $color-royal;
+      width: 380px;
+      height: auto;
+    }
+  }
+  &__markdown {
+    grid-area: md;
+  }
+}
