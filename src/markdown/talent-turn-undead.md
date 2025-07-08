@@ -1,10 +1,14 @@
-Character may presenting their holy symbol in a fervent expression of faith and repel (and possibly destroy or dominate) undead and infernal creatures (demons, devils, etc.). Turn Undead:
+**Modifier:** Wisdom  
+**Bonus:** none  
+Character may present their holy symbol in a fervent expression of faith and repel (and possibly destroy or dominate) undead and infernal creatures (demons, devils, etc.). Turn Undead:
 
-- Takes 1 action to perform in combat (see Combat, q.v.)
-- Requires the target creature(s) to be within eyesight and 120’ of character
-- Can be applied to groups of dissimilar monsters en masse by having the character make a single roll and then applying it to each.
+- **Combat Action**: Takes 1 action to perform in combat (see Combat, q.v.).
+- **Range**: Requires the target creature(s) to be within eyesight and 120 feet of character.
+- **Group Application**: Can be applied to groups of dissimilar monsters en masse by having the character make a single roll and then applying it to each.
 
-To use this talent, have the character roll a d20 and consult the chart below. Round undead hit dice UP so a 8+1HD monster is turned as a 9HD one.
+To use this talent, have the character roll a d20 and consult the chart below. Round undead hit dice up so an 8+1 HD monster is turned as a 9 HD one.
+
+##### Turn Undead Table
 
 | User Talent Level |   1   |   2   |   3   |   4   |   5   |   6   |   7   |   8   |  9  | 10  | 11  | 12+ |
 | :---------------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :-: | :-: | :-: | :-: |

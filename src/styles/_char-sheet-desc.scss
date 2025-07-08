@@ -7,9 +7,9 @@
     margin-bottom: $spacing-xs;
   }
   &__list-label {
-    text-transform: uppercase;
+    // text-transform: uppercase;
     // color: $color-headers;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   &__item {
@@ -129,6 +129,7 @@
     list-style: disc;
     margin-bottom: $spacing-sm-alt;
     padding-left: $spacing-md;
+    margin-top: 0;
   }
   li {
     margin-bottom: 0.25em;
@@ -164,5 +165,16 @@
   }
   tr:nth-child(even) {
     background: $color-zebra;
+  }
+  p {
+    margin-top: 0;
+    margin-block-start: 0;
+  }
+
+  h4,
+  h5 {
+    margin-top: 0;
+    margin-block-start: 0;
+    margin-bottom: $spacing-xs;
   }
 }
