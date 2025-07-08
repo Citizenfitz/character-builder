@@ -1,1 +1,1 @@
-The character is disabled and suffers -5’ on their movement rate, and disadvantage on rolls where one's legs are important (jumping, climbing, etc.). Certain acts, like tightrope walking, will be impossible for them.
+The character suffers **–5’** movement and disadvantage on rolls involving leg use (jumping, climbing, etc.). Certain acts (tightrope walking, etc.) will be impossible for them.

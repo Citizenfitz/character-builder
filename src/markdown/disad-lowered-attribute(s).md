@@ -1,1 +1,1 @@
-The character can reduce three points from their attributes. This can be all from one attribute or spread across several. No attribute may be reduced below 3 or a racial minimum.
+The character must lower attributes by a total of **3 points**, spread across one or more attributes. No attribute may fall below **3** or a racial minimum.
