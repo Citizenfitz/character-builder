@@ -24,7 +24,7 @@ import {
   whichTalentAspect,
   formatNumberSuffix,
 } from "../Utilities";
-import ThaumaturgySpells from "./ThaumaturgySpells";
+import PrayersSpells from "./PrayersSpells";
 import WizardrySpells from "./WizardrySpells";
 import TalentDetails from "./TalentDetails";
 import DisadDetails from "./DisadDetails";
@@ -78,7 +78,7 @@ const characterDefaults = {
   fighterLevel: 1,
   priestLevel: 1,
   wizardLevel: 1,
-  knaveLevel: 1,
+  rogueLevel: 1,
   race: "Human",
   gender: "Male",
   aspect: aspectData[0].name,
@@ -103,7 +103,7 @@ const characterDefaults = {
     talentAssigned1: "Combat",
     talentAssigned2: "Multi-Attack",
     talentLevel1: "choose",
-    talentKnave1: "choose",
+    talentRogue1: "choose",
     talentDisad1: "choose",
     talentDisad2: "choose",
     talentLevel3: "choose",
@@ -123,10 +123,10 @@ const characterDefaults = {
   meleeWeaponIndex: 0,
   rangedWeapon: rangedWeaponData[0],
   rangedWeaponIndex: 0,
-  characteristicsRace: [],
+  attributesRace: [],
   //hasWizardry: false,
   wizardrySchools: ["Choose", "Choose"],
-  thaumaturgyStartLevel: 0,
+  prayersStartLevel: 0,
   wizardry1StartLevel: 0,
   wizardry2StartLevel: 0,
   wizardry3StartLevel: 0,
@@ -291,28 +291,28 @@ const CharacterSheet = () => {
     if (typeof level === "string") {
       level = parseInt(level);
     }
-    let fighterLevel, priestLevel, wizardLevel, knaveLevel;
+    let fighterLevel, priestLevel, wizardLevel, rogueLevel;
     switch (aspect) {
       case "fighter":
         fighterLevel = level;
         priestLevel = Math.max(1, Math.floor(level / 2));
-        knaveLevel = Math.max(1, Math.floor(level / 2));
+        rogueLevel = Math.max(1, Math.floor(level / 2));
         wizardLevel = Math.max(1, Math.floor(level / 4));
         break;
       case "priest":
         priestLevel = level;
         fighterLevel = Math.max(1, Math.floor(level / 2));
         wizardLevel = Math.max(1, Math.floor(level / 2));
-        knaveLevel = Math.max(1, Math.floor(level / 4));
+        rogueLevel = Math.max(1, Math.floor(level / 4));
         break;
       case "wizard":
         wizardLevel = level;
-        knaveLevel = Math.max(1, Math.floor(level / 2));
+        rogueLevel = Math.max(1, Math.floor(level / 2));
         priestLevel = Math.max(1, Math.floor(level / 2));
         fighterLevel = Math.max(1, Math.floor(level / 4));
         break;
-      case "knave":
-        knaveLevel = level;
+      case "rogue":
+        rogueLevel = level;
         wizardLevel = Math.max(1, Math.floor(level / 2));
         fighterLevel = Math.max(1, Math.floor(level / 2));
         priestLevel = Math.max(1, Math.floor(level / 4));
@@ -327,7 +327,7 @@ const CharacterSheet = () => {
       fighterLevel,
       priestLevel,
       wizardLevel,
-      knaveLevel,
+      rogueLevel,
     };
   };
 
@@ -492,15 +492,12 @@ const CharacterSheet = () => {
     }));
   };
 
-  // this will show/hide Thaumaturgy and Wizardry Spell Lists. It runs when any talent has changed.
+  // this will show/hide Prayers and Wizardry Spell Lists. It runs when any talent has changed.
   const validateSpellCaster = (state) => {
     //const talents = Object.values(state.talents);
 
     // find out at what level, if any, character has spellcasting talents
-    state.thaumaturgyStartLevel = findTalentLevelSlot(
-      state.talents,
-      "Thaumaturgy"
-    );
+    state.prayersStartLevel = findTalentLevelSlot(state.talents, "Prayers");
     state.wizardry1StartLevel = findTalentLevelSlot(
       state.talents,
       "Wizardry 1"
@@ -569,9 +566,13 @@ const CharacterSheet = () => {
     if (Object.keys(data.attributes).length > 0) {
       Object.entries(data.attributes).forEach(([key, val]) => {
         if (add) {
-          state.attributes[key].bonus += val.bonus;
+          // temp removing the attribute changes per race. May fold back in with uniform talemt attrib mod function
+          // state.attributes[key].bonus += val.bonus;
+          state.attributes[key].bonus = 0;
         } else {
-          state.attributes[key].bonus -= val.bonus;
+          // temp removing the attribute changes per race. May fold back in with uniform talemt attrib mod function
+          // state.attributes[key].bonus -= val.bonus;
+          state.attributes[key].bonus = 0;
         }
         // set the racial max - min is always 3
         state.attributes[key].max = val.max;
@@ -588,7 +589,7 @@ const CharacterSheet = () => {
     state.race = race;
     state.movement = data.movement;
     state.saveModsRace = data.saveModsRace;
-    state.characteristicsRace = data.characteristics;
+    state.attributesRace = data.characteristics;
     return state;
   };
 
@@ -639,7 +640,7 @@ const CharacterSheet = () => {
           newState.race = "Human";
           newState.movement = 30;
           newState.saveModsRace = [];
-          newState.characteristicsRace = [];
+          newState.attributesRace = [];
         }
         // save the level "Durability" was obtained for HP calculation
         if (value === "Durability") {
@@ -1298,9 +1299,9 @@ const CharacterSheet = () => {
             useLocalStorage={useLocalStorage}
           />
         )}
-      {character.thaumaturgyStartLevel > 0 &&
-        character.level >= character.thaumaturgyStartLevel && (
-          <ThaumaturgySpells
+      {character.prayersStartLevel > 0 &&
+        character.level >= character.prayersStartLevel && (
+          <PrayersSpells
             level={character.priestLevel}
             wisStat={character.attributes.wisdom.total}
             useLocalStorage={useLocalStorage}

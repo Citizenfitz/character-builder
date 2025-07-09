@@ -44,7 +44,7 @@ const TalentSelector = (props) => {
   };
 
   switch (props.type) {
-    case "knaveSecond":
+    case "rogueSecond":
       return (
         <Fragment>
           <select
@@ -53,10 +53,10 @@ const TalentSelector = (props) => {
             value={props.value}
           >
             <option value="choose" disabled>
-              Choose Any Knave Talent
+              Choose Any Rogue Talent
             </option>
             {talentData
-              .filter((talent) => talent.aspect === "knave")
+              .filter((talent) => talent.aspect === "rogue")
               .map((option) => (
                 <option
                   key={option.id}
@@ -119,7 +119,7 @@ const TalentSelector = (props) => {
                   {option.name}
                 </option>
               ))}
-            <option disabled>---- Magic User Talents ----</option>
+            <option disabled>---- Wizard Talents ----</option>
             {talentData
               .filter((talent) => talent.aspect === "wizard")
               .map((option) => (
@@ -131,9 +131,9 @@ const TalentSelector = (props) => {
                   {option.name}
                 </option>
               ))}
-            <option disabled>---- Knave Talents ----</option>
+            <option disabled>---- Rogue Talents ----</option>
             {talentData
-              .filter((talent) => talent.aspect === "knave")
+              .filter((talent) => talent.aspect === "rogue")
               .map((option) => (
                 <option
                   key={option.id}
@@ -203,7 +203,7 @@ const TalentSelector = (props) => {
                   {option.name}
                 </option>
               ))}
-            <option disabled>---- Magic User Talents ----</option>
+            <option disabled>---- Wizard Talents ----</option>
             {talentData
               .filter((talent) => talent.aspect === "wizard")
               .map((option) => (
@@ -215,9 +215,9 @@ const TalentSelector = (props) => {
                   {option.name}
                 </option>
               ))}
-            <option disabled>---- Knave Talents ----</option>
+            <option disabled>---- Rogue Talents ----</option>
             {talentData
-              .filter((talent) => talent.aspect === "knave")
+              .filter((talent) => talent.aspect === "rogue")
               .map((option) => (
                 <option
                   key={option.id}

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { spellData, spellSlots, thaumaturgyList } from "../../Data";
+import { spellData, spellSlots, prayersList } from "../../Data";
 import { formatNumberSuffix } from "../Utilities";
 
 const defaultSpellList = [[], [], [], [], [], [], []];
 
-export default function ThaumaturgySpells(props) {
+export default function PrayersSpells(props) {
   const { level, wisStat, useLocalStorage } = props;
   const spellCount = spellSlots[level - 1];
   const [spellList, setSpellList] = useState(defaultSpellList);
@@ -14,7 +14,7 @@ export default function ThaumaturgySpells(props) {
 
   useEffect(() => {
     if (useLocalStorage) {
-      const localData = JSON.parse(localStorage.getItem("thaumaturgySpells"));
+      const localData = JSON.parse(localStorage.getItem("prayersSpells"));
       if (localData) {
         setSpellList(localData);
       }
@@ -23,7 +23,7 @@ export default function ThaumaturgySpells(props) {
 
   useEffect(() => {
     if (useLocalStorage) {
-      localStorage.setItem("thaumaturgySpells", JSON.stringify(spellList));
+      localStorage.setItem("prayersSpells", JSON.stringify(spellList));
     }
   }, [spellList, useLocalStorage]);
 
@@ -50,7 +50,7 @@ export default function ThaumaturgySpells(props) {
   };
 
   const renderSpellRow = (levelIndex, slotIndex) => {
-    const availableSpells = thaumaturgyList[levelIndex];
+    const availableSpells = prayersList[levelIndex];
     const spell =
       spellList[levelIndex] && spellList[levelIndex][slotIndex]
         ? spellList[levelIndex][slotIndex]
@@ -102,7 +102,7 @@ export default function ThaumaturgySpells(props) {
   return (
     <section className="char-sheet__section char-sheet__section--spells">
       {/*<h2 className="char-sheet__h2">
-        Thaumaturgy Spells
+        Prayers Spells
         <span className="ut-text-explain ut-margin-left-half-em">
           - At {formatNumberSuffix(level)} level
           {wisStat > 12 && (
@@ -110,9 +110,9 @@ export default function ThaumaturgySpells(props) {
           )}
         </span>
       </h2>*/}
-      <table className="char-sheet__table char-sheet__table--thaumaturgy">
-        <caption className="char-sheet__table__caption char-sheet__table__caption--thaumaturgy">
-          Thaumaturgy Spells
+      <table className="char-sheet__table char-sheet__table--prayers">
+        <caption className="char-sheet__table__caption char-sheet__table__caption--prayers">
+          Prayers Spells
           <span className="ut-text-primary ut-margin-left-xs">
             - At {formatNumberSuffix(level)} level
             {wisStat > 12 && (
@@ -122,29 +122,29 @@ export default function ThaumaturgySpells(props) {
         </caption>
         <thead>
           <tr>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Level
             </th>
             {/* <th>School</th> */}
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Name
             </th>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Cast
             </th>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Duration
             </th>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Range
             </th>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Target
             </th>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Components
             </th>
-            <th className="char-sheet__table__header char-sheet__table__header--thaumaturgy">
+            <th className="char-sheet__table__header char-sheet__table__header--prayers">
               Save
             </th>
           </tr>

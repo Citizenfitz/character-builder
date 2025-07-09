@@ -81,13 +81,13 @@ const LevelsTable = (props) => {
             }
           >
             <td
-              rowSpan={props.character.aspect === "knave" ? 4 : 3}
+              rowSpan={props.character.aspect === "rogue" ? 4 : 3}
               className="char-sheet__table__cell"
             >
               1st
             </td>
             <td
-              rowSpan={props.character.aspect === "knave" ? 4 : 3}
+              rowSpan={props.character.aspect === "rogue" ? 4 : 3}
               className="char-sheet__table__cell"
             >
               1d{props.character.hitDiceType}
@@ -160,30 +160,30 @@ const LevelsTable = (props) => {
               )}
             </td>
           </tr>
-          {/*  --------------- 1st Level - If they're a Knave they get an extra talent -------------- */}
-          {props.character.aspect === "knave" && (
+          {/*  --------------- 1st Level - If they're a Rogue they get an extra talent -------------- */}
+          {props.character.aspect === "rogue" && (
             <tr className="char-sheet__table__row char-sheet__table__level--lvl1">
               <td className="char-sheet__table__cell char-sheet__table__cell--talent">
                 <div
                   className={`icon-aspect icon-aspect--${getTalentAspect(
-                    props.character.talents.talentKnave1
+                    props.character.talents.talentRogue1
                   )}`}
                 ></div>
                 <TalentSelector
-                  type="knaveSecond"
-                  id="talentKnave1"
+                  type="rogueSecond"
+                  id="talentRogue1"
                   handleSetCharTalents={props.handleSetCharTalents}
                   talents={props.character.talents}
-                  value={props.character.talents.talentKnave1}
+                  value={props.character.talents.talentRogue1}
                 />
               </td>
               <td className="char-sheet__table__cell ut-align-center">
-                {getTalentMod(props.character.talents.talentKnave1)}
+                {getTalentMod(props.character.talents.talentRogue1)}
               </td>
               <td className="char-sheet__table__cell ut-align-center">
                 {calcTalentLevel(
                   props.character.aspect,
-                  props.character.talents.talentKnave1
+                  props.character.talents.talentRogue1
                 )}
               </td>
             </tr>

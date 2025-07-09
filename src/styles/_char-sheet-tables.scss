@@ -108,13 +108,13 @@
   }
 }
 
-// Thaumaturgy table styles
-.char-sheet__table--thaumaturgy {
+// Prayers table styles
+.char-sheet__table--prayers {
   tr:nth-child(even) {
     background-color: $color-zebra;
   }
 }
-.char-sheet__table__caption--thaumaturgy {
+.char-sheet__table__caption--prayers {
   @include theme-priest;
   .ut-text-explain {
     color: $color-text-light;

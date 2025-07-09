@@ -41,7 +41,7 @@ const aspectData = [
     name: "priest",
     displayName: "Priest",
     hitDiceType: 6,
-    assignedTalent2: "Thaumaturgy",
+    assignedTalent2: "Prayers",
     description:
       "devotees to a particular religion, god, or pantheon; and generally meet challenges with intuition, faith, and fortitude of character. Through piety they access supernatural abilities but often lack intellectual understanding of how these forces work.",
     titles: [
@@ -82,7 +82,7 @@ const aspectData = [
   {
     id: 2,
     name: "wizard",
-    displayName: "Magic-User",
+    displayName: "Wizard",
     hitDiceType: 4,
     assignedTalent2: "Wizardry 1",
     description:
@@ -125,12 +125,12 @@ const aspectData = [
   },
   {
     id: 3,
-    name: "knave",
-    displayName: "Knave",
+    name: "rogue",
+    displayName: "Rogue",
     hitDiceType: 6,
     assignedTalent2: "Stealth",
     description:
-      'use wit, guile, and stealth as their  preferred modus operandi and have access to a wide array of talents in these areas. In addition to the "thief" archetype, the knave aspect also encompasses various “entertainer” adventurers such as bards and actors.',
+      'use wit, guile, and stealth as their  preferred modus operandi and have access to a wide array of talents in these areas. In addition to the "thief" archetype, the rogue aspect also encompasses various “entertainer” adventurers such as bards and actors.',
     titles: [
       "Assassin",
       "Bandit",

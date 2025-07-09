@@ -2,7 +2,7 @@ const raceData = [
   {
     id: 1,
     name: "Dwarf",
-    desc: "Dwarfs are short and burly humanoids rarely seen without full beards. They stand about 4ft tall, weigh around 150 lbs. have ruddy skin, earthen-toned hair, and tend towards dour and gruff personalities. They’re great miners who’re eminently comfortable in subterranean settings, and they’re particularly resistant to poisons and magic. This talent may not be taken by the magic-user class and dwarves may not choose any magic-user talents.",
+    desc: "Dwarfs are short and burly humanoids rarely seen without full beards. They stand about 4ft tall, weigh around 150 lbs. have ruddy skin, earthen-toned hair, and tend towards dour and gruff personalities. They’re great miners who’re eminently comfortable in subterranean settings, and they’re particularly resistant to poisons and magic. This talent may not be taken by the wizard class and dwarves may not choose any wizard talents.",
     attributes: {
       constitution: {
         bonus: 1,
@@ -19,7 +19,7 @@ const raceData = [
       "Size: Too small to use standard human armor or clothing, longer weapons, or longbows",
       "Darksight (as the spell)",
       "Perception Bonus: +3 to all perception rolls & checks In underground settings for: non-magical traps; hidden pathways & doors; new construction; or sloping passage.",
-      "Class Limit: May not be magic-users or take magic-user talents.",
+      "Class Limit: May not be wizards or take wizard talents.",
     ],
     saveModsRace: ["+4 vs. magical effects and poisons"],
   },
@@ -75,7 +75,7 @@ const raceData = [
   {
     id: 5,
     name: "Half-Orc",
-    desc: "Half orcs are the product of unions between orcs and humans. Most such offspring are monstrous and more orc than man, but player characters are assumed to be of the 10% who can pass for human. Their orcish lineage grants them greater strength and fortitude but tends them towards homely countenances and brutish demeanors. This talent may not be taken by the magic-user class or priest classes. Additionally, half-orcs may not take any magic-user talents.",
+    desc: "Half orcs are the product of unions between orcs and humans. Most such offspring are monstrous and more orc than man, but player characters are assumed to be of the 10% who can pass for human. Their orcish lineage grants them greater strength and fortitude but tends them towards homely countenances and brutish demeanors. This talent may not be taken by the wizard class or priest classes. Additionally, half-orcs may not take any wizard talents.",
     attributes: {
       strength: {
         bonus: 1,
@@ -94,14 +94,14 @@ const raceData = [
     characteristics: [
       "Languages: Common, Orcish",
       "Darksight (as the spell)",
-      "Class Limit: May not be magic-users or take magic-user talents.",
+      "Class Limit: May not be wizards or take wizard talents.",
     ],
     saveModsRace: [],
   },
   {
     id: 6,
     name: "Halfling",
-    desc: "Halfing are diminutive humanoids that stand a mere three feet tall and weigh 60 lbs. They commonly go barefoot and have large, furry feet. Their small size and natural agility makes them innately stealthy. They are known to be a hearty, resilient race who are highly resistant to magic, mental influence, and poisons. Halflings tend towards friendly, earthy personalities and enjoy camaraderie, home life, and creature comforts. This talent may not be taken by the magic-user class or priest classes. Additionally, halflings may not take any magic-user talents.",
+    desc: "Halfing are diminutive humanoids that stand a mere three feet tall and weigh 60 lbs. They commonly go barefoot and have large, furry feet. Their small size and natural agility makes them innately stealthy. They are known to be a hearty, resilient race who are highly resistant to magic, mental influence, and poisons. Halflings tend towards friendly, earthy personalities and enjoy camaraderie, home life, and creature comforts. This talent may not be taken by the wizard class or priest classes. Additionally, halflings may not take any wizard talents.",
     attributes: {
       strength: {
         bonus: -1,
@@ -117,7 +117,7 @@ const raceData = [
       "Languages: Common, Halfling",
       "Size: Too small to use standard human armor or clothing, and they may not use any weapon larger than a short sword.",
       "Stealth Bonus: +3 to all Stealth rolls (talent & no-talent)",
-      "Class Limit: May not be magic-users or take magic-user talents.",
+      "Class Limit: May not be wizards or take wizard talents.",
     ],
     saveModsRace: [
       "+3 vs. magic, mind influencing effects (but not illusions), and poisons.",

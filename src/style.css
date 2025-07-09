@@ -492,7 +492,7 @@
 #questrex-char-builder-root input[type=radio]:checked + label.priest {
   background: #0542ae;
 }
-#questrex-char-builder-root input[type=radio]:checked + label.knave {
+#questrex-char-builder-root input[type=radio]:checked + label.rogue {
   background: #cf1f26;
 }
 #questrex-char-builder-root .form__group {
@@ -621,7 +621,7 @@
 #questrex-char-builder-root .icon-aspect--wizard:after {
   background-image: url("assets/images/club.svg");
 }
-#questrex-char-builder-root .icon-aspect--knave:after {
+#questrex-char-builder-root .icon-aspect--rogue:after {
   background-image: url("assets/images/heart.svg");
 }
 #questrex-char-builder-root .fas {
@@ -794,10 +794,10 @@
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--wizard:hover {
   filter: none;
 }
-#questrex-char-builder-root input[type=radio] + label.aspect-radio-label--knave {
+#questrex-char-builder-root input[type=radio] + label.aspect-radio-label--rogue {
   border-color: #cf1f26;
 }
-#questrex-char-builder-root input[type=radio] + label.aspect-radio-label--knave:hover {
+#questrex-char-builder-root input[type=radio] + label.aspect-radio-label--rogue:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label__type {
@@ -832,7 +832,7 @@
 #questrex-char-builder-root .aspect-icon--fighter {
   background: #4a845b;
 }
-#questrex-char-builder-root .aspect-icon--knave {
+#questrex-char-builder-root .aspect-icon--rogue {
   background: #cf1f26;
 }
 #questrex-char-builder-root .aspect-icon--priest {
@@ -935,7 +935,7 @@
 }
 #questrex-char-builder-root .desc .desc__header {
   font-size: 24px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 #questrex-char-builder-root .desc__list-label {
   font-weight: 700;
@@ -1088,6 +1088,10 @@
   margin-top: 0;
   margin-block-start: 0;
   margin-bottom: 0.5rem;
+}
+#questrex-char-builder-root .desc__markdown h4,
+#questrex-char-builder-root .desc__markdown h5 {
+  font-size: 16px;
 }
 #questrex-char-builder-root .char-sheet__mutations-controls {
   display: grid;
@@ -1601,14 +1605,14 @@
 #questrex-char-builder-root .char-sheet__table__caption--wizardry .ut-text-explain {
   color: #333333;
 }
-#questrex-char-builder-root .char-sheet__table--thaumaturgy tr:nth-child(even) {
+#questrex-char-builder-root .char-sheet__table--prayers tr:nth-child(even) {
   background-color: #f7f4f9;
 }
-#questrex-char-builder-root .char-sheet__table__caption--thaumaturgy {
+#questrex-char-builder-root .char-sheet__table__caption--prayers {
   color: #ffffff;
   background-color: #0542ae;
 }
-#questrex-char-builder-root .char-sheet__table__caption--thaumaturgy .ut-text-explain {
+#questrex-char-builder-root .char-sheet__table__caption--prayers .ut-text-explain {
   color: #ffffff;
 }
 #questrex-char-builder-root .char-sheet__wild-psionics__psionic-no {
@@ -1901,7 +1905,7 @@
 #questrex-char-builder-root .ut-zebra-gray {
   background: #f7f4f9;
 }
-#questrex-char-builder-root .ut-color-knave {
+#questrex-char-builder-root .ut-color-rogue {
   color: #cf1f26;
 }
 #questrex-char-builder-root .ut-color-fighter {

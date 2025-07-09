@@ -50,10 +50,10 @@ const TalentList = () => {
           ))}
       </ol>
 
-      <h3 className="ut-color-knave">Knave Talents</h3>
+      <h3 className="ut-color-rogue">Rogue Talents</h3>
       <ol>
         {talentData
-          .filter((talent) => talent.aspect === "knave")
+          .filter((talent) => talent.aspect === "rogue")
           .map((talent) => (
             <li key={talent.id}>
               <b>{talent.name}</b> - {talent.desc}

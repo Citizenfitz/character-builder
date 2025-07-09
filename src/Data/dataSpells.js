@@ -46,7 +46,7 @@ export const magicSchoolsData = [
   },
 ];
 
-export const thaumaturgyList = [
+export const prayersList = [
   [
     "Aura of Protection",
     "Comprehend Languages (Incomprehensible Languages)",

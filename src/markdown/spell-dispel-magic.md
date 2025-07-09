@@ -2,4 +2,4 @@ This spell instantaneously ends either all spells within its area of effect or a
 
 - Their own spells automatically
 - Third level or below spells automatically
-- 4th level or higher spells with an Wizardry or Thaumaturgy talent roll against a DC of 5 + the level of the spell to be dispelled.
+- 4th level or higher spells with an Wizardry or Prayers talent roll against a DC of 5 + the level of the spell to be dispelled.

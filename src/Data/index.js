@@ -13,7 +13,7 @@ import { shieldData } from "./dataShield";
 import { talentData } from "./dataTalents";
 import { psionicsData } from "./dataPsionics";
 import {
-  thaumaturgyList,
+  prayersList,
   wizardryList,
   spellData,
   spellSlots,
@@ -38,6 +38,6 @@ export {
   spellData,
   spellSlots,
   talentData,
-  thaumaturgyList,
+  prayersList,
   wizardryList,
 };

@@ -56,10 +56,10 @@ const calcTalentLevel = (characterAspect, talentName) => {
   if (talentAspect === "wizard" && characterAspect === "fighter") {
     return "Opposing (1/4 level)";
   }
-  if (talentAspect === "priest" && characterAspect === "knave") {
+  if (talentAspect === "priest" && characterAspect === "rogue") {
     return "Opposing (1/4 level)";
   }
-  if (talentAspect === "knave" && characterAspect === "priest") {
+  if (talentAspect === "rogue" && characterAspect === "priest") {
     return "Opposing (1/4 level)";
   }
   return "Adjacent (1/2 level)";

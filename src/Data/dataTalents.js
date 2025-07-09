@@ -1,6 +1,6 @@
 const talentData = [
   {
-    idNum: 1,
+    idNum: 0,
     id: "r1",
     aspect: "race",
     name: "Dwarf",
@@ -15,7 +15,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 2,
+    idNum: 1,
     id: "r2",
     aspect: "race",
     name: "Elf",
@@ -30,7 +30,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 3,
+    idNum: 2,
     id: "r3",
     aspect: "race",
     name: "Gnome",
@@ -45,7 +45,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 4,
+    idNum: 3,
     id: "r4",
     aspect: "race",
     name: "Half-Elf",
@@ -60,7 +60,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 5,
+    idNum: 4,
     id: "r5",
     aspect: "race",
     name: "Half-Orc",
@@ -75,7 +75,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 6,
+    idNum: 5,
     id: "r6",
     aspect: "race",
     name: "Halfling",
@@ -90,7 +90,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 7,
+    idNum: 6,
     id: "r7",
     aspect: "race",
     name: "Mutant",
@@ -106,7 +106,7 @@ const talentData = [
   },
 
   {
-    idNum: 8,
+    idNum: 7,
     id: "c1",
     aspect: "common",
     name: "Alertness",
@@ -121,7 +121,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 9,
+    idNum: 8,
     id: "c2",
     aspect: "common",
     name: "Attribute Increase",
@@ -136,7 +136,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 10,
+    idNum: 9,
     id: "c3",
     aspect: "common",
     name: "Medical",
@@ -152,7 +152,7 @@ const talentData = [
   },
 
   {
-    idNum: 11,
+    idNum: 10,
     id: "c4",
     aspect: "common",
     name: "Psychic Sensitivity",
@@ -169,7 +169,7 @@ const talentData = [
   },
 
   {
-    idNum: 12,
+    idNum: 11,
     id: "c5",
     aspect: "common",
     name: "Riding",
@@ -185,7 +185,7 @@ const talentData = [
   },
 
   {
-    idNum: 13,
+    idNum: 12,
     id: "c6",
     aspect: "common",
     name: "Scholarly Knowledge",
@@ -202,7 +202,7 @@ const talentData = [
   },
 
   {
-    idNum: 14,
+    idNum: 13,
     id: "c7",
     aspect: "common",
     name: "Stronghold",
@@ -217,7 +217,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 15,
+    idNum: 14,
     id: "c8",
     aspect: "common",
     name: "Survival & Tracking",
@@ -232,7 +232,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 16,
+    idNum: 15,
     id: "c9",
     aspect: "common",
     name: "Wild Psionics",
@@ -248,7 +248,7 @@ const talentData = [
   },
 
   {
-    idNum: 17,
+    idNum: 16,
     id: "f1",
     aspect: "fighter",
     name: "Berserk",
@@ -264,7 +264,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 18,
+    idNum: 17,
     id: "f2",
     aspect: "fighter",
     name: "Blind Fighting",
@@ -279,7 +279,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 19,
+    idNum: 18,
     id: "f3",
     aspect: "fighter",
     name: "Combat",
@@ -294,7 +294,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 20,
+    idNum: 19,
     id: "f4",
     aspect: "fighter",
     name: "Combat Specialization",
@@ -309,7 +309,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 21,
+    idNum: 20,
     id: "f5",
     aspect: "fighter",
     name: "Durability",
@@ -324,7 +324,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 22,
+    idNum: 21,
     id: "f6",
     aspect: "fighter",
     name: "Multi-Attack",
@@ -339,7 +339,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 23,
+    idNum: 22,
     id: "f7",
     aspect: "fighter",
     name: "Missile Deflection",
@@ -355,37 +355,7 @@ const talentData = [
   },
 
   {
-    idNum: 24,
-    id: "p1",
-    aspect: "priest",
-    name: "Sacred Attunement",
-    desc: "",
-    mod: "none",
-    isLeveling: false,
-    isStacking: false,
-    isRollable: true,
-    rating: "",
-    preq: "",
-    bonus: "",
-    img: "",
-  },
-  {
-    idNum: 25,
-    id: "p2",
-    aspect: "priest",
-    name: "Transmogrify",
-    desc: "",
-    mod: "none",
-    isLeveling: false,
-    isStacking: false,
-    isRollable: true,
-    rating: "",
-    preq: "",
-    bonus: "",
-    img: "",
-  },
-  {
-    idNum: 26,
+    idNum: 23,
     id: "p3",
     aspect: "priest",
     name: "Holy Aura",
@@ -400,7 +370,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 27,
+    idNum: 24,
     id: "p4",
     aspect: "priest",
     name: "Incorruptibility",
@@ -414,9 +384,24 @@ const talentData = [
     bonus: "",
     img: "",
   },
+  {
+    idNum: 25,
+    id: "p8",
+    aspect: "priest",
+    name: "Prayers",
+    desc: "",
+    mod: "WIS",
+    isLeveling: true,
+    isStacking: false,
+    isRollable: true,
+    rating: 5,
+    preq: "",
+    bonus: "",
+    img: "",
+  },
 
   {
-    idNum: 28,
+    idNum: 26,
     id: "p5",
     aspect: "priest",
     name: "Psionics",
@@ -433,7 +418,7 @@ const talentData = [
   },
 
   {
-    idNum: 29,
+    idNum: 27,
     id: "p6",
     aspect: "priest",
     name: "Psionic Amplification",
@@ -448,8 +433,25 @@ const talentData = [
     bonus: "",
     img: "",
   },
+
   {
-    idNum: 30,
+    idNum: 28,
+    id: "p1",
+    aspect: "priest",
+    name: "Sacred Attunement",
+    desc: "",
+    mod: "none",
+    isLeveling: false,
+    isStacking: false,
+    isRollable: true,
+    rating: "",
+    preq: "",
+    bonus: "",
+    img: "",
+  },
+
+  {
+    idNum: 29,
     id: "p7",
     aspect: "priest",
     name: "Sermonize",
@@ -465,22 +467,22 @@ const talentData = [
   },
 
   {
-    idNum: 31,
-    id: "p8",
+    idNum: 30,
+    id: "p2",
     aspect: "priest",
-    name: "Thaumaturgy",
+    name: "Transmogrify",
     desc: "",
-    mod: "WIS",
-    isLeveling: true,
+    mod: "none",
+    isLeveling: false,
     isStacking: false,
     isRollable: true,
-    rating: 5,
+    rating: "",
     preq: "",
     bonus: "",
     img: "",
   },
   {
-    idNum: 32,
+    idNum: 31,
     id: "p9",
     aspect: "priest",
     name: "Turn Undead",
@@ -496,10 +498,10 @@ const talentData = [
   },
 
   {
-    idNum: 33,
+    idNum: 32,
     id: "w1",
     aspect: "wizard",
-    name: "Arcane Scholarship",
+    name: "Alchemy",
     desc: "",
     mod: "INT",
     isLeveling: true,
@@ -511,7 +513,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 34,
+    idNum: 33,
     id: "w2",
     aspect: "wizard",
     name: "Battle Casting",
@@ -526,7 +528,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 35,
+    idNum: 34,
     id: "w3",
     aspect: "wizard",
     name: "Spell Refashionment",
@@ -541,7 +543,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 36,
+    idNum: 35,
     id: "w4",
     aspect: "wizard",
     name: "Stealth Casting",
@@ -556,7 +558,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 37,
+    idNum: 36,
     id: "w5",
     aspect: "wizard",
     name: "Wizardry 1",
@@ -571,7 +573,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 38,
+    idNum: 37,
     id: "w6",
     aspect: "wizard",
     name: "Wizardry 2",
@@ -586,7 +588,7 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 39,
+    idNum: 38,
     id: "w7",
     aspect: "wizard",
     name: "Wizardry 3",
@@ -602,9 +604,9 @@ const talentData = [
   },
 
   {
-    idNum: 40,
+    idNum: 39,
     id: "k1",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Acrobatics",
     desc: "",
     mod: "DEX",
@@ -617,9 +619,9 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 41,
+    idNum: 40,
     id: "k2",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Assassination",
     desc: "",
     mod: "INT",
@@ -632,9 +634,9 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 42,
+    idNum: 41,
     id: "k3",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Backstabbing",
     desc: "",
     mod: "none",
@@ -647,9 +649,9 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 43,
+    idNum: 42,
     id: "k4",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Beguilement",
     desc: "",
     mod: "CHA",
@@ -663,9 +665,9 @@ const talentData = [
   },
 
   {
-    idNum: 44,
+    idNum: 43,
     id: "k5",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Burglary",
     desc: "",
     mod: "DEX",
@@ -678,9 +680,9 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 45,
+    idNum: 44,
     id: "k6",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Climbing",
     desc: "",
     mod: "DEX",
@@ -693,9 +695,9 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 46,
+    idNum: 45,
     id: "k7",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Disguise",
     desc: "",
     mod: "CHA",
@@ -708,9 +710,9 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 47,
+    idNum: 46,
     id: "k8",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Escapology",
     desc: "",
     mod: "DEX/INT",
@@ -723,9 +725,24 @@ const talentData = [
     img: "",
   },
   {
-    idNum: 48,
+    idNum: 47,
     id: "k9",
-    aspect: "knave",
+    aspect: "rogue",
+    name: "Fraud",
+    desc: "",
+    mod: "DEX/INT",
+    isLeveling: true,
+    isStacking: false,
+    isRollable: true,
+    rating: "",
+    preq: "",
+    bonus: "",
+    img: "",
+  },
+  {
+    idNum: 48,
+    id: "k10",
+    aspect: "rogue",
     name: "Inspiration",
     desc: "",
     mod: "CHA",
@@ -739,23 +756,8 @@ const talentData = [
   },
   {
     idNum: 49,
-    id: "k10",
-    aspect: "knave",
-    name: "Sleight of hand",
-    desc: "",
-    mod: "DEX",
-    isLeveling: true,
-    isStacking: false,
-    isRollable: true,
-    rating: "",
-    preq: "",
-    bonus: "",
-    img: "",
-  },
-  {
-    idNum: 50,
     id: "k11",
-    aspect: "knave",
+    aspect: "rogue",
     name: "Stealth",
     desc: "",
     mod: "DEX",

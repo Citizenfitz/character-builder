@@ -75,8 +75,8 @@ input[type="radio"] + label.aspect-radio-label {
       filter: none;
     }
   }
-  &--knave {
-    border-color: $color-knave;
+  &--rogue {
+    border-color: $color-rogue;
     &:hover {
       filter: none;
     }
@@ -116,8 +116,8 @@ input[type="radio"] + label.aspect-radio-label {
     &--fighter {
       background: $color-fighter;
     }
-    &--knave {
-      background: $color-knave;
+    &--rogue {
+      background: $color-rogue;
     }
     &--priest {
       background: $color-priest;
