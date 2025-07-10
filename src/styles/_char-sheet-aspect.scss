@@ -14,9 +14,7 @@
   justify-content: space-between;
   flex-wrap: wrap;
 
-  // border: 1px solid;
   border-radius: $border-radius-standard;
-  //background: $color-input-bg;
   background-color: transparent;
   margin: 0 auto 1rem auto;
   &__item:nth-child(1),
@@ -43,6 +41,7 @@ input[type="radio"] + label.aspect-radio-label {
   @include theme-light;
   height: 66px;
   width: 81px;
+  max-width: 81px;
   border: 2px solid;
   filter: grayscale(1);
   opacity: 0.5;
@@ -59,24 +58,28 @@ input[type="radio"] + label.aspect-radio-label {
   cursor: pointer;
   &--fighter {
     border-color: $color-fighter;
+    background-color: rgba($color-fighter, 0.15);
     &:hover {
       filter: none;
     }
   }
   &--priest {
     border-color: $color-priest;
+    background-color: rgba($color-priest, 0.15);
     &:hover {
       filter: none;
     }
   }
   &--wizard {
     border-color: $color-wizard;
+    background-color: rgba($color-wizard, 0.15);
     &:hover {
       filter: none;
     }
   }
   &--rogue {
     border-color: $color-rogue;
+    background-color: rgba($color-rogue, 0.15);
     &:hover {
       filter: none;
     }
@@ -142,25 +145,31 @@ input[type="radio"] + label.aspect-radio-label {
 .aspect-picker-desc {
   &__header {
     text-transform: capitalize;
-    font-size: 1.5rem;
+    font-size: $font-size-xl;
     margin-bottom: 0.5rem;
     margin-top: 0;
+    line-height: 18px;
     > span {
       margin-right: 0.25rem;
     }
   }
   &__list {
     margin: 0;
+    padding-left: 20px;
+  }
+  &__archetypes {
+    display: none;
+    font-size: $font-size-sm;
   }
 }
 
-.aspect-select {
-  display: flex;
-  align-items: center;
-  gap: $spacing-xs;
-  margin-bottom: $spacing-sm;
+// .aspect-select {
+//   display: flex;
+//   align-items: center;
+//   gap: $spacing-xs;
+//   margin-bottom: $spacing-sm;
 
-  select {
-    flex: 1;
-  }
-}
+//   select {
+//     flex: 1;
+//   }
+// }

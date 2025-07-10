@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { aspectData } from "../../Data";
 import { whichAspectDisplayName } from "../Utilities";
 import { QuestRexDialog } from "../Common/Dialog";
 
 const Aspects = (props) => {
   const [aspectModalOpen, setAspectModalOpen] = useState(false);
+  const [currentAspectIndex, setCurrentAspectIndex] = useState(0);
+
+  useEffect(() => {
+    const index = aspectData.findIndex(
+      (aspect) => aspect.name === props.character.aspect
+    );
+    setCurrentAspectIndex(index >= 0 ? index : 0);
+  }, [props.character.aspect]);
+
   const toggleAspectModal = () => {
     setAspectModalOpen(!aspectModalOpen);
   };
-
-  // const getAspectIndex = (aspectName) => {
-  //   return 1;
-  // };
 
   return (
     <div className="char-sheet__aspects">
@@ -48,12 +53,12 @@ const Aspects = (props) => {
           <i> (those to the left and right) </i> and one opposing class
           <i> (the one directly across)</i>. A character's talents are strongest
           within their class, middling in adjacent classes (1/2 their level),
-          and poor in opposing ones (1/4 their level). Each class has one or
-          more starting talents gains additional talents as they advance in
-          level.
+          and poor in opposing ones (1/4 their level).
         </p>
+
         <div className="flex-grid">
           <div className="flex-grid__child--half">
+            {/*  ------- Fancy Radio Aspect Picker ------ */}
             <ul className="aspect-radio-set">
               {aspectData.map((i) => (
                 <li key={i.name} className="aspect-radio-set__item">
@@ -78,8 +83,15 @@ const Aspects = (props) => {
                 </li>
               ))}
             </ul>
+            <p className="aspect-picker-desc__archetypes">
+              <b className={` ut-color-${props.character.aspect}`}>
+                {whichAspectDisplayName(props.character.aspect)} Archetypes:{" "}
+              </b>
+              {aspectData[currentAspectIndex].archetypes}
+            </p>
           </div>
           <div className="flex-grid__child--half">
+            {/*  ------- Description based on selected aspect ------ */}
             <h2
               className={`aspect-picker-desc__header ut-color-${props.character.aspect}`}
             >
@@ -88,22 +100,26 @@ const Aspects = (props) => {
               ></span>
               {whichAspectDisplayName(props.character.aspect)}
             </h2>
+            <p>{aspectData[currentAspectIndex].description}</p>
             <ul className="aspect-picker-desc__list">
               <li>
-                <b className="ut-text-header">Description:</b> desc
-              </li>
-              <li>
-                <b className="ut-text-header">Starting talents:</b>{" "}
-                {props.character.talentAssigned1},{" "}
-                {props.character.talentAssigned2}
+                <b className="ut-text-header">Starting talents:</b> Combat,{" "}
+                {aspectData[currentAspectIndex].assignedTalent2}
               </li>
               <li>
                 <b className="ut-text-header">Hit Dice:</b> d
-                {props.character.hitDiceType}
+                {aspectData[currentAspectIndex].hitDiceType}
               </li>
               <li>
                 <b className="ut-text-header">Saving Throw Mods:</b>{" "}
-                {props.character.saveModsClass}
+                {aspectData[currentAspectIndex].saveModsClass}
+              </li>
+              <li>
+                <b className="ut-text-header">Armor:</b>{" "}
+                {aspectData[currentAspectIndex].armor}
+              </li>
+              <li>
+                <b className="ut-text-header">Weapon:</b>{" "}
               </li>
             </ul>
           </div>

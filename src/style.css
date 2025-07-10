@@ -119,7 +119,7 @@
   padding: 0;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 640px;
+  width: 700px;
   z-index: 1051;
   border: 1px solid;
   max-width: 90vw;
@@ -616,13 +616,13 @@
   background-image: url("assets/images/spade.svg");
 }
 #questrex-char-builder-root .icon-aspect--priest:after {
-  background-image: url("assets/images/diamond.svg");
+  background-image: url("assets/images/heart.svg");
 }
 #questrex-char-builder-root .icon-aspect--wizard:after {
   background-image: url("assets/images/club.svg");
 }
 #questrex-char-builder-root .icon-aspect--rogue:after {
-  background-image: url("assets/images/heart.svg");
+  background-image: url("assets/images/diamond.svg");
 }
 #questrex-char-builder-root .fas {
   font-size: 18px;
@@ -763,6 +763,7 @@
   color: #333333;
   height: 66px;
   width: 81px;
+  max-width: 81px;
   border: 2px solid;
   filter: grayscale(1);
   opacity: 0.5;
@@ -778,24 +779,28 @@
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--fighter {
   border-color: #4a845b;
+  background-color: rgba(74, 132, 91, 0.15);
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--fighter:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--priest {
   border-color: #0542ae;
+  background-color: rgba(5, 66, 174, 0.15);
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--priest:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--wizard {
   border-color: #d4a017;
+  background-color: rgba(212, 160, 23, 0.15);
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--wizard:hover {
   filter: none;
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--rogue {
   border-color: #cf1f26;
+  background-color: rgba(207, 31, 38, 0.15);
 }
 #questrex-char-builder-root input[type=radio] + label.aspect-radio-label--rogue:hover {
   filter: none;
@@ -852,24 +857,21 @@
 }
 #questrex-char-builder-root .aspect-picker-desc__header {
   text-transform: capitalize;
-  font-size: 1.5rem;
+  font-size: 24px;
   margin-bottom: 0.5rem;
   margin-top: 0;
+  line-height: 18px;
 }
 #questrex-char-builder-root .aspect-picker-desc__header > span {
   margin-right: 0.25rem;
 }
 #questrex-char-builder-root .aspect-picker-desc__list {
   margin: 0;
+  padding-left: 20px;
 }
-#questrex-char-builder-root .aspect-select {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-}
-#questrex-char-builder-root .aspect-select select {
-  flex: 1;
+#questrex-char-builder-root .aspect-picker-desc__archetypes {
+  display: none;
+  font-size: 14px;
 }
 #questrex-char-builder-root .attrib {
   display: inline-flex;

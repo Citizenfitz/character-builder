@@ -65,13 +65,13 @@
     background-image: url($path-img + "spade.svg");
   }
   &--priest:after {
-    background-image: url($path-img + "diamond.svg");
+    background-image: url($path-img + "heart.svg");
   }
   &--wizard:after {
     background-image: url($path-img + "club.svg");
   }
   &--rogue:after {
-    background-image: url($path-img + "heart.svg");
+    background-image: url($path-img + "diamond.svg");
   }
 }
 
