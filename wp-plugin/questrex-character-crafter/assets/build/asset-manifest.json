@@ -1,0 +1,41 @@
+{
+  "files": {
+    "main.css": "./static/css/main.c87a9afd.css",
+    "main.js": "./static/js/main.20ec458d.js",
+    "static/js/826.d3f6fecd.chunk.js": "./static/js/826.d3f6fecd.chunk.js",
+    "static/js/246.64a1d1e9.chunk.js": "./static/js/246.64a1d1e9.chunk.js",
+    "static/media/fontawesome-webfont.ttf": "./static/media/fontawesome-webfont.f0af1680f082547a7aae.ttf",
+    "static/media/Cabin-SemiBold.ttf": "./static/media/Cabin-SemiBold.cdc693a714bc25b08b46.ttf",
+    "static/media/Cabin-Medium.ttf": "./static/media/Cabin-Medium.b0400a6f0eb1bfbaabb3.ttf",
+    "static/media/Cabin-Regular.ttf": "./static/media/Cabin-Regular.f54a520853e3c54bd448.ttf",
+    "static/media/Cabin-Bold.ttf": "./static/media/Cabin-Bold.a2cefc2fa71da2edcaec.ttf",
+    "static/media/Cabin_Condensed-Medium.ttf": "./static/media/Cabin_Condensed-Medium.4d734587a979a33733e1.ttf",
+    "static/media/Cabin_Condensed-Regular.ttf": "./static/media/Cabin_Condensed-Regular.ac1850b3a6defc230e9f.ttf",
+    "static/media/Cabin_Condensed-SemiBold.ttf": "./static/media/Cabin_Condensed-SemiBold.72668ade53324a965db8.ttf",
+    "static/media/Cabin_Condensed-Bold.ttf": "./static/media/Cabin_Condensed-Bold.a426ab4839d9f6ed4870.ttf",
+    "static/media/Cabin_Condensed-SemiBoldItalic.ttf": "./static/media/Cabin_Condensed-SemiBoldItalic.85f05b22b916d506e518.ttf",
+    "static/media/Cabin_Condensed-MediumItalic.ttf": "./static/media/Cabin_Condensed-MediumItalic.d568f834c86442936e8a.ttf",
+    "static/media/Cabin_Condensed-Italic.ttf": "./static/media/Cabin_Condensed-Italic.b61bc587198b725d440c.ttf",
+    "static/media/Cabin_Condensed-BoldItalic.ttf": "./static/media/Cabin_Condensed-BoldItalic.b2d18486273358b42120.ttf",
+    "static/media/Edelgotisch.ttf": "./static/media/Edelgotisch.4937baebd8e8877a9a86.ttf",
+    "static/media/club.svg": "./static/media/club.3809da6cb784406618a6.svg",
+    "static/media/spade.svg": "./static/media/spade.474065908c17f01fdf6a.svg",
+    "static/media/diamond.svg": "./static/media/diamond.c918dfd06181eeda54e1.svg",
+    "static/media/heart.svg": "./static/media/heart.55b3be6f2c730bf1acf5.svg",
+    "index.html": "./index.html",
+    "static/media/disad-vow-of-chivalry.md": "./static/media/disad-vow-of-chivalry.111440f05e4e6dfbb96d.md",
+    "static/media/disad-vow-of-nature.md": "./static/media/disad-vow-of-nature.d131394939811034932b.md",
+    "static/media/disad-uneducated.md": "./static/media/disad-uneducated.92b41dd7d8088c1fc758.md",
+    "static/media/disad-vow-of-modesty.md": "./static/media/disad-vow-of-modesty.4d5259d4c1bf02afb5ba.md",
+    "static/media/disad-weak-ears.md": "./static/media/disad-weak-ears.92ec0d1e9b149a63d853.md",
+    "static/media/disad-weak-eyes.md": "./static/media/disad-weak-eyes.1f92cda3f786a76e6541.md",
+    "static/media/disad-lame.md": "./static/media/disad-lame.bce5eb520a1f056bbe13.md",
+    "static/media/disad-lowered-attribute(s).md": "./static/media/disad-lowered-attribute(s).5b8c161c4687fa4a3851.md",
+    "static/media/disad-disfigured.md": "./static/media/disad-disfigured.b9698f2d76ecb9d24d2c.md",
+    "static/media/disad-missing-an-arm-or-hand.md": "./static/media/disad-missing-an-arm-or-hand.470624b268ea9dcab3f8.md"
+  },
+  "entrypoints": [
+    "static/css/main.c87a9afd.css",
+    "static/js/main.20ec458d.js"
+  ]
+}

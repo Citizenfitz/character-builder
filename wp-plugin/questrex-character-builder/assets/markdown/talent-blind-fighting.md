@@ -1,1 +1,0 @@
-The character can fight normally in complete darkness, while blinded, or against unseen/invisible opponents. In particularly noisy environment the GM may require the character to make Challenge rolls to use this ability.

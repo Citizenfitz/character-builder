@@ -1,1 +1,0 @@
-A character must have Wizardry 1 to take this talent. The character may cast spells of one additional school type (Blue, Black, Green, Red, and White). This type must be chosen when the talent is taken and does not change.

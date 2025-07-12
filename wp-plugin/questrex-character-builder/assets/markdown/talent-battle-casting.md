@@ -1,1 +1,0 @@
-A character must have the Wizardry 1 to choose this talent. The character may wear heavy armor and may cast Wizardry Spells whilst wearing it or heavily encumbered. He or she still may not cast spells with somatic components when bound or restrained. The character may also use all weapons (swords, lances, etc.).

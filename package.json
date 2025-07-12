@@ -23,7 +23,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:plugin": "PUBLIC_URL=. GENERATE_SOURCEMAP=false react-scripts build && rm -rf wp-plugin/questrex-character-builder/assets/build && cp -r build wp-plugin/questrex-character-builder/assets/ && cp -r src/markdown wp-plugin/questrex-character-builder/assets/",
+    "build:plugin": "PUBLIC_URL=. GENERATE_SOURCEMAP=false react-scripts build && rm -rf wp-plugin/questrex-character-crafter/assets/build && cp -r build wp-plugin/questrex-character-crafter/assets/ && cp -r src/markdown wp-plugin/questrex-character-crafter/assets/",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sass": "sass --watch src/styles/:src",

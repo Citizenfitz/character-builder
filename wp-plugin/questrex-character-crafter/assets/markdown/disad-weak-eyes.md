@@ -1,0 +1,1 @@
+The character has poor eyesight and suffers disadvantage on all sight-based perception rolls. He or she will also be unable to read or discern fine details without a visual aid (glasses, monocle, magnifying glass, etc.).
