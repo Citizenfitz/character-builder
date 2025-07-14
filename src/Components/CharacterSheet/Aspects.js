@@ -37,7 +37,7 @@ const Aspects = (props) => {
         <div className="ut-no-screen print-text-input">
           {whichAspectDisplayName(props.character.aspect)}
         </div>
-        <br />
+        <br className="ut-no-print" />
         <span className="label">Class</span>
       </label>
 

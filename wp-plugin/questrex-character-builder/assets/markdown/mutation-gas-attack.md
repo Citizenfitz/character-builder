@@ -1,0 +1,1 @@
+Thrice per day the character can spray a noxious gas from a specified place on their body (mouth, hands, navel, etc.). This gas can be projected up to 30', fills a 20' area, and persists for 5 rounds (though high winds will disperse it immediately). Creatures within the cloud suffer effects identical to the spell _Stinking Cloud_. The character is immune to his or her own gas.

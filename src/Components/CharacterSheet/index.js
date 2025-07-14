@@ -938,7 +938,7 @@ const CharacterSheet = () => {
               <div className="ut-no-screen print-text-input">
                 {character.nameCharacter}
               </div>
-              <br />
+              <br className="ut-no-print" />
               <span className="label">Character Name</span>
             </label>
 
@@ -960,7 +960,7 @@ const CharacterSheet = () => {
                   <div className="ut-no-screen print-text-input">
                     {formatNumberSuffix(character.level)}
                   </div>
-                  <br />
+                  <br className="ut-no-print" />
                   <span className="label">Level</span>
                 </label>
               </div>
@@ -980,7 +980,7 @@ const CharacterSheet = () => {
                   <div className="ut-no-screen print-text-input">
                     {character.gender}
                   </div>
-                  <br />
+                  <br className="ut-no-print" />
                   <span className="label">Sex</span>
                 </label>
               </div>
@@ -1000,7 +1000,7 @@ const CharacterSheet = () => {
                   <div className="ut-no-screen print-text-input">
                     {character.race}
                   </div>
-                  <br />
+                  <br className="ut-no-print" />
                   <span className="label">Race</span>
                 </label>
               </div>
@@ -1120,7 +1120,7 @@ const CharacterSheet = () => {
                       <span>(+{armorData[character.armorIndex].modifier})</span>
                     )}
                   </div>
-                  <br />
+                  <br className="ut-no-print" />
                   <span className="label">Armor</span>
                 </label>
               </div>
@@ -1143,7 +1143,7 @@ const CharacterSheet = () => {
                   <div className="ut-no-screen print-text-input">
                     {character.shield}
                   </div>
-                  <br />
+                  <br className="ut-no-print" />
                   <span className="label">Shield</span>
                 </label>
               </div>
@@ -1170,7 +1170,7 @@ const CharacterSheet = () => {
                   </span>
                 )}
               </div>
-              <br />
+              <br className="ut-no-print" />
               <span className="label">Melee Weapon</span>
             </label>
 
@@ -1196,7 +1196,7 @@ const CharacterSheet = () => {
                   </span>
                 )}
               </div>
-              <br />
+              <br className="ut-no-print" />
               <span className="label">Ranged Weapon</span>
             </label>
           </div>
@@ -1231,7 +1231,7 @@ const CharacterSheet = () => {
               <div className="ut-no-screen print-text-input">
                 {character.alignment}
               </div>
-              <br />
+              <br className="ut-no-print" />
               <span className="label">Alignment</span>
             </label>
 
@@ -1268,7 +1268,7 @@ const CharacterSheet = () => {
                 className="ut-no-print qr-input--text"
               />
               <div className="ut-no-screen print-text-input"></div>
-              <br />
+              <br className="ut-no-print" />
               <span className="label">XP/AP</span>
             </label>
           </div>

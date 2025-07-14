@@ -1,0 +1,3 @@
+With 5 minutes of concentration the user can attempt to discern whether a single, well-defined action taken within the next 30 minutes will be to their weal or woe. The power has an accuracy rate of 75% plus 1% for each bonus modifier for the user's intelligence, Wisdom, and Charisma. Thus, a character with an 18 intelligence (+3 bonus) and 16 Charisma (+2 bonus) would have an 80% accuracy rate.
+
+This roll is made secretly by the GM and on a failure a false answer is returned. _Precognition_ only informs on immediate, not long term consequences. A user may only deploy this power once every four hours or it will return random results ( 1d6, 1-2 = weal, 3-4 = woe, 5-6 = weal & woe).

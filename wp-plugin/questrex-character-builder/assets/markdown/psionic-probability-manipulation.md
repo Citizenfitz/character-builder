@@ -1,0 +1,3 @@
+Each expenditure of _Probability Manipulation_ allows the character to apply advantage or disadvantage to any single game roll (challenge roll, damage roll, etc.) they are aware of and is within range. All the standard limitations on advantage/disadvantage apply (no "double advantage", advantage & disadvantage cancel each other out, etc.). This power may not be used to manipulate rolls for _Precognition_ or _Vision_.
+
+Importantly, _Probability Manipulation_ should only be allowed for **narrative events within the game** and never "metagame" rolls such as hit points gained at a new level, random treasure rolls, etc. The GM is the final arbiter of when and when it cannot be used.

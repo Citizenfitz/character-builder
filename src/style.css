@@ -80,6 +80,7 @@
   @use "variables-mixins" as *;
   @use "variables-mixins" as *;
   @use "variables-mixins" as *;
+  @use "variables-mixins" as *;
 }
 #questrex-char-builder-root *,
 #questrex-char-builder-root *:before,
@@ -1892,6 +1893,370 @@
 }
 #questrex-char-builder-root .footer .label {
   color: #ffffff;
+}
+@media print {
+  #questrex-char-builder-root {
+    /* Webkit browsers like Safari and Chrome */
+  }
+  #questrex-char-builder-root * {
+    -webkit-print-color-adjust: exact !important;
+    /* Chrome, Safari */
+    print-color-adjust: exact !important;
+    /* Standard, Firefox */
+  }
+  #questrex-char-builder-root .ut-no-print,
+#questrex-char-builder-root .modal,
+#questrex-char-builder-root .modal__overlay {
+    display: none !important;
+  }
+  #questrex-char-builder-root .ut-no-screen {
+    display: block !important;
+  }
+  #questrex-char-builder-root .char-sheet__section {
+    page-break-inside: avoid;
+  }
+  #questrex-char-builder-root table {
+    page-break-inside: avoid;
+  }
+  @page {
+    #questrex-char-builder-root {
+      margin: 20mm;
+      size: auto;
+    }
+  }
+  #questrex-char-builder-root main {
+    margin: 0;
+    padding: 0;
+  }
+  #questrex-char-builder-root .char-sheet {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    font-size: 0.9375rem;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--lvl1 .ut-display-inline-block .label,
+#questrex-char-builder-root .char-sheet__table__level--lvl1 .ut-display-inline-block br,
+#questrex-char-builder-root .char-sheet__button {
+    display: none;
+  }
+  #questrex-char-builder-root input[type=number] {
+    border: none;
+    -moz-appearance: textfield;
+  }
+  #questrex-char-builder-root input[type=number]::-webkit-inner-spin-button,
+#questrex-char-builder-root input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  #questrex-char-builder-root select {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--lvl1 select {
+    max-width: 157px;
+  }
+  #questrex-char-builder-root .icon-aspect--large:after {
+    background-size: 80%;
+    bottom: 10px;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl2 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl3 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl4 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl5 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl6 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl7 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--1 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl3 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl4 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl5 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl6 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl7 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--2 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl4 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl5 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl6 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl7 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--3 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl5 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl6 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl7 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--4 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl6 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl7 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--5 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl7 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--6 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl8 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--7 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--8 .char-sheet__table__level--lvl9 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--8 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--8 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--8 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--8 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--8 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--9 .char-sheet__table__level--lvl10 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--9 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--9 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--9 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--9 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--10 .char-sheet__table__level--lvl11 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--10 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--10 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--10 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--11 .char-sheet__table__level--lvl12 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--11 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--11 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--12 .char-sheet__table__level--lvl13 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--12 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table__level--13 .char-sheet__table__level--lvl14 {
+    display: none;
+  }
+  #questrex-char-builder-root .char-sheet__table td select {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+  }
+  #questrex-char-builder-root .attrib-val {
+    background: transparent;
+  }
+}
+#questrex-char-builder-root .print-text-input {
+  color: #333333;
+  height: auto;
+  font-family: "Cabin", sans-serif;
+  font-weight: 800;
+  display: block;
+  width: 100%;
+}
+#questrex-char-builder-root .label {
+  background-color: #f5f3ed;
+  padding: 2px;
+}
+#questrex-char-builder-root .char-sheet__section--talents {
+  page-break-before: always;
 }
 #questrex-char-builder-root .ut-position-relative {
   position: relative;

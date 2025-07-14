@@ -1,0 +1,1 @@
+This spell unleashes a deadly red ray that instantly and completely obliterates a single target. The target can be a single creature or up to 10 cubic feet of a single object. It will affect even magical forces such as _Shadow Monsters_ or a _Wall of Force_. The target is allowed a DEX-modified saving throw to avoid the effect.

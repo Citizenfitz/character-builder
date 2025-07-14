@@ -294,7 +294,7 @@ const presetData = [
     },
   },
   {
-    id: 15,
+    id: 14,
     name: "Templar",
     aspect: "priest",
     subclass: true,
@@ -315,7 +315,7 @@ const presetData = [
     },
   },
   {
-    id: 16,
+    id: 15,
     name: "Wizard",
     aspect: "wizard",
     subclass: false,
@@ -336,7 +336,7 @@ const presetData = [
     },
   },
   {
-    id: 17,
+    id: 16,
     name: "Alchemist",
     aspect: "wizard",
     subclass: true,
@@ -357,7 +357,7 @@ const presetData = [
     },
   },
   {
-    id: 18,
+    id: 17,
     name: "Druid",
     aspect: "wizard",
     subclass: true,
@@ -378,7 +378,7 @@ const presetData = [
     },
   },
   {
-    id: 19,
+    id: 18,
     name: "Hermit/Witch",
     aspect: "wizard",
     subclass: true,
@@ -399,7 +399,7 @@ const presetData = [
     },
   },
   {
-    id: 18,
+    id: 19,
     name: "Martial Mage",
     aspect: "wizard",
     subclass: true,

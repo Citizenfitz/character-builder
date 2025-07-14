@@ -1,0 +1,1 @@
+This ensorcellment allows the caster to move the target creature vertically up or down in the air at a rate of 20' per round. The spell does not empower horizontal movement but the affected creature could push off objects to do so. The target must not be larger than a horse. Unwilling recipients are afforded a saving throw to resist the effect.

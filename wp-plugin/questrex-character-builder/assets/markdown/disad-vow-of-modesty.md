@@ -1,0 +1,1 @@
+The character must live simply and without excessive attachment to worldly possessions. He or she may only retain items they can personally use and carry, and only keep enough wealth for basic living. All else must be donated to worthy causes (not other PCs or their henchmen).

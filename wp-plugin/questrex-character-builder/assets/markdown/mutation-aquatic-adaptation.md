@@ -1,0 +1,1 @@
+The character is perfectly adapted for aquatic environments. They have gills and can breathe underwater, see normally underwater, and swim as fast as they can travel on land. Furthermore, they suffer no ill effects from great ocean depths or quick diving decompression.

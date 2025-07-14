@@ -1,0 +1,1 @@
+A _Rust_ spell causes all metal on a single creature, or single object no larger than 10 cubic feet, to instantly disintegrate into fine rust. It has no effect on non-metallic materials. The GM may rule that certain extraordinary metals (mithral, adamant, impervium, duralloy, etc.) are immune to the spell's effect.

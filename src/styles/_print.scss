@@ -110,13 +110,17 @@
 
 .print {
   &-text-input {
-    height: $form-element-height;
-    padding: 0 0.25em;
+    color: $color-text;
+    height: auto;
     font-family: $font-primary;
-    display: inline-block;
+    font-weight: 800;
+    display: block;
     width: 100%;
-    border-bottom: 1px solid $color-border;
   }
+}
+.label {
+  background-color: $color-input-bg;
+  padding: 2px;
 }
 
 // Page breaks
