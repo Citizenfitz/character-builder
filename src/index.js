@@ -1,9 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
-  Footer,
-  Header,
   CharacterSheet,
   HomePage,
   PageTraits,
@@ -47,6 +45,6 @@ if (container) {
   root.render(
     <React.StrictMode>
       <QuestRexCharBuilder containerId="questrex-root" />
-    </React.StrictMode>
+    </React.StrictMode>,
   );
 }

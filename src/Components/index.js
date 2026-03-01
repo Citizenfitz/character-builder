@@ -7,8 +7,6 @@ import PageTalents from "./PageTalents";
 import PagePsionics from "./PagePsionics";
 
 export {
-  Footer,
-  Header,
   CharacterSheet,
   HomePage,
   PageTraits,
