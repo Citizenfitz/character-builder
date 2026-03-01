@@ -3,7 +3,11 @@ import { createRoot } from "react-dom/client";
 import { CharacterSheet } from "./Components";
 import "./style.css";
 
-const QuestRexCharBuilder = ({ containerId }) => {
+interface QuestRexCharBuilderProps {
+  containerId?: string;
+}
+
+const QuestRexCharBuilder = ({ containerId }: QuestRexCharBuilderProps) => {
   return (
     <div id="questrex-char-builder-root">
       {/* Dice box container */}

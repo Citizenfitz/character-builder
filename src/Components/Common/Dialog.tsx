@@ -1,6 +1,16 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import React from "react";
 
+interface QuestRexDialogProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  children?: React.ReactNode;
+  className?: string;
+  showFooter?: boolean;
+  footerContent?: React.ReactNode;
+}
+
 export const QuestRexDialog = ({
   isOpen,
   onClose,
@@ -9,9 +19,7 @@ export const QuestRexDialog = ({
   className = "",
   showFooter = true,
   footerContent,
-  // Optionally allow a custom container to be passed in the future
-  // container,
-}) => {
+}: QuestRexDialogProps) => {
   // Ensure the modal and overlay are rendered inside the app container, not the body.
   // This is important for embedding the app in other pages.
   // The modal will render inside #questrex-modal-container if it exists, otherwise fallback to #questrex-root.
