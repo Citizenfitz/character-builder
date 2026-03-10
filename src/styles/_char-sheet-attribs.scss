@@ -7,6 +7,7 @@
   gap: $spacing-sm;
   align-self: flex-start;
   min-width: min-content;
+  font-family: $font-primary;
 
   // Keep existing nested styles
   &__input {
@@ -66,7 +67,7 @@
       margin-left: $spacing-xxs;
       width: 30px;
       text-align: center;
-      color: $color-accent;
+      color: $color-text;
       border-bottom: 1px solid;
     }
   }

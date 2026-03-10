@@ -4,7 +4,6 @@ const presetData = [
     name: "Fighter",
     aspect: "fighter",
     subclass: false,
-    desc: "The standard fighter is a straight-ahead, no-frills combatant. Their ranks are filled with knights, soldiers, gladiators, and the like.",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -25,7 +24,6 @@ const presetData = [
     name: "Archer",
     aspect: "fighter",
     subclass: true,
-    desc: "",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -46,7 +44,6 @@ const presetData = [
     name: "Barbarian (mountains)",
     aspect: "fighter",
     subclass: true,
-    desc: "copy",
     disad1: "Uneducated",
     disad2: "none",
     talents: {
@@ -67,7 +64,6 @@ const presetData = [
     name: "Barbarian (plains)",
     aspect: "fighter",
     subclass: true,
-    desc: "copy",
     disad1: "Uneducated",
     disad2: "none",
     talents: {
@@ -88,7 +84,6 @@ const presetData = [
     name: "Berserker",
     aspect: "fighter",
     subclass: true,
-    desc: "copy",
     disad1: "Uneducated",
     disad2: "none",
     talents: {
@@ -109,7 +104,6 @@ const presetData = [
     name: "Cavalier",
     aspect: "fighter",
     subclass: true,
-    desc: "",
     disad1: "Vow of Chivalry",
     disad2: "none",
     talents: {
@@ -130,7 +124,6 @@ const presetData = [
     name: "Paladin",
     aspect: "fighter",
     subclass: true,
-    desc: "copy",
     disad1: "Vow of Chivalry",
     disad2: "Vow of Modesty",
     talents: {
@@ -151,7 +144,6 @@ const presetData = [
     name: "Ranger",
     aspect: "fighter",
     subclass: true,
-    desc: "copy",
     disad1: "Vow of Modesty",
     disad2: "none",
     talents: {
@@ -172,7 +164,6 @@ const presetData = [
     name: "Swashbuckler",
     aspect: "fighter",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -193,7 +184,6 @@ const presetData = [
     name: "Cleric",
     aspect: "priest",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -214,7 +204,6 @@ const presetData = [
     name: "Cultist",
     aspect: "priest",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -235,7 +224,6 @@ const presetData = [
     name: "Mendicant",
     aspect: "priest",
     subclass: true,
-    desc: "copy",
     disad1: "Vow of Modesty",
     disad2: "none",
     talents: {
@@ -256,7 +244,6 @@ const presetData = [
     name: "Mystic",
     aspect: "priest",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -277,7 +264,6 @@ const presetData = [
     name: "Monk",
     aspect: "priest",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -298,7 +284,6 @@ const presetData = [
     name: "Templar",
     aspect: "priest",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -319,7 +304,6 @@ const presetData = [
     name: "Wizard",
     aspect: "wizard",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -340,7 +324,6 @@ const presetData = [
     name: "Alchemist",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -361,7 +344,6 @@ const presetData = [
     name: "Druid",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "Vow of Nature",
     disad2: "none",
     talents: {
@@ -382,7 +364,6 @@ const presetData = [
     name: "Hermit/Witch",
     aspect: "wizard",
     subclass: true,
-    desc: "Copy",
     disad1: "Disfigured",
     disad2: "none",
     talents: {
@@ -403,7 +384,6 @@ const presetData = [
     name: "Martial Mage",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -424,7 +404,6 @@ const presetData = [
     name: "Enchantress",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -445,7 +424,6 @@ const presetData = [
     name: "Illusionist",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -466,7 +444,6 @@ const presetData = [
     name: "Necromancer",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -487,7 +464,6 @@ const presetData = [
     name: "Sage",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -508,7 +484,6 @@ const presetData = [
     name: "Sorcerer",
     aspect: "wizard",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -529,7 +504,6 @@ const presetData = [
     name: "Rogue",
     aspect: "rogue",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -550,7 +524,6 @@ const presetData = [
     name: "Acrobat",
     aspect: "rogue",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -571,7 +544,6 @@ const presetData = [
     name: "Assasin",
     aspect: "rogue",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -592,7 +564,6 @@ const presetData = [
     name: "Bard/Jester/Lark",
     aspect: "rogue",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -613,7 +584,6 @@ const presetData = [
     name: "Beggar",
     aspect: "rogue",
     subclass: true,
-    desc: "copy",
     disad1: "Disfigured",
     disad2: "none",
     talents: {
@@ -634,7 +604,6 @@ const presetData = [
     name: "Mountebank",
     aspect: "rogue",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -655,7 +624,6 @@ const presetData = [
     name: "Obscurantist",
     aspect: "rogue",
     subclass: true,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -676,7 +644,6 @@ const presetData = [
     name: "Dwarven Fighter/Thief",
     aspect: "fighter",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -697,7 +664,6 @@ const presetData = [
     name: "Elven Figter/Wizard/Thief",
     aspect: "rogue",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -718,7 +684,6 @@ const presetData = [
     name: "Gnome Illusionist",
     aspect: "wizard",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -739,7 +704,6 @@ const presetData = [
     name: "Half-Orc Fighter",
     aspect: "fighter",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {
@@ -760,7 +724,6 @@ const presetData = [
     name: "Halfling Thief",
     aspect: "rogue",
     subclass: false,
-    desc: "copy",
     disad1: "none",
     disad2: "none",
     talents: {

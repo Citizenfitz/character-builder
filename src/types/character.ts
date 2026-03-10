@@ -13,17 +13,10 @@
  * - Export everything so we can import selectively or via barrel later
  */
 
-export type AspectName = "fighter" | "priest" | "wizard" | "rogue";
+import type { HitDiceType, AspectName, Talents } from "./common";
+import { raceData } from "../Data/dataRaces";
 
-export type RaceName =
-  | "Human"
-  | "Dwarf"
-  | "Elf"
-  | "Gnome"
-  | "Half-Elf"
-  | "Half-Orc"
-  | "Halfling"
-  | "Mutant";
+export type RaceName = (typeof raceData)[number]["name"];
 
 export type Gender = "Male" | "Female" | "other";
 
@@ -81,19 +74,6 @@ export interface HitPoints {
   total: number;
 }
 
-export interface Talents {
-  talentAssigned1: string;
-  talentAssigned2: string;
-  talentLevel1: string;
-  talentRogue1: string;
-  talentDisad1: string;
-  talentDisad2: string;
-  talentLevel3: string;
-  talentLevel5: string;
-  talentLevel7: string;
-  talentLevel9: string;
-}
-
 export interface Mutations {
   numMutations: number;
   numDefects: number;
@@ -127,7 +107,7 @@ export interface Character {
   rogueLevel: number;
   aspect: AspectName;
   race: RaceName;
-  hitDiceType: string; // e.g. "d6", "d8", "d10"
+  hitDiceType: HitDiceType;
 
   // Core stats
   attributes: Attributes;
@@ -169,6 +149,7 @@ export interface Character {
   wizardry1StartLevel: number;
   wizardry2StartLevel: number;
   wizardry3StartLevel: number;
+  psionicsStartLevel?: number;
 
   // Optional systems
   mutations: Mutations;

@@ -383,7 +383,9 @@ const CharacterSheet = () => {
     });
 
     // reset the optional presets picker
-    const preset = document.getElementById("presetSelector") as HTMLSelectElement | null;
+    const preset = document.getElementById(
+      "presetSelector",
+    ) as HTMLSelectElement | null;
     if (preset?.value !== "choose") {
       if (preset) preset.value = "choose";
       handlePreset("choose");
@@ -460,7 +462,7 @@ const CharacterSheet = () => {
     }));
   };
 
-  // this tells you at what level a character took a talent - needed for Wizardry schools & thaurmaturgy
+  // this tells you at what level a character took a talent - needed for Prayers, Wizadry, and Psionics
   // pass it the object of the current char talents
   // returns zero if not taken at all
   const findTalentLevelSlot = (talents, talentName) => {

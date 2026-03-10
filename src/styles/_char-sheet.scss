@@ -178,6 +178,9 @@
     gap: $spacing-md;
     .preset-chooser {
       margin-bottom: 0;
+      .label {
+        background-color: transparent;
+      }
     }
   }
 }

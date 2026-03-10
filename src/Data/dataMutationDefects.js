@@ -1,4 +1,4 @@
-const mutationDefectsData = [
+const MutationDefectData = [
   {
     id: 1,
     roll: 9,
@@ -131,4 +131,4 @@ const mutationDefectsData = [
   },
 ];
 
-export { mutationDefectsData };
+export { MutationDefectData };

@@ -39,3 +39,5 @@ const mutationsRollData = [
     numberOfDefects: 3,
   },
 ];
+
+export { mutationsRollData };

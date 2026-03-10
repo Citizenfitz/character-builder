@@ -89,7 +89,7 @@ const Attributes = (props) => {
             </div>
             <div className="attrib__name">{values.name}</div>
             <div className="attrib__mod">
-              Mod:<span>{formatNumberModifier(values.mod)}</span>
+              Mod:<span>{formatNumberModifier(values.mod ?? 0)}</span>
             </div>
             <button
               id={`roll-${key}`}

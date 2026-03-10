@@ -8,12 +8,13 @@ const calculateBonus = (attributeValue = 0) => {
   return bonusRange[attributeValue];
 };
 
-// adds + or - to front of bonus for display
+// adds + or - to front of bonus for display; always returns a string
 const formatNumberModifier = (bonusValue = 0) => {
-  if (bonusValue > 0) {
-    bonusValue = "+" + bonusValue;
+  const val = bonusValue ?? 0;
+  if (val > 0) {
+    return "+" + val;
   }
-  return bonusValue;
+  return String(val);
 };
 
 const formatNumberSuffix = (number) => {

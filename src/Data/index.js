@@ -4,7 +4,7 @@ import { dataAttributes } from "./dataAttributes";
 import { dataDisads } from "./dataDisads";
 import { levelsData } from "./dataLevels";
 import { meleeWeaponData, rangedWeaponData } from "./dataWeapons";
-import { mutationDefectsData } from "./dataMutationDefects";
+import { MutationDefectData } from "./dataMutationDefects";
 import { mutationsData } from "./dataMutations";
 import { mutationsRollData } from "./dataMutationsRoll";
 import { presetData } from "./dataPresets";
@@ -27,7 +27,7 @@ export {
   levelsData,
   magicSchoolsData,
   meleeWeaponData,
-  mutationDefectsData,
+  MutationDefectData,
   mutationsData,
   mutationsRollData,
   presetData,
