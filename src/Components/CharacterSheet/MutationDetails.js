@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { mutationsData, MutationDefectData } from "../../Data";
+import { mutationsData, mutationDefectData } from "../../Data";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import RenderMutation from "../Utilities/RenderMutation";
@@ -27,7 +27,7 @@ const getMutationFromRoll = (roll) => {
 
 const getDefectFromRoll = (roll) => {
   // Find the first defect where the roll is less than or equal to its roll value
-  const defect = MutationDefectData.sort((a, b) => a.roll - b.roll).find(
+  const defect = mutationDefectData.sort((a, b) => a.roll - b.roll).find(
     (d) => roll <= d.roll,
   );
 
@@ -196,7 +196,7 @@ const MutationDetails = ({ character, setCharacter }) => {
                     <option value="none">
                       Player's Choice: Select Defect {num}
                     </option>
-                    {MutationDefectData.filter(
+                    {mutationDefectData.filter(
                       (defect) => defect.name !== "Player's Choice",
                     ).map((defect) => (
                       <option key={defect.name} value={defect.name}>

@@ -14,6 +14,11 @@ import type {
   RangedWeapon,
   Shield,
   TalentData,
+  SpellData,
+  MagicSchoolData,
+  SpellSlots,
+  SpellList,
+  SpellDataRecord,
 } from "../types";
 
 // raw data files are created in Google Sheets
@@ -29,7 +34,7 @@ import {
   meleeWeaponData as rawMeleeWeaponData,
   rangedWeaponData as rawRangedWeaponData,
 } from "./dataWeapons";
-import { MutationDefectData as rawMutationDefectData } from "./dataMutationDefects";
+import { mutationDefectData as rawMutationDefectData } from "./dataMutationDefects";
 import { mutationsData as rawMutationsData } from "./dataMutations";
 import { mutationsRollData as rawMutationsRollData } from "./dataMutationsRoll";
 import { presetData as rawPresetData } from "./dataPresets";
@@ -38,14 +43,19 @@ import { shieldData as rawShieldData } from "./dataShield";
 import { talentData as rawTalentData } from "./dataTalents";
 import { psionicsData as rawPsionicsData } from "./dataPsionics";
 import {
-  prayersList,
-  wizardryList,
-  spellData,
-  spellSlots,
-  magicSchoolsData,
+  prayersList as rawPrayersList,
+  wizardryList as rawWizardryList,
+  spellData as rawSpellData,
+  spellSlots as rawSpellSlots,
+  magicSchoolsData as rawMagicSchoolsData,
 } from "./dataSpells";
 
 // Cast the imported data to the correct types
+const prayersList = rawPrayersList as unknown as SpellList;
+const wizardryList = rawWizardryList as unknown as SpellList;
+const spellData = rawSpellData as unknown as SpellDataRecord;
+const spellSlots = rawSpellSlots as unknown as SpellSlots;
+const magicSchoolsData = rawMagicSchoolsData as unknown as MagicSchoolData[];
 const armorData = rawArmorData as unknown as Armor[];
 const aspectData = rawAspectData as unknown as AspectData[];
 const disadData = rawDisadData as unknown as DisadData[];

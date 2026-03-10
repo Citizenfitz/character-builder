@@ -138,3 +138,29 @@ export interface PsionicsData {
   target: string;
   rangeInf: boolean;
 }
+
+// ***** SPELLS *****
+export interface SpellData {
+  cast: string;
+  range: string;
+  target: string;
+  duration: string;
+  school: string[] | null; // null for priest-only spells
+  components: string;
+  save: string;
+  wizLvl: number;
+  priestLvl: number;
+}
+
+export interface MagicSchoolData {
+  id: number;
+  name: string;
+  desc: string;
+  isDisabled: boolean;
+}
+
+export type SpellSlots = (number | string)[][];
+
+export type SpellList = string[][];
+
+export type SpellDataRecord = Record<string, SpellData>;

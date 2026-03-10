@@ -15,6 +15,11 @@ import type {
   RangedWeapon,
   Shield,
   TalentData,
+  SpellData,
+  MagicSchoolData,
+  SpellSlots,
+  SpellList,
+  SpellDataRecord,
 } from "./data";
 
 import type {
@@ -59,4 +64,9 @@ export type {
   Shield,
   TalentData,
   Talents,
+  SpellData,
+  MagicSchoolData,
+  SpellSlots,
+  SpellList,
+  SpellDataRecord,
 };
