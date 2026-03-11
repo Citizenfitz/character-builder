@@ -46,9 +46,7 @@ type SetUpdateAttributesAction = {
 
 type SetPresetAction = {
   type: "SET_PRESET";
-  payload: {
-    preset: string | "choose";
-  };
+  payload: number | "choose";
 };
 
 type SetRaceAction = {

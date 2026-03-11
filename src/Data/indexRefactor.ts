@@ -2,6 +2,7 @@
 import type {
   Armor,
   AspectData,
+  Attributes,
   DisadData,
   LevelData,
   MeleeWeapon,
@@ -27,7 +28,7 @@ import type {
 // internal data
 import { armorData as rawArmorData } from "./dataArmor";
 import { aspectData as rawAspectData } from "./dataAspects";
-import { dataAttributes } from "./dataAttributes";
+import { dataAttributes as rawDataAttributes } from "./dataAttributes";
 import { dataDisads as rawDisadData } from "./dataDisads";
 import { levelsData as rawLevelsData } from "./dataLevels";
 import {
@@ -71,7 +72,7 @@ const raceData = rawRaceData as unknown as RaceData[];
 const rangedWeaponData = rawRangedWeaponData as unknown as RangedWeapon[];
 const shieldData = rawShieldData as unknown as Shield[];
 const talentData = rawTalentData as unknown as TalentData[];
-
+const dataAttributes = rawDataAttributes as unknown as Attributes;
 export {
   armorData,
   aspectData,

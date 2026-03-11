@@ -1,32 +1,105 @@
 // external types/interfaces
 import type {
+  AspectName,
   Character,
   CharacterAction,
   HitPoints,
-  AspectName,
+  RaceName,
   Talents,
 } from "../types";
 
 // internal utilities
-import { findTalentLevelSlot } from "../Components/Utilities/findTalentSlot";
+import { findTalentLevelSlot, findTalentAspect } from "../Components/Utilities";
 
 // internal data
 import {
   armorData,
-  shieldData,
+  aspectData,
   meleeWeaponData,
-  rangedWeaponData,
+  presetData,
   raceData,
+  rangedWeaponData,
+  shieldData,
+  dataAttributes,
 } from "../Data/indexRefactor";
 
-/// ****** Race Validator ******
-const RACE_NAMES = raceData.map((race) => race.name);
-
-const isRace = (value: string): boolean => {
-  return RACE_NAMES.includes(value);
+/// ****** Character Defaults ******
+export const characterDefaults: Character = {
+  namePlayer: "",
+  nameCharacter: "",
+  level: 1,
+  fighterLevel: 1,
+  priestLevel: 1,
+  wizardLevel: 1,
+  rogueLevel: 1,
+  race: "Human",
+  gender: "Male",
+  aspect: aspectData[0].name as AspectName,
+  alignment: "Neutral",
+  hitDiceType: aspectData[0].hitDiceType,
+  attributes: dataAttributes,
+  attributesUpdates: false, // need a shallow state prop to trigger component update TODO: remove once context added
+  ac: 10,
+  hp: {
+    rolls: [], // hit dice rolls per level
+    bonus: [], // attribute bonus per level, may change if CON attribute increases
+    hasDurability: false, // talent bonus, if not false then set the level durability was obtained
+    durabilityBonus: 0, // equal to fighter level
+    manual: 0, // manual bonus from input
+    total: 0, // total value
+  },
+  perception: 10,
+  movement: 30,
+  disad1: "none",
+  disad2: "none",
+  talents: {
+    talentAssigned1: "Combat",
+    talentAssigned2: "Multi-Attack",
+    talentLevel1: "choose",
+    talentRogue1: "choose",
+    talentDisad1: "choose",
+    talentDisad2: "choose",
+    talentLevel3: "choose",
+    talentLevel5: "choose",
+    talentLevel7: "choose",
+    talentLevel9: "choose",
+  },
+  talentsUpdated: false, // need a shallow state prop to trigger component update TODO: remove once context added
+  saveModsClass:
+    "+2 vs petrification, polymorph, breath weapons, entangling and grappling attacks. ",
+  saveModsRace: [],
+  armor: armorData[0],
+  shield: 0,
+  shieldIndex: 0,
+  armorIndex: 0,
+  meleeWeapon: meleeWeaponData[0],
+  meleeWeaponIndex: 0,
+  rangedWeapon: rangedWeaponData[0],
+  rangedWeaponIndex: 0,
+  attributesRace: [],
+  //hasWizardry: false,
+  wizardrySchools: ["Choose", "Choose"],
+  prayersStartLevel: 0,
+  wizardry1StartLevel: 0,
+  wizardry2StartLevel: 0,
+  wizardry3StartLevel: 0,
+  mutations: {
+    numMutations: 1,
+    numDefects: 0,
+    mutation1: "none",
+    mutation2: "none",
+    mutation3: "none",
+    mutation4: "none",
+    mutation5: "none",
+    defect1: "none",
+    defect2: "none",
+    defect3: "none",
+  },
+  psionics: {
+    psp: 0,
+    wildPsionics: [],
+  },
 };
-// TODO: if newRace === "Mutant" → show mutations panel
-// if previousRace === "Mutant" → hide/reset mutations panel
 
 /// ****** Talent Switcher  ******
 interface TalentDiff {
@@ -37,6 +110,7 @@ interface TalentDiff {
 
 type TalentDiffSet = TalentDiff[];
 
+// Simple function that just returns what changed between to talent objects.
 const getTalentDiff = (prev: Talents, next: Talents): TalentDiffSet => {
   const diffs: TalentDiffSet = [];
   (Object.keys(prev) as Array<keyof Talents>).forEach((key) => {
@@ -62,7 +136,8 @@ const validateSpellCaster = (state: Character): Character => {
   };
 };
 
-// TODO: implement full talent reconciliation
+// TODO: implement full talent reconciliation.
+// Handles prerequisite checks for talents and the like
 const reconcileTalents = (state: Character): Character => {
   return validateSpellCaster(state);
   // Future: cascadeRemovals, reconcileWizardrySchools, etc.
@@ -125,13 +200,107 @@ const calcAspectLevel = (
   };
 };
 
+const handleRaceChange = (state: Character, newRace: string): Character => {
+  const raceEntry = raceData.find((r) => r.name === newRace);
+  if (!raceEntry) return state;
+  return {
+    ...state,
+    race: newRace as RaceName,
+    movement: raceEntry.movement,
+    saveModsRace: raceEntry.saveModsRace,
+    attributesRace: raceEntry.characteristics,
+    // TODO: if newRace === "Mutant" → show mutations panel
+    // TODO: if previousRace === "Mutant" → reset mutations
+  };
+};
+
+const handleDurabilityChange = (
+  state: Character,
+  hasDurability: number | true | false,
+): Character => {
+  // TODO: implement durability bonus calculation
+  // gaining = true → add durability bonus based on fighterLevel
+  // gaining = false → remove durability bonus, reset durabilityBonus to 0
+  return state;
+};
+
+// zero out hit points if the character changes aspect or level.
+//TODO: implement flag of "You need to roll hit points" in the UI somehow.
+const emptyHitPoints = (currentHp: HitPoints): HitPoints => ({
+  rolls: [],
+  bonus: [],
+  hasDurability: currentHp.hasDurability,
+  durabilityBonus: currentHp.durabilityBonus,
+  manual: 0,
+  total: 0,
+});
+
+// Applies a new talents object, diffs against previous, applies side effects, reconciles
+const applyTalentChange = (
+  state: Character,
+  newTalents: Talents,
+): Character => {
+  // newTalents already built by caller
+  const diffs = getTalentDiff(state.talents, newTalents);
+
+  // Route to handlers based on diff
+  let newState: Character = { ...state, talents: newTalents };
+  diffs.forEach((diff) => {
+    // RACE CHECKS
+    // If the prev value was a race, reset to human
+    if (findTalentAspect(diff.previousValue) === "race") {
+      newState = handleRaceChange(newState, "Human");
+    }
+    // If the new value is a race, apply the new race
+    if (findTalentAspect(diff.newValue) === "race") {
+      newState = handleRaceChange(newState, diff.newValue);
+    }
+    //DURABILITY CHECKS
+    // If they lose durability remove the bonuses
+    if (diff.previousValue === "Durability") {
+      newState = handleDurabilityChange(newState, false);
+    }
+    // If they gain durability recalc and add the bonuses
+    if (diff.newValue === "Durability") {
+      newState = handleDurabilityChange(newState, true);
+    }
+  });
+
+  // Always reconcile at the end
+  return reconcileTalents(newState);
+};
+
 export const characterReducer = (
   state: Character,
   action: CharacterAction,
 ): Character => {
   switch (action.type) {
-    case "SET_LEVEL":
-      return { ...state, level: action.payload };
+    case "SET_LEVEL": {
+      const newState = {
+        ...state,
+        ...calcAspectLevel(action.payload, state.aspect),
+        hp: emptyHitPoints(state.hp),
+      };
+      return reconcileTalents(newState);
+    }
+
+    case "SET_ASPECT": {
+      const aspectEntry = aspectData.find((a) => a.name === action.payload);
+      const aspectState = {
+        ...state,
+        ...calcAspectLevel(state.level, action.payload),
+        aspect: action.payload,
+        hitDiceType: aspectEntry?.hitDiceType ?? state.hitDiceType,
+        saveModsClass: aspectEntry?.saveModsClass ?? state.saveModsClass,
+        talents: {
+          ...state.talents,
+          talentAssigned2:
+            aspectEntry?.assignedTalent2 ?? state.talents.talentAssigned2,
+        },
+        hp: emptyHitPoints(state.hp),
+      };
+      return reconcileTalents(aspectState);
+    }
 
     //TALENTS AND DISADS
     case "SET_DISAD":
@@ -150,6 +319,54 @@ export const characterReducer = (
         perception: 10 + action.payload.wisdom.mod,
       };
 
+    //HIT POINTS
+    case "SET_HP": {
+      const newHp = calcHpTotal(
+        state.hp,
+        action.payload,
+        state.fighterLevel,
+        state.level,
+      );
+      return {
+        ...state,
+        hp: newHp,
+      };
+    }
+
+    // TALENTS
+    case "SET_TALENTS": {
+      return applyTalentChange(state, action.payload.talents);
+    }
+
+    // PRESETS
+    case "SET_PRESET": {
+      if (action.payload === "choose") {
+        return applyTalentChange(
+          { ...state, disad1: "none", disad2: "none" },
+          characterDefaults.talents,
+        );
+      }
+
+      const preset = presetData.find((p) => p.id === action.payload);
+      if (!preset) return state;
+
+      const newState = {
+        ...state,
+        aspect: preset.aspect,
+        disad1: preset.disad1,
+        disad2: preset.disad2,
+        ...calcAspectLevel(state.level, preset.aspect),
+        hp: emptyHitPoints(state.hp),
+      };
+
+      const newTalents: Talents = {
+        ...characterDefaults.talents,
+        ...preset.talents,
+      };
+
+      return applyTalentChange(newState, newTalents);
+    }
+
     // EQUIPMENT
     case "SET_ARMOR": {
       const armor = armorData[action.payload.armorIndex];
@@ -160,7 +377,7 @@ export const characterReducer = (
         ac: 10 + state.attributes.dexterity.mod + armor.modifier + state.shield,
       };
     }
-    case "SET_SHIELD":
+    case "SET_SHIELD": {
       const shield = shieldData[action.payload.shieldIndex];
       return {
         ...state,
@@ -172,20 +389,23 @@ export const characterReducer = (
           state.armor.modifier +
           shield.modifier,
       };
-    case "SET_MELEE_WEAPON":
+    }
+    case "SET_MELEE_WEAPON": {
       const meleeWeapon = meleeWeaponData[action.payload.meleeWeaponIndex];
       return {
         ...state,
         meleeWeapon,
         meleeWeaponIndex: action.payload.meleeWeaponIndex,
       };
-    case "SET_RANGED_WEAPON":
+    }
+    case "SET_RANGED_WEAPON": {
       const rangedWeapon = rangedWeaponData[action.payload.rangedWeaponIndex];
       return {
         ...state,
         rangedWeapon,
         rangedWeaponIndex: action.payload.rangedWeaponIndex,
       };
+    }
 
     // CATCH ALL FOR THE OTHER INPUTS
     case "SET_INPUT_CHANGE":
