@@ -1,4 +1,10 @@
-export type AspectName = "fighter" | "priest" | "wizard" | "rogue";
+export type AspectName =
+  | "fighter"
+  | "priest"
+  | "wizard"
+  | "rogue"
+  | "common"
+  | "race";
 
 export type HitDiceType = 4 | 6 | 8;
 

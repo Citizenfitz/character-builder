@@ -1,8 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Provider } from "react-redux";
+import { CharacterProvider } from "./context/CharacterContext";
 import { CharacterSheet } from "./Components";
-import { store } from "./store";
 import "./style.css";
 
 interface QuestRexCharBuilderProps {
@@ -33,9 +32,9 @@ if (container) {
   const root = createRoot(container);
   root.render(
     <React.StrictMode>
-      <Provider store={store}>
+      <CharacterProvider>
         <QuestRexCharBuilder containerId="questrex-root" />
-      </Provider>
-    </React.StrictMode>
+      </CharacterProvider>
+    </React.StrictMode>,
   );
 }

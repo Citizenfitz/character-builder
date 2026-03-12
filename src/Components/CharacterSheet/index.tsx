@@ -36,7 +36,7 @@ import diceRoller from "../Utilities/diceRoller";
 import {
   rollAttributes as tempRollAttributes,
   rollHp as tempRollHp,
-} from "../Utilities/TempDiceRoller";
+} from "../Utilities/";
 
 /*  --------------- DICE BOX -------------- */
 // Function to roll dice with fallback
