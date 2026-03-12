@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { mutationsData, mutationDefectData } from "../../Data";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import RenderMutation from "../Utilities/RenderMutation";
-import RenderDefect from "../Utilities/RenderDefect";
+import RenderMutation from "../MarkdownRender/RenderMutation";
+import RenderDefect from "../MarkdownRender/RenderDefect";
 
 const MUTATION_COMBINATIONS = [
   { label: "1 / 0", mutations: 1, defects: 0 },
@@ -27,9 +27,9 @@ const getMutationFromRoll = (roll) => {
 
 const getDefectFromRoll = (roll) => {
   // Find the first defect where the roll is less than or equal to its roll value
-  const defect = mutationDefectData.sort((a, b) => a.roll - b.roll).find(
-    (d) => roll <= d.roll,
-  );
+  const defect = mutationDefectData
+    .sort((a, b) => a.roll - b.roll)
+    .find((d) => roll <= d.roll);
 
   // Return "none" for Player's Choice or if no defect found
   return defect && defect.name !== "Player's Choice" ? defect.name : "none";
@@ -196,13 +196,13 @@ const MutationDetails = ({ character, setCharacter }) => {
                     <option value="none">
                       Player's Choice: Select Defect {num}
                     </option>
-                    {mutationDefectData.filter(
-                      (defect) => defect.name !== "Player's Choice",
-                    ).map((defect) => (
-                      <option key={defect.name} value={defect.name}>
-                        {defect.name}
-                      </option>
-                    ))}
+                    {mutationDefectData
+                      .filter((defect) => defect.name !== "Player's Choice")
+                      .map((defect) => (
+                        <option key={defect.name} value={defect.name}>
+                          {defect.name}
+                        </option>
+                      ))}
                   </select>
                 ) : (
                   <>&nbsp;</>

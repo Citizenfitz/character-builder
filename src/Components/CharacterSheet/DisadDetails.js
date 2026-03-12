@@ -1,6 +1,6 @@
 import React from "react";
 import { dataDisads } from "../../Data";
-import RenderDisad from "../Utilities/RenderDisad";
+import RenderDisad from "../MarkdownRender/RenderDisad";
 
 const DisadDetails = ({ character }) => {
   // Helper function to get available disads
@@ -23,9 +23,11 @@ const DisadDetails = ({ character }) => {
         if (!disad) return null;
 
         // Import markdown content
-        const markdownContent = require(`../../markdown/disad-${disad.name
-          .toLowerCase()
-          .replace(/ /g, "-")}.md`);
+        const markdownContent = require(
+          `../../markdown/disad-${disad.name
+            .toLowerCase()
+            .replace(/ /g, "-")}.md`,
+        );
 
         return (
           <div key={disad.name} id={disad.name}>

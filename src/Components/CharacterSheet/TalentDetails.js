@@ -1,6 +1,6 @@
 import React from "react";
 import { talentData } from "../../Data";
-import RenderTalent from "../Utilities/RenderTalent";
+import RenderTalent from "../MarkdownRender/RenderTalent";
 
 const TalentDetails = ({ character }) => {
   // Helper function to filter talents based on level requirements

@@ -1,31 +1,31 @@
 import React, { useEffect } from "react";
 import { psionicsData } from "../../Data";
-import RenderPsionic from "../Utilities/RenderPsionic";
+import RenderPsionic from "../MarkdownRender/RenderPsionic";
 import { calculateBonus, rollPsionicPower } from "../Utilities";
 
 const WildPsionics = ({ character, setCharacter }) => {
   // Check if character has Wild Psionics talent in any slot
   const hasWildPsionics = Object.values(character.talents).some(
-    (talent) => talent === "Wild Psionics"
+    (talent) => talent === "Wild Psionics",
   );
 
   // Calculate PSP based on number of Wild Psionics talents
   const wildPsionicCount = Object.values(character.talents).filter(
-    (talent) => talent === "Wild Psionics"
+    (talent) => talent === "Wild Psionics",
   ).length;
 
   // Get positive bonuses from mental attributes (doubled)
   const intBonus = Math.max(
     0,
-    calculateBonus(character.attributes.intelligence.total) * 2
+    calculateBonus(character.attributes.intelligence.total) * 2,
   );
   const wisBonus = Math.max(
     0,
-    calculateBonus(character.attributes.wisdom.total) * 2
+    calculateBonus(character.attributes.wisdom.total) * 2,
   );
   const chaBonus = Math.max(
     0,
-    calculateBonus(character.attributes.charisma.total) * 2
+    calculateBonus(character.attributes.charisma.total) * 2,
   );
   const attributeBonus = intBonus + wisBonus + chaBonus;
 
@@ -105,7 +105,7 @@ const WildPsionics = ({ character, setCharacter }) => {
                         value={character.psionics.wildPsionics[index].name}
                         onChange={(e) => {
                           const selectedPower = psionicsData.find(
-                            (p) => p.name === e.target.value
+                            (p) => p.name === e.target.value,
                           );
                           setCharacter((prev) => {
                             const newWildPsionics = [
