@@ -1,6 +1,14 @@
 // Import from character.ts (source) to avoid circular dependency with index.ts.
 // All types are re-exported from index.ts for consumers outside this folder.
-import type { AspectName, Attributes, RaceName, Talents } from "./index";
+import type {
+  AspectName,
+  Attributes,
+  RaceName,
+  Talents,
+  Mutations,
+  SpellSelection,
+  Psionics,
+} from "./index";
 
 type SetLevelAction = {
   type: "SET_LEVEL";
@@ -82,6 +90,34 @@ type SetRangedWeaponAction = {
   };
 };
 
+type SetMutationsAction = {
+  type: "SET_MUTATIONS";
+  payload: Partial<Mutations>;
+};
+
+type SetPrayerSpellAction = {
+  type: "SET_PRAYER_SPELL";
+  payload: {
+    levelIndex: number;
+    slotIndex: number;
+    spell: SpellSelection | null;
+  };
+};
+
+type SetWizardrySpellAction = {
+  type: "SET_WIZARDRY_SPELL";
+  payload: {
+    levelIndex: number;
+    slotIndex: number;
+    spell: SpellSelection | null;
+  };
+};
+
+type SetPsionicsAction = {
+  type: "SET_PSIONICS";
+  payload: Partial<Psionics>;
+};
+
 // ******** Catch All Action ********
 // Generic setter for simple, independent string fields that trigger no derived state
 // (namePlayer, nameCharacter, gender, alignment, etc.)
@@ -102,10 +138,14 @@ export type CharacterAction =
   | SetTalentsAction
   | SetHPAction
   | SetUpdateAttributesAction
+  | SetMutationsAction
   | SetPresetAction
   | SetRaceAction
   | SetArmorAction
   | SetShieldAction
   | SetMeleeWeaponAction
   | SetRangedWeaponAction
-  | SetInputChangeAction;
+  | SetPrayerSpellAction
+  | SetWizardrySpellAction
+  | SetInputChangeAction
+  | SetPsionicsAction;

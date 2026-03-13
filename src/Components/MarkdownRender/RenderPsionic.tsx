@@ -1,12 +1,11 @@
-import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import useMarkdown from "./useMarkdown";
 
 interface RenderPsionicProps {
-  id: string;
+  id: number;
   name: string;
-  psp: number;
+  psp: string;
   initiate: string;
   discipline: string;
   duration: string;
@@ -14,6 +13,7 @@ interface RenderPsionicProps {
   visibility: string;
   save: string;
   target: string;
+  rangeInf: boolean;
 }
 
 const RenderPsionic = ({
@@ -32,7 +32,7 @@ const RenderPsionic = ({
 
   return (
     <div className="desc desc--psionic">
-      <h3 className="desc__header" id={id}>
+      <h3 className="desc__header" id={id.toString()}>
         {name}
       </h3>
       <ul className="desc__list desc__list--psionic">

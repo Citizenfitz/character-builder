@@ -256,6 +256,7 @@
   margin-bottom: 1rem;
   font-weight: normal;
   display: block;
+  background-color: transparent;
 }
 #questrex-char-builder-root label--inline,
 #questrex-char-builder-root .label--inline {
@@ -1800,9 +1801,6 @@
 #questrex-char-builder-root .char-sheet__toolbar .preset-chooser {
   margin-bottom: 0;
 }
-#questrex-char-builder-root .char-sheet__toolbar .preset-chooser .label {
-  background-color: transparent;
-}
 #questrex-char-builder-root .char-sheet__quick-ref {
   display: flex;
   flex-wrap: wrap;
@@ -2257,7 +2255,6 @@
   width: 100%;
 }
 #questrex-char-builder-root .label {
-  background-color: #f5f3ed;
   padding: 2px;
 }
 #questrex-char-builder-root .char-sheet__section--talents {

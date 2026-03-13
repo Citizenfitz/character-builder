@@ -26,6 +26,7 @@ label,
   margin-bottom: $spacing-sm;
   font-weight: normal;
   display: block;
+  background-color: transparent;
   &--inline {
     display: inline-block;
     margin-right: $spacing-xs;

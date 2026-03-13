@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { mutationsData, mutationDefectData } from "../../Data";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
+import React from "react";
+import { mutationsData, mutationDefectData } from "../../Data/indexRefactor";
 import RenderMutation from "../MarkdownRender/RenderMutation";
 import RenderDefect from "../MarkdownRender/RenderDefect";
+import { useCharacter } from "../../context/CharacterContext";
+import type { Mutations } from "../../types";
 
+// TODO: move mutation rules to Utilities/talentRules.ts in rules revision
 const MUTATION_COMBINATIONS = [
   { label: "1 / 0", mutations: 1, defects: 0 },
   { label: "2 / 1", mutations: 2, defects: 1 },
@@ -13,69 +14,57 @@ const MUTATION_COMBINATIONS = [
   { label: "4 / 3", mutations: 4, defects: 3 },
 ];
 
-const getMutationFromRoll = (roll) => {
-  // Find the first mutation where the roll is less than or equal to its roll value
+const getMutationFromRoll = (roll: number): string => {
   const mutation = mutationsData
     .sort((a, b) => a.roll - b.roll)
     .find((m) => roll <= m.roll);
-
-  // Return "none" for Player's Choice or if no mutation found
   return mutation && mutation.name !== "Player's Choice"
     ? mutation.name
     : "none";
 };
 
-const getDefectFromRoll = (roll) => {
-  // Find the first defect where the roll is less than or equal to its roll value
+const getDefectFromRoll = (roll: number): string => {
   const defect = mutationDefectData
     .sort((a, b) => a.roll - b.roll)
     .find((d) => roll <= d.roll);
-
-  // Return "none" for Player's Choice or if no defect found
   return defect && defect.name !== "Player's Choice" ? defect.name : "none";
 };
 
-const MutationDetails = ({ character, setCharacter }) => {
-  const handleCombinedChange = (value) => {
-    const [mutations, defects] = value
+const MutationDetails = () => {
+  const { character, dispatch } = useCharacter();
+  const { mutations } = character;
+
+  const dispatchMutations = (payload: Partial<Mutations>) => {
+    dispatch({ type: "SET_MUTATIONS", payload });
+  };
+
+  const handleCombinedChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const [numMutations, numDefects] = e.target.value
       .split("/")
-      .map((num) => Number(num.trim()));
-    setCharacter((prev) => ({
-      ...prev,
-      mutations: {
-        ...prev.mutations,
-        numMutations: mutations,
-        numDefects: defects,
-      },
-    }));
+      .map((n) => Number(n.trim()));
+    dispatchMutations({ numMutations, numDefects });
   };
 
-  // Add back the mutation and defect handlers
-  const handleMutationChange = (num, value) => {
-    setCharacter((prev) => ({
-      ...prev,
-      mutations: {
-        ...prev.mutations,
-        [`mutation${num}`]: value,
-      },
-    }));
+  const handleMutationChange = (
+    num: number,
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    dispatchMutations({
+      [`mutation${num}`]: e.target.value,
+    } as Partial<Mutations>);
   };
 
-  const handleDefectChange = (num, value) => {
-    setCharacter((prev) => ({
-      ...prev,
-      mutations: {
-        ...prev.mutations,
-        [`defect${num}`]: value,
-      },
-    }));
+  const handleDefectChange = (
+    num: number,
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
+    dispatchMutations({
+      [`defect${num}`]: e.target.value,
+    } as Partial<Mutations>);
   };
 
-  // Get current combination value for select
-  const getCurrentCombo = () => {
-    const { numMutations, numDefects } = character.mutations;
-    return `${numMutations} / ${numDefects}`;
-  };
+  const getCurrentCombo = (): string =>
+    `${mutations.numMutations} / ${mutations.numDefects}`;
 
   const handleRandomize = () => {
     const roll = Math.floor(Math.random() * 20) + 1;
@@ -97,45 +86,39 @@ const MutationDetails = ({ character, setCharacter }) => {
       numDefects = 3;
     }
 
-    // Generate random mutations
-    const mutations = {};
-    for (let i = 1; i <= numMutations; i++) {
-      const mutationRoll = Math.floor(Math.random() * 100) + 1;
-      mutations[`mutation${i}`] = getMutationFromRoll(mutationRoll);
+    const newMutations: Partial<Record<keyof Mutations, string | number>> = {
+      numMutations,
+      numDefects,
+    };
+
+    for (let i = 1; i <= 4; i++) {
+      const key = `mutation${i}` as keyof Mutations;
+      newMutations[key] =
+        i <= numMutations
+          ? getMutationFromRoll(Math.floor(Math.random() * 100) + 1)
+          : "none";
     }
 
-    // Reset unused mutation slots
-    for (let i = numMutations + 1; i <= 4; i++) {
-      mutations[`mutation${i}`] = "none";
+    for (let i = 1; i <= 3; i++) {
+      const key = `defect${i}` as keyof Mutations;
+      newMutations[key] =
+        i <= numDefects
+          ? getDefectFromRoll(Math.floor(Math.random() * 100) + 1)
+          : "none";
     }
 
-    // Generate random defects
-    for (let i = 1; i <= numDefects; i++) {
-      const defectRoll = Math.floor(Math.random() * 100) + 1;
-      mutations[`defect${i}`] = getDefectFromRoll(defectRoll);
-    }
-
-    // Reset unused defect slots
-    for (let i = numDefects + 1; i <= 3; i++) {
-      mutations[`defect${i}`] = "none";
-    }
-
-    setCharacter((prev) => ({
-      ...prev,
-      mutations: {
-        ...prev.mutations,
-        ...mutations,
-        numMutations,
-        numDefects,
-      },
-    }));
+    dispatchMutations(newMutations as Partial<Mutations>);
   };
 
   return (
     <div className="char-sheet__mutations">
       <div className="char-sheet__mutations-controls">
-        <button className="char-sheet__button" onClick={handleRandomize}>
-          <i className="fas fa-dice"></i> Randomize Mutations
+        <button
+          className="char-sheet__button"
+          onClick={handleRandomize}
+          aria-label="Randomize all mutations and defects"
+        >
+          <i className="fas fa-dice" aria-hidden="true" /> Randomize Mutations
         </button>
 
         <label className="char-sheet__mutations-control">
@@ -143,7 +126,8 @@ const MutationDetails = ({ character, setCharacter }) => {
           <select
             className="char-sheet__select"
             value={getCurrentCombo()}
-            onChange={(e) => handleCombinedChange(e.target.value)}
+            onChange={handleCombinedChange}
+            aria-label="Select number of mutations and defects"
           >
             {MUTATION_COMBINATIONS.map((combo) => (
               <option key={combo.label} value={combo.label}>
@@ -154,28 +138,38 @@ const MutationDetails = ({ character, setCharacter }) => {
         </label>
       </div>
 
-      <table className="char-sheet__table char-sheet__table--mutations">
+      <table
+        className="char-sheet__table char-sheet__table--mutations"
+        aria-label="Mutations and Defects"
+      >
         <thead>
           <tr>
-            <th className="char-sheet__table__header">Mutations</th>
-            <th className="char-sheet__table__header">Defects</th>
+            <th className="char-sheet__table__header" scope="col">
+              Mutations
+            </th>
+            <th className="char-sheet__table__header" scope="col">
+              Defects
+            </th>
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3, 4].map((num) => (
+          {([1, 2, 3, 4] as const).map((num) => (
             <tr key={num}>
               <td className="char-sheet__table__cell">
-                {num <= character.mutations.numMutations ? (
+                {num <= mutations.numMutations ? (
                   <select
                     className="char-sheet__select"
-                    value={character.mutations[`mutation${num}`]}
-                    onChange={(e) => handleMutationChange(num, e.target.value)}
+                    value={
+                      mutations[`mutation${num}` as keyof Mutations] as string
+                    }
+                    onChange={(e) => handleMutationChange(num, e)}
+                    aria-label={`Mutation ${num}`}
                   >
                     <option value="none">
                       Player's Choice: Select Mutation {num}
                     </option>
                     {mutationsData
-                      .filter((mutation) => mutation.name !== "Player's Choice")
+                      .filter((m) => m.name !== "Player's Choice")
                       .map((mutation) => (
                         <option key={mutation.name} value={mutation.name}>
                           {mutation.name}
@@ -187,17 +181,20 @@ const MutationDetails = ({ character, setCharacter }) => {
                 )}
               </td>
               <td className="char-sheet__table__cell">
-                {num <= character.mutations.numDefects ? (
+                {num <= mutations.numDefects ? (
                   <select
                     className="char-sheet__select"
-                    value={character.mutations[`defect${num}`]}
-                    onChange={(e) => handleDefectChange(num, e.target.value)}
+                    value={
+                      mutations[`defect${num}` as keyof Mutations] as string
+                    }
+                    onChange={(e) => handleDefectChange(num, e)}
+                    aria-label={`Defect ${num}`}
                   >
                     <option value="none">
                       Player's Choice: Select Defect {num}
                     </option>
                     {mutationDefectData
-                      .filter((defect) => defect.name !== "Player's Choice")
+                      .filter((d) => d.name !== "Player's Choice")
                       .map((defect) => (
                         <option key={defect.name} value={defect.name}>
                           {defect.name}
@@ -214,15 +211,16 @@ const MutationDetails = ({ character, setCharacter }) => {
       </table>
 
       <div className="char-sheet__mutations-details">
-        {[1, 2, 3, 4].map((num) => {
-          const mutation = character.mutations[`mutation${num}`];
+        {([1, 2, 3, 4] as const).map((num) => {
+          const mutation = mutations[
+            `mutation${num}` as keyof Mutations
+          ] as string;
           return mutation && mutation !== "none" ? (
             <RenderMutation key={`mutation-${num}`} name={mutation} />
           ) : null;
         })}
-
-        {[1, 2, 3].map((num) => {
-          const defect = character.mutations[`defect${num}`];
+        {([1, 2, 3] as const).map((num) => {
+          const defect = mutations[`defect${num}` as keyof Mutations] as string;
           return defect && defect !== "none" ? (
             <RenderDefect key={`defect-${num}`} name={defect} />
           ) : null;

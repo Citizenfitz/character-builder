@@ -83,6 +83,8 @@ export const characterDefaults: Character = {
   wizardry1StartLevel: 0,
   wizardry2StartLevel: 0,
   wizardry3StartLevel: 0,
+  prayerSpells: [[], [], [], [], [], [], []],
+  wizardrySpells: [[], [], [], [], [], [], []],
   mutations: {
     numMutations: 1,
     numDefects: 0,
@@ -144,18 +146,6 @@ const reconcileTalents = (state: Character): Character => {
 };
 
 /// ****** Helper Functions ******
-
-const calcHpTotal = (
-  currentHp: HitPoints,
-  incoming: Partial<HitPoints>,
-  fighterLevel: number,
-  characterLevel: number,
-): HitPoints => {
-  // TODO: implement proper HP calculation
-  // Complex logic involving rolls, bonuses, durability talent etc.
-  // For now returning stub value
-  return { ...currentHp, total: 40 };
-};
 
 const calcAspectLevel = (
   level: number,
@@ -321,21 +311,23 @@ export const characterReducer = (
 
     //HIT POINTS
     case "SET_HP": {
-      const newHp = calcHpTotal(
-        state.hp,
-        action.payload,
-        state.fighterLevel,
-        state.level,
-      );
       return {
         ...state,
-        hp: newHp,
+        hp: { ...state.hp, ...action.payload },
       };
     }
 
     // TALENTS
     case "SET_TALENTS": {
       return applyTalentChange(state, action.payload.talents);
+    }
+
+    // MUTATIONS
+    case "SET_MUTATIONS": {
+      return {
+        ...state,
+        mutations: { ...state.mutations, ...action.payload },
+      };
     }
 
     // PRESETS
@@ -404,6 +396,35 @@ export const characterReducer = (
         ...state,
         rangedWeapon,
         rangedWeaponIndex: action.payload.rangedWeaponIndex,
+      };
+    }
+
+    // PRAYER SPELLS
+    case "SET_PRAYER_SPELL": {
+      const { levelIndex, slotIndex, spell } = action.payload;
+      const newPrayerSpells = state.prayerSpells.map((level, i) =>
+        i === levelIndex
+          ? level.map((s, j) => (j === slotIndex ? spell : s))
+          : level,
+      );
+      return { ...state, prayerSpells: newPrayerSpells };
+    }
+
+    // WIZARDRY SPELLS
+    case "SET_WIZARDRY_SPELL": {
+      const { levelIndex, slotIndex, spell } = action.payload;
+      const newWizardrySpells = state.wizardrySpells.map((level, i) =>
+        i === levelIndex
+          ? level.map((s, j) => (j === slotIndex ? spell : s))
+          : level,
+      );
+      return { ...state, wizardrySpells: newWizardrySpells };
+    }
+
+    case "SET_PSIONICS": {
+      return {
+        ...state,
+        psionics: { ...state.psionics, ...action.payload },
       };
     }
 

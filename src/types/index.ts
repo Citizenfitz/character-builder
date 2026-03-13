@@ -1,4 +1,9 @@
-import type { AspectName, HitDiceType, Talents } from "./common";
+import type {
+  AspectName,
+  HitDiceType,
+  Talents,
+  SpellSelection,
+} from "./common";
 
 import type {
   Armor,
@@ -69,4 +74,5 @@ export type {
   SpellSlots,
   SpellList,
   SpellDataRecord,
+  SpellSelection,
 };

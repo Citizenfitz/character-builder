@@ -20,3 +20,13 @@ export interface Talents {
   talentLevel7: string;
   talentLevel9: string;
 }
+export interface SpellSelection {
+  name: string;
+  cast: string;
+  duration: string;
+  range: string;
+  target: string;
+  components: string;
+  save: string;
+  school: string[] | null;
+}

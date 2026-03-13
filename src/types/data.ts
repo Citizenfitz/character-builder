@@ -44,9 +44,8 @@ export interface DisadData {
 
 // ***** GEAR *****
 
-// TODO: change "armor:" to "name:"
 export interface Armor {
-  armor: string;
+  name: string;
   modifier: number;
   penalty: string;
   encumbrance?: "none" | "light" | "medium" | "heavy" | "very heavy";
@@ -138,6 +137,8 @@ export interface PsionicsData {
   target: string;
   rangeInf: boolean;
 }
+
+export type PsionicPower = Omit<PsionicsData, "roll">;
 
 // ***** SPELLS *****
 export interface SpellData {

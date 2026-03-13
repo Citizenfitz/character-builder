@@ -13,7 +13,13 @@
  * - Export everything so we can import selectively or via barrel later
  */
 
-import type { HitDiceType, AspectName, Talents } from "./common";
+import type {
+  HitDiceType,
+  AspectName,
+  Talents,
+  SpellSelection,
+} from "./common";
+import type { Armor, MeleeWeapon, RangedWeapon, PsionicPower } from "./data";
 import { raceData } from "../Data/dataRaces";
 
 export type RaceName = (typeof raceData)[number]["name"];
@@ -88,8 +94,8 @@ export interface Mutations {
 }
 
 export interface Psionics {
-  psp: number; // Psionic Strength Points
-  wildPsionics: string[]; // Names or IDs of active wild psionics
+  psp: number;
+  wildPsionics: PsionicPower[];
 }
 
 export interface Character {
@@ -131,13 +137,13 @@ export interface Character {
   saveModsRace: string[];
 
   // Gear (currently using data arrays directly)
-  armor: any; // Later: define Armor interface from armorData
+  armor: Armor;
   shield: number;
   shieldIndex: number;
   armorIndex: number;
-  meleeWeapon: any;
+  meleeWeapon: MeleeWeapon;
   meleeWeaponIndex: number;
-  rangedWeapon: any;
+  rangedWeapon: RangedWeapon;
   rangedWeaponIndex: number;
 
   // Racial / temp
@@ -150,6 +156,10 @@ export interface Character {
   wizardry2StartLevel: number;
   wizardry3StartLevel: number;
   psionicsStartLevel?: number;
+
+  // Spells Selected
+  prayerSpells: (SpellSelection | null)[][];
+  wizardrySpells: (SpellSelection | null)[][];
 
   // Optional systems
   mutations: Mutations;
